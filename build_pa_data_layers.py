@@ -352,7 +352,7 @@ def read_csv_rows(path: Path):
         return rows
     first = [p.strip().strip('"') for p in lines[0].split(',')]
     if first and first[0].isdigit() and (len(first) < 2 or first[1].upper() in {'G', 'P', 'S'}):
-        return read_raw_precinct_rows(lines)
+        return infer_missing_parties(read_raw_precinct_rows(lines))
     header = [h.strip() for h in lines[0].split(',')]
     idx = {h:i for i,h in enumerate(header)}
     for line in lines[1:]:
@@ -374,7 +374,7 @@ def read_csv_rows(path: Path):
             raw.append('')
         row = {header[i]: raw[i].strip().strip('"') for i in range(len(header))}
         rows.append(row)
-    return rows
+    return infer_missing_parties(rows)
 
 
 def raw_county_name_lookup():
@@ -436,6 +436,39 @@ def read_raw_precinct_rows(lines):
             'candidate': candidate,
             'votes': (raw[15] or '').strip(),
         })
+    return rows
+
+
+def infer_missing_parties(rows):
+    if not rows:
+        return rows
+    party_by_office_candidate = {}
+    counts = defaultdict(int)
+    for row in rows:
+        office = (row.get('office') or '').strip().upper()
+        candidate = (row.get('candidate') or '').strip().upper()
+        party = (row.get('party') or '').strip().upper()
+        if not office or not candidate or not party:
+            continue
+        key = (office, candidate, party)
+        counts[key] += 1
+    best = {}
+    for (office, candidate, party), count in counts.items():
+        oc = (office, candidate)
+        cur = best.get(oc)
+        if cur is None or count > cur[1]:
+            best[oc] = (party, count)
+    for row in rows:
+        party = (row.get('party') or '').strip()
+        if party:
+            continue
+        office = (row.get('office') or '').strip().upper()
+        candidate = (row.get('candidate') or '').strip().upper()
+        if not office or not candidate:
+            continue
+        inferred = best.get((office, candidate))
+        if inferred:
+            row['party'] = inferred[0]
     return rows
 
 
