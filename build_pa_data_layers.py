@@ -20,7 +20,7 @@ data_dir = base / 'data'
 # ------------------------------------------------------------
 def build_pa_congressional_districts(path: Path):
     rows = []
-    for d in range(1, 19):
+    for d in range(1, 18):
         rows.append({
             'district': str(d),
             'total_population': 700000,
@@ -74,7 +74,7 @@ def build_state_senate_csv(path: Path, total=50):
 
 def build_district_descriptions(path: Path):
     payload = {
-        'congressional': {str(i): f'PA Congressional District {i}' for i in range(1, 19)},
+        'congressional': {str(i): f'PA Congressional District {i}' for i in range(1, 18)},
         'state_house': {str(i): f'PA State House District {i}' for i in range(1, 204)},
         'state_senate': {str(i): f'PA State Senate District {i}' for i in range(1, 51)},
     }
@@ -307,7 +307,7 @@ CURRENT_SCOPE_DISTRICT_MAX = {
     'state_senate': 50,
 }
 EXPECTED_DISTRICT_COUNT = {
-    'congressional': 18,
+    'congressional': 17,
     'state_house': 203,
     'state_senate': 50,
 }
@@ -327,6 +327,7 @@ RAW_OFFICE_CODE_MAP = {
 COUNTY_FIPS_BY_NAME = None
 VTD_BRIDGE_INDEX = None
 VTD_CURRENT_DISTRICT_BLOCKS = None
+VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = None
 RAW_COUNTY_NAME_BY_FIPS = None
 
 
@@ -634,6 +635,9 @@ def normalize_bridge_precinct_name(name: str):
     s = re.sub(r'\bDIV\b\.?', ' DIVISION ', s)
     s = re.sub(r'\bDIST\b\.?', ' DISTRICT ', s)
     s = re.sub(r'\bWD\b\.?', ' WARD ', s)
+    s = re.sub(r'\bW\b', ' WARD ', s)
+    s = re.sub(r'\bD\b', ' DISTRICT ', s)
+    s = re.sub(r'\bX\b', ' DISTRICT ', s)
     s = re.sub(r'\bNO\b\.?\s+(\d+)\b', r' DISTRICT \1 ', s)
     s = re.sub(r'\b([0-9]+)(ST|ND|RD|TH)\b', r'\1', s)
     s = re.sub(r'\bW[\s\-]*(\d+)\b', r' WARD \1 ', s)
@@ -642,7 +646,16 @@ def normalize_bridge_precinct_name(name: str):
     s = re.sub(r'\b(\d+)W\b', r' WARD \1 ', s)
     s = re.sub(r'\b(\d+)P\b', r' PRECINCT \1 ', s)
     s = re.sub(r'\b(\d+)D\b', r' DISTRICT \1 ', s)
+    s = re.sub(r'\b(?:DISTRICT\s+)?\d+\s+CONGRESSIONAL\b', ' ', s)
+    prev = None
+    while prev != s:
+        prev = s
+        s = re.sub(r'\b(WARD|DISTRICT|PRECINCT)\s+([A-Z0-9]+)\s+\1\s+\2\b', r' \1 \2 ', s)
     s = re.sub(r'[^A-Z0-9]+', ' ', s)
+    prev = None
+    while prev != s:
+        prev = s
+        s = re.sub(r'^(.*?)\s+((?:WARD|DISTRICT|PRECINCT)\s+[A-Z0-9]+(?:\s+[A-Z0-9]+)*)\s+\2$', r'\1 \2', s)
     s = re.sub(r'\b0+(\d+)\b', lambda m: str(int(m.group(1))), s)
     return re.sub(r'\s+', ' ', s).strip()
 
@@ -876,51 +889,59 @@ def load_vtd_bridge_index():
 
 
 def load_vtd_current_district_blocks():
-    global VTD_CURRENT_DISTRICT_BLOCKS
+    global VTD_CURRENT_DISTRICT_BLOCKS, VTD_CURRENT_SCOPE_BLOCK_WEIGHTS
     if VTD_CURRENT_DISTRICT_BLOCKS is not None:
         return VTD_CURRENT_DISTRICT_BLOCKS
     weights = {scope: defaultdict(lambda: defaultdict(int)) for scope in ('congressional', 'state_house', 'state_senate')}
-    with zipfile.ZipFile(base / 'data' / 'BlockAssign_ST42_PA.zip') as z:
-        vtd_by_block = {}
-        with z.open('BlockAssign_ST42_PA_VTD.txt') as f:
-            next(f, None)
-            for raw_line in f:
-                line = raw_line.decode('utf-8', errors='ignore').strip()
-                if not line:
-                    continue
-                parts = line.split('|')
-                if len(parts) < 3:
-                    continue
-                blockid, countyfp, vtd = parts[0], parts[1].zfill(3), parts[2].strip()
-                if blockid and countyfp and vtd:
-                    vtd_by_block[blockid] = (countyfp, vtd)
-        members = {
-            'congressional': 'BlockAssign_ST42_PA_CD.txt',
-            'state_house': 'BlockAssign_ST42_PA_SLDL.txt',
-            'state_senate': 'BlockAssign_ST42_PA_SLDU.txt',
-        }
-        for scope, member in members.items():
-            max_district = CURRENT_SCOPE_DISTRICT_MAX[scope]
-            with z.open(member) as f:
-                next(f, None)
-                for raw_line in f:
-                    line = raw_line.decode('utf-8', errors='ignore').strip()
-                    if not line:
-                        continue
-                    parts = line.split('|')
-                    if len(parts) < 2:
-                        continue
-                    blockid, raw_district = parts[0], parts[-1]
+    if VTD_CURRENT_SCOPE_BLOCK_WEIGHTS is None and gpd is not None:
+        try:
+            block_gdf = gpd.read_file(f'zip://{(data_dir / "tl_2022_42_tabblock20.zip").resolve()}')[['GEOID20', 'geometry']].copy()
+            equal_area_crs = 'EPSG:5070'
+            block_gdf = block_gdf.to_crs(equal_area_crs)
+            scope_sources = {
+                'congressional': ('tl_2022_42_cd118.zip', 'CD118FP'),
+                'state_house': ('tl_2022_42_sldl.zip', 'SLDLST'),
+                'state_senate': ('tl_2022_42_sldu.zip', 'SLDUST'),
+            }
+            vtd_by_block = {}
+            with zipfile.ZipFile(base / 'data' / 'BlockAssign_ST42_PA.zip') as z:
+                with z.open('BlockAssign_ST42_PA_VTD.txt') as f:
+                    next(f, None)
+                    for raw_line in f:
+                        line = raw_line.decode('utf-8', errors='ignore').strip()
+                        if not line:
+                            continue
+                        parts = line.split('|')
+                        if len(parts) < 3:
+                            continue
+                        blockid, countyfp, vtd = parts[0], parts[1].zfill(3), parts[2].strip()
+                        if blockid and countyfp and vtd:
+                            vtd_by_block[blockid] = (countyfp, vtd)
+            block_weights = {}
+            for scope, (zip_name, district_field) in scope_sources.items():
+                district_gdf = gpd.read_file(f'zip://{(data_dir / zip_name).resolve()}')[[district_field, 'geometry']].copy()
+                district_gdf = district_gdf.to_crs(equal_area_crs)
+                joined = gpd.sjoin(block_gdf, district_gdf, how='left', predicate='intersects')
+                scope_weights = defaultdict(lambda: defaultdict(int))
+                max_district = CURRENT_SCOPE_DISTRICT_MAX[scope]
+                for _, row in joined.iterrows():
+                    blockid = str(row.get('GEOID20') or '').strip()
                     vtd_key = vtd_by_block.get(blockid)
                     if not vtd_key:
                         continue
-                    district = normalize_district_id(raw_district)
-                    if not district or not district.isdigit():
+                    district = normalize_district_id(row.get(district_field) or '')
+                    if not district:
                         continue
                     district_num = int(district)
                     if district_num <= 0 or district_num > max_district:
                         continue
-                    weights[scope][vtd_key][str(district_num)] += 1
+                    scope_weights[vtd_key][str(district_num)] += 1
+                block_weights[scope] = scope_weights
+            VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = block_weights
+        except Exception:
+            VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = {}
+    for scope, scope_weights in (VTD_CURRENT_SCOPE_BLOCK_WEIGHTS or {}).items():
+        weights[scope] = scope_weights
     VTD_CURRENT_DISTRICT_BLOCKS = weights
     return VTD_CURRENT_DISTRICT_BLOCKS
 
@@ -938,6 +959,24 @@ def match_row_to_current_vtds(row):
     exact_name = normalize_bridge_precinct_name(precinct)
     if county == 'DAUPHIN' and exact_name.startswith('CITY '):
         candidate_names.add(re.sub(r'^CITY\b', 'HARRISBURG', exact_name).strip())
+    if county == 'MONROE':
+        m = re.match(r'^MIDDLE SMITHFIELD DISTRICT (\d+)$', exact_name)
+        if m:
+            district_num = int(m.group(1))
+            if district_num in (1, 2):
+                candidate_names.add('MIDDLE SMITHFIELD DISTRICT EAST')
+            if district_num in (3, 4):
+                candidate_names.add('MIDDLE SMITHFIELD DISTRICT WEST')
+        if exact_name in {'TUNKHANNOCK DISTRICT EAST', 'TUNKHANNOCK DISTRICT WEST'}:
+            candidate_names.add('TUNKHANNOCK')
+    if county == 'CARBON' and exact_name == 'FRANKLIN DISTRICT FRANKLIN IND DISTRICT FRANKLIN IND':
+        candidate_names.add('FRANKLIN DISTRICT FRANKLIN IND')
+    if county == 'NORTHAMPTON':
+        m = re.match(r'^(BETHLEHEM WARD \d+)$', exact_name)
+        if m:
+            candidate_names.add(m.group(1))
+        if exact_name == 'LEHIGH DISTRICT PENN':
+            candidate_names.add('LEHIGH DISTRICT PENNSVILLE')
     exact_matches = set()
     for candidate_name in candidate_names:
         exact_matches.update(index.get('exact', {}).get(normalize_bridge_precinct_name(candidate_name), set()))
