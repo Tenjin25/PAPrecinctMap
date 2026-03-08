@@ -301,6 +301,11 @@ DISTRICT_SCOPE_BY_CONTEST = {
     'state_house': 'state_house',
     'state_senate': 'state_senate',
 }
+CURRENT_SCOPE_DISTRICT_MAX = {
+    'congressional': 17,
+    'state_house': 203,
+    'state_senate': 50,
+}
 EXPECTED_DISTRICT_COUNT = {
     'congressional': 18,
     'state_house': 203,
@@ -308,10 +313,6 @@ EXPECTED_DISTRICT_COUNT = {
 }
 OFFICIAL_2024_STATEWIDE_OE_SOURCE = DATA_ROOT / '2024' / '20241105__pa__general__precinct_official.csv'
 OFFICIAL_2024_DISTRICT_SOURCE = base / 'data' / 'erstat_2024_g_268768_20250129.txt'
-RAW_CURRENT_LINE_STATEWIDE_SOURCES = {
-    2022: base / 'data' / 'ElectionReturns_2022_General_PrecinctReturns.txt',
-    2024: OFFICIAL_2024_DISTRICT_SOURCE,
-}
 RAW_OFFICE_CODE_MAP = {
     'USP': 'President',
     'USS': 'U.S. Senate',
@@ -323,6 +324,9 @@ RAW_OFFICE_CODE_MAP = {
     'STH': 'State House',
     'STS': 'State Senate',
 }
+COUNTY_FIPS_BY_NAME = None
+VTD_BRIDGE_INDEX = None
+VTD_CURRENT_DISTRICT_BLOCKS = None
 RAW_COUNTY_NAME_BY_FIPS = None
 
 
@@ -563,7 +567,7 @@ def normalize_district_id(raw):
 
 def expected_district_count(scope: str, contest_type: str, year: int):
     if scope == 'congressional':
-        if int(year) >= 2022:
+        if contest_type != 'us_house' or int(year) >= 2022:
             return 17
         return EXPECTED_DISTRICT_COUNT[scope]
     if scope == 'state_senate' and contest_type == 'state_senate':
@@ -572,13 +576,404 @@ def expected_district_count(scope: str, contest_type: str, year: int):
 
 
 def district_assignment_for_scope(row, scope: str):
+    max_district = CURRENT_SCOPE_DISTRICT_MAX.get(scope, 0)
+    def clean(value):
+        district_id = normalize_district_id(value or '')
+        if not district_id or not str(district_id).isdigit():
+            return ''
+        district_num = int(district_id)
+        if district_num <= 0 or (max_district and district_num > max_district):
+            return ''
+        return str(district_num)
     if scope == 'congressional':
-        return normalize_district_id(row.get('congressional_district') or '')
+        return clean(row.get('congressional_district') or '')
     if scope == 'state_house':
-        return normalize_district_id(row.get('state_house_district') or '')
+        return clean(row.get('state_house_district') or '')
     if scope == 'state_senate':
-        return normalize_district_id(row.get('state_senate_district') or '')
+        return clean(row.get('state_senate_district') or '')
     return ''
+
+
+def county_fips_by_name():
+    global COUNTY_FIPS_BY_NAME
+    if COUNTY_FIPS_BY_NAME is not None:
+        return COUNTY_FIPS_BY_NAME
+    lookup = {}
+    for fips, name in raw_county_name_lookup().items():
+        norm = normalize_county_name(name)
+        if norm:
+            lookup[norm] = fips
+    COUNTY_FIPS_BY_NAME = lookup
+    return COUNTY_FIPS_BY_NAME
+
+
+def normalize_bridge_precinct_name(name: str):
+    s = (name or '').upper().strip()
+    if not s:
+        return ''
+    ordinal_words = {
+        'FIRST': '1', 'SECOND': '2', 'THIRD': '3', 'FOURTH': '4', 'FIFTH': '5',
+        'SIXTH': '6', 'SEVENTH': '7', 'EIGHTH': '8', 'NINTH': '9', 'TENTH': '10',
+        'ELEVENTH': '11', 'TWELFTH': '12', 'THIRTEENTH': '13', 'FOURTEENTH': '14',
+        'FIFTEENTH': '15', 'SIXTEENTH': '16', 'SEVENTEENTH': '17', 'EIGHTEENTH': '18',
+        'NINETEENTH': '19', 'TWENTIETH': '20',
+    }
+    for word, num in ordinal_words.items():
+        s = re.sub(rf'\b{word}\b', f' {num} ', s)
+    s = re.sub(r'\([^)]*\)', ' ', s)
+    s = re.sub(r'^(?:\d+[A-Z]?|[IVXLCDM]+)(?:[-\s]+(?:\d+[A-Z]?|[IVXLCDM]+))*\s+(?=[A-Z])', '', s)
+    s = s.replace('&', ' AND ')
+    s = s.replace('#', ' DISTRICT ')
+    s = s.replace('~', ' ')
+    s = re.sub(r'\bTWP\b\.?', ' TOWNSHIP ', s)
+    s = re.sub(r'\bBORO\b\.?', ' BOROUGH ', s)
+    s = re.sub(r'\bBR\b\.?', ' BOROUGH ', s)
+    s = re.sub(r'\bMT\b\.?', ' MOUNT ', s)
+    s = re.sub(r'\bPCT\b\.?', ' PRECINCT ', s)
+    s = re.sub(r'\bDIS\b\.?', ' DISTRICT ', s)
+    s = re.sub(r'\bDIV\b\.?', ' DIVISION ', s)
+    s = re.sub(r'\bDIST\b\.?', ' DISTRICT ', s)
+    s = re.sub(r'\bWD\b\.?', ' WARD ', s)
+    s = re.sub(r'\bNO\b\.?\s+(\d+)\b', r' DISTRICT \1 ', s)
+    s = re.sub(r'\b([0-9]+)(ST|ND|RD|TH)\b', r'\1', s)
+    s = re.sub(r'\bW[\s\-]*(\d+)\b', r' WARD \1 ', s)
+    s = re.sub(r'\bP[\s\-]*(\d+)\b', r' PRECINCT \1 ', s)
+    s = re.sub(r'\bD[\s\-]*(\d+)\b', r' DISTRICT \1 ', s)
+    s = re.sub(r'\b(\d+)W\b', r' WARD \1 ', s)
+    s = re.sub(r'\b(\d+)P\b', r' PRECINCT \1 ', s)
+    s = re.sub(r'\b(\d+)D\b', r' DISTRICT \1 ', s)
+    s = re.sub(r'[^A-Z0-9]+', ' ', s)
+    s = re.sub(r'\b0+(\d+)\b', lambda m: str(int(m.group(1))), s)
+    return re.sub(r'\s+', ' ', s).strip()
+
+
+def bridge_precinct_aliases(name: str):
+    base = normalize_bridge_precinct_name(name)
+    if not base:
+        return set()
+    aliases = {base}
+    for value in list(aliases):
+        aliases.add(re.sub(r'\bVOTING DISTRICT\b', '', value).strip())
+        aliases.add(re.sub(r'\bPRECINCT\b', '', value).strip())
+        aliases.add(re.sub(r'\bDISTRICT (?=\d)', '', value).strip())
+        aliases.add(re.sub(r'\b(TOWNSHIP|BOROUGH|CITY|TOWN)\b', '', value).strip())
+        aliases.add(re.sub(r'\bCITY\b', '', value).strip())
+    m = re.match(r'^(\d+)\s+(\d+)$', base)
+    if m:
+        ward = str(int(m.group(1)))
+        precinct = str(int(m.group(2)))
+        aliases.update({
+            f'WARD {ward} PRECINCT {precinct}',
+            f'PHILADELPHIA WARD {ward} PRECINCT {precinct}',
+            f'WARD {ward.zfill(2)} PRECINCT {precinct.zfill(2)}',
+            f'PHILADELPHIA WARD {ward.zfill(2)} PRECINCT {precinct.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+WARD\s+(\d+)\s+(PRECINCT|DISTRICT)\s+(\d+)$', base)
+    if m:
+        ward = str(int(m.group(2)))
+        unit = m.group(3)
+        part = str(int(m.group(4)))
+        other = 'DISTRICT' if unit == 'PRECINCT' else 'PRECINCT'
+        aliases.update({
+            f'WARD {ward} {unit} {part}',
+            f'WARD {ward.zfill(2)} {unit} {part.zfill(2)}',
+            f'WARD {ward} {other} {part}',
+            f'WARD {ward.zfill(2)} {other} {part.zfill(2)}',
+            f'{ward} {part}',
+        })
+    m = re.match(r'^(.*?)\s+(\d+)\s+WARD\s+(\d+)\s+(PRECINCT|DISTRICT)$', base)
+    if m:
+        stem = m.group(1).strip()
+        ward = str(int(m.group(2)))
+        part = str(int(m.group(3)))
+        unit = m.group(4)
+        aliases.update({
+            f'{stem} WARD {ward} {unit} {part}',
+            f'{stem} WARD {ward.zfill(2)} {unit} {part.zfill(2)}',
+            f'WARD {ward} {unit} {part}',
+            f'{ward} {part}',
+        })
+    m = re.match(r'^(.*?)\s+WARD\s+(\d+)$', base)
+    if m:
+        ward = str(int(m.group(2)))
+        aliases.update({
+            f'WARD {ward}',
+            f'WARD {ward.zfill(2)}',
+            f'{ward} W',
+        })
+    m = re.match(r'^(.*?)\s+(\d+)\s+WARD$', base)
+    if m:
+        stem = m.group(1).strip()
+        ward = str(int(m.group(2)))
+        aliases.update({
+            f'{stem} WARD {ward}',
+            f'{stem} WARD {ward.zfill(2)}',
+            f'WARD {ward}',
+        })
+    m = re.match(r'^(.*?)\s+(PRECINCT|DISTRICT)\s+(\d+)$', base)
+    if m:
+        unit = m.group(2)
+        part = str(int(m.group(3)))
+        other = 'DISTRICT' if unit == 'PRECINCT' else 'PRECINCT'
+        aliases.update({
+            f'{unit} {part}',
+            f'{unit} {part.zfill(2)}',
+            f'{other} {part}',
+            f'{other} {part.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+(\d+)\s+(PRECINCT|DISTRICT)$', base)
+    if m:
+        stem = m.group(1).strip()
+        part = str(int(m.group(2)))
+        unit = m.group(3)
+        other = 'DISTRICT' if unit == 'PRECINCT' else 'PRECINCT'
+        aliases.update({
+            f'{stem} {unit} {part}',
+            f'{stem} {unit} {part.zfill(2)}',
+            f'{stem} {other} {part}',
+            f'{stem} {other} {part.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+(\d+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        part = str(int(m.group(2)))
+        aliases.update({
+            f'{stem} WARD {part}',
+            f'{stem} DISTRICT {part}',
+            f'{stem} PRECINCT {part}',
+            f'{stem} WARD {part.zfill(2)}',
+            f'{stem} DISTRICT {part.zfill(2)}',
+            f'{stem} PRECINCT {part.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+(TOWNSHIP|BOROUGH|CITY|TOWN)\s+(\d+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        part = str(int(m.group(3)))
+        aliases.update({
+            f'{stem} WARD {part}',
+            f'{stem} DISTRICT {part}',
+            f'{stem} PRECINCT {part}',
+            f'{stem} WARD {part.zfill(2)}',
+            f'{stem} DISTRICT {part.zfill(2)}',
+            f'{stem} PRECINCT {part.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+(NORTH|SOUTH|EAST|WEST|UPPER|LOWER|MIDDLE|CENTRAL|NORTHERN|SOUTHERN)\s+(\d+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        side = m.group(2).strip()
+        part = str(int(m.group(3)))
+        aliases.update({
+            f'{stem} DISTRICT {side} {part}',
+            f'{stem} {side} DISTRICT {part}',
+            f'{stem} DISTRICT {side} DIVISION {part}',
+            f'{stem} WARD {side} {part}',
+            f'{stem} PRECINCT {side} {part}',
+            f'{stem} DISTRICT {side} {part.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+((?:NORTH|SOUTH|EAST|WEST|UPPER|LOWER|MIDDLE|CENTRAL|NORTHERN|SOUTHERN)\s+(?:NORTH|SOUTH|EAST|WEST|UPPER|LOWER|MIDDLE|CENTRAL|NORTHERN|SOUTHERN))\s+(\d+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        side = m.group(2).strip()
+        part = str(int(m.group(3)))
+        aliases.update({
+            f'{stem} DISTRICT {side} {part}',
+            f'{stem} DISTRICT {side} DIVISION {part}',
+            f'{stem} {side} DISTRICT {part}',
+            f'{stem} {side} DIVISION {part}',
+            f'{stem} DISTRICT {side} {part.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+(TOWNSHIP|BOROUGH|CITY|TOWN)\s+(\d+)\s+(\d+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        part_a = str(int(m.group(3)))
+        part_b = str(int(m.group(4)))
+        aliases.update({
+            f'{stem} WARD {part_a} PRECINCT {part_b}',
+            f'{stem} WARD {part_a.zfill(2)} PRECINCT {part_b.zfill(2)}',
+            f'{stem} DISTRICT {part_a} DIVISION {part_b}',
+            f'{stem} DISTRICT {part_a.zfill(2)} DIVISION {part_b.zfill(2)}',
+            f'{stem} DISTRICT {part_a}{part_b}',
+            f'{stem} DISTRICT {part_a.zfill(2)}{part_b.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+(\d+)\s+(\d+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        part_a = str(int(m.group(2)))
+        part_b = str(int(m.group(3)))
+        aliases.update({
+            f'{stem} WARD {part_a} PRECINCT {part_b}',
+            f'{stem} WARD {part_a.zfill(2)} PRECINCT {part_b.zfill(2)}',
+            f'{stem} DISTRICT {part_a} PRECINCT {part_b}',
+            f'{stem} DISTRICT {part_a.zfill(2)} PRECINCT {part_b.zfill(2)}',
+            f'{stem} DISTRICT {part_a} DIVISION {part_b}',
+            f'{stem} DISTRICT {part_a.zfill(2)} DIVISION {part_b.zfill(2)}',
+            f'{stem} DISTRICT {part_a}{part_b}',
+            f'{stem} DISTRICT {part_a.zfill(2)}{part_b.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+([A-Z]+(?:\s+[A-Z]+)*)\s+(PRECINCT|DISTRICT|WARD)$', base)
+    if m:
+        stem = m.group(1).strip()
+        tail = m.group(2).strip()
+        unit = m.group(3)
+        aliases.update({
+            f'{stem} {unit} {tail}',
+            f'{stem} {tail}',
+        })
+    m = re.match(r'^(.*?)\s+(TOWNSHIP|BOROUGH|CITY|TOWN)\s+([A-Z]+(?:\s+[A-Z]+)*)$', base)
+    if m:
+        stem = m.group(1).strip()
+        tail = m.group(3).strip()
+        aliases.update({
+            f'{stem} DISTRICT {tail}',
+            f'{stem} WARD {tail}',
+            f'{stem} PRECINCT {tail}',
+            f'{stem} {tail}',
+        })
+    normalized_aliases = set()
+    for value in list(aliases):
+        if not value or not value.strip():
+            continue
+        candidates = {
+            value,
+            re.sub(r'\bVOTING DISTRICT\b', '', value).strip(),
+            re.sub(r'\bPRECINCT\b', '', value).strip(),
+            re.sub(r'\bDISTRICT (?=\d)', '', value).strip(),
+            re.sub(r'\b(TOWNSHIP|BOROUGH|CITY|TOWN)\b', '', value).strip(),
+            re.sub(r'\bCITY\b', '', value).strip(),
+        }
+        for candidate in candidates:
+            cleaned = re.sub(r'\s+', ' ', candidate).strip()
+            if cleaned:
+                normalized_aliases.add(cleaned)
+    return normalized_aliases
+
+
+def load_vtd_bridge_index():
+    global VTD_BRIDGE_INDEX
+    if VTD_BRIDGE_INDEX is not None:
+        return VTD_BRIDGE_INDEX
+    index = defaultdict(lambda: {'exact': defaultdict(set), 'loose': defaultdict(set)})
+    if gpd is None:
+        VTD_BRIDGE_INDEX = index
+        return VTD_BRIDGE_INDEX
+    gdf = gpd.read_file('zip://data/tl_2020_42_vtd20.zip')
+    for _, row in gdf.iterrows():
+        countyfp = str(row.get('COUNTYFP20') or '').zfill(3)
+        vtd = str(row.get('VTDST20') or '').strip()
+        if not countyfp or not vtd:
+            continue
+        exact_names = {
+            normalize_bridge_precinct_name(row.get('NAME20') or ''),
+            normalize_bridge_precinct_name(row.get('NAMELSAD20') or '')
+        }
+        for alias in [a for a in exact_names if a]:
+            index[countyfp]['exact'][alias].add(vtd)
+        for source_name in [row.get('NAME20') or '', row.get('NAMELSAD20') or '']:
+            for alias in bridge_precinct_aliases(source_name):
+                index[countyfp]['loose'][alias].add(vtd)
+    VTD_BRIDGE_INDEX = index
+    return VTD_BRIDGE_INDEX
+
+
+def load_vtd_current_district_blocks():
+    global VTD_CURRENT_DISTRICT_BLOCKS
+    if VTD_CURRENT_DISTRICT_BLOCKS is not None:
+        return VTD_CURRENT_DISTRICT_BLOCKS
+    weights = {scope: defaultdict(lambda: defaultdict(int)) for scope in ('congressional', 'state_house', 'state_senate')}
+    with zipfile.ZipFile(base / 'data' / 'BlockAssign_ST42_PA.zip') as z:
+        vtd_by_block = {}
+        with z.open('BlockAssign_ST42_PA_VTD.txt') as f:
+            next(f, None)
+            for raw_line in f:
+                line = raw_line.decode('utf-8', errors='ignore').strip()
+                if not line:
+                    continue
+                parts = line.split('|')
+                if len(parts) < 3:
+                    continue
+                blockid, countyfp, vtd = parts[0], parts[1].zfill(3), parts[2].strip()
+                if blockid and countyfp and vtd:
+                    vtd_by_block[blockid] = (countyfp, vtd)
+        members = {
+            'congressional': 'BlockAssign_ST42_PA_CD.txt',
+            'state_house': 'BlockAssign_ST42_PA_SLDL.txt',
+            'state_senate': 'BlockAssign_ST42_PA_SLDU.txt',
+        }
+        for scope, member in members.items():
+            max_district = CURRENT_SCOPE_DISTRICT_MAX[scope]
+            with z.open(member) as f:
+                next(f, None)
+                for raw_line in f:
+                    line = raw_line.decode('utf-8', errors='ignore').strip()
+                    if not line:
+                        continue
+                    parts = line.split('|')
+                    if len(parts) < 2:
+                        continue
+                    blockid, raw_district = parts[0], parts[-1]
+                    vtd_key = vtd_by_block.get(blockid)
+                    if not vtd_key:
+                        continue
+                    district = normalize_district_id(raw_district)
+                    if not district or not district.isdigit():
+                        continue
+                    district_num = int(district)
+                    if district_num <= 0 or district_num > max_district:
+                        continue
+                    weights[scope][vtd_key][str(district_num)] += 1
+    VTD_CURRENT_DISTRICT_BLOCKS = weights
+    return VTD_CURRENT_DISTRICT_BLOCKS
+
+
+def match_row_to_current_vtds(row):
+    county = normalize_county_name(row.get('county') or '')
+    countyfp = county_fips_by_name().get(county)
+    if not countyfp:
+        return []
+    precinct = row.get('precinct') or ''
+    if not precinct:
+        return []
+    index = load_vtd_bridge_index().get(countyfp) or {}
+    candidate_names = {precinct}
+    exact_name = normalize_bridge_precinct_name(precinct)
+    if county == 'DAUPHIN' and exact_name.startswith('CITY '):
+        candidate_names.add(re.sub(r'^CITY\b', 'HARRISBURG', exact_name).strip())
+    exact_matches = set()
+    for candidate_name in candidate_names:
+        exact_matches.update(index.get('exact', {}).get(normalize_bridge_precinct_name(candidate_name), set()))
+    if len(exact_matches) == 1:
+        return [(countyfp, next(iter(exact_matches)))]
+    if len(exact_matches) > 1:
+        return [(countyfp, vtd) for vtd in sorted(exact_matches)]
+    loose_matches = set()
+    for candidate_name in candidate_names:
+        for alias in bridge_precinct_aliases(candidate_name):
+            loose_matches.update(index.get('loose', {}).get(alias, set()))
+    if len(loose_matches) == 1:
+        return [(countyfp, next(iter(loose_matches)))]
+    if len(loose_matches) > 1:
+        return [(countyfp, vtd) for vtd in sorted(loose_matches)]
+    return []
+
+
+def allocate_votes_by_block_counts(votes: int, district_counts):
+    if votes <= 0 or not district_counts:
+        return {}
+    total = sum(int(v or 0) for v in district_counts.values())
+    if total <= 0:
+        return {}
+    raw = {}
+    allocated = {}
+    for district, count in district_counts.items():
+        share = votes * (int(count or 0) / total)
+        raw[district] = share
+        allocated[district] = int(share)
+    remainder = votes - sum(allocated.values())
+    if remainder > 0:
+        order = sorted(raw.keys(), key=lambda district: (raw[district] - allocated[district], int(district)), reverse=True)
+        for district in order[:remainder]:
+            allocated[district] += 1
+    return {district: amount for district, amount in allocated.items() if amount > 0}
 
 
 def add_result_votes(node, votes: int, party: str, candidate: str):
@@ -714,6 +1109,7 @@ def build_district_manifests(contest_dir: Path):
     source_by_key = {}
     files = []
     source_rows = []
+    vtd_match_cache = {}
 
     if OFFICIAL_2024_DISTRICT_SOURCE.exists():
         source_rows.append((2024, OFFICIAL_2024_DISTRICT_SOURCE, 'official_pa_precinct_export'))
@@ -730,63 +1126,61 @@ def build_district_manifests(contest_dir: Path):
 
         for row in rows:
             office_key = office_mapping_for_contest(row.get('office') or '')
-            if office_key not in target_years or year not in target_years[office_key]:
-                continue
-            district_id = normalize_district_id(row.get('district') or '')
-            if not district_id:
-                continue
-            scope = DISTRICT_SCOPE_BY_CONTEST[office_key]
-            key = (scope, office_key, year)
-            source_by_key.setdefault(key, source_label)
-            contest = district_nodes.setdefault(key, {})
-            node = contest.setdefault(district_id, {
-                'dem_votes': 0,
-                'rep_votes': 0,
-                'other_votes': 0,
-                'total_votes': 0,
-                'dem_candidate': '',
-                'rep_candidate': '',
-            })
-            add_result_votes(
-                node,
-                safe_int(row.get('votes')),
-                (row.get('party') or '').strip().upper(),
-                (row.get('candidate') or '').strip(),
-            )
-
-    for year, fp in sorted(RAW_CURRENT_LINE_STATEWIDE_SOURCES.items()):
-        if not fp.exists():
-            continue
-        try:
-            rows = read_csv_rows(fp)
-        except Exception:
-            continue
-
-        for row in rows:
-            office_key = office_mapping_for_contest(row.get('office') or '')
-            if office_key not in STATEWIDE_CONTEST_TYPES:
-                continue
             votes = safe_int(row.get('votes'))
             if votes <= 0:
                 continue
             party = (row.get('party') or '').strip().upper()
             candidate = (row.get('candidate') or '').strip()
-            for scope in ('congressional', 'state_house', 'state_senate'):
-                district_id = district_assignment_for_scope(row, scope)
-                if not district_id:
+
+            if office_key in target_years and year in target_years[office_key]:
+                district_id = normalize_district_id(row.get('district') or '')
+                if district_id:
+                    scope = DISTRICT_SCOPE_BY_CONTEST[office_key]
+                    key = (scope, office_key, year)
+                    source_by_key.setdefault(key, source_label)
+                    contest = district_nodes.setdefault(key, {})
+                    node = contest.setdefault(district_id, {
+                        'dem_votes': 0,
+                        'rep_votes': 0,
+                        'other_votes': 0,
+                        'total_votes': 0,
+                        'dem_candidate': '',
+                        'rep_candidate': '',
+                    })
+                    add_result_votes(node, votes, party, candidate)
+
+            if office_key in STATEWIDE_CONTEST_TYPES:
+                match_key = (
+                    normalize_county_name(row.get('county') or ''),
+                    normalize_bridge_precinct_name(row.get('precinct') or '')
+                )
+                if match_key not in vtd_match_cache:
+                    vtd_match_cache[match_key] = match_row_to_current_vtds(row)
+                matched_vtds = vtd_match_cache.get(match_key) or []
+                if not matched_vtds:
                     continue
-                key = (scope, office_key, year)
-                source_by_key.setdefault(key, f'official_pa_precinct_export_{year}_current_lines')
-                contest = district_nodes.setdefault(key, {})
-                node = contest.setdefault(district_id, {
-                    'dem_votes': 0,
-                    'rep_votes': 0,
-                    'other_votes': 0,
-                    'total_votes': 0,
-                    'dem_candidate': '',
-                    'rep_candidate': '',
-                })
-                add_result_votes(node, votes, party, candidate)
+                block_maps = load_vtd_current_district_blocks()
+                for scope in ('congressional', 'state_house', 'state_senate'):
+                    district_counts = defaultdict(int)
+                    for vtd_key in matched_vtds:
+                        for district_id, block_count in (block_maps.get(scope, {}).get(vtd_key) or {}).items():
+                            district_counts[district_id] += int(block_count or 0)
+                    allocations = allocate_votes_by_block_counts(votes, district_counts)
+                    if not allocations:
+                        continue
+                    key = (scope, office_key, year)
+                    source_by_key.setdefault(key, f'{source_label}_to_current_lines_via_vtd_block_assign')
+                    contest = district_nodes.setdefault(key, {})
+                    for district_id, district_votes in allocations.items():
+                        node = contest.setdefault(district_id, {
+                            'dem_votes': 0,
+                            'rep_votes': 0,
+                            'other_votes': 0,
+                            'total_votes': 0,
+                            'dem_candidate': '',
+                            'rep_candidate': '',
+                        })
+                        add_result_votes(node, district_votes, party, candidate)
 
     for (scope, contest_type, year), results in sorted(district_nodes.items(), key=lambda item: (item[0][0], item[0][2], item[0][1])):
         finalized = {}
