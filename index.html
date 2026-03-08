@@ -2975,6 +2975,17 @@ document.addEventListener('DOMContentLoaded', function() {
       const key = `${scope}_${contestType}_${year}`;
       if (districtSliceCache.has(key)) return districtSliceCache.get(key);
 
+      const manifestHasKey = Array.isArray(districtManifest) && districtManifest.some(e =>
+        e &&
+        e.scope === scope &&
+        e.contest_type === contestType &&
+        Number(e.year) === Number(year)
+      );
+      if (!manifestHasKey) {
+        districtSliceCache.set(key, null);
+        return null;
+      }
+
       try {
         const payload = await loadJSON(`${CONFIG.paths.district_contests_dir}/${key}.json`);
         districtSliceCache.set(key, payload);
@@ -6559,6 +6570,8 @@ document.addEventListener('DOMContentLoaded', function() {
       let repCandidate = stripRunningMateName((row.rep_candidate || '').toString().trim());
       if (!demCandidate) demCandidate = stripRunningMateName((fallbackCandidates?.dem || '').toString().trim());
       if (!repCandidate) repCandidate = stripRunningMateName((fallbackCandidates?.rep || '').toString().trim());
+      if (!demCandidate) demCandidate = stripRunningMateName(getCandidateName(year, formatContestName(contestType, year), 'Democrat'));
+      if (!repCandidate) repCandidate = stripRunningMateName(getCandidateName(year, formatContestName(contestType, year), 'Republican'));
       if (!demCandidate) demCandidate = 'D';
       if (!repCandidate) repCandidate = 'R';
 
