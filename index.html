@@ -4599,7 +4599,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevResults = prevCached?.prevNode?.general?.results || null;
         if (prevResults) {
           const prevRow = prevResults[String(districtNum)] || prevResults[String(Number(districtNum))] || null;
-          if (prevRow) prevSignedForFlip = Number(prevRow.margin_pct || 0);
+          if (prevRow) {
+            prevSignedForFlip = signedMarginPctFromStoredResult(
+              prevRow.margin_pct,
+              prevRow.winner,
+              Number(prevRow.dem_votes) || 0,
+              Number(prevRow.rep_votes) || 0,
+              Number(prevRow.total_votes) || 0
+            );
+          }
         }
       } catch (_) {}
 
@@ -8011,8 +8019,9 @@ document.addEventListener('DOMContentLoaded', function() {
             prevYear = prevCached?.prevYear || null;
             prevResults = prevCached?.prevNode?.general?.results || null;
           } catch (_) {}
-          if (mode === 'shift' && !prevYear) {
-            setStatus(`Shift mode needs a prior year for ${formatContestName(contestType, year)} in ${districtScope}. Falling back to Margins.`);
+          if ((mode === 'shift' || mode === 'flips') && !prevYear) {
+            const modeLabel = mode === 'flips' ? 'Flip' : 'Shift';
+            setStatus(`${modeLabel} mode needs a prior year for ${formatContestName(contestType, year)} in ${districtScope}. Falling back to Margins.`);
             mode = 'margins';
             currentVizMode = 'margins';
             setVizModeUI('margins');
