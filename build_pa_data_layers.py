@@ -291,10 +291,10 @@ def build_vtd_precinct_and_centroid_layers(vtd_zip: Path, county_lookup: dict, p
 # ------------------------------------------------------------
 # 3) Create minimal election aggregate JSON from available county results in OpenElections csvs
 # ------------------------------------------------------------
-DATA_ROOT = base / 'Data' / 'Openelections'
+DATA_ROOT = base / 'data' / 'Openelections'
 
-PARTY_DEM = {'DEM', 'D'}
-PARTY_REP = {'REP', 'R'}
+PARTY_DEM = {'DEM', 'D', 'DEMOCRATIC', 'DEMOCRAT'}
+PARTY_REP = {'REP', 'R', 'REPUBLICAN'}
 STATEWIDE_CONTEST_TYPES = ['president', 'governor', 'us_senate', 'attorney_general', 'secretary_of_state', 'treasurer', 'auditor']
 DISTRICT_SCOPE_BY_CONTEST = {
     'us_house': 'congressional',
@@ -307,7 +307,11 @@ EXPECTED_DISTRICT_COUNT = {
     'state_senate': 50,
 }
 OFFICIAL_2024_STATEWIDE_OE_SOURCE = DATA_ROOT / '2024' / '20241105__pa__general__precinct_official.csv'
-OFFICIAL_2024_DISTRICT_SOURCE = base / 'Data' / 'erstat_2024_g_268768_20250129.txt'
+OFFICIAL_2024_DISTRICT_SOURCE = base / 'data' / 'erstat_2024_g_268768_20250129.txt'
+RAW_CURRENT_LINE_STATEWIDE_SOURCES = {
+    2022: base / 'data' / 'ElectionReturns_2022_General_PrecinctReturns.txt',
+    2024: OFFICIAL_2024_DISTRICT_SOURCE,
+}
 RAW_OFFICE_CODE_MAP = {
     'USP': 'President',
     'USS': 'U.S. Senate',
@@ -352,7 +356,8 @@ def read_csv_rows(path: Path):
         return rows
     first = [p.strip().strip('"') for p in lines[0].split(',')]
     if first and first[0].isdigit() and (len(first) < 2 or first[1].upper() in {'G', 'P', 'S'}):
-        return infer_missing_parties(read_raw_precinct_rows(lines))
+        rows = infer_missing_parties(read_raw_precinct_rows(lines))
+        return [row for row in rows if not is_summary_result_row(row)]
     header = [h.strip() for h in lines[0].split(',')]
     idx = {h:i for i,h in enumerate(header)}
     for line in lines[1:]:
@@ -374,7 +379,8 @@ def read_csv_rows(path: Path):
             raw.append('')
         row = {header[i]: raw[i].strip().strip('"') for i in range(len(header))}
         rows.append(row)
-    return infer_missing_parties(rows)
+    rows = infer_missing_parties(rows)
+    return [row for row in rows if not is_summary_result_row(row)]
 
 
 def raw_county_name_lookup():
@@ -426,12 +432,27 @@ def read_raw_precinct_rows(lines):
             district = raw[19].strip() if len(raw) >= 37 else raw[17].strip()
         elif office_code == 'STH':
             district = raw[20].strip() if len(raw) >= 37 else raw[18].strip()
+        if len(raw) >= 37:
+            precinct_cd = raw[34].strip()
+            precinct_sldu = raw[35].strip()
+            precinct_sldl = raw[36].strip()
+        elif len(raw) >= 33:
+            precinct_cd = raw[30].strip()
+            precinct_sldu = raw[31].strip()
+            precinct_sldl = raw[32].strip()
+        else:
+            precinct_cd = ''
+            precinct_sldu = ''
+            precinct_sldl = ''
         candidate = ' '.join(part for part in [raw[12], raw[13], raw[11], raw[14]] if part).strip().title() or 'Write Ins'
         rows.append({
             'county': county,
             'precinct': precinct,
             'office': office,
             'district': district,
+            'congressional_district': precinct_cd,
+            'state_senate_district': precinct_sldu,
+            'state_house_district': precinct_sldl,
             'party': (raw[9] or '').strip(),
             'candidate': candidate,
             'votes': (raw[15] or '').strip(),
@@ -439,11 +460,26 @@ def read_raw_precinct_rows(lines):
     return rows
 
 
+def is_summary_result_row(row):
+    candidate = re.sub(r'\s+', ' ', (row.get('candidate') or '').strip()).upper()
+    return candidate in {'CAST VOTES', 'OVER VOTES', 'UNDER VOTES', 'TOTAL VOTES'}
+
+
 def infer_missing_parties(rows):
     if not rows:
         return rows
     party_by_office_candidate = {}
     counts = defaultdict(int)
+    surname_counts = defaultdict(int)
+
+    def candidate_surname_key(candidate: str):
+        head = re.split(r'/', (candidate or '').upper(), maxsplit=1)[0]
+        parts = [re.sub(r'[^A-Z]', '', token) for token in re.split(r'[\s,]+', head) if token.strip()]
+        parts = [part for part in parts if part]
+        while parts and parts[-1] in {'JR', 'SR', 'II', 'III', 'IV', 'V'}:
+            parts.pop()
+        return parts[-1] if parts else ''
+
     for row in rows:
         office = (row.get('office') or '').strip().upper()
         candidate = (row.get('candidate') or '').strip().upper()
@@ -452,12 +488,21 @@ def infer_missing_parties(rows):
             continue
         key = (office, candidate, party)
         counts[key] += 1
+        surname = candidate_surname_key(candidate)
+        if surname:
+            surname_counts[(office, surname, party)] += 1
     best = {}
     for (office, candidate, party), count in counts.items():
         oc = (office, candidate)
         cur = best.get(oc)
         if cur is None or count > cur[1]:
             best[oc] = (party, count)
+    best_by_surname = {}
+    for (office, surname, party), count in surname_counts.items():
+        oc = (office, surname)
+        cur = best_by_surname.get(oc)
+        if cur is None or count > cur[1]:
+            best_by_surname[oc] = (party, count)
     for row in rows:
         party = (row.get('party') or '').strip()
         if party:
@@ -467,6 +512,8 @@ def infer_missing_parties(rows):
         if not office or not candidate:
             continue
         inferred = best.get((office, candidate))
+        if not inferred:
+            inferred = best_by_surname.get((office, candidate_surname_key(candidate)))
         if inferred:
             row['party'] = inferred[0]
     return rows
@@ -522,6 +569,32 @@ def expected_district_count(scope: str, contest_type: str, year: int):
     if scope == 'state_senate' and contest_type == 'state_senate':
         return 25
     return EXPECTED_DISTRICT_COUNT.get(scope, 0)
+
+
+def district_assignment_for_scope(row, scope: str):
+    if scope == 'congressional':
+        return normalize_district_id(row.get('congressional_district') or '')
+    if scope == 'state_house':
+        return normalize_district_id(row.get('state_house_district') or '')
+    if scope == 'state_senate':
+        return normalize_district_id(row.get('state_senate_district') or '')
+    return ''
+
+
+def add_result_votes(node, votes: int, party: str, candidate: str):
+    if votes <= 0:
+        return
+    if party in PARTY_DEM:
+        node['dem_votes'] += votes
+        if candidate and not node['dem_candidate']:
+            node['dem_candidate'] = candidate
+    elif party in PARTY_REP:
+        node['rep_votes'] += votes
+        if candidate and not node['rep_candidate']:
+            node['rep_candidate'] = candidate
+    else:
+        node['other_votes'] += votes
+    node['total_votes'] += votes
 
 
 def finalize_result_node(node):
@@ -674,22 +747,46 @@ def build_district_manifests(contest_dir: Path):
                 'dem_candidate': '',
                 'rep_candidate': '',
             })
+            add_result_votes(
+                node,
+                safe_int(row.get('votes')),
+                (row.get('party') or '').strip().upper(),
+                (row.get('candidate') or '').strip(),
+            )
+
+    for year, fp in sorted(RAW_CURRENT_LINE_STATEWIDE_SOURCES.items()):
+        if not fp.exists():
+            continue
+        try:
+            rows = read_csv_rows(fp)
+        except Exception:
+            continue
+
+        for row in rows:
+            office_key = office_mapping_for_contest(row.get('office') or '')
+            if office_key not in STATEWIDE_CONTEST_TYPES:
+                continue
             votes = safe_int(row.get('votes'))
             if votes <= 0:
                 continue
             party = (row.get('party') or '').strip().upper()
             candidate = (row.get('candidate') or '').strip()
-            if party in PARTY_DEM:
-                node['dem_votes'] += votes
-                if candidate and not node['dem_candidate']:
-                    node['dem_candidate'] = candidate
-            elif party in PARTY_REP:
-                node['rep_votes'] += votes
-                if candidate and not node['rep_candidate']:
-                    node['rep_candidate'] = candidate
-            else:
-                node['other_votes'] += votes
-            node['total_votes'] += votes
+            for scope in ('congressional', 'state_house', 'state_senate'):
+                district_id = district_assignment_for_scope(row, scope)
+                if not district_id:
+                    continue
+                key = (scope, office_key, year)
+                source_by_key.setdefault(key, f'official_pa_precinct_export_{year}_current_lines')
+                contest = district_nodes.setdefault(key, {})
+                node = contest.setdefault(district_id, {
+                    'dem_votes': 0,
+                    'rep_votes': 0,
+                    'other_votes': 0,
+                    'total_votes': 0,
+                    'dem_candidate': '',
+                    'rep_candidate': '',
+                })
+                add_result_votes(node, votes, party, candidate)
 
     for (scope, contest_type, year), results in sorted(district_nodes.items(), key=lambda item: (item[0][0], item[0][2], item[0][1])):
         finalized = {}
@@ -866,7 +963,7 @@ if __name__ == '__main__':
 
     build_district_tilesets()
     vtd_block_counts = load_vtd_block_counts_from_blockassign(
-        base / 'Data' / 'BlockAssign_ST42_PA.zip',
+        base / 'data' / 'BlockAssign_ST42_PA.zip',
         'BlockAssign_ST42_PA_VTD.txt'
     )
     build_vtd_block_counts_report(data_dir / 'vtd_block_counts.csv', vtd_block_counts)
