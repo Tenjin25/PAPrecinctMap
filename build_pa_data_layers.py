@@ -727,7 +727,7 @@ def build_contest_manifests(contest_dir: Path, aggregated_payload=None):
 
 
 # ------------------------------------------------------------
-# 5) Create geojson placeholders for districts if source shapes aren't available
+# 5) Build district GeoJSON overlays from TIGER shapefiles with a placeholder fallback
 # ------------------------------------------------------------
 
 def feature_collection_with_props(features, id_field):
@@ -740,7 +740,11 @@ def feature_collection_with_props(features, id_field):
                 'geometry': {
                     'type': 'Polygon',
                     'coordinates': [[
-                        [i * 0.1, 39.7], [i * 0.1 + 0.08, 39.7], [i * 0.1 + 0.08, 39.78], [i * 0.1, 39.78], [i * 0.1, 39.7]
+                        [-80.6 + (i * 0.03), 39.72],
+                        [-80.57 + (i * 0.03), 39.72],
+                        [-80.57 + (i * 0.03), 39.76],
+                        [-80.6 + (i * 0.03), 39.76],
+                        [-80.6 + (i * 0.03), 39.72]
                     ]]
                 }
             }
@@ -749,29 +753,65 @@ def feature_collection_with_props(features, id_field):
     }
 
 
-def build_tileset_placeholders():
-    # keep a tiny but valid set to avoid missing-layer failures for each district scale.
-    # IDs should include known prop names in map: DISTRICT, SLDLST, SLDUST
-    cd_path = data_dir / 'tileset' / 'pa_cd118_tileset.geojson'
-    if not cd_path.exists():
-        cd_path.write_text(json.dumps(feature_collection_with_props(range(1, 19), 'DISTRICT')))
+def normalize_district_prop(value):
+    text = str(value or '').strip()
+    digits = re.sub(r'[^0-9]', '', text)
+    if digits:
+        return str(int(digits))
+    return text
 
-    sh_path = data_dir / 'tileset' / 'pa_state_house_2022_lines_tileset.geojson'
-    if not sh_path.exists():
-        sh_path.write_text(json.dumps(feature_collection_with_props(range(1, 204), 'SLDLST')))
 
-    ss_path = data_dir / 'tileset' / 'pa_state_senate_2022_lines_tileset.geojson'
-    if not ss_path.exists():
-        ss_path.write_text(json.dumps(feature_collection_with_props(range(1, 51), 'SLDUST')))
+def build_district_tileset_from_zip(zip_path: Path, output_path: Path, source_field: str, output_field: str, fallback_range):
+    if gpd is None or not zip_path.exists():
+        output_path.write_text(json.dumps(feature_collection_with_props(fallback_range, output_field)))
+        return
+    try:
+        gdf = gpd.read_file(f'zip://{zip_path.resolve()}')
+        if gdf.crs and str(gdf.crs) != 'EPSG:4326':
+            gdf = gdf.to_crs(epsg=4326)
+        keep = gdf[[source_field, 'geometry']].copy()
+        keep[source_field] = keep[source_field].apply(normalize_district_prop)
+        keep[output_field] = keep[source_field]
+        keep['id'] = keep[output_field]
+        cols = ['id']
+        if output_field not in cols:
+            cols.append(output_field)
+        if source_field not in cols:
+            cols.append(source_field)
+        cols.append('geometry')
+        features = json.loads(keep[cols].to_json())
+        output_path.write_text(json.dumps(features))
+    except Exception:
+        output_path.write_text(json.dumps(feature_collection_with_props(fallback_range, output_field)))
 
-# ------------------------------------------------------------
-def build_state_senate_tileset(path: Path):
-    path.write_text(json.dumps(feature_collection_with_props(range(1, 51), 'SLDUST')))
+
+def build_district_tilesets():
+    build_district_tileset_from_zip(
+        data_dir / 'tl_2022_42_cd118.zip',
+        data_dir / 'tileset' / 'pa_cd118_tileset.geojson',
+        'CD118FP',
+        'DISTRICT',
+        range(1, 18)
+    )
+    build_district_tileset_from_zip(
+        data_dir / 'tl_2022_42_sldl.zip',
+        data_dir / 'tileset' / 'pa_state_house_2022_lines_tileset.geojson',
+        'SLDLST',
+        'SLDLST',
+        range(1, 204)
+    )
+    build_district_tileset_from_zip(
+        data_dir / 'tl_2022_42_sldu.zip',
+        data_dir / 'tileset' / 'pa_state_senate_2022_lines_tileset.geojson',
+        'SLDUST',
+        'SLDUST',
+        range(1, 51)
+    )
 
 
 if __name__ == '__main__':
     # copy existing county boundary if exists
-    src_county = base / 'Data' / 'pa_counties.geojson'
+    src_county = base / 'data' / 'pa_counties.geojson'
     dst_county = data_dir / 'pa_counties.geojson'
     county_names = []
     if src_county.exists() and not dst_county.exists():
@@ -791,8 +831,7 @@ if __name__ == '__main__':
     build_district_manifests(data_dir / 'district_contests')
     build_contest_manifests(data_dir / 'contests', aggregated_payload=aggregated_payload)
 
-    build_tileset_placeholders()
-    build_state_senate_tileset(data_dir / 'tileset' / 'pa_state_senate_2022_lines_tileset.geojson')
+    build_district_tilesets()
     vtd_block_counts = load_vtd_block_counts_from_blockassign(
         base / 'Data' / 'BlockAssign_ST42_PA.zip',
         'BlockAssign_ST42_PA_VTD.txt'
