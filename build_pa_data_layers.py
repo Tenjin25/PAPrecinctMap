@@ -618,6 +618,8 @@ def normalize_bridge_precinct_name(name: str):
         'ELEVENTH': '11', 'TWELFTH': '12', 'THIRTEENTH': '13', 'FOURTEENTH': '14',
         'FIFTEENTH': '15', 'SIXTEENTH': '16', 'SEVENTEENTH': '17', 'EIGHTEENTH': '18',
         'NINETEENTH': '19', 'TWENTIETH': '20',
+        'ONE': '1', 'TWO': '2', 'THREE': '3', 'FOUR': '4', 'FIVE': '5',
+        'SIX': '6', 'SEVEN': '7', 'EIGHT': '8', 'NINE': '9', 'TEN': '10',
     }
     for word, num in ordinal_words.items():
         s = re.sub(rf'\b{word}\b', f' {num} ', s)
@@ -643,6 +645,11 @@ def normalize_bridge_precinct_name(name: str):
     s = re.sub(r'\bW[\s\-]*(\d+)\b', r' WARD \1 ', s)
     s = re.sub(r'\bP[\s\-]*(\d+)\b', r' PRECINCT \1 ', s)
     s = re.sub(r'\bD[\s\-]*(\d+)\b', r' DISTRICT \1 ', s)
+    s = re.sub(r'\bP[\s\-]*NE\b', ' DISTRICT NORTHEAST ', s)
+    s = re.sub(r'\bP[\s\-]*NW\b', ' DISTRICT NORTHWEST ', s)
+    s = re.sub(r'\bP[\s\-]*SE\b', ' DISTRICT SOUTHEAST ', s)
+    s = re.sub(r'\bP[\s\-]*SW\b', ' DISTRICT SOUTHWEST ', s)
+    s = re.sub(r'\bP[\s\-]*SO\b', ' DISTRICT SOUTH ', s)
     s = re.sub(r'\b(\d+)W\b', r' WARD \1 ', s)
     s = re.sub(r'\b(\d+)P\b', r' PRECINCT \1 ', s)
     s = re.sub(r'\b(\d+)D\b', r' DISTRICT \1 ', s)
@@ -823,6 +830,65 @@ def bridge_precinct_aliases(name: str):
             f'{stem} DISTRICT {part_a}{part_b}',
             f'{stem} DISTRICT {part_a.zfill(2)}{part_b.zfill(2)}',
         })
+    m = re.match(r'^(.*?)\s+WARD\s+0\s+PRECINCT\s+(\d+)\s+(\d+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        part_a = str(int(m.group(2)))
+        part_b = str(int(m.group(3)))
+        bare_stem = re.sub(r'\b(TOWNSHIP|BOROUGH|CITY|TOWN)\b', '', stem).strip()
+        aliases.update({
+            f'{stem} DISTRICT {part_a} DISTRICT {part_b}',
+            f'{stem} DISTRICT {part_a.zfill(2)} DISTRICT {part_b.zfill(2)}',
+            f'{bare_stem} DISTRICT {part_a} DISTRICT {part_b}',
+            f'{bare_stem} DISTRICT {part_a.zfill(2)} DISTRICT {part_b.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+WARD\s+0\s+PRECINCT\s+0$', base)
+    if m:
+        stem = m.group(1).strip()
+        aliases.update({
+            stem,
+            re.sub(r'\b(TOWNSHIP|BOROUGH|CITY|TOWN)\b', '', stem).strip(),
+        })
+    m = re.match(r'^(.*?)\s+WARD\s+(\d+)\s+PRECINCT\s+0$', base)
+    if m:
+        stem = m.group(1).strip()
+        ward = str(int(m.group(2)))
+        aliases.update({
+            f'{stem} WARD {ward}',
+            f'{stem} WARD {ward.zfill(2)}',
+            f'WARD {ward}',
+            f'{stem} DISTRICT {ward}',
+            f'{stem} DISTRICT {ward.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+WARD\s+0\s+DISTRICT\s+([A-Z]+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        side = m.group(2).strip()
+        aliases.update({
+            f'{stem} DISTRICT {side}',
+            re.sub(r'\b(TOWNSHIP|BOROUGH|CITY|TOWN)\b', '', f'{stem} DISTRICT {side}').strip(),
+        })
+    m = re.match(r'^(.*?)\s+(\d+)\s+WARD$', base)
+    if m:
+        stem = m.group(1).strip()
+        ward = str(int(m.group(2)))
+        aliases.update({
+            f'{stem} DISTRICT {ward}',
+            f'{stem} DISTRICT {ward.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+(NORTHERN|SOUTHERN|EASTERN|WESTERN)$', base)
+    if m:
+        stem = m.group(1).strip()
+        side = {
+            'NORTHERN': 'NORTH',
+            'SOUTHERN': 'SOUTH',
+            'EASTERN': 'EAST',
+            'WESTERN': 'WEST',
+        }.get(m.group(2), m.group(2))
+        aliases.update({
+            f'{stem} DISTRICT {side}',
+            f'{stem} {side}',
+        })
     m = re.match(r'^(.*?)\s+([A-Z]+(?:\s+[A-Z]+)*)\s+(PRECINCT|DISTRICT|WARD)$', base)
     if m:
         stem = m.group(1).strip()
@@ -971,6 +1037,12 @@ def match_row_to_current_vtds(row):
             candidate_names.add('TUNKHANNOCK')
     if county == 'CARBON' and exact_name == 'FRANKLIN DISTRICT FRANKLIN IND DISTRICT FRANKLIN IND':
         candidate_names.add('FRANKLIN DISTRICT FRANKLIN IND')
+    if county == 'BUCKS' and exact_name == 'TINICUM DISTRICT TINICM':
+        candidate_names.add('TINICUM DISTRICT TINICUM')
+    if county == 'LACKAWANNA' and exact_name == 'SPRINGBROOK TOWNSHIP WARD 0 PRECINCT 0':
+        candidate_names.add('SPRING BROOK')
+    if county == 'LUZERNE' and exact_name in {'PLYMOUTH', 'PLYMOUTH TOWNSHIP'}:
+        candidate_names.add('PLYMOUTH DISTRICT 1')
     if county == 'NORTHAMPTON':
         m = re.match(r'^(BETHLEHEM WARD \d+)$', exact_name)
         if m:
