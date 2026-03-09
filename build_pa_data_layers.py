@@ -595,6 +595,19 @@ def district_assignment_for_scope(row, scope: str):
     return ''
 
 
+def embedded_congressional_district_from_precinct_label(label: str):
+    text = (label or '').strip()
+    if not text:
+        return ''
+    match = re.search(r'\((?:USC|CONG)\s*(\d+)\)', text, flags=re.I)
+    if not match:
+        return ''
+    district_num = int(match.group(1))
+    if district_num <= 0 or district_num > CURRENT_SCOPE_DISTRICT_MAX.get('congressional', 0):
+        return ''
+    return str(district_num)
+
+
 def county_fips_by_name():
     global COUNTY_FIPS_BY_NAME
     if COUNTY_FIPS_BY_NAME is not None:
@@ -628,6 +641,8 @@ def normalize_bridge_precinct_name(name: str):
     s = s.replace('&', ' AND ')
     s = s.replace('#', ' DISTRICT ')
     s = s.replace('~', ' ')
+    s = re.sub(r'\bCENTRE\b', ' CENTRAL ', s)
+    s = re.sub(r'\bCENTER\b', ' CENTRAL ', s)
     s = re.sub(r'\bTWP\b\.?', ' TOWNSHIP ', s)
     s = re.sub(r'\bBORO\b\.?', ' BOROUGH ', s)
     s = re.sub(r'\bBR\b\.?', ' BOROUGH ', s)
@@ -830,6 +845,30 @@ def bridge_precinct_aliases(name: str):
             f'{stem} DISTRICT {part_a}{part_b}',
             f'{stem} DISTRICT {part_a.zfill(2)}{part_b.zfill(2)}',
         })
+    m = re.match(r'^(.*?)\s+WARD\s+(\d+)\s+([A-Z0-9]+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        ward = str(int(m.group(2)))
+        part = m.group(3).strip()
+        aliases.update({
+            f'{stem} WARD {ward}',
+            f'{stem} WARD {ward.zfill(2)}',
+            f'{stem} WARD {ward} DISTRICT {part}',
+            f'{stem} WARD {ward.zfill(2)} DISTRICT {part}',
+            f'{stem} WARD {ward} {part}',
+        })
+    m = re.match(r'^(.*?)\s+WARD\s+(\d+)\s+([A-Z]+)\s+([A-Z]+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        ward = str(int(m.group(2)))
+        side = f'{m.group(3).strip()} {m.group(4).strip()}'
+        side_compact = side.replace(' ', '')
+        aliases.update({
+            f'{stem} WARD {ward} DISTRICT {side}',
+            f'{stem} WARD {ward} DISTRICT {side_compact}',
+            f'{stem} WARD {ward} {side}',
+            f'{stem} WARD {ward.zfill(2)} DISTRICT {side}',
+        })
     m = re.match(r'^(.*?)\s+WARD\s+0\s+PRECINCT\s+(\d+)\s+(\d+)$', base)
     if m:
         stem = m.group(1).strip()
@@ -889,6 +928,24 @@ def bridge_precinct_aliases(name: str):
             f'{stem} DISTRICT {side}',
             f'{stem} {side}',
         })
+    m = re.match(r'^(.*?)\s+(NORTH|SOUTH|EAST|WEST|UPPER|LOWER|MIDDLE|CENTRAL|INDEPENDENT)$', base)
+    if m:
+        stem = m.group(1).strip()
+        side = m.group(2).strip()
+        aliases.update({
+            f'{stem} DISTRICT {side}',
+            f'{stem} {side}',
+        })
+    m = re.match(r'^(.*?)\s+(NORTH|SOUTH|EAST|WEST)\s+(EAST|WEST)$', base)
+    if m:
+        stem = m.group(1).strip()
+        side = f'{m.group(1*0+2).strip()} {m.group(3).strip()}'
+        side_compact = side.replace(' ', '')
+        aliases.update({
+            f'{stem} DISTRICT {side}',
+            f'{stem} DISTRICT {side_compact}',
+            f'{stem} {side}',
+        })
     m = re.match(r'^(.*?)\s+([A-Z]+(?:\s+[A-Z]+)*)\s+(PRECINCT|DISTRICT|WARD)$', base)
     if m:
         stem = m.group(1).strip()
@@ -896,6 +953,27 @@ def bridge_precinct_aliases(name: str):
         unit = m.group(3)
         aliases.update({
             f'{stem} {unit} {tail}',
+            f'{stem} {tail}',
+        })
+    m = re.match(r'^(.*?)\s+([A-Z]+(?:\s+[A-Z]+)*)\s+(\d+)$', base)
+    if m:
+        stem = m.group(1).strip()
+        tail = m.group(2).strip()
+        part = str(int(m.group(3)))
+        aliases.update({
+            f'{stem} DISTRICT {tail} DISTRICT {part}',
+            f'{stem} DISTRICT {tail} DISTRICT {part.zfill(2)}',
+            f'{stem} DISTRICT {tail} DIVISION {part}',
+            f'{stem} DISTRICT {tail} DIVISION {part.zfill(2)}',
+            f'{stem} DISTRICT {tail} {part}',
+            f'{stem} DISTRICT {tail} {part.zfill(2)}',
+        })
+    m = re.match(r'^(.*?)\s+([A-Z]+(?:\s+[A-Z]+)*)$', base)
+    if m:
+        stem = m.group(1).strip()
+        tail = m.group(2).strip()
+        aliases.update({
+            f'{stem} DISTRICT {tail}',
             f'{stem} {tail}',
         })
     m = re.match(r'^(.*?)\s+(TOWNSHIP|BOROUGH|CITY|TOWN)\s+([A-Z]+(?:\s+[A-Z]+)*)$', base)
@@ -964,6 +1042,8 @@ def load_vtd_current_district_blocks():
             block_gdf = gpd.read_file(f'zip://{(data_dir / "tl_2022_42_tabblock20.zip").resolve()}')[['GEOID20', 'geometry']].copy()
             equal_area_crs = 'EPSG:5070'
             block_gdf = block_gdf.to_crs(equal_area_crs)
+            block_points = block_gdf[['GEOID20', 'geometry']].copy()
+            block_points['geometry'] = block_points.geometry.representative_point()
             scope_sources = {
                 'congressional': ('tl_2022_42_cd118.zip', 'CD118FP'),
                 'state_house': ('tl_2022_42_sldl.zip', 'SLDLST'),
@@ -987,7 +1067,7 @@ def load_vtd_current_district_blocks():
             for scope, (zip_name, district_field) in scope_sources.items():
                 district_gdf = gpd.read_file(f'zip://{(data_dir / zip_name).resolve()}')[[district_field, 'geometry']].copy()
                 district_gdf = district_gdf.to_crs(equal_area_crs)
-                joined = gpd.sjoin(block_gdf, district_gdf, how='left', predicate='intersects')
+                joined = gpd.sjoin(block_points, district_gdf, how='left', predicate='within')
                 scope_weights = defaultdict(lambda: defaultdict(int))
                 max_district = CURRENT_SCOPE_DISTRICT_MAX[scope]
                 for _, row in joined.iterrows():
@@ -1022,7 +1102,17 @@ def match_row_to_current_vtds(row):
         return []
     index = load_vtd_bridge_index().get(countyfp) or {}
     candidate_names = {precinct}
+    precise_candidate_names = set()
+    raw_precinct = re.sub(r'\s+', ' ', precinct).strip()
     exact_name = normalize_bridge_precinct_name(precinct)
+    if county in {'BUCKS', 'MONTGOMERY'}:
+        raw_parts = [part.strip() for part in re.split(r'\s+X\s+', raw_precinct, flags=re.I) if part.strip()]
+        if len(raw_parts) >= 5 and raw_parts[1].upper() == raw_parts[3].upper() and raw_parts[2].upper() == raw_parts[4].upper():
+            stem = normalize_bridge_precinct_name(raw_parts[0])
+            part_a = normalize_bridge_precinct_name(raw_parts[1])
+            part_b = normalize_bridge_precinct_name(raw_parts[2])
+            if stem and part_a and part_b:
+                precise_candidate_names.add(f'{stem} DISTRICT {part_a} DIVISION {part_b}')
     if county == 'DAUPHIN' and exact_name.startswith('CITY '):
         candidate_names.add(re.sub(r'^CITY\b', 'HARRISBURG', exact_name).strip())
     if county == 'MONROE':
@@ -1033,6 +1123,9 @@ def match_row_to_current_vtds(row):
                 candidate_names.add('MIDDLE SMITHFIELD DISTRICT EAST')
             if district_num in (3, 4):
                 candidate_names.add('MIDDLE SMITHFIELD DISTRICT WEST')
+        if exact_name == 'JACKSON':
+            candidate_names.add('JACKSON DISTRICT NORTH')
+            candidate_names.add('JACKSON DISTRICT SOUTH')
         if exact_name in {'TUNKHANNOCK DISTRICT EAST', 'TUNKHANNOCK DISTRICT WEST'}:
             candidate_names.add('TUNKHANNOCK')
     if county == 'CARBON' and exact_name == 'FRANKLIN DISTRICT FRANKLIN IND DISTRICT FRANKLIN IND':
@@ -1043,12 +1136,61 @@ def match_row_to_current_vtds(row):
         candidate_names.add('SPRING BROOK')
     if county == 'LUZERNE' and exact_name in {'PLYMOUTH', 'PLYMOUTH TOWNSHIP'}:
         candidate_names.add('PLYMOUTH DISTRICT 1')
+    if county == 'MONTGOMERY':
+        m = re.match(r'^(.*?)\s+DISTRICT\s+(\d+)\s+PRECINCT\s+(\d+)\s+DISTRICT\s+\2\s+PRECINCT\s+\3$', exact_name)
+        if m:
+            precise_candidate_names.add(f'{m.group(1).strip()} DISTRICT {int(m.group(2))} DIVISION {int(m.group(3))}')
+        m = re.match(r'^(.*?)\s+WARD\s+(\d+)\s+PRECINCT\s+(\d+)\s+WARD\s+\2\s+PRECINCT\s+\3$', exact_name)
+        if m:
+            precise_candidate_names.add(f'{m.group(1).strip()} WARD {int(m.group(2))} PRECINCT {int(m.group(3))}')
+            if m.group(1).strip() == 'LOWER MERION' and int(m.group(2)) == 2 and int(m.group(3)) == 2:
+                precise_candidate_names.add('LOWER MERION WARD 2')
+        m = re.match(r'^(.*?)\s+WARD\s+(\d+)\s+DISTRICT\s+(\d+)$', exact_name)
+        if m:
+            precise_candidate_names.add(f'{m.group(1).strip()} WARD {int(m.group(2))} DIVISION {int(m.group(3))}')
+        m = re.match(r'^(.*?)\s+DISTRICT\s+(\d+)\s+DISTRICT\s+(\d+)$', exact_name)
+        if m:
+            precise_candidate_names.add(f'{m.group(1).strip()} DISTRICT {int(m.group(2))} DIVISION {int(m.group(3))}')
+    candidate_names.update(precise_candidate_names)
     if county == 'NORTHAMPTON':
         m = re.match(r'^(BETHLEHEM WARD \d+)$', exact_name)
         if m:
             candidate_names.add(m.group(1))
         if exact_name == 'LEHIGH DISTRICT PENN':
             candidate_names.add('LEHIGH DISTRICT PENNSVILLE')
+        if exact_name == 'ALLEN':
+            candidate_names.add('ALLEN DISTRICT NORTH')
+            candidate_names.add('ALLEN DISTRICT SOUTH')
+        if exact_name == 'LOWER MOUNT BETHEL DISTRICT INDEPENDENT':
+            candidate_names.add('LOWER MOUNT BETHEL DISTRICT LOWER')
+            candidate_names.add('LOWER MOUNT BETHEL DISTRICT UPPER')
+        m = re.match(r'^UPPER MOUNT BETHEL\s+(.+)$', exact_name)
+        if m:
+            candidate_names.add(f"UPPER MOUNT BETHEL DISTRICT {m.group(1).strip()}")
+    def collect_exact(names):
+        matches = set()
+        for candidate_name in names:
+            matches.update(index.get('exact', {}).get(normalize_bridge_precinct_name(candidate_name), set()))
+        return matches
+
+    def collect_loose(names):
+        matches = set()
+        for candidate_name in names:
+            for alias in bridge_precinct_aliases(candidate_name):
+                matches.update(index.get('loose', {}).get(alias, set()))
+        return matches
+
+    exact_matches = collect_exact(precise_candidate_names) if precise_candidate_names else set()
+    if len(exact_matches) == 1:
+        return [(countyfp, next(iter(exact_matches)))]
+    if len(exact_matches) > 1:
+        return [(countyfp, vtd) for vtd in sorted(exact_matches)]
+    loose_matches = collect_loose(precise_candidate_names) if precise_candidate_names else set()
+    if len(loose_matches) == 1:
+        return [(countyfp, next(iter(loose_matches)))]
+    if len(loose_matches) > 1:
+        return [(countyfp, vtd) for vtd in sorted(loose_matches)]
+
     exact_matches = set()
     for candidate_name in candidate_names:
         exact_matches.update(index.get('exact', {}).get(normalize_bridge_precinct_name(candidate_name), set()))
@@ -1056,10 +1198,7 @@ def match_row_to_current_vtds(row):
         return [(countyfp, next(iter(exact_matches)))]
     if len(exact_matches) > 1:
         return [(countyfp, vtd) for vtd in sorted(exact_matches)]
-    loose_matches = set()
-    for candidate_name in candidate_names:
-        for alias in bridge_precinct_aliases(candidate_name):
-            loose_matches.update(index.get('loose', {}).get(alias, set()))
+    loose_matches = collect_loose(candidate_names)
     if len(loose_matches) == 1:
         return [(countyfp, next(iter(loose_matches)))]
     if len(loose_matches) > 1:
@@ -1272,11 +1411,17 @@ def build_district_manifests(contest_dir: Path):
                     continue
                 block_maps = load_vtd_current_district_blocks()
                 for scope in ('congressional', 'state_house', 'state_senate'):
-                    district_counts = defaultdict(int)
-                    for vtd_key in matched_vtds:
-                        for district_id, block_count in (block_maps.get(scope, {}).get(vtd_key) or {}).items():
-                            district_counts[district_id] += int(block_count or 0)
-                    allocations = allocate_votes_by_block_counts(votes, district_counts)
+                    direct_district_id = ''
+                    if scope == 'congressional' and year == 2024 and source_label == 'official_pa_precinct_export':
+                        direct_district_id = embedded_congressional_district_from_precinct_label(row.get('precinct') or '')
+                    if direct_district_id:
+                        allocations = {direct_district_id: votes}
+                    else:
+                        district_counts = defaultdict(int)
+                        for vtd_key in matched_vtds:
+                            for district_id, block_count in (block_maps.get(scope, {}).get(vtd_key) or {}).items():
+                                district_counts[district_id] += int(block_count or 0)
+                        allocations = allocate_votes_by_block_counts(votes, district_counts)
                     if not allocations:
                         continue
                     key = (scope, office_key, year)
