@@ -312,6 +312,7 @@ EXPECTED_DISTRICT_COUNT = {
     'state_senate': 50,
 }
 OFFICIAL_2024_STATEWIDE_OE_SOURCE = DATA_ROOT / '2024' / '20241105__pa__general__precinct_official.csv'
+OFFICIAL_2020_STATEWIDE_SOURCE = base / 'data' / 'ElectionReturns_2020_General_PrecinctReturns.txt'
 OFFICIAL_2024_DISTRICT_SOURCE = base / 'data' / 'erstat_2024_g_268768_20250129.txt'
 RAW_OFFICE_CODE_MAP = {
     'USP': 'President',
@@ -335,6 +336,9 @@ def iter_openelections_csvs():
     years = sorted([int(p.name) for p in DATA_ROOT.iterdir() if p.is_dir() and p.name.isdigit() and 2000 <= int(p.name) <= 2024])
     for y in years:
         year_dir = DATA_ROOT / str(y)
+        if y == 2020 and OFFICIAL_2020_STATEWIDE_SOURCE.exists():
+            yield y, OFFICIAL_2020_STATEWIDE_SOURCE
+            continue
         if y == 2024 and OFFICIAL_2024_STATEWIDE_OE_SOURCE.exists():
             files = [OFFICIAL_2024_STATEWIDE_OE_SOURCE]
             for fp in files:
@@ -1361,9 +1365,13 @@ def build_district_manifests(contest_dir: Path):
     source_rows = []
     vtd_match_cache = {}
 
+    if OFFICIAL_2020_STATEWIDE_SOURCE.exists():
+        source_rows.append((2020, OFFICIAL_2020_STATEWIDE_SOURCE, 'official_pa_precinct_export'))
     if OFFICIAL_2024_DISTRICT_SOURCE.exists():
         source_rows.append((2024, OFFICIAL_2024_DISTRICT_SOURCE, 'official_pa_precinct_export'))
     for year, fp in iter_openelections_csvs():
+        if year == 2020 and OFFICIAL_2020_STATEWIDE_SOURCE.exists():
+            continue
         if year == 2024 and OFFICIAL_2024_DISTRICT_SOURCE.exists():
             continue
         source_rows.append((year, fp, 'openelections_precinct_aggregate'))
