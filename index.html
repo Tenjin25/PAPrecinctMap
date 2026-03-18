@@ -13357,9 +13357,24 @@ document.addEventListener('DOMContentLoaded', function() {
 	      }
 	    }
 
-    async function getPreviousContestSlice(contestType, year) {
+    function previousCycleCandidates(contestType, year) {
       const y = Number(year);
-      const candidates = [y - 4, y - 6, y - 2, y - 8, y - 12].filter(v => v >= 2000);
+      const key = (contestType || '').toString().trim().toLowerCase();
+      // US Senate should prefer same-class cycles (6-year spacing) before nearby years.
+      const deltas = key === 'us_senate'
+        ? [6, 12, 4, 2, 8, 10]
+        : [4, 6, 2, 8, 12, 10];
+      const candidates = [];
+      deltas.forEach(delta => {
+        const candidateYear = y - delta;
+        if (candidateYear < 2000) return;
+        if (!candidates.includes(candidateYear)) candidates.push(candidateYear);
+      });
+      return candidates;
+    }
+
+    async function getPreviousContestSlice(contestType, year) {
+      const candidates = previousCycleCandidates(contestType, year);
       for (const cy of candidates) {
         const rows = await tryLoadContestSliceStrict(contestType, cy);
         if (rows && rows.length) return { year: cy, rows };
@@ -13548,8 +13563,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function getPreviousDistrictSlice(scope, contestType, year) {
-      const y = Number(year);
-      const candidates = [y - 4, y - 6, y - 2, y - 8, y - 12].filter(v => v >= 2000);
+      const candidates = previousCycleCandidates(contestType, year);
       for (const cy of candidates) {
         const node = await tryLoadDistrictSliceStrict(scope, contestType, cy);
         const results = node?.general?.results || null;
