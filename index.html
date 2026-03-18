@@ -6999,11 +6999,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const demPct = totalVotes > 0 ? (demVotes / totalVotes) * 100 : 0;
         const repPct = totalVotes > 0 ? (repVotes / totalVotes) * 100 : 0;
         const otherPct = totalVotes > 0 ? (otherVotes / totalVotes) * 100 : 0;
-        const signedPct = Number(item.margin_pct || 0);
+        const signedPct = resolveWinnerAndSignedMargin(
+          item.margin_pct,
+          item.winner,
+          demVotes,
+          repVotes,
+          totalVotes
+        ).signed;
+        const prevSignedPct = prev
+          ? resolveWinnerAndSignedMargin(
+            prev.margin_pct,
+            prev.winner,
+            Number(prev.dem_votes || 0),
+            Number(prev.rep_votes || 0),
+            Number(prev.total_votes || 0)
+          ).signed
+          : NaN;
         const winnerMeta = getTrendWinnerMeta(item);
         const leadLabel = leadMarginPctLabel(repVotes, demVotes, totalVotes);
-        const shiftMeta = describeTrendShift(signedPct, prev ? prev.margin_pct : NaN, prev ? prev.year : '');
-        const flip = prev ? flipInfo(prev.margin_pct, signedPct) : { flipped: false, from: 'T', to: 'T' };
+        const shiftMeta = describeTrendShift(signedPct, prevSignedPct, prev ? prev.year : '');
+        const flip = prev ? flipInfo(prevSignedPct, signedPct) : { flipped: false, from: 'T', to: 'T' };
         return {
           item,
           prev,
@@ -9318,16 +9333,31 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!repCand) repCand = cand.rep || '';
           } catch (_) {}
         }
+        const demVotes = Number(r.dem_votes) || 0;
+        const repVotes = Number(r.rep_votes) || 0;
+        const otherVotes = Number(r.other_votes) || 0;
+        const totalVotes = Number(r.total_votes) || 0;
+        const resolvedMargin = resolveWinnerAndSignedMargin(
+          r.margin_pct,
+          r.winner,
+          demVotes,
+          repVotes,
+          totalVotes
+        );
+        const winnerCode = resolvedMargin.winner === 'R'
+          ? 'REP'
+          : (resolvedMargin.winner === 'D' ? 'DEM' : 'TIE');
+
         out.push({
           year,
-          dem_votes: Number(r.dem_votes) || 0,
-          rep_votes: Number(r.rep_votes) || 0,
-          other_votes: Number(r.other_votes) || 0,
-          total_votes: Number(r.total_votes) || 0,
+          dem_votes: demVotes,
+          rep_votes: repVotes,
+          other_votes: otherVotes,
+          total_votes: totalVotes,
           dem_candidate: demCand,
           rep_candidate: repCand,
-          winner: r.winner || '',
-          margin_pct: Number(r.margin_pct) || 0,
+          winner: winnerCode,
+          margin_pct: Number(resolvedMargin.signed) || 0,
           coverage_pct: payload?.meta?.match_coverage_pct
         });
       }
