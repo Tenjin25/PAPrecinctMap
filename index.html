@@ -8637,6 +8637,18 @@ document.addEventListener('DOMContentLoaded', function() {
       return '';
     }
 
+    const CANDIDATE_SUFFIXES = new Set([
+      'JR', 'SR',
+      'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
+      'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX'
+    ]);
+
+    function isCandidateSuffixToken(token) {
+      const t = (token || '').toString().trim().replace(/\./g, '').toUpperCase();
+      if (!t) return false;
+      return CANDIDATE_SUFFIXES.has(t);
+    }
+
     function shortCandidateLabel(name, fallback) {
       const raw = (name || '').toString().trim();
       if (!raw) return fallback;
@@ -8645,6 +8657,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!cleaned) return fallback;
       const parts = cleaned.split(' ').filter(Boolean);
       if (!parts.length) return fallback;
+      for (let i = parts.length - 1; i >= 0; i -= 1) {
+        if (!isCandidateSuffixToken(parts[i])) return parts[i];
+      }
       return parts[parts.length - 1];
     }
 
