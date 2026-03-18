@@ -12049,18 +12049,63 @@ document.addEventListener('DOMContentLoaded', function() {
       const gj = src ? (src._data || src.data) : null;
       if (!gj || !gj.features) return;
 
-      const target = `${county} - ${code}`.replace(/\s+/g, ' ').trim();
+      const norm = (s) => (s || '').toString().replace(/\s+/g, ' ').trim().toUpperCase();
+      const targetKeys = new Set();
+      const addTarget = (c) => {
+        const v = norm(`${county} - ${c}`);
+        if (v) targetKeys.add(v);
+      };
+      addTarget(code);
 
-      const hit = gj.features.find(f => ((f.properties || {}).precinct_norm || '').toString().trim().toUpperCase() === target);
+      const addNumericVariants = (digits, suffix = '') => {
+        const n = parseInt(digits, 10);
+        if (isNaN(n)) return;
+        const sfx = (suffix || '').toUpperCase();
+        addTarget(`${n}${sfx}`);
+        addTarget(`${String(n).padStart(2, '0')}${sfx}`);
+        addTarget(`${String(n).padStart(3, '0')}${sfx}`);
+        addTarget(`${String(n).padStart(4, '0')}${sfx}`);
+        addTarget(`${String(n).padStart(5, '0')}${sfx}`);
+        addTarget(`${String(n).padStart(6, '0')}${sfx}`);
+      };
+
+      const numericOnly = code.match(/^0*([0-9]{1,6})$/);
+      if (numericOnly) addNumericVariants(numericOnly[1], '');
+
+      const numericAlpha = code.match(/^0*([0-9]{1,6})([A-Z]{1,2})$/);
+      if (numericAlpha) addNumericVariants(numericAlpha[1], numericAlpha[2]);
+
+      try {
+        const codes = precinctCodeIndexByCounty?.get(county);
+        if (codes && codes.size) {
+          const baseNum = (numericOnly ? numericOnly[1] : (numericAlpha ? numericAlpha[1] : null));
+          if (baseNum) {
+            codes.forEach(c => {
+              const m = (c || '').toString().trim().toUpperCase().match(/^0*([0-9]+)([A-Z]{0,2})$/);
+              if (!m) return;
+              if (parseInt(m[1], 10) !== parseInt(baseNum, 10)) return;
+              addTarget(c);
+            });
+          }
+        }
+      } catch (_) {}
+
+      const hit = gj.features.find(f => {
+        const key = norm((f.properties || {}).precinct_norm || '');
+        return key && targetKeys.has(key);
+      });
       if (!hit) {
-        console.warn('Precinct not found for search:', target);
+        const attempted = Array.from(targetKeys).slice(0, 6).join(', ');
+        console.warn('Precinct not found for search:', attempted || `${county} - ${code}`);
         setFlySearchFeedback('#ef4444');
-        setStatus(`Precinct ${target} not found on the map.`);
+        setStatus(`Precinct ${county} - ${code} not found on the map.`);
         return;
       }
 
+      const canonicalTarget = norm((hit.properties || {}).precinct_norm || `${county} - ${code}`);
+
       const coords = hit.geometry && hit.geometry.type === 'Point' ? hit.geometry.coordinates : null;
-      syncFlySearchInputs(target);
+      syncFlySearchInputs(canonicalTarget);
       setFlySearchFeedback('#10b981');
       if (coords && coords.length >= 2) {
         map.flyTo({ center: coords, zoom: Math.max(CONFIG.precincts?.minZoom || 8.5, 10.0), speed: 0.9 });
@@ -12069,18 +12114,24 @@ document.addEventListener('DOMContentLoaded', function() {
       // Pin vote counter if we have precinct-level results keyed by precinct_norm.
       const contestValue = document.getElementById('contestSelect')?.value || '';
       const [contestType, year] = parseContestValue(contestValue);
-      const row = currentPrecinctResults ? currentPrecinctResults.get(target) : null;
+      let row = currentPrecinctResults ? currentPrecinctResults.get(canonicalTarget) : null;
+      if (!row && currentPrecinctResults) {
+        for (const k of targetKeys) {
+          row = currentPrecinctResults.get(k);
+          if (row) break;
+        }
+      }
       if (row && contestType) {
         const demVotes = Number(row[`${contestType}_dem`] || 0);
         const repVotes = Number(row[`${contestType}_rep`] || 0);
         const otherVotes = Number(row[`${contestType}_other`] || 0);
         pinVoteCounterState(
-          `Selected: ${target}`,
+          `Selected: ${canonicalTarget}`,
           `${formatContestName(contestType, year)} ${year}`,
           demVotes,
           repVotes,
           otherVotes,
-          { kind: 'precinct', county, precinct: target, contestType, year: Number(year) },
+          { kind: 'precinct', county, precinct: canonicalTarget, contestType, year: Number(year) },
           { demCandidate: row[`${contestType}_dem_candidate`] || '', repCandidate: row[`${contestType}_rep_candidate`] || '' }
         );
       }
@@ -13354,9 +13405,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	              const cCompact = c.replace(/\s+/g, '');
 	              if (!cCompact || cCompact === baseCompact) return;
 
-	              // Numeric-only bases should only match the exact numeric portion + a short alpha suffix (e.g. "10" -> "10A").
+	              // Numeric-only bases should match exact numeric codes (including zero-padded)
+	              // and short alpha suffixed splits (e.g. "10" -> "0010" / "10A").
 	              if (baseNum) {
-	                const cm = cCompact.match(/^0*([0-9]+)([A-Z]{1,2})$/);
+	                const cm = cCompact.match(/^0*([0-9]+)([A-Z]{0,2})$/);
 	                if (!cm) return;
 	                if (parseInt(cm[1], 10) !== parseInt(baseNum[1], 10)) return;
 	                const altFull = normalize(`${countyOnly} - ${c}`);
@@ -13387,7 +13439,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	              addKey(`${a}.${b}`);
 	            } else {
 	              // Alphanumeric codes with leading zeros like UNION "0020B" or "0044".
-	              const ma = baseToken.match(/^0*([0-9]{1,4})([A-Z]{0,2})$/);
+	              const ma = baseToken.match(/^0*([0-9]{1,6})([A-Z]{0,2})$/);
 	              if (ma) {
 	                const n = parseInt(ma[1], 10);
 	                const suf = (ma[2] || '').toUpperCase();
@@ -13396,6 +13448,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	                  addKey(`${String(n).padStart(2, '0')}${suf}`);
 	                  addKey(`${String(n).padStart(3, '0')}${suf}`);
 	                  addKey(`${String(n).padStart(4, '0')}${suf}`);
+	                  addKey(`${String(n).padStart(5, '0')}${suf}`);
+	                  addKey(`${String(n).padStart(6, '0')}${suf}`);
 	                }
 	              }
 	            }
@@ -13580,7 +13634,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const tokenRaw = (baseToken || '').toString().trim().toUpperCase();
             const token = tokenRaw.replace(/[^A-Z0-9.\-]/g, '').trim();
             const tokenOk = token && (
-              /^[A-Z]{0,3}\d{1,4}(?:-\d{1,4})?[A-Z]{0,2}$/.test(token) ||
+              /^[A-Z]{0,3}\d{1,6}(?:-\d{1,6})?[A-Z]{0,2}$/.test(token) ||
               /^0*\d{1,3}\.\d{1,3}$/.test(token)
             );
             if (tokenOk) {
@@ -13591,17 +13645,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
               addKey(token);
               // Numeric codes: include both trimmed and zero-padded forms.
-              if (/^\d{1,5}$/.test(token)) {
+              if (/^\d{1,6}$/.test(token)) {
                 const n = parseInt(token, 10);
                 if (!isNaN(n)) {
                   addKey(String(n));
                   addKey(String(n).padStart(2, '0'));
                   addKey(String(n).padStart(3, '0'));
                   addKey(String(n).padStart(4, '0'));
+                  addKey(String(n).padStart(5, '0'));
+                  addKey(String(n).padStart(6, '0'));
                 }
               }
               // Alphanumeric codes with leading zeros like UNION "0020B" or "0044".
-              const mu = token.match(/^0*([0-9]{1,4})([A-Z]{1,2})$/);
+              const mu = token.match(/^0*([0-9]{1,6})([A-Z]{1,2})$/);
               if (mu) {
                 const n = parseInt(mu[1], 10);
                 const suf = (mu[2] || '').toUpperCase();
@@ -13610,6 +13666,8 @@ document.addEventListener('DOMContentLoaded', function() {
                   addKey(`${String(n).padStart(2, '0')}${suf}`);
                   addKey(`${String(n).padStart(3, '0')}${suf}`);
                   addKey(`${String(n).padStart(4, '0')}${suf}`);
+                  addKey(`${String(n).padStart(5, '0')}${suf}`);
+                  addKey(`${String(n).padStart(6, '0')}${suf}`);
                 }
               }
               // Decimal codes like Buncombe "08.1".
@@ -13658,12 +13716,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	              const cCompact = c.replace(/\s+/g, '');
 	              if (!cCompact || cCompact === baseCompact) return;
 
-	              // Numeric-only bases should only match the exact numeric portion + a short alpha suffix (e.g. "10" -> "10A").
-	              if (baseNum) {
-	                const cm = cCompact.match(/^0*([0-9]+)([A-Z]{1,2})$/);
-	                if (!cm) return;
-	                if (parseInt(cm[1], 10) !== parseInt(baseNum[1], 10)) return;
-	                const altFull = normalizeCountyName(`${countyOnly} - ${c}`);
+              // Numeric-only bases should match exact numeric codes (including zero-padded)
+              // and short alpha suffixed splits (e.g. "10" -> "0010" / "10A").
+              if (baseNum) {
+                const cm = cCompact.match(/^0*([0-9]+)([A-Z]{0,2})$/);
+                if (!cm) return;
+                if (parseInt(cm[1], 10) !== parseInt(baseNum[1], 10)) return;
+                const altFull = normalizeCountyName(`${countyOnly} - ${c}`);
 	                if (altFull) out.add(altFull);
 	                return;
 	              }
