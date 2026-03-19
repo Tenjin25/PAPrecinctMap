@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "treasurer", "year": 2012, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 99890, "rep_votes": 171423, "other_votes": 13653, "total_votes": 284966, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "R", "margin": 71533.0, "margin_pct": 25.102292905118507}, "17": {"dem_votes": 186005, "rep_votes": 157824, "other_votes": 15330, "total_votes": 359159, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "D", "margin": 28181.0, "margin_pct": 7.846385584100634}, "12": {"dem_votes": 219146, "rep_votes": 124358, "other_votes": 15288, "total_votes": 358792, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "D", "margin": 94788.0, "margin_pct": 26.418649245245156}, "15": {"dem_votes": 109673, "rep_votes": 158642, "other_votes": 15291, "total_votes": 283606, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "R", "margin": 48969.0, "margin_pct": 17.266559945840356}, "9": {"dem_votes": 106121, "rep_votes": 149217, "other_votes": 13124, "total_votes": 268462, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "R", "margin": 43096.0, "margin_pct": 16.05292369124867}, "4": {"dem_votes": 184346, "rep_votes": 150684, "other_votes": 6090, "total_votes": 341120, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "D", "margin": 33662.0, "margin_pct": 9.868081613508444}, "6": {"dem_votes": 144783, "rep_votes": 143915, "other_votes": 11069, "total_votes": 299767, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "D", "margin": 868.0, "margin_pct": 0.28955822355362665}, "1": {"dem_votes": 174246, "rep_votes": 174069, "other_votes": 7447, "total_votes": 355762, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "D", "margin": 177.0, "margin_pct": 0.0497523625345034}, "16": {"dem_votes": 147312, "rep_votes": 155799, "other_votes": 14410, "total_votes": 317521, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "R", "margin": 8487.0, "margin_pct": 2.6728940762973155}, "7": {"dem_votes": 150232, "rep_votes": 129572, "other_votes": 9665, "total_votes": 289469, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "D", "margin": 20660.0, "margin_pct": 7.137206402067234}, "5": {"dem_votes": 197112, "rep_votes": 119281, "other_votes": 4891, "total_votes": 321284, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "D", "margin": 77831.0, "margin_pct": 24.224984748695856}, "10": {"dem_votes": 141732, "rep_votes": 152987, "other_votes": 11425, "total_votes": 306144, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "R", "margin": 11255.0, "margin_pct": 3.676374516567367}, "14": {"dem_votes": 144177, "rep_votes": 165820, "other_votes": 13670, "total_votes": 323667, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "R", "margin": 21643.0, "margin_pct": 6.6868108271773155}, "8": {"dem_votes": 161793, "rep_votes": 108469, "other_votes": 12601, "total_votes": 282863, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "D", "margin": 53324.0, "margin_pct": 18.85152883197873}, "11": {"dem_votes": 107719, "rep_votes": 171830, "other_votes": 12813, "total_votes": 292362, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "R", "margin": 64111.0, "margin_pct": 21.92863641649736}, "3": {"dem_votes": 317345, "rep_votes": 28177, "other_votes": 4148, "total_votes": 349670, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "D", "margin": 289168.0, "margin_pct": 82.69740040609717}, "2": {"dem_votes": 202312, "rep_votes": 52768, "other_votes": 3025, "total_votes": 258105, "dem_candidate": "Robert M Mccord", "rep_candidate": "Diana Irey Vaughan", "winner": "D", "margin": 149544.0, "margin_pct": 57.939210786307896}}}}
+{
+  "scope": "congressional",
+  "contest_type": "treasurer",
+  "year": 2012,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 99890,
+        "rep_votes": 171423,
+        "other_votes": 13653,
+        "total_votes": 284966,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "R",
+        "margin": 71533.0,
+        "margin_pct": 25.102292905118507
+      },
+      "17": {
+        "dem_votes": 186005,
+        "rep_votes": 157824,
+        "other_votes": 15330,
+        "total_votes": 359159,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "D",
+        "margin": 28181.0,
+        "margin_pct": 7.846385584100634
+      },
+      "12": {
+        "dem_votes": 219146,
+        "rep_votes": 124358,
+        "other_votes": 15288,
+        "total_votes": 358792,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "D",
+        "margin": 94788.0,
+        "margin_pct": 26.418649245245156
+      },
+      "15": {
+        "dem_votes": 109673,
+        "rep_votes": 158642,
+        "other_votes": 15291,
+        "total_votes": 283606,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "R",
+        "margin": 48969.0,
+        "margin_pct": 17.266559945840356
+      },
+      "9": {
+        "dem_votes": 106121,
+        "rep_votes": 149217,
+        "other_votes": 13124,
+        "total_votes": 268462,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "R",
+        "margin": 43096.0,
+        "margin_pct": 16.05292369124867
+      },
+      "4": {
+        "dem_votes": 184346,
+        "rep_votes": 150684,
+        "other_votes": 6090,
+        "total_votes": 341120,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "D",
+        "margin": 33662.0,
+        "margin_pct": 9.868081613508444
+      },
+      "6": {
+        "dem_votes": 144783,
+        "rep_votes": 143915,
+        "other_votes": 11069,
+        "total_votes": 299767,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "D",
+        "margin": 868.0,
+        "margin_pct": 0.28955822355362665
+      },
+      "1": {
+        "dem_votes": 174246,
+        "rep_votes": 174069,
+        "other_votes": 7447,
+        "total_votes": 355762,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "D",
+        "margin": 177.0,
+        "margin_pct": 0.0497523625345034
+      },
+      "16": {
+        "dem_votes": 147312,
+        "rep_votes": 155799,
+        "other_votes": 14410,
+        "total_votes": 317521,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "R",
+        "margin": 8487.0,
+        "margin_pct": 2.6728940762973155
+      },
+      "7": {
+        "dem_votes": 150232,
+        "rep_votes": 129572,
+        "other_votes": 9665,
+        "total_votes": 289469,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "D",
+        "margin": 20660.0,
+        "margin_pct": 7.137206402067234
+      },
+      "5": {
+        "dem_votes": 197112,
+        "rep_votes": 119281,
+        "other_votes": 4891,
+        "total_votes": 321284,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "D",
+        "margin": 77831.0,
+        "margin_pct": 24.224984748695856
+      },
+      "10": {
+        "dem_votes": 141732,
+        "rep_votes": 152987,
+        "other_votes": 11425,
+        "total_votes": 306144,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "R",
+        "margin": 11255.0,
+        "margin_pct": 3.676374516567367
+      },
+      "14": {
+        "dem_votes": 144177,
+        "rep_votes": 165820,
+        "other_votes": 13670,
+        "total_votes": 323667,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "R",
+        "margin": 21643.0,
+        "margin_pct": 6.6868108271773155
+      },
+      "8": {
+        "dem_votes": 161793,
+        "rep_votes": 108469,
+        "other_votes": 12601,
+        "total_votes": 282863,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "D",
+        "margin": 53324.0,
+        "margin_pct": 18.85152883197873
+      },
+      "11": {
+        "dem_votes": 107719,
+        "rep_votes": 171830,
+        "other_votes": 12813,
+        "total_votes": 292362,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "R",
+        "margin": 64111.0,
+        "margin_pct": 21.92863641649736
+      },
+      "3": {
+        "dem_votes": 317345,
+        "rep_votes": 28177,
+        "other_votes": 4148,
+        "total_votes": 349670,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "D",
+        "margin": 289168.0,
+        "margin_pct": 82.69740040609717
+      },
+      "2": {
+        "dem_votes": 202312,
+        "rep_votes": 52768,
+        "other_votes": 3025,
+        "total_votes": 258105,
+        "dem_candidate": "Robert M Mccord",
+        "rep_candidate": "Diana Irey Vaughan",
+        "winner": "D",
+        "margin": 149544.0,
+        "margin_pct": 57.939210786307896
+      }
+    }
+  }
+}

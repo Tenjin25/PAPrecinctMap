@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "treasurer", "year": 2000, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 94843, "rep_votes": 153502, "other_votes": 9002, "total_votes": 257347, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 58659.0, "margin_pct": 22.79373763828605}, "17": {"dem_votes": 122238, "rep_votes": 122472, "other_votes": 7346, "total_votes": 252056, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 234.0, "margin_pct": 0.09283651252102708}, "12": {"dem_votes": 79198, "rep_votes": 82702, "other_votes": 4496, "total_votes": 166396, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 3504.0, "margin_pct": 2.1058198514387367}, "15": {"dem_votes": 97458, "rep_votes": 144467, "other_votes": 11940, "total_votes": 253865, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 47009.0, "margin_pct": 18.51732219880645}, "9": {"dem_votes": 81027, "rep_votes": 138906, "other_votes": 8319, "total_votes": 228252, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 57879.0, "margin_pct": 25.357499605698962}, "4": {"dem_votes": 122793, "rep_votes": 146695, "other_votes": 9594, "total_votes": 279082, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 23902.0, "margin_pct": 8.564507922402735}, "6": {"dem_votes": 82635, "rep_votes": 126163, "other_votes": 9922, "total_votes": 218720, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 43528.0, "margin_pct": 19.901243599122164}, "1": {"dem_votes": 120391, "rep_votes": 146263, "other_votes": 10514, "total_votes": 277168, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 25872.0, "margin_pct": 9.334410898805057}, "16": {"dem_votes": 135593, "rep_votes": 133520, "other_votes": 9493, "total_votes": 278606, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "D", "margin": 2073.0, "margin_pct": 0.7440615062130751}, "7": {"dem_votes": 102138, "rep_votes": 110651, "other_votes": 8163, "total_votes": 220952, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 8513.0, "margin_pct": 3.8528730221948657}, "5": {"dem_votes": 137602, "rep_votes": 129273, "other_votes": 7880, "total_votes": 274755, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "D", "margin": 8329.0, "margin_pct": 3.031427999490455}, "10": {"dem_votes": 73852, "rep_votes": 148349, "other_votes": 8278, "total_votes": 230479, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 74497.0, "margin_pct": 32.32268449620139}, "14": {"dem_votes": 153556, "rep_votes": 138676, "other_votes": 9113, "total_votes": 301345, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "D", "margin": 14880.0, "margin_pct": 4.937861919062867}, "8": {"dem_votes": 115451, "rep_votes": 96693, "other_votes": 8882, "total_votes": 221026, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "D", "margin": 18758.0, "margin_pct": 8.486784360211017}, "11": {"dem_votes": 67640, "rep_votes": 144225, "other_votes": 6939, "total_votes": 218804, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "R", "margin": 76585.0, "margin_pct": 35.00164530812965}, "3": {"dem_votes": 235845, "rep_votes": 34395, "other_votes": 7300, "total_votes": 277540, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "D", "margin": 201450.0, "margin_pct": 72.58413201700655}, "2": {"dem_votes": 145926, "rep_votes": 68948, "other_votes": 6752, "total_votes": 221626, "dem_candidate": "Catherine Baker Knoll", "rep_candidate": "Barbara Hafer", "winner": "D", "margin": 76978.0, "margin_pct": 34.73328941550179}}}}
+{
+  "scope": "congressional",
+  "contest_type": "treasurer",
+  "year": 2000,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 94843,
+        "rep_votes": 153502,
+        "other_votes": 9002,
+        "total_votes": 257347,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 58659.0,
+        "margin_pct": 22.79373763828605
+      },
+      "17": {
+        "dem_votes": 122238,
+        "rep_votes": 122472,
+        "other_votes": 7346,
+        "total_votes": 252056,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 234.0,
+        "margin_pct": 0.09283651252102708
+      },
+      "12": {
+        "dem_votes": 79198,
+        "rep_votes": 82702,
+        "other_votes": 4496,
+        "total_votes": 166396,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 3504.0,
+        "margin_pct": 2.1058198514387367
+      },
+      "15": {
+        "dem_votes": 97458,
+        "rep_votes": 144467,
+        "other_votes": 11940,
+        "total_votes": 253865,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 47009.0,
+        "margin_pct": 18.51732219880645
+      },
+      "9": {
+        "dem_votes": 81027,
+        "rep_votes": 138906,
+        "other_votes": 8319,
+        "total_votes": 228252,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 57879.0,
+        "margin_pct": 25.357499605698962
+      },
+      "4": {
+        "dem_votes": 122793,
+        "rep_votes": 146695,
+        "other_votes": 9594,
+        "total_votes": 279082,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 23902.0,
+        "margin_pct": 8.564507922402735
+      },
+      "6": {
+        "dem_votes": 82635,
+        "rep_votes": 126163,
+        "other_votes": 9922,
+        "total_votes": 218720,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 43528.0,
+        "margin_pct": 19.901243599122164
+      },
+      "1": {
+        "dem_votes": 120391,
+        "rep_votes": 146263,
+        "other_votes": 10514,
+        "total_votes": 277168,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 25872.0,
+        "margin_pct": 9.334410898805057
+      },
+      "16": {
+        "dem_votes": 135593,
+        "rep_votes": 133520,
+        "other_votes": 9493,
+        "total_votes": 278606,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "D",
+        "margin": 2073.0,
+        "margin_pct": 0.7440615062130751
+      },
+      "7": {
+        "dem_votes": 102138,
+        "rep_votes": 110651,
+        "other_votes": 8163,
+        "total_votes": 220952,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 8513.0,
+        "margin_pct": 3.8528730221948657
+      },
+      "5": {
+        "dem_votes": 137602,
+        "rep_votes": 129273,
+        "other_votes": 7880,
+        "total_votes": 274755,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "D",
+        "margin": 8329.0,
+        "margin_pct": 3.031427999490455
+      },
+      "10": {
+        "dem_votes": 73852,
+        "rep_votes": 148349,
+        "other_votes": 8278,
+        "total_votes": 230479,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 74497.0,
+        "margin_pct": 32.32268449620139
+      },
+      "14": {
+        "dem_votes": 153556,
+        "rep_votes": 138676,
+        "other_votes": 9113,
+        "total_votes": 301345,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "D",
+        "margin": 14880.0,
+        "margin_pct": 4.937861919062867
+      },
+      "8": {
+        "dem_votes": 115451,
+        "rep_votes": 96693,
+        "other_votes": 8882,
+        "total_votes": 221026,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "D",
+        "margin": 18758.0,
+        "margin_pct": 8.486784360211017
+      },
+      "11": {
+        "dem_votes": 67640,
+        "rep_votes": 144225,
+        "other_votes": 6939,
+        "total_votes": 218804,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "R",
+        "margin": 76585.0,
+        "margin_pct": 35.00164530812965
+      },
+      "3": {
+        "dem_votes": 235845,
+        "rep_votes": 34395,
+        "other_votes": 7300,
+        "total_votes": 277540,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "D",
+        "margin": 201450.0,
+        "margin_pct": 72.58413201700655
+      },
+      "2": {
+        "dem_votes": 145926,
+        "rep_votes": 68948,
+        "other_votes": 6752,
+        "total_votes": 221626,
+        "dem_candidate": "Catherine Baker Knoll",
+        "rep_candidate": "Barbara Hafer",
+        "winner": "D",
+        "margin": 76978.0,
+        "margin_pct": 34.73328941550179
+      }
+    }
+  }
+}

@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "auditor", "year": 2004, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 112659, "rep_votes": 174433, "other_votes": 8697, "total_votes": 295789, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "R", "margin": 61774.0, "margin_pct": 20.884481843476262}, "17": {"dem_votes": 216819, "rep_votes": 136868, "other_votes": 8283, "total_votes": 361970, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "D", "margin": 79951.0, "margin_pct": 22.08774207807277}, "12": {"dem_votes": 243313, "rep_votes": 110463, "other_votes": 9184, "total_votes": 362960, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "D", "margin": 132850.0, "margin_pct": 36.601829402689}, "15": {"dem_votes": 117473, "rep_votes": 160078, "other_votes": 9830, "total_votes": 287381, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "R", "margin": 42605.0, "margin_pct": 14.825266806086693}, "9": {"dem_votes": 96110, "rep_votes": 152354, "other_votes": 7702, "total_votes": 256166, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "R", "margin": 56244.0, "margin_pct": 21.956075357385448}, "4": {"dem_votes": 166693, "rep_votes": 153018, "other_votes": 8101, "total_votes": 327812, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "D", "margin": 13675.0, "margin_pct": 4.171598355154784}, "6": {"dem_votes": 120673, "rep_votes": 137878, "other_votes": 8790, "total_votes": 267341, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "R", "margin": 17205.0, "margin_pct": 6.435600974036904}, "1": {"dem_votes": 160640, "rep_votes": 165827, "other_votes": 7437, "total_votes": 333904, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "R", "margin": 5187.0, "margin_pct": 1.5534405098471415}, "16": {"dem_votes": 153459, "rep_votes": 140457, "other_votes": 13135, "total_votes": 307051, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "D", "margin": 13002.0, "margin_pct": 4.23447570599021}, "7": {"dem_votes": 126762, "rep_votes": 122070, "other_votes": 6911, "total_votes": 255743, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "D", "margin": 4692.0, "margin_pct": 1.8346543209393804}, "5": {"dem_votes": 174359, "rep_votes": 128071, "other_votes": 5196, "total_votes": 307626, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "D", "margin": 46288.0, "margin_pct": 15.046842594579132}, "10": {"dem_votes": 108562, "rep_votes": 156181, "other_votes": 8497, "total_votes": 273240, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "R", "margin": 47619.0, "margin_pct": 17.42753623188406}, "14": {"dem_votes": 186277, "rep_votes": 130896, "other_votes": 7137, "total_votes": 324310, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "D", "margin": 55381.0, "margin_pct": 17.07656254817921}, "8": {"dem_votes": 119081, "rep_votes": 124122, "other_votes": 6056, "total_votes": 249259, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "R", "margin": 5041.0, "margin_pct": 2.02239437693323}, "11": {"dem_votes": 85008, "rep_votes": 176286, "other_votes": 6272, "total_votes": 267566, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "R", "margin": 91278.0, "margin_pct": 34.11419986096888}, "3": {"dem_votes": 287363, "rep_votes": 32154, "other_votes": 6450, "total_votes": 325967, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "D", "margin": 255209.0, "margin_pct": 78.29289467952277}, "2": {"dem_votes": 183234, "rep_votes": 69711, "other_votes": 4354, "total_votes": 257299, "dem_candidate": "Jack Wagner", "rep_candidate": "Joe Peters", "winner": "D", "margin": 113523.0, "margin_pct": 44.12104205612925}}}}
+{
+  "scope": "congressional",
+  "contest_type": "auditor",
+  "year": 2004,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 112659,
+        "rep_votes": 174433,
+        "other_votes": 8697,
+        "total_votes": 295789,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "R",
+        "margin": 61774.0,
+        "margin_pct": 20.884481843476262
+      },
+      "17": {
+        "dem_votes": 216819,
+        "rep_votes": 136868,
+        "other_votes": 8283,
+        "total_votes": 361970,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "D",
+        "margin": 79951.0,
+        "margin_pct": 22.08774207807277
+      },
+      "12": {
+        "dem_votes": 243313,
+        "rep_votes": 110463,
+        "other_votes": 9184,
+        "total_votes": 362960,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "D",
+        "margin": 132850.0,
+        "margin_pct": 36.601829402689
+      },
+      "15": {
+        "dem_votes": 117473,
+        "rep_votes": 160078,
+        "other_votes": 9830,
+        "total_votes": 287381,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "R",
+        "margin": 42605.0,
+        "margin_pct": 14.825266806086693
+      },
+      "9": {
+        "dem_votes": 96110,
+        "rep_votes": 152354,
+        "other_votes": 7702,
+        "total_votes": 256166,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "R",
+        "margin": 56244.0,
+        "margin_pct": 21.956075357385448
+      },
+      "4": {
+        "dem_votes": 166693,
+        "rep_votes": 153018,
+        "other_votes": 8101,
+        "total_votes": 327812,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "D",
+        "margin": 13675.0,
+        "margin_pct": 4.171598355154784
+      },
+      "6": {
+        "dem_votes": 120673,
+        "rep_votes": 137878,
+        "other_votes": 8790,
+        "total_votes": 267341,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "R",
+        "margin": 17205.0,
+        "margin_pct": 6.435600974036904
+      },
+      "1": {
+        "dem_votes": 160640,
+        "rep_votes": 165827,
+        "other_votes": 7437,
+        "total_votes": 333904,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "R",
+        "margin": 5187.0,
+        "margin_pct": 1.5534405098471415
+      },
+      "16": {
+        "dem_votes": 153459,
+        "rep_votes": 140457,
+        "other_votes": 13135,
+        "total_votes": 307051,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "D",
+        "margin": 13002.0,
+        "margin_pct": 4.23447570599021
+      },
+      "7": {
+        "dem_votes": 126762,
+        "rep_votes": 122070,
+        "other_votes": 6911,
+        "total_votes": 255743,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "D",
+        "margin": 4692.0,
+        "margin_pct": 1.8346543209393804
+      },
+      "5": {
+        "dem_votes": 174359,
+        "rep_votes": 128071,
+        "other_votes": 5196,
+        "total_votes": 307626,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "D",
+        "margin": 46288.0,
+        "margin_pct": 15.046842594579132
+      },
+      "10": {
+        "dem_votes": 108562,
+        "rep_votes": 156181,
+        "other_votes": 8497,
+        "total_votes": 273240,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "R",
+        "margin": 47619.0,
+        "margin_pct": 17.42753623188406
+      },
+      "14": {
+        "dem_votes": 186277,
+        "rep_votes": 130896,
+        "other_votes": 7137,
+        "total_votes": 324310,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "D",
+        "margin": 55381.0,
+        "margin_pct": 17.07656254817921
+      },
+      "8": {
+        "dem_votes": 119081,
+        "rep_votes": 124122,
+        "other_votes": 6056,
+        "total_votes": 249259,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "R",
+        "margin": 5041.0,
+        "margin_pct": 2.02239437693323
+      },
+      "11": {
+        "dem_votes": 85008,
+        "rep_votes": 176286,
+        "other_votes": 6272,
+        "total_votes": 267566,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "R",
+        "margin": 91278.0,
+        "margin_pct": 34.11419986096888
+      },
+      "3": {
+        "dem_votes": 287363,
+        "rep_votes": 32154,
+        "other_votes": 6450,
+        "total_votes": 325967,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "D",
+        "margin": 255209.0,
+        "margin_pct": 78.29289467952277
+      },
+      "2": {
+        "dem_votes": 183234,
+        "rep_votes": 69711,
+        "other_votes": 4354,
+        "total_votes": 257299,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Joe Peters",
+        "winner": "D",
+        "margin": 113523.0,
+        "margin_pct": 44.12104205612925
+      }
+    }
+  }
+}

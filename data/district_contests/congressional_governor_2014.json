@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "governor", "year": 2014, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 78767, "rep_votes": 116652, "other_votes": 0, "total_votes": 195419, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "R", "margin": 37885.0, "margin_pct": 19.386548902614383}, "17": {"dem_votes": 115411, "rep_votes": 106661, "other_votes": 0, "total_votes": 222072, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "D", "margin": 8750.0, "margin_pct": 3.940163550560179}, "12": {"dem_votes": 128267, "rep_votes": 83065, "other_votes": 0, "total_votes": 211332, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "D", "margin": 45202.0, "margin_pct": 21.389093937501183}, "15": {"dem_votes": 82569, "rep_votes": 103192, "other_votes": 0, "total_votes": 185761, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "R", "margin": 20623.0, "margin_pct": 11.101899752908306}, "9": {"dem_votes": 79282, "rep_votes": 104281, "other_votes": 0, "total_votes": 183563, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "R", "margin": 24999.0, "margin_pct": 13.61875759276107}, "4": {"dem_votes": 133979, "rep_votes": 95770, "other_votes": 0, "total_votes": 229749, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "D", "margin": 38209.0, "margin_pct": 16.63075791407144}, "6": {"dem_votes": 98555, "rep_votes": 89332, "other_votes": 0, "total_votes": 187887, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "D", "margin": 9223.0, "margin_pct": 4.908801566899253}, "1": {"dem_votes": 119951, "rep_votes": 110910, "other_votes": 0, "total_votes": 230861, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "D", "margin": 9041.0, "margin_pct": 3.916209320760111}, "16": {"dem_votes": 98149, "rep_votes": 105615, "other_votes": 0, "total_votes": 203764, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "R", "margin": 7466.0, "margin_pct": 3.664042716083312}, "7": {"dem_votes": 96101, "rep_votes": 79677, "other_votes": 0, "total_votes": 175778, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "D", "margin": 16424.0, "margin_pct": 9.343603863964773}, "5": {"dem_votes": 136911, "rep_votes": 75825, "other_votes": 0, "total_votes": 212736, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "D", "margin": 61086.0, "margin_pct": 28.71446299638989}, "10": {"dem_votes": 98106, "rep_votes": 110696, "other_votes": 0, "total_votes": 208802, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "R", "margin": 12590.0, "margin_pct": 6.029635731458511}, "14": {"dem_votes": 100794, "rep_votes": 109595, "other_votes": 0, "total_votes": 210389, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "R", "margin": 8801.0, "margin_pct": 4.183203494479274}, "8": {"dem_votes": 106869, "rep_votes": 72000, "other_votes": 0, "total_votes": 178869, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "D", "margin": 34869.0, "margin_pct": 19.49415494020764}, "11": {"dem_votes": 78851, "rep_votes": 116518, "other_votes": 0, "total_votes": 195369, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "R", "margin": 37667.0, "margin_pct": 19.27992670280341}, "3": {"dem_votes": 203434, "rep_votes": 14454, "other_votes": 0, "total_votes": 217888, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "D", "margin": 188980.0, "margin_pct": 86.73263327948304}, "2": {"dem_votes": 115351, "rep_votes": 28694, "other_votes": 0, "total_votes": 144045, "dem_candidate": "Thomas W Wolf", "rep_candidate": "Thomas W. Corbett Jr", "winner": "D", "margin": 86657.0, "margin_pct": 60.159672324620786}}}}
+{
+  "scope": "congressional",
+  "contest_type": "governor",
+  "year": 2014,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 78767,
+        "rep_votes": 116652,
+        "other_votes": 0,
+        "total_votes": 195419,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "R",
+        "margin": 37885.0,
+        "margin_pct": 19.386548902614383
+      },
+      "17": {
+        "dem_votes": 115411,
+        "rep_votes": 106661,
+        "other_votes": 0,
+        "total_votes": 222072,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "D",
+        "margin": 8750.0,
+        "margin_pct": 3.940163550560179
+      },
+      "12": {
+        "dem_votes": 128267,
+        "rep_votes": 83065,
+        "other_votes": 0,
+        "total_votes": 211332,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "D",
+        "margin": 45202.0,
+        "margin_pct": 21.389093937501183
+      },
+      "15": {
+        "dem_votes": 82569,
+        "rep_votes": 103192,
+        "other_votes": 0,
+        "total_votes": 185761,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "R",
+        "margin": 20623.0,
+        "margin_pct": 11.101899752908306
+      },
+      "9": {
+        "dem_votes": 79282,
+        "rep_votes": 104281,
+        "other_votes": 0,
+        "total_votes": 183563,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "R",
+        "margin": 24999.0,
+        "margin_pct": 13.61875759276107
+      },
+      "4": {
+        "dem_votes": 133979,
+        "rep_votes": 95770,
+        "other_votes": 0,
+        "total_votes": 229749,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "D",
+        "margin": 38209.0,
+        "margin_pct": 16.63075791407144
+      },
+      "6": {
+        "dem_votes": 98555,
+        "rep_votes": 89332,
+        "other_votes": 0,
+        "total_votes": 187887,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "D",
+        "margin": 9223.0,
+        "margin_pct": 4.908801566899253
+      },
+      "1": {
+        "dem_votes": 119951,
+        "rep_votes": 110910,
+        "other_votes": 0,
+        "total_votes": 230861,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "D",
+        "margin": 9041.0,
+        "margin_pct": 3.916209320760111
+      },
+      "16": {
+        "dem_votes": 98149,
+        "rep_votes": 105615,
+        "other_votes": 0,
+        "total_votes": 203764,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "R",
+        "margin": 7466.0,
+        "margin_pct": 3.664042716083312
+      },
+      "7": {
+        "dem_votes": 96101,
+        "rep_votes": 79677,
+        "other_votes": 0,
+        "total_votes": 175778,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "D",
+        "margin": 16424.0,
+        "margin_pct": 9.343603863964773
+      },
+      "5": {
+        "dem_votes": 136911,
+        "rep_votes": 75825,
+        "other_votes": 0,
+        "total_votes": 212736,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "D",
+        "margin": 61086.0,
+        "margin_pct": 28.71446299638989
+      },
+      "10": {
+        "dem_votes": 98106,
+        "rep_votes": 110696,
+        "other_votes": 0,
+        "total_votes": 208802,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "R",
+        "margin": 12590.0,
+        "margin_pct": 6.029635731458511
+      },
+      "14": {
+        "dem_votes": 100794,
+        "rep_votes": 109595,
+        "other_votes": 0,
+        "total_votes": 210389,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "R",
+        "margin": 8801.0,
+        "margin_pct": 4.183203494479274
+      },
+      "8": {
+        "dem_votes": 106869,
+        "rep_votes": 72000,
+        "other_votes": 0,
+        "total_votes": 178869,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "D",
+        "margin": 34869.0,
+        "margin_pct": 19.49415494020764
+      },
+      "11": {
+        "dem_votes": 78851,
+        "rep_votes": 116518,
+        "other_votes": 0,
+        "total_votes": 195369,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "R",
+        "margin": 37667.0,
+        "margin_pct": 19.27992670280341
+      },
+      "3": {
+        "dem_votes": 203434,
+        "rep_votes": 14454,
+        "other_votes": 0,
+        "total_votes": 217888,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "D",
+        "margin": 188980.0,
+        "margin_pct": 86.73263327948304
+      },
+      "2": {
+        "dem_votes": 115351,
+        "rep_votes": 28694,
+        "other_votes": 0,
+        "total_votes": 144045,
+        "dem_candidate": "Thomas W Wolf",
+        "rep_candidate": "Thomas W. Corbett Jr",
+        "winner": "D",
+        "margin": 86657.0,
+        "margin_pct": 60.159672324620786
+      }
+    }
+  }
+}

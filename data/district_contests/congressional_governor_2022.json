@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "governor", "year": 2022, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 107734, "rep_votes": 200552, "other_votes": 5130, "total_votes": 313416, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "R", "margin": 92818.0, "margin_pct": 29.614952650790006}, "17": {"dem_votes": 222808, "rep_votes": 129284, "other_votes": 6418, "total_votes": 358510, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 93524.0, "margin_pct": 26.086859501827007}, "12": {"dem_votes": 231202, "rep_votes": 101981, "other_votes": 5546, "total_votes": 338729, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 129221.0, "margin_pct": 38.14878560737345}, "15": {"dem_votes": 108571, "rep_votes": 174176, "other_votes": 5525, "total_votes": 288272, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "R", "margin": 65605.0, "margin_pct": 22.758020203141477}, "9": {"dem_votes": 112407, "rep_votes": 177330, "other_votes": 7556, "total_votes": 297293, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "R", "margin": 64923.0, "margin_pct": 21.838052022751967}, "4": {"dem_votes": 239256, "rep_votes": 117417, "other_votes": 5770, "total_votes": 362443, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 121839.0, "margin_pct": 33.61604445388654}, "6": {"dem_votes": 191790, "rep_votes": 114752, "other_votes": 6129, "total_votes": 312671, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 77038.0, "margin_pct": 24.63867771555405}, "1": {"dem_votes": 218556, "rep_votes": 145093, "other_votes": 6658, "total_votes": 370307, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 73463.0, "margin_pct": 19.838404350984455}, "16": {"dem_votes": 151713, "rep_votes": 160470, "other_votes": 6159, "total_votes": 318342, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "R", "margin": 8757.0, "margin_pct": 2.750815161053207}, "7": {"dem_votes": 165090, "rep_votes": 126631, "other_votes": 6293, "total_votes": 298014, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 38459.0, "margin_pct": 12.905098418195118}, "5": {"dem_votes": 214186, "rep_votes": 87504, "other_votes": 4479, "total_votes": 306169, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 126682.0, "margin_pct": 41.37649468104217}, "10": {"dem_votes": 170760, "rep_votes": 132433, "other_votes": 6430, "total_votes": 309623, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 38327.0, "margin_pct": 12.3786023648114}, "14": {"dem_votes": 142211, "rep_votes": 177452, "other_votes": 5444, "total_votes": 325107, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "R", "margin": 35241.0, "margin_pct": 10.839815814485693}, "8": {"dem_votes": 154136, "rep_votes": 127826, "other_votes": 5405, "total_votes": 287367, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 26310.0, "margin_pct": 9.155539780141769}, "11": {"dem_votes": 144641, "rep_votes": 163935, "other_votes": 6102, "total_votes": 314678, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "R", "margin": 19294.0, "margin_pct": 6.131346964198324}, "3": {"dem_votes": 264021, "rep_votes": 18411, "other_votes": 3100, "total_votes": 285532, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 245610.0, "margin_pct": 86.01837972626537}, "2": {"dem_votes": 146390, "rep_votes": 42534, "other_votes": 2770, "total_votes": 191694, "dem_candidate": "Joshua D Shapiro", "rep_candidate": "Douglas V Mastriano", "winner": "D", "margin": 103856.0, "margin_pct": 54.1780128746857}}}}
+{
+  "scope": "congressional",
+  "contest_type": "governor",
+  "year": 2022,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 107734,
+        "rep_votes": 200552,
+        "other_votes": 5130,
+        "total_votes": 313416,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "R",
+        "margin": 92818.0,
+        "margin_pct": 29.614952650790006
+      },
+      "17": {
+        "dem_votes": 222808,
+        "rep_votes": 129284,
+        "other_votes": 6418,
+        "total_votes": 358510,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 93524.0,
+        "margin_pct": 26.086859501827007
+      },
+      "12": {
+        "dem_votes": 231202,
+        "rep_votes": 101981,
+        "other_votes": 5546,
+        "total_votes": 338729,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 129221.0,
+        "margin_pct": 38.14878560737345
+      },
+      "15": {
+        "dem_votes": 108571,
+        "rep_votes": 174176,
+        "other_votes": 5525,
+        "total_votes": 288272,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "R",
+        "margin": 65605.0,
+        "margin_pct": 22.758020203141477
+      },
+      "9": {
+        "dem_votes": 112407,
+        "rep_votes": 177330,
+        "other_votes": 7556,
+        "total_votes": 297293,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "R",
+        "margin": 64923.0,
+        "margin_pct": 21.838052022751967
+      },
+      "4": {
+        "dem_votes": 239256,
+        "rep_votes": 117417,
+        "other_votes": 5770,
+        "total_votes": 362443,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 121839.0,
+        "margin_pct": 33.61604445388654
+      },
+      "6": {
+        "dem_votes": 191790,
+        "rep_votes": 114752,
+        "other_votes": 6129,
+        "total_votes": 312671,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 77038.0,
+        "margin_pct": 24.63867771555405
+      },
+      "1": {
+        "dem_votes": 218556,
+        "rep_votes": 145093,
+        "other_votes": 6658,
+        "total_votes": 370307,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 73463.0,
+        "margin_pct": 19.838404350984455
+      },
+      "16": {
+        "dem_votes": 151713,
+        "rep_votes": 160470,
+        "other_votes": 6159,
+        "total_votes": 318342,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "R",
+        "margin": 8757.0,
+        "margin_pct": 2.750815161053207
+      },
+      "7": {
+        "dem_votes": 165090,
+        "rep_votes": 126631,
+        "other_votes": 6293,
+        "total_votes": 298014,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 38459.0,
+        "margin_pct": 12.905098418195118
+      },
+      "5": {
+        "dem_votes": 214186,
+        "rep_votes": 87504,
+        "other_votes": 4479,
+        "total_votes": 306169,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 126682.0,
+        "margin_pct": 41.37649468104217
+      },
+      "10": {
+        "dem_votes": 170760,
+        "rep_votes": 132433,
+        "other_votes": 6430,
+        "total_votes": 309623,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 38327.0,
+        "margin_pct": 12.3786023648114
+      },
+      "14": {
+        "dem_votes": 142211,
+        "rep_votes": 177452,
+        "other_votes": 5444,
+        "total_votes": 325107,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "R",
+        "margin": 35241.0,
+        "margin_pct": 10.839815814485693
+      },
+      "8": {
+        "dem_votes": 154136,
+        "rep_votes": 127826,
+        "other_votes": 5405,
+        "total_votes": 287367,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 26310.0,
+        "margin_pct": 9.155539780141769
+      },
+      "11": {
+        "dem_votes": 144641,
+        "rep_votes": 163935,
+        "other_votes": 6102,
+        "total_votes": 314678,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "R",
+        "margin": 19294.0,
+        "margin_pct": 6.131346964198324
+      },
+      "3": {
+        "dem_votes": 264021,
+        "rep_votes": 18411,
+        "other_votes": 3100,
+        "total_votes": 285532,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 245610.0,
+        "margin_pct": 86.01837972626537
+      },
+      "2": {
+        "dem_votes": 146390,
+        "rep_votes": 42534,
+        "other_votes": 2770,
+        "total_votes": 191694,
+        "dem_candidate": "Joshua D Shapiro",
+        "rep_candidate": "Douglas V Mastriano",
+        "winner": "D",
+        "margin": 103856.0,
+        "margin_pct": 54.1780128746857
+      }
+    }
+  }
+}

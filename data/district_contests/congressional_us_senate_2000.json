@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "us_senate", "year": 2000, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 83810, "rep_votes": 167741, "other_votes": 7024, "total_votes": 258575, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 83931.0, "margin_pct": 32.45905443294982}, "17": {"dem_votes": 125496, "rep_votes": 126096, "other_votes": 4205, "total_votes": 255797, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 600.0, "margin_pct": 0.23456099954260604}, "12": {"dem_votes": 83602, "rep_votes": 82739, "other_votes": 2928, "total_votes": 169269, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "D", "margin": 863.0, "margin_pct": 0.5098393681063869}, "15": {"dem_votes": 84640, "rep_votes": 162906, "other_votes": 7514, "total_votes": 255060, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 78266.0, "margin_pct": 30.68532894220968}, "9": {"dem_votes": 74480, "rep_votes": 149254, "other_votes": 5904, "total_votes": 229638, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 74774.0, "margin_pct": 32.56168404183977}, "4": {"dem_votes": 119781, "rep_votes": 157343, "other_votes": 5410, "total_votes": 282534, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 37562.0, "margin_pct": 13.294683117784054}, "6": {"dem_votes": 79114, "rep_votes": 134662, "other_votes": 5647, "total_votes": 219423, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 55548.0, "margin_pct": 25.315486526025076}, "1": {"dem_votes": 113903, "rep_votes": 162110, "other_votes": 5307, "total_votes": 281320, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 48207.0, "margin_pct": 17.136001706242002}, "16": {"dem_votes": 121272, "rep_votes": 155536, "other_votes": 5298, "total_votes": 282106, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 34264.0, "margin_pct": 12.145789171446195}, "7": {"dem_votes": 95036, "rep_votes": 124915, "other_votes": 4245, "total_votes": 224196, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 29879.0, "margin_pct": 13.327178004959947}, "5": {"dem_votes": 135181, "rep_votes": 140048, "other_votes": 3874, "total_votes": 279103, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 4867.0, "margin_pct": 1.7438006757361977}, "10": {"dem_votes": 85768, "rep_votes": 138436, "other_votes": 6591, "total_votes": 230795, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 52668.0, "margin_pct": 22.82025173855586}, "14": {"dem_votes": 149557, "rep_votes": 148018, "other_votes": 7650, "total_votes": 305225, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "D", "margin": 1539.0, "margin_pct": 0.5042181996887541}, "8": {"dem_votes": 107473, "rep_votes": 114507, "other_votes": 4929, "total_votes": 226909, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 7034.0, "margin_pct": 3.099921113750446}, "11": {"dem_votes": 64184, "rep_votes": 151872, "other_votes": 4145, "total_votes": 220201, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "R", "margin": 87688.0, "margin_pct": 39.82179917439067}, "3": {"dem_votes": 239175, "rep_votes": 35565, "other_votes": 3442, "total_votes": 278182, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "D", "margin": 203610.0, "margin_pct": 73.19308941628144}, "2": {"dem_votes": 142864, "rep_votes": 79799, "other_votes": 2843, "total_votes": 225506, "dem_candidate": "Ron Klink", "rep_candidate": "Rick Santorum", "winner": "D", "margin": 63065.0, "margin_pct": 27.965996470160437}}}}
+{
+  "scope": "congressional",
+  "contest_type": "us_senate",
+  "year": 2000,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 83810,
+        "rep_votes": 167741,
+        "other_votes": 7024,
+        "total_votes": 258575,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 83931.0,
+        "margin_pct": 32.45905443294982
+      },
+      "17": {
+        "dem_votes": 125496,
+        "rep_votes": 126096,
+        "other_votes": 4205,
+        "total_votes": 255797,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 600.0,
+        "margin_pct": 0.23456099954260604
+      },
+      "12": {
+        "dem_votes": 83602,
+        "rep_votes": 82739,
+        "other_votes": 2928,
+        "total_votes": 169269,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "D",
+        "margin": 863.0,
+        "margin_pct": 0.5098393681063869
+      },
+      "15": {
+        "dem_votes": 84640,
+        "rep_votes": 162906,
+        "other_votes": 7514,
+        "total_votes": 255060,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 78266.0,
+        "margin_pct": 30.68532894220968
+      },
+      "9": {
+        "dem_votes": 74480,
+        "rep_votes": 149254,
+        "other_votes": 5904,
+        "total_votes": 229638,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 74774.0,
+        "margin_pct": 32.56168404183977
+      },
+      "4": {
+        "dem_votes": 119781,
+        "rep_votes": 157343,
+        "other_votes": 5410,
+        "total_votes": 282534,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 37562.0,
+        "margin_pct": 13.294683117784054
+      },
+      "6": {
+        "dem_votes": 79114,
+        "rep_votes": 134662,
+        "other_votes": 5647,
+        "total_votes": 219423,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 55548.0,
+        "margin_pct": 25.315486526025076
+      },
+      "1": {
+        "dem_votes": 113903,
+        "rep_votes": 162110,
+        "other_votes": 5307,
+        "total_votes": 281320,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 48207.0,
+        "margin_pct": 17.136001706242002
+      },
+      "16": {
+        "dem_votes": 121272,
+        "rep_votes": 155536,
+        "other_votes": 5298,
+        "total_votes": 282106,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 34264.0,
+        "margin_pct": 12.145789171446195
+      },
+      "7": {
+        "dem_votes": 95036,
+        "rep_votes": 124915,
+        "other_votes": 4245,
+        "total_votes": 224196,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 29879.0,
+        "margin_pct": 13.327178004959947
+      },
+      "5": {
+        "dem_votes": 135181,
+        "rep_votes": 140048,
+        "other_votes": 3874,
+        "total_votes": 279103,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 4867.0,
+        "margin_pct": 1.7438006757361977
+      },
+      "10": {
+        "dem_votes": 85768,
+        "rep_votes": 138436,
+        "other_votes": 6591,
+        "total_votes": 230795,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 52668.0,
+        "margin_pct": 22.82025173855586
+      },
+      "14": {
+        "dem_votes": 149557,
+        "rep_votes": 148018,
+        "other_votes": 7650,
+        "total_votes": 305225,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "D",
+        "margin": 1539.0,
+        "margin_pct": 0.5042181996887541
+      },
+      "8": {
+        "dem_votes": 107473,
+        "rep_votes": 114507,
+        "other_votes": 4929,
+        "total_votes": 226909,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 7034.0,
+        "margin_pct": 3.099921113750446
+      },
+      "11": {
+        "dem_votes": 64184,
+        "rep_votes": 151872,
+        "other_votes": 4145,
+        "total_votes": 220201,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "R",
+        "margin": 87688.0,
+        "margin_pct": 39.82179917439067
+      },
+      "3": {
+        "dem_votes": 239175,
+        "rep_votes": 35565,
+        "other_votes": 3442,
+        "total_votes": 278182,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "D",
+        "margin": 203610.0,
+        "margin_pct": 73.19308941628144
+      },
+      "2": {
+        "dem_votes": 142864,
+        "rep_votes": 79799,
+        "other_votes": 2843,
+        "total_votes": 225506,
+        "dem_candidate": "Ron Klink",
+        "rep_candidate": "Rick Santorum",
+        "winner": "D",
+        "margin": 63065.0,
+        "margin_pct": 27.965996470160437
+      }
+    }
+  }
+}

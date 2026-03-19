@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "attorney_general", "year": 2004, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 103379, "rep_votes": 190487, "other_votes": 5379, "total_votes": 299245, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 87108.0, "margin_pct": 29.109258300055142}, "17": {"dem_votes": 170715, "rep_votes": 185970, "other_votes": 3911, "total_votes": 360596, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 15255.0, "margin_pct": 4.230496178548846}, "12": {"dem_votes": 205147, "rep_votes": 153606, "other_votes": 4365, "total_votes": 363118, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "D", "margin": 51541.0, "margin_pct": 14.19400855920114}, "15": {"dem_votes": 107622, "rep_votes": 175606, "other_votes": 6419, "total_votes": 289647, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 67984.0, "margin_pct": 23.47132889344616}, "9": {"dem_votes": 90136, "rep_votes": 165520, "other_votes": 4579, "total_votes": 260235, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 75384.0, "margin_pct": 28.96766384229639}, "4": {"dem_votes": 165431, "rep_votes": 164290, "other_votes": 3688, "total_votes": 333409, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "D", "margin": 1141.0, "margin_pct": 0.3422223155343737}, "6": {"dem_votes": 121664, "rep_votes": 145083, "other_votes": 4804, "total_votes": 271551, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 23419.0, "margin_pct": 8.62416268030683}, "1": {"dem_votes": 162802, "rep_votes": 173288, "other_votes": 3129, "total_votes": 339219, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 10486.0, "margin_pct": 3.0912183574622882}, "16": {"dem_votes": 127279, "rep_votes": 176946, "other_votes": 5020, "total_votes": 309245, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 49667.0, "margin_pct": 16.06072854856182}, "7": {"dem_votes": 127658, "rep_votes": 130247, "other_votes": 3131, "total_votes": 261036, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 2589.0, "margin_pct": 0.9918172206132487}, "5": {"dem_votes": 176685, "rep_votes": 135543, "other_votes": 2210, "total_votes": 314438, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "D", "margin": 41142.0, "margin_pct": 13.084296427276602}, "10": {"dem_votes": 106705, "rep_votes": 166828, "other_votes": 4376, "total_votes": 277909, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 60123.0, "margin_pct": 21.63406007002292}, "14": {"dem_votes": 155265, "rep_votes": 169253, "other_votes": 4046, "total_votes": 328564, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 13988.0, "margin_pct": 4.257313643612813}, "8": {"dem_votes": 118866, "rep_votes": 128310, "other_votes": 2550, "total_votes": 249726, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 9444.0, "margin_pct": 3.781744792292353}, "11": {"dem_votes": 84390, "rep_votes": 184934, "other_votes": 2977, "total_votes": 272301, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 100544.0, "margin_pct": 36.92384530354277}, "3": {"dem_votes": 292799, "rep_votes": 34852, "other_votes": 3922, "total_votes": 331573, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "D", "margin": 257947.0, "margin_pct": 77.79493505200966}, "2": {"dem_votes": 184800, "rep_votes": 76579, "other_votes": 2156, "total_votes": 263535, "dem_candidate": "Jim Eisenhower", "rep_candidate": "Tom Corbett", "winner": "D", "margin": 108221.0, "margin_pct": 41.065133663460266}}}}
+{
+  "scope": "congressional",
+  "contest_type": "attorney_general",
+  "year": 2004,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 103379,
+        "rep_votes": 190487,
+        "other_votes": 5379,
+        "total_votes": 299245,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 87108.0,
+        "margin_pct": 29.109258300055142
+      },
+      "17": {
+        "dem_votes": 170715,
+        "rep_votes": 185970,
+        "other_votes": 3911,
+        "total_votes": 360596,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 15255.0,
+        "margin_pct": 4.230496178548846
+      },
+      "12": {
+        "dem_votes": 205147,
+        "rep_votes": 153606,
+        "other_votes": 4365,
+        "total_votes": 363118,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "D",
+        "margin": 51541.0,
+        "margin_pct": 14.19400855920114
+      },
+      "15": {
+        "dem_votes": 107622,
+        "rep_votes": 175606,
+        "other_votes": 6419,
+        "total_votes": 289647,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 67984.0,
+        "margin_pct": 23.47132889344616
+      },
+      "9": {
+        "dem_votes": 90136,
+        "rep_votes": 165520,
+        "other_votes": 4579,
+        "total_votes": 260235,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 75384.0,
+        "margin_pct": 28.96766384229639
+      },
+      "4": {
+        "dem_votes": 165431,
+        "rep_votes": 164290,
+        "other_votes": 3688,
+        "total_votes": 333409,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "D",
+        "margin": 1141.0,
+        "margin_pct": 0.3422223155343737
+      },
+      "6": {
+        "dem_votes": 121664,
+        "rep_votes": 145083,
+        "other_votes": 4804,
+        "total_votes": 271551,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 23419.0,
+        "margin_pct": 8.62416268030683
+      },
+      "1": {
+        "dem_votes": 162802,
+        "rep_votes": 173288,
+        "other_votes": 3129,
+        "total_votes": 339219,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 10486.0,
+        "margin_pct": 3.0912183574622882
+      },
+      "16": {
+        "dem_votes": 127279,
+        "rep_votes": 176946,
+        "other_votes": 5020,
+        "total_votes": 309245,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 49667.0,
+        "margin_pct": 16.06072854856182
+      },
+      "7": {
+        "dem_votes": 127658,
+        "rep_votes": 130247,
+        "other_votes": 3131,
+        "total_votes": 261036,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 2589.0,
+        "margin_pct": 0.9918172206132487
+      },
+      "5": {
+        "dem_votes": 176685,
+        "rep_votes": 135543,
+        "other_votes": 2210,
+        "total_votes": 314438,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "D",
+        "margin": 41142.0,
+        "margin_pct": 13.084296427276602
+      },
+      "10": {
+        "dem_votes": 106705,
+        "rep_votes": 166828,
+        "other_votes": 4376,
+        "total_votes": 277909,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 60123.0,
+        "margin_pct": 21.63406007002292
+      },
+      "14": {
+        "dem_votes": 155265,
+        "rep_votes": 169253,
+        "other_votes": 4046,
+        "total_votes": 328564,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 13988.0,
+        "margin_pct": 4.257313643612813
+      },
+      "8": {
+        "dem_votes": 118866,
+        "rep_votes": 128310,
+        "other_votes": 2550,
+        "total_votes": 249726,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 9444.0,
+        "margin_pct": 3.781744792292353
+      },
+      "11": {
+        "dem_votes": 84390,
+        "rep_votes": 184934,
+        "other_votes": 2977,
+        "total_votes": 272301,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 100544.0,
+        "margin_pct": 36.92384530354277
+      },
+      "3": {
+        "dem_votes": 292799,
+        "rep_votes": 34852,
+        "other_votes": 3922,
+        "total_votes": 331573,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "D",
+        "margin": 257947.0,
+        "margin_pct": 77.79493505200966
+      },
+      "2": {
+        "dem_votes": 184800,
+        "rep_votes": 76579,
+        "other_votes": 2156,
+        "total_votes": 263535,
+        "dem_candidate": "Jim Eisenhower",
+        "rep_candidate": "Tom Corbett",
+        "winner": "D",
+        "margin": 108221.0,
+        "margin_pct": 41.065133663460266
+      }
+    }
+  }
+}

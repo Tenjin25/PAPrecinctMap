@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "auditor", "year": 2020, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "official_pa_precinct_export_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 91711, "rep_votes": 272740, "other_votes": 16052, "total_votes": 380503, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "R", "margin": 181029.0, "margin_pct": 47.576234615758615}, "17": {"dem_votes": 215442, "rep_votes": 204370, "other_votes": 19405, "total_votes": 439217, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "D", "margin": 11072.0, "margin_pct": 2.52084960281592}, "12": {"dem_votes": 235667, "rep_votes": 153003, "other_votes": 18179, "total_votes": 406849, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "D", "margin": 82664.0, "margin_pct": 20.318103276645637}, "15": {"dem_votes": 98940, "rep_votes": 241412, "other_votes": 16133, "total_votes": 356485, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "R", "margin": 142472.0, "margin_pct": 39.96577696116246}, "9": {"dem_votes": 106365, "rep_votes": 245912, "other_votes": 17728, "total_votes": 370005, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "R", "margin": 139547.0, "margin_pct": 37.7148957446521}, "4": {"dem_votes": 240408, "rep_votes": 186108, "other_votes": 19410, "total_votes": 445926, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "D", "margin": 54300.0, "margin_pct": 12.176908276261084}, "6": {"dem_votes": 187785, "rep_votes": 173918, "other_votes": 14813, "total_votes": 376516, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "D", "margin": 13867.0, "margin_pct": 3.6829776158250915}, "1": {"dem_votes": 213751, "rep_votes": 227124, "other_votes": 16742, "total_votes": 457617, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "R", "margin": 13373.0, "margin_pct": 2.9223127637303685}, "16": {"dem_votes": 141158, "rep_votes": 231828, "other_votes": 19192, "total_votes": 392178, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "R", "margin": 90670.0, "margin_pct": 23.119603853352306}, "7": {"dem_votes": 177243, "rep_votes": 188123, "other_votes": 17039, "total_votes": 382405, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "R", "margin": 10880.0, "margin_pct": 2.8451510832755846}, "5": {"dem_votes": 243884, "rep_votes": 145411, "other_votes": 14513, "total_votes": 403808, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "D", "margin": 98473.0, "margin_pct": 24.38609438148823}, "10": {"dem_votes": 162755, "rep_votes": 210546, "other_votes": 17947, "total_votes": 391248, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "R", "margin": 47791.0, "margin_pct": 12.215014517646097}, "14": {"dem_votes": 134566, "rep_votes": 263138, "other_votes": 16453, "total_votes": 414157, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "R", "margin": 128572.0, "margin_pct": 31.04426582189846}, "8": {"dem_votes": 172708, "rep_votes": 179835, "other_votes": 16557, "total_votes": 369100, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "R", "margin": 7127.0, "margin_pct": 1.9309130316987266}, "11": {"dem_votes": 131589, "rep_votes": 232150, "other_votes": 16324, "total_votes": 380063, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "R", "margin": 100561.0, "margin_pct": 26.459034423240357}, "3": {"dem_votes": 267508, "rep_votes": 58971, "other_votes": 11452, "total_votes": 337931, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "D", "margin": 208537.0, "margin_pct": 61.709934868360705}, "2": {"dem_votes": 257037, "rep_votes": 55948, "other_votes": 10828, "total_votes": 323813, "dem_candidate": "Nilofer Nina Ahmad", "rep_candidate": "Timothy L Defoor", "winner": "D", "margin": 201089.0, "margin_pct": 62.10034804038133}}}}
+{
+  "scope": "congressional",
+  "contest_type": "auditor",
+  "year": 2020,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "official_pa_precinct_export_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 91711,
+        "rep_votes": 272740,
+        "other_votes": 16052,
+        "total_votes": 380503,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "R",
+        "margin": 181029.0,
+        "margin_pct": 47.576234615758615
+      },
+      "17": {
+        "dem_votes": 215442,
+        "rep_votes": 204370,
+        "other_votes": 19405,
+        "total_votes": 439217,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "D",
+        "margin": 11072.0,
+        "margin_pct": 2.52084960281592
+      },
+      "12": {
+        "dem_votes": 235667,
+        "rep_votes": 153003,
+        "other_votes": 18179,
+        "total_votes": 406849,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "D",
+        "margin": 82664.0,
+        "margin_pct": 20.318103276645637
+      },
+      "15": {
+        "dem_votes": 98940,
+        "rep_votes": 241412,
+        "other_votes": 16133,
+        "total_votes": 356485,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "R",
+        "margin": 142472.0,
+        "margin_pct": 39.96577696116246
+      },
+      "9": {
+        "dem_votes": 106365,
+        "rep_votes": 245912,
+        "other_votes": 17728,
+        "total_votes": 370005,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "R",
+        "margin": 139547.0,
+        "margin_pct": 37.7148957446521
+      },
+      "4": {
+        "dem_votes": 240408,
+        "rep_votes": 186108,
+        "other_votes": 19410,
+        "total_votes": 445926,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "D",
+        "margin": 54300.0,
+        "margin_pct": 12.176908276261084
+      },
+      "6": {
+        "dem_votes": 187785,
+        "rep_votes": 173918,
+        "other_votes": 14813,
+        "total_votes": 376516,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "D",
+        "margin": 13867.0,
+        "margin_pct": 3.6829776158250915
+      },
+      "1": {
+        "dem_votes": 213751,
+        "rep_votes": 227124,
+        "other_votes": 16742,
+        "total_votes": 457617,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "R",
+        "margin": 13373.0,
+        "margin_pct": 2.9223127637303685
+      },
+      "16": {
+        "dem_votes": 141158,
+        "rep_votes": 231828,
+        "other_votes": 19192,
+        "total_votes": 392178,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "R",
+        "margin": 90670.0,
+        "margin_pct": 23.119603853352306
+      },
+      "7": {
+        "dem_votes": 177243,
+        "rep_votes": 188123,
+        "other_votes": 17039,
+        "total_votes": 382405,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "R",
+        "margin": 10880.0,
+        "margin_pct": 2.8451510832755846
+      },
+      "5": {
+        "dem_votes": 243884,
+        "rep_votes": 145411,
+        "other_votes": 14513,
+        "total_votes": 403808,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "D",
+        "margin": 98473.0,
+        "margin_pct": 24.38609438148823
+      },
+      "10": {
+        "dem_votes": 162755,
+        "rep_votes": 210546,
+        "other_votes": 17947,
+        "total_votes": 391248,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "R",
+        "margin": 47791.0,
+        "margin_pct": 12.215014517646097
+      },
+      "14": {
+        "dem_votes": 134566,
+        "rep_votes": 263138,
+        "other_votes": 16453,
+        "total_votes": 414157,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "R",
+        "margin": 128572.0,
+        "margin_pct": 31.04426582189846
+      },
+      "8": {
+        "dem_votes": 172708,
+        "rep_votes": 179835,
+        "other_votes": 16557,
+        "total_votes": 369100,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "R",
+        "margin": 7127.0,
+        "margin_pct": 1.9309130316987266
+      },
+      "11": {
+        "dem_votes": 131589,
+        "rep_votes": 232150,
+        "other_votes": 16324,
+        "total_votes": 380063,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "R",
+        "margin": 100561.0,
+        "margin_pct": 26.459034423240357
+      },
+      "3": {
+        "dem_votes": 267508,
+        "rep_votes": 58971,
+        "other_votes": 11452,
+        "total_votes": 337931,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "D",
+        "margin": 208537.0,
+        "margin_pct": 61.709934868360705
+      },
+      "2": {
+        "dem_votes": 257037,
+        "rep_votes": 55948,
+        "other_votes": 10828,
+        "total_votes": 323813,
+        "dem_candidate": "Nilofer Nina Ahmad",
+        "rep_candidate": "Timothy L Defoor",
+        "winner": "D",
+        "margin": 201089.0,
+        "margin_pct": 62.10034804038133
+      }
+    }
+  }
+}

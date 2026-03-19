@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "auditor", "year": 2016, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 102014, "rep_votes": 203206, "other_votes": 20249, "total_votes": 325469, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "R", "margin": 101192.0, "margin_pct": 31.091133103306305}, "17": {"dem_votes": 204804, "rep_votes": 144844, "other_votes": 19075, "total_votes": 368723, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "D", "margin": 59960.0, "margin_pct": 16.261529657764772}, "12": {"dem_votes": 235612, "rep_votes": 114550, "other_votes": 18850, "total_votes": 369012, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "D", "margin": 121062.0, "margin_pct": 32.80706318493707}, "15": {"dem_votes": 104302, "rep_votes": 186186, "other_votes": 20262, "total_votes": 310750, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "R", "margin": 81884.0, "margin_pct": 26.350442477876108}, "9": {"dem_votes": 100252, "rep_votes": 181765, "other_votes": 21080, "total_votes": 303097, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "R", "margin": 81513.0, "margin_pct": 26.89337076909372}, "4": {"dem_votes": 181832, "rep_votes": 160345, "other_votes": 10135, "total_votes": 352312, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "D", "margin": 21487.0, "margin_pct": 6.098855559844683}, "6": {"dem_votes": 156274, "rep_votes": 163655, "other_votes": 21140, "total_votes": 341069, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "R", "margin": 7381.0, "margin_pct": 2.164078236368594}, "1": {"dem_votes": 175956, "rep_votes": 194036, "other_votes": 12076, "total_votes": 382068, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "R", "margin": 18080.0, "margin_pct": 4.732141922380309}, "16": {"dem_votes": 138615, "rep_votes": 180439, "other_votes": 22073, "total_votes": 341127, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "R", "margin": 41824.0, "margin_pct": 12.260536398467432}, "7": {"dem_votes": 150101, "rep_votes": 155859, "other_votes": 16328, "total_votes": 322288, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "R", "margin": 5758.0, "margin_pct": 1.786600804249615}, "5": {"dem_votes": 206933, "rep_votes": 134989, "other_votes": 9378, "total_votes": 351300, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "D", "margin": 71944.0, "margin_pct": 20.479362368346145}, "10": {"dem_votes": 165616, "rep_votes": 165216, "other_votes": 15605, "total_votes": 346437, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "D", "margin": 400.0, "margin_pct": 0.11546110836890978}, "14": {"dem_votes": 146880, "rep_votes": 168892, "other_votes": 17877, "total_votes": 333649, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "R", "margin": 22012.0, "margin_pct": 6.597352307364926}, "8": {"dem_votes": 159699, "rep_votes": 130853, "other_votes": 19123, "total_votes": 309675, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "D", "margin": 28846.0, "margin_pct": 9.31492693953338}, "11": {"dem_votes": 103034, "rep_votes": 158429, "other_votes": 17462, "total_votes": 278925, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "R", "margin": 55395.0, "margin_pct": 19.86017746706104}, "3": {"dem_votes": 316499, "rep_votes": 33926, "other_votes": 9793, "total_votes": 360218, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "D", "margin": 282573.0, "margin_pct": 78.44499719614234}, "2": {"dem_votes": 205170, "rep_votes": 64854, "other_votes": 7458, "total_votes": 277482, "dem_candidate": "EUGENE A DEPASQUALE", "rep_candidate": "JOHN A BROWN", "winner": "D", "margin": 140316.0, "margin_pct": 50.56760438514931}}}}
+{
+  "scope": "congressional",
+  "contest_type": "auditor",
+  "year": 2016,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 102014,
+        "rep_votes": 203206,
+        "other_votes": 20249,
+        "total_votes": 325469,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "R",
+        "margin": 101192.0,
+        "margin_pct": 31.091133103306305
+      },
+      "17": {
+        "dem_votes": 204804,
+        "rep_votes": 144844,
+        "other_votes": 19075,
+        "total_votes": 368723,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "D",
+        "margin": 59960.0,
+        "margin_pct": 16.261529657764772
+      },
+      "12": {
+        "dem_votes": 235612,
+        "rep_votes": 114550,
+        "other_votes": 18850,
+        "total_votes": 369012,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "D",
+        "margin": 121062.0,
+        "margin_pct": 32.80706318493707
+      },
+      "15": {
+        "dem_votes": 104302,
+        "rep_votes": 186186,
+        "other_votes": 20262,
+        "total_votes": 310750,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "R",
+        "margin": 81884.0,
+        "margin_pct": 26.350442477876108
+      },
+      "9": {
+        "dem_votes": 100252,
+        "rep_votes": 181765,
+        "other_votes": 21080,
+        "total_votes": 303097,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "R",
+        "margin": 81513.0,
+        "margin_pct": 26.89337076909372
+      },
+      "4": {
+        "dem_votes": 181832,
+        "rep_votes": 160345,
+        "other_votes": 10135,
+        "total_votes": 352312,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "D",
+        "margin": 21487.0,
+        "margin_pct": 6.098855559844683
+      },
+      "6": {
+        "dem_votes": 156274,
+        "rep_votes": 163655,
+        "other_votes": 21140,
+        "total_votes": 341069,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "R",
+        "margin": 7381.0,
+        "margin_pct": 2.164078236368594
+      },
+      "1": {
+        "dem_votes": 175956,
+        "rep_votes": 194036,
+        "other_votes": 12076,
+        "total_votes": 382068,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "R",
+        "margin": 18080.0,
+        "margin_pct": 4.732141922380309
+      },
+      "16": {
+        "dem_votes": 138615,
+        "rep_votes": 180439,
+        "other_votes": 22073,
+        "total_votes": 341127,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "R",
+        "margin": 41824.0,
+        "margin_pct": 12.260536398467432
+      },
+      "7": {
+        "dem_votes": 150101,
+        "rep_votes": 155859,
+        "other_votes": 16328,
+        "total_votes": 322288,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "R",
+        "margin": 5758.0,
+        "margin_pct": 1.786600804249615
+      },
+      "5": {
+        "dem_votes": 206933,
+        "rep_votes": 134989,
+        "other_votes": 9378,
+        "total_votes": 351300,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "D",
+        "margin": 71944.0,
+        "margin_pct": 20.479362368346145
+      },
+      "10": {
+        "dem_votes": 165616,
+        "rep_votes": 165216,
+        "other_votes": 15605,
+        "total_votes": 346437,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "D",
+        "margin": 400.0,
+        "margin_pct": 0.11546110836890978
+      },
+      "14": {
+        "dem_votes": 146880,
+        "rep_votes": 168892,
+        "other_votes": 17877,
+        "total_votes": 333649,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "R",
+        "margin": 22012.0,
+        "margin_pct": 6.597352307364926
+      },
+      "8": {
+        "dem_votes": 159699,
+        "rep_votes": 130853,
+        "other_votes": 19123,
+        "total_votes": 309675,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "D",
+        "margin": 28846.0,
+        "margin_pct": 9.31492693953338
+      },
+      "11": {
+        "dem_votes": 103034,
+        "rep_votes": 158429,
+        "other_votes": 17462,
+        "total_votes": 278925,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "R",
+        "margin": 55395.0,
+        "margin_pct": 19.86017746706104
+      },
+      "3": {
+        "dem_votes": 316499,
+        "rep_votes": 33926,
+        "other_votes": 9793,
+        "total_votes": 360218,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "D",
+        "margin": 282573.0,
+        "margin_pct": 78.44499719614234
+      },
+      "2": {
+        "dem_votes": 205170,
+        "rep_votes": 64854,
+        "other_votes": 7458,
+        "total_votes": 277482,
+        "dem_candidate": "EUGENE A DEPASQUALE",
+        "rep_candidate": "JOHN A BROWN",
+        "winner": "D",
+        "margin": 140316.0,
+        "margin_pct": 50.56760438514931
+      }
+    }
+  }
+}

@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "attorney_general", "year": 2024, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "official_pa_precinct_export_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 99245, "rep_votes": 283990, "other_votes": 11202, "total_votes": 394437, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "R", "margin": 184745.0, "margin_pct": 46.837644541460364}, "17": {"dem_votes": 225869, "rep_votes": 200411, "other_votes": 13105, "total_votes": 439385, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "D", "margin": 25458.0, "margin_pct": 5.794007533256711}, "12": {"dem_votes": 244214, "rep_votes": 152068, "other_votes": 13265, "total_votes": 409547, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "D", "margin": 92146.0, "margin_pct": 22.499493342644435}, "15": {"dem_votes": 103854, "rep_votes": 250470, "other_votes": 11211, "total_votes": 365535, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "R", "margin": 146616.0, "margin_pct": 40.109975788912145}, "9": {"dem_votes": 111375, "rep_votes": 258666, "other_votes": 12460, "total_votes": 382501, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "R", "margin": 147291.0, "margin_pct": 38.50735030758089}, "4": {"dem_votes": 244151, "rep_votes": 199625, "other_votes": 13057, "total_votes": 456833, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "D", "margin": 44526.0, "margin_pct": 9.746668914023287}, "6": {"dem_votes": 192895, "rep_votes": 180087, "other_votes": 10648, "total_votes": 383630, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "D", "margin": 12808.0, "margin_pct": 3.3386335792299873}, "1": {"dem_votes": 213544, "rep_votes": 241960, "other_votes": 12729, "total_votes": 468233, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "R", "margin": 28416.0, "margin_pct": 6.0687734525332475}, "16": {"dem_votes": 144184, "rep_votes": 245846, "other_votes": 13658, "total_votes": 403688, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "R", "margin": 101662.0, "margin_pct": 25.183309882879847}, "7": {"dem_votes": 181863, "rep_votes": 205050, "other_votes": 12501, "total_votes": 399414, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "R", "margin": 23187.0, "margin_pct": 5.805254698132765}, "5": {"dem_votes": 239717, "rep_votes": 152069, "other_votes": 10132, "total_votes": 401918, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "D", "margin": 87648.0, "margin_pct": 21.80743335705293}, "10": {"dem_votes": 179757, "rep_votes": 216539, "other_votes": 12590, "total_votes": 408886, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "R", "margin": 36782.0, "margin_pct": 8.995661382390201}, "14": {"dem_votes": 139733, "rep_votes": 272273, "other_votes": 11866, "total_votes": 423872, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "R", "margin": 132540.0, "margin_pct": 31.26887362222558}, "8": {"dem_votes": 172526, "rep_votes": 197607, "other_votes": 11835, "total_votes": 381968, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "R", "margin": 25081.0, "margin_pct": 6.566256859213338}, "11": {"dem_votes": 144529, "rep_votes": 240489, "other_votes": 11817, "total_votes": 396835, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "R", "margin": 95960.0, "margin_pct": 24.181334811697557}, "3": {"dem_votes": 249868, "rep_votes": 65670, "other_votes": 10643, "total_votes": 326181, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "D", "margin": 184198.0, "margin_pct": 56.47110040131093}, "2": {"dem_votes": 239792, "rep_votes": 62483, "other_votes": 9785, "total_votes": 312060, "dem_candidate": "Eugenio Depasquale", "rep_candidate": "David Sunday", "winner": "D", "margin": 177309.0, "margin_pct": 56.818880984426066}}}}
+{
+  "scope": "congressional",
+  "contest_type": "attorney_general",
+  "year": 2024,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "official_pa_precinct_export_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 99245,
+        "rep_votes": 283990,
+        "other_votes": 11202,
+        "total_votes": 394437,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "R",
+        "margin": 184745.0,
+        "margin_pct": 46.837644541460364
+      },
+      "17": {
+        "dem_votes": 225869,
+        "rep_votes": 200411,
+        "other_votes": 13105,
+        "total_votes": 439385,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "D",
+        "margin": 25458.0,
+        "margin_pct": 5.794007533256711
+      },
+      "12": {
+        "dem_votes": 244214,
+        "rep_votes": 152068,
+        "other_votes": 13265,
+        "total_votes": 409547,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "D",
+        "margin": 92146.0,
+        "margin_pct": 22.499493342644435
+      },
+      "15": {
+        "dem_votes": 103854,
+        "rep_votes": 250470,
+        "other_votes": 11211,
+        "total_votes": 365535,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "R",
+        "margin": 146616.0,
+        "margin_pct": 40.109975788912145
+      },
+      "9": {
+        "dem_votes": 111375,
+        "rep_votes": 258666,
+        "other_votes": 12460,
+        "total_votes": 382501,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "R",
+        "margin": 147291.0,
+        "margin_pct": 38.50735030758089
+      },
+      "4": {
+        "dem_votes": 244151,
+        "rep_votes": 199625,
+        "other_votes": 13057,
+        "total_votes": 456833,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "D",
+        "margin": 44526.0,
+        "margin_pct": 9.746668914023287
+      },
+      "6": {
+        "dem_votes": 192895,
+        "rep_votes": 180087,
+        "other_votes": 10648,
+        "total_votes": 383630,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "D",
+        "margin": 12808.0,
+        "margin_pct": 3.3386335792299873
+      },
+      "1": {
+        "dem_votes": 213544,
+        "rep_votes": 241960,
+        "other_votes": 12729,
+        "total_votes": 468233,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "R",
+        "margin": 28416.0,
+        "margin_pct": 6.0687734525332475
+      },
+      "16": {
+        "dem_votes": 144184,
+        "rep_votes": 245846,
+        "other_votes": 13658,
+        "total_votes": 403688,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "R",
+        "margin": 101662.0,
+        "margin_pct": 25.183309882879847
+      },
+      "7": {
+        "dem_votes": 181863,
+        "rep_votes": 205050,
+        "other_votes": 12501,
+        "total_votes": 399414,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "R",
+        "margin": 23187.0,
+        "margin_pct": 5.805254698132765
+      },
+      "5": {
+        "dem_votes": 239717,
+        "rep_votes": 152069,
+        "other_votes": 10132,
+        "total_votes": 401918,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "D",
+        "margin": 87648.0,
+        "margin_pct": 21.80743335705293
+      },
+      "10": {
+        "dem_votes": 179757,
+        "rep_votes": 216539,
+        "other_votes": 12590,
+        "total_votes": 408886,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "R",
+        "margin": 36782.0,
+        "margin_pct": 8.995661382390201
+      },
+      "14": {
+        "dem_votes": 139733,
+        "rep_votes": 272273,
+        "other_votes": 11866,
+        "total_votes": 423872,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "R",
+        "margin": 132540.0,
+        "margin_pct": 31.26887362222558
+      },
+      "8": {
+        "dem_votes": 172526,
+        "rep_votes": 197607,
+        "other_votes": 11835,
+        "total_votes": 381968,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "R",
+        "margin": 25081.0,
+        "margin_pct": 6.566256859213338
+      },
+      "11": {
+        "dem_votes": 144529,
+        "rep_votes": 240489,
+        "other_votes": 11817,
+        "total_votes": 396835,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "R",
+        "margin": 95960.0,
+        "margin_pct": 24.181334811697557
+      },
+      "3": {
+        "dem_votes": 249868,
+        "rep_votes": 65670,
+        "other_votes": 10643,
+        "total_votes": 326181,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "D",
+        "margin": 184198.0,
+        "margin_pct": 56.47110040131093
+      },
+      "2": {
+        "dem_votes": 239792,
+        "rep_votes": 62483,
+        "other_votes": 9785,
+        "total_votes": 312060,
+        "dem_candidate": "Eugenio Depasquale",
+        "rep_candidate": "David Sunday",
+        "winner": "D",
+        "margin": 177309.0,
+        "margin_pct": 56.818880984426066
+      }
+    }
+  }
+}

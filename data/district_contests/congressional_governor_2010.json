@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "governor", "year": 2010, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 62754, "rep_votes": 160947, "other_votes": 240, "total_votes": 223941, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 98193.0, "margin_pct": 43.84770988787225}, "17": {"dem_votes": 118033, "rep_votes": 148970, "other_votes": 103, "total_votes": 267106, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 30937.0, "margin_pct": 11.582293171999131}, "12": {"dem_votes": 131572, "rep_votes": 123074, "other_votes": 0, "total_votes": 254646, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "D", "margin": 8498.0, "margin_pct": 3.3371818131837925}, "15": {"dem_votes": 70638, "rep_votes": 142042, "other_votes": 220, "total_votes": 212900, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 71404.0, "margin_pct": 33.5387505871301}, "9": {"dem_votes": 66354, "rep_votes": 146105, "other_votes": 243, "total_votes": 212702, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 79751.0, "margin_pct": 37.49424076877509}, "4": {"dem_votes": 124607, "rep_votes": 127722, "other_votes": 0, "total_votes": 252329, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 3115.0, "margin_pct": 1.234499403556468}, "6": {"dem_votes": 94632, "rep_votes": 118763, "other_votes": 308, "total_votes": 213703, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 24131.0, "margin_pct": 11.291839609177222}, "1": {"dem_votes": 117141, "rep_votes": 147808, "other_votes": 0, "total_votes": 264949, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 30667.0, "margin_pct": 11.574680410192151}, "16": {"dem_votes": 95235, "rep_votes": 144115, "other_votes": 185, "total_votes": 239535, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 48880.0, "margin_pct": 20.406203686308892}, "7": {"dem_votes": 91123, "rep_votes": 112054, "other_votes": 97, "total_votes": 203274, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 20931.0, "margin_pct": 10.296939106821334}, "5": {"dem_votes": 135086, "rep_votes": 103039, "other_votes": 92, "total_votes": 238217, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "D", "margin": 32047.0, "margin_pct": 13.45286020728999}, "10": {"dem_votes": 76184, "rep_votes": 143404, "other_votes": 219, "total_votes": 219807, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 67220.0, "margin_pct": 30.581373659619576}, "14": {"dem_votes": 90990, "rep_votes": 154702, "other_votes": 25, "total_votes": 245717, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 63712.0, "margin_pct": 25.92901590040575}, "8": {"dem_votes": 103027, "rep_votes": 109846, "other_votes": 266, "total_votes": 213139, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 6819.0, "margin_pct": 3.199320631137427}, "11": {"dem_votes": 58334, "rep_votes": 147206, "other_votes": 886, "total_votes": 206426, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "R", "margin": 88872.0, "margin_pct": 43.052716227606986}, "3": {"dem_votes": 219975, "rep_votes": 21701, "other_votes": 101, "total_votes": 241777, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "D", "margin": 198274.0, "margin_pct": 82.00697336802094}, "2": {"dem_votes": 115305, "rep_votes": 47400, "other_votes": 50, "total_votes": 162755, "dem_candidate": "Dan Onorato", "rep_candidate": "Tom Corbett", "winner": "D", "margin": 67905.0, "margin_pct": 41.722220515498755}}}}
+{
+  "scope": "congressional",
+  "contest_type": "governor",
+  "year": 2010,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 62754,
+        "rep_votes": 160947,
+        "other_votes": 240,
+        "total_votes": 223941,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 98193.0,
+        "margin_pct": 43.84770988787225
+      },
+      "17": {
+        "dem_votes": 118033,
+        "rep_votes": 148970,
+        "other_votes": 103,
+        "total_votes": 267106,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 30937.0,
+        "margin_pct": 11.582293171999131
+      },
+      "12": {
+        "dem_votes": 131572,
+        "rep_votes": 123074,
+        "other_votes": 0,
+        "total_votes": 254646,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "D",
+        "margin": 8498.0,
+        "margin_pct": 3.3371818131837925
+      },
+      "15": {
+        "dem_votes": 70638,
+        "rep_votes": 142042,
+        "other_votes": 220,
+        "total_votes": 212900,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 71404.0,
+        "margin_pct": 33.5387505871301
+      },
+      "9": {
+        "dem_votes": 66354,
+        "rep_votes": 146105,
+        "other_votes": 243,
+        "total_votes": 212702,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 79751.0,
+        "margin_pct": 37.49424076877509
+      },
+      "4": {
+        "dem_votes": 124607,
+        "rep_votes": 127722,
+        "other_votes": 0,
+        "total_votes": 252329,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 3115.0,
+        "margin_pct": 1.234499403556468
+      },
+      "6": {
+        "dem_votes": 94632,
+        "rep_votes": 118763,
+        "other_votes": 308,
+        "total_votes": 213703,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 24131.0,
+        "margin_pct": 11.291839609177222
+      },
+      "1": {
+        "dem_votes": 117141,
+        "rep_votes": 147808,
+        "other_votes": 0,
+        "total_votes": 264949,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 30667.0,
+        "margin_pct": 11.574680410192151
+      },
+      "16": {
+        "dem_votes": 95235,
+        "rep_votes": 144115,
+        "other_votes": 185,
+        "total_votes": 239535,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 48880.0,
+        "margin_pct": 20.406203686308892
+      },
+      "7": {
+        "dem_votes": 91123,
+        "rep_votes": 112054,
+        "other_votes": 97,
+        "total_votes": 203274,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 20931.0,
+        "margin_pct": 10.296939106821334
+      },
+      "5": {
+        "dem_votes": 135086,
+        "rep_votes": 103039,
+        "other_votes": 92,
+        "total_votes": 238217,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "D",
+        "margin": 32047.0,
+        "margin_pct": 13.45286020728999
+      },
+      "10": {
+        "dem_votes": 76184,
+        "rep_votes": 143404,
+        "other_votes": 219,
+        "total_votes": 219807,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 67220.0,
+        "margin_pct": 30.581373659619576
+      },
+      "14": {
+        "dem_votes": 90990,
+        "rep_votes": 154702,
+        "other_votes": 25,
+        "total_votes": 245717,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 63712.0,
+        "margin_pct": 25.92901590040575
+      },
+      "8": {
+        "dem_votes": 103027,
+        "rep_votes": 109846,
+        "other_votes": 266,
+        "total_votes": 213139,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 6819.0,
+        "margin_pct": 3.199320631137427
+      },
+      "11": {
+        "dem_votes": 58334,
+        "rep_votes": 147206,
+        "other_votes": 886,
+        "total_votes": 206426,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "R",
+        "margin": 88872.0,
+        "margin_pct": 43.052716227606986
+      },
+      "3": {
+        "dem_votes": 219975,
+        "rep_votes": 21701,
+        "other_votes": 101,
+        "total_votes": 241777,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "D",
+        "margin": 198274.0,
+        "margin_pct": 82.00697336802094
+      },
+      "2": {
+        "dem_votes": 115305,
+        "rep_votes": 47400,
+        "other_votes": 50,
+        "total_votes": 162755,
+        "dem_candidate": "Dan Onorato",
+        "rep_candidate": "Tom Corbett",
+        "winner": "D",
+        "margin": 67905.0,
+        "margin_pct": 41.722220515498755
+      }
+    }
+  }
+}

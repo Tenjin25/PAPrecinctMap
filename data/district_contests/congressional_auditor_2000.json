@@ -1,1 +1,202 @@
-{"scope": "congressional", "contest_type": "auditor", "year": 2000, "meta": {"districts_observed": 17, "districts_expected": 17, "coverage_percent": 100.0, "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"}, "general": {"results": {"13": {"dem_votes": 117130, "rep_votes": 132342, "other_votes": 8201, "total_votes": 257673, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "R", "margin": 15212.0, "margin_pct": 5.903606509025004}, "17": {"dem_votes": 145505, "rep_votes": 93533, "other_votes": 7463, "total_votes": 246501, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 51972.0, "margin_pct": 21.083890126206384}, "12": {"dem_votes": 95229, "rep_votes": 60502, "other_votes": 4465, "total_votes": 160196, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 34727.0, "margin_pct": 21.67781967090314}, "15": {"dem_votes": 116774, "rep_votes": 123490, "other_votes": 11769, "total_votes": 252033, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "R", "margin": 6716.0, "margin_pct": 2.66473041228728}, "9": {"dem_votes": 106778, "rep_votes": 113051, "other_votes": 8237, "total_votes": 228066, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "R", "margin": 6273.0, "margin_pct": 2.7505195864355056}, "4": {"dem_votes": 153048, "rep_votes": 117509, "other_votes": 9060, "total_votes": 279617, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 35539.0, "margin_pct": 12.709885307402628}, "6": {"dem_votes": 105666, "rep_votes": 97870, "other_votes": 9290, "total_votes": 212826, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 7796.0, "margin_pct": 3.663086277052616}, "1": {"dem_votes": 146334, "rep_votes": 122548, "other_votes": 9485, "total_votes": 278367, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 23786.0, "margin_pct": 8.544834696641484}, "16": {"dem_votes": 158208, "rep_votes": 108157, "other_votes": 9218, "total_votes": 275583, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 50051.0, "margin_pct": 18.16186049212034}, "7": {"dem_votes": 126895, "rep_votes": 86775, "other_votes": 7737, "total_votes": 221407, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 40120.0, "margin_pct": 18.120474962399562}, "5": {"dem_votes": 164994, "rep_votes": 104853, "other_votes": 6829, "total_votes": 276676, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 60141.0, "margin_pct": 21.73697754774538}, "10": {"dem_votes": 111847, "rep_votes": 113280, "other_votes": 6019, "total_votes": 231146, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "R", "margin": 1433.0, "margin_pct": 0.6199544876398466}, "14": {"dem_votes": 178331, "rep_votes": 108422, "other_votes": 9456, "total_votes": 296209, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 69909.0, "margin_pct": 23.60124101563423}, "8": {"dem_votes": 143881, "rep_votes": 74026, "other_votes": 7585, "total_votes": 225492, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 69855.0, "margin_pct": 30.978926081634828}, "11": {"dem_votes": 74061, "rep_votes": 142408, "other_votes": 5283, "total_votes": 221752, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "R", "margin": 68347.0, "margin_pct": 30.821368014719148}, "3": {"dem_votes": 248683, "rep_votes": 22577, "other_votes": 6758, "total_votes": 278018, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 226106.0, "margin_pct": 81.3278276946097}, "2": {"dem_votes": 166072, "rep_votes": 50465, "other_votes": 4903, "total_votes": 221440, "dem_candidate": "Bob Casey Jr.", "rep_candidate": "Katie True", "winner": "D", "margin": 115607.0, "margin_pct": 52.206918352601164}}}}
+{
+  "scope": "congressional",
+  "contest_type": "auditor",
+  "year": 2000,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "13": {
+        "dem_votes": 117130,
+        "rep_votes": 132342,
+        "other_votes": 8201,
+        "total_votes": 257673,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "R",
+        "margin": 15212.0,
+        "margin_pct": 5.903606509025004
+      },
+      "17": {
+        "dem_votes": 145505,
+        "rep_votes": 93533,
+        "other_votes": 7463,
+        "total_votes": 246501,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 51972.0,
+        "margin_pct": 21.083890126206384
+      },
+      "12": {
+        "dem_votes": 95229,
+        "rep_votes": 60502,
+        "other_votes": 4465,
+        "total_votes": 160196,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 34727.0,
+        "margin_pct": 21.67781967090314
+      },
+      "15": {
+        "dem_votes": 116774,
+        "rep_votes": 123490,
+        "other_votes": 11769,
+        "total_votes": 252033,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "R",
+        "margin": 6716.0,
+        "margin_pct": 2.66473041228728
+      },
+      "9": {
+        "dem_votes": 106778,
+        "rep_votes": 113051,
+        "other_votes": 8237,
+        "total_votes": 228066,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "R",
+        "margin": 6273.0,
+        "margin_pct": 2.7505195864355056
+      },
+      "4": {
+        "dem_votes": 153048,
+        "rep_votes": 117509,
+        "other_votes": 9060,
+        "total_votes": 279617,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 35539.0,
+        "margin_pct": 12.709885307402628
+      },
+      "6": {
+        "dem_votes": 105666,
+        "rep_votes": 97870,
+        "other_votes": 9290,
+        "total_votes": 212826,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 7796.0,
+        "margin_pct": 3.663086277052616
+      },
+      "1": {
+        "dem_votes": 146334,
+        "rep_votes": 122548,
+        "other_votes": 9485,
+        "total_votes": 278367,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 23786.0,
+        "margin_pct": 8.544834696641484
+      },
+      "16": {
+        "dem_votes": 158208,
+        "rep_votes": 108157,
+        "other_votes": 9218,
+        "total_votes": 275583,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 50051.0,
+        "margin_pct": 18.16186049212034
+      },
+      "7": {
+        "dem_votes": 126895,
+        "rep_votes": 86775,
+        "other_votes": 7737,
+        "total_votes": 221407,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 40120.0,
+        "margin_pct": 18.120474962399562
+      },
+      "5": {
+        "dem_votes": 164994,
+        "rep_votes": 104853,
+        "other_votes": 6829,
+        "total_votes": 276676,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 60141.0,
+        "margin_pct": 21.73697754774538
+      },
+      "10": {
+        "dem_votes": 111847,
+        "rep_votes": 113280,
+        "other_votes": 6019,
+        "total_votes": 231146,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "R",
+        "margin": 1433.0,
+        "margin_pct": 0.6199544876398466
+      },
+      "14": {
+        "dem_votes": 178331,
+        "rep_votes": 108422,
+        "other_votes": 9456,
+        "total_votes": 296209,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 69909.0,
+        "margin_pct": 23.60124101563423
+      },
+      "8": {
+        "dem_votes": 143881,
+        "rep_votes": 74026,
+        "other_votes": 7585,
+        "total_votes": 225492,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 69855.0,
+        "margin_pct": 30.978926081634828
+      },
+      "11": {
+        "dem_votes": 74061,
+        "rep_votes": 142408,
+        "other_votes": 5283,
+        "total_votes": 221752,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "R",
+        "margin": 68347.0,
+        "margin_pct": 30.821368014719148
+      },
+      "3": {
+        "dem_votes": 248683,
+        "rep_votes": 22577,
+        "other_votes": 6758,
+        "total_votes": 278018,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 226106.0,
+        "margin_pct": 81.3278276946097
+      },
+      "2": {
+        "dem_votes": 166072,
+        "rep_votes": 50465,
+        "other_votes": 4903,
+        "total_votes": 221440,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Katie True",
+        "winner": "D",
+        "margin": 115607.0,
+        "margin_pct": 52.206918352601164
+      }
+    }
+  }
+}
