@@ -148,6 +148,7 @@ This regenerates the main derived outputs, including:
 - Aggregates statewide contest results from OpenElections-style precinct inputs.
 - Reallocates statewide precinct results onto current congressional and legislative lines through a `precinct -> 2020 VTD -> 2020 block -> current district` bridge.
 - Builds district-race files from actual precinct-level district data where available.
+- If `data/district-statistics state house|state senate <year> Pres.csv` files are present, calibrates `state_house` and `state_senate` presidential district overlays to those DRA vote shares while preserving the generated district turnout totals.
 - Prefers the official 2024 statewide OpenElections-style file for 2024 statewide aggregation.
 - Prefers the official 2024 raw precinct export for 2024 district-race generation.
 

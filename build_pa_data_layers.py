@@ -314,6 +314,18 @@ EXPECTED_DISTRICT_COUNT = {
 OFFICIAL_2024_STATEWIDE_OE_SOURCE = DATA_ROOT / '2024' / '20241105__pa__general__precinct_official.csv'
 OFFICIAL_2020_STATEWIDE_SOURCE = base / 'data' / 'ElectionReturns_2020_General_PrecinctReturns.txt'
 OFFICIAL_2024_DISTRICT_SOURCE = base / 'data' / 'erstat_2024_g_268768_20250129.txt'
+DRA_DISTRICT_STATS_FILENAME = re.compile(
+    r'^district-statistics\s+(state house|state senate)\s+(\d{4})\s+(.+?)\.csv$',
+    flags=re.I
+)
+DRA_SCOPE_LABEL_TO_SCOPE = {
+    'state house': 'state_house',
+    'state senate': 'state_senate',
+}
+DRA_CONTEST_TOKEN_TO_CONTEST = {
+    'pres': 'president',
+    'president': 'president',
+}
 RAW_OFFICE_CODE_MAP = {
     'USP': 'President',
     'USS': 'U.S. Senate',
@@ -558,6 +570,50 @@ def safe_int(value):
         return int(float((value or 0)))
     except Exception:
         return 0
+
+
+def safe_float(value):
+    try:
+        return float((value or 0))
+    except Exception:
+        return 0.0
+
+
+def normalized_vote_shares(dem_share, rep_share, other_share):
+    shares = [max(safe_float(v), 0.0) for v in (dem_share, rep_share, other_share)]
+    if any(v > 1.0 for v in shares):
+        shares = [v / 100.0 for v in shares]
+    total = sum(shares)
+    if total <= 0:
+        return None
+    return tuple(v / total for v in shares)
+
+
+def allocate_votes_by_shares(total_votes: int, dem_share: float, rep_share: float, other_share: float):
+    total_votes = max(int(total_votes or 0), 0)
+    if total_votes <= 0:
+        return {'dem_votes': 0, 'rep_votes': 0, 'other_votes': 0}
+    shares = normalized_vote_shares(dem_share, rep_share, other_share)
+    if not shares:
+        return None
+    keys = ['dem_votes', 'rep_votes', 'other_votes']
+    raw = {
+        'dem_votes': total_votes * shares[0],
+        'rep_votes': total_votes * shares[1],
+        'other_votes': total_votes * shares[2],
+    }
+    allocated = {k: int(raw[k]) for k in keys}
+    remainder = total_votes - sum(allocated.values())
+    if remainder > 0:
+        priority = {k: len(keys) - i for i, k in enumerate(keys)}
+        order = sorted(
+            keys,
+            key=lambda k: (raw[k] - allocated[k], priority[k]),
+            reverse=True
+        )
+        for k in order[:remainder]:
+            allocated[k] += 1
+    return allocated
 
 
 def normalize_district_id(raw):
@@ -1272,6 +1328,116 @@ def finalize_result_node(node):
         node['margin_pct'] = 0
 
 
+def dra_scope_contest_year_from_filename(path: Path):
+    match = DRA_DISTRICT_STATS_FILENAME.match(path.name)
+    if not match:
+        return None
+    scope_label = re.sub(r'\s+', ' ', (match.group(1) or '').strip().lower())
+    scope = DRA_SCOPE_LABEL_TO_SCOPE.get(scope_label)
+    year = safe_int(match.group(2))
+    contest_raw = (match.group(3) or '').strip().lower()
+    contest_token = re.sub(r'[^a-z0-9]+', '', contest_raw)
+    contest_type = DRA_CONTEST_TOKEN_TO_CONTEST.get(contest_token)
+    if not scope or not contest_type or year <= 0:
+        return None
+    return scope, contest_type, year
+
+
+def load_dra_district_share_inputs():
+    shares_by_key = {}
+    source_file_by_key = {}
+    for fp in sorted(data_dir.glob('district-statistics *.csv')):
+        parsed = dra_scope_contest_year_from_filename(fp)
+        if not parsed:
+            continue
+        scope, contest_type, year = parsed
+        key = (scope, contest_type, year)
+        rows = {}
+        try:
+            with fp.open('r', encoding='utf-8-sig', newline='') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    district_id = normalize_district_id(row.get('ID') or row.get('District') or '')
+                    if not district_id:
+                        continue
+                    district_num = int(district_id)
+                    max_district = CURRENT_SCOPE_DISTRICT_MAX.get(scope, 0)
+                    if district_num <= 0 or (max_district and district_num > max_district):
+                        continue
+                    shares = normalized_vote_shares(row.get('Dem'), row.get('Rep'), row.get('Oth'))
+                    if not shares:
+                        continue
+                    rows[district_id] = {
+                        'dem_share': shares[0],
+                        'rep_share': shares[1],
+                        'other_share': shares[2],
+                    }
+        except Exception:
+            continue
+        if rows:
+            shares_by_key[key] = rows
+            source_file_by_key[key] = fp.name
+    return shares_by_key, source_file_by_key
+
+
+def apply_dra_share_calibration(district_nodes, source_by_key):
+    dra_shares, dra_sources = load_dra_district_share_inputs()
+    for key, district_shares in dra_shares.items():
+        contest = district_nodes.get(key)
+        if not contest:
+            continue
+        totals = [int((node or {}).get('total_votes') or 0) for node in contest.values()]
+        fallback_total = int(round(sum(totals) / max(len(totals), 1))) if totals else 0
+        if fallback_total <= 0:
+            fallback_total = 1000
+
+        dem_candidates = defaultdict(int)
+        rep_candidates = defaultdict(int)
+        for node in contest.values():
+            dem_candidate = (node.get('dem_candidate') or '').strip()
+            rep_candidate = (node.get('rep_candidate') or '').strip()
+            if dem_candidate:
+                dem_candidates[dem_candidate] += 1
+            if rep_candidate:
+                rep_candidates[rep_candidate] += 1
+        default_dem_candidate = max(dem_candidates.items(), key=lambda item: item[1])[0] if dem_candidates else ''
+        default_rep_candidate = max(rep_candidates.items(), key=lambda item: item[1])[0] if rep_candidates else ''
+
+        for district_id, shares in district_shares.items():
+            node = contest.get(district_id)
+            base_total = int((node or {}).get('total_votes') or 0)
+            if base_total <= 0:
+                base_total = fallback_total
+            allocation = allocate_votes_by_shares(
+                base_total,
+                shares.get('dem_share'),
+                shares.get('rep_share'),
+                shares.get('other_share'),
+            )
+            if not allocation:
+                continue
+            if node is None:
+                node = {
+                    'dem_votes': 0,
+                    'rep_votes': 0,
+                    'other_votes': 0,
+                    'total_votes': 0,
+                    'dem_candidate': default_dem_candidate,
+                    'rep_candidate': default_rep_candidate,
+                }
+                contest[district_id] = node
+            node['dem_votes'] = int(allocation['dem_votes'])
+            node['rep_votes'] = int(allocation['rep_votes'])
+            node['other_votes'] = int(allocation['other_votes'])
+            node['total_votes'] = int(node['dem_votes'] + node['rep_votes'] + node['other_votes'])
+            if default_dem_candidate and not node.get('dem_candidate'):
+                node['dem_candidate'] = default_dem_candidate
+            if default_rep_candidate and not node.get('rep_candidate'):
+                node['rep_candidate'] = default_rep_candidate
+        source_file = dra_sources.get(key) or ''
+        source_by_key[key] = f'dra_district_statistics_share_calibration/{source_file}'
+
+
 def aggregate_county_results_from_openelections():
     results_by_year = defaultdict(dict)
 
@@ -1445,6 +1611,8 @@ def build_district_manifests(contest_dir: Path):
                             'rep_candidate': '',
                         })
                         add_result_votes(node, district_votes, party, candidate)
+
+    apply_dra_share_calibration(district_nodes, source_by_key)
 
     for (scope, contest_type, year), results in sorted(district_nodes.items(), key=lambda item: (item[0][0], item[0][2], item[0][1])):
         finalized = {}
