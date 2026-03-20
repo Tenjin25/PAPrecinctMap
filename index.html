@@ -2315,6 +2315,20 @@ body { height: var(--app-height); }
     white-space: nowrap;
   }
 
+  .map-topbar-quickstats {
+    display: none;
+    margin-top: 8px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(15, 23, 42, 0.24);
+    color: rgba(248, 250, 252, 0.96);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+
   .map-topbar-hints {
     display: flex;
     gap: 8px;
@@ -2646,6 +2660,10 @@ body { height: var(--app-height); }
       gap: 6px;
       flex-wrap: wrap;
       overflow: visible;
+    }
+
+    .map-topbar-quickstats {
+      display: block;
     }
 
     .fly-search-chip {
@@ -5749,6 +5767,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <button type="submit" class="fly-search-submit">Fly to</button>
     </form>
+    <div class="map-topbar-quickstats" id="map-topbar-quickstats" aria-live="polite">Viewing -- Precincts</div>
     <button type="button" class="mobile-topbar-toggle" id="mobile-topbar-toggle" aria-controls="map-topbar-details" aria-expanded="false">Show details</button>
     <div class="map-topbar-details" id="map-topbar-details">
       <div class="map-topbar-hints" aria-label="Search examples">
@@ -6535,6 +6554,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastContestSliceMeta = null; // { contestType, year:number, rows:Array } for sidebar helpers
     // Session persistence was removed to avoid surprises on shared/low-memory machines.
     let contestSearchQuery = '';
+    let quickStatsRaf = null;
 
     function saveUIState() {}
     async function restoreUIState() {}
@@ -6548,12 +6568,24 @@ document.addEventListener('DOMContentLoaded', function() {
       return null;
     }
 
-    function addLayerWithOptionalSourceLayer(layerDef) {
+    function getFirstSymbolLayerId() {
+      const layers = map.getStyle()?.layers || [];
+      const firstSymbol = layers.find(layer => layer && layer.type === 'symbol');
+      return firstSymbol ? firstSymbol.id : null;
+    }
+
+    function addLayerWithOptionalSourceLayer(layerDef, options = {}) {
       const src = map.getSource(layerDef.source);
       const isVectorSource = !!src && src.type === 'vector';
       const sourceLayer = isVectorSource ? getVectorSourceLayer(layerDef.source) : null;
       if (sourceLayer) layerDef['source-layer'] = sourceLayer;
-      map.addLayer(layerDef);
+      const shouldPlaceBelowLabels = layerDef?.type && layerDef.type !== 'symbol';
+      const beforeId = options.beforeId ?? (shouldPlaceBelowLabels ? getFirstSymbolLayerId() : null);
+      if (beforeId && map.getLayer(beforeId)) {
+        map.addLayer(layerDef, beforeId);
+      } else {
+        map.addLayer(layerDef);
+      }
     }
 
 
@@ -8629,6 +8661,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateContextBanner();
       }
 
+      reinforceMapLabelHalos();
       saveUIState();
     }
 
@@ -10075,13 +10108,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       if (!map.getLayer('vtds-2000-fill')) {
-        map.addLayer({ 
+        addLayerWithOptionalSourceLayer({ 
           id: 'vtds-2000-fill', 
           type: 'fill', 
           source: 'vtds-2000', 
           paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.3 } 
         });
-        map.addLayer({ 
+        addLayerWithOptionalSourceLayer({ 
           id: 'vtds-2000-stroke', 
           type: 'line', 
           source: 'vtds-2000', 
@@ -10485,6 +10518,71 @@ document.addEventListener('DOMContentLoaded', function() {
         minimizeBtn.title = 'Expand legend';
         syncMobileDockButtons();
         try { updateMobileOverlayOffsets(); } catch (_) {}
+      } catch (_) {}
+    }
+
+    function getQuickStatsCentroidFeatures() {
+      if (precinctCentroidsData?.features) return precinctCentroidsData.features;
+      const src = map.getSource('precinct-centroids');
+      const gj = src ? (src._data || src.data) : null;
+      return (gj && Array.isArray(gj.features)) ? gj.features : null;
+    }
+
+    function updateViewportPrecinctQuickStats() {
+      const quickStatsEl = document.getElementById('map-topbar-quickstats');
+      if (!quickStatsEl || !map || typeof map.getBounds !== 'function') return;
+
+      const features = getQuickStatsCentroidFeatures();
+      if (!features || !features.length) {
+        quickStatsEl.textContent = precinctCentroidsLoadInFlight ? 'Loading precinct count...' : 'Viewing -- Precincts';
+        return;
+      }
+
+      const bounds = map.getBounds();
+      let count = 0;
+      for (const feature of features) {
+        const coords = feature?.geometry?.coordinates;
+        if (!Array.isArray(coords) || coords.length < 2) continue;
+        const lng = Number(coords[0]);
+        const lat = Number(coords[1]);
+        if (!Number.isFinite(lng) || !Number.isFinite(lat)) continue;
+        if (bounds.contains([lng, lat])) count += 1;
+      }
+
+      quickStatsEl.textContent = `Viewing ${count.toLocaleString()} ${count === 1 ? 'Precinct' : 'Precincts'}`;
+    }
+
+    function queueViewportPrecinctQuickStatsUpdate() {
+      if (quickStatsRaf) return;
+      quickStatsRaf = requestAnimationFrame(() => {
+        quickStatsRaf = null;
+        updateViewportPrecinctQuickStats();
+      });
+    }
+
+    function reinforceMapLabelHalos() {
+      try {
+        const highCountyFill = currentView === 'counties' && !precinctsEnabled;
+        const textColor = highCountyFill ? 'rgba(248,250,252,0.99)' : 'rgba(241,245,249,0.97)';
+        const textOpacity = highCountyFill ? 1.0 : 0.97;
+        const haloColor = highCountyFill ? 'rgba(15,23,42,0.86)' : 'rgba(15,23,42,0.72)';
+        const haloWidth = highCountyFill ? 1.55 : 1.25;
+        const haloBlur = highCountyFill ? 0.34 : 0.42;
+        const layers = map.getStyle()?.layers || [];
+
+        layers.forEach(layer => {
+          if (!layer || layer.type !== 'symbol' || !layer.layout || layer.layout['text-field'] == null) return;
+          const id = (layer.id || '').toLowerCase();
+          // Keep halo adjustments focused on place/town/county label layers.
+          if (!/(settlement|place|city|town|village|county)/.test(id)) return;
+          try {
+            map.setPaintProperty(layer.id, 'text-color', textColor);
+            map.setPaintProperty(layer.id, 'text-opacity', textOpacity);
+            map.setPaintProperty(layer.id, 'text-halo-color', haloColor);
+            map.setPaintProperty(layer.id, 'text-halo-width', haloWidth);
+            map.setPaintProperty(layer.id, 'text-halo-blur', haloBlur);
+          } catch (_) {}
+        });
       } catch (_) {}
     }
 
@@ -10932,8 +11030,9 @@ document.addEventListener('DOMContentLoaded', function() {
           },
           paint: {
             'text-color': '#222',
-            'text-halo-color': '#f7f7f7', // original background halo
-            'text-halo-width': 2
+            'text-halo-color': 'rgba(255, 255, 255, 0.96)',
+            'text-halo-width': 1.9,
+            'text-halo-blur': 0.7
           }
         });
         // Add mouseleave event handler
@@ -11057,7 +11156,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addPrecinctLayers() {
       if (!map.getSource('precincts') || map.getLayer('precinct-fill')) return;
-      map.addLayer({
+      addLayerWithOptionalSourceLayer({
         id: 'precinct-fill',
         type: 'fill',
         source: 'precincts',
@@ -11065,7 +11164,7 @@ document.addEventListener('DOMContentLoaded', function() {
         layout: { visibility: 'none' },
         paint: { 'fill-color': '#d1d5db', 'fill-opacity': 0.72 }
       });
-      map.addLayer({
+      addLayerWithOptionalSourceLayer({
         id: 'precinct-stroke',
         type: 'line',
         source: 'precincts',
@@ -11146,6 +11245,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	          console.warn('Failed to build precinct code index:', err?.message || err);
 	        }
 	        addPrecinctCentroidLayers();
+          queueViewportPrecinctQuickStatsUpdate();
 	      } catch (err) {
 	        console.warn('Failed to load precinct centroids:', err?.message || err);
 	      } finally {
@@ -11187,7 +11287,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const minZoom = CONFIG.precincts?.minZoom || 8.5;
 
       if (!map.getLayer('precinct-dot')) {
-        map.addLayer({
+        addLayerWithOptionalSourceLayer({
           id: 'precinct-dot',
           type: 'circle',
           source: 'precinct-centroids',
@@ -11197,22 +11297,22 @@ document.addEventListener('DOMContentLoaded', function() {
           paint: {
             'circle-radius': [
               'interpolate', ['linear'], ['zoom'],
-              5, 1.2,
-              6.5, 2.0,
-              7.5, 2.8,
-              8.4, 3.2
+              5, 0.7,
+              6.5, 1.25,
+              7.5, 1.95,
+              8.4, 2.45
             ],
             'circle-color': '#94a3b8',
             'circle-opacity': 0.85,
             'circle-stroke-color': 'rgba(15,23,42,0.35)',
-            'circle-stroke-width': 0.5
+            'circle-stroke-width': 0.4
           }
         });
       }
 
       // When polygons are enabled at high zoom, keep showing centroids for precincts missing polygons.
       if (!map.getLayer('precinct-dot-missing')) {
-        map.addLayer({
+        addLayerWithOptionalSourceLayer({
           id: 'precinct-dot-missing',
           type: 'circle',
           source: 'precinct-centroids',
@@ -11222,14 +11322,14 @@ document.addEventListener('DOMContentLoaded', function() {
           paint: {
             'circle-radius': [
               'interpolate', ['linear'], ['zoom'],
-              minZoom, 3.8,
-              10, 4.6,
-              12, 5.4
+              minZoom, 2.6,
+              10, 3.4,
+              12, 4.2
             ],
             'circle-color': '#94a3b8',
             'circle-opacity': 0.9,
             'circle-stroke-color': 'rgba(15,23,42,0.45)',
-            'circle-stroke-width': 0.75
+            'circle-stroke-width': 0.6
           }
         });
       }
@@ -11361,6 +11461,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (map.getLayer('precinct-dot-missing')) {
         map.setLayoutProperty('precinct-dot-missing', 'visibility', polyVisible ? 'visible' : 'none');
       }
+      reinforceMapLabelHalos();
+      queueViewportPrecinctQuickStatsUpdate();
     }
 
     async function togglePrecinctOverlay() {
@@ -13102,6 +13204,14 @@ document.addEventListener('DOMContentLoaded', function() {
         addCountyLayers();
         await setupCountySearch();
         map.on('zoomend', updatePrecinctVisibility);
+        map.on('move', queueViewportPrecinctQuickStatsUpdate);
+        map.on('zoom', queueViewportPrecinctQuickStatsUpdate);
+        map.on('moveend', queueViewportPrecinctQuickStatsUpdate);
+        map.on('zoomend', queueViewportPrecinctQuickStatsUpdate);
+        queueViewportPrecinctQuickStatsUpdate();
+        ensurePrecinctCentroidsLoaded()
+          .then(() => queueViewportPrecinctQuickStatsUpdate())
+          .catch(err => console.warn('Quick stats centroid load failed:', err?.message || err));
         setStatus('Counties loaded');
 
         setStatus('Loading election index...');
@@ -13631,6 +13741,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
       updateContextBanner();
+      reinforceMapLabelHalos();
       await refreshHoverAtPointer();
     }
 
