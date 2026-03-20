@@ -8659,8 +8659,20 @@ document.addEventListener('DOMContentLoaded', function() {
           updateContextBanner();
         }
       } else if (nextContestSelect) {
-        nextContestSelect.value = '';
-        updateContextBanner();
+        const fallbackContestValue = chooseDefaultContestValue(nextContestSelect);
+        if (fallbackContestValue) {
+          nextContestSelect.value = fallbackContestValue;
+          try {
+            await applyContest(fallbackContestValue);
+          } catch (err) {
+            console.warn('Failed to apply default contest for view switch:', err?.message || err);
+            nextContestSelect.value = '';
+            updateContextBanner();
+          }
+        } else {
+          nextContestSelect.value = '';
+          updateContextBanner();
+        }
       }
 
       reinforceMapLabelHalos();
@@ -8835,6 +8847,39 @@ document.addEventListener('DOMContentLoaded', function() {
       const idx = raw.lastIndexOf('_');
       if (idx <= 0) return [raw, ''];
       return [raw.substring(0, idx), raw.substring(idx + 1)];
+    }
+
+    function chooseDefaultContestValue(selectEl) {
+      if (!selectEl) return '';
+      const values = Array.from(selectEl.options || [])
+        .map(opt => (opt?.value || '').toString().trim())
+        .filter(Boolean);
+      if (!values.length) return '';
+
+      const parsed = values.map(value => {
+        const [contestType, yearRaw] = parseContestValue(value);
+        const year = Number(yearRaw);
+        return {
+          value,
+          contestType: (contestType || '').toString().trim().toLowerCase(),
+          year
+        };
+      });
+
+      const latestPresident = parsed
+        .filter(entry => entry.contestType === 'president' && Number.isFinite(entry.year))
+        .sort((a, b) => b.year - a.year)[0];
+      if (latestPresident) return latestPresident.value;
+
+      const latestAny = parsed
+        .filter(entry => Number.isFinite(entry.year))
+        .sort((a, b) => {
+          if (b.year !== a.year) return b.year - a.year;
+          return a.contestType.localeCompare(b.contestType);
+        })[0];
+      if (latestAny) return latestAny.value;
+
+      return values[0] || '';
     }
 
     function winnerMarginLabelShort(repVotes, demVotes, totalVotes, repCandidate, demCandidate) {
@@ -13666,6 +13711,18 @@ document.addEventListener('DOMContentLoaded', function() {
         try { minimizeLegendOnMobile(); } catch (_) {}
         try { minimizeMainControlsOnMobile(); } catch (_) {}
         appReady = true;
+        const contestSelect = document.getElementById('contestSelect');
+        if (contestSelect && !String(contestSelect.value || '').trim()) {
+          const defaultContest = chooseDefaultContestValue(contestSelect);
+          if (defaultContest) {
+            contestSelect.value = defaultContest;
+            try {
+              await applyContest(defaultContest);
+            } catch (err) {
+              console.warn('Failed to apply startup default contest:', err?.message || err);
+            }
+          }
+        }
         try { await restoreUIState(); } catch (_) {}
 
       } catch (e) {
