@@ -8674,6 +8674,19 @@ document.addEventListener('DOMContentLoaded', function() {
       return Number.isFinite(n) ? String(n) : m[0];
     }
 
+    function zoomToFeatureBounds(feature, { maxZoom = 10.8, padding = 44, duration = 750 } = {}) {
+      try {
+        if (!feature) return;
+        const bbox = turf.bbox(feature);
+        if (!bbox || bbox.length !== 4) return;
+        map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], {
+          padding,
+          maxZoom,
+          duration
+        });
+      } catch (_) {}
+    }
+
     function getDistrictNumberFromPropsCandidates(props, candidates) {
       for (const key of candidates) {
         const val = props?.[key];
@@ -11510,6 +11523,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add click handler for districts with full trends popup
         map.on('click', 'district-fill', async (e) => {
           if (e.features && e.features[0] && e.features[0].properties) {
+            zoomToFeatureBounds(e.features[0], { maxZoom: 10.4, padding: 44, duration: 700 });
             const props = e.features[0].properties;
             const districtNum = normalizeDistrictNumber(props.DISTRICT || props.CD118FP || props.district_id || props.district);
             if (districtNum) {
@@ -11615,6 +11629,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add click handler for state house districts with full trends popup
         map.on('click', 'state-house-fill', async (e) => {
           if (e.features && e.features[0] && e.features[0].properties) {
+            zoomToFeatureBounds(e.features[0], { maxZoom: 11.2, padding: 46, duration: 720 });
             const props = e.features[0].properties;
             const districtNum = normalizeDistrictNumber(props.DISTRICT || props.SLDLST || props.district_id || props.district);
             if (districtNum) {
@@ -11718,6 +11733,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add click handler for state senate districts with full trends popup
         map.on('click', 'state-senate-fill', async (e) => {
           if (e.features && e.features[0] && e.features[0].properties) {
+            zoomToFeatureBounds(e.features[0], { maxZoom: 10.8, padding: 46, duration: 720 });
             const props = e.features[0].properties;
             const districtNum = normalizeDistrictNumber(props.DISTRICT || props.SLDUST || props.district_id || props.district);
             if (districtNum) {
