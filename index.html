@@ -9546,7 +9546,7 @@ document.addEventListener('DOMContentLoaded', function() {
       applyInteractiveFillOpacityFocus();
       showHoverOutline(
         'county-stroke-hover',
-        ['==', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME'], ['get', 'name']], name],
+        ['==', ['coalesce', ['get', 'NAME20'], ['get', 'NAMELSAD20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME'], ['get', 'name']], name],
         `county:${name}`
       );
     }
@@ -9614,7 +9614,12 @@ document.addEventListener('DOMContentLoaded', function() {
           if (focus?.kind === 'county' && focus?.countyName) {
             const selected = countyFocusFillOpacityStops();
             const countyNorm = normalizeCountyToken(focus.countyName);
-            const matchExpr = ['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME'], ['get', 'name']]], countyNorm];
+            const countyNameExpr = ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'NAMELSAD20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME'], ['get', 'name']]];
+            const matchExpr = [
+              'any',
+              ['==', countyNameExpr, countyNorm],
+              ['==', countyNameExpr, `${countyNorm} COUNTY`]
+            ];
             map.setPaintProperty('county-fill', 'fill-opacity', [
               'interpolate', ['linear'], ['zoom'],
               5, ['case', matchExpr, selected[0], base[0]],
@@ -14419,10 +14424,11 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         }
         // Match county key across county tileset and local precinct fallback
+        const countyNameExpr = ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'NAMELSAD20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME'], ['get', 'name']]];
         expr.push([
-          '==',
-          ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]],
-          countyName
+          'any',
+          ['==', countyNameExpr, countyName],
+          ['==', countyNameExpr, `${countyName} COUNTY`]
         ]);
         expr.push(color);
         countiesProcessed++;
@@ -14458,9 +14464,10 @@ document.addEventListener('DOMContentLoaded', function() {
           const f = flipInfo(prevSigned, curSigned);
           if (!f.flipped) return;
           const toColor = colorForFlipMode(f.to);
-          flipColorExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
+          const countyNameExpr = ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'NAMELSAD20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME'], ['get', 'name']]];
+          flipColorExpr.push(['any', ['==', countyNameExpr, countyNorm], ['==', countyNameExpr, `${countyNorm} COUNTY`]]);
           flipColorExpr.push(toColor);
-          flipWidthExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
+          flipWidthExpr.push(['any', ['==', countyNameExpr, countyNorm], ['==', countyNameExpr, `${countyNorm} COUNTY`]]);
           flipWidthExpr.push(3);
         });
         flipColorExpr.push('rgba(15,23,42,0.35)');
