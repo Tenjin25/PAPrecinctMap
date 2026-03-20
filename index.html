@@ -9585,7 +9585,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function countyBaseFillOpacityStops() {
-      return precinctsEnabled ? [0.04, 0.06, 0.08] : [0.34, 0.44, 0.54];
+      return precinctsEnabled ? [0.08, 0.10, 0.12] : [0.40, 0.50, 0.60];
     }
 
     function countyFocusFillOpacityStops() {
@@ -9593,9 +9593,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function districtBaseFillOpacityStops(scope) {
-      if (scope === 'congressional') return [0.26, 0.34, 0.42];
-      if (scope === 'state_house') return [0.24, 0.32, 0.40];
-      return [0.24, 0.33, 0.41];
+      if (scope === 'congressional') return [0.33, 0.42, 0.50];
+      if (scope === 'state_house') return [0.31, 0.40, 0.48];
+      return [0.32, 0.41, 0.49];
     }
 
     function districtFocusFillOpacityStops(scope) {
@@ -11217,7 +11217,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function ensurePrecinctSourceLoaded() {
       if (precinctSourceLoaded || map.getSource('precincts')) return true;
-      if (precinctLoadInFlight) return false;
+      if (precinctLoadInFlight) {
+        return await new Promise(resolve => {
+          const started = Date.now();
+          const timer = setInterval(() => {
+            if (!precinctLoadInFlight || (Date.now() - started) > 15000) {
+              clearInterval(timer);
+              resolve(!!(precinctSourceLoaded || map.getSource('precincts')));
+            }
+          }, 80);
+        });
+      }
       precinctLoadInFlight = true;
       setStatus('Loading precinct geometry...');
       const precincts = await loadJSON(CONFIG.paths.precincts);
@@ -11274,6 +11284,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('Failed to apply cached precinct colors:', err?.message || err);
       }
       setStatus('Precinct geometry ready');
+      try { updatePrecinctVisibility(); } catch (_) {}
       return true;
     }
 
@@ -11289,9 +11300,9 @@ document.addEventListener('DOMContentLoaded', function() {
           'fill-color': '#d1d5db',
           'fill-opacity': [
             'interpolate', ['linear'], ['zoom'],
-            (CONFIG.precincts?.minZoom || 8.5), 0.22,
-            10, 0.30,
-            12, 0.40
+            (CONFIG.precincts?.minZoom || 8.5), 0.30,
+            10, 0.40,
+            12, 0.50
           ]
         }
       });
@@ -11448,7 +11459,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function ensurePrecinctCentroidsLoaded() {
       if (precinctCentroidsLoaded || map.getSource('precinct-centroids')) return true;
-      if (precinctCentroidsLoadInFlight) return false;
+      if (precinctCentroidsLoadInFlight) {
+        return await new Promise(resolve => {
+          const started = Date.now();
+          const timer = setInterval(() => {
+            if (!precinctCentroidsLoadInFlight || (Date.now() - started) > 15000) {
+              clearInterval(timer);
+              resolve(!!(precinctCentroidsLoaded || map.getSource('precinct-centroids')));
+            }
+          }, 80);
+        });
+      }
       precinctCentroidsLoadInFlight = true;
       try {
         let pts = null;
@@ -11502,6 +11523,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (generatedFromPolygons) {
           setStatus('Built precinct centroids from precinct polygons.');
         }
+        try { updatePrecinctVisibility(); } catch (_) {}
       } catch (err) {
         console.warn('Failed to load precinct centroids:', err?.message || err);
       } finally {
@@ -11685,25 +11707,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updatePrecinctVisibility() {
       const btn = document.getElementById('precinct-toggle');
+      const precinctLoading = precinctLoadInFlight || precinctCentroidsLoadInFlight;
       if (btn) {
-        if (precinctLoadInFlight) {
+        if (precinctLoading) {
           btn.textContent = 'Precincts Loading';
         } else {
           btn.textContent = precinctsEnabled ? 'Precincts On' : 'Precincts Off';
         }
         btn.style.background = precinctsEnabled ? '#0f4c81' : '#9a7600';
-        btn.style.opacity = precinctLoadInFlight ? '0.75' : '1';
+        btn.style.opacity = precinctLoading ? '0.75' : '1';
       }
       const minZoom = (CONFIG.precincts?.minZoom || 8.5);
       const z = map.getZoom();
-      const polyVisible = precinctsEnabled && z >= minZoom;
-      const dotVisible = precinctsEnabled && z < minZoom;
+      const centroidReady = !!(map.getSource('precinct-centroids') && map.getLayer('precinct-dot'));
+      const fallbackToPolygons = precinctsEnabled && z < minZoom && !centroidReady && !precinctCentroidsLoadInFlight;
+      const polyVisible = precinctsEnabled && (z >= minZoom || fallbackToPolygons);
+      const dotVisible = precinctsEnabled && z < minZoom && centroidReady;
 
       // Auto-load precinct centroids at statewide zoom (fast), polygons later (heavy).
       if (dotVisible && !precinctCentroidsLoaded && !precinctCentroidsLoadInFlight) {
         ensurePrecinctCentroidsLoaded().catch(err => console.warn('Precinct centroids load failed:', err?.message || err));
       }
-      if (polyVisible && !precinctSourceLoaded && !precinctLoadInFlight) {
+      if ((polyVisible || fallbackToPolygons) && !precinctSourceLoaded && !precinctLoadInFlight) {
         ensurePrecinctSourceLoaded().catch(err => console.warn('Precinct load failed:', err?.message || err));
       }
       ['precinct-fill', 'precinct-stroke'].forEach(id => {
@@ -11726,8 +11751,8 @@ document.addEventListener('DOMContentLoaded', function() {
       precinctsEnabled = !precinctsEnabled;
       if (precinctsEnabled) {
         // Always prefer centroids first so statewide zoom is responsive.
-        await ensurePrecinctCentroidsLoaded();
-        if (map.getZoom() >= (CONFIG.precincts?.minZoom || 8.5)) {
+        const centroidReady = await ensurePrecinctCentroidsLoaded();
+        if (!centroidReady || map.getZoom() >= (CONFIG.precincts?.minZoom || 8.5)) {
           await ensurePrecinctSourceLoaded();
         }
       } else {
@@ -11749,7 +11774,7 @@ document.addEventListener('DOMContentLoaded', function() {
           source: 'districts', 
           paint: {
             'fill-color': '#e0e0e0',
-            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.26, 7.5, 0.34, 10, 0.42]
+            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.33, 7.5, 0.42, 10, 0.50]
           } 
         });
         addLayerWithOptionalSourceLayer({ 
@@ -11859,7 +11884,7 @@ document.addEventListener('DOMContentLoaded', function() {
           source: 'state-house', 
           paint: {
             'fill-color': '#e0e0e0',
-            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.24, 7.5, 0.32, 10, 0.40]
+            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.31, 7.5, 0.40, 10, 0.48]
           } 
         });
         addLayerWithOptionalSourceLayer({ 
@@ -11967,7 +11992,7 @@ document.addEventListener('DOMContentLoaded', function() {
           source: 'state-senate', 
           paint: {
             'fill-color': '#e0e0e0',
-            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.24, 7.5, 0.33, 10, 0.41]
+            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.32, 7.5, 0.41, 10, 0.49]
           } 
         });
         addLayerWithOptionalSourceLayer({ 
@@ -14397,8 +14422,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (map.getLayer('county-fill')) {
         map.setPaintProperty('county-fill', 'fill-color', expr);
         const countyFillOpacityExpr = precinctsEnabled
-          ? ['interpolate', ['linear'], ['zoom'], 5, 0.04, 7.5, 0.06, 10, 0.08]
-          : ['interpolate', ['linear'], ['zoom'], 5, 0.34, 7.5, 0.44, 10, 0.54];
+          ? ['interpolate', ['linear'], ['zoom'], 5, 0.08, 7.5, 0.10, 10, 0.12]
+          : ['interpolate', ['linear'], ['zoom'], 5, 0.40, 7.5, 0.50, 10, 0.60];
         map.setPaintProperty('county-fill', 'fill-opacity', countyFillOpacityExpr);
         applyInteractiveFillOpacityFocus();
       }
