@@ -9631,6 +9631,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function countyBaseFillOpacityStops() {
+      const contestActive = !!String(document.getElementById('contestSelect')?.value || '').trim();
+      if (!contestActive) return [0.04, 0.05, 0.06];
       return precinctsEnabled ? [0.06, 0.08, 0.10] : [0.32, 0.40, 0.48];
     }
 
@@ -11162,10 +11164,8 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'county-fill', 
           type: 'fill', 
           source: 'counties', 
-          // Keep the county layer for interactions/search, but don't paint a fill.
-          // This lets precinct/block/district coloring read cleanly while still
-          // showing county outlines.
-          paint: { 'fill-color': '#000000', 'fill-opacity': 0.0 } 
+          // Keep county fill nearly invisible pre-contest so the basemap stays light.
+          paint: { 'fill-color': '#ffffff', 'fill-opacity': 0.0 } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'county-stroke', 
