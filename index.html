@@ -9584,26 +9584,24 @@ document.addEventListener('DOMContentLoaded', function() {
       return clauses.length ? ['any', ...clauses] : ['==', 1, 0];
     }
 
-    function countyBaseFillOpacityExpr() {
-      return precinctsEnabled
-        ? ['interpolate', ['linear'], ['zoom'], 5, 0.04, 7.5, 0.06, 10, 0.08]
-        : ['interpolate', ['linear'], ['zoom'], 5, 0.34, 7.5, 0.44, 10, 0.54];
+    function countyBaseFillOpacityStops() {
+      return precinctsEnabled ? [0.04, 0.06, 0.08] : [0.34, 0.44, 0.54];
     }
 
-    function countyFocusFillOpacityExpr() {
-      return ['interpolate', ['linear'], ['zoom'], 5, 0.54, 7.5, 0.64, 10, 0.74];
+    function countyFocusFillOpacityStops() {
+      return [0.54, 0.64, 0.74];
     }
 
-    function districtBaseFillOpacityExpr(scope) {
-      if (scope === 'congressional') return ['interpolate', ['linear'], ['zoom'], 5, 0.26, 7.5, 0.34, 10, 0.42];
-      if (scope === 'state_house') return ['interpolate', ['linear'], ['zoom'], 5, 0.24, 7.5, 0.32, 10, 0.40];
-      return ['interpolate', ['linear'], ['zoom'], 5, 0.24, 7.5, 0.33, 10, 0.41];
+    function districtBaseFillOpacityStops(scope) {
+      if (scope === 'congressional') return [0.26, 0.34, 0.42];
+      if (scope === 'state_house') return [0.24, 0.32, 0.40];
+      return [0.24, 0.33, 0.41];
     }
 
-    function districtFocusFillOpacityExpr(scope) {
-      if (scope === 'congressional') return ['interpolate', ['linear'], ['zoom'], 5, 0.52, 7.5, 0.62, 10, 0.72];
-      if (scope === 'state_house') return ['interpolate', ['linear'], ['zoom'], 5, 0.50, 7.5, 0.60, 10, 0.70];
-      return ['interpolate', ['linear'], ['zoom'], 5, 0.50, 7.5, 0.61, 10, 0.71];
+    function districtFocusFillOpacityStops(scope) {
+      if (scope === 'congressional') return [0.52, 0.62, 0.72];
+      if (scope === 'state_house') return [0.50, 0.60, 0.70];
+      return [0.50, 0.61, 0.71];
     }
 
     function applyInteractiveFillOpacityFocus() {
@@ -9611,13 +9609,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
       try {
         if (map.getLayer('county-fill')) {
-          const base = countyBaseFillOpacityExpr();
+          const base = countyBaseFillOpacityStops();
           if (focus?.kind === 'county' && focus?.countyName) {
+            const selected = countyFocusFillOpacityStops();
             const countyNorm = normalizeCountyToken(focus.countyName);
             const matchExpr = ['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME'], ['get', 'name']]], countyNorm];
-            map.setPaintProperty('county-fill', 'fill-opacity', ['case', matchExpr, countyFocusFillOpacityExpr(), base]);
+            map.setPaintProperty('county-fill', 'fill-opacity', [
+              'interpolate', ['linear'], ['zoom'],
+              5, ['case', matchExpr, selected[0], base[0]],
+              7.5, ['case', matchExpr, selected[1], base[1]],
+              10, ['case', matchExpr, selected[2], base[2]]
+            ]);
           } else {
-            map.setPaintProperty('county-fill', 'fill-opacity', base);
+            map.setPaintProperty('county-fill', 'fill-opacity', [
+              'interpolate', ['linear'], ['zoom'],
+              5, base[0],
+              7.5, base[1],
+              10, base[2]
+            ]);
           }
         }
       } catch (_) {}
@@ -9630,12 +9639,23 @@ document.addEventListener('DOMContentLoaded', function() {
       districtDefs.forEach(def => {
         try {
           if (!map.getLayer(def.layerId)) return;
-          const base = districtBaseFillOpacityExpr(def.scope);
+          const base = districtBaseFillOpacityStops(def.scope);
           if (focus?.kind === 'district' && focus?.scope === def.scope && focus?.districtNum) {
+            const selected = districtFocusFillOpacityStops(def.scope);
             const matchExpr = buildAnyPropertyMatchFilter(def.keys, focus.districtNum);
-            map.setPaintProperty(def.layerId, 'fill-opacity', ['case', matchExpr, districtFocusFillOpacityExpr(def.scope), base]);
+            map.setPaintProperty(def.layerId, 'fill-opacity', [
+              'interpolate', ['linear'], ['zoom'],
+              5, ['case', matchExpr, selected[0], base[0]],
+              7.5, ['case', matchExpr, selected[1], base[1]],
+              10, ['case', matchExpr, selected[2], base[2]]
+            ]);
           } else {
-            map.setPaintProperty(def.layerId, 'fill-opacity', base);
+            map.setPaintProperty(def.layerId, 'fill-opacity', [
+              'interpolate', ['linear'], ['zoom'],
+              5, base[0],
+              7.5, base[1],
+              10, base[2]
+            ]);
           }
         } catch (_) {}
       });
