@@ -6574,13 +6574,28 @@ document.addEventListener('DOMContentLoaded', function() {
       return firstSymbol ? firstSymbol.id : null;
     }
 
+    function getFirstRoadLayerId() {
+      const layers = map.getStyle()?.layers || [];
+      const firstRoad = layers.find(layer =>
+        layer &&
+        layer.type === 'line' &&
+        /(road|street|highway|motorway|tunnel|bridge)/i.test(layer.id || '')
+      );
+      return firstRoad ? firstRoad.id : null;
+    }
+
     function addLayerWithOptionalSourceLayer(layerDef, options = {}) {
       const src = map.getSource(layerDef.source);
       const isVectorSource = !!src && src.type === 'vector';
       const sourceLayer = isVectorSource ? getVectorSourceLayer(layerDef.source) : null;
       if (sourceLayer) layerDef['source-layer'] = sourceLayer;
       const shouldPlaceBelowLabels = layerDef?.type && layerDef.type !== 'symbol';
-      const beforeId = options.beforeId ?? (shouldPlaceBelowLabels ? getFirstSymbolLayerId() : null);
+      const shouldPlaceBelowRoads = layerDef?.type === 'fill';
+      const beforeId = options.beforeId ?? (
+        shouldPlaceBelowRoads
+          ? (getFirstRoadLayerId() || getFirstSymbolLayerId())
+          : (shouldPlaceBelowLabels ? getFirstSymbolLayerId() : null)
+      );
       if (beforeId && map.getLayer(beforeId)) {
         map.addLayer(layerDef, beforeId);
       } else {
@@ -11057,8 +11072,13 @@ document.addEventListener('DOMContentLoaded', function() {
           if (e.features && e.features[0] && e.features[0].properties) {
             const countyName = e.features[0].properties.precinct_name || e.features[0].properties.NAME20 || e.features[0].properties.CountyName || e.features[0].properties.county_nam || e.features[0].properties.COUNTYNAME || e.features[0].properties.County || e.features[0].properties.NAME || e.features[0].properties.name;
             if (countyName) {
-              showCountyDetails(countyName);
-              lastSelectedCounty = countyName;
+              const clickedFeature = e.features[0];
+              const didSelectCounty = handleCountySelection(countyName, { fallbackFeature: clickedFeature, suppressNotFoundStatus: true });
+              if (!didSelectCounty) {
+                showCountyDetails(countyName);
+                lastSelectedCounty = countyName;
+                syncFlySearchInputs(countyName);
+              }
               setCountyHoverOutline(countyName);
               setTooltipPinned(false);
               if (isTouchInteractionMode()) {
@@ -11175,7 +11195,15 @@ document.addEventListener('DOMContentLoaded', function() {
         source: 'precincts',
         minzoom: CONFIG.precincts?.minZoom || 8.5,
         layout: { visibility: 'none' },
-        paint: { 'fill-color': '#d1d5db', 'fill-opacity': 0.72 }
+        paint: {
+          'fill-color': '#d1d5db',
+          'fill-opacity': [
+            'interpolate', ['linear'], ['zoom'],
+            (CONFIG.precincts?.minZoom || 8.5), 0.22,
+            10, 0.30,
+            12, 0.40
+          ]
+        }
       });
       addLayerWithOptionalSourceLayer({
         id: 'precinct-stroke',
@@ -11207,65 +11235,190 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-	    async function ensurePrecinctCentroidsLoaded() {
-	      if (precinctCentroidsLoaded || map.getSource('precinct-centroids')) return true;
-	      if (precinctCentroidsLoadInFlight) return false;
-	      precinctCentroidsLoadInFlight = true;
-	      try {
-	        const pts = await loadJSON(CONFIG.paths.precinct_centroids);
-          precinctCentroidsData = pts;
+    function getCountySourceGeoJSON() {
+      if (window.countiesData && window.countiesData.features) return window.countiesData;
+      const src = map.getSource('counties');
+      if (src && src.type === 'geojson' && (src._data || src.data)) return src._data || src.data;
+      return null;
+    }
+
+    function normalizeCentroidFeature(feature) {
+      const p = feature?.properties || {};
+      const county = (p.county_nam || p.COUNTYNAME || p.County || p.NAME || '').toString().trim();
+      const code = (p.prec_id || p.PREC_ID || p.VTDST || p.VTD || '').toString().trim();
+      const precinctNorm = normalizeCountyToken(p.precinct_norm || (county && code ? `${county} - ${code}` : ''));
+      return {
+        ...feature,
+        properties: {
+          ...p,
+          county_nam: county || p.county_nam || '',
+          prec_id: code || p.prec_id || '',
+          precinct_norm: precinctNorm,
+          has_polygon: !!(precinctNorm && precinctPolygonNormSet && precinctPolygonNormSet.has(precinctNorm))
+        }
+      };
+    }
+
+    function normalizeCentroidCollection(collection) {
+      return {
+        type: 'FeatureCollection',
+        features: ((collection && collection.features) || []).map(normalizeCentroidFeature)
+      };
+    }
+
+    function centroidCollectionMatchesCountySet(collection) {
+      const countyGeo = getCountySourceGeoJSON();
+      if (!countyGeo || !countyGeo.features || !countyGeo.features.length) return true;
+      const countyNorms = new Set();
+      countyGeo.features.forEach(f => {
+        const p = f.properties || {};
+        const raw = p.NAME20 || p.CountyName || p.COUNTYNAME || p.county_nam || p.County || p.NAME || p.name || '';
+        const norm = normalizeCountyToken(raw);
+        if (norm) countyNorms.add(norm);
+      });
+      if (!countyNorms.size) return true;
+
+      const centroidCountyNorms = new Set();
+      ((collection && collection.features) || []).forEach(f => {
+        const p = f.properties || {};
+        const norm = normalizeCountyToken(p.county_nam || p.COUNTYNAME || p.County || p.NAME || '');
+        if (norm) centroidCountyNorms.add(norm);
+      });
+      if (!centroidCountyNorms.size) return false;
+
+      let overlap = 0;
+      centroidCountyNorms.forEach(norm => {
+        if (countyNorms.has(norm)) overlap += 1;
+      });
+      const overlapRatio = overlap / centroidCountyNorms.size;
+      return overlapRatio >= 0.35 || overlap >= Math.min(15, countyNorms.size);
+    }
+
+    async function buildPrecinctCentroidsFromPolygons() {
+      let precincts = null;
+      const precinctSrc = map.getSource('precincts');
+      if (precinctSrc && (precinctSrc._data || precinctSrc.data)) {
+        precincts = precinctSrc._data || precinctSrc.data;
+      }
+      if (!precincts || !precincts.features) {
+        precincts = await loadJSON(CONFIG.paths.precincts);
+      }
+      const features = (precincts && precincts.features) || [];
+      if (!features.length) return null;
+
+      const polygonNorms = new Set();
+      features.forEach(f => {
+        const p = f.properties || {};
+        const county = (p.county_nam || p.COUNTYNAME || p.County || p.NAME || '').toString().trim();
+        const code = (p.prec_id || p.PREC_ID || p.VTDST || p.VTD || '').toString().trim();
+        const norm = normalizeCountyToken(p.precinct_norm || (county && code ? `${county} - ${code}` : ''));
+        if (norm) polygonNorms.add(norm);
+      });
+      if (polygonNorms.size) precinctPolygonNormSet = polygonNorms;
+
+      const centroidFeatures = [];
+      features.forEach(feature => {
+        if (!feature || !feature.geometry) return;
+        const p = feature.properties || {};
+        const county = (p.county_nam || p.COUNTYNAME || p.County || p.NAME || '').toString().trim();
+        const code = (p.prec_id || p.PREC_ID || p.VTDST || p.VTD || '').toString().trim();
+        const norm = normalizeCountyToken(p.precinct_norm || (county && code ? `${county} - ${code}` : ''));
+        if (!norm) return;
+
+        let point = null;
+        try {
+          point = turf.pointOnFeature(feature);
+        } catch (_) {
+          point = null;
+        }
+        if (!point || !point.geometry || point.geometry.type !== 'Point') {
           try {
-            precinctCentroidsData.features = (precinctCentroidsData.features || []).map(f => {
+            point = turf.centroid(feature);
+          } catch (_) {
+            point = null;
+          }
+        }
+        if (!point || !point.geometry || point.geometry.type !== 'Point') return;
+
+        centroidFeatures.push({
+          type: 'Feature',
+          properties: {
+            ...p,
+            county_nam: county || p.county_nam || '',
+            prec_id: code || p.prec_id || '',
+            precinct_norm: norm,
+            has_polygon: true
+          },
+          geometry: point.geometry
+        });
+      });
+
+      return { type: 'FeatureCollection', features: centroidFeatures };
+    }
+
+    async function ensurePrecinctCentroidsLoaded() {
+      if (precinctCentroidsLoaded || map.getSource('precinct-centroids')) return true;
+      if (precinctCentroidsLoadInFlight) return false;
+      precinctCentroidsLoadInFlight = true;
+      try {
+        let pts = null;
+        let generatedFromPolygons = false;
+        try {
+          pts = await loadJSON(CONFIG.paths.precinct_centroids);
+        } catch (err) {
+          console.warn('Failed to fetch precinct centroids file, building from precinct polygons:', err?.message || err);
+        }
+
+        if (pts && !centroidCollectionMatchesCountySet(pts)) {
+          console.warn('Precinct centroids appear to mismatch county geometry. Rebuilding centroids from precinct polygons.');
+          pts = null;
+        }
+
+        if (!pts || !pts.features || !pts.features.length) {
+          pts = await buildPrecinctCentroidsFromPolygons();
+          generatedFromPolygons = !!(pts && pts.features && pts.features.length);
+        }
+        if (!pts || !pts.features || !pts.features.length) {
+          throw new Error('No precinct centroid features available.');
+        }
+
+        precinctCentroidsData = normalizeCentroidCollection(pts);
+        map.addSource('precinct-centroids', { type: 'geojson', data: precinctCentroidsData });
+        precinctCentroidsLoaded = true;
+
+        // Build a lightweight county -> precinct code index for key-variant matching.
+        try {
+          if (!precinctCodeIndexByCounty && precinctCentroidsData && precinctCentroidsData.features) {
+            const idx = new Map();
+            (precinctCentroidsData.features || []).forEach(f => {
               const p = f.properties || {};
-              const county = (p.county_nam || p.COUNTYNAME || p.County || p.NAME || '').toString().trim();
-              const prec = (p.prec_id || p.PREC_ID || '').toString().trim();
-              const norm = (p.precinct_norm || (county && prec ? `${county} - ${prec}` : '')).toString()
+              const county = (p.county_nam || p.COUNTYNAME || p.County || p.NAME || '').toString()
                 .replace(/[^a-z0-9 .\-]/gi, '')
                 .replace(/\s+/g, ' ')
                 .trim()
                 .toUpperCase();
-              f.properties = {
-                ...p,
-                county_nam: county || p.county_nam || '',
-                prec_id: prec || p.prec_id || '',
-                precinct_norm: norm,
-                has_polygon: !!(norm && precinctPolygonNormSet && precinctPolygonNormSet.has(norm))
-              };
-              return f;
+              const code = (p.prec_id || p.PREC_ID || '').toString().trim().toUpperCase();
+              if (!county || !code) return;
+              if (!idx.has(county)) idx.set(county, new Set());
+              idx.get(county).add(code);
             });
-          } catch (_) {}
-	        map.addSource('precinct-centroids', { type: 'geojson', data: pts });
-	        precinctCentroidsLoaded = true;
-	        // Build a lightweight county -> precinct code index for key-variant matching.
-	        try {
-	          if (!precinctCodeIndexByCounty && pts && pts.features) {
-	            const idx = new Map();
-	            (pts.features || []).forEach(f => {
-	              const p = f.properties || {};
-	              const county = (p.county_nam || p.COUNTYNAME || p.County || p.NAME || '').toString()
-	                .replace(/[^a-z0-9 .\-]/gi, '')
-	                .replace(/\s+/g, ' ')
-	                .trim()
-	                .toUpperCase();
-	              const code = (p.prec_id || p.PREC_ID || '').toString().trim().toUpperCase();
-	              if (!county || !code) return;
-	              if (!idx.has(county)) idx.set(county, new Set());
-	              idx.get(county).add(code);
-	            });
-	            precinctCodeIndexByCounty = idx;
-	          }
-	        } catch (err) {
-	          console.warn('Failed to build precinct code index:', err?.message || err);
-	        }
-	        addPrecinctCentroidLayers();
-          queueViewportPrecinctQuickStatsUpdate();
-	      } catch (err) {
-	        console.warn('Failed to load precinct centroids:', err?.message || err);
-	      } finally {
-	        precinctCentroidsLoadInFlight = false;
-	      }
-	      return precinctCentroidsLoaded;
-	    }
+            precinctCodeIndexByCounty = idx;
+          }
+        } catch (err) {
+          console.warn('Failed to build precinct code index:', err?.message || err);
+        }
+        addPrecinctCentroidLayers();
+        queueViewportPrecinctQuickStatsUpdate();
+        if (generatedFromPolygons) {
+          setStatus('Built precinct centroids from precinct polygons.');
+        }
+      } catch (err) {
+        console.warn('Failed to load precinct centroids:', err?.message || err);
+      } finally {
+        precinctCentroidsLoadInFlight = false;
+      }
+      return precinctCentroidsLoaded;
+    }
 
 	    async function ensurePrecinctCodeIndex() {
 	      if (precinctCodeIndexByCounty) return precinctCodeIndexByCounty;
@@ -11503,7 +11656,10 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'district-fill', 
           type: 'fill', 
           source: 'districts', 
-          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.7 } 
+          paint: {
+            'fill-color': '#e0e0e0',
+            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.26, 7.5, 0.34, 10, 0.42]
+          } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'district-stroke', 
@@ -11609,7 +11765,10 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'state-house-fill', 
           type: 'fill', 
           source: 'state-house', 
-          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.6 } 
+          paint: {
+            'fill-color': '#e0e0e0',
+            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.24, 7.5, 0.32, 10, 0.40]
+          } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'state-house-stroke', 
@@ -11713,7 +11872,10 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'state-senate-fill', 
           type: 'fill', 
           source: 'state-senate', 
-          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.65 } 
+          paint: {
+            'fill-color': '#e0e0e0',
+            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.24, 7.5, 0.33, 10, 0.41]
+          } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'state-senate-stroke', 
@@ -12315,25 +12477,22 @@ document.addEventListener('DOMContentLoaded', function() {
       if (sidebar && sidebar.classList.contains('minimized')) toggleSidebar();
     }
 
-    function handleCountySelection(countyName) {
+    function handleCountySelection(countyName, options = {}) {
+      const fallbackFeature = options?.fallbackFeature || null;
+      const suppressNotFoundStatus = !!options?.suppressNotFoundStatus;
       // Find and zoom to the county using countiesData and Turf.js
       // Prefer the authoritative source: window.countiesData if present, otherwise try map source
       const src = (window.countiesData && window.countiesData.features) ? window.countiesData : (map.getSource && map.getSource('counties') && (map.getSource('counties')._data || map.getSource('counties').data)) || null;
+      const normalize = (name) => (name || '').toString().replace(/[^a-z0-9 ]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
+      const normTarget = normalize(countyName);
+      let found = null;
       if (countyName && src && src.features) {
-        // Normalize input for matching
-        function normalize(name) {
-          return (name || '').toString().replace(/[^a-z0-9 ]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
-        }
-        const normTarget = normalize(countyName);
-        let found = false;
         // First try exact match
         src.features.forEach(f => {
           const props = f.properties || {};
           const rawName = props.NAME20 || props.NAMELSAD20 || props.county_name || props.County || props.COUNTYNAME || props.NAME || props.name || '';
           const n = normalize(rawName);
-          if (n === normTarget) {
-            found = f;
-          }
+          if (n === normTarget) found = f;
         });
         // If no exact match, try containment (user types 'Jackson' vs 'Jackson County')
         if (!found) {
@@ -12346,26 +12505,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }
           });
         }
-
-        if (found) {
-          const props = found.properties || {};
-          lastSelectedCounty = props.NAME20 || props.NAMELSAD20 || props.county_name || props.County || props.COUNTYNAME || props.NAME || props.name;
-          const bbox = turf.bbox(found);
-          debugLog('[DIAGNOSTIC] Matched county for', countyName, '->', lastSelectedCounty, 'bbox:', bbox);
-          syncFlySearchInputs(lastSelectedCounty);
-          setFlySearchFeedback('#10b981');
-          map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 40, duration: 1000 });
-          showCountyDetails(lastSelectedCounty);
-          const sidebar = document.getElementById('sidebar');
-          if (sidebar && sidebar.classList.contains('minimized')) {
-            toggleSidebar();
-          }
-        } else {
-          console.warn('[DIAGNOSTIC] County not found:', countyName, 'normalized:', normTarget);
-          setFlySearchFeedback('#ef4444');
-          setStatus(`County "${countyName}" was not found on the map.`);
-        }
       }
+
+      const targetFeature = found || fallbackFeature;
+      if (!targetFeature) {
+        console.warn('[DIAGNOSTIC] County not found:', countyName, 'normalized:', normTarget);
+        setFlySearchFeedback('#ef4444');
+        if (!suppressNotFoundStatus) setStatus(`County "${countyName}" was not found on the map.`);
+        return false;
+      }
+
+      const props = targetFeature.properties || {};
+      const resolvedName = props.NAME20 || props.NAMELSAD20 || props.CountyName || props.county_name || props.county_nam || props.COUNTYNAME || props.County || props.NAME || props.name || countyName;
+      lastSelectedCounty = resolvedName;
+      const bbox = turf.bbox(targetFeature);
+      debugLog('[DIAGNOSTIC] Matched county for', countyName, '->', lastSelectedCounty, 'bbox:', bbox);
+      syncFlySearchInputs(lastSelectedCounty);
+      setFlySearchFeedback('#10b981');
+      map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 40, duration: 1000, maxZoom: 10.75 });
+      showCountyDetails(lastSelectedCounty);
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar && sidebar.classList.contains('minimized')) {
+        toggleSidebar();
+      }
+      return true;
     }
 
     function getHistoricalTrends(countyName, isDistrict = false, districtNum = null) {
@@ -14136,7 +14299,10 @@ document.addEventListener('DOMContentLoaded', function() {
       // so precinct fills/dots remain visually primary.
       if (map.getLayer('county-fill')) {
         map.setPaintProperty('county-fill', 'fill-color', expr);
-        map.setPaintProperty('county-fill', 'fill-opacity', precinctsEnabled ? 0.10 : 0.82);
+        const countyFillOpacityExpr = precinctsEnabled
+          ? ['interpolate', ['linear'], ['zoom'], 5, 0.04, 7.5, 0.06, 10, 0.08]
+          : ['interpolate', ['linear'], ['zoom'], 5, 0.34, 7.5, 0.44, 10, 0.54];
+        map.setPaintProperty('county-fill', 'fill-opacity', countyFillOpacityExpr);
       }
 
       // Flip mode: outline flipped counties in red/blue (to-winner), leave others subtle.
