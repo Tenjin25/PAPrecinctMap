@@ -11120,7 +11120,7 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'county-stroke', 
           type: 'line', 
           source: 'counties', 
-          paint: { 'line-color': '#1f2937', 'line-width': 1.6 } 
+          paint: { 'line-color': '#333', 'line-width': 1 } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'county-stroke-hover', 
@@ -11128,7 +11128,7 @@ document.addEventListener('DOMContentLoaded', function() {
           source: 'counties',
           layout: { visibility: 'none' },
           filter: ['==', ['get', '_'], '__'],
-          paint: { 'line-color': 'rgba(15, 23, 42, 0.82)', 'line-width': 4.6, 'line-opacity': 1.0 }
+          paint: { 'line-color': 'rgba(15, 23, 42, 0.55)', 'line-width': 3, 'line-opacity': 0.95 }
         });
         // County label layer (disabled for precinct geometry performance)
         addLayerWithOptionalSourceLayer({
@@ -11781,7 +11781,7 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'district-stroke', 
           type: 'line', 
           source: 'districts', 
-          paint: { 'line-color': '#111827', 'line-width': 2.6 } 
+          paint: { 'line-color': '#1f2937', 'line-width': 2 } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'district-stroke-hover', 
@@ -11789,7 +11789,7 @@ document.addEventListener('DOMContentLoaded', function() {
           source: 'districts',
           layout: { visibility: 'none' },
           filter: ['==', ['get', '_'], '__'],
-          paint: { 'line-color': 'rgba(15, 23, 42, 0.85)', 'line-width': 5.2, 'line-opacity': 1.0 }
+          paint: { 'line-color': 'rgba(15, 23, 42, 0.55)', 'line-width': 4, 'line-opacity': 0.95 }
         });
         
         // Add click handler for districts with full trends popup
@@ -11891,7 +11891,7 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'state-house-stroke', 
           type: 'line', 
           source: 'state-house', 
-          paint: { 'line-color': '#1f2937', 'line-width': 1.6 } 
+          paint: { 'line-color': '#374151', 'line-width': 1 } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'state-house-stroke-hover', 
@@ -11899,7 +11899,7 @@ document.addEventListener('DOMContentLoaded', function() {
           source: 'state-house',
           layout: { visibility: 'none' },
           filter: ['==', ['get', '_'], '__'],
-          paint: { 'line-color': 'rgba(15, 23, 42, 0.82)', 'line-width': 4.2, 'line-opacity': 1.0 }
+          paint: { 'line-color': 'rgba(15, 23, 42, 0.55)', 'line-width': 3, 'line-opacity': 0.95 }
         });
         
         // Add click handler for state house districts with full trends popup
@@ -11999,7 +11999,7 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'state-senate-stroke', 
           type: 'line', 
           source: 'state-senate', 
-          paint: { 'line-color': '#1f2937', 'line-width': 1.6 } 
+          paint: { 'line-color': '#4b5563', 'line-width': 1 } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'state-senate-stroke-hover', 
@@ -12007,7 +12007,7 @@ document.addEventListener('DOMContentLoaded', function() {
           source: 'state-senate',
           layout: { visibility: 'none' },
           filter: ['==', ['get', '_'], '__'],
-          paint: { 'line-color': 'rgba(15, 23, 42, 0.82)', 'line-width': 4.2, 'line-opacity': 1.0 }
+          paint: { 'line-color': 'rgba(15, 23, 42, 0.55)', 'line-width': 3, 'line-opacity': 0.95 }
         });
         
         // Add click handler for state senate districts with full trends popup
@@ -14447,18 +14447,18 @@ document.addEventListener('DOMContentLoaded', function() {
           flipColorExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
           flipColorExpr.push(toColor);
           flipWidthExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
-          flipWidthExpr.push(4.2);
+          flipWidthExpr.push(3);
         });
         flipColorExpr.push('rgba(15,23,42,0.35)');
-        flipWidthExpr.push(1.6);
+        flipWidthExpr.push(1);
         try {
           map.setPaintProperty('county-stroke', 'line-color', flipColorExpr);
           map.setPaintProperty('county-stroke', 'line-width', flipWidthExpr);
         } catch (_) {}
       } else if (map.getLayer('county-stroke')) {
         try {
-          map.setPaintProperty('county-stroke', 'line-color', '#1f2937');
-          map.setPaintProperty('county-stroke', 'line-width', 1.6);
+          map.setPaintProperty('county-stroke', 'line-color', '#333');
+          map.setPaintProperty('county-stroke', 'line-width', 1);
         } catch (_) {}
       }
       // Optional precinct expression (detail overlay)
@@ -14690,14 +14690,14 @@ document.addEventListener('DOMContentLoaded', function() {
           if (map.getLayer(strokeLayerName)) {
             try {
               if (strokeLayerName === 'district-stroke') {
-                map.setPaintProperty(strokeLayerName, 'line-color', '#111827');
-                map.setPaintProperty(strokeLayerName, 'line-width', 2.6);
+                map.setPaintProperty(strokeLayerName, 'line-color', '#1f2937');
+                map.setPaintProperty(strokeLayerName, 'line-width', 2);
               } else if (strokeLayerName === 'state-house-stroke') {
-                map.setPaintProperty(strokeLayerName, 'line-color', '#1f2937');
-                map.setPaintProperty(strokeLayerName, 'line-width', 1.6);
+                map.setPaintProperty(strokeLayerName, 'line-color', '#374151');
+                map.setPaintProperty(strokeLayerName, 'line-width', 1);
               } else {
-                map.setPaintProperty(strokeLayerName, 'line-color', '#1f2937');
-                map.setPaintProperty(strokeLayerName, 'line-width', 1.6);
+                map.setPaintProperty(strokeLayerName, 'line-color', '#4b5563');
+                map.setPaintProperty(strokeLayerName, 'line-width', 1);
               }
             } catch (_) {}
           }
