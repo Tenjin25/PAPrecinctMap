@@ -13712,14 +13712,17 @@ document.addEventListener('DOMContentLoaded', function() {
         try { minimizeMainControlsOnMobile(); } catch (_) {}
         appReady = true;
         const contestSelect = document.getElementById('contestSelect');
-        if (contestSelect && !String(contestSelect.value || '').trim()) {
-          const defaultContest = chooseDefaultContestValue(contestSelect);
-          if (defaultContest) {
-            contestSelect.value = defaultContest;
+        if (contestSelect) {
+          let startupContest = String(contestSelect.value || '').trim();
+          if (!startupContest) {
+            startupContest = chooseDefaultContestValue(contestSelect);
+            if (startupContest) contestSelect.value = startupContest;
+          }
+          if (startupContest) {
             try {
-              await applyContest(defaultContest);
+              await applyContest(startupContest);
             } catch (err) {
-              console.warn('Failed to apply startup default contest:', err?.message || err);
+              console.warn('Failed to apply startup contest:', err?.message || err);
             }
           }
         }
