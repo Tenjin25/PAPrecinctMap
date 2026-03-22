@@ -10091,6 +10091,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const otherVotes = Number(row[`${contestType}_other`] || 0);
       const demCandidate = row[`${contestType}_dem_candidate`] || '';
       const repCandidate = row[`${contestType}_rep_candidate`] || '';
+      const usesCountyFallback = !((row.county || '').toString().includes(' - '));
       const subtitle = `${formatContestName(contestType, year)} ${year}`;
 
       const resolvedMargin = resolveWinnerAndSignedMargin(
@@ -10123,6 +10124,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const inner = `
         <div class="hover-meta">${chips.join('')}</div>
         ${buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate)}
+        ${usesCountyFallback ? '<div class="meta-subtle">County aggregate shown (precinct-level returns unavailable for this contest).</div>' : ''}
       `;
       showHoverTooltip(point.x, point.y, buildTooltipShell(title, inner), { force: !!forceTooltip });
       wireTooltipButtons();
@@ -11792,8 +11794,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const otherVotes = Number(row[`${contestType}_other`] || 0);
             const demCandidate = row[`${contestType}_dem_candidate`] || '';
             const repCandidate = row[`${contestType}_rep_candidate`] || '';
+            const usesCountyFallback = !((row.county || '').toString().includes(' - '));
             const subtitle = `${formatContestName(contestType, year)} ${year}`;
-            const inner = buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate);
+            const inner = `
+              ${buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate)}
+              ${usesCountyFallback ? '<div class="meta-subtle">County aggregate shown (precinct-level returns unavailable for this contest).</div>' : ''}
+            `;
             showHoverTooltip(evt.point.x, evt.point.y, buildTooltipShell(title, inner));
             wireTooltipButtons();
             setVoteCounterHoverState(
@@ -14006,7 +14012,20 @@ document.addEventListener('DOMContentLoaded', function() {
 	        const normalize = (s) => (s || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
 	        const primary = normalize(raw);
 	        if (primary) out.add(primary);
-	        if (!raw.includes(' - ')) return Array.from(out);
+	        if (!raw.includes(' - ')) {
+	          const countyOnly = raw.trim();
+	          const countyNorm = normalize(countyOnly);
+	          const codes = (precinctIdx && countyNorm) ? precinctIdx.get(countyNorm) : null;
+	          if (codes && codes.size) {
+	            codes.forEach(code => {
+	              const c = (code || '').toString().trim().toUpperCase();
+	              if (!c) return;
+	              const expanded = normalize(`${countyOnly} - ${c}`);
+	              if (expanded) out.add(expanded);
+	            });
+	          }
+	          return Array.from(out);
+	        }
 	        const [countyOnlyRaw, precRaw0] = raw.split(' - ', 2);
 	        const countyOnly = (countyOnlyRaw || '').trim();
 	        const countyNorm = normalize(countyOnly);
@@ -14251,7 +14270,20 @@ document.addEventListener('DOMContentLoaded', function() {
 	        const primary = normalizeCountyName(raw);
 	        if (primary) out.add(primary);
 
-	        if (!raw.includes(' - ')) return Array.from(out);
+	        if (!raw.includes(' - ')) {
+	          const countyOnly = raw.trim();
+	          const countyNorm = normalizeCountyName(countyOnly);
+	          const codes = (precinctIdx && countyNorm) ? precinctIdx.get(countyNorm) : null;
+	          if (codes && codes.size) {
+	            codes.forEach(code => {
+	              const c = (code || '').toString().trim().toUpperCase();
+	              if (!c) return;
+	              const expanded = normalizeCountyName(`${countyOnly} - ${c}`);
+	              if (expanded) out.add(expanded);
+	            });
+	          }
+	          return Array.from(out);
+	        }
 	        const [countyOnlyRaw, precRaw0] = raw.split(' - ', 2);
 	        const countyOnly = (countyOnlyRaw || '').trim();
 	        const countyNorm = normalizeCountyName(countyOnly);
