@@ -1890,18 +1890,34 @@ body { height: var(--app-height); }
   }
 
   .meta-chip.flip {
-    border-width: 2px;
-    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
-    padding: 7px 12px;
-    font-weight: 1000;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    border-width: 1px;
+    box-shadow: none;
+    padding: 6px 10px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    text-transform: none;
   }
 
   .meta-chip.flip .dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
+  }
+
+  .meta-chip.tier {
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 800;
+    border-width: 1px;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.78);
+    color: #0f172a;
+  }
+
+  .meta-chip.tier .dot {
+    width: 8px;
+    height: 8px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
   }
 
   .meta-subtle {
@@ -2879,6 +2895,7 @@ body { height: var(--app-height); }
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     word-break: break-word;
   }
@@ -3761,6 +3778,7 @@ body { height: var(--app-height); }
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-line-clamp: 2;
+      line-clamp: 2;
       -webkit-box-orient: vertical;
       max-height: calc(1.2em * 2);
     }
@@ -4819,6 +4837,7 @@ body { height: var(--app-height); }
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -9652,6 +9671,15 @@ document.addEventListener('DOMContentLoaded', function() {
       return `<span class="meta-chip ${cls}"><span class="dot"></span>${label}</span>`;
     }
 
+    function tierChipHTML(tierMeta) {
+      if (!tierMeta || !tierMeta.label) return '';
+      const partyClass = tierMeta.party === 'rep' ? 'rep' : (tierMeta.party === 'dem' ? 'dem' : 'tie');
+      const pct = Math.abs(Number(tierMeta.marginPct || 0));
+      const winner = partyClass === 'rep' ? 'R' : (partyClass === 'dem' ? 'D' : 'T');
+      const dotColor = winner === 'T' ? '#9ca3af' : colorForMarginMode(pct, winner);
+      return `<span class="meta-chip tier"><span class="dot" style="background:${dotColor};"></span>${escapeHtml(tierMeta.label)}</span>`;
+    }
+
     // Hover outline (stroke-only highlight) helpers.
     const HOVER_OUTLINE_LAYER_IDS = [
       'county-stroke-hover',
@@ -10068,6 +10096,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const signedMarginPct = signedMarginPctFromVotes(demVotes, repVotes, totalVotes);
       const winner = signedMarginPct > 0 ? 'R' : (signedMarginPct < 0 ? 'D' : 'T');
+      const tierMeta = competitivenessTierMetaFromSignedMarginPct(signedMarginPct);
       const subtitle = `${formatContestName(contestType, year)} ${year}`;
 
       let demoLine = '';
@@ -10091,10 +10120,11 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         chips.push(winnerChipHTML(winner));
       }
+      chips.push(tierChipHTML(tierMeta));
 
       if (prevSignedForFlip !== null) {
         const flipChip = flipChipHTML(prevSignedForFlip, signedMarginPct);
-        if (flipChip) chips.unshift(flipChip);
+        if (flipChip) chips.push(flipChip);
       }
 
       const inner = `
@@ -10162,6 +10192,7 @@ document.addEventListener('DOMContentLoaded', function() {
       );
       const curSigned = resolvedMargin.signed;
       const winner = resolvedMargin.winner;
+      const tierMeta = competitivenessTierMetaFromSignedMarginPct(curSigned);
       const chips = [];
       let prevSignedForFlip = null;
       if (vizPrevCache?.prevYear && vizPrevCache?.prevPrecinctMarginByNorm) {
@@ -10174,10 +10205,11 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         chips.push(winnerChipHTML(winner));
       }
+      chips.push(tierChipHTML(tierMeta));
 
       if (prevSignedForFlip !== null) {
         const flipChip = flipChipHTML(prevSignedForFlip, curSigned);
-        if (flipChip) chips.unshift(flipChip);
+        if (flipChip) chips.push(flipChip);
       }
 
       const inner = `
@@ -10334,6 +10366,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const resolvedMargin = resolveWinnerAndSignedMargin(row.margin_pct, row.winner, demVotes, repVotes, totalVotes);
       const signedMarginPct = resolvedMargin.signed;
       const winner = resolvedMargin.winner;
+      const tierMeta = competitivenessTierMetaFromSignedMarginPct(signedMarginPct);
 
       const chips = [];
       let prevSignedForFlip = null;
@@ -10360,10 +10393,11 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         chips.push(winnerChipHTML(winner));
       }
+      chips.push(tierChipHTML(tierMeta));
 
       if (prevSignedForFlip !== null) {
         const flipChip = flipChipHTML(prevSignedForFlip, signedMarginPct);
-        if (flipChip) chips.unshift(flipChip);
+        if (flipChip) chips.push(flipChip);
       }
 
       const desc = getDistrictDescription(scope, districtNum);
