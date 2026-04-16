@@ -6504,7 +6504,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function isTouchInteractionMode() {
       try {
-        if (IS_COARSE_POINTER) return true;
+        // Treat touch mode as a mobile behavior so desktop/laptop users with hybrid
+        // hardware (e.g. Windows touch screens) still get mouse hover tooltips.
+        if (!isMobileViewportNow()) return false;
+        if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return true;
         if (window.matchMedia && window.matchMedia('(hover: none)').matches) return true;
       } catch (_) {}
       return false;
@@ -6538,7 +6541,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mobile: tapping empty space closes any pinned tooltip/highlight.
     map.on('click', (e) => {
-      if (!IS_COARSE_POINTER) return;
+      if (!isTouchInteractionMode()) return;
       const layers = [
         'precinct-dot',
         'precinct-dot-missing',
