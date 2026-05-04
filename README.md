@@ -170,6 +170,13 @@ Note: district views can include both actual district races and statewide contes
   - `precinct-fill` / `precinct-stroke` (polygon mode at higher zoom)
   - `precinct-dot` / `precinct-dot-missing` (centroid mode + missing-polygon fallback)
 
+### Fill Opacity Tuning
+
+- County fill opacity is controlled in `index.html` by `countyBaseFillOpacityStops()` and by the county contest repaint block that resets `county-fill` opacity when a contest is applied.
+- Congressional and legislative fill opacity is controlled in `index.html` by `districtBaseFillOpacityStops(scope)` plus the initial paint definitions for `district-fill`, `state-house-fill`, and `state-senate-fill`.
+- If you want stronger fills, increase those zoom-stop values together so startup styling and runtime contest styling stay in sync.
+- County opacity intentionally stays lower while precinct overlay is enabled so precinct polygons and centroid dots remain readable.
+
 ### Contest Render Flow
 
 - On load, the app attempts to load contest and district manifests first.

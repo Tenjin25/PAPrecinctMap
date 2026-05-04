@@ -9770,7 +9770,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function countyBaseFillOpacityStops() {
       const contestActive = !!String(document.getElementById('contestSelect')?.value || '').trim();
       if (!contestActive) return [0.04, 0.05, 0.06];
-      return precinctsEnabled ? [0.08, 0.11, 0.14] : [0.62, 0.67, 0.70];
+      return precinctsEnabled ? [0.08, 0.11, 0.14] : [0.74, 0.79, 0.82];
     }
 
     function countyFocusFillOpacityStops() {
@@ -9778,9 +9778,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function districtBaseFillOpacityStops(scope) {
-      if (scope === 'congressional') return [0.61, 0.67, 0.70];
-      if (scope === 'state_house') return [0.60, 0.66, 0.69];
-      return [0.60, 0.67, 0.70];
+      if (scope === 'congressional') return [0.74, 0.79, 0.82];
+      if (scope === 'state_house') return [0.73, 0.78, 0.81];
+      return [0.73, 0.79, 0.82];
     }
 
     function districtFocusFillOpacityStops(scope) {
@@ -12017,7 +12017,7 @@ document.addEventListener('DOMContentLoaded', function() {
           source: 'districts', 
           paint: {
             'fill-color': '#f3f4f6',
-            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.61, 7.5, 0.67, 10, 0.70]
+            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.74, 7.5, 0.79, 10, 0.82]
           } 
         });
         addLayerWithOptionalSourceLayer({ 
@@ -12127,7 +12127,7 @@ document.addEventListener('DOMContentLoaded', function() {
           source: 'state-house', 
           paint: {
             'fill-color': '#f3f4f6',
-            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.60, 7.5, 0.66, 10, 0.69]
+            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.73, 7.5, 0.78, 10, 0.81]
           } 
         });
         addLayerWithOptionalSourceLayer({ 
@@ -12235,7 +12235,7 @@ document.addEventListener('DOMContentLoaded', function() {
           source: 'state-senate', 
           paint: {
             'fill-color': '#f3f4f6',
-            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.60, 7.5, 0.67, 10, 0.70]
+            'fill-opacity': ['interpolate', ['linear'], ['zoom'], 5, 0.73, 7.5, 0.79, 10, 0.82]
           } 
         });
         addLayerWithOptionalSourceLayer({ 
@@ -14734,7 +14734,7 @@ document.addEventListener('DOMContentLoaded', function() {
         map.setPaintProperty('county-fill', 'fill-color', expr);
         const countyFillOpacityExpr = precinctsEnabled
           ? ['interpolate', ['linear'], ['zoom'], 5, 0.08, 7.5, 0.11, 10, 0.14]
-          : ['interpolate', ['linear'], ['zoom'], 5, 0.62, 7.5, 0.67, 10, 0.70];
+          : ['interpolate', ['linear'], ['zoom'], 5, 0.74, 7.5, 0.79, 10, 0.82];
         map.setPaintProperty('county-fill', 'fill-opacity', countyFillOpacityExpr);
         applyInteractiveFillOpacityFocus();
       }
