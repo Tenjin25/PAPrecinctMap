@@ -1886,13 +1886,13 @@ body { height: var(--app-height); }
   .meta-chip.flip.dem {
     border-color: rgba(37, 99, 235, 0.65);
     background: rgba(37, 99, 235, 0.18);
-    color: #dbeafe;
+    color: #1e3a8a;
   }
 
   .meta-chip.flip.rep {
     border-color: rgba(220, 38, 38, 0.65);
     background: rgba(220, 38, 38, 0.18);
-    color: #fee2e2;
+    color: #7f1d1d;
   }
 
   .meta-chip.flip {
@@ -1909,6 +1909,9 @@ body { height: var(--app-height); }
     height: 8px;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35);
   }
+
+  .meta-chip.flip.dem .dot { background: #2563eb; }
+  .meta-chip.flip.rep .dot { background: #dc2626; }
 
   .meta-chip.tier {
     padding: 6px 10px;
@@ -9048,6 +9051,23 @@ document.addEventListener('DOMContentLoaded', function() {
       return `${formatMarginPctForDisplay(marginPctDisplayValue(repVotes, demVotes, totalVotes))}%`;
     }
 
+    function isGenericCandidateLabel(name) {
+      const s = (name || '').toString().trim().toLowerCase();
+      if (!s) return false;
+      return (
+        s === 'd candidate' ||
+        s === 'r candidate' ||
+        s === 'dem candidate' ||
+        s === 'rep candidate' ||
+        s === 'democratic candidate' ||
+        s === 'republican candidate'
+      );
+    }
+
+    function isSyntheticUsSenateLabelPair(demName, repName) {
+      return isGenericCandidateLabel(demName) && isGenericCandidateLabel(repName);
+    }
+
     function compactWinnerMarginLabel(repVotes, demVotes, totalVotes, repCandidate, demCandidate) {
       const margin = Number(repVotes || 0) - Number(demVotes || 0);
       const pctLabel = `${formatMarginPctForDisplay(marginPctDisplayValue(repVotes, demVotes, totalVotes))}%`;
@@ -10220,8 +10240,11 @@ document.addEventListener('DOMContentLoaded', function() {
       chips.push(tierChipHTML(tierMeta));
 
       if (prevSignedForFlip !== null) {
-        const flipChip = flipChipHTML(prevSignedForFlip, signedMarginPct);
-        if (flipChip) chips.push(flipChip);
+        const allowFlipChip = !(contestType === 'us_senate' && isSyntheticUsSenateLabelPair(demCandidate, repCandidate));
+        if (allowFlipChip) {
+          const flipChip = flipChipHTML(prevSignedForFlip, signedMarginPct);
+          if (flipChip) chips.push(flipChip);
+        }
       }
 
       const inner = `
@@ -10305,8 +10328,11 @@ document.addEventListener('DOMContentLoaded', function() {
       chips.push(tierChipHTML(tierMeta));
 
       if (prevSignedForFlip !== null) {
-        const flipChip = flipChipHTML(prevSignedForFlip, curSigned);
-        if (flipChip) chips.push(flipChip);
+        const allowFlipChip = !(contestType === 'us_senate' && isSyntheticUsSenateLabelPair(demCandidate, repCandidate));
+        if (allowFlipChip) {
+          const flipChip = flipChipHTML(prevSignedForFlip, curSigned);
+          if (flipChip) chips.push(flipChip);
+        }
       }
 
       const inner = `
@@ -14224,10 +14250,25 @@ document.addEventListener('DOMContentLoaded', function() {
     function previousCycleCandidates(contestType, year) {
       const y = Number(year);
       const key = (contestType || '').toString().trim().toLowerCase();
-      // US Senate should prefer same-class cycles (6-year spacing) before nearby years.
-      const deltas = key === 'us_senate'
-        ? [6, 12, 4, 2, 8, 10]
-        : [4, 6, 2, 8, 12, 10];
+      // US Senate flips must track the same seat class only (every 6 years),
+      // e.g. 2024 -> 2018 -> 2012 -> 2006 -> 2000.
+      if (key === 'us_senate') {
+        const classYears = Array.from(new Set(
+          (contestManifest || [])
+            .filter(entry => entry && entry.contest_type === 'us_senate')
+            .map(entry => Number(entry.year))
+            .filter(yr => Number.isFinite(yr) && yr >= 2000 && yr < y && ((yr - y) % 6 === 0))
+        )).sort((a, b) => b - a);
+        if (classYears.length) return classYears;
+
+        const fallback = [];
+        for (let candidateYear = y - 6; candidateYear >= 2000; candidateYear -= 6) {
+          fallback.push(candidateYear);
+        }
+        return fallback;
+      }
+
+      const deltas = [4, 6, 2, 8, 12, 10];
       const candidates = [];
       deltas.forEach(delta => {
         const candidateYear = y - delta;
