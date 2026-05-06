@@ -36,6 +36,7 @@ The app is Pages-aware and auto-detects this project base path at runtime so dat
 - Use fly-to search for counties, districts, and precinct tokens.
 - Enable precinct overlay for fine-grained local patterns.
 - Pin hover cards and inspect trend history for selected geography.
+- Use the NCMap-style hover tooltip system in `index.html`, with compact desktop previews and mobile-friendly expandable detail cards.
 
 ## Audience Workflows
 
