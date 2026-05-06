@@ -472,7 +472,7 @@
       });
       if (!countyFeature) return;
       const bbox = turf.bbox(countyFeature);
-      map.fitBounds(bbox, { padding: 40, maxZoom: 10 });
+      map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: computeMapViewportPadding(40), maxZoom: 10 });
     }
   </script>
   <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
@@ -6458,7 +6458,8 @@ document.addEventListener('DOMContentLoaded', function() {
           dem_candidate: totals.demCandidate,
           rep_candidate: totals.repCandidate,
           winner: margin > 0 ? 'REP' : (margin < 0 ? 'DEM' : 'TIE'),
-          margin_pct: Number(((margin / totals.total) * 100).toFixed(2))
+          // Match NCMap: keep full-precision signed margin (R-positive, D-negative).
+          margin_pct: signedMarginPctFromVotes(totals.dem, totals.rep, totals.total)
         });
       }
       return out;
@@ -6512,6 +6513,37 @@ document.addEventListener('DOMContentLoaded', function() {
       } catch (_) {}
       return false;
     }
+
+    function computeMapViewportPadding(basePadding = 40) {
+      const p = Number(basePadding) || 0;
+      const padding = { top: p, bottom: p, left: p, right: p };
+      try {
+        const sidebar = document.getElementById('sidebar');
+        if (!sidebar) return padding;
+        if (sidebar.classList && sidebar.classList.contains('minimized')) return padding;
+        const r = sidebar.getBoundingClientRect();
+        if (!r || !Number.isFinite(r.width) || !Number.isFinite(r.height)) return padding;
+        if (r.width < 120 || r.height < 160) return padding;
+
+        const vw = window.innerWidth || 0;
+        const vh = window.innerHeight || 0;
+        if (!vw || !vh) return padding;
+
+        // Sidebar can behave like a left dock on desktop or a bottom sheet on mobile.
+        const looksLikeBottomSheet = r.width >= vw * 0.72 && r.top >= vh * 0.42;
+        if (looksLikeBottomSheet) {
+          padding.bottom += Math.max(0, Math.round(r.height + 16));
+          return padding;
+        }
+
+        const looksDockedLeft = r.left <= 2 && r.right <= vw * 0.82;
+        if (looksDockedLeft) {
+          padding.left += Math.max(0, Math.round(r.width + 16));
+        }
+      } catch (_) {}
+      return padding;
+    }
+    try { window.computeMapViewportPadding = computeMapViewportPadding; } catch (_) {}
 
     function closeHoverUI({ force = false } = {}) {
       if (!force && tooltipPinned) return;
@@ -7295,7 +7327,8 @@ document.addEventListener('DOMContentLoaded', function() {
           dem_candidate: demCand,
           rep_candidate: repCand,
           winner: margin > 0 ? 'REP' : (margin < 0 ? 'DEM' : 'TIE'),
-          margin_pct: Number(((margin / tot) * 100).toFixed(2))
+          // Match NCMap: keep full-precision signed margin (R-positive, D-negative).
+          margin_pct: signedMarginPctFromVotes(dem, rep, tot)
         });
       }
       if (!out.length && contestType === 'us_house' && Array.isArray(congressionalData) && congressionalData.length) {
@@ -7323,7 +7356,8 @@ document.addEventListener('DOMContentLoaded', function() {
               dem_candidate: '',
               rep_candidate: '',
               winner: margin > 0 ? 'REP' : (margin < 0 ? 'DEM' : 'TIE'),
-              margin_pct: Number(((margin / agg.total) * 100).toFixed(2))
+              // Match NCMap: keep full-precision signed margin (R-positive, D-negative).
+              margin_pct: signedMarginPctFromVotes(agg.dem, agg.rep, agg.total)
             });
           });
       }
@@ -8834,7 +8868,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const bbox = turf.bbox(feature);
         if (!bbox || bbox.length !== 4) return;
         map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], {
-          padding,
+          padding: computeMapViewportPadding(padding),
           maxZoom,
           duration
         });
@@ -8941,22 +8975,76 @@ document.addEventListener('DOMContentLoaded', function() {
       return Math.abs((Number(repVotes || 0) - Number(demVotes || 0)) / t) * 100.0;
     }
 
+    // NCMap-style margin display logic: for extremely close races, show 3 decimals so
+    // rounding doesn't incorrectly collapse a non-zero lead into 0.00%.
+    function roundForDisplay(value, digits = 2) {
+      const n = Number(value || 0);
+      if (!Number.isFinite(n)) return 0;
+      const d = Math.max(0, Math.floor(Number(digits) || 0));
+      const factor = Math.pow(10, d);
+      const epsilonNudge = (Math.sign(n) || 1) * Number.EPSILON * 8;
+      return Math.round((n + epsilonNudge) * factor) / factor;
+    }
+
+    function toFixedForDisplay(value, digits = 2) {
+      const d = Math.max(0, Math.floor(Number(digits) || 0));
+      return roundForDisplay(value, d).toFixed(d);
+    }
+
+    function preservesTwoDecimalMargin(marginPct) {
+      const pct = Math.abs(Number(marginPct) || 0);
+      return roundForDisplay(pct, 2) >= 0.02;
+    }
+
+    function closeRaceDisplayDigits(marginPct) {
+      return preservesTwoDecimalMargin(marginPct) ? 2 : 3;
+    }
+
+    function formatPctForCloseRace(value, marginPct) {
+      const numeric = Number(value || 0);
+      const digits = closeRaceDisplayDigits(marginPct);
+      return toFixedForDisplay(numeric, digits);
+    }
+
+    function marginDisplayDigits(marginPct) {
+      return preservesTwoDecimalMargin(marginPct) ? 2 : 3;
+    }
+
+    function formatMarginPctForDisplay(marginPct) {
+      const pct = Math.abs(Number(marginPct) || 0);
+      return toFixedForDisplay(pct, marginDisplayDigits(pct));
+    }
+
+    function marginPctDisplayValue(repVotes, demVotes, totalVotes) {
+      const rawMarginPct = marginPctValue(repVotes, demVotes, totalVotes);
+      const t = Number(totalVotes) || 0;
+      if (t <= 0) return 0;
+      const repPctDisplay = Number(formatPctForCloseRace((Number(repVotes || 0) / t) * 100, rawMarginPct));
+      const demPctDisplay = Number(formatPctForCloseRace((Number(demVotes || 0) / t) * 100, rawMarginPct));
+      if (!Number.isFinite(repPctDisplay) || !Number.isFinite(demPctDisplay)) return rawMarginPct;
+      const diff = Math.abs(repPctDisplay - demPctDisplay);
+      // If rounding causes both sides to display equal, fall back to the true margin so we don't
+      // incorrectly show a tie (or 0.000%) when there is a non-zero lead.
+      if (diff === 0 && rawMarginPct > 0) return rawMarginPct;
+      return diff;
+    }
+
     function leadMarginPctLabel(repVotes, demVotes, totalVotes) {
       const margin = Number(repVotes || 0) - Number(demVotes || 0);
       if (!margin) return 'Tie';
-      return `${marginPctValue(repVotes, demVotes, totalVotes).toFixed(2)}%`;
+      return `${formatMarginPctForDisplay(marginPctDisplayValue(repVotes, demVotes, totalVotes))}%`;
     }
 
     // Percentage-only label for the vote-counter Lead pill.
     function focusLeadMarginLabel(repVotes, demVotes, totalVotes) {
       const margin = Number(repVotes || 0) - Number(demVotes || 0);
       if (!margin) return 'Tie';
-      return `${marginPctValue(repVotes, demVotes, totalVotes).toFixed(2)}%`;
+      return `${formatMarginPctForDisplay(marginPctDisplayValue(repVotes, demVotes, totalVotes))}%`;
     }
 
     function compactWinnerMarginLabel(repVotes, demVotes, totalVotes, repCandidate, demCandidate) {
       const margin = Number(repVotes || 0) - Number(demVotes || 0);
-      const pctLabel = `${marginPctValue(repVotes, demVotes, totalVotes).toFixed(2)}%`;
+      const pctLabel = `${formatMarginPctForDisplay(marginPctDisplayValue(repVotes, demVotes, totalVotes))}%`;
       if (margin > 0) {
         return `${shortCandidateLabel(repCandidate, 'R')} +${pctLabel}`;
       }
@@ -10002,7 +10090,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function jumpToRegion(regionKey) {
       const region = REGION_JUMPS[regionKey];
       if (!region || !map) return;
-      map.fitBounds(region.bounds, { padding: 28, duration: 900 });
+      map.fitBounds(region.bounds, { padding: computeMapViewportPadding(28), duration: 900 });
       try {
         if (typeof window.collapseMobileTopbar === 'function') {
           window.collapseMobileTopbar();
@@ -12722,7 +12810,7 @@ document.addEventListener('DOMContentLoaded', function() {
         : (sourceId === 'state-house' ? `HD ${districtNum}` : `SD ${districtNum}`);
       syncFlySearchInputs(canonicalQuery);
       setFlySearchFeedback('#10b981');
-      map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 40, duration: 900 });
+      map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: computeMapViewportPadding(40), duration: 900 });
 
       const sidebar = document.getElementById('sidebar');
       if (sidebar && sidebar.classList.contains('minimized')) toggleSidebar();
@@ -12809,7 +12897,7 @@ document.addEventListener('DOMContentLoaded', function() {
       syncFlySearchInputs(canonicalTarget);
       setFlySearchFeedback('#10b981');
       if (coords && coords.length >= 2) {
-        map.flyTo({ center: coords, zoom: Math.max(CONFIG.precincts?.minZoom || 8.5, 10.0), speed: 0.9 });
+        map.flyTo({ center: coords, zoom: Math.max(CONFIG.precincts?.minZoom || 8.5, 10.0), speed: 0.9, padding: computeMapViewportPadding(22), essential: true });
       }
 
       // Pin vote counter if we have precinct-level results keyed by precinct_norm.
@@ -12886,7 +12974,7 @@ document.addEventListener('DOMContentLoaded', function() {
       debugLog('[DIAGNOSTIC] Matched county for', countyName, '->', lastSelectedCounty, 'bbox:', bbox);
       syncFlySearchInputs(lastSelectedCounty);
       setFlySearchFeedback('#10b981');
-      map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: 40, duration: 1000, maxZoom: 10.75 });
+      map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: computeMapViewportPadding(40), duration: 1000, maxZoom: 10.75 });
       showCountyDetails(lastSelectedCounty);
       setSelectedCountyFillFocus(lastSelectedCounty);
       const sidebar = document.getElementById('sidebar');
@@ -13878,7 +13966,7 @@ document.addEventListener('DOMContentLoaded', function() {
           console.warn('State senate resources not loaded:', err.message);
         }
 
-        map.fitBounds(CONFIG.fitBounds, { padding: 20 });
+        map.fitBounds(CONFIG.fitBounds, { padding: computeMapViewportPadding(20) });
         // Only enforce a higher min zoom when using a minzoom-limited county tileset.
         if (CONFIG.tilesets?.enabled && CONFIG.tilesets?.sources?.counties?.url && map.getZoom() < 8.05) {
           map.setZoom(8.05);
