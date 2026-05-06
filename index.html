@@ -13146,15 +13146,53 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
     }
 
-    // Hover Tooltip Functions - VoteHub Style
-    function showHoverTooltip(x, y, content, { force = false } = {}) {
+    // Hover Tooltip Functions (NCMap-style)
+    const hoverTooltipSuppression = { key: '', x: 0, y: 0, until: 0 };
+
+    function suppressHoverTooltip(key, x, y, { ms = 30000 } = {}) {
+      const k = (key || '').toString().trim();
+      if (!k) return;
+      const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+      hoverTooltipSuppression.key = k;
+      hoverTooltipSuppression.x = Number(x) || 0;
+      hoverTooltipSuppression.y = Number(y) || 0;
+      hoverTooltipSuppression.until = now + Math.max(0, Number(ms) || 0);
+    }
+
+    function clearHoverTooltipSuppression() {
+      hoverTooltipSuppression.key = '';
+      hoverTooltipSuppression.until = 0;
+    }
+
+    function showHoverTooltip(x, y, content, { force = false, pinned = false, context = '', copyText = '' } = {}) {
       const tooltip = document.getElementById('hover-tooltip');
       if (!tooltip) return;
       if (isTouchInteractionMode() && !force && !tooltipPinned) return;
       if (tooltipPinned && !force) return;
+
+      // If the user explicitly closed a hover tooltip while the pointer is still sitting on the same feature,
+      // don't immediately reopen it on the next hover refresh.
+      try {
+        const key = (copyText || tooltip.dataset.copyText || '').toString().trim();
+        const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+        if (!pinned && !force && key && hoverTooltipSuppression.key === key && now < hoverTooltipSuppression.until) {
+          const dx = (Number(x) || 0) - (Number(hoverTooltipSuppression.x) || 0);
+          const dy = (Number(y) || 0) - (Number(hoverTooltipSuppression.y) || 0);
+          const dist2 = (dx * dx) + (dy * dy);
+          if (dist2 <= (14 * 14)) return;
+          clearHoverTooltipSuppression();
+        } else if (key && hoverTooltipSuppression.key && key !== hoverTooltipSuppression.key) {
+          clearHoverTooltipSuppression();
+        }
+      } catch (_) {}
       
       tooltip.innerHTML = content;
       tooltip.style.display = 'block';
+      tooltip.dataset.context = String(context || '');
+      const derivedCopyText = (copyText || tooltip.querySelector('.tooltip-trends')?.getAttribute('data-copytext') || '').toString();
+      tooltip.dataset.copyText = derivedCopyText;
+      try { tooltip.setAttribute('data-pinned', (pinned || tooltipPinned) ? '1' : '0'); } catch (_) {}
+      try { wireTooltipButtons(); } catch (_) {}
       
       // Position tooltip near mouse but avoid edges
       const tooltipRect = tooltip.getBoundingClientRect();
@@ -13180,6 +13218,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!tooltip) return;
       if (tooltipPinned) return;
       tooltip.style.display = 'none';
+      try { tooltip.dataset.context = ''; } catch (_) {}
+      try { tooltip.dataset.copyText = ''; } catch (_) {}
     }
 
     function setTooltipPinned(pinned) {
@@ -13189,27 +13229,74 @@ document.addEventListener('DOMContentLoaded', function() {
       tooltip.setAttribute('data-pinned', tooltipPinned ? '1' : '0');
     }
 
-    function buildTooltipShell(title, innerHtml) {
+    function buildTooltipShell(title, innerHtml, options = {}) {
+      const pinned = options && options.pinned === true;
+      const copyText = (options && options.copyText ? String(options.copyText || '') : String(title || '')).trim();
+      const showPin = !pinned;
       return `
         <div class="tooltip-head">
           <div class="tooltip-title">${title}</div>
           <div class="tooltip-actions">
+            ${showPin ? `<button class="tooltip-btn" id="tooltip-pin-btn" type="button">Pin</button>` : ''}
             <button class="tooltip-btn" id="tooltip-close-btn" type="button">Close</button>
           </div>
         </div>
-        <div class="tooltip-trends">${innerHtml}</div>
+        <div class="tooltip-trends" data-copytext="${escapeHtml(copyText)}">${innerHtml}</div>
       `;
     }
 
     function wireTooltipButtons() {
       const closeBtn = document.getElementById('tooltip-close-btn');
       if (closeBtn) {
-        closeBtn.onclick = () => {
+        closeBtn.onclick = (ev) => {
+          try { ev?.preventDefault?.(); } catch (_) {}
+          try { ev?.stopPropagation?.(); } catch (_) {}
+          try {
+            const tooltip = document.getElementById('hover-tooltip');
+            const key = (tooltip?.dataset?.copyText || tooltip?.querySelector('.tooltip-trends')?.getAttribute('data-copytext') || '').toString().trim();
+            if (key) {
+              const pt = lastPointerPoint || { x: 0, y: 0 };
+              suppressHoverTooltip(key, Number(pt.x) || 0, Number(pt.y) || 0);
+            }
+          } catch (_) {}
           setTooltipPinned(false);
           const tooltip = document.getElementById('hover-tooltip');
           if (tooltip) tooltip.style.display = 'none';
+          try { if (tooltip) tooltip.dataset.context = ''; } catch (_) {}
+          try { if (tooltip) tooltip.dataset.copyText = ''; } catch (_) {}
           clearHoverOutline();
           clearVoteCounterHoverState();
+        };
+      }
+
+      const pinBtn = document.getElementById('tooltip-pin-btn');
+      if (pinBtn) {
+        pinBtn.onclick = (ev) => {
+          try { ev?.preventDefault?.(); } catch (_) {}
+          try { ev?.stopPropagation?.(); } catch (_) {}
+          clearHoverTooltipSuppression();
+          setTooltipPinned(true);
+          // Re-render actions (hide Pin button) without changing content.
+          try {
+            const tooltip = document.getElementById('hover-tooltip');
+            if (!tooltip) return;
+            tooltip.setAttribute('data-pinned', '1');
+            tooltipPinned = true;
+            // Keep tooltip where it is; just rebuild head buttons.
+            const head = tooltip.querySelector('.tooltip-head');
+            const trends = tooltip.querySelector('.tooltip-trends');
+            if (!head || !trends) return;
+            const titleEl = head.querySelector('.tooltip-title');
+            const title = titleEl ? titleEl.innerHTML : '';
+            const inner = trends.innerHTML;
+            const copyText = (tooltip.dataset.copyText || trends.getAttribute('data-copytext') || '').toString();
+            tooltip.innerHTML = buildTooltipShell(title, inner, { pinned: true, copyText });
+            try {
+              tooltip.dataset.copyText = copyText;
+              tooltip.dataset.context = tooltip.dataset.context || '';
+            } catch (_) {}
+            wireTooltipButtons();
+          } catch (_) {}
         };
       }
     }
