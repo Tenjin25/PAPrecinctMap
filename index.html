@@ -1707,7 +1707,13 @@ body { height: var(--app-height); }
     background: rgba(255, 255, 255, 0.98);
   }
 
-  /* Allow interacting with tooltip buttons only when pinned. */
+  /* Hover tooltips should not block map hover, but buttons must still be clickable. */
+  #hover-tooltip {
+    pointer-events: none;
+  }
+  #hover-tooltip .tooltip-btn {
+    pointer-events: auto;
+  }
   #hover-tooltip[data-pinned="1"] {
     pointer-events: auto;
   }
