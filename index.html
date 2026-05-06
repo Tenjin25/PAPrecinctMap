@@ -5,7 +5,6 @@
   /* Mobile Styles - Enhanced for touch and small screens */
   @media (max-width: 768px) {
     /* Make minimize buttons touch-friendly */
-    #sidebar-minimize-btn,
     #main-controls .controls-header #controls-minimize-btn,
     #legend-minimize-btn {
       position: absolute !important;
@@ -133,16 +132,16 @@
     }
   }
   @media (max-width: 768px) {
-    /* Mobile: dock hover tooltip above bottom legend for easier reading/taps. */
+    /* Mobile: dock hover tooltip above dock + vote counter + safe area. */
     #hover-tooltip {
       position: fixed !important;
       left: 8px !important;
       right: 8px !important;
       top: auto !important;
-      bottom: calc(var(--legend-h, 56px) + var(--safe-bottom, 0px) + 8px) !important;
+      bottom: calc(var(--safe-bottom, 0px) + var(--mobile-dock-h, 62px) + 24px + var(--vote-counter-h, 0px) + 8px) !important;
       max-width: none !important;
       width: auto !important;
-      max-height: 42vh;
+      max-height: min(54vh, calc(100vh - 16px - var(--safe-top, 0px) - var(--safe-bottom, 0px) - var(--mobile-dock-h, 62px) - var(--vote-counter-h, 0px)));
       overflow: auto;
       -webkit-overflow-scrolling: touch;
       touch-action: pan-y;
@@ -152,6 +151,36 @@
       padding: 10px 12px;
       font-size: 13px;
       border-radius: 12px;
+    }
+  }
+  body.focus-active .main-controls,
+  body.focus-active .vote-counter,
+  body.focus-active .hover-tooltip,
+  body.focus-active .legend {
+    box-shadow: 0 20px 48px rgba(15, 23, 42, 0.26);
+  }
+  body.hover-preview-active .main-controls,
+  body.hover-preview-active .vote-counter,
+  body.hover-preview-active .viz-modes,
+  body.hover-preview-active .legend {
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.22);
+  }
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  summary:focus-visible,
+  a:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.52);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
   }
     .spinner svg {
@@ -174,11 +203,6 @@
   </style>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script>
-    // Define toggleSidebar function before DOMContentLoaded
-    const SIDEBAR_ENABLED = false;
-    // Gate sidebar rendering/styles without a flash-of-sidebar on load.
-    document.documentElement.classList.toggle('sidebar-enabled', SIDEBAR_ENABLED);
-
     // Mobile viewport height fallback for browsers that don't support dvh/svh well (older Android Chrome/WebView).
     // Keeps fixed panels from "jumping" when the URL bar collapses/expands.
     (function () {
@@ -232,49 +256,6 @@
         window.visualViewport.addEventListener('scroll', setAndroidViewportInsets, { passive: true });
       }
     })();
-
-    function toggleSidebar() {
-      if (!SIDEBAR_ENABLED) return;
-      const sidebar = document.getElementById('sidebar');
-      const sidebarContent = document.querySelector('.sidebar-content');
-      const sidebarHeader = document.querySelector('.sidebar-header');
-      const minimizeBtn = document.getElementById('sidebar-minimize-btn');
-      const floatBtn = document.getElementById('sidebar-float-toggle');
-      const detailsDiv = document.getElementById('county-details');
-      const contentEl = document.getElementById('county-info-content');
-      
-      if (sidebar && sidebar.classList.contains('minimized')) {
-        // Expand sidebar
-        sidebar.classList.remove('minimized');
-        if (sidebarHeader) sidebarHeader.style.display = 'flex';
-        if (sidebarContent) sidebarContent.style.display = 'block';
-        if (detailsDiv) detailsDiv.style.display = 'block';
-        // Ensure there's content to show
-        if (contentEl && (!contentEl.innerHTML || contentEl.innerHTML.trim() === '')) {
-          contentEl.innerHTML = '<p>Select a contest or county to see results.</p>';
-        }
-        if (minimizeBtn) {
-          minimizeBtn.textContent = '-';
-          minimizeBtn.title = 'Minimize sidebar';
-        }
-        if (floatBtn) {
-          floatBtn.textContent = '-';
-          floatBtn.title = 'Minimize sidebar';
-        }
-      } else if (sidebar) {
-        // Minimize sidebar
-        sidebar.classList.add('minimized');
-        if (sidebarContent) sidebarContent.style.display = 'none';
-        if (minimizeBtn) {
-          minimizeBtn.textContent = '+';
-          minimizeBtn.title = 'Expand sidebar';
-        }
-        if (floatBtn) {
-          floatBtn.textContent = '+';
-          floatBtn.title = 'Expand sidebar';
-        }
-      }
-    }
 
     document.addEventListener('DOMContentLoaded', function() {
       function isMobileViewport() {
@@ -342,9 +323,6 @@
 
       prioritizeContestControl();
 
-      var sidebar = document.getElementById('sidebar');
-      var sidebarBtn = document.getElementById('sidebar-minimize-btn');
-      var floatBtn = document.getElementById('sidebar-float-toggle');
       var detailsDiv = document.getElementById('county-details');
       var contentEl = document.getElementById('county-info-content');
       var statusExit = document.getElementById('status-exit');
@@ -360,47 +338,47 @@
         });
       }
 
-      if (!SIDEBAR_ENABLED) {
-        if (sidebar) sidebar.style.display = 'none';
-        if (floatBtn) floatBtn.style.display = 'none';
-      }
-      
-      // Always start minimized and set button text
-      if (sidebar) sidebar.classList.add('minimized');
-      
-      // Sidebar minimize button
-      if (sidebarBtn) {
-        sidebarBtn.textContent = '+';
-        sidebarBtn.title = 'Expand sidebar';
-        sidebarBtn.onclick = function() {
-          toggleSidebar();
-          // If no county is selected, show default message
-          if (detailsDiv && contentEl && (!window.lastSelectedCounty || window.lastSelectedCounty === '')) {
-            contentEl.innerHTML = '<p>Select a contest or county to see results.</p>';
-            detailsDiv.style.display = 'block';
-          }
-        };
-      }
-      
-      // Floating sidebar button
-      if (floatBtn) {
-        floatBtn.onclick = function() {
-          toggleSidebar();
-        };
-        // Set initial float button text based on sidebar state
-        if (sidebar && !sidebar.classList.contains('minimized')) {
-          floatBtn.textContent = '-';
-          floatBtn.title = 'Minimize sidebar';
-        } else {
-          floatBtn.textContent = '+';
-          floatBtn.title = 'Expand sidebar';
+      const shortcutMeta = [
+        { id: 'precinct-toggle', label: 'Toggle precinct overlay', keyShortcuts: 'P' },
+        { id: 'label-toggle', label: 'Toggle county labels', keyShortcuts: 'L' },
+        { id: 'accessibility-toggle', label: 'Toggle colorblind mode', keyShortcuts: 'B' },
+        { id: 'split-ticket-toggle', label: 'Toggle split-ticket mode', keyShortcuts: 'T' },
+        { id: 'gps-btn', label: 'Find my location', keyShortcuts: 'G' },
+        { id: 'snapshot-btn', label: 'Take snapshot', keyShortcuts: 'X' },
+        { id: 'copy-link-btn', label: 'Copy share link', keyShortcuts: 'C' },
+        { id: 'smart-insights-btn', label: 'Open smart insights', keyShortcuts: 'I' },
+        { id: 'reset-view-btn', label: 'Reset map view', keyShortcuts: 'R' }
+      ];
+      shortcutMeta.forEach(meta => {
+        const el = document.getElementById(meta.id);
+        if (!el) return;
+        if (meta.label && !el.getAttribute('aria-label')) {
+          el.setAttribute('aria-label', meta.label);
         }
-      }
+        if (meta.keyShortcuts && !el.getAttribute('aria-keyshortcuts')) {
+          el.setAttribute('aria-keyshortcuts', meta.keyShortcuts);
+        }
+      });
 
       // Keyboard shortcuts (ignore when typing in inputs/selects).
       document.addEventListener('keydown', function(ev) {
         const t = (ev.target && ev.target.tagName) ? ev.target.tagName.toLowerCase() : '';
         if (t === 'input' || t === 'textarea' || t === 'select') return;
+        const key = String(ev.key || '').toLowerCase();
+        if (key === 'escape') {
+          try {
+            const helpBackdrop = document.getElementById('help-backdrop');
+            if (helpBackdrop && helpBackdrop.style.display === 'flex') {
+              helpBackdrop.style.display = 'none';
+              helpBackdrop.setAttribute('aria-hidden', 'true');
+            }
+          } catch (_) {}
+          try { closeHoverUI({ force: true }); } catch (_) {}
+          try { clearPinnedVoteCounterState(); } catch (_) {}
+          try { clearSelectedPrecinctNorm(); } catch (_) {}
+          try { clearHoverOutline(); } catch (_) {}
+          return;
+        }
         if (ev.key === 'p' || ev.key === 'P') {
           if (typeof togglePrecinctOverlay === 'function') togglePrecinctOverlay();
         }
@@ -408,8 +386,26 @@
           const btn = document.getElementById('label-toggle');
           if (btn) btn.click();
         }
-        if (ev.key === 's' || ev.key === 'S') {
-          toggleSidebar();
+        if (key === 'b') {
+          document.getElementById('accessibility-toggle')?.click();
+        }
+        if (key === 't') {
+          document.getElementById('split-ticket-toggle')?.click();
+        }
+        if (key === 'g') {
+          document.getElementById('gps-btn')?.click();
+        }
+        if (key === 'x') {
+          document.getElementById('snapshot-btn')?.click();
+        }
+        if (key === 'c') {
+          document.getElementById('copy-link-btn')?.click();
+        }
+        if (key === 'i') {
+          document.getElementById('smart-insights-btn')?.click();
+        }
+        if (key === 'r') {
+          document.getElementById('reset-view-btn')?.click();
         }
       });
       
@@ -493,25 +489,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-/* Sidebar is disabled by default; show only when html has .sidebar-enabled. */
-#sidebar, #sidebar-float-toggle { display: none; }
-html.sidebar-enabled #sidebar { display: block; }
-
-/* Floating button (only when sidebar exists) */
-#sidebar-float-toggle { position: fixed; top: 10px; right: 10px; z-index: 10010; }
-/* Mobile: Larger touch-friendly floating button */
-@media (max-width: 768px) {
-  #sidebar-float-toggle {
-    top: auto !important;
-    bottom: calc(50vh + 16px) !important;
-    right: 16px !important;
-    width: 56px !important;
-    height: 56px !important;
-    font-size: 28px !important;
-    border-radius: 50% !important;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
-  }
-}
 html, body {
   height: 100vh;
   margin: 0;
@@ -627,96 +604,6 @@ body { height: var(--app-height); }
   font-weight: 600;
 }
 
-.sidebar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 400px;
-  height: 100vh;
-  background: #fff;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-  border-left: 1px solid #e5e7eb;
-  overflow-y: auto;
-  transition: width 0.3s cubic-bezier(.4,0,.2,1);
-  z-index: 2;
-}
-/* Mobile: Full-screen sidebar */
-@media (max-width: 768px) {
-  .sidebar {
-    position: fixed !important;
-    top: 0 !important;
-    right: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    z-index: 10003 !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
-  .sidebar-header {
-    padding: 16px !important;
-    border-bottom: 2px solid #e5e7eb !important;
-  }
-  .sidebar-header h3 {
-    font-size: 18px !important;
-    padding-right: 50px;
-  }
-  .sidebar-content {
-    padding: 16px !important;
-  }
-  .sidebar-footer {
-    padding: 16px !important;
-    font-size: 14px !important;
-  }
-}
-.sidebar.minimized {
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  overflow: hidden !important;
-  pointer-events: none;
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-.sidebar.minimized .sidebar-content {
-  display: none !important;
-}
-.sidebar.minimized .sidebar-header {
-  display: none !important;
-}
-.sidebar.minimized .minimize-btn {
-  display: flex !important;
-  position: fixed !important;
-  top: 15px;
-  right: 15px;
-  transform: none;
-  background: #2563eb;
-  color: white;
-  border: 1px solid #1d4ed8;
-  pointer-events: auto !important;
-  cursor: pointer !important;
-  z-index: 10001;
-}
-.sidebar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  border-bottom: 1px solid #e5e7eb;
-  background: #f9fafb;
-}
-.sidebar-header h3 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #1f2937;
-}
-.sidebar-content {
-  padding: 20px;
-}
 .minimize-btn {
   background: #2563eb;
   border: 1px solid #1d4ed8;
@@ -1046,33 +933,6 @@ body { height: var(--app-height); }
   #county-name {
     font-size: 20px !important;
   }
-}
-/* Sidebar Card Classes for Consistent Font Sizes */
-.sidebar-section-title {
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  margin-bottom: 6px !important;
-  color: #222 !important;
-}
-.sidebar-winner {
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  margin-bottom: 8px !important;
-}
-.sidebar-margin {
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  margin-bottom: 4px !important;
-}
-.sidebar-margin-details {
-  font-size: 13px !important;
-  color: #64748b !important;
-  margin-bottom: 8px !important;
-}
-.sidebar-breakdown {
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  margin-bottom: 2px !important;
 }
 .statewide-results {
   margin-bottom: 20px;
@@ -1477,7 +1337,7 @@ body { height: var(--app-height); }
 /* Mobile: Touch-friendly inputs and buttons */
 @media (max-width: 768px) {
   #county-search,
-  #sidebar-county-search {
+  #desktop-fly-search {
     font-size: 16px !important;
     padding: 12px !important;
     border-radius: 8px !important;
@@ -1533,34 +1393,6 @@ body { height: var(--app-height); }
     max-width: none !important;
   }
 }
-    .sidebar.minimized .sidebar-footer {
-      display: none !important;
-    }
-    #sidebar-float-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 10001;
-      width: 40px;
-      height: 40px;
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      font-size: 24px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    #sidebar-float-toggle:hover {
-      background: #1746a0;
-    }
-    html.sidebar-enabled .sidebar.minimized ~ #sidebar-float-toggle {
-      display: flex !important;
-    }
   /* Removed empty ruleset for #map.sidebar-minimized */
 
   /* Aesthetic refresh overrides */
@@ -1590,7 +1422,6 @@ body { height: var(--app-height); }
 
   .main-controls,
   .legend,
-  .sidebar,
   .status-panel,
   .vote-counter,
   .viz-modes {
@@ -1601,8 +1432,7 @@ body { height: var(--app-height); }
   }
 
   .controls-header h3,
-  .legend-header h4,
-  .sidebar-header h3 {
+  .legend-header h4 {
     font-family: "Manrope", "IBM Plex Sans", sans-serif;
     font-weight: 800;
     letter-spacing: 0.01em;
@@ -1619,51 +1449,12 @@ body { height: var(--app-height); }
     border-radius: 14px;
   }
 
-  .sidebar {
-    border-left: 1px solid var(--ui-border);
-  }
-
-  .sidebar-header,
   .legend-header {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 252, 0.94) 100%);
   }
 
-  .sidebar-panel {
-    border: 1px solid rgba(15, 23, 42, 0.10);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.72);
-    padding: 10px 12px;
-    margin: 10px 0;
-  }
-
-  .sidebar-panel summary {
-    list-style: none;
-    cursor: pointer;
-    font-weight: 800;
-    color: #0f172a;
-    letter-spacing: 0.01em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    user-select: none;
-  }
-
-  .sidebar-panel summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .sidebar-panel summary::after {
-    content: '+';
-    font-weight: 900;
-    color: rgba(15, 23, 42, 0.55);
-  }
-
-  .sidebar-panel[open] summary::after {
-    content: '-';
-  }
-
   #county-search,
-  #sidebar-county-search {
+  #desktop-fly-search {
     width: 100%;
     padding: 10px 12px;
     border-radius: 10px;
@@ -1999,7 +1790,6 @@ body { height: var(--app-height); }
   }
 
   .minimize-btn,
-  #sidebar-float-toggle,
   #accessibility-toggle,
   #label-toggle,
   #precinct-toggle {
@@ -2007,8 +1797,7 @@ body { height: var(--app-height); }
     box-shadow: 0 6px 14px rgba(12, 47, 90, 0.24);
   }
 
-  .minimize-btn,
-  #sidebar-float-toggle {
+  .minimize-btn {
     background: linear-gradient(180deg, var(--ui-accent) 0%, var(--ui-accent-2) 100%);
   }
 
@@ -5754,11 +5543,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (ev.target === helpBackdrop) closeHelp();
     });
   }
-  document.addEventListener('keydown', function(ev) {
-    if (ev.key === 'Escape') {
-      if (helpBackdrop && helpBackdrop.style.display === 'flex') closeHelp();
-    }
-  });
   // County label toggle
   const labelBtn = document.getElementById('label-toggle');
   if (labelBtn) {
@@ -5864,52 +5648,15 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 
-  <!-- Sidebar for County Details and Analysis (single instance only) -->
-    <div class="sidebar minimized" id="sidebar">
-      <div class="sidebar-header" id="sidebar-header">
-        <h3>County Analysis</h3>
-        <button class="minimize-btn" id="sidebar-minimize-btn">+</button>
-      </div>
-      <div class="sidebar-content">
-        <details class="sidebar-panel" id="panel-focus" open>
-          <summary>Focus</summary>
-          <div class="county-details" id="county-details" style="display: block;">
-            <h4 id="county-name">Select a County</h4>
-            <div id="county-info-content">
-              Click on any county or district to see results. Click again to see trends.
-            </div>
-          </div>
-        </details>
-
-        <details class="sidebar-panel" id="panel-search">
-          <summary>Search</summary>
-          <div style="margin-top: 10px;">
-            <label for="sidebar-county-search" style="font-weight:600;">Find</label>
-            <input type="text" id="sidebar-county-search" placeholder="Allegheny, CD 12, HD 20, SD 42, Allegheny 01-01" autocomplete="off" spellcheck="false" />
-            <div style="margin-top:6px;font-size:12px;color:#64748b;">
-              Tips: use <span style="font-weight:700;">CD</span> for Congress, <span style="font-weight:700;">HD</span> for House, <span style="font-weight:700;">SD</span> for Senate.
-            </div>
-          </div>
-        </details>
-
-        <details class="sidebar-panel" id="panel-statewide" open>
-          <summary>Statewide</summary>
-          <div class="statewide-results" id="statewide-results" style="margin-top: 10px;">
-            <h4 id="contest-name" data-statewide-contest-name="true" style="margin:0 0 12px 0; font-size:14px; font-weight:800; color:#0f172a;"></h4>
-            <div id="statewide-content" data-statewide-content="true">
-              <p>Select a contest to see statewide results and margin.</p>
-              <div id="statewide-temperature-bar" style="width:100%;height:24px;margin:12px 0;display:none;"></div>
-            </div>
-          </div>
-        </details>
-      </div>
-      <div class="sidebar-footer" style="padding: 14px 10px; text-align: center; color: #64748b; font-size: 12px; line-height: 1.45; border-top: 1px solid #e5e7eb; background: #f9fafb;">
-        © 2026 Shamar Does Elections. All Rights Reserved.<br>
-        Created by Shamar Davis.
+  <!-- Hidden selection content container retained for selection rendering logic. -->
+  <div id="selection-content-cache" style="display:none;" aria-hidden="true">
+    <div class="county-details" id="county-details" style="display: block;">
+      <h4 id="county-name">Select a County</h4>
+      <div id="county-info-content">
+        Click on any county or district to see results. Click again to see trends.
       </div>
     </div>
-  <!-- Floating Sidebar Expand/Collapse Button (smaller size) -->
-  <button id="sidebar-float-toggle" title="Expand Sidebar">+</button>
+  </div>
 
   <!-- Floating Status Panel -->
   <div class="status-panel" id="status-panel" style="display:none;position:fixed;top:20px;right:90px;z-index:10002;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);padding:18px 24px 18px 18px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);border:1px solid #e5e7eb;max-width:340px;min-width:200px;font-size:15px;color:#34495e;">
@@ -6525,32 +6272,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function computeMapViewportPadding(basePadding = 40) {
       const p = Number(basePadding) || 0;
-      const padding = { top: p, bottom: p, left: p, right: p };
-      try {
-        const sidebar = document.getElementById('sidebar');
-        if (!sidebar) return padding;
-        if (sidebar.classList && sidebar.classList.contains('minimized')) return padding;
-        const r = sidebar.getBoundingClientRect();
-        if (!r || !Number.isFinite(r.width) || !Number.isFinite(r.height)) return padding;
-        if (r.width < 120 || r.height < 160) return padding;
-
-        const vw = window.innerWidth || 0;
-        const vh = window.innerHeight || 0;
-        if (!vw || !vh) return padding;
-
-        // Sidebar can behave like a left dock on desktop or a bottom sheet on mobile.
-        const looksLikeBottomSheet = r.width >= vw * 0.72 && r.top >= vh * 0.42;
-        if (looksLikeBottomSheet) {
-          padding.bottom += Math.max(0, Math.round(r.height + 16));
-          return padding;
-        }
-
-        const looksDockedLeft = r.left <= 2 && r.right <= vw * 0.82;
-        if (looksDockedLeft) {
-          padding.left += Math.max(0, Math.round(r.width + 16));
-        }
-      } catch (_) {}
-      return padding;
+      return { top: p, bottom: p, left: p, right: p };
     }
     try { window.computeMapViewportPadding = computeMapViewportPadding; } catch (_) {}
 
@@ -7981,7 +7703,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastCompletedContestSelection = '';
 
     function shouldRefreshCountyDetailsOnContestChange() {
-      if (!SIDEBAR_ENABLED) return false;
       const view = String(currentView || '').toLowerCase();
       if (!(view === 'counties' || view === 'vtds_2000')) return false;
       const detailsDiv = document.getElementById('county-details');
@@ -8769,17 +8490,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (vtds2000Button) {
         vtds2000Button.classList.toggle('active', view === 'vtds_2000');
       }
-      
-      // Update sidebar title
-      const sidebarTitle = document.querySelector('.sidebar-header h3');
-      const titles = {
-        'counties': 'County Analysis',
-        'districts': 'Congressional District Analysis', 
-        'state_house': 'State House District Analysis',
-        'state_senate': 'State Senate District Analysis',
-        'vtds_2000': '2000 Precinct Analysis'
-      };
-      sidebarTitle.textContent = titles[view];
       
       // Clear all map layers for the active view.
       // Precincts are an overlay; don't destroy precinct layers when switching views.
@@ -11109,28 +10819,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showCountyDetails(countyName) {
-      // --- PA Map Card-Style Sidebar ---
-      const sidebar = document.getElementById('sidebar');
       let sidebarContent = '';
       const detailsDiv = document.getElementById('county-details');
       const contentEl = document.getElementById('county-info-content');
-      const sidebarReady = !!(SIDEBAR_ENABLED && contentEl && detailsDiv);
-      // sidebarContent will be declared once below
-      if (sidebarReady && sidebar) {
-        sidebar.classList.remove('minimized');
-        const sidebarContentEl = document.querySelector('.sidebar-content');
-        if (sidebarContentEl) sidebarContentEl.style.display = 'block';
-        const floatBtn = document.getElementById('sidebar-float-toggle');
-        if (floatBtn) {
-          floatBtn.textContent = '-';
-          floatBtn.title = 'Minimize sidebar';
-        }
-        const btn = document.getElementById('sidebar-minimize-btn');
-        if (btn) {
-          btn.textContent = '-';
-          btn.title = 'Minimize sidebar';
-        }
-      }
+      const sidebarReady = !!(contentEl && detailsDiv);
       const countyNameElement = document.getElementById('county-name');
       const countyDisplay = displayCountyName(countyName);
       window.lastSelectedCounty = countyDisplay;
@@ -11524,13 +11216,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 hideHoverTooltip();
               }
               
-              // Optionally, expand sidebar if minimized
-              const sidebar = document.getElementById('sidebar');
-              if (sidebar && sidebar.classList.contains('minimized')) {
-                sidebar.classList.remove('minimized');
-                const btn = document.getElementById('sidebar-minimize-btn');
-                if (btn) btn.textContent = '-';
-              }
             }
           }
         });
@@ -12455,14 +12140,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function clearCountyDetails() {
-      document.getElementById('county-details').style.display = 'none';
+      const details = document.getElementById('county-details');
+      if (details) details.style.display = 'none';
     }
 
 
     let flySearchWired = false;
 
     function getFlySearchInputs() {
-      return ['county-search', 'desktop-fly-search', 'sidebar-county-search']
+      return ['county-search', 'desktop-fly-search']
         .map(id => document.getElementById(id))
         .filter(Boolean);
     }
@@ -12844,9 +12530,6 @@ document.addEventListener('DOMContentLoaded', function() {
       setFlySearchFeedback('#10b981');
       map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: computeMapViewportPadding(40), duration: 900 });
 
-      const sidebar = document.getElementById('sidebar');
-      if (sidebar && sidebar.classList.contains('minimized')) toggleSidebar();
-
       const scope = sourceId === 'districts'
         ? 'congressional'
         : (sourceId === 'state-house' ? 'state_house' : 'state_senate');
@@ -12957,8 +12640,6 @@ document.addEventListener('DOMContentLoaded', function() {
         );
       }
 
-      const sidebar = document.getElementById('sidebar');
-      if (sidebar && sidebar.classList.contains('minimized')) toggleSidebar();
     }
 
     function handleCountySelection(countyName, options = {}) {
@@ -13009,10 +12690,6 @@ document.addEventListener('DOMContentLoaded', function() {
       map.fitBounds([[bbox[0], bbox[1]], [bbox[2], bbox[3]]], { padding: computeMapViewportPadding(40), duration: 1000, maxZoom: 10.75 });
       showCountyDetails(lastSelectedCounty);
       setSelectedCountyFillFocus(lastSelectedCounty);
-      const sidebar = document.getElementById('sidebar');
-      if (sidebar && sidebar.classList.contains('minimized')) {
-        toggleSidebar();
-      }
       return true;
     }
 
@@ -13356,7 +13033,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showDistrictDetails(districtNum) {
-      if (!SIDEBAR_ENABLED) return;
       const detailsDiv = document.getElementById('county-details');
       const nameEl = document.getElementById('county-name');
       const contentEl = document.getElementById('county-info-content');
@@ -13468,7 +13144,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showStateDistrictDetails(districtNum, chamber) {
-      if (!SIDEBAR_ENABLED) return;
       const detailsDiv = document.getElementById('county-details');
       const nameEl = document.getElementById('county-name');
       const contentEl = document.getElementById('county-info-content');
@@ -13653,7 +13328,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showDistrictDetails(districtNum) {
-      if (!SIDEBAR_ENABLED) return;
       const detailsDiv = document.getElementById('county-details');
       const nameEl = document.getElementById('county-name');
       const contentEl = document.getElementById('county-info-content');
@@ -13734,7 +13408,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showStateDistrictDetails(districtNum, chamber) {
-      if (!SIDEBAR_ENABLED) return;
       const detailsDiv = document.getElementById('county-details');
       const nameEl = document.getElementById('county-name');
       const contentEl = document.getElementById('county-info-content');
