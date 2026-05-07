@@ -8896,8 +8896,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function shortCandidateLabel(name, fallback) {
       const raw = (name || '').toString().trim();
       if (!raw) return fallback;
-      const ticketLead = stripRunningMateName(raw);
-      const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .'-]/g, ' ').replace(/\s+/g, ' ').trim();
+      const ticketLead = normalizeCandidateNameOrder(stripRunningMateName(raw));
+      const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',-]/g, ' ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
       const parts = cleaned.split(' ').filter(Boolean);
       if (!parts.length) return fallback;
@@ -8910,19 +8910,58 @@ document.addEventListener('DOMContentLoaded', function() {
     function fullCandidateLabel(name, fallback = '') {
       const raw = (name || '').toString().trim();
       if (!raw) return fallback;
-      const ticketLead = stripRunningMateName(raw);
-      const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .'-]/g, ' ').replace(/\s+/g, ' ').trim();
+      const ticketLead = normalizeCandidateNameOrder(stripRunningMateName(raw));
+      const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',-]/g, ' ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
       return toTitleCaseName(cleaned);
+    }
+
+    // Convert "Last, First" (including suffixes like "Jr.") to "First Last".
+    function normalizeCandidateNameOrder(name) {
+      const raw = (name || '').toString().trim();
+      if (!raw) return '';
+      const commaCount = (raw.match(/,/g) || []).length;
+      if (commaCount !== 1) return raw;
+      const parts = raw.split(',');
+      const left = (parts[0] || '').trim();
+      const right = (parts[1] || '').trim();
+      if (!left || !right) return raw;
+      const leftTokens = left.split(/\s+/).filter(Boolean);
+      const leftLast = leftTokens.length ? leftTokens[leftTokens.length - 1] : '';
+      if (isCandidateSuffixToken(leftLast)) {
+        const suffix = leftLast.replace(/\./g, '');
+        const base = leftTokens.slice(0, -1).join(' ').trim();
+        if (!base) return raw;
+        return `${right} ${base}, ${suffix}.`.replace(/\s+/g, ' ').trim();
+      }
+      // Skip likely non-person labels.
+      if (/^(no\s+candidate|write[- ]?in|vacant|unopposed)$/i.test(raw)) return raw;
+      return `${right} ${left}`.replace(/\s+/g, ' ').trim();
     }
 
     function toTitleCaseName(raw) {
       const s = (raw || '').toString().trim();
       if (!s) return '';
+      function fixMcToken(token) {
+        if (!token) return token;
+        if (/^Mcc[a-z]+$/.test(token)) return `Mc${token.charAt(2).toUpperCase()}${token.slice(3)}`;
+        if (/^MCC[A-Z]+$/.test(token)) {
+          const lower = token.toLowerCase();
+          return `Mc${lower.charAt(2).toUpperCase()}${lower.slice(3)}`;
+        }
+        return token;
+      }
+      function fixMcInString(value) {
+        const parts = value.split(/(\s+|-)/);
+        return parts.map(part => {
+          if (part === ' ' || part === '-' || /^\s+$/.test(part)) return part;
+          return fixMcToken(part);
+        }).join('');
+      }
       // If it's already mixed-case, keep it.
       const hasLower = /[a-z]/.test(s);
       const hasUpper = /[A-Z]/.test(s);
-      if (hasLower && hasUpper) return s;
+      if (hasLower && hasUpper) return fixMcInString(s);
 
       const lower = s.toLowerCase();
       const parts = lower.split(/(\s+|-)/); // keep separators
@@ -8934,7 +8973,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const apostropheParts = p.split("'");
         return apostropheParts.map(seg => seg ? (seg.charAt(0).toUpperCase() + seg.slice(1)) : seg).join("'");
       }).join('');
-      return titled;
+      return fixMcInString(titled);
     }
 
     function displayCountyName(raw) {
