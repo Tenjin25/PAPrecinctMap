@@ -8927,6 +8927,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .replace(/[^a-z0-9]+/g, ' ')
         .replace(/\s+/g, ' ')
         .trim();
+      const tokens = new Set(norm.split(' ').filter(Boolean));
+      const hasToken = (t) => tokens.has(t);
       if (
         norm === 'robert p casey jr' ||
         norm === 'casey jr robert' ||
@@ -8939,6 +8941,34 @@ document.addEventListener('DOMContentLoaded', function() {
         norm === 'mccormick david h'
       ) {
         return 'David H. McCormick';
+      }
+      if (
+        norm === 'wagner bartos' ||
+        norm === 'scott wagner jeff bartos' ||
+        norm === 'wagner scott bartos jeff' ||
+        norm === 'wagner scott'
+      ) {
+        return 'Scott R. Wagner';
+      }
+      if (hasToken('wagner') && !hasToken('kathy')) {
+        return 'Scott R. Wagner';
+      }
+      if (
+        norm === 'tom wolf' ||
+        norm === 'wolf tom' ||
+        norm === 'wolf fetterman' ||
+        norm === 'tom wolf john fetterman'
+      ) {
+        return 'Tom Wolf';
+      }
+      if (hasToken('wolf') && !hasToken('kathy')) {
+        return 'Tom Wolf';
+      }
+      if (norm === 'joshua d shapiro' || norm === 'shapiro joshua d') {
+        return 'Joshua D. Shapiro';
+      }
+      if (norm === 'douglas v mastriano' || norm === 'mastriano douglas v') {
+        return 'Douglas V. Mastriano';
       }
       return raw;
     }
