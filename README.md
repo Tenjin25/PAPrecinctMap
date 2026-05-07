@@ -285,6 +285,15 @@ Important limitation:
 - Some derived district outputs depend on crosswalk quality and matching coverage.
 - This repo currently has no `LICENSE` file; add one before broad public reuse.
 
+## Candidate Name Display Normalization
+
+The frontend applies candidate-name cleanup in `index.html` so inconsistent source labels render consistently in UI labels/cards.
+
+- Common ordering variants are normalized to a readable canonical form (`First Last, Suffix`) when inferrable.
+- `Robert P. Casey, Jr.` (and common variants like `Casey, Jr., Bob`) is normalized to `Bob Casey, Jr.` for display.
+- `David H McCormick` is normalized to `David H. McCormick` for display.
+- Short margin labels use last-name format (for example, `Casey +12.77%`) with trailing punctuation removed.
+
 ## Credits and Data Sources
 
 - OpenElections historical election files

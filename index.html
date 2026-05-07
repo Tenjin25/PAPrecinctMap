@@ -8896,10 +8896,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function shortCandidateLabel(name, fallback) {
       const raw = (name || '').toString().trim();
       if (!raw) return fallback;
-      const ticketLead = normalizeCandidateNameOrder(stripRunningMateName(raw));
+      const ticketLead = normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(raw)));
       const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',-]/g, ' ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
-      const parts = cleaned.split(' ').filter(Boolean);
+      const parts = cleaned
+        .split(' ')
+        .map(p => p.replace(/^[,.\-'\s]+|[,.\-'\s]+$/g, ''))
+        .filter(Boolean);
       if (!parts.length) return fallback;
       for (let i = parts.length - 1; i >= 0; i -= 1) {
         if (!isCandidateSuffixToken(parts[i])) return toTitleCaseName(parts[i]);
@@ -8910,33 +8913,103 @@ document.addEventListener('DOMContentLoaded', function() {
     function fullCandidateLabel(name, fallback = '') {
       const raw = (name || '').toString().trim();
       if (!raw) return fallback;
-      const ticketLead = normalizeCandidateNameOrder(stripRunningMateName(raw));
+      const ticketLead = normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(raw)));
       const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',-]/g, ' ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
       return toTitleCaseName(cleaned);
     }
 
-    // Convert "Last, First" (including suffixes like "Jr.") to "First Last".
+    function normalizeKnownCandidateDisplay(name) {
+      const raw = (name || '').toString().trim();
+      if (!raw) return '';
+      const norm = raw
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (
+        norm === 'robert p casey jr' ||
+        norm === 'casey jr robert' ||
+        norm === 'robert casey jr'
+      ) {
+        return 'Bob Casey, Jr.';
+      }
+      if (
+        norm === 'david h mccormick' ||
+        norm === 'mccormick david h'
+      ) {
+        return 'David H. McCormick';
+      }
+      return raw;
+    }
+
+    // Normalize common person-name permutations to "First Last, Suffix".
     function normalizeCandidateNameOrder(name) {
       const raw = (name || '').toString().trim();
       if (!raw) return '';
-      const commaCount = (raw.match(/,/g) || []).length;
-      if (commaCount !== 1) return raw;
-      const parts = raw.split(',');
-      const left = (parts[0] || '').trim();
-      const right = (parts[1] || '').trim();
-      if (!left || !right) return raw;
-      const leftTokens = left.split(/\s+/).filter(Boolean);
-      const leftLast = leftTokens.length ? leftTokens[leftTokens.length - 1] : '';
-      if (isCandidateSuffixToken(leftLast)) {
-        const suffix = leftLast.replace(/\./g, '');
-        const base = leftTokens.slice(0, -1).join(' ').trim();
-        if (!base) return raw;
-        return `${right} ${base}, ${suffix}.`.replace(/\s+/g, ' ').trim();
-      }
       // Skip likely non-person labels.
       if (/^(no\s+candidate|write[- ]?in|vacant|unopposed)$/i.test(raw)) return raw;
-      return `${right} ${left}`.replace(/\s+/g, ' ').trim();
+      const normalizeSuffix = (sfx) => {
+        const t = (sfx || '').toString().replace(/\./g, '').trim();
+        if (!t) return '';
+        return `${t}.`;
+      };
+      const tidy = (s) => (s || '').toString().replace(/\s+/g, ' ').trim();
+      const parts = raw.split(',').map(p => tidy(p)).filter(Boolean);
+      const emit = (first, last, suffix = '') => {
+        const f = tidy(first);
+        const l = tidy(last);
+        if (!f || !l) return raw;
+        const s = normalizeSuffix(suffix);
+        return s ? `${f} ${l}, ${s}` : `${f} ${l}`;
+      };
+      const extractTrailingSuffix = (s) => {
+        const tokens = tidy(s).split(/\s+/).filter(Boolean);
+        if (!tokens.length) return { base: '', suffix: '' };
+        const maybe = tokens[tokens.length - 1];
+        if (isCandidateSuffixToken(maybe)) {
+          return { base: tokens.slice(0, -1).join(' '), suffix: maybe };
+        }
+        return { base: tokens.join(' '), suffix: '' };
+      };
+
+      if (parts.length === 3) {
+        const suffixIdx = parts.findIndex(p => {
+          const t = p.split(/\s+/).filter(Boolean);
+          return t.length === 1 && isCandidateSuffixToken(t[0]);
+        });
+        if (suffixIdx >= 0) {
+          const suffix = parts[suffixIdx];
+          const names = parts.filter((_, idx) => idx !== suffixIdx);
+          if (names.length === 2) {
+            if (suffixIdx === 1) return emit(names[1], names[0], suffix); // Last, Suffix, First
+            if (suffixIdx === 0) return emit(names[0], names[1], suffix); // Suffix, First, Last
+            return emit(names[0], names[1], suffix); // First, Last, Suffix
+          }
+        }
+        return raw;
+      }
+
+      if (parts.length === 2) {
+        const leftInfo = extractTrailingSuffix(parts[0]);
+        const rightInfo = extractTrailingSuffix(parts[1]);
+        if (leftInfo.suffix) return emit(parts[1], leftInfo.base, leftInfo.suffix); // Last Suffix, First
+        if (rightInfo.suffix) return emit(rightInfo.base, parts[0], rightInfo.suffix); // Last, First Suffix
+        return emit(parts[1], parts[0]); // Last, First
+      }
+
+      if (parts.length === 1) {
+        const solo = extractTrailingSuffix(parts[0]);
+        if (solo.suffix) {
+          const baseTokens = tidy(solo.base).split(/\s+/).filter(Boolean);
+          if (baseTokens.length >= 2) {
+            const first = baseTokens[0];
+            const last = baseTokens.slice(1).join(' ');
+            return emit(first, last, solo.suffix); // First Last Suffix
+          }
+        }
+      }
+      return raw;
     }
 
     function toTitleCaseName(raw) {
