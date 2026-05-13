@@ -10067,6 +10067,12 @@ document.addEventListener('DOMContentLoaded', function() {
       return toTitleCaseName(normalized);
     }
 
+    function getCandidateLastName(name, fallback = '') {
+      const cleaned = cleanCandidateName(name);
+      const bits = (cleaned || '').split(/\s+/).filter(Boolean);
+      return bits.length ? bits[bits.length - 1] : fallback;
+    }
+
     function renderCandidateResultsTooltipHTML(row, options = {}) {
       const demVotes = Number(row?.dem_votes || row?.dem || 0);
       const repVotes = Number(row?.rep_votes || row?.rep || 0);
@@ -10083,7 +10089,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const areaLabel = (options.areaLabel || '').toString().trim();
       const marginPct = safeTotalVotes > 0 ? Math.abs((repVotes - demVotes) / safeTotalVotes) * 100 : 0;
       const winnerParty = repVotes > demVotes ? 'rep' : (demVotes > repVotes ? 'dem' : 'tie');
-      const winnerName = winnerParty === 'rep' ? safeRepName : (winnerParty === 'dem' ? safeDemName : 'Tie');
+      const winnerName = winnerParty === 'rep'
+        ? getCandidateLastName(safeRepName, 'Republican')
+        : (winnerParty === 'dem' ? getCandidateLastName(safeDemName, 'Democrat') : 'Tie');
       const winnerSummary = winnerParty === 'tie'
         ? 'Tie'
         : `${winnerName} +${toFixedForDisplay(marginPct, 2)}%`;
