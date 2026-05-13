@@ -10083,7 +10083,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const areaLabel = (options.areaLabel || '').toString().trim();
       const marginPct = safeTotalVotes > 0 ? Math.abs((repVotes - demVotes) / safeTotalVotes) * 100 : 0;
       const winnerParty = repVotes > demVotes ? 'rep' : (demVotes > repVotes ? 'dem' : 'tie');
-      const winnerName = winnerParty === 'rep' ? 'Trump' : (winnerParty === 'dem' ? 'Harris' : 'Tie');
+      const winnerName = winnerParty === 'rep' ? safeRepName : (winnerParty === 'dem' ? safeDemName : 'Tie');
       const winnerSummary = winnerParty === 'tie'
         ? 'Tie'
         : `${winnerName} +${toFixedForDisplay(marginPct, 2)}%`;
