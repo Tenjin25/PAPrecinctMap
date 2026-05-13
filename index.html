@@ -10972,7 +10972,9 @@ document.addEventListener('DOMContentLoaded', function() {
       } catch (_) {}
 
       const candidateResultsHtml = renderCandidateResultsTooltipHTML(row, {
-        title: `${districtLabel} ${districtNum}`,
+        title: (scope === 'congressional')
+          ? `PA-${String(Number(districtNum)).padStart(2, '0')}`
+          : `${districtLabel} ${districtNum}`,
         areaLabel: (scope === 'congressional' ? 'Congressional District' : (scope === 'state_house' ? 'State House District' : 'State Senate District')),
         demCandidate: demCandidate,
         repCandidate: repCandidate
