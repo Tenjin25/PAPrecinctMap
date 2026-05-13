@@ -5690,6 +5690,171 @@ body.focus-active #hover-tooltip[data-pinned="1"] {
     color: rgba(226, 232, 240, 0.96) !important;
     border-radius: 12px !important;
   }
+  #hover-tooltip[data-context="candidate-results"] {
+    background: linear-gradient(160deg, rgba(2, 6, 23, 0.98), rgba(3, 7, 30, 0.98)) !important;
+    color: #e5e7eb !important;
+    padding: 0 !important;
+    border-radius: 14px !important;
+    border: 1px solid rgba(71, 85, 105, 0.45) !important;
+    box-shadow: 0 18px 44px rgba(2, 6, 23, 0.45) !important;
+    max-width: 420px !important;
+    min-width: 340px;
+    overflow: hidden;
+    backdrop-filter: blur(12px) !important;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-candidate-card {
+    width: 100%;
+    background: transparent;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-header {
+    padding: 18px 20px 8px;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-title {
+    font-size: 38px;
+    line-height: 1.03;
+    font-weight: 850;
+    color: #f8fafc;
+    letter-spacing: -0.01em;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-subtitle {
+    margin-top: 3px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+    color: #8ea0ba;
+    text-transform: uppercase;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 13px;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-lead {
+    color: #fca5a5;
+    font-size: 34px;
+    line-height: 1.1;
+    font-weight: 850;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-lead-votes {
+    color: #f1f5f9;
+    font-size: 16px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-divider {
+    margin: 8px 20px 9px;
+    height: 1px;
+    background: rgba(148, 163, 184, 0.2);
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-candidate-row {
+    display: grid;
+    grid-template-columns: 18px minmax(150px, 1fr) auto auto;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 20px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-candidate-row:last-child {
+    border-bottom: 0;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-candidate-row.rep .vh-dot {
+    background: #c90808;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-candidate-row.dem .vh-dot {
+    background: #0b75b7;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-candidate-row.other .vh-dot {
+    background: #6b7280;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-person {
+    min-width: 0;
+    display: grid;
+    gap: 1px;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-name {
+    font-size: 14px;
+    line-height: 1.15;
+    font-weight: 850;
+    color: #e5e7eb;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-party {
+    font-size: 11px;
+    line-height: 1.2;
+    font-style: italic;
+    color: #94a3b8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-votes {
+    font-size: 36px;
+    font-weight: 850;
+    color: #f8fafc;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-pct {
+    font-size: 34px;
+    font-weight: 650;
+    color: #94a3b8;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    text-align: right;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vh-total {
+    padding: 8px 20px 16px;
+    font-size: 13px;
+    color: #8ea0ba;
+  }
+  @media (max-width: 768px) {
+    #hover-tooltip[data-context="candidate-results"] {
+      min-width: 0;
+      max-width: none !important;
+      width: auto;
+    }
+    #hover-tooltip[data-context="candidate-results"] .vh-candidate-row {
+      grid-template-columns: 16px minmax(0, 1fr) auto;
+      gap: 10px;
+      padding: 10px 14px;
+    }
+    #hover-tooltip[data-context="candidate-results"] .vh-votes {
+      display: none;
+    }
+    #hover-tooltip[data-context="candidate-results"] .vh-name {
+      font-size: 13px;
+    }
+    #hover-tooltip[data-context="candidate-results"] .vh-party {
+      font-size: 12px;
+    }
+    #hover-tooltip[data-context="candidate-results"] .vh-pct {
+      font-size: 24px;
+    }
+    #hover-tooltip[data-context="candidate-results"] .vh-votes {
+      font-size: 24px;
+    }
+    #hover-tooltip[data-context="candidate-results"] .vh-title {
+      font-size: 28px;
+    }
+    #hover-tooltip[data-context="candidate-results"] .vh-lead {
+      font-size: 23px;
+    }
+    #hover-tooltip[data-context="candidate-results"] .vh-lead-votes {
+      font-size: 13px;
+    }
+  }
     </style>
 </head>
 <body>
@@ -9971,6 +10136,70 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
     }
 
+    function cleanCandidateName(name) {
+      const raw = stripRunningMateName(name);
+      const normalized = (raw || '').toString().trim().replace(/\s+/g, ' ');
+      if (!normalized) return '';
+      return toTitleCaseName(normalized);
+    }
+
+    function renderCandidateResultsTooltipHTML(row, options = {}) {
+      const demVotes = Number(row?.dem_votes || row?.dem || 0);
+      const repVotes = Number(row?.rep_votes || row?.rep || 0);
+      const otherVotes = Number(row?.other_votes || row?.other || 0);
+      const totalVotes = Number(row?.total_votes || row?.total || (demVotes + repVotes + otherVotes));
+      const demName = cleanCandidateName(row?.dem_candidate || options.demCandidate || 'Democrat');
+      const repName = cleanCandidateName(row?.rep_candidate || options.repCandidate || 'Republican');
+      const safeDemName = escapeHtml(demName || 'Democrat');
+      const safeRepName = escapeHtml(repName || 'Republican');
+      const safeTotalVotes = Number.isFinite(totalVotes) && totalVotes > 0 ? totalVotes : (demVotes + repVotes + otherVotes);
+      const pct = (votes) => `${toFixedForDisplay(safeTotalVotes > 0 ? ((Number(votes || 0) / safeTotalVotes) * 100) : 0, 2)}%`;
+      const title = escapeHtml((options.title || '').toString().trim());
+      const areaLabel = escapeHtml((options.areaLabel || '').toString().trim());
+      const leaderIsRep = repVotes >= demVotes;
+      const leadName = leaderIsRep ? safeRepName : safeDemName;
+      const leadVotes = leaderIsRep ? repVotes : demVotes;
+      const leadMarginPct = safeTotalVotes > 0
+        ? Math.abs(((repVotes - demVotes) / safeTotalVotes) * 100)
+        : 0;
+      const leadSummary = `${leadName} +${toFixedForDisplay(leadMarginPct, 2)}%`;
+      const rows = [
+        { cls: 'rep', name: safeRepName, party: 'Republican', votes: repVotes, pct: pct(repVotes) },
+        { cls: 'dem', name: safeDemName, party: 'Democratic', votes: demVotes, pct: pct(demVotes) }
+      ];
+      if (otherVotes > 0) {
+        rows.push({ cls: 'other', name: 'Others', party: 'Other', votes: otherVotes, pct: pct(otherVotes) });
+      }
+      return `
+        <div class="vh-candidate-card">
+          ${(title || areaLabel) ? `
+            <div class="vh-header">
+              ${title ? `<div class="vh-title">${title}</div>` : ''}
+              ${areaLabel ? `<div class="vh-subtitle">${areaLabel}</div>` : ''}
+              <div class="vh-summary">
+                <span class="vh-lead">${leadSummary}</span>
+                <span class="vh-lead-votes">${leadVotes.toLocaleString()} votes</span>
+              </div>
+            </div>
+            <div class="vh-divider"></div>
+          ` : ''}
+          ${rows.map(entry => `
+            <div class="vh-candidate-row ${entry.cls}">
+              <span class="vh-dot"></span>
+              <span class="vh-person">
+                <span class="vh-name">${entry.name}</span>
+                <span class="vh-party">${escapeHtml(entry.party)}</span>
+              </span>
+              <span class="vh-votes">${Number(entry.votes || 0).toLocaleString()}</span>
+              <span class="vh-pct">${entry.pct}</span>
+            </div>
+          `).join('')}
+          <div class="vh-divider"></div>
+          <div class="vh-total">Total votes: ${safeTotalVotes.toLocaleString()}</div>
+        </div>
+      `;
+    }
+
     async function getDistrictTrendSeries(scope, contestType, districtNum) {
       const entries = (districtManifest || [])
         .filter(f => f && f.scope === scope && f.contest_type === contestType && Number.isFinite(Number(f.year)))
@@ -10657,33 +10886,35 @@ document.addEventListener('DOMContentLoaded', function() {
       const flipLine = (prevSignedForFlip !== null && !(contestType === 'us_senate' && isSyntheticUsSenateLabelPair(demCandidate, repCandidate)))
         ? flipLineHTML(prevSignedForFlip, curSigned, vizPrevCache?.prevYear || null, Number(year))
         : '';
-      const useCompact = isMobileViewportNow();
-      const quicklineHtml = buildTooltipQuicklineHTML(marginCall, tierMeta, { compact: false });
-      const quicklineCompactHtml = buildTooltipQuicklineHTML(marginCall, tierMeta, { compact: true });
-      const detailBody = buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate);
-      const classicInner = `
-        ${quicklineHtml}
-        ${shiftLine}
-        ${flipLine}
-        ${usesCountyFallback ? `<div class="tooltip-insight">${escapeHtml('County aggregate shown (precinct-level returns unavailable for this contest).')}</div>` : ''}
-      `.trim();
-      const inner = `
-        ${quicklineCompactHtml}
-        ${buildTooltipBodyHTML({
-        deltaHtml: shiftLine,
-        flipHtml: flipLine,
-        insightHtml: usesCountyFallback ? 'County aggregate shown (precinct-level returns unavailable for this contest).' : '',
-        detailsHtml: detailBody,
-        detailsSummary: 'More'
-      })}
-      `.trim();
-      const hoverTitle = buildTooltipTitleWithTier(title);
+      const candidateResultRow = {
+        dem_votes: demVotes,
+        rep_votes: repVotes,
+        other_votes: otherVotes,
+        total_votes: demVotes + repVotes + otherVotes,
+        dem_candidate: demCandidate,
+        rep_candidate: repCandidate
+      };
       showHoverTooltip(
         point.x,
         point.y,
-        buildTooltipShell(hoverTitle, useCompact ? inner : classicInner),
-        { force: !!forceTooltip }
+        renderCandidateResultsTooltipHTML(candidateResultRow, {
+          title: title,
+          areaLabel: 'Precinct',
+          demCandidate: demCandidate,
+          repCandidate: repCandidate
+        }),
+        { force: !!forceTooltip, context: 'candidate-results' }
       );
+      const tooltip = document.getElementById('hover-tooltip');
+      if (tooltip) {
+        tooltip.dataset.context = 'candidate-results';
+        tooltip.innerHTML = renderCandidateResultsTooltipHTML(candidateResultRow, {
+          title: title,
+          areaLabel: 'Precinct',
+          demCandidate: demCandidate,
+          repCandidate: repCandidate
+        });
+      }
       wireTooltipButtons();
       setVoteCounterHoverState(
         `Hover: ${title}`,
@@ -10859,40 +11090,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       } catch (_) {}
 
-      const desc = getDistrictDescription(scope, districtNum);
-      const shiftLine = (currentVizMode === 'shift' && prevSignedForFlip !== null && prevYearForFlip)
-        ? buildTooltipShiftLineHTML(signedMarginPct - prevSignedForFlip, prevYearForFlip, Number(year))
-        : '';
-      const flipLine = (prevSignedForFlip !== null) ? flipLineHTML(prevSignedForFlip, signedMarginPct, prevYearForFlip, Number(year)) : '';
-      const detailsHtml = `
-        ${desc ? `<div style="margin-top:6px;font-size:12px;color:#94a3b8;"><strong style="color:#e2e8f0;">Area:</strong> ${escapeHtml(desc)}</div>` : ''}
-        ${_demoHTML}
-        ${buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate)}
-      `.trim();
-      const useCompact = isMobileViewportNow();
-      const quicklineHtml = buildTooltipQuicklineHTML(marginCall, tierMeta, { compact: false });
-      const quicklineCompactHtml = buildTooltipQuicklineHTML(marginCall, tierMeta, { compact: true });
-      const classicInner = `
-        ${quicklineHtml}
-        ${shiftLine}
-        ${flipLine}
-        ${desc ? `<div style="margin-top:6px;font-size:12px;color:#94a3b8;"><strong style="color:#e2e8f0;">Area:</strong> ${escapeHtml(desc)}</div>` : ''}
-      `.trim();
-      const inner = `
-        ${quicklineCompactHtml}
-        ${buildTooltipBodyHTML({
-        deltaHtml: shiftLine,
-        flipHtml: flipLine,
-        detailsHtml,
-        detailsSummary: 'More'
-      })}
-      `.trim();
-      const hoverTitle = buildTooltipTitleWithTier(`${districtLabel} ${districtNum}`);
+      const candidateResultsHtml = renderCandidateResultsTooltipHTML(row, {
+        title: `${districtLabel} ${districtNum}`,
+        areaLabel: (scope === 'congressional' ? 'Congressional District' : (scope === 'state_house' ? 'State House District' : 'State Senate District')),
+        demCandidate: demCandidate,
+        repCandidate: repCandidate
+      });
       showHoverTooltip(
         e.point.x,
         e.point.y,
-        buildTooltipShell(hoverTitle, useCompact ? inner : classicInner),
-        { force: !!forceTooltip }
+        candidateResultsHtml,
+        { force: !!forceTooltip, context: 'candidate-results' }
       );
       wireTooltipButtons();
     }
@@ -12349,17 +12557,28 @@ document.addEventListener('DOMContentLoaded', function() {
             const otherVotes = Number(row[`${contestType}_other`] || 0);
             const demCandidate = row[`${contestType}_dem_candidate`] || '';
             const repCandidate = row[`${contestType}_rep_candidate`] || '';
-            const usesCountyFallback = !((row.county || '').toString().includes(' - '));
-            const subtitle = `${formatContestName(contestType, year)} ${year}`;
-            const inner = `
-              ${buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate)}
-              ${usesCountyFallback ? '<div class="meta-subtle">County aggregate shown (precinct-level returns unavailable for this contest).</div>' : ''}
-            `;
-            showHoverTooltip(evt.point.x, evt.point.y, buildTooltipShell(title, inner));
+            showHoverTooltip(
+              evt.point.x,
+              evt.point.y,
+              renderCandidateResultsTooltipHTML({
+                dem_votes: demVotes,
+                rep_votes: repVotes,
+                other_votes: otherVotes,
+                total_votes: demVotes + repVotes + otherVotes,
+                dem_candidate: demCandidate,
+                rep_candidate: repCandidate
+              }, {
+                title: title,
+                areaLabel: 'Precinct',
+                demCandidate: demCandidate,
+                repCandidate: repCandidate
+              }),
+              { context: 'candidate-results' }
+            );
             wireTooltipButtons();
             setVoteCounterHoverState(
               `Hover: ${title}`,
-              subtitle,
+              `${formatContestName(contestType, year)} ${year}`,
               demVotes,
               repVotes,
               otherVotes,
