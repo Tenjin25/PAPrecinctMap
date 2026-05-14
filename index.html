@@ -10068,9 +10068,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getCandidateLastName(name, fallback = '') {
-      const cleaned = cleanCandidateName(name);
-      const bits = (cleaned || '').split(/\s+/).filter(Boolean);
-      return bits.length ? bits[bits.length - 1] : fallback;
+      const cleaned = (name || '').toString().trim().replace(/\s+/g, ' ');
+      const bits = cleaned.split(/\s+/).filter(Boolean);
+      if (!bits.length) return fallback;
+      const suffixes = new Set(['jr', 'jr.', 'sr', 'sr.', 'ii', 'iii', 'iv', 'v']);
+      let idx = bits.length - 1;
+      while (idx >= 0 && suffixes.has(bits[idx].toLowerCase())) idx -= 1;
+      return idx >= 0 ? bits[idx].replace(/[,\s]+$/g, '') : fallback;
     }
 
     function renderCandidateResultsTooltipHTML(row, options = {}) {
@@ -10078,23 +10082,24 @@ document.addEventListener('DOMContentLoaded', function() {
       const repVotes = Number(row?.rep_votes || row?.rep || 0);
       const otherVotes = Number(row?.other_votes || row?.other || 0);
       const totalVotes = Number(row?.total_votes || row?.total || (demVotes + repVotes + otherVotes));
-      const demName = cleanCandidateName(row?.dem_candidate || options.demCandidate || 'Democrat');
-      const repName = cleanCandidateName(row?.rep_candidate || options.repCandidate || 'Republican');
-      const safeDemName = demName || 'Democratic';
-      const safeRepName = repName || 'Republican';
+      const demRawName = (row?.dem_candidate || options.demCandidate || '').toString().trim();
+      const repRawName = (row?.rep_candidate || options.repCandidate || '').toString().trim();
+      const safeDemName = fullCandidateLabel(demRawName, 'Democratic');
+      const safeRepName = fullCandidateLabel(repRawName, 'Republican');
       const safeTotalVotes = Number.isFinite(totalVotes) && totalVotes > 0 ? totalVotes : (demVotes + repVotes + otherVotes);
       const formatVotes = (votes) => Number(votes || 0).toLocaleString();
       const formatPct = (votes) => toFixedForDisplay(safeTotalVotes > 0 ? ((Number(votes || 0) / safeTotalVotes) * 100) : 0, 2);
       const title = (options.title || '').toString().trim();
       const areaLabel = (options.areaLabel || '').toString().trim();
-      const marginPct = safeTotalVotes > 0 ? Math.abs((repVotes - demVotes) / safeTotalVotes) * 100 : 0;
+      const marginPct = marginPctDisplayValue(repVotes, demVotes, safeTotalVotes);
+      const marginLabel = formatMarginPctForDisplay(marginPct);
       const winnerParty = repVotes > demVotes ? 'rep' : (demVotes > repVotes ? 'dem' : 'tie');
       const winnerName = winnerParty === 'rep'
         ? getCandidateLastName(safeRepName, 'Republican')
         : (winnerParty === 'dem' ? getCandidateLastName(safeDemName, 'Democrat') : 'Tie');
       const winnerSummary = winnerParty === 'tie'
         ? 'Tie'
-        : `${winnerName} +${toFixedForDisplay(marginPct, 2)}%`;
+        : `${winnerName} +${marginLabel}%`;
       const rows = [
         { cls: 'rep', name: safeRepName, votes: repVotes, pct: formatPct(repVotes) },
         { cls: 'dem', name: safeDemName, votes: demVotes, pct: formatPct(demVotes) }
