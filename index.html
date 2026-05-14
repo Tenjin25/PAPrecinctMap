@@ -5788,6 +5788,34 @@ body.focus-active #hover-tooltip[data-pinned="1"] {
   #hover-tooltip[data-context="candidate-results"] .vhr-flip.rep { color: #fca5a5; }
   #hover-tooltip[data-context="candidate-results"] .vhr-flip.dem { color: #93c5fd; }
   #hover-tooltip[data-context="candidate-results"] .vhr-flip.tie { color: #cbd5e1; }
+  #hover-tooltip[data-context="candidate-results"] .vhr-shift {
+    margin: 6px 0 8px;
+    padding: 7px 9px;
+    border-radius: 8px;
+    border: 1px solid rgba(148,163,184,0.20);
+    background: rgba(15,23,42,0.28);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #cbd5e1;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vhr-shift-label {
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 10px;
+    font-weight: 900;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vhr-shift-value {
+    font-variant-numeric: tabular-nums;
+    font-weight: 900;
+  }
+  #hover-tooltip[data-context="candidate-results"] .vhr-shift-value.rep { color: #fca5a5; }
+  #hover-tooltip[data-context="candidate-results"] .vhr-shift-value.dem { color: #93c5fd; }
+  #hover-tooltip[data-context="candidate-results"] .vhr-shift-value.tie { color: #cbd5e1; }
     </style>
 </head>
 <body>
@@ -10123,6 +10151,13 @@ document.addEventListener('DOMContentLoaded', function() {
         ? `Flipped ${flipMeta.from === 'R' ? 'R→D' : 'D→R'}${options.flipYearLabel ? ` since ${String(options.flipYearLabel)}` : ''}`
         : '';
       const flipLine = flipLabel ? `<div class="vhr-flip ${flipToneClass}">${escapeHtml(flipLabel)}</div>` : '';
+      const shiftTone = String(options.shiftToneClass || '').toLowerCase();
+      const shiftToneSafe = shiftTone === 'rep' ? 'rep' : (shiftTone === 'dem' ? 'dem' : 'tie');
+      const shiftText = String(options.shiftLineText || '').trim();
+      const shiftYears = String(options.shiftYearLabel || '').trim();
+      const shiftLine = (options.showShiftLine && shiftText)
+        ? `<div class="vhr-shift"><span class="vhr-shift-label">Shift${shiftYears ? ` (${escapeHtml(shiftYears)})` : ''}</span><span class="vhr-shift-value ${shiftToneSafe}">${escapeHtml(shiftText)}</span></div>`
+        : '';
       const rows = [
         { cls: 'rep', name: safeRepName, votes: repVotes, pct: formatPct(repVotes) },
         { cls: 'dem', name: safeDemName, votes: demVotes, pct: formatPct(demVotes) }
@@ -10140,6 +10175,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <span>${escapeHtml(`${formatVotes(Math.abs(repVotes - demVotes))} votes`)}</span>
           </div>
           ${flipLine}
+          ${shiftLine}
           ${rows.map(entry => `
             <div class="vhr-row ${entry.cls}">
               <span class="vhr-dot"></span>
@@ -10705,6 +10741,25 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       const demCandidate = row[`${contestType}_dem_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Democrat');
       const repCandidate = row[`${contestType}_rep_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Republican');
+      const currentSigned = signedMarginPctFromVotes(demVotes, repVotes, totalVotes);
+      const prevSignedForFlip = (vizPrevCache?.prevYear && vizPrevCache?.prevCountyTotals)
+        ? (() => {
+            const prev = vizPrevCache.prevCountyTotals[norm] || null;
+            return prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : NaN;
+          })()
+        : NaN;
+      const prevSignedForShift = (vizShiftCache?.prevYear && vizShiftCache?.prevCountyTotals)
+        ? (() => {
+            const prev = vizShiftCache.prevCountyTotals[norm] || null;
+            return prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : NaN;
+          })()
+        : NaN;
+      const shiftDelta = (currentVizMode === 'shift' && Number.isFinite(prevSignedForShift))
+        ? (currentSigned - prevSignedForShift)
+        : NaN;
+      const shiftClass = Number.isFinite(shiftDelta)
+        ? (Math.abs(shiftDelta) < 0.01 ? 'tie' : (shiftDelta > 0 ? 'rep' : 'dem'))
+        : 'tie';
       setVoteCounterHoverState(
         `Hover: ${countyDisplay} County`,
         `${formatContestName(contestType, year)} ${year}`,
@@ -10725,13 +10780,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }, {
         title: `${countyDisplay} County`,
         areaLabel: 'County',
-        prevSignedMarginPct: (() => {
-          if (!(vizPrevCache?.prevYear && vizPrevCache?.prevCountyTotals)) return NaN;
-          const prev = vizPrevCache.prevCountyTotals[norm] || null;
-          return prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : NaN;
-        })(),
-        currentSignedMarginPct: signedMarginPctFromVotes(demVotes, repVotes, totalVotes),
+        prevSignedMarginPct: prevSignedForFlip,
+        currentSignedMarginPct: currentSigned,
         flipYearLabel: vizPrevCache?.prevYear || '',
+        shiftLineText: Number.isFinite(shiftDelta) ? formatShiftLabel(shiftDelta) : '',
+        shiftToneClass: shiftClass,
+        shiftYearLabel: (vizShiftCache?.prevYear && vizShiftCache?.year) ? `${vizShiftCache.prevYear}→${vizShiftCache.year}` : '',
+        showShiftLine: currentVizMode === 'shift' && Number.isFinite(shiftDelta) && !!vizShiftCache?.prevYear,
         demCandidate: demCandidate,
         repCandidate: repCandidate
       });
@@ -10811,6 +10866,22 @@ document.addEventListener('DOMContentLoaded', function() {
       const flipLine = (prevSignedForFlip !== null && !(contestType === 'us_senate' && isSyntheticUsSenateLabelPair(demCandidate, repCandidate)))
         ? flipLineHTML(prevSignedForFlip, curSigned, vizPrevCache?.prevYear || null, Number(year))
         : '';
+      let shiftDelta = NaN;
+      let shiftClass = 'tie';
+      if (currentVizMode === 'shift' && vizShiftCache?.prevYear) {
+        const prevShiftMap = vizShiftCache?.prevPrecinctMarginByNorm;
+        let prevSignedForShift = null;
+        if (prevShiftMap?.has(precinctNorm)) {
+          const prevShiftSigned = Number(prevShiftMap.get(precinctNorm));
+          if (Number.isFinite(prevShiftSigned)) prevSignedForShift = prevShiftSigned;
+        } else if (Number.isFinite(Number(prevSignedForFlip))) {
+          prevSignedForShift = Number(prevSignedForFlip);
+        }
+        if (Number.isFinite(Number(prevSignedForShift))) {
+          shiftDelta = Number(curSigned) - Number(prevSignedForShift);
+          shiftClass = Math.abs(shiftDelta) < 0.01 ? 'tie' : (shiftDelta > 0 ? 'rep' : 'dem');
+        }
+      }
       const candidateResultRow = {
         dem_votes: demVotes,
         rep_votes: repVotes,
@@ -10828,6 +10899,10 @@ document.addEventListener('DOMContentLoaded', function() {
           prevSignedMarginPct: prevSignedForFlip,
           currentSignedMarginPct: curSigned,
           flipYearLabel: vizPrevCache?.prevYear || '',
+          shiftLineText: Number.isFinite(shiftDelta) ? formatShiftLabel(shiftDelta) : '',
+          shiftToneClass: shiftClass,
+          shiftYearLabel: (vizShiftCache?.prevYear && vizShiftCache?.year) ? `${vizShiftCache.prevYear}→${vizShiftCache.year}` : '',
+          showShiftLine: currentVizMode === 'shift' && Number.isFinite(shiftDelta) && !!vizShiftCache?.prevYear,
           demCandidate: demCandidate,
           repCandidate: repCandidate
         }),
@@ -10842,6 +10917,10 @@ document.addEventListener('DOMContentLoaded', function() {
           prevSignedMarginPct: prevSignedForFlip,
           currentSignedMarginPct: curSigned,
           flipYearLabel: vizPrevCache?.prevYear || '',
+          shiftLineText: Number.isFinite(shiftDelta) ? formatShiftLabel(shiftDelta) : '',
+          shiftToneClass: shiftClass,
+          shiftYearLabel: (vizShiftCache?.prevYear && vizShiftCache?.year) ? `${vizShiftCache.prevYear}→${vizShiftCache.year}` : '',
+          showShiftLine: currentVizMode === 'shift' && Number.isFinite(shiftDelta) && !!vizShiftCache?.prevYear,
           demCandidate: demCandidate,
           repCandidate: repCandidate
         });
@@ -11020,6 +11099,12 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
       } catch (_) {}
+      let shiftDelta = NaN;
+      let shiftClass = 'tie';
+      if (currentVizMode === 'shift' && Number.isFinite(Number(prevSignedForFlip)) && prevYearForFlip) {
+        shiftDelta = Number(signedMarginPct) - Number(prevSignedForFlip);
+        shiftClass = Math.abs(shiftDelta) < 0.01 ? 'tie' : (shiftDelta > 0 ? 'rep' : 'dem');
+      }
 
       const candidateResultsHtml = renderCandidateResultsTooltipHTML(row, {
         title: (scope === 'congressional')
@@ -11029,6 +11114,10 @@ document.addEventListener('DOMContentLoaded', function() {
         prevSignedMarginPct: prevSignedForFlip,
         currentSignedMarginPct: signedMarginPct,
         flipYearLabel: prevYearForFlip || '',
+        shiftLineText: Number.isFinite(shiftDelta) ? formatShiftLabel(shiftDelta) : '',
+        shiftToneClass: shiftClass,
+        shiftYearLabel: (prevYearForFlip && year) ? `${prevYearForFlip}→${year}` : '',
+        showShiftLine: currentVizMode === 'shift' && Number.isFinite(shiftDelta) && !!prevYearForFlip,
         demCandidate: demCandidate,
         repCandidate: repCandidate
       });
