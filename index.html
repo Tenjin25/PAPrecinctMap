@@ -10173,6 +10173,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const shiftLine = (options.showShiftLine && shiftText)
         ? `<div class="vhr-shift"><span class="vhr-shift-label">Shift${shiftYears ? ` (${escapeHtml(shiftYears)})` : ''}</span><span class="vhr-shift-value ${shiftToneSafe}">${escapeHtml(shiftText)}</span></div>`
         : '';
+      const rawLeadStyle = winnerParty === 'rep'
+        ? 'font-size:12px;font-weight:800;opacity:0.96;color:#fecaca;font-family:"JetBrains Mono","Consolas","SFMono-Regular",monospace;'
+        : (winnerParty === 'dem'
+          ? 'font-size:12px;font-weight:800;opacity:0.96;color:#bfdbfe;font-family:"JetBrains Mono","Consolas","SFMono-Regular",monospace;'
+          : 'font-size:12px;font-weight:800;opacity:0.92;color:#e2e8f0;font-family:"JetBrains Mono","Consolas","SFMono-Regular",monospace;');
       const rows = [
         { cls: 'rep', name: safeRepName, votes: repVotes, pct: formatPct(repVotes) },
         { cls: 'dem', name: safeDemName, votes: demVotes, pct: formatPct(demVotes) }
@@ -10187,7 +10192,7 @@ document.addEventListener('DOMContentLoaded', function() {
           ${areaLabel ? `<div class="vhr-subtitle">${escapeHtml(areaLabel)}</div>` : ''}
           <div class="vhr-winner ${winnerParty}">
             <span>${escapeHtml(winnerSummary)}</span>
-            <span>${escapeHtml(`${formatVotes(Math.abs(repVotes - demVotes))} votes`)}</span>
+            <span style="${rawLeadStyle}">${escapeHtml(`${formatVotes(Math.abs(repVotes - demVotes))} votes`)}</span>
           </div>
           ${flipLine}
           ${shiftLine}
