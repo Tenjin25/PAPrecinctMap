@@ -7701,6 +7701,34 @@ document.addEventListener('DOMContentLoaded', function() {
 	      return r.text();
 	    }
 
+    function normalizeCandidateDisplayName(name, fallback = '') {
+      const raw = (name || '').toString().trim();
+      if (!raw) return fallback;
+      return fullCandidateLabel(raw, fallback);
+    }
+
+    function normalizeCandidateRecordFields(record) {
+      if (!record || typeof record !== 'object') return record;
+      Object.keys(record).forEach(key => {
+        if (/(^|_)dem_candidate$/i.test(key)) {
+          record[key] = normalizeCandidateDisplayName(record[key], '');
+        } else if (/(^|_)rep_candidate$/i.test(key)) {
+          record[key] = normalizeCandidateDisplayName(record[key], '');
+        }
+      });
+      return record;
+    }
+
+    function normalizeCandidatePayload(value) {
+      if (Array.isArray(value)) {
+        value.forEach(item => normalizeCandidatePayload(item));
+      } else if (value && typeof value === 'object') {
+        normalizeCandidateRecordFields(value);
+        Object.keys(value).forEach(key => normalizeCandidatePayload(value[key]));
+      }
+      return value;
+    }
+
 	    const PRESIDENT_OPEN_ELECTIONS_CSV = {
 	      2000: withBase('./data/Openelections/2000/20001107__pa__general__precinct.csv'),
 	      2004: withBase('./data/Openelections/2004/20041102__pa__general__precinct.csv'),
@@ -7798,8 +7826,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	        president_rep: v.rep,
 	        president_other: v.other,
 	        president_total: v.dem + v.rep + v.other,
-	        president_dem_candidate: v.demCand,
-	        president_rep_candidate: v.repCand
+	        president_dem_candidate: normalizeCandidateDisplayName(v.demCand, ''),
+	        president_rep_candidate: normalizeCandidateDisplayName(v.repCand, '')
 	      }));
 	    }
 
@@ -7809,15 +7837,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	      try {
 	        const payload = await loadJSON(`${CONFIG.paths.contests_dir}/${key}.json`);
-	        const rows = (payload.rows || []).map(r => ({
+	        const rows = (payload.rows || []).map(r => normalizeCandidateRecordFields({
 	          year: Number(year),
 	          county: r.county,
           [`${contestType}_dem`]: Number(r.dem_votes) || 0,
           [`${contestType}_rep`]: Number(r.rep_votes) || 0,
           [`${contestType}_other`]: Number(r.other_votes) || 0,
           [`${contestType}_total`]: Number(r.total_votes) || 0,
-          [`${contestType}_dem_candidate`]: r.dem_candidate || '',
-          [`${contestType}_rep_candidate`]: r.rep_candidate || '',
+          [`${contestType}_dem_candidate`]: normalizeCandidateDisplayName(r.dem_candidate, ''),
+          [`${contestType}_rep_candidate`]: normalizeCandidateDisplayName(r.rep_candidate, ''),
           [`${contestType}_margin`]: Number(r.margin) || 0,
           [`${contestType}_margin_pct`]: Number(r.margin_pct) || 0,
           [`${contestType}_winner`]: r.winner || '',
@@ -7856,8 +7884,8 @@ document.addEventListener('DOMContentLoaded', function() {
           let dem = '';
           let rep = '';
           for (const r of rows) {
-            if (!dem) dem = (r?.dem_candidate || '').toString().trim();
-            if (!rep) rep = (r?.rep_candidate || '').toString().trim();
+            if (!dem) dem = normalizeCandidateDisplayName(r?.dem_candidate, '');
+            if (!rep) rep = normalizeCandidateDisplayName(r?.rep_candidate, '');
             if (dem && rep) break;
           }
           const out = { dem, rep };
@@ -7875,12 +7903,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
       try {
         const payload = await loadJSON(`${CONFIG.paths.district_contests_dir}/${key}.json`);
-        districtSliceCache.set(key, payload);
-        return payload;
+        const normalizedPayload = normalizeCandidatePayload(payload);
+        districtSliceCache.set(key, normalizedPayload);
+        return normalizedPayload;
       } catch (_) {
         const fallback = districtElectionDataJSON?.results_by_year?.[year]?.[scope]?.[contestType] || null;
-        districtSliceCache.set(key, fallback);
-        return fallback;
+        const normalizedFallback = normalizeCandidatePayload(fallback);
+        districtSliceCache.set(key, normalizedFallback);
+        return normalizedFallback;
       }
     }
 
@@ -7945,8 +7975,8 @@ document.addEventListener('DOMContentLoaded', function() {
               recordsMap[key][`${mappedOfficeType}_rep`] = countyData.rep_votes || 0;
               recordsMap[key][`${mappedOfficeType}_other`] = countyData.other_votes || 0;
               recordsMap[key][`${mappedOfficeType}_total`] = countyData.total_votes || 0;
-              recordsMap[key][`${mappedOfficeType}_dem_candidate`] = countyData.dem_candidate || '';
-              recordsMap[key][`${mappedOfficeType}_rep_candidate`] = countyData.rep_candidate || '';
+              recordsMap[key][`${mappedOfficeType}_dem_candidate`] = normalizeCandidateDisplayName(countyData.dem_candidate, '');
+              recordsMap[key][`${mappedOfficeType}_rep_candidate`] = normalizeCandidateDisplayName(countyData.rep_candidate, '');
               recordsMap[key][`${mappedOfficeType}_margin`] = countyData.margin || 0;
               recordsMap[key][`${mappedOfficeType}_margin_pct`] = countyData.margin_pct || 0;
               recordsMap[key][`${mappedOfficeType}_winner`] = countyData.winner || '';
@@ -7990,6 +8020,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const officeType = officeMap[office] || office.toLowerCase().replace(/ /g, '_');
       const partyKey = party === 'Democrat' ? 'dem' : 'rep';
       const candidateField = `${officeType}_${partyKey}_candidate`;
+      const fallback = party === 'Democrat' ? 'D' : 'R';
       
       // Find any county record for this year/office and get the candidate name
       const record = electionData.find(r => r.year == year && r[candidateField]);
@@ -8000,11 +8031,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       if (record && record[candidateField]) {
-        candidateNameCache.set(cacheKey, record[candidateField]);
-        return record[candidateField];
+        const displayName = fullCandidateLabel(record[candidateField], fallback);
+        candidateNameCache.set(cacheKey, displayName);
+        return displayName;
       }
       
-      const fallback = party === 'Democrat' ? 'D' : 'R';
       candidateNameCache.set(cacheKey, fallback);
       return fallback;
     }
@@ -9220,7 +9251,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const parts = value.split(/(\s+|-)/);
         return parts.map(part => {
           if (part === ' ' || part === '-' || /^\s+$/.test(part)) return part;
-          if (/^[A-Z][A-Z'.]+$/.test(part) && /[A-Z]{2}/.test(part)) return titleToken(part);
+          if (/^[A-Za-z'.]+$/.test(part) && /[A-Z]{2}/.test(part)) return titleToken(part);
           return part;
         }).join('');
       }
