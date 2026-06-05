@@ -9202,20 +9202,34 @@ document.addEventListener('DOMContentLoaded', function() {
           return fixMcToken(part);
         }).join('');
       }
+      function titleToken(token) {
+        if (!token) return token;
+        if (token.length <= 1) return /[a-z]/i.test(token) ? token.toUpperCase() : token;
+        const lower = token.toLowerCase();
+        if (lower === "of" || lower === "and" || lower === "the") return lower;
+        if (lower.startsWith("mc") && lower.length > 2) return "Mc" + lower[2].toUpperCase() + lower.slice(3);
+        if (lower.startsWith("o'") && lower.length > 2) return "O'" + lower[2].toUpperCase() + lower.slice(3);
+        const apostropheParts = lower.split("'");
+        return apostropheParts.map(seg => seg ? (seg.charAt(0).toUpperCase() + seg.slice(1)) : seg).join("'");
+      }
+      function normalizeUppercaseTokens(value) {
+        const parts = value.split(/(\s+|-)/);
+        return parts.map(part => {
+          if (part === ' ' || part === '-' || /^\s+$/.test(part)) return part;
+          if (/^[A-Z][A-Z'.]+$/.test(part) && /[A-Z]{2}/.test(part)) return titleToken(part);
+          return part;
+        }).join('');
+      }
       // If it's already mixed-case, keep it.
       const hasLower = /[a-z]/.test(s);
       const hasUpper = /[A-Z]/.test(s);
-      if (hasLower && hasUpper) return fixMcInString(s);
+      if (hasLower && hasUpper) return fixMcInString(normalizeUppercaseTokens(s));
 
       const lower = s.toLowerCase();
       const parts = lower.split(/(\s+|-)/); // keep separators
       const titled = parts.map(p => {
         if (p === ' ' || p === '-' || /^\s+$/.test(p)) return p;
-        if (p === "of" || p === "and" || p === "the") return p;
-        if (p.startsWith("mc") && p.length > 2) return "Mc" + p[2].toUpperCase() + p.slice(3);
-        if (p.startsWith("o'") && p.length > 2) return "O'" + p[2].toUpperCase() + p.slice(3);
-        const apostropheParts = p.split("'");
-        return apostropheParts.map(seg => seg ? (seg.charAt(0).toUpperCase() + seg.slice(1)) : seg).join("'");
+        return titleToken(p);
       }).join('');
       return fixMcInString(titled);
     }
