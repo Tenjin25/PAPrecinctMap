@@ -4275,12 +4275,16 @@ body.focus-active #hover-tooltip[data-pinned="1"] {
     min-width: 0;
     font-size: 11px;
     font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: #64748b;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .statewide-breakdown-party {
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 
   .statewide-breakdown-value {
@@ -10014,7 +10018,7 @@ document.addEventListener('DOMContentLoaded', function() {
           `<div class="statewide-breakdown-item">` +
             `<div class="statewide-breakdown-head">` +
               `<span class="statewide-dot ${item.key}"></span>` +
-              `<span class="statewide-breakdown-label">${item.label}: ${item.candidate}</span>` +
+              `<span class="statewide-breakdown-label"><span class="statewide-breakdown-party">${item.label}:</span> ${escapeHtml(item.candidate)}</span>` +
             `</div>` +
             `<div class="statewide-breakdown-value" style="color:${item.color};">` +
               `${item.votes.toLocaleString()}` +
@@ -13698,14 +13702,18 @@ document.addEventListener('DOMContentLoaded', function() {
               const margin = demPct - repPct;
               const winner = margin > 0 ? 'D' : 'R';
               const marginAbs = Math.abs(margin);
+              const formatTrendCandidate = (party) => fullCandidateLabel(
+                getCandidateName(year, 'President of the United States', party),
+                party === 'Democrat' ? 'Democratic' : 'Republican'
+              );
               
               // Get candidate names for recent years
               let candidateInfo = '';
-              if (year === 2024) candidateInfo = margin > 0 ? getCandidateName(year, 'President of the United States', 'Democrat') : getCandidateName(year, 'President of the United States', 'Republican');
-              else if (year === 2020) candidateInfo = margin > 0 ? getCandidateName(year, 'President of the United States', 'Democrat') : getCandidateName(year, 'President of the United States', 'Republican');
-              else if (year === 2016) candidateInfo = margin > 0 ? getCandidateName(year, 'President of the United States', 'Democrat') : getCandidateName(year, 'President of the United States', 'Republican');
-              else if (year === 2012) candidateInfo = margin > 0 ? getCandidateName(year, 'President of the United States', 'Democrat') : getCandidateName(year, 'President of the United States', 'Republican');
-              else if (year === 2008) candidateInfo = margin > 0 ? getCandidateName(year, 'President of the United States', 'Democrat') : getCandidateName(year, 'President of the United States', 'Republican');
+              if (year === 2024) candidateInfo = margin > 0 ? formatTrendCandidate('Democrat') : formatTrendCandidate('Republican');
+              else if (year === 2020) candidateInfo = margin > 0 ? formatTrendCandidate('Democrat') : formatTrendCandidate('Republican');
+              else if (year === 2016) candidateInfo = margin > 0 ? formatTrendCandidate('Democrat') : formatTrendCandidate('Republican');
+              else if (year === 2012) candidateInfo = margin > 0 ? formatTrendCandidate('Democrat') : formatTrendCandidate('Republican');
+              else if (year === 2008) candidateInfo = margin > 0 ? formatTrendCandidate('Democrat') : formatTrendCandidate('Republican');
               
               trends.push({
                 year: year,
@@ -13743,7 +13751,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const winner = margin > 0 ? 'D' : 'R';
             const marginAbs = Math.abs(margin);
             let candidateInfo = '';
-            candidateInfo = margin > 0 ? getCandidateName(year, 'Governor', 'Democrat') : getCandidateName(year, 'Governor', 'Republican');
+            candidateInfo = fullCandidateLabel(
+              margin > 0 ? getCandidateName(year, 'Governor', 'Democrat') : getCandidateName(year, 'Governor', 'Republican'),
+              margin > 0 ? 'Democratic' : 'Republican'
+            );
             trends.push({
               year: year,
               display: `${year}: ${candidateInfo}+${marginAbs.toFixed(2)}`,
