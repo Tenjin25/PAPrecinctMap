@@ -9108,7 +9108,11 @@ document.addEventListener('DOMContentLoaded', function() {
       if (
         norm === 'robert p casey jr' ||
         norm === 'casey jr robert' ||
-        norm === 'robert casey jr'
+        norm === 'robert casey jr' ||
+        norm === 'bob casey jr' ||
+        norm === 'casey bob jr' ||
+        norm === 'casey jr bob' ||
+        (hasToken('casey') && hasToken('bob') && hasToken('jr'))
       ) {
         return 'Bob Casey, Jr.';
       }
