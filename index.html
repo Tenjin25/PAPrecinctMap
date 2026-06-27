@@ -9644,7 +9644,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="map-topbar-badge">Keystone State Explorer</div>
       <div class="map-topbar-copy">
         <strong>Fly to a county, district, or precinct</strong>
-        <span>Try Allegheny, CD 12, HD 20, SD 42, or Allegheny 01-01.</span>
+        <span>Try Allegheny, CD 8, HD 20, SD 5, or Allegheny 01-01.</span>
       </div>
     </div>
     <form class="fly-search-bar" id="fly-search-form" role="search">
@@ -9666,10 +9666,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <button type="button" class="mobile-topbar-toggle" id="mobile-topbar-toggle" aria-controls="map-topbar-details" aria-expanded="false">Show details</button>
     <div class="map-topbar-details" id="map-topbar-details">
       <div class="map-topbar-hints" aria-label="Search examples">
-        <button type="button" class="fly-search-chip" data-search-example="Allegheny">Allegheny</button>
-        <button type="button" class="fly-search-chip" data-search-example="CD 12">CD 12</button>
+        <button type="button" class="fly-search-chip" data-search-example="Centre">Centre</button>>
+        <button type="button" class="fly-search-chip" data-search-example="CD 8">CD 8</button>
         <button type="button" class="fly-search-chip" data-search-example="HD 20">HD 20</button>
-        <button type="button" class="fly-search-chip" data-search-example="SD 42">SD 42</button>
+        <button type="button" class="fly-search-chip" data-search-example="SD 5">SD 5</button>
         <button type="button" class="fly-search-chip" data-search-example="Allegheny 01-01">Allegheny 01-01</button>
       </div>
       <div class="context-banner" id="context-banner" aria-label="Current map state">
@@ -9746,9 +9746,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="desktop-quick-stats" data-viewport-precinct-count>Viewing precincts...</div>
                 <div class="desktop-fly-chip-row" aria-label="Fly-to examples">
                   <button class="desktop-fly-chip" type="button" data-search-example="Allegheny">Allegheny</button>
-                  <button class="desktop-fly-chip" type="button" data-search-example="CD 12">CD 12</button>
+                  <button class="desktop-fly-chip" type="button" data-search-example="CD 8">CD 8</button>
                   <button class="desktop-fly-chip" type="button" data-search-example="HD 20">HD 20</button>
-                  <button class="desktop-fly-chip" type="button" data-search-example="SD 42">SD 42</button>
+                  <button class="desktop-fly-chip" type="button" data-search-example="SD 5">SD 5</button>
                   <button class="desktop-fly-chip" type="button" data-search-example="Allegheny 01-01">Allegheny 01-01</button>
                 </div>
             </div>
@@ -14833,8 +14833,9 @@ document.addEventListener('DOMContentLoaded', function() {
       voteCounterHoverActive = true;
       setVoteCounterContext(title, sub, { showClear: false });
       updateVoteCounter(demVotes, repVotes, otherVotes, candidates, meta);
-      updateRecountRadarBadge();
-      try { announceForScreenReader(buildAriaSummary(title || 'Hovered area', demVotes, repVotes, otherVotes)); } catch (_) {}
+      // Keep live hover lightweight. Recount badges and ARIA announcements are
+      // useful for pinned/selected states, but doing them on every hover caused
+      // visible tooltip lag after the heavier PA theme was merged.
     }
 
     function refreshPinnedPrecinctForContest(contestType, year) {
@@ -14964,33 +14965,42 @@ document.addEventListener('DOMContentLoaded', function() {
       updateRecountRadarBadge();
     }
 
+    let voteCounterAnimationToken = 0;
     function animateCounter(id, targetValue) {
       const element = document.getElementById(id);
       if (!element) return;
-      
-      const startValue = parseInt(element.textContent.replace(/,/g, '')) || 0;
-      const duration = 800;
+      const nextValue = Number(targetValue) || 0;
+
+      // Hover can fire dozens of times per second. Animating three counters for
+      // every hover creates stacked requestAnimationFrame loops and makes the
+      // tooltip feel like it is trailing the cursor. Hover updates now snap
+      // instantly; selected/pinned/statewide updates can still animate.
+      if (voteCounterHoverActive && !voteCounterPinned) {
+        element.textContent = nextValue.toLocaleString();
+        return;
+      }
+
+      const token = ++voteCounterAnimationToken;
+      const startValue = parseInt(String(element.textContent || '').replace(/,/g, ''), 10) || 0;
+      const duration = 360;
       const startTime = performance.now();
-      
+
       function update(currentTime) {
+        if (token !== voteCounterAnimationToken) return;
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        
-        // Easing function for smooth animation
-        const easeProgress = progress < 0.5 
-          ? 2 * progress * progress 
+        const easeProgress = progress < 0.5
+          ? 2 * progress * progress
           : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-        
-        const currentValue = Math.floor(startValue + (targetValue - startValue) * easeProgress);
+        const currentValue = Math.floor(startValue + (nextValue - startValue) * easeProgress);
         element.textContent = currentValue.toLocaleString();
-        
         if (progress < 1) {
           requestAnimationFrame(update);
         } else {
           queueVoteBreakdownLayoutMeasure();
         }
       }
-      
+
       requestAnimationFrame(update);
     }
 
@@ -15294,8 +15304,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	        president_rep: v.rep,
 	        president_other: v.other,
 	        president_total: v.dem + v.rep + v.other,
-	        president_dem_candidate: v.demCand,
-	        president_rep_candidate: v.repCand
+	        president_dem_candidate: normalizeCandidateDisplayName(v.demCand, ''),
+	        president_rep_candidate: normalizeCandidateDisplayName(v.repCand, '')
 	      }));
 	    }
 
@@ -18411,8 +18421,8 @@ document.addEventListener('DOMContentLoaded', function() {
               [`${contestType}_rep`]: Number(r.rep_votes) || 0,
               [`${contestType}_other`]: Number(r.other_votes) || 0,
               [`${contestType}_total`]: Number(r.total_votes) || 0,
-              [`${contestType}_dem_candidate`]: r.dem_candidate || '',
-              [`${contestType}_rep_candidate`]: r.rep_candidate || '',
+              [`${contestType}_dem_candidate`]: normalizeCandidateDisplayName(r.dem_candidate, ''),
+              [`${contestType}_rep_candidate`]: normalizeCandidateDisplayName(r.rep_candidate, ''),
               [`${contestType}_margin`]: Number(r.margin) || 0,
               [`${contestType}_margin_pct`]: Number(r.margin_pct) || 0,
               [`${contestType}_winner`]: r.winner || '',
@@ -18703,8 +18713,8 @@ document.addEventListener('DOMContentLoaded', function() {
               recordsMap[key][`${mappedOfficeType}_rep`] = countyData.rep_votes || 0;
               recordsMap[key][`${mappedOfficeType}_other`] = countyData.other_votes || 0;
               recordsMap[key][`${mappedOfficeType}_total`] = countyData.total_votes || 0;
-              recordsMap[key][`${mappedOfficeType}_dem_candidate`] = countyData.dem_candidate || '';
-              recordsMap[key][`${mappedOfficeType}_rep_candidate`] = countyData.rep_candidate || '';
+              recordsMap[key][`${mappedOfficeType}_dem_candidate`] = normalizeCandidateDisplayName(countyData.dem_candidate, '');
+              recordsMap[key][`${mappedOfficeType}_rep_candidate`] = normalizeCandidateDisplayName(countyData.rep_candidate, '');
               recordsMap[key][`${mappedOfficeType}_margin`] = countyData.margin || 0;
               recordsMap[key][`${mappedOfficeType}_margin_pct`] = countyData.margin_pct || 0;
               recordsMap[key][`${mappedOfficeType}_winner`] = countyData.winner || '';
@@ -18777,8 +18787,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       if (record && record[candidateField]) {
-        candidateNameCache.set(cacheKey, record[candidateField]);
-        return record[candidateField];
+        const displayName = fullCandidateLabel(record[candidateField], fallback);
+        candidateNameCache.set(cacheKey, displayName);
+        return displayName;
       }
       
       const fallback = party === 'Democrat' ? 'D' : 'R';
@@ -19946,18 +19957,165 @@ document.addEventListener('DOMContentLoaded', function() {
       return '';
     }
 
+    const CANDIDATE_SUFFIXES = new Set([
+      'JR', 'SR',
+      'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
+      'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX'
+    ]);
+
+    function isCandidateSuffixToken(token) {
+      const t = (token || '').toString().trim().replace(/\./g, '').toUpperCase();
+      if (!t) return false;
+      return CANDIDATE_SUFFIXES.has(t);
+    }
+
+    function normalizeKnownCandidateDisplay(name) {
+      const raw = (name || '').toString().trim();
+      if (!raw) return '';
+      const norm = raw
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      const tokens = new Set(norm.split(' ').filter(Boolean));
+      const hasToken = (t) => tokens.has(t);
+      if (
+        norm === 'robert p casey jr' ||
+        norm === 'casey jr robert' ||
+        norm === 'robert casey jr' ||
+        norm === 'bob casey jr' ||
+        norm === 'casey bob jr' ||
+        norm === 'casey jr bob' ||
+        (hasToken('casey') && hasToken('bob') && hasToken('jr'))
+      ) {
+        return 'Bob Casey, Jr.';
+      }
+      if (
+        norm === 'david h mccormick' ||
+        norm === 'mccormick david h'
+      ) {
+        return 'David H. McCormick';
+      }
+      if (
+        norm === 'wagner bartos' ||
+        norm === 'scott wagner jeff bartos' ||
+        norm === 'wagner scott bartos jeff' ||
+        norm === 'wagner scott'
+      ) {
+        return 'Scott R. Wagner';
+      }
+      if (hasToken('wagner') && !hasToken('kathy')) {
+        return 'Scott R. Wagner';
+      }
+      if (
+        norm === 'tom wolf' ||
+        norm === 'wolf tom' ||
+        norm === 'wolf fetterman' ||
+        norm === 'tom wolf john fetterman'
+      ) {
+        return 'Tom Wolf';
+      }
+      if (hasToken('wolf') && !hasToken('kathy')) {
+        return 'Tom Wolf';
+      }
+      if (norm === 'joshua d shapiro' || norm === 'shapiro joshua d') {
+        return 'Joshua D. Shapiro';
+      }
+      if (norm === 'douglas v mastriano' || norm === 'mastriano douglas v') {
+        return 'Douglas V. Mastriano';
+      }
+      return raw;
+    }
+
+    // Normalize common person-name permutations to "First Last, Suffix".
+    function normalizeCandidateNameOrder(name) {
+      const raw = (name || '').toString().trim();
+      if (!raw) return '';
+      if (/^(no\s+candidate|write[- ]?in|vacant|unopposed)$/i.test(raw)) return raw;
+      const normalizeSuffix = (sfx) => {
+        const t = (sfx || '').toString().replace(/\./g, '').trim();
+        if (!t) return '';
+        return `${t}.`;
+      };
+      const tidy = (s) => (s || '').toString().replace(/\s+/g, ' ').trim();
+      const parts = raw.split(',').map(p => tidy(p)).filter(Boolean);
+      const emit = (first, last, suffix = '') => {
+        const f = tidy(first);
+        const l = tidy(last);
+        if (!f || !l) return raw;
+        const s = normalizeSuffix(suffix);
+        return s ? `${f} ${l}, ${s}` : `${f} ${l}`;
+      };
+      const extractTrailingSuffix = (s) => {
+        const tokens = tidy(s).split(/\s+/).filter(Boolean);
+        if (!tokens.length) return { base: '', suffix: '' };
+        const maybe = tokens[tokens.length - 1];
+        if (isCandidateSuffixToken(maybe)) {
+          return { base: tokens.slice(0, -1).join(' '), suffix: maybe };
+        }
+        return { base: tokens.join(' '), suffix: '' };
+      };
+
+      if (parts.length === 3) {
+        const suffixIdx = parts.findIndex(p => {
+          const t = p.split(/\s+/).filter(Boolean);
+          return t.length === 1 && isCandidateSuffixToken(t[0]);
+        });
+        if (suffixIdx >= 0) {
+          const suffix = parts[suffixIdx];
+          const names = parts.filter((_, idx) => idx !== suffixIdx);
+          if (names.length === 2) {
+            if (suffixIdx === 1) return emit(names[1], names[0], suffix);
+            if (suffixIdx === 0) return emit(names[0], names[1], suffix);
+            return emit(names[0], names[1], suffix);
+          }
+        }
+        return raw;
+      }
+
+      if (parts.length === 2) {
+        const leftInfo = extractTrailingSuffix(parts[0]);
+        const rightInfo = extractTrailingSuffix(parts[1]);
+        if (leftInfo.suffix) return emit(parts[1], leftInfo.base, leftInfo.suffix);
+        if (rightInfo.suffix) return emit(rightInfo.base, parts[0], rightInfo.suffix);
+        return emit(parts[1], parts[0]);
+      }
+
+      if (parts.length === 1) {
+        const solo = extractTrailingSuffix(parts[0]);
+        if (solo.suffix) {
+          const baseTokens = tidy(solo.base).split(/\s+/).filter(Boolean);
+          if (baseTokens.length >= 2) {
+            const first = baseTokens[0];
+            const last = baseTokens.slice(1).join(' ');
+            return emit(first, last, solo.suffix);
+          }
+        }
+      }
+      return raw;
+    }
+
+    function normalizeCandidateDisplayName(name, fallback = '') {
+      const raw = (name || '').toString().trim();
+      if (!raw) return fallback;
+      return fullCandidateLabel(raw, fallback);
+    }
+
     function shortCandidateLabel(name, fallback) {
       const raw = (name || '').toString().trim();
       if (!raw) return fallback;
-      const ticketLead = stripRunningMateName(raw);
-      const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .'-]/g, ' ').replace(/\s+/g, ' ').trim();
+      const ticketLead = normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(raw)));
+      const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',-]/g, ' ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
-      const parts = cleaned.split(' ').filter(Boolean);
+      const parts = cleaned
+        .split(' ')
+        .map(p => p.replace(/^[,.\-'\s]+|[,.\-'\s]+$/g, ''))
+        .filter(Boolean);
       if (!parts.length) return fallback;
-      // Prefer the surname in compact labels; ignore trailing suffixes like Jr./III.
-      let idx = parts.length - 1;
-      while (idx > 0 && isNameSuffixToken(parts[idx])) idx -= 1;
-      return parts[idx];
+      for (let i = parts.length - 1; i >= 0; i -= 1) {
+        if (!isCandidateSuffixToken(parts[i])) return toTitleCaseName(parts[i]);
+      }
+      return toTitleCaseName(parts[parts.length - 1]);
     }
 
     // Shared candidate/last-name resolver for hover, selected results, county trend + timeline, and trajectory.
@@ -20067,7 +20225,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return '';
       })();
 
-      const best = rowName || metaName || catalogName || guessedFromKnown || '';
+      const best = normalizeCandidateDisplayName(rowName || metaName || catalogName || guessedFromKnown || '', '');
       const last = shortCandidateLabel(best, partyFallback);
       return last || partyFallback;
     }
@@ -20084,8 +20242,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function fullCandidateLabel(name, fallback = '') {
       const raw = (name || '').toString().trim();
       if (!raw) return fallback;
-      const ticketLead = stripRunningMateName(raw);
-      const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .,\'-]/g, ' ').replace(/\s+/g, ' ').trim();
+      const ticketLead = normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(raw)));
+      const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',-]/g, ' ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
       return toTitleCaseName(cleaned);
     }
@@ -20093,21 +20251,51 @@ document.addEventListener('DOMContentLoaded', function() {
     function toTitleCaseName(raw) {
       const s = (raw || '').toString().trim();
       if (!s) return '';
-      // If it's already mixed-case, keep it.
+      function fixMcToken(token) {
+        if (!token) return token;
+        if (/^Mcc[a-z]+$/.test(token)) return `Mc${token.charAt(2).toUpperCase()}${token.slice(3)}`;
+        if (/^MCC[A-Z]+$/.test(token)) {
+          const lower = token.toLowerCase();
+          return `Mc${lower.charAt(2).toUpperCase()}${lower.slice(3)}`;
+        }
+        return token;
+      }
+      function fixMcInString(value) {
+        const parts = value.split(/(\s+|-)/);
+        return parts.map(part => {
+          if (part === ' ' || part === '-' || /^\s+$/.test(part)) return part;
+          return fixMcToken(part);
+        }).join('');
+      }
+      function titleToken(token) {
+        if (!token) return token;
+        if (token.length <= 1) return /[a-z]/i.test(token) ? token.toUpperCase() : token;
+        const lower = token.toLowerCase();
+        if (lower === "of" || lower === "and" || lower === "the") return lower;
+        if (lower.startsWith("mc") && lower.length > 2) return "Mc" + lower[2].toUpperCase() + lower.slice(3);
+        if (lower.startsWith("o'") && lower.length > 2) return "O'" + lower[2].toUpperCase() + lower.slice(3);
+        const apostropheParts = lower.split("'");
+        return apostropheParts.map(seg => seg ? (seg.charAt(0).toUpperCase() + seg.slice(1)) : seg).join("'");
+      }
+      function normalizeUppercaseTokens(value) {
+        const parts = value.split(/(\s+|-)/);
+        return parts.map(part => {
+          if (part === ' ' || part === '-' || /^\s+$/.test(part)) return part;
+          if (/^[A-Za-z'.]+$/.test(part) && /[A-Z]{2}/.test(part)) return titleToken(part);
+          return part;
+        }).join('');
+      }
       const hasLower = /[a-z]/.test(s);
       const hasUpper = /[A-Z]/.test(s);
-      if (hasLower && hasUpper) return s;
+      if (hasLower && hasUpper) return fixMcInString(normalizeUppercaseTokens(s));
 
       const lower = s.toLowerCase();
-      const parts = lower.split(/(\s+|-)/); // keep separators
+      const parts = lower.split(/(\s+|-)/);
       const titled = parts.map(p => {
         if (p === ' ' || p === '-' || /^\s+$/.test(p)) return p;
-        if (p === "of" || p === "and" || p === "the") return p;
-        if (p.startsWith("mc") && p.length > 2) return "Mc" + p[2].toUpperCase() + p.slice(3);
-        if (p.startsWith("o'") && p.length > 2) return "O'" + p[2].toUpperCase() + p.slice(3);
-        return p.charAt(0).toUpperCase() + p.slice(1);
+        return titleToken(p);
       }).join('');
-      return titled;
+      return fixMcInString(titled);
     }
 
     function displayCountyName(raw) {
@@ -25728,8 +25916,8 @@ document.addEventListener('DOMContentLoaded', function() {
         wireTooltipButtons();
         return;
       }
-      const demCandidate = row[`${contestType}_dem_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Democrat');
-      const repCandidate = row[`${contestType}_rep_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Republican');
+      const demCandidate = normalizeCandidateDisplayName(row[`${contestType}_dem_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Democrat'), 'Democrat');
+      const repCandidate = normalizeCandidateDisplayName(row[`${contestType}_rep_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Republican'), 'Republican');
       setVoteCounterHoverState(
         `Hover: ${countyDisplay} County`,
         `${formatContestLabel(contestType, year)}`,
@@ -25955,15 +26143,21 @@ document.addEventListener('DOMContentLoaded', function() {
         ${splitInsightLine}
         ${demoLine}
       `.trim();
-      const inner = `
-        ${popChangeTopLineDesktop}
-        ${popChangeTopLineMobile}
-        ${votehubCore}
-        <details class="tooltip-more" aria-label="More details">
-          <summary>More details</summary>
-          <div class="tooltip-more-body">${detailLines}</div>
-        </details>
-      `.trim();
+      const inner = pinnedShell
+        ? `
+          ${popChangeTopLineDesktop}
+          ${popChangeTopLineMobile}
+          ${votehubCore}
+          <details class="tooltip-more" aria-label="More details">
+            <summary>More details</summary>
+            <div class="tooltip-more-body">${detailLines}</div>
+          </details>
+        `.trim()
+        : `
+          ${popChangeTopLineDesktop}
+          ${popChangeTopLineMobile}
+          ${votehubCore}
+        `.trim();
 
       const copyText = `${countyDisplay} County`;
       showHoverTooltip(
@@ -26077,8 +26271,8 @@ document.addEventListener('DOMContentLoaded', function() {
         : (demVotes + repVotes + otherVotes);
       const contestOffice = formatContestName(contestType, year);
       const subtitle = `${formatContestLabel(contestType, year)}`;
-      const demCandidate = (row[`${contestType}_dem_candidate`] || getCandidateName(year, contestOffice, 'Democrat') || 'Democratic').toString().trim();
-      const repCandidate = (row[`${contestType}_rep_candidate`] || getCandidateName(year, contestOffice, 'Republican') || 'Republican').toString().trim();
+      const demCandidate = normalizeCandidateDisplayName((row[`${contestType}_dem_candidate`] || getCandidateName(year, contestOffice, 'Democrat') || 'Democratic').toString().trim(), 'Democratic');
+      const repCandidate = normalizeCandidateDisplayName((row[`${contestType}_rep_candidate`] || getCandidateName(year, contestOffice, 'Republican') || 'Republican').toString().trim(), 'Republican');
       const signedMarginPct = Number(row[`${contestType}_margin_pct`]);
       const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
       let prevSignedForFlip = null;
@@ -26327,6 +26521,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const i = contestValue.lastIndexOf('_');
       const contestType = contestValue.substring(0, i);
       const year = contestValue.substring(i + 1);
+      const districtSliceCacheKey = `${normalizeDistrictLinesYear(currentDistrictLinesYear)}|${scope}_${contestType}_${year}`;
+      if (!forceTooltip && !tooltipPinned && isDesktopTooltipMode() && !districtSliceCache.has(districtSliceCacheKey)) {
+        const copyText = `${panelDistrictLabel} ${panelDistrictNum} (Lines ${currentDistrictLinesYear})`;
+        const loadingInner = `<div class="votehub-results-card"><div class="vhr-title">${escapeHtml(formattedDistrictLabel)}</div><div class="vhr-subtitle">${escapeHtml(panelDistrictLabel)}</div><div class="vhr-total">Loading results…</div></div>`;
+        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell('', loadingInner, { pinned: false, copyText }), { context: 'votehub-results', copyText });
+      }
       const node = await loadDistrictSlice(scope, contestType, year);
       if (districtHoverInFlightKey === districtHoverKey) districtHoverInFlightKey = null;
       if (requestId !== districtHoverRequestId) return;
@@ -26410,8 +26610,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      let demCandidate = (row.dem_candidate || '').toString().trim();
-      let repCandidate = (row.rep_candidate || '').toString().trim();
+      let demCandidate = normalizeCandidateDisplayName((row.dem_candidate || '').toString().trim(), '');
+      let repCandidate = normalizeCandidateDisplayName((row.rep_candidate || '').toString().trim(), '');
       if ((!(demCandidate && repCandidate)) && contestType !== 'us_house') {
         try {
           const cand = await getContestCandidates(contestType, year);
@@ -26437,24 +26637,29 @@ document.addEventListener('DOMContentLoaded', function() {
         : resolvedMargin.signed;
       let prevSignedForFlip = null;
       let prevYearForFlip = null;
-      try {
-        const prevCached = await ensurePrevDistrictCache(scope, contestType, Number(year));
-        prevYearForFlip = prevCached?.prevYear || null;
-        const prevResults = prevCached?.prevNode?.general?.results || null;
-        if (prevResults) {
-          const prevRow = prevResults[String(districtNum)] || prevResults[String(Number(districtNum))] || null;
-          if (prevRow) {
-            const prevResolved = resolveWinnerAndSignedMargin(
-              prevRow.margin_pct,
-              prevRow.winner,
-              Number(prevRow.dem_votes || 0),
-              Number(prevRow.rep_votes || 0),
-              Number(prevRow.total_votes || 0)
-            );
-            if (Number.isFinite(Number(prevResolved.signed))) prevSignedForFlip = prevResolved.signed;
+      // Previous-district cache loading can involve extra JSON work. Keep live
+      // hover instant; fetch previous-cycle detail only for pinned/touch-forced
+      // tooltips where the user is intentionally inspecting the district.
+      if (forceTooltip || tooltipPinned || !isDesktopTooltipMode()) {
+        try {
+          const prevCached = await ensurePrevDistrictCache(scope, contestType, Number(year));
+          prevYearForFlip = prevCached?.prevYear || null;
+          const prevResults = prevCached?.prevNode?.general?.results || null;
+          if (prevResults) {
+            const prevRow = prevResults[String(districtNum)] || prevResults[String(Number(districtNum))] || null;
+            if (prevRow) {
+              const prevResolved = resolveWinnerAndSignedMargin(
+                prevRow.margin_pct,
+                prevRow.winner,
+                Number(prevRow.dem_votes || 0),
+                Number(prevRow.rep_votes || 0),
+                Number(prevRow.total_votes || 0)
+              );
+              if (Number.isFinite(Number(prevResolved.signed))) prevSignedForFlip = prevResolved.signed;
+            }
           }
-        }
-      } catch (_) {}
+        } catch (_) {}
+      }
       const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
       const subtitleByScope = scope === 'congressional'
         ? 'Congressional District'
@@ -28200,14 +28405,11 @@ document.addEventListener('DOMContentLoaded', function() {
           renderCountyHoverAtPoint(e);
         });
         
-        let hoverRaf = null;
         map.on('mousemove', 'county-fill', (e) => {
           if (isTouchInteractionMode()) return;
-          if (hoverRaf) return;
-          hoverRaf = requestAnimationFrame(() => {
-            renderCountyHoverAtPoint(e);
-            hoverRaf = null;
-          });
+          lastPointerPoint = e.point;
+          try { updateHoverTooltipPosition(e.point.x, e.point.y); } catch (_) {}
+          renderCountyHoverAtPoint(e);
         });
         
         map.on('mouseleave', 'county-fill', () => {
@@ -29119,15 +29321,11 @@ document.addEventListener('DOMContentLoaded', function() {
         map.on('mousemove', layerId, (e) => {
           if (isTouchInteractionMode()) return;
           lastPrecinctDotHoverEvent = e;
-          if (precinctDotHoverRaf) return;
-          precinctDotHoverRaf = requestAnimationFrame(() => {
-            precinctDotHoverRaf = null;
-            const evt = lastPrecinctDotHoverEvent;
-            if (!evt) return;
-            const feature = evt.features?.[0];
-            if (!feature || !evt.point) return;
-            renderPrecinctHoverAtPoint(evt.point, feature);
-          });
+          const feature = e.features?.[0];
+          if (!feature || !e.point) return;
+          lastPointerPoint = e.point;
+          try { updateHoverTooltipPosition(e.point.x, e.point.y); } catch (_) {}
+          renderPrecinctHoverAtPoint(e.point, feature);
         });
         map.on('click', layerId, (e) => {
           try {
@@ -29453,14 +29651,13 @@ document.addEventListener('DOMContentLoaded', function() {
           map.getCanvas().style.cursor = 'pointer';
           queueHoverRefresh();
         });
-        let districtHoverRaf = null;
         map.on('mousemove', 'district-fill', (e) => {
           if (isTouchInteractionMode()) return;
-          if (districtHoverRaf) return;
-          districtHoverRaf = requestAnimationFrame(() => {
-            queueHoverRefresh();
-            districtHoverRaf = null;
-          });
+          lastPointerPoint = e.point;
+          try { updateHoverTooltipPosition(e.point.x, e.point.y); } catch (_) {}
+          // The global map mousemove already queues the shared hover refresh.
+          // Do not queue a second layer-level refresh here; double work is what
+          // made the tooltip trail behind the cursor.
         });
         
         map.on('mouseleave', 'district-fill', () => {
@@ -29573,14 +29770,13 @@ document.addEventListener('DOMContentLoaded', function() {
           map.getCanvas().style.cursor = 'pointer';
           queueHoverRefresh();
         });
-        let stateHouseHoverRaf = null;
         map.on('mousemove', 'state-house-fill', (e) => {
           if (isTouchInteractionMode()) return;
-          if (stateHouseHoverRaf) return;
-          stateHouseHoverRaf = requestAnimationFrame(() => {
-            queueHoverRefresh();
-            stateHouseHoverRaf = null;
-          });
+          lastPointerPoint = e.point;
+          try { updateHoverTooltipPosition(e.point.x, e.point.y); } catch (_) {}
+          // The global map mousemove already queues the shared hover refresh.
+          // Do not queue a second layer-level refresh here; double work is what
+          // made the tooltip trail behind the cursor.
         });
         
         map.on('mouseleave', 'state-house-fill', () => {
@@ -29693,14 +29889,13 @@ document.addEventListener('DOMContentLoaded', function() {
           map.getCanvas().style.cursor = 'pointer';
           queueHoverRefresh();
         });
-        let stateSenateHoverRaf = null;
         map.on('mousemove', 'state-senate-fill', (e) => {
           if (isTouchInteractionMode()) return;
-          if (stateSenateHoverRaf) return;
-          stateSenateHoverRaf = requestAnimationFrame(() => {
-            queueHoverRefresh();
-            stateSenateHoverRaf = null;
-          });
+          lastPointerPoint = e.point;
+          try { updateHoverTooltipPosition(e.point.x, e.point.y); } catch (_) {}
+          // The global map mousemove already queues the shared hover refresh.
+          // Do not queue a second layer-level refresh here; double work is what
+          // made the tooltip trail behind the cursor.
         });
         
         map.on('mouseleave', 'state-senate-fill', () => {
@@ -30437,6 +30632,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let hoverTooltipLastLeft = null;
     let hoverTooltipLastTop = null;
 
+    function getHoverTooltipEstimatedSize(context = '') {
+      const isVotehub = String(context || '') === 'votehub-results';
+      const w = Math.min(window.innerWidth - 24, isVotehub ? 310 : 360);
+      const h = Math.min(window.innerHeight - 24, isVotehub ? 260 : 320);
+      return { width: Math.max(220, w), height: Math.max(140, h) };
+    }
+
     function suppressHoverTooltip(key, x, y, { ms = 30000 } = {}) {
       const k = (key || '').toString().trim();
       if (!k) return;
@@ -30481,18 +30683,18 @@ document.addEventListener('DOMContentLoaded', function() {
       try { document.body.classList.toggle('hover-preview-active', !pinned); } catch (_) {}
       try { wireDesktopTooltipExpandOnClick(); } catch (_) {}
        
-      // Measure once per rebuilt tooltip, then use the cached dimensions on mousemove.
-      // Re-reading getBoundingClientRect() for every pointer event caused hover to trail
-      // across counties, precincts, and districts after the heavier PA skin was merged.
-      const tooltipRect = tooltip.getBoundingClientRect();
-      hoverTooltipMeasuredWidth = Number(tooltipRect.width) || tooltip.offsetWidth || 0;
-      hoverTooltipMeasuredHeight = Number(tooltipRect.height) || tooltip.offsetHeight || 0;
+      // Do not force layout here. Measuring the freshly written tooltip with
+      // getBoundingClientRect() on every feature transition was the biggest
+      // source of hover delay. Use stable estimates for edge-flipping instead.
+      const estimated = getHoverTooltipEstimatedSize(context);
+      hoverTooltipMeasuredWidth = estimated.width;
+      hoverTooltipMeasuredHeight = estimated.height;
       const padding = 15;
-      
+
       let left = x + padding;
       let top = y + padding;
-      
-      // Adjust if tooltip would go off screen
+
+      // Adjust if tooltip would go off screen.
       if (left + hoverTooltipMeasuredWidth > window.innerWidth) {
         left = x - hoverTooltipMeasuredWidth - padding;
       }
@@ -30635,9 +30837,10 @@ document.addEventListener('DOMContentLoaded', function() {
       if (tooltipPinned) return;
       
       const padding = 15;
-      const width = hoverTooltipMeasuredWidth || tooltip.offsetWidth || 0;
-      const height = hoverTooltipMeasuredHeight || tooltip.offsetHeight || 0;
-      
+      const fallbackSize = getHoverTooltipEstimatedSize(tooltip.dataset?.context || '');
+      const width = hoverTooltipMeasuredWidth || fallbackSize.width;
+      const height = hoverTooltipMeasuredHeight || fallbackSize.height;
+
       let left = x + padding;
       let top = y + padding;
       
@@ -31875,8 +32078,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	          [`${contestType}_rep`]: Number(r.rep_votes) || 0,
 	          [`${contestType}_other`]: Number(r.other_votes) || 0,
 	          [`${contestType}_total`]: Number(r.total_votes) || 0,
-	          [`${contestType}_dem_candidate`]: r.dem_candidate || '',
-	          [`${contestType}_rep_candidate`]: r.rep_candidate || '',
+	          [`${contestType}_dem_candidate`]: normalizeCandidateDisplayName(r.dem_candidate, ''),
+	          [`${contestType}_rep_candidate`]: normalizeCandidateDisplayName(r.rep_candidate, ''),
 	          [`${contestType}_margin`]: Number(r.margin) || 0,
 	          [`${contestType}_margin_pct`]: Number(r.margin_pct) || 0,
 	          [`${contestType}_winner`]: r.winner || '',
