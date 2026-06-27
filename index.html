@@ -656,6 +656,18 @@ body { height: var(--app-height); }
   display: inline-flex;
   align-items: center;
 }
+.hover-tooltip .tooltip-title-wrap.tooltip-title-stack {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.hover-tooltip .tooltip-subtitle {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+}
 .hover-tooltip .tooltip-title-badge {
   display: inline-flex;
   align-items: center;
@@ -11125,6 +11137,18 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
+    function getDistrictTooltipMeta(scope, districtNum, fallbackLabel = 'District') {
+      const raw = String(districtNum || '').trim();
+      const numeric = Number(raw);
+      const normalized = Number.isFinite(numeric) ? String(numeric) : raw;
+      const pad2 = Number.isFinite(numeric) ? String(numeric).padStart(2, '0') : normalized;
+      if (scope === 'congressional') return { title: `PA-${pad2}`, subtitle: 'Congressional District' };
+      if (scope === 'state_house') return { title: `HD-${normalized}`, subtitle: 'State House' };
+      if (scope === 'state_senate') return { title: `SD-${pad2}`, subtitle: 'State Senate' };
+      const base = String(fallbackLabel || 'District').trim();
+      return { title: `${base} ${normalized}`.trim(), subtitle: base };
+    }
+
     async function renderDistrictHover(e, scope, districtLabel, districtFieldCandidates, { forceTooltip = false } = {}) {
       if (!(e.features && e.features[0])) return;
       const props = e.features[0].properties || {};
@@ -11136,9 +11160,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const contestValue = document.getElementById('contestSelect')?.value || '';
       const _demoRow = getDistrictDemographics(scope, districtNum);
       const _demoHTML = buildDemoHTML(_demoRow);
+      const districtTooltipMeta = getDistrictTooltipMeta(scope, districtNum, districtLabel);
       if (!contestValue) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${districtLabel} ${districtNum}`,
-          _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>'), { force: !!forceTooltip });
+        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(districtTooltipMeta.title,
+          _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>', { titleHtml: buildTooltipTitleHTML(districtTooltipMeta.title, districtTooltipMeta.subtitle) }), { force: !!forceTooltip });
         wireTooltipButtons();
         return;
       }
@@ -11160,8 +11185,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       if (!row) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${districtLabel} ${districtNum}`,
-          _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>'), { force: !!forceTooltip });
+        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(districtTooltipMeta.title,
+          _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>', { titleHtml: buildTooltipTitleHTML(districtTooltipMeta.title, districtTooltipMeta.subtitle) }), { force: !!forceTooltip });
         wireTooltipButtons();
         return;
       }
@@ -11171,8 +11196,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const otherVotes = Number(row.other_votes || 0);
       const totalVotes = Number(row.total_votes || 0);
       if (totalVotes <= 0) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${districtLabel} ${districtNum}`,
-          _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>'), { force: !!forceTooltip });
+        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(districtTooltipMeta.title,
+          _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>', { titleHtml: buildTooltipTitleHTML(districtTooltipMeta.title, districtTooltipMeta.subtitle) }), { force: !!forceTooltip });
         wireTooltipButtons();
         return;
       }
@@ -11228,10 +11253,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       const candidateResultsHtml = renderCandidateResultsTooltipHTML(row, {
-        title: (scope === 'congressional')
-          ? `PA-${String(Number(districtNum)).padStart(2, '0')}`
-          : `${districtLabel} ${districtNum}`,
-        areaLabel: (scope === 'congressional' ? 'Congressional District' : (scope === 'state_house' ? 'State House District' : 'State Senate District')),
+        title: districtTooltipMeta.title,
+        areaLabel: districtTooltipMeta.subtitle,
         prevSignedMarginPct: prevSignedForFlip,
         currentSignedMarginPct: signedMarginPct,
         flipYearLabel: prevYearForFlip || '',
@@ -14084,14 +14107,22 @@ document.addEventListener('DOMContentLoaded', function() {
       tooltip.setAttribute('data-pinned', tooltipPinned ? '1' : '0');
     }
 
+    function buildTooltipTitleHTML(title, subtitle = '') {
+      const safeTitle = escapeHtml((title || '').toString().trim());
+      const safeSubtitle = escapeHtml((subtitle || '').toString().trim());
+      if (!safeSubtitle) return `<div class="tooltip-title">${safeTitle}</div>`;
+      return `<div class="tooltip-title"><div class="tooltip-title-wrap tooltip-title-stack"><span class="tooltip-title-main">${safeTitle}</span><span class="tooltip-subtitle">${safeSubtitle}</span></div></div>`;
+    }
+
     function buildTooltipShell(title, innerHtml, options = {}) {
       const pinned = options && options.pinned === true;
       const showClose = !!(pinned || options.showClose === true);
       const copyText = (options && options.copyText ? String(options.copyText || '') : '').trim();
+      const titleHtml = (options && options.titleHtml ? String(options.titleHtml) : `<div class="tooltip-title">${title}</div>`);
       if (isDesktopTooltipMode()) {
         return `
           <div class="tooltip-head">
-            <div class="tooltip-title">${title}</div>
+            ${titleHtml}
             ${showClose ? `
               <div class="tooltip-actions">
                 ${(pinned && copyText) ? `<button class="tooltip-btn" id="tooltip-copy-btn" type="button" aria-label="Copy selection label">Copy</button>` : ''}
@@ -14105,7 +14136,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const headClass = pinned ? 'is-pinned' : (showClose ? 'is-classic' : 'is-compact');
       return `
         <div class="tooltip-head ${headClass}">
-          <div class="tooltip-title">${title}</div>
+          ${titleHtml}
           ${showClose ? `
             <div class="tooltip-actions">
               ${(pinned && copyText) ? `<button class="tooltip-btn" id="tooltip-copy-btn" type="button" aria-label="Copy selection label">Copy</button>` : ''}
