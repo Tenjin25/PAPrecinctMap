@@ -9667,9 +9667,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="map-topbar-details" id="map-topbar-details">
       <div class="map-topbar-hints" aria-label="Search examples">
         <button type="button" class="fly-search-chip" data-search-example="Allegheny">Allegheny</button>
-        <button type="button" class="fly-search-chip" data-search-example="CD 11">CD 11</button>
-        <button type="button" class="fly-search-chip" data-search-example="HD 98">HD 98</button>
-        <button type="button" class="fly-search-chip" data-search-example="SD 5">SD 5</button>
+        <button type="button" class="fly-search-chip" data-search-example="CD 12">CD 12</button>
+        <button type="button" class="fly-search-chip" data-search-example="HD 20">HD 20</button>
+        <button type="button" class="fly-search-chip" data-search-example="SD 42">SD 42</button>
         <button type="button" class="fly-search-chip" data-search-example="Allegheny 01-01">Allegheny 01-01</button>
       </div>
       <div class="context-banner" id="context-banner" aria-label="Current map state">
@@ -20753,6 +20753,45 @@ document.addEventListener('DOMContentLoaded', function() {
       return 'T';
     }
 
+    function parseWinnerCode(rawWinner) {
+      const w = (rawWinner || '').toString().trim().toUpperCase();
+      if (!w) return '';
+      if (w === 'R' || w.startsWith('REP')) return 'R';
+      if (w === 'D' || w.startsWith('DEM')) return 'D';
+      if (w === 'T' || w.startsWith('TIE')) return 'T';
+      return '';
+    }
+
+    function resolveWinnerAndSignedMargin(rawMarginPct, rawWinner, demVotes, repVotes, totalVotes) {
+      const fromVotes = signedMarginPctFromVotes(demVotes, repVotes, totalVotes);
+      const winnerCode = parseWinnerCode(rawWinner);
+      const marginNum = Number(rawMarginPct);
+
+      if (winnerCode === 'R') {
+        return {
+          winner: 'R',
+          signed: Number.isFinite(marginNum) ? Math.abs(marginNum) : Math.abs(fromVotes)
+        };
+      }
+      if (winnerCode === 'D') {
+        return {
+          winner: 'D',
+          signed: Number.isFinite(marginNum) ? -Math.abs(marginNum) : -Math.abs(fromVotes)
+        };
+      }
+      if (winnerCode === 'T') {
+        return { winner: 'T', signed: 0 };
+      }
+
+      if (Number.isFinite(fromVotes) && fromVotes !== 0) {
+        return { winner: winnerFromSignedMarginPct(fromVotes), signed: fromVotes };
+      }
+      if (Number.isFinite(marginNum) && marginNum !== 0) {
+        return { winner: winnerFromSignedMarginPct(marginNum), signed: marginNum };
+      }
+      return { winner: 'T', signed: 0 };
+    }
+
     function flipInfo(prevSignedPct, curSignedPct) {
       const from = winnerFromSignedMarginPct(prevSignedPct);
       const to = winnerFromSignedMarginPct(curSignedPct);
@@ -26335,9 +26374,10 @@ document.addEventListener('DOMContentLoaded', function() {
         { kind: 'district', scope, districtNum: Number(districtNum), contestType, year: Number(year) }
       );
 
+      const resolvedMargin = resolveWinnerAndSignedMargin(row.margin_pct, row.winner, demVotes, repVotes, totalVotes);
       const signedMarginPct = (scope === 'state_house' && Number(districtNum) === 97)
         ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes)
-        : (('margin_pct' in row) ? Number(row.margin_pct || 0) : signedMarginPctFromVotes(demVotes, repVotes, totalVotes));
+        : resolvedMargin.signed;
       let prevSignedForFlip = null;
       let prevYearForFlip = null;
       try {
@@ -26347,8 +26387,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (prevResults) {
           const prevRow = prevResults[String(districtNum)] || prevResults[String(Number(districtNum))] || null;
           if (prevRow) {
-            const prevSignedRaw = Number(prevRow.margin_pct);
-            if (Number.isFinite(prevSignedRaw)) prevSignedForFlip = prevSignedRaw;
+            const prevResolved = resolveWinnerAndSignedMargin(
+              prevRow.margin_pct,
+              prevRow.winner,
+              Number(prevRow.dem_votes || 0),
+              Number(prevRow.rep_votes || 0),
+              Number(prevRow.total_votes || 0)
+            );
+            if (Number.isFinite(Number(prevResolved.signed))) prevSignedForFlip = prevResolved.signed;
           }
         }
       } catch (_) {}
@@ -30756,14 +30802,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const demPct = (demVotes / totalVotes) * 100.0;
       const repPct = (repVotes / totalVotes) * 100.0;
       const othPct = (otherVotes / totalVotes) * 100.0;
-      const signedRaw = Number(row.margin_pct);
-      const signedMarginPct = String(options?.marginPrecision || '').toLowerCase() === 'county'
-        ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes)
-        : (Number.isFinite(signedRaw)
-          ? signedRaw
-          : signedMarginPctFromVotes(demVotes, repVotes, totalVotes));
-      const marginPct = Math.abs(signedMarginPct);
       const useCountyMarginPrecision = String(options?.marginPrecision || '').toLowerCase() === 'county';
+      const resolvedMargin = resolveWinnerAndSignedMargin(row.margin_pct, row.winner, demVotes, repVotes, totalVotes);
+      const signedMarginPct = useCountyMarginPrecision
+        ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes)
+        : resolvedMargin.signed;
+      const marginPct = Math.abs(signedMarginPct);
       const rawMarginPctForDisplay = marginPctValue(repVotes, demVotes, totalVotes);
       const demPctLabel = useCountyMarginPrecision ? formatPctForCountyCloseRace(demPct, rawMarginPctForDisplay) : formatPctForCloseRace(demPct, rawMarginPctForDisplay);
       const repPctLabel = useCountyMarginPrecision ? formatPctForCountyCloseRace(repPct, rawMarginPctForDisplay) : formatPctForCloseRace(repPct, rawMarginPctForDisplay);
@@ -33382,9 +33426,9 @@ document.addEventListener('DOMContentLoaded', function() {
             totalVotes += rowTotalVotes;
             currentDistrictTurnoutTotals[String(Number(districtId))] = rowTotalVotes;
 
-            const signed = ('margin_pct' in row) ? Number(row.margin_pct || 0) : signedMarginPctFromVotes(demVotes, repVotes, rowTotalVotes);
-            const winnerRaw = (row.winner || '').toString().toUpperCase();
-            const winner = winnerRaw.startsWith('REP') ? 'R' : (winnerRaw.startsWith('DEM') ? 'D' : winnerFromSignedMarginPct(signed));
+            const resolvedMargin = resolveWinnerAndSignedMargin(row.margin_pct, row.winner, demVotes, repVotes, rowTotalVotes);
+            const signed = resolvedMargin.signed;
+            const winner = resolvedMargin.winner;
             let color = '#e0e0e0';
             const districtNum = Number(districtId);
             if (mode === 'demographics') {
@@ -33400,14 +33444,30 @@ document.addEventListener('DOMContentLoaded', function() {
               );
             } else if (mode === 'flips') {
               const prevRow = prevResults ? (prevResults[String(districtId)] || prevResults[String(Number(districtId))] || null) : null;
-              const prevSigned = prevRow ? Number(prevRow.margin_pct || 0) : 0;
+              const prevSigned = prevRow
+                ? resolveWinnerAndSignedMargin(
+                    prevRow.margin_pct,
+                    prevRow.winner,
+                    Number(prevRow.dem_votes || 0),
+                    Number(prevRow.rep_votes || 0),
+                    Number(prevRow.total_votes || 0)
+                  ).signed
+                : 0;
               const f = flipInfo(prevSigned, signed);
               color = f.flipped ? colorForFlipMode(f.to) : colorForFlipMode('T');
             } else if (mode === 'winners') {
               color = colorForWinnerMode(winner);
             } else if (mode === 'shift' && prevResults && prevYear) {
               const prevRow = prevResults[String(districtId)] || prevResults[String(Number(districtId))] || null;
-              const prevSigned = prevRow ? Number(prevRow.margin_pct || 0) : 0;
+              const prevSigned = prevRow
+                ? resolveWinnerAndSignedMargin(
+                    prevRow.margin_pct,
+                    prevRow.winner,
+                    Number(prevRow.dem_votes || 0),
+                    Number(prevRow.rep_votes || 0),
+                    Number(prevRow.total_votes || 0)
+                  ).signed
+                : 0;
               color = colorForShiftMode(signed - prevSigned);
             } else {
               color = colorForMarginMode(Math.abs(signed), winner === 'T' ? 'R' : winner);
