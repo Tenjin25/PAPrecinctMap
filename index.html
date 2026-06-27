@@ -10632,6 +10632,10 @@ document.addEventListener('DOMContentLoaded', function() {
       // Keep tooltip following the cursor and refresh hovered feature without requiring
       // leaving/re-entering a layer (especially helpful for district layers).
       try { updateHoverTooltipPosition(e.point.x, e.point.y); } catch (_) {}
+      // County mode has its own layer-level hover handler. Avoid a second
+      // queryRenderedFeatures + tooltip rebuild on every mousemove, which makes
+      // county hover feel behind the cursor after the PA theme merge.
+      if (currentView === 'counties' && !precinctsEnabled) return;
       queueHoverRefresh();
     });
     map.on('move', () => {
@@ -23767,10 +23771,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let precinctHoverFeatureId = null; // feature-state hover on precinct polygons (performance-friendly)
     let lastPrecinctHoverKey = null;
     let lastPrecinctHoverRenderedAt = 0;
-    const PRECINCT_HOVER_THROTTLE_MS = 75;
+    const PRECINCT_HOVER_THROTTLE_MS = 0; // Keep precinct hover immediate; same-feature rebuilds are skipped by key.
     let lastCountyHoverKey = null;
     let lastCountyHoverRenderedAt = 0;
-    const COUNTY_HOVER_THROTTLE_MS = 55;
+    let lastCountyHoverOutlineNorm = null;
+    const COUNTY_HOVER_THROTTLE_MS = 0; // County hover should update immediately when crossing county boundaries.
+    let lastDistrictHoverKey = null;
+    let districtHoverInFlightKey = null;
+    let lastDistrictHoverRenderedAt = 0;
+    const DISTRICT_HOVER_THROTTLE_MS = 0; // Same-district rebuilds are skipped; district-to-district updates are immediate.
 
     // Desktop: allow click-to-expand (pin) for collapsed hover cards without changing map click behavior.
     let desktopHoverExpandState = null; // { kind, x, y, title, expandedInner, copyText }
@@ -23812,8 +23821,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function clearHoverOutline() {
-      if (lastHoverOutlineKey === null) return;
+      if (lastHoverOutlineKey === null) {
+        lastDistrictHoverKey = null;
+        districtHoverInFlightKey = null;
+        lastCountyHoverOutlineNorm = null;
+        return;
+      }
       lastHoverOutlineKey = null;
+      lastDistrictHoverKey = null;
+      districtHoverInFlightKey = null;
+      lastCountyHoverOutlineNorm = null;
       HOVER_OUTLINE_LAYER_IDS.forEach(id => setLayerVisibilityIfExists(id, 'none'));
       clearPrecinctHoverFeature();
     }
@@ -25618,7 +25635,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const props = e.features[0].properties || {};
       const countyName = props.NAME20 || props.CountyName || props.COUNTYNAME || props.county_nam || props.NAME || props.name || 'Unknown County';
       const countyDisplay = displayCountyName(countyName);
-      setCountyHoverOutline(countyName);
       const norm = (countyName || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
       let row = currentElectionResults ? currentElectionResults[norm] : null;
       if (!row && currentElectionResults) {
@@ -25633,20 +25649,24 @@ document.addEventListener('DOMContentLoaded', function() {
       const contestValue = document.getElementById('contestSelect')?.value || '';
 
       // Avoid rebuilding the same county tooltip repeatedly while the pointer moves within one county.
+      // Do not debounce county-to-county transitions: that delay was the visible hover lag.
       try {
+        if (norm && norm !== lastCountyHoverOutlineNorm) {
+          setCountyHoverOutline(countyName);
+          lastCountyHoverOutlineNorm = norm;
+        }
         const hoverKey = `${norm}|${contestValue}|${currentVizMode}|${isDesktopTooltipMode() ? 'd' : 'm'}|p${tooltipPinned ? '1' : '0'}`;
         const tooltip = document.getElementById('hover-tooltip');
         const tooltipVisible = !!tooltip && tooltip.style.display !== 'none' && (tooltip.innerHTML || '').trim().length > 0;
         const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
 
-        if (!forceTooltip && !tooltipPinned && tooltipVisible) {
-          if (hoverKey === lastCountyHoverKey) return;
-          if (now - lastCountyHoverRenderedAt < COUNTY_HOVER_THROTTLE_MS) return;
-        }
+        if (!forceTooltip && !tooltipPinned && tooltipVisible && hoverKey === lastCountyHoverKey) return;
 
         lastCountyHoverKey = hoverKey;
         lastCountyHoverRenderedAt = now;
-      } catch (_) {}
+      } catch (_) {
+        try { setCountyHoverOutline(countyName); } catch (__) {}
+      }
 
       if (!contestValue || !row) {
         const hoverTitle = buildTooltipTitleWithTier(`${countyDisplay} County`);
@@ -26201,15 +26221,37 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
 
+    let hoverRefreshRunning = false;
+    let hoverRefreshQueuedAfterRun = false;
+    let hoverRefreshQueuedForceAfterRun = false;
     function queueHoverRefresh({ forceTooltip = false } = {}) {
       if (isTouchInteractionMode() && !tooltipPinned && !forceTooltip) return;
+      if (hoverRefreshRunning) {
+        // Coalesce rapid mousemove events while an async hover render is resolving.
+        // Always run one final refresh at the latest pointer position so the tooltip
+        // does not trail behind when crossing district/precinct boundaries.
+        hoverRefreshQueuedAfterRun = true;
+        hoverRefreshQueuedForceAfterRun = hoverRefreshQueuedForceAfterRun || !!forceTooltip;
+        return;
+      }
       if (hoverRefreshRaf) return;
       hoverRefreshRaf = requestAnimationFrame(async () => {
         hoverRefreshRaf = null;
+        hoverRefreshRunning = true;
         try {
-          if (precinctsEnabled && map && typeof map.isMoving === 'function' && map.isMoving()) return;
-        } catch (_) {}
-        await refreshHoverAtPointer({ forceTooltip });
+          if (!(precinctsEnabled && map && typeof map.isMoving === 'function' && map.isMoving())) {
+            await refreshHoverAtPointer({ forceTooltip });
+          }
+        } catch (_) {
+        } finally {
+          hoverRefreshRunning = false;
+          if (hoverRefreshQueuedAfterRun) {
+            const queuedForce = !!hoverRefreshQueuedForceAfterRun;
+            hoverRefreshQueuedAfterRun = false;
+            hoverRefreshQueuedForceAfterRun = false;
+            queueHoverRefresh({ forceTooltip: queuedForce });
+          }
+        }
       });
     }
 
@@ -26218,9 +26260,23 @@ document.addEventListener('DOMContentLoaded', function() {
       const props = e.features[0].properties || {};
       const districtNum = getDistrictNumberFromPropsCandidates(props, districtFieldCandidates);
       if (!districtNum) return;
-      const requestId = ++districtHoverRequestId;
       setDistrictHoverOutline(scope, districtNum);
 
+      const contestValueForKey = document.getElementById('contestSelect')?.value || '';
+      const districtHoverKey = `${scope}|${String(districtNum)}|${contestValueForKey}|${currentVizMode}|${currentDistrictLinesYear}|${isDesktopTooltipMode() ? 'd' : 'm'}|p${tooltipPinned ? '1' : '0'}`;
+      try {
+        const tooltip = document.getElementById('hover-tooltip');
+        const tooltipVisible = !!tooltip && tooltip.style.display !== 'none' && (tooltip.innerHTML || '').trim().length > 0;
+        const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+        if (!forceTooltip && !tooltipPinned && districtHoverKey === lastDistrictHoverKey && tooltipVisible) return;
+        if (!forceTooltip && districtHoverKey === districtHoverInFlightKey) return;
+        if (!forceTooltip && tooltipVisible && now - lastDistrictHoverRenderedAt < DISTRICT_HOVER_THROTTLE_MS) return;
+        lastDistrictHoverKey = districtHoverKey;
+        districtHoverInFlightKey = districtHoverKey;
+        lastDistrictHoverRenderedAt = now;
+      } catch (_) {}
+
+      const requestId = ++districtHoverRequestId;
       const districtNumText = String(districtNum);
       const paddedDistrictNum = districtNumText.padStart(2, '0');
       const formattedDistrictLabel = scope === 'congressional'
@@ -26272,6 +26328,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const contestType = contestValue.substring(0, i);
       const year = contestValue.substring(i + 1);
       const node = await loadDistrictSlice(scope, contestType, year);
+      if (districtHoverInFlightKey === districtHoverKey) districtHoverInFlightKey = null;
       if (requestId !== districtHoverRequestId) return;
       const results = node?.general?.results || {};
 
@@ -28158,6 +28215,8 @@ document.addEventListener('DOMContentLoaded', function() {
           hideHoverTooltip();
           clearVoteCounterHoverState();
           clearHoverOutline();
+          lastCountyHoverKey = null;
+          lastCountyHoverOutlineNorm = null;
         });
       }
       ensureSplitTicketOverlayLayers();
@@ -29406,6 +29465,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         map.on('mouseleave', 'district-fill', () => {
           districtHoverRequestId++;
+          lastDistrictHoverKey = null;
+          districtHoverInFlightKey = null;
           map.getCanvas().style.cursor = '';
           hideHoverTooltip();
           clearVoteCounterHoverState();
@@ -29524,6 +29585,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         map.on('mouseleave', 'state-house-fill', () => {
           districtHoverRequestId++;
+          lastDistrictHoverKey = null;
+          districtHoverInFlightKey = null;
           map.getCanvas().style.cursor = '';
           hideHoverTooltip();
           clearVoteCounterHoverState();
@@ -29642,6 +29705,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         map.on('mouseleave', 'state-senate-fill', () => {
           districtHoverRequestId++;
+          lastDistrictHoverKey = null;
+          districtHoverInFlightKey = null;
           map.getCanvas().style.cursor = '';
           hideHoverTooltip();
           clearVoteCounterHoverState();
@@ -30367,6 +30432,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Hover Tooltip Functions - VoteHub Style
     const hoverTooltipSuppression = { key: '', x: 0, y: 0, until: 0 };
+    let hoverTooltipMeasuredWidth = 0;
+    let hoverTooltipMeasuredHeight = 0;
+    let hoverTooltipLastLeft = null;
+    let hoverTooltipLastTop = null;
 
     function suppressHoverTooltip(key, x, y, { ms = 30000 } = {}) {
       const k = (key || '').toString().trim();
@@ -30412,23 +30481,29 @@ document.addEventListener('DOMContentLoaded', function() {
       try { document.body.classList.toggle('hover-preview-active', !pinned); } catch (_) {}
       try { wireDesktopTooltipExpandOnClick(); } catch (_) {}
        
-      // Position tooltip near mouse but avoid edges
+      // Measure once per rebuilt tooltip, then use the cached dimensions on mousemove.
+      // Re-reading getBoundingClientRect() for every pointer event caused hover to trail
+      // across counties, precincts, and districts after the heavier PA skin was merged.
       const tooltipRect = tooltip.getBoundingClientRect();
+      hoverTooltipMeasuredWidth = Number(tooltipRect.width) || tooltip.offsetWidth || 0;
+      hoverTooltipMeasuredHeight = Number(tooltipRect.height) || tooltip.offsetHeight || 0;
       const padding = 15;
       
       let left = x + padding;
       let top = y + padding;
       
       // Adjust if tooltip would go off screen
-      if (left + tooltipRect.width > window.innerWidth) {
-        left = x - tooltipRect.width - padding;
+      if (left + hoverTooltipMeasuredWidth > window.innerWidth) {
+        left = x - hoverTooltipMeasuredWidth - padding;
       }
-      if (top + tooltipRect.height > window.innerHeight) {
-        top = y - tooltipRect.height - padding;
+      if (top + hoverTooltipMeasuredHeight > window.innerHeight) {
+        top = y - hoverTooltipMeasuredHeight - padding;
       }
       
-      tooltip.style.left = left + 'px';
-      tooltip.style.top = top + 'px';
+      hoverTooltipLastLeft = Math.round(left);
+      hoverTooltipLastTop = Math.round(top);
+      tooltip.style.left = hoverTooltipLastLeft + 'px';
+      tooltip.style.top = hoverTooltipLastTop + 'px';
     }
 
     function hideHoverTooltip() {
@@ -30436,6 +30511,10 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!tooltip) return;
       if (tooltipPinned) return;
       tooltip.style.display = 'none';
+      hoverTooltipMeasuredWidth = 0;
+      hoverTooltipMeasuredHeight = 0;
+      hoverTooltipLastLeft = null;
+      hoverTooltipLastTop = null;
       clearDesktopHoverExpandState();
       try { tooltip.dataset.context = ''; } catch (_) {}
       try { tooltip.dataset.copyText = ''; } catch (_) {}
@@ -30555,19 +30634,25 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!tooltip || tooltip.style.display === 'none') return;
       if (tooltipPinned) return;
       
-      const tooltipRect = tooltip.getBoundingClientRect();
       const padding = 15;
+      const width = hoverTooltipMeasuredWidth || tooltip.offsetWidth || 0;
+      const height = hoverTooltipMeasuredHeight || tooltip.offsetHeight || 0;
       
       let left = x + padding;
       let top = y + padding;
       
-      if (left + tooltipRect.width > window.innerWidth) {
-        left = x - tooltipRect.width - padding;
+      if (left + width > window.innerWidth) {
+        left = x - width - padding;
       }
-      if (top + tooltipRect.height > window.innerHeight) {
-        top = y - tooltipRect.height - padding;
+      if (top + height > window.innerHeight) {
+        top = y - height - padding;
       }
       
+      left = Math.round(left);
+      top = Math.round(top);
+      if (left === hoverTooltipLastLeft && top === hoverTooltipLastTop) return;
+      hoverTooltipLastLeft = left;
+      hoverTooltipLastTop = top;
       tooltip.style.left = left + 'px';
       tooltip.style.top = top + 'px';
     }
