@@ -9644,7 +9644,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="map-topbar-badge">Keystone State Explorer</div>
       <div class="map-topbar-copy">
         <strong>Fly to a county, district, or precinct</strong>
-        <span>Try Allegheny, CD 8, HD 20, SD 5, or Allegheny 01-01.</span>
+        <span>Try Allegheny, CD 12, HD 20, SD 42, or Allegheny 01-01.</span>
       </div>
     </div>
     <form class="fly-search-bar" id="fly-search-form" role="search">
@@ -9666,9 +9666,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <button type="button" class="mobile-topbar-toggle" id="mobile-topbar-toggle" aria-controls="map-topbar-details" aria-expanded="false">Show details</button>
     <div class="map-topbar-details" id="map-topbar-details">
       <div class="map-topbar-hints" aria-label="Search examples">
-        <button type="button" class="fly-search-chip" data-search-example="Centre">Centre</button>>
+        <button type="button" class="fly-search-chip" data-search-example="Montour">Montour</button>
         <button type="button" class="fly-search-chip" data-search-example="CD 8">CD 8</button>
-        <button type="button" class="fly-search-chip" data-search-example="HD 20">HD 20</button>
+        <button type="button" class="fly-search-chip" data-search-example="HD 68">HD 68</button>
         <button type="button" class="fly-search-chip" data-search-example="SD 5">SD 5</button>
         <button type="button" class="fly-search-chip" data-search-example="Allegheny 01-01">Allegheny 01-01</button>
       </div>
@@ -9745,9 +9745,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="desktop-fly-helper">Jump to counties, districts, or precincts without changing the selected contest.</div>
                 <div class="desktop-quick-stats" data-viewport-precinct-count>Viewing precincts...</div>
                 <div class="desktop-fly-chip-row" aria-label="Fly-to examples">
-                  <button class="desktop-fly-chip" type="button" data-search-example="Allegheny">Allegheny</button>
+                  <button class="desktop-fly-chip" type="button" data-search-example="Montour">Montour</button>
                   <button class="desktop-fly-chip" type="button" data-search-example="CD 8">CD 8</button>
-                  <button class="desktop-fly-chip" type="button" data-search-example="HD 20">HD 20</button>
+                  <button class="desktop-fly-chip" type="button" data-search-example="HD 68">HD 68</button>
                   <button class="desktop-fly-chip" type="button" data-search-example="SD 5">SD 5</button>
                   <button class="desktop-fly-chip" type="button" data-search-example="Allegheny 01-01">Allegheny 01-01</button>
                 </div>
@@ -10228,16 +10228,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-06-21-1';
-    const APP_BUILD_ID = '2026-06-14-1';
+    const DATA_CACHE_BUSTER = '2026-06-27-3';
+    const APP_BUILD_ID = '2026-06-27-3';
 
     function withCacheBuster(path) {
       const p = (path || '').toString().trim();
       if (!p) return p;
       if (/^mapbox:\/\//i.test(p)) return p;
-      if (/[?&]v=/.test(p)) return p;
+      const token = encodeURIComponent(DATA_CACHE_BUSTER);
+      // Always force the current build token, even when a copied/static path
+      // already has an older ?v= value baked into CONFIG or markup.
+      if (/[?&]v=/.test(p)) return p.replace(/([?&]v=)[^&]*/i, `$1${token}`);
       const sep = p.includes('?') ? '&' : '?';
-      return `${p}${sep}v=${encodeURIComponent(DATA_CACHE_BUSTER)}`;
+      return `${p}${sep}v=${token}`;
     }
 
     const CONFIG = {
@@ -26637,29 +26640,38 @@ document.addEventListener('DOMContentLoaded', function() {
         : resolvedMargin.signed;
       let prevSignedForFlip = null;
       let prevYearForFlip = null;
-      // Previous-district cache loading can involve extra JSON work. Keep live
-      // hover instant; fetch previous-cycle detail only for pinned/touch-forced
-      // tooltips where the user is intentionally inspecting the district.
-      if (forceTooltip || tooltipPinned || !isDesktopTooltipMode()) {
+      const applyPrevDistrictHoverCache = (prevCached) => {
         try {
-          const prevCached = await ensurePrevDistrictCache(scope, contestType, Number(year));
           prevYearForFlip = prevCached?.prevYear || null;
           const prevResults = prevCached?.prevNode?.general?.results || null;
-          if (prevResults) {
-            const prevRow = prevResults[String(districtNum)] || prevResults[String(Number(districtNum))] || null;
-            if (prevRow) {
-              const prevResolved = resolveWinnerAndSignedMargin(
-                prevRow.margin_pct,
-                prevRow.winner,
-                Number(prevRow.dem_votes || 0),
-                Number(prevRow.rep_votes || 0),
-                Number(prevRow.total_votes || 0)
-              );
-              if (Number.isFinite(Number(prevResolved.signed))) prevSignedForFlip = prevResolved.signed;
-            }
-          }
+          if (!prevResults) return;
+          const prevRow = prevResults[String(districtNum)] || prevResults[String(Number(districtNum))] || null;
+          if (!prevRow) return;
+          const prevResolved = resolveWinnerAndSignedMargin(
+            prevRow.margin_pct,
+            prevRow.winner,
+            Number(prevRow.dem_votes || 0),
+            Number(prevRow.rep_votes || 0),
+            Number(prevRow.total_votes || 0)
+          );
+          if (Number.isFinite(Number(prevResolved.signed))) prevSignedForFlip = prevResolved.signed;
         } catch (_) {}
-      }
+      };
+      // Keep the flip row in live district hover without reintroducing lag:
+      // use the warmed prior-year cache synchronously; only pinned/touch hovers
+      // are allowed to await a missing cache. Plain desktop hover warms it in
+      // the background and picks it up on the next feature render.
+      try {
+        const prevDistrictKey = `${normalizeDistrictLinesYear(currentDistrictLinesYear)}_${scope}_${contestType}_${Number(year)}`;
+        const cachedPrevDistrict = vizPrevDistrictCache.get(prevDistrictKey) || null;
+        if (cachedPrevDistrict) {
+          applyPrevDistrictHoverCache(cachedPrevDistrict);
+        } else if (forceTooltip || tooltipPinned || !isDesktopTooltipMode()) {
+          applyPrevDistrictHoverCache(await ensurePrevDistrictCache(scope, contestType, Number(year)));
+        } else {
+          ensurePrevDistrictCache(scope, contestType, Number(year)).catch(() => {});
+        }
+      } catch (_) {}
       const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
       const subtitleByScope = scope === 'congressional'
         ? 'Congressional District'
