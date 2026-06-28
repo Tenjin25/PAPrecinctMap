@@ -24,6 +24,7 @@ The app is Pages-aware and auto-detects this project base path at runtime so dat
 ## What You Can Do
 
 - View Pennsylvania contests across years (manifest-driven from `data/contests/manifest.json`).
+- Load historic presidential county results back to `2000`, with manifest-backed contest slices and CSV fallback support for older source exports.
 - Switch map views:
   - Counties
   - Congress
@@ -37,6 +38,11 @@ The app is Pages-aware and auto-detects this project base path at runtime so dat
 - Enable precinct overlay for fine-grained local patterns.
 - Pin hover cards and inspect trend history for selected geography.
 - Use the NCMap-style hover tooltip system in `index.html`, with compact desktop previews and mobile-friendly expandable detail cards.
+
+## Local Preview Notes
+
+- `index.html` now stamps a build id onto both the page URL and data requests to shake loose stale browser cache when testing local updates.
+- If you are comparing behavior against the older backup file `index .v1.html`, remember it is a separate snapshot and will not automatically pick up fixes made in `index.html`.
 
 ## Audience Workflows
 

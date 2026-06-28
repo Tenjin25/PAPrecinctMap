@@ -10228,8 +10228,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-06-27-3';
-    const APP_BUILD_ID = '2026-06-27-3';
+    const DATA_CACHE_BUSTER = '2026-06-28-1';
+    const APP_BUILD_ID = '2026-06-28-1';
+
+    function ensurePageCacheBuster() {
+      try {
+        const url = new URL(window.location.href);
+        const current = String(url.searchParams.get('v') || '').trim();
+        if (current === APP_BUILD_ID) return false;
+        url.searchParams.set('v', APP_BUILD_ID);
+        window.location.replace(url.toString());
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    const pageCacheRedirecting = ensurePageCacheBuster();
 
     function withCacheBuster(path) {
       const p = (path || '').toString().trim();
@@ -18403,20 +18418,19 @@ document.addEventListener('DOMContentLoaded', function() {
             : null;
           const manifestFile = (manifestEntry?.file || '').toString().trim();
 
-          // Prefer OpenElections CSV for older presidential cycles to avoid a known-missing JSON fetch (and console 404 noise).
-          if (contestType === 'president' && PRESIDENT_OPEN_ELECTIONS_CSV[Number(year)]) {
-            try {
-              const rows = await loadPresidentSliceFromOpenElectionsCSV(Number(year));
-              contestSliceCache.set(key, rows);
-              return rows;
-            } catch (err) {
-              console.warn('Failed to load OpenElections presidential CSV for', year, err?.message || err);
-            }
-          }
-
-	        try {
+        try {
             if (manifestHasEntries && !manifestEntry) {
-              // Manifest is present but this contest/year isn't indexed: don't guess a JSON filename that will 404.
+              // Manifest is present but this contest/year isn't indexed: for older presidential cycles,
+              // use the OpenElections CSV bundle before falling back to legacy flattened rows.
+              if (contestType === 'president' && PRESIDENT_OPEN_ELECTIONS_CSV[Number(year)]) {
+                try {
+                  const rows = await loadPresidentSliceFromOpenElectionsCSV(Number(year));
+                  contestSliceCache.set(key, rows);
+                  return rows;
+                } catch (err) {
+                  console.warn('Failed to load OpenElections presidential CSV for', year, err?.message || err);
+                }
+              }
               const fallback = (electionData || []).filter(row => row.year == year);
               contestSliceCache.set(key, fallback);
               return fallback;
@@ -18442,11 +18456,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }));
 	          contestSliceCache.set(key, rows);
 	          return rows;
-	        } catch (_) {
-	          const fallback = (electionData || []).filter(row => row.year == year);
-	          contestSliceCache.set(key, fallback);
-	          return fallback;
-	        }
+        } catch (jsonErr) {
+          if (contestType === 'president' && PRESIDENT_OPEN_ELECTIONS_CSV[Number(year)]) {
+            try {
+              const rows = await loadPresidentSliceFromOpenElectionsCSV(Number(year));
+              contestSliceCache.set(key, rows);
+              return rows;
+            } catch (csvErr) {
+              console.warn('Failed to load presidential JSON and CSV fallbacks for', year, jsonErr?.message || jsonErr, csvErr?.message || csvErr);
+            }
+          }
+          const fallback = (electionData || []).filter(row => row.year == year);
+          contestSliceCache.set(key, fallback);
+          return fallback;
+        }
         });
 
         contestSliceInflight.set(key, p);
@@ -31966,6 +31989,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function init() {
+      if (pageCacheRedirecting) return;
       try {
         setStatus('Loading counties...');
         if (CONFIG.tilesets?.enabled && CONFIG.tilesets?.sources?.counties?.url) {
