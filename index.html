@@ -18773,9 +18773,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Get candidate name from the JSON data (already includes first/last names)
     function getCandidateName(year, office, party) {
-      if (!electionData || electionData.length === 0) return party === 'Democrat' ? 'D' : 'R';
-      
-      // Map office name to office type key (matching flattened data field names)
+      const fallback = party === 'Democrat' ? 'D' : 'R';
+
+      // Map office name to office type key (matching contest slice field names)
       const officeMap = {
         'President of the United States': 'president',
         'Governor': 'governor',
@@ -18785,28 +18785,45 @@ document.addEventListener('DOMContentLoaded', function() {
         'Secretary of State': 'secretary_of_state',
         'Treasurer': 'treasurer'
       };
-      
-      const officeType = officeMap[office] || office.toLowerCase().replace(/ /g, '_');
+
+      const officeType = officeMap[office] || String(office || '').toLowerCase().replace(/ /g, '_');
       const partyKey = party === 'Democrat' ? 'dem' : 'rep';
       const candidateField = `${officeType}_${partyKey}_candidate`;
-      
-      // Find any county record for this year/office and get the candidate name
-      const record = electionData.find(r => r.year == year && r[candidateField]);
-      
       const cacheKey = `${year}|${officeType}|${partyKey}`;
       if (candidateNameCache.has(cacheKey)) {
         return candidateNameCache.get(cacheKey);
       }
-      
-      if (record && record[candidateField]) {
-        const displayName = fullCandidateLabel(record[candidateField], fallback);
-        candidateNameCache.set(cacheKey, displayName);
-        return displayName;
+
+      let rawName = '';
+
+      // Prefer the async candidate cache populated by contest slices and warmups.
+      try {
+        const cachedContestCandidates = contestCandidateCache?.get ? contestCandidateCache.get(`${officeType}_${year}`) : null;
+        rawName = (cachedContestCandidates?.[partyKey] || '').toString().trim();
+      } catch (_) {}
+
+      // Fall back to already-loaded contest slice rows when available.
+      if (!rawName) {
+        try {
+          const sliceRows = contestSliceCache?.get ? contestSliceCache.get(`${officeType}_${year}`) : null;
+          if (Array.isArray(sliceRows) && sliceRows.length) {
+            const record = sliceRows.find(r => ((r?.[candidateField] || r?.[`${partyKey}_candidate`] || '') + '').trim());
+            rawName = (record?.[candidateField] ?? record?.[`${partyKey}_candidate`] ?? '').toString().trim();
+          }
+        } catch (_) {}
       }
-      
-      const fallback = party === 'Democrat' ? 'D' : 'R';
-      candidateNameCache.set(cacheKey, fallback);
-      return fallback;
+
+      // Legacy fallback: old flattened electionData payloads.
+      if (!rawName && Array.isArray(electionData) && electionData.length) {
+        try {
+          const record = electionData.find(r => r.year == year && ((r?.[candidateField] || '') + '').trim());
+          rawName = (record?.[candidateField] || '').toString().trim();
+        } catch (_) {}
+      }
+
+      const displayName = fullCandidateLabel(rawName, fallback);
+      candidateNameCache.set(cacheKey, displayName);
+      return displayName;
     }
 // Merge JSONs (e.g., boundaries + election results)
     function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County', countyNameKey='county') {
