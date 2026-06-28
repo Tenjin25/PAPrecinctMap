@@ -10696,6 +10696,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const contestSliceInflight = new Map(); // `${contestType}_${year}` -> Promise<rows[]>
     const districtSliceInflight = new Map(); // `${linesYear}|${scope}_${contestType}_${year}` -> Promise<payload>
     let countyTrendSeriesCache = new Map(); // Map<string key, Array<seriesRow>> (in-session cache)
+    const countyTrendSeriesInflight = new Map(); // key -> Promise<Array<seriesRow>>
     let districtTrendSeriesCache = new Map(); // Map<string key, Array<seriesRow>> (in-session cache)
     const districtTrendSeriesInflight = new Map(); // key -> Promise<Array<seriesRow>>
     const districtCarryCrosswalkCache = new Map();
@@ -22095,73 +22096,90 @@ document.addEventListener('DOMContentLoaded', function() {
         const cached = countyTrendSeriesCache && countyTrendSeriesCache.get ? countyTrendSeriesCache.get(cacheKey) : null;
         if (Array.isArray(cached)) return cached.slice();
       } catch (_) {}
-
-      const entries = getVisibleManifestEntries(contestManifest)
-        .filter(f => f && f.contest_type === contestType && Number.isFinite(Number(f.year)))
-        .slice()
-        .sort((a, b) => Number(a.year) - Number(b.year));
-
-      const target = normalizeCountyToken(countyName);
-      if (!target) return [];
-      const out = [];
-      const loaded = await mapWithConcurrency(entries, 4, async (e) => {
-        const year = Number(e?.year);
-        if (!Number.isFinite(year)) return null;
-        const bundle = await ensureCountyAggregateBundle(contestType, year);
-        let totals = (bundle && bundle.totalsByCounty) ? bundle.totalsByCounty.get(target) : null;
-        if (!totals || !(Number(totals.total || 0) > 0)) {
-          // Fallback (modeled / missing bundles): aggregate just this county from rows.
-          try {
-            const rows = await loadContestSlice(contestType, year);
-            let dem = 0, rep = 0, other = 0, total = 0;
-            (rows || []).forEach(r => {
-              const rowName = (r?.county || '').toString();
-              const countyOnly = rowName.includes(' - ') ? rowName.split(' - ')[0] : rowName;
-              const countyNorm = normalizeCountyToken(countyOnly);
-              if (countyNorm !== target) return;
-              const d = Number(r?.[`${contestType}_dem`] || 0);
-              const rp = Number(r?.[`${contestType}_rep`] || 0);
-              const o = Number(r?.[`${contestType}_other`] || 0);
-              const fallbackTotal = d + rp + o;
-              const t = Math.max(0, Number(r?.[`${contestType}_total`] || fallbackTotal));
-              dem += d; rep += rp; other += o; total += t;
-            });
-            totals = total > 0 ? { dem, rep, other, total } : null;
-          } catch (_) {
-            totals = null;
-          }
+      if (countyTrendSeriesInflight.has(cacheKey)) {
+        try {
+          const inflight = await countyTrendSeriesInflight.get(cacheKey);
+          return Array.isArray(inflight) ? inflight.slice() : [];
+        } catch (_) {
+          return [];
         }
-        if (!totals || !(Number(totals.total || 0) > 0)) return null;
-        let candidates = null;
-        try { candidates = await getContestCandidates(contestType, year); } catch (_) { candidates = null; }
-        return { year, totals, candidates };
-      });
-      for (const bundle of loaded) {
-        if (!bundle) continue;
-        const year = Number(bundle.year);
-        const totals = bundle.totals || null;
-        if (!totals || !(Number(totals.total || 0) > 0)) continue;
-        const dem = Number(totals.dem || 0);
-        const rep = Number(totals.rep || 0);
-        const oth = Number(totals.other || 0);
-        const tot = Number(totals.total || 0);
-        const demCand = (bundle.candidates?.dem || '').toString();
-        const repCand = (bundle.candidates?.rep || '').toString();
-        const signed = signedMarginPctFromVotes(dem, rep, tot);
-        out.push({
-          year,
-          dem_votes: dem,
-          rep_votes: rep,
-          other_votes: oth,
-          total_votes: tot,
-          dem_candidate: demCand,
-          rep_candidate: repCand,
-          winner: signed > 0 ? 'REP' : (signed < 0 ? 'DEM' : 'TIE'),
-          margin_pct: signed
-        });
       }
-      try { countyTrendSeriesCache.set(cacheKey, out.slice()); } catch (_) {}
-      return out;
+
+      const p = (async () => {
+        const entries = getVisibleManifestEntries(contestManifest)
+          .filter(f => f && f.contest_type === contestType && Number.isFinite(Number(f.year)))
+          .slice()
+          .sort((a, b) => Number(a.year) - Number(b.year));
+
+        const target = normalizeCountyToken(countyName);
+        if (!target) return [];
+        const out = [];
+        const loaded = await mapWithConcurrency(entries, 4, async (e) => {
+          const year = Number(e?.year);
+          if (!Number.isFinite(year)) return null;
+          const bundle = await ensureCountyAggregateBundle(contestType, year);
+          let totals = (bundle && bundle.totalsByCounty) ? bundle.totalsByCounty.get(target) : null;
+          if (!totals || !(Number(totals.total || 0) > 0)) {
+            try {
+              const rows = await loadContestSlice(contestType, year);
+              let dem = 0, rep = 0, other = 0, total = 0;
+              (rows || []).forEach(r => {
+                const rowName = (r?.county || '').toString();
+                const countyOnly = rowName.includes(' - ') ? rowName.split(' - ')[0] : rowName;
+                const countyNorm = normalizeCountyToken(countyOnly);
+                if (countyNorm !== target) return;
+                const d = Number(r?.[`${contestType}_dem`] || 0);
+                const rp = Number(r?.[`${contestType}_rep`] || 0);
+                const o = Number(r?.[`${contestType}_other`] || 0);
+                const fallbackTotal = d + rp + o;
+                const t = Math.max(0, Number(r?.[`${contestType}_total`] || fallbackTotal));
+                dem += d; rep += rp; other += o; total += t;
+              });
+              totals = total > 0 ? { dem, rep, other, total } : null;
+            } catch (_) {
+              totals = null;
+            }
+          }
+          if (!totals || !(Number(totals.total || 0) > 0)) return null;
+          let candidates = null;
+          try { candidates = await getContestCandidates(contestType, year); } catch (_) { candidates = null; }
+          return { year, totals, candidates };
+        });
+        for (const bundle of loaded) {
+          if (!bundle) continue;
+          const year = Number(bundle.year);
+          const totals = bundle.totals || null;
+          if (!totals || !(Number(totals.total || 0) > 0)) continue;
+          const dem = Number(totals.dem || 0);
+          const rep = Number(totals.rep || 0);
+          const oth = Number(totals.other || 0);
+          const tot = Number(totals.total || 0);
+          const demCand = (bundle.candidates?.dem || '').toString();
+          const repCand = (bundle.candidates?.rep || '').toString();
+          const signed = signedMarginPctFromVotes(dem, rep, tot);
+          out.push({
+            year,
+            dem_votes: dem,
+            rep_votes: rep,
+            other_votes: oth,
+            total_votes: tot,
+            dem_candidate: demCand,
+            rep_candidate: repCand,
+            winner: signed > 0 ? 'REP' : (signed < 0 ? 'DEM' : 'TIE'),
+            margin_pct: signed
+          });
+        }
+        try { countyTrendSeriesCache.set(cacheKey, out.slice()); } catch (_) {}
+        return out;
+      })();
+
+      countyTrendSeriesInflight.set(cacheKey, p);
+      try {
+        const out = await p;
+        return Array.isArray(out) ? out.slice() : [];
+      } finally {
+        countyTrendSeriesInflight.delete(cacheKey);
+      }
     }
 
     function buildCountyPopulationEstimateIndex(rows) {
@@ -32542,6 +32560,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .filter(v => Number.isFinite(v) && v > 0);
           await mapWithConcurrency(years, 2, async (cycleYear) => {
             await loadContestSlice(contestTypeKey, cycleYear);
+            try { await ensureCountyAggregateBundle(contestTypeKey, cycleYear); } catch (_) {}
             try { await getContestCandidates(contestTypeKey, cycleYear); } catch (_) {}
             return cycleYear;
           });
