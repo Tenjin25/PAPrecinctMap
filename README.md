@@ -34,6 +34,7 @@ The app is Pages-aware and auto-detects this project base path at runtime so dat
   - Margins
   - Winners
   - Shift (change vs prior cycle when available)
+  - Flips (bold colors for actual flips, lighter party tints for held areas, gray when no usable prior exists)
 - Use fly-to search for counties, districts, and precinct tokens.
 - Enable precinct overlay for fine-grained local patterns.
 - Pin hover cards and inspect trend history for selected geography.
