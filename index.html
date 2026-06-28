@@ -10228,8 +10228,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-06-28-2';
-    const APP_BUILD_ID = '2026-06-28-2';
+    const DATA_CACHE_BUSTER = '2026-06-28-3';
+    const APP_BUILD_ID = '2026-06-28-3';
 
     function ensurePageCacheBuster() {
       return false;
@@ -32509,7 +32509,13 @@ document.addEventListener('DOMContentLoaded', function() {
           prevCountyTotals[countyNorm].rep += rep;
           prevCountyTotals[countyNorm].total += total;
           if (includePrecinctMargins) {
-            const mPct = signedMarginPctFromVotes(dem, rep, total);
+            const mPct = resolveWinnerAndSignedMargin(
+              r[`${contestTypeKey}_margin_pct`],
+              r[`${contestTypeKey}_winner`],
+              dem,
+              rep,
+              total
+            ).signed;
             precinctNormVariantsLite(rowName).forEach(n => prevPrecinctMarginByNorm.set(n, mPct));
           }
         });
@@ -33468,12 +33474,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const cachedCountyExpr = countyColorExprCache.get(countyExprKey) || null;
       let countyFillColorByNorm = cachedCountyExpr?.countyFillColorByNorm || new Map();
       const expr = cachedCountyExpr?.expr || (() => {
-        const out = [
-          'match',
-          ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]]
-        ];
+        const out = ['case'];
         const fillMap = new Map();
         let countiesProcessed = 0;
+        const countyNameExpr = ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'NAMELSAD20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME'], ['get', 'name']]];
 
         for (const countyName of Object.keys(countyAgg)) {
           if (staleCheck()) return null;
@@ -33493,7 +33497,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const prev = vizPrevCache?.prevCountyTotals?.[countyName] || null;
             const prevSigned = prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : 0;
             const f = flipInfo(prevSigned, signedMarginPct);
-            color = colorForFlipFill(prevSigned, signedMarginPct);
+            color = f.flipped ? colorForFlipMode(f.to) : colorForFlipMode('T');
           } else if (mode === 'winners') {
             color = colorForWinnerMode(winner);
           } else if (mode === 'shift' && prevCountyTotals) {
@@ -33519,11 +33523,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
           }
 
-          out.push(countyName, color);
+          out.push(['any', ['==', countyNameExpr, countyName], ['==', countyNameExpr, `${countyName} COUNTY`]]);
+          out.push(color);
           fillMap.set(countyName, color);
           countiesProcessed++;
         }
-        out.push('#e0e0e0');
+        out.push('#f3f4f6');
         try { countyColorExprCache.set(countyExprKey, { expr: out, countyFillColorByNorm: fillMap }); } catch (_) {}
         return out;
       })();
@@ -33568,9 +33573,10 @@ document.addEventListener('DOMContentLoaded', function() {
           const f = flipInfo(prevSigned, curSigned);
           if (!f.flipped) continue;
           const toColor = colorForFlipMode(f.to);
-          flipColorExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
+          const countyNameExpr = ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'NAMELSAD20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME'], ['get', 'name']]];
+          flipColorExpr.push(['any', ['==', countyNameExpr, countyNorm], ['==', countyNameExpr, `${countyNorm} COUNTY`]]);
           flipColorExpr.push(toColor);
-          flipWidthExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
+          flipWidthExpr.push(['any', ['==', countyNameExpr, countyNorm], ['==', countyNameExpr, `${countyNorm} COUNTY`]]);
           flipWidthExpr.push(3);
         }
         flipColorExpr.push('rgba(15,23,42,0.35)');
@@ -33644,16 +33650,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (mode === 'flips') {
               const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
-              let prevSigned = NaN;
+              let prevSigned = 0;
               for (const n of precinctNames) {
                 if (vizPrevCache?.prevPrecinctMarginByNorm?.has(n)) { prevSigned = vizPrevCache.prevPrecinctMarginByNorm.get(n); break; }
               }
-              if (!Number.isFinite(Number(prevSigned))) {
-                const countyNorm = normalizeCountyToken((row.county || '').toString().split(' - ', 1)[0]);
-                const prevCounty = countyNorm ? (vizPrevCache?.prevCountyTotals?.[countyNorm] || null) : null;
-                if (prevCounty) prevSigned = signedMarginPctFromVotes(prevCounty.dem, prevCounty.rep, prevCounty.total);
-              }
-              color = colorForFlipFill(prevSigned, curSigned);
+              const f = flipInfo(prevSigned, curSigned);
+              color = f.flipped ? colorForFlipMode(f.to) : colorForFlipMode('T');
             } else if (mode === 'winners') {
               color = colorForWinnerMode(winner);
             } else if (mode === 'shift' && prevPrecinctMarginByNorm) {
