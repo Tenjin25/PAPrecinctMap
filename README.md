@@ -181,6 +181,8 @@ Note: district views can include both actual district races and statewide contes
 ### Contest Render Flow
 
 - On load, the app attempts to load contest and district manifests first.
+- Initial startup is intentionally county-first so the shell, map, and primary contest index become interactive before heavier district resources finish warming.
+- District geometry, district metadata, and secondary reference datasets now load lazily in the background or on first entry into a district view.
 - If manifests exist, selectors and map styling are built from those slice files.
 - For each selected contest/year/view, the app computes color expressions and applies them directly to active fill layers.
 - Shift mode requests prior-cycle data; if unavailable, the UI falls back to Margins mode to avoid false shift displays.

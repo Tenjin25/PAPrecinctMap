@@ -10678,6 +10678,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let districtElectionDataJSON = null; // Legacy district-results fallback when slices are unavailable
     let districtElectionDataLoadInflight = null;
     let districtElectionDataLoadFailed = false;
+    let atlasHydrationPromise = null;
+    let atlasHydrationComplete = false;
     let electionData = null; // Flattened array for compatibility
     let contestManifest = [];
     let districtManifest = [];
@@ -10698,6 +10700,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let districtsInfo = null;
     let stateHouseInfo = null;
     let stateSenateInfo = null;
+    const districtViewResourceInflight = new Map();
+    let secondaryReferenceWarmupScheduled = false;
     let districtDescriptions = null; // Optional labels like "Sampson & Bladen Counties" or "Concord–Harrisburg"
     let countyDemographics = null; // County-level VAP (18+) + total-pop race/ethnicity from DP1 (includes AIAN/native)
     let countyPopulationEstimatesByNorm = null; // Map<string countyNorm, growth/estimate summary from Vintage 2025 county estimates>
@@ -19885,6 +19889,18 @@ document.addEventListener('DOMContentLoaded', function() {
       lastCountyFillExpr = null;
       clearHoverOutline();
       
+      const needsDistrictResources = view === 'districts' || view === 'state_house' || view === 'state_senate';
+      if (needsDistrictResources) {
+        if (atlasHydrationPromise && !atlasHydrationComplete) {
+          try { await atlasHydrationPromise; } catch (_) {}
+        }
+        try {
+          await ensureDistrictViewResourcesReady(view, currentDistrictLinesYear);
+        } catch (err) {
+          console.warn('District view resources not fully ready:', err?.message || err);
+        }
+      }
+
       // Add appropriate layers
       if (view === 'counties') {
         addCountyLayers();
@@ -31554,6 +31570,175 @@ document.addEventListener('DOMContentLoaded', function() {
       try { applyLayerOpacityTuning(); } catch (_) {}
     }
 
+
+    function getScopeForView(viewOrScope) {
+      const key = String(viewOrScope || '').trim();
+      if (key === 'districts' || key === 'congressional') return 'congressional';
+      if (key === 'state_house') return 'state_house';
+      if (key === 'state_senate') return 'state_senate';
+      return '';
+    }
+
+    function getDistrictSourceIdForScope(scope) {
+      if (scope === 'congressional') return 'districts';
+      if (scope === 'state_house') return 'state-house';
+      if (scope === 'state_senate') return 'state-senate';
+      return '';
+    }
+
+    function getDistrictTilesetConfigForScope(scope) {
+      if (scope === 'congressional') return CONFIG.tilesets?.sources?.districts || null;
+      if (scope === 'state_house') return CONFIG.tilesets?.sources?.state_house || null;
+      if (scope === 'state_senate') return CONFIG.tilesets?.sources?.state_senate || null;
+      return null;
+    }
+
+    function getDistrictInfoPathForScope(scope) {
+      if (scope === 'congressional') return CONFIG.paths?.districts_info || null;
+      if (scope === 'state_house') return CONFIG.paths?.state_house_info || null;
+      if (scope === 'state_senate') return CONFIG.paths?.state_senate_info || null;
+      return null;
+    }
+
+    function hasDistrictInfoForScope(scope) {
+      if (scope === 'congressional') return Array.isArray(districtsInfo) && districtsInfo.length > 0;
+      if (scope === 'state_house') return Array.isArray(stateHouseInfo) && stateHouseInfo.length > 0;
+      if (scope === 'state_senate') return Array.isArray(stateSenateInfo) && stateSenateInfo.length > 0;
+      return false;
+    }
+
+    function assignDistrictInfoForScope(scope, rows) {
+      if (scope === 'congressional') districtsInfo = rows;
+      else if (scope === 'state_house') stateHouseInfo = rows;
+      else if (scope === 'state_senate') stateSenateInfo = rows;
+    }
+
+    async function ensureDistrictInfoLoaded(scope) {
+      const scopeKey = getScopeForView(scope);
+      if (!scopeKey || hasDistrictInfoForScope(scopeKey)) return true;
+      const path = getDistrictInfoPathForScope(scopeKey);
+      if (!path) return false;
+      const csvText = await loadCSV(path);
+      assignDistrictInfoForScope(scopeKey, parseCSV(csvText));
+      return hasDistrictInfoForScope(scopeKey);
+    }
+
+    async function ensureDistrictSourceReady(scope, linesYear = currentDistrictLinesYear) {
+      const scopeKey = getScopeForView(scope);
+      if (!scopeKey) return false;
+      const sourceId = getDistrictSourceIdForScope(scopeKey);
+      if (!sourceId) return false;
+
+      const tilesetCfg = getDistrictTilesetConfigForScope(scopeKey);
+      if (tilesetCfg?.url) {
+        if (!map.getSource(sourceId)) {
+          map.addSource(sourceId, { type: 'vector', url: tilesetCfg.url });
+        }
+        return true;
+      }
+
+      const data = await loadDistrictGeometry(scopeKey, linesYear);
+      if (!data) return false;
+      const existing = map.getSource(sourceId);
+      if (existing && existing.type === 'geojson' && typeof existing.setData === 'function') {
+        existing.setData(data);
+      } else if (!existing) {
+        map.addSource(sourceId, { type: 'geojson', data });
+      }
+      window[`${sourceId}__search_geojson`] = data;
+      return true;
+    }
+
+    async function ensureDistrictViewResourcesReady(viewOrScope, linesYear = currentDistrictLinesYear) {
+      const scope = getScopeForView(viewOrScope);
+      if (!scope) return true;
+      const cacheKey = `${normalizeDistrictLinesYear(linesYear)}|${scope}`;
+      if (districtViewResourceInflight.has(cacheKey)) return districtViewResourceInflight.get(cacheKey);
+
+      const label = scope === 'congressional'
+        ? 'congressional'
+        : scope.replace('_', ' ');
+      const p = (async () => {
+        setStatus(`Loading ${label} view...`);
+        await Promise.all([
+          ensureDistrictSourceReady(scope, linesYear),
+          ensureDistrictInfoLoaded(scope).catch(() => false)
+        ]);
+        return true;
+      })();
+
+      districtViewResourceInflight.set(cacheKey, p);
+      try {
+        return await p;
+      } finally {
+        districtViewResourceInflight.delete(cacheKey);
+      }
+    }
+
+    async function warmSecondaryReferenceData() {
+      try {
+        if (!districtDescriptions) {
+          districtDescriptions = await loadJSON(CONFIG.paths.district_descriptions);
+        }
+      } catch (_) {
+        districtDescriptions = null;
+      }
+
+      try {
+        if (!countyDemographics) {
+          countyDemographics = await loadJSON(CONFIG.paths.county_demographics);
+        }
+      } catch (err) {
+        countyDemographics = null;
+        console.warn('County demographics not loaded:', err?.message || err);
+      }
+
+      try {
+        if (!countyPopulationEstimatesByNorm && CONFIG.paths.county_population_estimates) {
+          const countyPopulationEstimatesCSV = await loadCSV(CONFIG.paths.county_population_estimates);
+          const rows = parseCSV(countyPopulationEstimatesCSV);
+          const idx = buildCountyPopulationEstimateIndex(rows);
+          countyPopulationEstimatesByNorm = idx.byNorm;
+          countyPopulationEstimateStatewide = idx.statewide;
+        }
+      } catch (err) {
+        countyPopulationEstimatesByNorm = null;
+        countyPopulationEstimateStatewide = null;
+        console.warn('County population estimates not loaded:', err?.message || err);
+      }
+
+      try {
+        if (!precinctDemographicsByNorm && CONFIG.paths.precinct_demographics) {
+          const precinctDemographicsCSV = await loadCSV(CONFIG.paths.precinct_demographics);
+          const rows = parseCSV(precinctDemographicsCSV);
+          const idx = buildPrecinctDemographicsIndexes(rows);
+          precinctDemographicsByNorm = idx.byNorm;
+          precinctDemographicsByCountyCode = idx.byCountyCode;
+        }
+      } catch (err) {
+        precinctDemographicsByNorm = null;
+        precinctDemographicsByCountyCode = null;
+        console.warn('Precinct demographics not loaded:', err?.message || err);
+      }
+
+      try { preloadCvapTotals(); } catch (_) {}
+    }
+
+    function scheduleSecondaryReferenceDataWarmup() {
+      if (secondaryReferenceWarmupScheduled) return;
+      secondaryReferenceWarmupScheduled = true;
+      const kickoff = () => {
+        warmSecondaryReferenceData().catch(err => {
+          console.warn('Secondary reference warmup failed:', err?.message || err);
+        });
+      };
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(() => kickoff(), { timeout: 3200 });
+      } else {
+        setTimeout(kickoff, 500);
+      }
+    }
+
     async function hydrateAtlasDataAndDistrictSources() {
       setStatus('Loading election index...');
       try {
@@ -31625,123 +31810,6 @@ document.addEventListener('DOMContentLoaded', function() {
         districtManifestByLines = { '2022': [], '2024': [], '2026': [] };
         districtManifest = [];
         updateDistrictLinesToggleUI();
-      }
-
-      // Optional district resources: do not fail app initialization if absent
-      try {
-        const districtsCSV = await loadCSV(CONFIG.paths.districts_info);
-        districtsInfo = parseCSV(districtsCSV);
-        setStatus('Congressional data loaded');
-      } catch (err) {
-        console.warn('District CSV not loaded:', err.message);
-      }
-
-      // Optional descriptive district labels (manual overrides).
-      try {
-        districtDescriptions = await loadJSON(CONFIG.paths.district_descriptions);
-      } catch (_) {
-        districtDescriptions = null;
-      }
-
-      // Optional county demographics (DP1-derived) for sidebar/tooltips.
-      try {
-        countyDemographics = await loadJSON(CONFIG.paths.county_demographics);
-      } catch (err) {
-        countyDemographics = null;
-        console.warn('County demographics not loaded:', err?.message || err);
-      }
-
-      // Optional county population estimates (Census Vintage 2025) for county insight + trajectory confirmation.
-      try {
-        const countyPopulationEstimatesCSV = await loadCSV(CONFIG.paths.county_population_estimates);
-        const rows = parseCSV(countyPopulationEstimatesCSV);
-        const idx = buildCountyPopulationEstimateIndex(rows);
-        countyPopulationEstimatesByNorm = idx.byNorm;
-        countyPopulationEstimateStatewide = idx.statewide;
-      } catch (err) {
-        countyPopulationEstimatesByNorm = null;
-        countyPopulationEstimateStatewide = null;
-        console.warn('County population estimates not loaded:', err?.message || err);
-      }
-
-      // Optional precinct demographics (VAP by race from block aggregation).
-      try {
-        const precinctDemographicsCSV = await loadCSV(CONFIG.paths.precinct_demographics);
-        const rows = parseCSV(precinctDemographicsCSV);
-        const idx = buildPrecinctDemographicsIndexes(rows);
-        precinctDemographicsByNorm = idx.byNorm;
-        precinctDemographicsByCountyCode = idx.byCountyCode;
-      } catch (err) {
-        precinctDemographicsByNorm = null;
-        precinctDemographicsByCountyCode = null;
-        console.warn('Precinct demographics not loaded:', err?.message || err);
-      }
-
-      // Optional: preload RDH CVAP aggregates used for hover totals (non-blocking).
-      try { preloadCvapTotals(); } catch (_) {}
-
-      try {
-        setStatus('Loading congressional districts...');
-        if (CONFIG.tilesets?.enabled && CONFIG.tilesets?.sources?.districts?.url) {
-          if (!map.getSource('districts')) {
-            map.addSource('districts', { type: 'vector', url: CONFIG.tilesets.sources.districts.url });
-          }
-        } else {
-          const districtsGeoJSON = await loadDistrictGeometry('congressional', currentDistrictLinesYear);
-          if (map.getSource('districts')) {
-            map.getSource('districts').setData(districtsGeoJSON);
-          } else {
-            map.addSource('districts', { type: 'geojson', data: districtsGeoJSON });
-          }
-          window['districts__search_geojson'] = districtsGeoJSON;
-        }
-        setStatus('Congressional districts loaded');
-      } catch (err) {
-        console.warn('Congressional GeoJSON not loaded:', err.message);
-      }
-
-      try {
-        setStatus('Loading state house districts...');
-        if (CONFIG.tilesets?.enabled && CONFIG.tilesets?.sources?.state_house?.url) {
-          if (!map.getSource('state-house')) {
-            map.addSource('state-house', { type: 'vector', url: CONFIG.tilesets.sources.state_house.url });
-          }
-        } else {
-          const stateHouseGeoJSON = await loadDistrictGeometry('state_house', currentDistrictLinesYear);
-          if (map.getSource('state-house')) {
-            map.getSource('state-house').setData(stateHouseGeoJSON);
-          } else {
-            map.addSource('state-house', { type: 'geojson', data: stateHouseGeoJSON });
-          }
-          window['state-house__search_geojson'] = stateHouseGeoJSON;
-        }
-        const stateHouseCSV = await loadCSV(CONFIG.paths.state_house_info);
-        stateHouseInfo = parseCSV(stateHouseCSV);
-        setStatus('State house districts loaded');
-      } catch (err) {
-        console.warn('State house resources not loaded:', err.message);
-      }
-
-      try {
-        setStatus('Loading state senate districts...');
-        if (CONFIG.tilesets?.enabled && CONFIG.tilesets?.sources?.state_senate?.url) {
-          if (!map.getSource('state-senate')) {
-            map.addSource('state-senate', { type: 'vector', url: CONFIG.tilesets.sources.state_senate.url });
-          }
-        } else {
-          const stateSenateGeoJSON = await loadDistrictGeometry('state_senate', currentDistrictLinesYear);
-          if (map.getSource('state-senate')) {
-            map.getSource('state-senate').setData(stateSenateGeoJSON);
-          } else {
-            map.addSource('state-senate', { type: 'geojson', data: stateSenateGeoJSON });
-          }
-          window['state-senate__search_geojson'] = stateSenateGeoJSON;
-        }
-        const stateSenateCSV = await loadCSV(CONFIG.paths.state_senate_info);
-        stateSenateInfo = parseCSV(stateSenateCSV);
-        setStatus('State senate districts loaded');
-      } catch (err) {
-        console.warn('State senate resources not loaded:', err.message);
       }
 
       syncCurrentViewLayersAfterHydration();
@@ -31821,6 +31889,9 @@ document.addEventListener('DOMContentLoaded', function() {
       try { scheduleModeledSenateCorePreload(); } catch (_) {}
       // Performance change: atlas-wide warmup (non-blocking) so normal contest switches feel snappy too.
       try { scheduleAtlasWidePrefetch(); } catch (_) {}
+      try { scheduleSecondaryReferenceDataWarmup(); } catch (_) {}
+      try { scheduleStartupPrecinctCentroidPreload(); } catch (_) {}
+      try { scheduleStartupPrecinctAliasPreload(); } catch (_) {}
     }
 
     async function init() {
@@ -31864,15 +31935,23 @@ document.addEventListener('DOMContentLoaded', function() {
           updateBellwetherLayerVisibility();
           setSplitTicketOverlayVisibility();
         });
-        scheduleStartupPrecinctCentroidPreload();
-        scheduleStartupPrecinctAliasPreload();
         setStatus('Counties loaded');
         // Defer heavy hydration on desktop too so the map shell becomes interactive quickly.
         const deferHeavyHydration = true;
         if (deferHeavyHydration) setContestSelectDeferredLoading(true);
-        const hydrationPromise = deferHeavyHydration
+        atlasHydrationComplete = false;
+        atlasHydrationPromise = (deferHeavyHydration
           ? scheduleDeferredAtlasHydration()
-          : hydrateAtlasDataAndDistrictSources();
+          : hydrateAtlasDataAndDistrictSources())
+          .then(result => {
+            atlasHydrationComplete = true;
+            return result;
+          })
+          .catch(err => {
+            atlasHydrationComplete = true;
+            throw err;
+          });
+        const hydrationPromise = atlasHydrationPromise;
         if (!deferHeavyHydration) {
           await hydrationPromise;
         }
