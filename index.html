@@ -32166,14 +32166,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function colorForHeldFlipMode(currentWinner) {
-      if (currentWinner === 'R') return isColorblindModeActive() ? '#fed7aa' : '#fecaca';
-      if (currentWinner === 'D') return '#bfdbfe';
+      if (currentWinner === 'R') return isColorblindModeActive() ? '#fdba74' : '#fca5a5';
+      if (currentWinner === 'D') return '#93c5fd';
       return '#e2e8f0';
     }
 
     function colorForFlipFill(prevSignedPct, curSignedPct) {
       const info = flipVisualInfo(prevSignedPct, curSignedPct);
-      if (!info.hasComparablePrior || !info.hasCurrentWinner) return colorForFlipMode('T');
+      if (!info.hasCurrentWinner) return colorForFlipMode('T');
+      if (!info.hasComparablePrior) return colorForHeldFlipMode(info.to);
       if (info.flipped) return colorForFlipMode(info.to);
       return colorForHeldFlipMode(info.to);
     }
