@@ -10232,16 +10232,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const APP_BUILD_ID = '2026-06-28-2';
 
     function ensurePageCacheBuster() {
-      try {
-        const url = new URL(window.location.href);
-        const current = String(url.searchParams.get('v') || '').trim();
-        if (current === APP_BUILD_ID) return false;
-        url.searchParams.set('v', APP_BUILD_ID);
-        window.location.replace(url.toString());
-        return true;
-      } catch (_) {
-        return false;
-      }
+      return false;
     }
 
     const pageCacheRedirecting = ensurePageCacheBuster();
@@ -32518,7 +32509,7 @@ document.addEventListener('DOMContentLoaded', function() {
           prevCountyTotals[countyNorm].rep += rep;
           prevCountyTotals[countyNorm].total += total;
           if (includePrecinctMargins) {
-            const mPct = Number(r[`${contestTypeKey}_margin_pct`] || 0);
+            const mPct = signedMarginPctFromVotes(dem, rep, total);
             precinctNormVariantsLite(rowName).forEach(n => prevPrecinctMarginByNorm.set(n, mPct));
           }
         });
@@ -33653,11 +33644,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (mode === 'flips') {
               const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
-              let prevSigned = 0;
+              let prevSigned = NaN;
               for (const n of precinctNames) {
                 if (vizPrevCache?.prevPrecinctMarginByNorm?.has(n)) { prevSigned = vizPrevCache.prevPrecinctMarginByNorm.get(n); break; }
               }
-              const f = flipInfo(prevSigned, curSigned);
+              if (!Number.isFinite(Number(prevSigned))) {
+                const countyNorm = normalizeCountyToken((row.county || '').toString().split(' - ', 1)[0]);
+                const prevCounty = countyNorm ? (vizPrevCache?.prevCountyTotals?.[countyNorm] || null) : null;
+                if (prevCounty) prevSigned = signedMarginPctFromVotes(prevCounty.dem, prevCounty.rep, prevCounty.total);
+              }
               color = colorForFlipFill(prevSigned, curSigned);
             } else if (mode === 'winners') {
               color = colorForWinnerMode(winner);
