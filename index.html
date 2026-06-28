@@ -558,6 +558,7 @@
   </script>
   <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
   <script>
+    window.__SDE_BUILD_ID = '2026-06-28-5-shift-flip-v1';
     // Reduce noisy console errors when ad blockers block Mapbox telemetry (events.mapbox.com).
     try {
       if (window.mapboxgl && typeof window.mapboxgl.setTelemetryEnabled === 'function') {
@@ -10228,8 +10229,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-06-28-3';
-    const APP_BUILD_ID = '2026-06-28-3';
+    const DATA_CACHE_BUSTER = '2026-06-28-5';
+    const APP_BUILD_ID = '2026-06-28-5';
 
     function ensurePageCacheBuster() {
       return false;
@@ -21039,19 +21040,19 @@ document.addEventListener('DOMContentLoaded', function() {
       return { winner: 'T', signed: 0 };
     }
 
-    function flipVisualInfo(prevSignedPct, curSignedPct) {
+    function flipInfo(prevSignedPct, curSignedPct) {
       const from = winnerFromSignedMarginPct(prevSignedPct);
       const to = winnerFromSignedMarginPct(curSignedPct);
-      const hasComparablePrior = from !== 'T';
-      const hasCurrentWinner = to !== 'T';
-      const flipped = (hasComparablePrior && hasCurrentWinner && from !== to);
-      const held = (hasComparablePrior && hasCurrentWinner && from === to);
-      return { flipped, held, from, to, hasComparablePrior, hasCurrentWinner };
+      const flipped = (from !== 'T' && to !== 'T' && from !== to);
+      return { flipped, from, to };
     }
 
-    function flipInfo(prevSignedPct, curSignedPct) {
-      const info = flipVisualInfo(prevSignedPct, curSignedPct);
-      return { flipped: info.flipped, from: info.from, to: info.to };
+    function flipVisualInfo(prevSignedPct, curSignedPct) {
+      const info = flipInfo(prevSignedPct, curSignedPct);
+      const hasComparablePrior = info.from !== 'T';
+      const hasCurrentWinner = info.to !== 'T';
+      const held = (hasComparablePrior && hasCurrentWinner && info.from === info.to);
+      return { ...info, held, hasComparablePrior, hasCurrentWinner };
     }
 
     function winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate, signedPctOverride = NaN, options = {}) {
@@ -21305,10 +21306,8 @@ document.addEventListener('DOMContentLoaded', function() {
       return `
         <div class="legend-swatch-grid">
           <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForFlipMode('D')};"></span><span>Flip to Democratic</span></div>
-          <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForHeldFlipMode('D')}; border: 1px solid rgba(37,99,235,0.20);"></span><span>Held by Democrats</span></div>
-          <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForHeldFlipMode('R')}; border: 1px solid rgba(220,38,38,0.20);"></span><span>Held by Republicans</span></div>
           <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForFlipMode('R')};"></span><span>Flip to Republican</span></div>
-          <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForFlipMode('T')}; border: 1px solid rgba(15,23,42,0.18);"></span><span>No usable prior</span></div>
+          <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForFlipMode('T')}; border: 1px solid rgba(15,23,42,0.18);"></span><span>No flip or no prior</span></div>
         </div>
       `;
     }
@@ -26775,16 +26774,17 @@ document.addEventListener('DOMContentLoaded', function() {
           if (Number.isFinite(Number(prevResolved.signed))) prevSignedForFlip = prevResolved.signed;
         } catch (_) {}
       };
-      // Keep the flip row in live district hover without reintroducing lag:
-      // use the warmed prior-year cache synchronously; only pinned/touch hovers
-      // are allowed to await a missing cache. Plain desktop hover warms it in
-      // the background and picks it up on the next feature render.
+      // Working v1 behavior for shift/flip: when the user is in Shift or Flips mode,
+      // resolve the prior district row before rendering so the tooltip can actually
+      // detect and color flips on first hover. In normal modes, keep the faster
+      // background warm-up path.
       try {
         const prevDistrictKey = `${normalizeDistrictLinesYear(currentDistrictLinesYear)}_${scope}_${contestType}_${Number(year)}`;
         const cachedPrevDistrict = vizPrevDistrictCache.get(prevDistrictKey) || null;
+        const mustResolvePriorNow = currentVizMode === 'flips' || currentVizMode === 'shift' || forceTooltip || tooltipPinned || !isDesktopTooltipMode();
         if (cachedPrevDistrict) {
           applyPrevDistrictHoverCache(cachedPrevDistrict);
-        } else if (forceTooltip || tooltipPinned || !isDesktopTooltipMode()) {
+        } else if (mustResolvePriorNow) {
           applyPrevDistrictHoverCache(await ensurePrevDistrictCache(scope, contestType, Number(year)));
         } else {
           ensurePrevDistrictCache(scope, contestType, Number(year)).catch(() => {});
@@ -32172,11 +32172,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function colorForFlipFill(prevSignedPct, curSignedPct) {
-      const info = flipVisualInfo(prevSignedPct, curSignedPct);
-      if (!info.hasCurrentWinner) return colorForFlipMode('T');
-      if (!info.hasComparablePrior) return colorForHeldFlipMode(info.to);
-      if (info.flipped) return colorForFlipMode(info.to);
-      return colorForHeldFlipMode(info.to);
+      const info = flipInfo(prevSignedPct, curSignedPct);
+      return info.flipped ? colorForFlipMode(info.to) : colorForFlipMode('T');
     }
 
     function signedMarginPctFromVotes(demVotes, repVotes, totalVotes) {
