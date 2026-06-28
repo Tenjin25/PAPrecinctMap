@@ -10696,6 +10696,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const contestSliceInflight = new Map(); // `${contestType}_${year}` -> Promise<rows[]>
     const districtSliceInflight = new Map(); // `${linesYear}|${scope}_${contestType}_${year}` -> Promise<payload>
     let countyTrendSeriesCache = new Map(); // Map<string key, Array<seriesRow>> (in-session cache)
+    let districtTrendSeriesCache = new Map(); // Map<string key, Array<seriesRow>> (in-session cache)
+    const districtTrendSeriesInflight = new Map(); // key -> Promise<Array<seriesRow>>
     const districtCarryCrosswalkCache = new Map();
     let districtsInfo = null;
     let stateHouseInfo = null;
@@ -11244,7 +11246,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let vizShiftCache = null; // { contestType, year, prevYear, prevPrecinctMarginByNorm: Map, prevCountyTotals: Object }
     const vizDistrictShiftCache = new Map(); // key: `${scope}_${contestType}_${year}` -> { prevYear, prevNode }
     let vizPrevCache = null; // { contestType, year, prevYear, prevPrecinctMarginByNorm: Map, prevCountyTotals: Object }
+    const vizPrevCacheByKey = new Map(); // key: `${contestType}_${year}_${variant}` -> prev cache payload
+    const vizPrevCacheInflight = new Map(); // key -> Promise<prev cache payload>
     const vizPrevDistrictCache = new Map(); // key: `${scope}_${contestType}_${year}` -> { prevYear, prevNode }
+    const vizPrevDistrictInflight = new Map(); // key -> Promise<{ prevYear, prevNode }>
+    const contestInteractionWarmupScheduled = new Set(); // key: `${view}_${linesYear}_${contestType}_${year}`
     let lastContestSliceMeta = null; // { contestType, year:number, rows:Array } for sidebar helpers
     // Session persistence was removed to avoid surprises on shared/low-memory machines.
     let contestSearchQuery = '';
@@ -12459,7 +12465,11 @@ document.addEventListener('DOMContentLoaded', function() {
       districtManifest = getActiveDistrictManifest();
       // Keep `districtSliceCache` warm across line switches: cache keys include the lines year.
       districtCarryCrosswalkCache.clear();
+      districtTrendSeriesCache.clear();
+      districtTrendSeriesInflight.clear();
       vizPrevDistrictCache.clear();
+      vizPrevDistrictInflight.clear();
+      contestInteractionWarmupScheduled.clear();
       clearDistrictSearchGeoJSONCache();
       updateDistrictLinesToggleUI();
 
@@ -22004,47 +22014,79 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
     }
 
-    async function getDistrictTrendSeries(scope, contestType, districtNum) {
-      const entries = (getActiveDistrictManifest() || [])
+    function getDistrictTrendManifestEntries(scope, contestType) {
+      return (getActiveDistrictManifest() || [])
         .filter(f => f && f.scope === scope && f.contest_type === contestType && Number.isFinite(Number(f.year)))
         .slice()
         .sort((a, b) => Number(a.year) - Number(b.year));
+    }
 
-      const out = [];
-      for (const e of entries) {
-        const year = Number(e.year);
-        const payload = await loadDistrictSlice(scope, contestType, year);
-        const results = payload?.general?.results || null;
-        if (!results) continue;
-        const keyA = String(districtNum);
-        const keyB = String(Number(districtNum));
-        const r = results[keyA] || results[keyB] || null;
-        if (!r) continue;
-
-        // Older statewide district slices may omit candidate labels; recover from contest slice.
-        let demCand = (r.dem_candidate || '').toString().trim();
-        let repCand = (r.rep_candidate || '').toString().trim();
-        if ((!(demCand && repCand)) && contestType !== 'us_house') {
-          try {
-            const cand = await getContestCandidates(contestType, year);
-            if (!demCand) demCand = cand.dem || '';
-            if (!repCand) repCand = cand.rep || '';
-          } catch (_) {}
+    async function getDistrictTrendSeries(scope, contestType, districtNum) {
+      const linesYear = normalizeDistrictLinesYear(currentDistrictLinesYear);
+      const districtKeyA = String(districtNum ?? '').trim();
+      const districtKeyB = String(Number(districtNum));
+      const cacheKey = `${linesYear}|${String(scope || '').trim()}|${String(contestType || '').trim()}|${districtKeyA || districtKeyB}`;
+      try {
+        const cached = districtTrendSeriesCache?.get ? districtTrendSeriesCache.get(cacheKey) : null;
+        if (Array.isArray(cached)) return cached.slice();
+      } catch (_) {}
+      if (districtTrendSeriesInflight.has(cacheKey)) {
+        try {
+          const inflight = await districtTrendSeriesInflight.get(cacheKey);
+          return Array.isArray(inflight) ? inflight.slice() : [];
+        } catch (_) {
+          return [];
         }
-        out.push({
-          year,
-          dem_votes: Number(r.dem_votes) || 0,
-          rep_votes: Number(r.rep_votes) || 0,
-          other_votes: Number(r.other_votes) || 0,
-          total_votes: Number(r.total_votes) || 0,
-          dem_candidate: demCand,
-          rep_candidate: repCand,
-          winner: r.winner || '',
-          margin_pct: Number(r.margin_pct) || 0,
-          coverage_pct: payload?.meta?.match_coverage_pct
-        });
       }
-      return out;
+
+      const p = (async () => {
+        const entries = getDistrictTrendManifestEntries(scope, contestType);
+        const loaded = await mapWithConcurrency(entries, 4, async (e) => {
+          const year = Number(e?.year);
+          if (!Number.isFinite(year)) return null;
+          const payload = await loadDistrictSlice(scope, contestType, year, linesYear);
+          const results = payload?.general?.results || null;
+          if (!results) return null;
+          const r = results[districtKeyA] || results[districtKeyB] || null;
+          if (!r) return null;
+
+          let demCand = (r.dem_candidate || '').toString().trim();
+          let repCand = (r.rep_candidate || '').toString().trim();
+          if ((!(demCand && repCand)) && contestType !== 'us_house') {
+            try {
+              const cand = await getContestCandidates(contestType, year);
+              if (!demCand) demCand = cand.dem || '';
+              if (!repCand) repCand = cand.rep || '';
+            } catch (_) {}
+          }
+          return {
+            year,
+            dem_votes: Number(r.dem_votes) || 0,
+            rep_votes: Number(r.rep_votes) || 0,
+            other_votes: Number(r.other_votes) || 0,
+            total_votes: Number(r.total_votes) || 0,
+            dem_candidate: demCand,
+            rep_candidate: repCand,
+            winner: r.winner || '',
+            margin_pct: Number(r.margin_pct) || 0,
+            coverage_pct: payload?.meta?.match_coverage_pct
+          };
+        });
+        const out = [];
+        for (const row of loaded) {
+          if (row) out.push(row);
+        }
+        try { districtTrendSeriesCache.set(cacheKey, out.slice()); } catch (_) {}
+        return out;
+      })();
+
+      districtTrendSeriesInflight.set(cacheKey, p);
+      try {
+        const out = await p;
+        return Array.isArray(out) ? out.slice() : [];
+      } finally {
+        districtTrendSeriesInflight.delete(cacheKey);
+      }
     }
 
     async function getCountyTrendSeries(contestType, countyName) {
@@ -32208,91 +32250,108 @@ document.addEventListener('DOMContentLoaded', function() {
       return null;
     }
 
+    function buildEmptyPrevContestCache(contestType, year) {
+      return {
+        contestType: String(contestType || '').trim(),
+        year: Number(year),
+        prevYear: null,
+        prevPrecinctMarginByNorm: new Map(),
+        prevCountyTotals: {},
+        hasPrecinctMargins: false
+      };
+    }
+
     async function ensurePrevContestCache(contestType, year, options = {}) {
       const includePrecinctMargins = !!options.includePrecinctMargins;
+      const contestTypeKey = String(contestType || '').trim();
       const y = Number(year);
+      const variant = includePrecinctMargins ? 'precincts' : 'base';
+      const cacheKey = `${contestTypeKey}_${y}_${variant}`;
+      const reusablePrecinctKey = `${contestTypeKey}_${y}_precincts`;
       if (
         vizPrevCache &&
-        vizPrevCache.contestType === contestType &&
+        vizPrevCache.contestType === contestTypeKey &&
         Number(vizPrevCache.year) === y &&
         (!includePrecinctMargins || vizPrevCache.hasPrecinctMargins)
       ) return vizPrevCache;
-
-      const prevMeta = await getPreviousContestSlice(contestType, y);
-      if (!prevMeta) {
-        vizPrevCache = {
-          contestType,
-          year: y,
-          prevYear: null,
-          prevPrecinctMarginByNorm: new Map(),
-          prevCountyTotals: {},
-          hasPrecinctMargins: false
-        };
+      if (vizPrevCacheByKey.has(cacheKey)) {
+        vizPrevCache = vizPrevCacheByKey.get(cacheKey);
+        return vizPrevCache;
+      }
+      if (!includePrecinctMargins && vizPrevCacheByKey.has(reusablePrecinctKey)) {
+        vizPrevCache = vizPrevCacheByKey.get(reusablePrecinctKey);
+        return vizPrevCache;
+      }
+      if (vizPrevCacheInflight.has(cacheKey)) {
+        vizPrevCache = await vizPrevCacheInflight.get(cacheKey);
         return vizPrevCache;
       }
 
-	      const prevPrecinctMarginByNorm = new Map();
-	      const prevCountyTotals = {};
-	      let precinctIdx = null;
+      const p = (async () => {
+        const prevMeta = await getPreviousContestSlice(contestTypeKey, y);
+        if (!prevMeta) {
+          const empty = buildEmptyPrevContestCache(contestTypeKey, y);
+          vizPrevCacheByKey.set(cacheKey, empty);
+          return empty;
+        }
+
+        const prevPrecinctMarginByNorm = new Map();
+        const prevCountyTotals = {};
+        let precinctIdx = null;
         let precinctAliasIdx = null;
-	      if (includePrecinctMargins) {
-	        try { precinctIdx = await ensurePrecinctCodeIndex(); } catch (_) { precinctIdx = null; }
+        if (includePrecinctMargins) {
+          try { precinctIdx = await ensurePrecinctCodeIndex(); } catch (_) { precinctIdx = null; }
           try { precinctAliasIdx = await ensurePrecinctAliasIndex(); } catch (_) { precinctAliasIdx = null; }
           try { await ensurePrecinctVariantOverrides(); } catch (_) {}
-	      }
-	      function isNonGeographicPrecinctCode(code, countyNorm = '') {
-	        const c = (code || '').toString().trim().toUpperCase();
-	        if (c && precinctIdx && countyNorm) {
-	          const codes = precinctIdx.get(countyNorm);
-	          if (codes && codes.has(c)) return false;
-	        }
-	        return isNonGeographicPrecinctToken(c, countyNorm);
-	      }
-	      function precinctNormVariantsLite(rowName) {
-	        const raw = (rowName || '').toString();
-	        const out = new Set();
-	        const normalize = (s) => (s || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
-	        const primary = normalize(raw);
-	        if (primary) out.add(primary);
-	        if (!raw.includes(' - ')) return Array.from(out);
-	        const [countyOnlyRaw, precRaw0] = raw.split(' - ', 2);
-	        const countyOnly = (countyOnlyRaw || '').trim();
-	        const countyNorm = normalize(countyOnly);
-	        const precRaw = (precRaw0 || '').trim().toUpperCase();
-	        if (!countyOnly || !precRaw) return Array.from(out);
-	        if (isNonGeographicPrecinctCode(precRaw, countyNorm)) return [];
-	        const addKey = (t) => {
-	          const altFull = normalize(`${countyOnly} - ${t}`);
-	          if (altFull) out.add(altFull);
-	        };
+        }
+        function isNonGeographicPrecinctCode(code, countyNorm = '') {
+          const c = (code || '').toString().trim().toUpperCase();
+          if (c && precinctIdx && countyNorm) {
+            const codes = precinctIdx.get(countyNorm);
+            if (codes && codes.has(c)) return false;
+          }
+          return isNonGeographicPrecinctToken(c, countyNorm);
+        }
+        function precinctNormVariantsLite(rowName) {
+          const raw = (rowName || '').toString();
+          const out = new Set();
+          const normalize = (s) => (s || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
+          const primary = normalize(raw);
+          if (primary) out.add(primary);
+          if (!raw.includes(' - ')) return Array.from(out);
+          const [countyOnlyRaw, precRaw0] = raw.split(' - ', 2);
+          const countyOnly = (countyOnlyRaw || '').trim();
+          const countyNorm = normalize(countyOnly);
+          const precRaw = (precRaw0 || '').trim().toUpperCase();
+          if (!countyOnly || !precRaw) return Array.from(out);
+          if (isNonGeographicPrecinctCode(precRaw, countyNorm)) return [];
+          const addKey = (t) => {
+            const altFull = normalize(`${countyOnly} - ${t}`);
+            if (altFull) out.add(altFull);
+          };
 
-          // If results use numeric alpha suffix codes (e.g., "10A") but geometry
-          // uses the numeric base ("10"), include base numeric variants.
           addNumericBaseVariantsFromAlphaSuffix(precRaw, addKey);
-          // Extract embedded precinct codes from verbose labels like
-          // "PRECINCT 01-14A" and "PR01 GAMEWELL #1".
           addEmbeddedPrecinctCodeVariants(precRaw, addKey);
 
-	        // Try to extract a compact base token for later split/alias expansion.
-	        let baseToken = '';
-	        try {
-	          const firstToken = precRaw.split(/\s+/, 1)[0].trim();
-	          const token0 = (firstToken.includes('_') ? firstToken.split('_', 1)[0] : firstToken).trim().toUpperCase();
-	          baseToken = (token0 || '').toString().replace(/[^A-Z0-9.\-]/g, '').trim();
-	        } catch (_) { baseToken = ''; }
-	        if (baseToken) addKey(baseToken);
+          let baseToken = '';
+          try {
+            const firstToken = precRaw.split(/\s+/, 1)[0].trim();
+            const token0 = (firstToken.includes('_') ? firstToken.split('_', 1)[0] : firstToken).trim().toUpperCase();
+            baseToken = (token0 || '').toString().replace(/[^A-Z0-9.\-]/g, '').trim();
+          } catch (_) { baseToken = ''; }
+          if (baseToken) addKey(baseToken);
 
-	        const m = precRaw.match(/^(\d{1,3})(?:-(\d+))?$/);
-	        if (m) {
-	          const baseInt = String(parseInt(m[1], 10));
-	          if (baseInt && baseInt !== 'NaN') {
-	            const altPrec = `${baseInt}A`;
-	            const altFull = normalize(`${countyOnly} - ${altPrec}`);
-	            if (altFull) out.add(altFull);
-	          }
-	        }
-	        try {
-	          const codes = precinctIdx && countyNorm ? precinctIdx.get(countyNorm) : null;
+          const m = precRaw.match(/^(\d{1,3})(?:-(\d+))?$/);
+          if (m) {
+            const baseInt = String(parseInt(m[1], 10));
+            if (baseInt && baseInt !== 'NaN') {
+              const altPrec = `${baseInt}A`;
+              const altFull = normalize(`${countyOnly} - ${altPrec}`);
+              if (altFull) out.add(altFull);
+            }
+          }
+          try {
+            const codes = precinctIdx && countyNorm ? precinctIdx.get(countyNorm) : null;
             addKnownLegacyCentroidBridges(countyNorm, precRaw, addKey);
             if (baseToken && baseToken !== precRaw) addKnownLegacyCentroidBridges(countyNorm, baseToken, addKey);
             if (codes) {
@@ -32304,69 +32363,59 @@ document.addEventListener('DOMContentLoaded', function() {
               }
             }
             if (codes && countyNorm === 'WAKE') addClosestHyphenCodeVariants(precRaw, codes, addKey);
-	          const baseCompact = (baseToken || precRaw).replace(/\s+/g, '');
-	          if (codes && baseCompact) {
-	            const baseNum = baseCompact.match(/^0*([0-9]+)$/);
-	            codes.forEach(code => {
-	              const c = (code || '').toString().trim().toUpperCase();
-	              const cCompact = c.replace(/\s+/g, '');
-	              if (!cCompact || cCompact === baseCompact) return;
-
-	              // Numeric-only bases should only match the exact numeric portion + a short split suffix
-	              // (e.g. "10" -> "10A", "10-1", "10-A").
-	              if (baseNum) {
-	                const cmCompactAlpha = cCompact.match(/^0*([0-9]+)([A-Z]{1,2})$/);
-	                const cmHyphenAlpha = c.match(/^0*([0-9]+)-([A-Z]{1,2})$/);
-	                const cmHyphenNumeric = c.match(/^0*([0-9]+)-([0-9]{1,2})$/);
-	                const cm = cmCompactAlpha || cmHyphenAlpha || cmHyphenNumeric;
-	                if (!cm) return;
-	                if (parseInt(cm[1], 10) !== parseInt(baseNum[1], 10)) return;
-	                const altFull = normalize(`${countyOnly} - ${c}`);
-	                if (altFull) out.add(altFull);
-	                return;
-	              }
-
-	              if (!cCompact.startsWith(baseCompact)) return;
-	              const suffix = cCompact.slice(baseCompact.length);
-	              if (!suffix || suffix.length > 3) return;
-	              const alphaNumSplit = /^[A-Z0-9]{1,2}$/.test(suffix) && /[A-Z]/.test(suffix);
+            const baseCompact = (baseToken || precRaw).replace(/\s+/g, '');
+            if (codes && baseCompact) {
+              const baseNum = baseCompact.match(/^0*([0-9]+)$/);
+              codes.forEach(code => {
+                const c = (code || '').toString().trim().toUpperCase();
+                const cCompact = c.replace(/\s+/g, '');
+                if (!cCompact || cCompact === baseCompact) return;
+                if (baseNum) {
+                  const cmCompactAlpha = cCompact.match(/^0*([0-9]+)([A-Z]{1,2})$/);
+                  const cmHyphenAlpha = c.match(/^0*([0-9]+)-([A-Z]{1,2})$/);
+                  const cmHyphenNumeric = c.match(/^0*([0-9]+)-([0-9]{1,2})$/);
+                  const cm = cmCompactAlpha || cmHyphenAlpha || cmHyphenNumeric;
+                  if (!cm) return;
+                  if (parseInt(cm[1], 10) !== parseInt(baseNum[1], 10)) return;
+                  const altFull = normalize(`${countyOnly} - ${c}`);
+                  if (altFull) out.add(altFull);
+                  return;
+                }
+                if (!cCompact.startsWith(baseCompact)) return;
+                const suffix = cCompact.slice(baseCompact.length);
+                if (!suffix || suffix.length > 3) return;
+                const alphaNumSplit = /^[A-Z0-9]{1,2}$/.test(suffix) && /[A-Z]/.test(suffix);
                 const hyphenNumericSplit = /^-[0-9]{1,2}$/.test(suffix);
-	              if (!(alphaNumSplit || hyphenNumericSplit)) return;
-	              const altFull = normalize(`${countyOnly} - ${c}`);
-	              if (altFull) out.add(altFull);
-	            });
-	          }
-	        } catch (_) {}
+                if (!(alphaNumSplit || hyphenNumericSplit)) return;
+                const altFull = normalize(`${countyOnly} - ${c}`);
+                if (altFull) out.add(altFull);
+              });
+            }
+          } catch (_) {}
 
-	        // If a precinct token begins with a code (e.g., "08.1 ASHEVILLE 8" or "0020B MONROE"),
-	        // include the bare code as a matching variant.
-	        try {
-	          if (baseToken) {
-	            // Decimal codes like Buncombe "08.1".
-	            const md = baseToken.match(/^0*([0-9]{1,3})\.([0-9]{1,3})$/);
-	            if (md) {
-	              const a = String(parseInt(md[1], 10)).padStart(2, '0');
-	              const b = String(parseInt(md[2], 10));
-	              addKey(`${a}.${b}`);
-	            } else {
-	              // Alphanumeric codes with leading zeros like UNION "0020B" or "0044".
-	              const ma = baseToken.match(/^0*([0-9]{1,4})([A-Z]{0,2})$/);
-	              if (ma) {
-	                const n = parseInt(ma[1], 10);
-	                const suf = (ma[2] || '').toUpperCase();
-	                if (!isNaN(n)) {
-	                  addKey(`${n}${suf}`);
-	                  addKey(`${String(n).padStart(2, '0')}${suf}`);
-	                  addKey(`${String(n).padStart(3, '0')}${suf}`);
-	                  addKey(`${String(n).padStart(4, '0')}${suf}`);
-	                }
-	              }
-	            }
-	          }
-	        } catch (_) {}
+          try {
+            if (baseToken) {
+              const md = baseToken.match(/^0*([0-9]{1,3})\.([0-9]{1,3})$/);
+              if (md) {
+                const a = String(parseInt(md[1], 10)).padStart(2, '0');
+                const b = String(parseInt(md[2], 10));
+                addKey(`${a}.${b}`);
+              } else {
+                const ma = baseToken.match(/^0*([0-9]{1,4})([A-Z]{0,2})$/);
+                if (ma) {
+                  const n = parseInt(ma[1], 10);
+                  const suf = (ma[2] || '').toUpperCase();
+                  if (!isNaN(n)) {
+                    addKey(`${n}${suf}`);
+                    addKey(`${String(n).padStart(2, '0')}${suf}`);
+                    addKey(`${String(n).padStart(3, '0')}${suf}`);
+                    addKey(`${String(n).padStart(4, '0')}${suf}`);
+                  }
+                }
+              }
+            }
+          } catch (_) {}
 
-          // Name-only fallback (e.g., "GASTON - ARMSTRONG") via prebuilt
-          // county alias index from precinct geometry ENR_DESC values.
           try {
             const countyAliases = precinctAliasIdx && countyNorm ? precinctAliasIdx.get(countyNorm) : null;
             if (countyAliases) {
@@ -32377,36 +32426,47 @@ document.addEventListener('DOMContentLoaded', function() {
           try {
             applyPrecinctVariantOverrides(countyNorm, precRaw, addKey);
           } catch (_) {}
-	        return Array.from(out);
-	      }
-      (prevMeta.rows || []).forEach(r => {
-        const rowName = (r.county || '').toString();
-        const countyOnly = rowName.includes(' - ') ? rowName.split(' - ')[0] : rowName;
-        const countyNorm = (countyOnly || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
-        if (!countyNorm) return;
-        const dem = Number(r[`${contestType}_dem`] || 0);
-        const rep = Number(r[`${contestType}_rep`] || 0);
-        const total = Number(r[`${contestType}_total`] || 0);
-        if (!prevCountyTotals[countyNorm]) prevCountyTotals[countyNorm] = { dem: 0, rep: 0, total: 0 };
-        prevCountyTotals[countyNorm].dem += dem;
-        prevCountyTotals[countyNorm].rep += rep;
-        prevCountyTotals[countyNorm].total += total;
-
-        if (includePrecinctMargins) {
-          const mPct = Number(r[`${contestType}_margin_pct`] || 0);
-          precinctNormVariantsLite(rowName).forEach(n => prevPrecinctMarginByNorm.set(n, mPct));
+          return Array.from(out);
         }
-      });
 
-      vizPrevCache = {
-        contestType,
-        year: y,
-        prevYear: prevMeta.year,
-        prevPrecinctMarginByNorm,
-        prevCountyTotals,
-        hasPrecinctMargins: includePrecinctMargins
-      };
-      return vizPrevCache;
+        (prevMeta.rows || []).forEach(r => {
+          const rowName = (r.county || '').toString();
+          const countyOnly = rowName.includes(' - ') ? rowName.split(' - ')[0] : rowName;
+          const countyNorm = (countyOnly || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
+          if (!countyNorm) return;
+          const dem = Number(r[`${contestTypeKey}_dem`] || 0);
+          const rep = Number(r[`${contestTypeKey}_rep`] || 0);
+          const total = Number(r[`${contestTypeKey}_total`] || 0);
+          if (!prevCountyTotals[countyNorm]) prevCountyTotals[countyNorm] = { dem: 0, rep: 0, total: 0 };
+          prevCountyTotals[countyNorm].dem += dem;
+          prevCountyTotals[countyNorm].rep += rep;
+          prevCountyTotals[countyNorm].total += total;
+          if (includePrecinctMargins) {
+            const mPct = Number(r[`${contestTypeKey}_margin_pct`] || 0);
+            precinctNormVariantsLite(rowName).forEach(n => prevPrecinctMarginByNorm.set(n, mPct));
+          }
+        });
+
+        const cached = {
+          contestType: contestTypeKey,
+          year: y,
+          prevYear: prevMeta.year,
+          prevPrecinctMarginByNorm,
+          prevCountyTotals,
+          hasPrecinctMargins: includePrecinctMargins
+        };
+        vizPrevCacheByKey.set(cacheKey, cached);
+        if (includePrecinctMargins) vizPrevCacheByKey.set(`${contestTypeKey}_${y}_base`, cached);
+        return cached;
+      })();
+
+      vizPrevCacheInflight.set(cacheKey, p);
+      try {
+        vizPrevCache = await p;
+        return vizPrevCache;
+      } finally {
+        vizPrevCacheInflight.delete(cacheKey);
+      }
     }
 
     async function tryLoadDistrictSliceStrict(scope, contestType, year, linesYear = currentDistrictLinesYear) {
@@ -32446,10 +32506,72 @@ document.addEventListener('DOMContentLoaded', function() {
       const linesYear = normalizeDistrictLinesYear(currentDistrictLinesYear);
       const key = `${linesYear}_${scope}_${contestType}_${y}`;
       if (vizPrevDistrictCache.has(key)) return vizPrevDistrictCache.get(key);
-      const prev = await getPreviousDistrictSlice(scope, contestType, y, linesYear);
-      const cached = prev ? { prevYear: prev.year, prevNode: prev.node } : { prevYear: null, prevNode: null };
-      vizPrevDistrictCache.set(key, cached);
-      return cached;
+      if (vizPrevDistrictInflight.has(key)) return await vizPrevDistrictInflight.get(key);
+      const p = (async () => {
+        const prev = await getPreviousDistrictSlice(scope, contestType, y, linesYear);
+        const cached = prev ? { prevYear: prev.year, prevNode: prev.node } : { prevYear: null, prevNode: null };
+        vizPrevDistrictCache.set(key, cached);
+        return cached;
+      })();
+      vizPrevDistrictInflight.set(key, p);
+      try {
+        return await p;
+      } finally {
+        vizPrevDistrictInflight.delete(key);
+      }
+    }
+
+    function scheduleContestInteractionWarmup(contestType, year) {
+      const contestTypeKey = String(contestType || '').trim();
+      const yearNum = Number(year);
+      if (!contestTypeKey || !Number.isFinite(yearNum) || yearNum <= 0) return;
+      const linesYear = normalizeDistrictLinesYear(currentDistrictLinesYear);
+      const viewName = String(currentView || 'counties').trim();
+      const warmupKey = `${viewName}_${linesYear}_${contestTypeKey}_${yearNum}`;
+      if (contestInteractionWarmupScheduled.has(warmupKey)) return;
+      contestInteractionWarmupScheduled.add(warmupKey);
+
+      const run = async () => {
+        try {
+          await ensurePrevContestCache(contestTypeKey, yearNum, { includePrecinctMargins: false });
+        } catch (_) {}
+
+        try {
+          const years = (getAvailableContestYearsForType(contestTypeKey) || [])
+            .map(v => Number(v))
+            .filter(v => Number.isFinite(v) && v > 0);
+          await mapWithConcurrency(years, 2, async (cycleYear) => {
+            await loadContestSlice(contestTypeKey, cycleYear);
+            try { await getContestCandidates(contestTypeKey, cycleYear); } catch (_) {}
+            return cycleYear;
+          });
+        } catch (_) {}
+
+        const districtScope = viewName === 'districts'
+          ? 'congressional'
+          : (viewName === 'state_house' ? 'state_house' : (viewName === 'state_senate' ? 'state_senate' : ''));
+        if (!districtScope) return;
+
+        try {
+          await ensurePrevDistrictCache(districtScope, contestTypeKey, yearNum);
+        } catch (_) {}
+
+        try {
+          const entries = getDistrictTrendManifestEntries(districtScope, contestTypeKey);
+          await mapWithConcurrency(entries, 2, async (entry) => {
+            const cycleYear = Number(entry?.year);
+            if (!Number.isFinite(cycleYear) || cycleYear <= 0) return null;
+            return await loadDistrictSlice(districtScope, contestTypeKey, cycleYear, linesYear);
+          });
+        } catch (_) {}
+      };
+
+      const kickoff = () => { run().catch(() => {}); };
+      if (typeof window.requestIdleCallback === 'function') {
+        window.requestIdleCallback(() => kickoff(), { timeout: 1800 });
+      } else {
+        setTimeout(kickoff, 220);
+      }
     }
 
     async function applyContest(contestKey, opts = {}) {
@@ -32502,6 +32624,7 @@ document.addEventListener('DOMContentLoaded', function() {
       try { syncModelTuningControls(); } catch (_) {}
       try { updateContextBanner(); } catch (_) {}
       try { scheduleCountyVoteDeltaCachesForTooltip(contestType, Number(year), 2); } catch (_) {}
+      try { scheduleContestInteractionWarmup(contestType, year); } catch (_) {}
 
       // Fast path: if the exact same contest/view/mode/toggles are already applied, avoid rebuilding expressions,
       // county totals, and other expensive work. Preserve UI/hover behavior by running only lightweight refreshes.
@@ -33219,36 +33342,34 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      // Keep prior county totals in county view so hover chips can show flips
-      // even when the main map mode is not Shift/Flips.
-      const needsPrevData = (mode === 'shift' || mode === 'flips' || currentView === 'counties');
-      const needsPrevPrecinctMargins = needsPrecinctDetail && (mode === 'shift' || mode === 'flips');
+      // Shift and flip rendering need prior-cycle data immediately.
+      // Plain county loads can paint first and warm hover comparison data in the background.
+      const requiresImmediatePrevData = (mode === 'shift' || mode === 'flips');
+      const needsPrevPrecinctMargins = needsPrecinctDetail && requiresImmediatePrevData;
+      const emptyPrevCache = buildEmptyPrevContestCache(contestType, Number(year));
+      vizPrevCache = emptyPrevCache;
       if (staleCheck()) return;
-      if (needsPrevData) {
+      if (requiresImmediatePrevData) {
         try {
           vizPrevCache = await ensurePrevContestCache(contestType, Number(year), {
             includePrecinctMargins: needsPrevPrecinctMargins
           });
           if (staleCheck()) return;
         } catch (_) {
-          vizPrevCache = {
-            contestType,
-            year: Number(year),
-            prevYear: null,
-            prevPrecinctMarginByNorm: new Map(),
-            prevCountyTotals: {},
-            hasPrecinctMargins: false
-          };
+          vizPrevCache = emptyPrevCache;
         }
       } else {
-        vizPrevCache = {
-          contestType,
-          year: Number(year),
-          prevYear: null,
-          prevPrecinctMarginByNorm: new Map(),
-          prevCountyTotals: {},
-          hasPrecinctMargins: false
-        };
+        ensurePrevContestCache(contestType, Number(year), { includePrecinctMargins: false })
+          .then(cache => {
+            const stillCurrent = !staleCheck() &&
+              currentView === 'counties' &&
+              String(currentContestMeta?.contestType || '').trim() === String(contestType || '').trim() &&
+              Number(currentContestMeta?.year) === Number(year);
+            if (!stillCurrent || !cache) return;
+            vizPrevCache = cache;
+            try { refreshHoverAtPointer().catch(() => {}); } catch (_) {}
+          })
+          .catch(() => {});
       }
       if (staleCheck()) return;
 
@@ -33748,7 +33869,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const districtScope = currentView === 'districts'
           ? 'congressional'
           : (currentView === 'state_house' ? 'state_house' : 'state_senate');
-        const districtNode = await loadDistrictSlice(districtScope, contestType, year);
+        const appliedLinesYear = normalizeDistrictLinesYear(currentDistrictLinesYear);
+        const districtNode = await loadDistrictSlice(districtScope, contestType, year, appliedLinesYear);
         const districtResults = districtNode?.general?.results || null;
         const coveragePct = districtNode?.meta?.match_coverage_pct;
 
@@ -33757,13 +33879,35 @@ document.addEventListener('DOMContentLoaded', function() {
           currentDistrictTurnoutTotals = {};
           currentCountyTurnoutTotals = {};
           currentPrecinctTurnoutTotals = new Map();
-          // Preload previous-year results for shift/flip detection.
+          // Shift and flips need prior-year district results immediately.
+          // Other modes warm them in the background so the first paint is faster.
           let prevYear = null;
           let prevResults = null;
+          const requiresImmediatePrevDistrict = (mode === 'shift' || mode === 'flips');
+          const prevDistrictKey = `${appliedLinesYear}_${districtScope}_${contestType}_${Number(year)}`;
           try {
-            const prevCached = await ensurePrevDistrictCache(districtScope, contestType, Number(year));
-            prevYear = prevCached?.prevYear || null;
-            prevResults = prevCached?.prevNode?.general?.results || null;
+            if (requiresImmediatePrevDistrict) {
+              const prevCached = await ensurePrevDistrictCache(districtScope, contestType, Number(year));
+              prevYear = prevCached?.prevYear || null;
+              prevResults = prevCached?.prevNode?.general?.results || null;
+            } else {
+              const prevCached = vizPrevDistrictCache.get(prevDistrictKey) || null;
+              prevYear = prevCached?.prevYear || null;
+              prevResults = prevCached?.prevNode?.general?.results || null;
+              if (!prevCached) {
+                ensurePrevDistrictCache(districtScope, contestType, Number(year))
+                  .then(() => {
+                    const stillCurrent =
+                      (currentView === 'districts' || currentView === 'state_house' || currentView === 'state_senate') &&
+                      String(currentContestMeta?.contestType || '').trim() === String(contestType || '').trim() &&
+                      Number(currentContestMeta?.year) === Number(year) &&
+                      normalizeDistrictLinesYear(currentDistrictLinesYear) === appliedLinesYear;
+                    if (!stillCurrent) return;
+                    try { refreshHoverAtPointer().catch(() => {}); } catch (_) {}
+                  })
+                  .catch(() => {});
+              }
+            }
           } catch (_) {}
           if (mode === 'shift' && !prevYear) {
             setStatus(`Shift mode needs a prior year for ${formatContestName(contestType, year)} in ${districtScope}. Falling back to Margins.`);
