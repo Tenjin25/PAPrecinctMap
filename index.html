@@ -5664,6 +5664,18 @@ body.focus-active #hover-tooltip[data-context="preview"] {
     border-color: rgba(139, 92, 246, 0.16);
   }
 
+  .focus-trend-chip.flip.rep {
+    color: #b91c1c;
+    background: rgba(254, 226, 226, 0.84);
+    border-color: rgba(248, 113, 113, 0.22);
+  }
+
+  .focus-trend-chip.flip.dem {
+    color: #1d4ed8;
+    background: rgba(219, 234, 254, 0.86);
+    border-color: rgba(96, 165, 250, 0.24);
+  }
+
   @media (min-width: 769px) and (max-width: 1180px) {
     :root {
       --desktop-left-w: 344px;
@@ -10229,8 +10241,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-06-28-7';
-    const APP_BUILD_ID = '2026-06-28-7';
+    const DATA_CACHE_BUSTER = '2026-06-28-8';
+    const APP_BUILD_ID = '2026-06-28-8';
 
     function ensurePageCacheBuster() {
       return false;
@@ -14451,11 +14463,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const total = Number(trendItem?.total_votes || 0);
         const dem = Number(trendItem?.dem_votes || 0);
         const rep = Number(trendItem?.rep_votes || 0);
-        const rawSigned = Number.isFinite(Number(trendItem?.margin_pct))
-          ? Number(trendItem.margin_pct)
-          : signedMarginPctFromVotes(dem, rep, total);
+        const resolved = resolveWinnerAndSignedMargin(
+          trendItem?.margin_pct,
+          trendItem?.winner,
+          dem,
+          rep,
+          total
+        );
+        const rawSigned = Number.isFinite(Number(resolved?.signed))
+          ? Number(resolved.signed)
+          : (Number.isFinite(Number(trendItem?.margin_pct))
+            ? Number(trendItem.margin_pct)
+            : signedMarginPctFromVotes(dem, rep, total));
         // If a historical row doesn't carry vote totals (for example, some pre-aggregated trend bundles),
-        // fall back to the signed margin directly so "Since 2020 / 2008 / 2000" deltas don't collapse to 0.
+        // fall back to the resolved signed margin directly so "Since 2020 / 2008 / 2000" deltas don't collapse to 0.
         if (!(Number.isFinite(total) && total > 0)) return rawSigned;
         const absDisplay = useCountyMarginPrecision
           ? countyMarginPctDisplayValue(rep, dem, total)
@@ -14621,8 +14642,11 @@ document.addEventListener('DOMContentLoaded', function() {
             ? 'Republican'
             : (entry.winnerMeta.partyClass === 'dem' ? 'Democratic' : 'Tie');
           const totalVotesLabel = `${formatCompactVoteTotal(entry.totalVotes)} votes`;
+          const flipChipClass = entry.flip && entry.flip.flipped
+            ? (entry.flip.to === 'R' ? 'rep' : (entry.flip.to === 'D' ? 'dem' : 'tie'))
+            : 'tie';
           const flipChip = entry.flip && entry.flip.flipped
-            ? `<span class="focus-trend-chip flip">${escapeHtml(`Flip ${entry.flip.from}->${entry.flip.to}`)}</span>`
+            ? `<span class="focus-trend-chip flip ${flipChipClass}">${escapeHtml(`Flip ${entry.flip.from}→${entry.flip.to}`)}</span>`
             : '';
           const leadSummary = entry.leadLabel === 'Tie' ? 'Even race' : entry.leadLabel;
           const otherChip = entry.otherPct >= 0.05
@@ -22158,16 +22182,27 @@ document.addEventListener('DOMContentLoaded', function() {
               if (!repCand) repCand = cand.rep || '';
             } catch (_) {}
           }
+          const demVotes = Number(r.dem_votes) || 0;
+          const repVotes = Number(r.rep_votes) || 0;
+          const otherVotes = Number(r.other_votes) || 0;
+          const totalVotes = Number(r.total_votes) || 0;
+          const resolvedTrendMargin = resolveWinnerAndSignedMargin(
+            r.margin_pct,
+            r.winner,
+            demVotes,
+            repVotes,
+            totalVotes
+          );
           return {
             year,
-            dem_votes: Number(r.dem_votes) || 0,
-            rep_votes: Number(r.rep_votes) || 0,
-            other_votes: Number(r.other_votes) || 0,
-            total_votes: Number(r.total_votes) || 0,
+            dem_votes: demVotes,
+            rep_votes: repVotes,
+            other_votes: otherVotes,
+            total_votes: totalVotes,
             dem_candidate: demCand,
             rep_candidate: repCand,
-            winner: r.winner || '',
-            margin_pct: Number(r.margin_pct) || 0,
+            winner: resolvedTrendMargin.winner === 'R' ? 'REP' : (resolvedTrendMargin.winner === 'D' ? 'DEM' : (resolvedTrendMargin.winner === 'T' ? 'TIE' : (r.winner || ''))),
+            margin_pct: Number.isFinite(Number(resolvedTrendMargin.signed)) ? Number(resolvedTrendMargin.signed) : (Number(r.margin_pct) || 0),
             coverage_pct: payload?.meta?.match_coverage_pct
           };
         });
