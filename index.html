@@ -10241,8 +10241,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-07-21-1';
-    const APP_BUILD_ID = '2026-07-21-1';
+    const DATA_CACHE_BUSTER = '2026-08-01-1';
+    const APP_BUILD_ID = '2026-08-01-1';
 
     function ensurePageCacheBuster() {
       return false;
@@ -10291,7 +10291,7 @@ document.addEventListener('DOMContentLoaded', function() {
         precincts_fallback_vtd20: null,
         precinct_centroids: withBase('./data/precinct_centroids.geojson'),
         precinct_aliases: null,
-        precinct_friendly_names: null,
+        precinct_friendly_names: withBase('./data/precinct_friendly_names.json'),
         precinct_variant_overrides: null,
         districts: withBase('./data/tileset/pa_cd118_tileset.geojson'),
         districts_2022: withBase('./data/tileset/pa_cd118_tileset.geojson'),
@@ -10322,7 +10322,14 @@ document.addEventListener('DOMContentLoaded', function() {
         contests_dir: withBase('./data/contests'),
         reports_match_year_summary: null,
         reports_top_unmatched: null,
-        crosswalks: {}
+        crosswalks: {
+          pa_block20_to_vtd20: withBase('./data/crosswalks/pa_block20_to_vtd20.csv'),
+          pa_vtd10_to_vtd20_block_chain: withBase('./data/crosswalks/pa_vtd10_to_vtd20_block_chain.csv'),
+          pa_vtd00_to_vtd20_block_chain: withBase('./data/crosswalks/pa_vtd00_to_vtd20_block_chain.csv'),
+          pa_block20_to_congressional_2022: withBase('./data/crosswalks/pa_block20_to_congressional_2022.csv'),
+          pa_block20_to_state_house_2022: withBase('./data/crosswalks/pa_block20_to_state_house_2022.csv'),
+          pa_block20_to_state_senate_2022: withBase('./data/crosswalks/pa_block20_to_state_senate_2022.csv')
+        }
       },
       center: [-77.7, 40.85],
       zoom: 6.5,
@@ -15327,6 +15334,89 @@ document.addEventListener('DOMContentLoaded', function() {
 	      2008: withBase('./data/Openelections/2008/20081104__pa__general__precinct.csv')
 	    };
 
+    // These files contain the actual county/precinct contest rows used by the
+    // precinct overlay.  The compact contest JSON files are county aggregates,
+    // so loading them alone makes every precinct in a county share one color.
+    const GENERAL_PRECINCT_CSV_BY_YEAR = {
+      2016: withBase('./data/Openelections/2016/20161108__pa__general__precinct.csv'),
+      2020: withBase('./data/Openelections/2020/20201103__pa__general__precinct.csv'),
+      2022: withBase('./data/Openelections/2022/20221108__pa__general__precinct.csv'),
+      2024: withBase('./data/Openelections/2024/20241105__pa__general__precinct_official.csv')
+    };
+    const precinctContestSliceCache = new Map();
+    const precinctContestSliceInflight = new Map();
+
+    function precinctContestTypeFromOffice(office) {
+      const label = String(office || '').toUpperCase().replace(/[^A-Z0-9]+/g, ' ').trim();
+      if (!label) return '';
+      if (label.includes('PRESIDENT')) return 'president';
+      if (label.includes('UNITED STATES SENATOR') || label === 'US SENATE' || label.includes('U S SENATOR')) return 'us_senate';
+      if (label.includes('LIEUTENANT GOVERNOR')) return 'lieutenant_governor';
+      if (label === 'GOVERNOR' || label.includes('GOVERNOR')) return 'governor';
+      if (label.includes('ATTORNEY GENERAL')) return 'attorney_general';
+      if (label.includes('SECRETARY OF STATE')) return 'secretary_of_state';
+      if (label.includes('TREASURER')) return 'treasurer';
+      if (label.includes('AUDITOR GENERAL') || label === 'AUDITOR') return 'auditor';
+      if (label.includes('INSURANCE COMMISSIONER')) return 'insurance_commissioner';
+      if (label.includes('AGRICULTURE') && label.includes('COMMISSIONER')) return 'agriculture_commissioner';
+      if (label.includes('LABOR') && label.includes('COMMISSIONER')) return 'labor_commissioner';
+      if (label.includes('SUPERINTENDENT')) return 'superintendent';
+      return '';
+    }
+
+    async function loadGeneralPrecinctContestSlice(contestType, year) {
+      const key = `${contestType}_${Number(year)}`;
+      if (precinctContestSliceCache.has(key)) return precinctContestSliceCache.get(key);
+      if (precinctContestSliceInflight.has(key)) return precinctContestSliceInflight.get(key);
+      const path = GENERAL_PRECINCT_CSV_BY_YEAR[Number(year)];
+      if (!path) return null;
+
+      const promise = (async () => {
+        const byPrecinct = new Map();
+        const ingest = (rows) => (rows || []).forEach(raw => {
+          if (precinctContestTypeFromOffice(raw.office) !== contestType) return;
+          const county = String(raw.county || '').trim().toUpperCase();
+          const precinctRaw = String(raw.precinct || '').trim();
+          if (!county || !precinctRaw) return;
+          // Keep the complete source label.  County election files commonly use
+          // names ("Abbottstown") or ward/district labels, while the geometry
+          // uses numeric VTD IDs; precinctNormVariants() performs the bridge.
+          const label = precinctRaw.toUpperCase().replace(/[_\s]+/g, ' ').trim();
+          if (!label || /ABSENTEE|PROVISIONAL|ONE STOP|CURBSIDE/.test(label)) return;
+          const precinct = `${county} - ${label}`.replace(/\s+/g, ' ').trim();
+          const party = String(raw.party || '').trim().toUpperCase();
+          const votes = Number(raw.votes) || 0;
+          const node = byPrecinct.get(precinct) || { dem: 0, rep: 0, other: 0, demCandidate: '', repCandidate: '' };
+          if (party.startsWith('DEM')) {
+            node.dem += votes;
+            if (!node.demCandidate) node.demCandidate = String(raw.candidate || '').trim();
+          } else if (party.startsWith('REP')) {
+            node.rep += votes;
+            if (!node.repCandidate) node.repCandidate = String(raw.candidate || '').trim();
+          } else {
+            node.other += votes;
+          }
+          byPrecinct.set(precinct, node);
+        });
+
+        const csvText = await loadCSV(path);
+        ingest(parseCSV(csvText));
+        const rows = Array.from(byPrecinct, ([county, v]) => ({
+          year: Number(year), county,
+          [`${contestType}_dem`]: v.dem,
+          [`${contestType}_rep`]: v.rep,
+          [`${contestType}_other`]: v.other,
+          [`${contestType}_total`]: v.dem + v.rep + v.other,
+          [`${contestType}_dem_candidate`]: normalizeCandidateDisplayName(v.demCandidate, ''),
+          [`${contestType}_rep_candidate`]: normalizeCandidateDisplayName(v.repCandidate, '')
+        }));
+        precinctContestSliceCache.set(key, rows);
+        return rows;
+      })();
+      precinctContestSliceInflight.set(key, promise);
+      try { return await promise; } finally { precinctContestSliceInflight.delete(key); }
+    }
+
     async function loadPresidentSliceFromOpenElectionsCSV(year) {
       const y = Number(year);
       const path = PRESIDENT_OPEN_ELECTIONS_CSV[y];
@@ -18467,7 +18557,16 @@ document.addEventListener('DOMContentLoaded', function() {
         };
       }
 
-	    async function loadContestSlice(contestType, year) {
+	    async function loadContestSlice(contestType, year, opts = {}) {
+        const preferPrecinct = !!opts?.preferPrecinct && !!GENERAL_PRECINCT_CSV_BY_YEAR[Number(year)];
+        if (preferPrecinct) {
+          try {
+            const precinctRows = await loadGeneralPrecinctContestSlice(contestType, year);
+            if (precinctRows && precinctRows.length) return precinctRows;
+          } catch (err) {
+            console.warn(`Precinct contest load failed for ${contestType} ${year}; using county aggregates.`, err?.message || err);
+          }
+        }
         const modeledDef = getModeledContestDefinition(contestType, year);
         if (modeledDef) {
           const sig = getModeledDefSignature(modeledDef);
@@ -32968,7 +33067,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (staleCheck()) return;
 
       // Filter data for this contest and year
-      const contestData = await loadContestSlice(contestType, year);
+      const contestData = await loadContestSlice(contestType, year, { preferPrecinct: precinctsEnabled });
       if (staleCheck()) return;
       
       debugLog(`Applying ${contestType} for ${year}:`, contestData.length, 'counties found');
