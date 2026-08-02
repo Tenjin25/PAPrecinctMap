@@ -74,7 +74,7 @@ def main():
         'generated_from': ['data/precinct_friendly_names.json'],
         'counties': dict(sorted(counties.items())),
     }
-    OUTPUT.write_text(json.dumps(output, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    OUTPUT.write_text(json.dumps(output, separators=(',', ':'), ensure_ascii=False) + '\n', encoding='utf-8')
     print(f'Wrote {sum(len(v) for v in counties.values())} county alias maps to {OUTPUT}')
 
 
