@@ -10259,8 +10259,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-02-2';
-    const APP_BUILD_ID = '2026-08-02-2';
+    const DATA_CACHE_BUSTER = '2026-08-02-6';
+    const APP_BUILD_ID = '2026-08-02-6';
 
     function ensurePageCacheBuster() {
       return false;
@@ -10311,6 +10311,8 @@ document.addEventListener('DOMContentLoaded', function() {
         precinct_aliases: withBase('./data/precinct_alias_index.json'),
         precinct_friendly_names: withBase('./data/precinct_friendly_names.json'),
         precinct_variant_overrides: null,
+        precinct_crosswalk: withBase('./data/crosswalks/pa_modern_precinct_to_vtd20.csv'),
+        precinct_historical_crosswalk: withBase('./data/crosswalks/pa_historical_precinct_to_vtd20.csv'),
         districts: withBase('./data/tileset/pa_cd118_tileset.geojson'),
         districts_2022: withBase('./data/tileset/pa_cd118_tileset.geojson'),
         districts_2024: withBase('./data/tileset/pa_cd118_tileset.geojson'),
@@ -10590,7 +10592,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Mobile: optional "auto hover" mode (tooltip follows map center after pan/zoom).
-    const FOLLOW_HOVER_STORAGE_KEY = 'nc-atlas:follow-hover:v1';
+    const FOLLOW_HOVER_STORAGE_KEY = 'pa-atlas:follow-hover:v1';
     let followHoverEnabled = false;
     try {
       followHoverEnabled = (window.localStorage && window.localStorage.getItem(FOLLOW_HOVER_STORAGE_KEY) === '1');
@@ -11061,7 +11063,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Fallback for PA-style manifests and duplicated 2022/2024 directories:
       // if the active manifest was empty/filtered out, scan all district manifests
-      // without the NC-specific visibility gate, then fall back to the statewide
+      // without a state-specific visibility gate, then fall back to the statewide
       // contest manifest years.  The actual JSON still gets verified by
       // tryLoadDistrictSliceStrict before it is used.
       if (!years.size) {
@@ -15441,6 +15443,10 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     const precinctContestSliceCache = new Map();
     const precinctContestSliceInflight = new Map();
+    const precinctCrosswalkCache = new Map();
+    const precinctCrosswalkInflight = new Map();
+    const historicalPrecinctCrosswalkCache = new Map();
+    const historicalPrecinctCrosswalkInflight = new Map();
 
     function precinctContestTypeFromOffice(office) {
       const label = String(office || '').toUpperCase().replace(/[^A-Z0-9]+/g, ' ').trim();
@@ -15469,6 +15475,57 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const promise = (async () => {
         const byPrecinct = new Map();
+        const countyNameByFips = await ensureCountyNameByFipsMap();
+
+        function crosswalkNameKey(value) {
+          return String(value || '').toUpperCase().replace(/[_\s]+/g, ' ').trim();
+        }
+
+        function crosswalkVtdVariants(value) {
+          const raw = String(value || '').trim().toUpperCase();
+          if (!raw) return [];
+          // The current precinct geometry stores numeric VTD labels without
+          // left padding; keep one canonical target here so a padded CSV code
+          // cannot create duplicate weighted rows in the overlay.
+          return [raw.replace(/^0+(?=\d)/, '') || '0'];
+        }
+
+        async function loadPrecinctCrosswalk(yearValue) {
+          const crosswalkYear = Number(yearValue);
+          if (precinctCrosswalkCache.has(crosswalkYear)) return precinctCrosswalkCache.get(crosswalkYear);
+          if (precinctCrosswalkInflight.has(crosswalkYear)) return precinctCrosswalkInflight.get(crosswalkYear);
+          const path = (crosswalkYear < 2018)
+            ? CONFIG.paths?.precinct_historical_crosswalk
+            : CONFIG.paths?.precinct_crosswalk;
+          if (!path) return new Map();
+          const loadPromise = (async () => {
+            const index = new Map();
+            try {
+              const rows = parseCSV(await loadCSV(path));
+              rows.forEach(row => {
+                if (Number(row.year) !== crosswalkYear) return;
+                const county = countyNameByFips?.get(String(row.countyfp || '').replace(/\D/g, '').padStart(3, '0')) || '';
+                const source = crosswalkNameKey(row.source_precinct);
+                const targetCounty = countyNameByFips?.get(String(row.dst_countyfp || '').replace(/\D/g, '').padStart(3, '0')) || county;
+                const targetVtds = crosswalkVtdVariants(row.dst_vtd);
+                const weight = Number(row.weight);
+                if (!county || !source || !targetCounty || !targetVtds.length || !Number.isFinite(weight) || weight <= 0) return;
+                const key = `${county}\\u0000${source}`;
+                const targets = index.get(key) || [];
+                targetVtds.forEach(vtd => targets.push({ county: targetCounty, vtd, weight }));
+                index.set(key, targets);
+              });
+            } catch (err) {
+              console.warn('Precinct crosswalk load failed:', err?.message || err);
+            }
+            precinctCrosswalkCache.set(crosswalkYear, index);
+            return index;
+          })();
+          precinctCrosswalkInflight.set(crosswalkYear, loadPromise);
+          try { return await loadPromise; } finally { precinctCrosswalkInflight.delete(crosswalkYear); }
+        }
+
+        const crosswalk = await loadPrecinctCrosswalk(year);
         const ingest = (rows) => (rows || []).forEach(raw => {
           if (precinctContestTypeFromOffice(raw.office) !== contestType) return;
           const county = String(raw.county || '').trim().toUpperCase();
@@ -15479,20 +15536,29 @@ document.addEventListener('DOMContentLoaded', function() {
           // uses numeric VTD IDs; precinctNormVariants() performs the bridge.
           const label = precinctRaw.toUpperCase().replace(/[_\s]+/g, ' ').trim();
           if (!label || /ABSENTEE|PROVISIONAL|ONE STOP|CURBSIDE/.test(label)) return;
-          const precinct = `${county} - ${label}`.replace(/\s+/g, ' ').trim();
           const party = String(raw.party || '').trim().toUpperCase();
           const votes = Number(raw.votes) || 0;
-          const node = byPrecinct.get(precinct) || { dem: 0, rep: 0, other: 0, demCandidate: '', repCandidate: '' };
-          if (party.startsWith('DEM')) {
-            node.dem += votes;
-            if (!node.demCandidate) node.demCandidate = String(raw.candidate || '').trim();
-          } else if (party.startsWith('REP')) {
-            node.rep += votes;
-            if (!node.repCandidate) node.repCandidate = String(raw.candidate || '').trim();
-          } else {
-            node.other += votes;
-          }
-          byPrecinct.set(precinct, node);
+          const targets = crosswalk.get(`${county}\u0000${crosswalkNameKey(label)}`) || [];
+          const outputTargets = targets.length
+            ? targets
+            : [{ county, vtd: '', weight: 1 }];
+          outputTargets.forEach(target => {
+            const precinct = target.vtd
+              ? `${target.county} - ${target.vtd}`
+              : `${county} - ${label}`;
+            const node = byPrecinct.get(precinct) || { dem: 0, rep: 0, other: 0, demCandidate: '', repCandidate: '' };
+            const weightedVotes = votes * Number(target.weight || 1);
+            if (party.startsWith('DEM')) {
+              node.dem += weightedVotes;
+              if (!node.demCandidate) node.demCandidate = String(raw.candidate || '').trim();
+            } else if (party.startsWith('REP')) {
+              node.rep += weightedVotes;
+              if (!node.repCandidate) node.repCandidate = String(raw.candidate || '').trim();
+            } else {
+              node.other += weightedVotes;
+            }
+            byPrecinct.set(precinct, node);
+          });
         });
 
         const csvText = await loadCSV(path);
@@ -15511,6 +15577,38 @@ document.addEventListener('DOMContentLoaded', function() {
       })();
       precinctContestSliceInflight.set(key, promise);
       try { return await promise; } finally { precinctContestSliceInflight.delete(key); }
+    }
+
+    async function loadHistoricalPrecinctCrosswalk(year) {
+      const y = Number(year);
+      if (historicalPrecinctCrosswalkCache.has(y)) return historicalPrecinctCrosswalkCache.get(y);
+      if (historicalPrecinctCrosswalkInflight.has(y)) return historicalPrecinctCrosswalkInflight.get(y);
+      const path = CONFIG.paths?.precinct_historical_crosswalk;
+      if (!path) return new Map();
+      const promise = (async () => {
+        const index = new Map();
+        try {
+          const rows = parseCSV(await loadCSV(path));
+          rows.forEach(row => {
+            if (Number(row.year) !== y || !row.dst_vtd) return;
+            const county = String(row.countyfp || '').replace(/\D/g, '').padStart(3, '0');
+            const source = String(row.source_precinct || '').toUpperCase().replace(/[_\s]+/g, ' ').trim();
+            const vtd = String(row.dst_vtd || '').trim().replace(/^0+(?=\d)/, '') || '0';
+            const weight = Number(row.weight);
+            if (!county || !source || !vtd || !Number.isFinite(weight) || weight <= 0) return;
+            const key = `${y}|${county}|${source}`;
+            const targets = index.get(key) || [];
+            targets.push({ county, vtd, weight });
+            index.set(key, targets);
+          });
+        } catch (err) {
+          console.warn('Historical precinct crosswalk load failed:', err?.message || err);
+        }
+        historicalPrecinctCrosswalkCache.set(y, index);
+        return index;
+      })();
+      historicalPrecinctCrosswalkInflight.set(y, promise);
+      try { return await promise; } finally { historicalPrecinctCrosswalkInflight.delete(y); }
     }
 
     async function loadPresidentSliceFromOpenElectionsCSV(year) {
@@ -15535,6 +15633,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Aggregate to precinct key "COUNTY - CODE" where CODE is the first token extracted from OpenElections `precinct`.
       const byPrecinct = new Map(); // key -> {dem, rep, other, demCand, repCand}
       const countyNameByFips = await ensureCountyNameByFipsMap();
+      const countyFipsByName = new Map(Array.from(countyNameByFips?.entries?.() || [], ([fips, name]) => [name, fips]));
+      const historicalCrosswalk = await loadHistoricalPrecinctCrosswalk(y);
       const officeOk = (s) => {
         const office = (s || '').toString().toUpperCase();
         return office === 'USP' || office.includes('PRESIDENT');
@@ -15573,16 +15673,22 @@ document.addEventListener('DOMContentLoaded', function() {
           if (!county || !precinctRaw) return;
           const code = extractPrecinctCode(precinctRaw);
           if (!code) return;
-          const key = `${county} - ${code}`.replace(/\s+/g, ' ').trim();
           const party = (r.party || '').toString().trim().toUpperCase();
           const cand = (r.candidate || '').toString().trim();
           const votes = Number(r.votes) || 0;
-
-          if (!byPrecinct.has(key)) byPrecinct.set(key, { dem: 0, rep: 0, other: 0, demCand: '', repCand: '' });
-          const node = byPrecinct.get(key);
-          if (party === 'DEM') { node.dem += votes; if (!node.demCand && cand) node.demCand = cand; }
-          else if (party === 'REP') { node.rep += votes; if (!node.repCand && cand) node.repCand = cand; }
-          else { node.other += votes; }
+          const countyFips = String(countyFipsByName.get(county) || '').padStart(3, '0');
+          const targets = historicalCrosswalk.get(`${y}|${countyFips}|${code}`) || [];
+          const outputTargets = targets.length ? targets : [{ county, vtd: code, weight: 1 }];
+          outputTargets.forEach(target => {
+            const targetCounty = countyNameByFips?.get(target.county) || county;
+            const key = `${targetCounty} - ${target.vtd}`.replace(/\s+/g, ' ').trim();
+            if (!byPrecinct.has(key)) byPrecinct.set(key, { dem: 0, rep: 0, other: 0, demCand: '', repCand: '' });
+            const node = byPrecinct.get(key);
+            const weightedVotes = votes * Number(target.weight || 1);
+            if (party === 'DEM') { node.dem += weightedVotes; if (!node.demCand && cand) node.demCand = cand; }
+            else if (party === 'REP') { node.rep += weightedVotes; if (!node.repCand && cand) node.repCand = cand; }
+            else { node.other += weightedVotes; }
+          });
         });
       };
 
@@ -20362,11 +20468,19 @@ document.addEventListener('DOMContentLoaded', function() {
         norm === 'casey jr robert' ||
         norm === 'robert casey jr' ||
         norm === 'bob casey jr' ||
+        norm === 'bob casey' ||
+        norm === 'jr bob casey' ||
         norm === 'casey bob jr' ||
         norm === 'casey jr bob' ||
         (hasToken('casey') && hasToken('bob') && hasToken('jr'))
       ) {
         return 'Bob Casey, Jr.';
+      }
+      if (norm === 'eugenio depasquale' || norm === 'eugene depasquale') {
+        return 'Eugene DePasquale';
+      }
+      if (norm === 'wendell craig williams' || norm === 'craig williams') {
+        return 'Craig Williams';
       }
       if (
         norm === 'thomas w corbett jr' ||
@@ -20378,9 +20492,25 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       if (
         norm === 'david h mccormick' ||
+        norm === 'david mccormick' ||
+        norm === 'dave mccormick' ||
         norm === 'mccormick david h'
       ) {
-        return 'David H. McCormick';
+        return 'Dave McCormick';
+      }
+      if (
+        norm === 'robert paul bresnahan jr' ||
+        norm === 'robert bresnahan' ||
+        norm === 'rob bresnahan'
+      ) {
+        return 'Rob Bresnahan';
+      }
+      if (
+        norm === 'matthew alton cartwright' ||
+        norm === 'matthew a cartwright' ||
+        norm === 'matt cartwright'
+      ) {
+        return 'Matt Cartwright';
       }
       if (
         norm === 'wagner bartos' ||
@@ -20590,7 +20720,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (isPresident) {
           const map = {
-            2024: { dem: 'Kamala Harris', rep: 'Donald Trump' },
+            2024: { dem: 'Kamala D. Harris', rep: 'Donald Trump' },
             2020: { dem: 'Joe Biden', rep: 'Donald Trump' },
             2016: { dem: 'Hillary Clinton', rep: 'Donald Trump' },
             2012: { dem: 'Barack Obama', rep: 'Mitt Romney' },
@@ -28413,8 +28543,8 @@ document.addEventListener('DOMContentLoaded', function() {
   } catch (_) {}
   // Remember disclosure state + show first-time hint (non-blocking).
   try {
-    const LS_DISCLOSURE = 'nc-atlas:focus-disclosures:v1';
-    const LS_HINTS = 'nc-atlas:focus-hints:v1';
+    const LS_DISCLOSURE = 'pa-atlas:focus-disclosures:v1';
+    const LS_HINTS = 'pa-atlas:focus-hints:v1';
     const readJson = (key) => {
       try {
         const raw = window.localStorage ? window.localStorage.getItem(key) : '';
@@ -34279,11 +34409,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const key = String(ct || '').trim().toLowerCase();
         const yearNum = Number(y);
         if (key === 'state_house') {
-          if (yearNum === 2022) return { repCandidate: 'Speaker Tim Moore', demCandidate: 'House Democrats' };
-          if (yearNum === 2024) return { repCandidate: 'Speaker Destin Hall', demCandidate: 'House Democrats' };
+          if (yearNum === 2024) return { repCandidate: '', demCandidate: 'Joanna McClinton' };
         }
         if (key === 'state_senate') {
-          if (yearNum === 2022 || yearNum === 2024) return { repCandidate: 'Phil Berger', demCandidate: 'Senate Democrats' };
+          if (yearNum === 2024) return { repCandidate: 'Kim Ward', demCandidate: 'Senate Democrats' };
         }
         return null;
       }
