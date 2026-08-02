@@ -82,6 +82,13 @@ Based on the current manifests in this repository:
   - `attorney_general`
   - `treasurer`
   - `auditor`
+
+Election-cycle rules reflected in the manifests and build pipeline:
+
+- Governor: midterm years only (`2002`, `2006`, `2010`, `2014`, `2018`, `2022`).
+- Attorney General, Auditor General, and State Treasurer: presidential years only (`2000`, `2004`, `2008`, `2012`, `2016`, `2020`, `2024`).
+- Secretary of the Commonwealth: omitted because it is appointed, not elected.
+- Pennsylvania had no U.S. Senate general election in `2008`.
 - Actual district race slices currently present:
   - `us_house`: `2022`, `2024`
   - `state_house`: `2022`, `2024`
@@ -296,11 +303,19 @@ Important limitation:
 
 ## Candidate Name Display Normalization
 
-The frontend applies candidate-name cleanup in `index.html` so inconsistent source labels render consistently in UI labels/cards.
+Candidate-name normalization is shared between the data pipeline and frontend. Run the reusable script after changing source JSONs:
+
+```powershell
+python Scripts/candidate_name_normalizer.py data/contests data/district_contests data/pa_elections_aggregated.json
+python Scripts/candidate_name_normalizer.py --check data/contests data/district_contests data/pa_elections_aggregated.json
+```
+
+Canonical labels are written consistently across county, precinct, and district layers.
+The normalizer skips files whose names contain `.pre-` or `backup`, so archived snapshots are left unchanged.
 
 - Common ordering variants are normalized to a readable canonical form (`First Last, Suffix`) when inferrable.
 - `Robert P. Casey, Jr.` (and common variants like `Casey, Jr., Bob`) is normalized to `Bob Casey, Jr.` for display.
-- `David H McCormick` is normalized to `David H. McCormick` for display.
+- Preferred display names are applied per candidate rather than by a blanket first-name rule (for example, `Dave Sunday`, `David H. McCormick`, and `Eugene DePasquale`).
 - Short margin labels use last-name format (for example, `Casey +12.77%`) with trailing punctuation removed.
 
 ## Credits and Data Sources

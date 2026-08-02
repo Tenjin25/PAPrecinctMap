@@ -3724,6 +3724,13 @@ body.focus-active #hover-tooltip[data-context="preview"] {
     letter-spacing: 0.01em;
   }
 
+  .precinct-coverage-status {
+    color: rgba(226, 232, 240, 0.86);
+    font-size: 0.72rem;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+  }
+
   .recount-radar-badge {
     display: none;
     margin-top: 8px;
@@ -9675,6 +9682,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <button type="submit" class="fly-search-submit" data-testid="fly-submit">Fly to</button>
     </form>
     <div class="map-topbar-quick-stats" data-viewport-precinct-count>Viewing precincts...</div>
+    <div class="precinct-coverage-status" data-precinct-coverage aria-live="polite">Coverage loading...</div>
     <div class="recount-radar-badge" id="recount-radar-badge" data-testid="recount-radar-badge" aria-live="polite"></div>
     <button type="button" class="mobile-topbar-toggle" id="mobile-topbar-toggle" aria-controls="map-topbar-details" aria-expanded="false">Show details</button>
     <div class="map-topbar-details" id="map-topbar-details">
@@ -9757,6 +9765,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="desktop-fly-helper">Jump to counties, districts, or precincts without changing the selected contest.</div>
                 <div class="desktop-quick-stats" data-viewport-precinct-count>Viewing precincts...</div>
+                <div class="precinct-coverage-status" data-precinct-coverage aria-live="polite">Coverage loading...</div>
                 <div class="desktop-fly-chip-row" aria-label="Fly-to examples">
                   <button class="desktop-fly-chip" type="button" data-search-example="Montour">Montour</button>
                   <button class="desktop-fly-chip" type="button" data-search-example="CD 8">CD 8</button>
@@ -10287,9 +10296,9 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       paths: {
         counties: withBase('./data/pa_counties.geojson'),
-        precincts: withBase('./data/Voting_Precincts.geojson'),
+        precincts: withBase('./data/pa_live_voting_districts_current.geojson'),
         precincts_fallback_vtd20: null,
-        precinct_centroids: withBase('./data/precinct_centroids.geojson'),
+        precinct_centroids: withBase('./data/pa_live_voting_districts_current_centroids.geojson'),
         precinct_aliases: withBase('./data/precinct_alias_index.json'),
         precinct_friendly_names: withBase('./data/precinct_friendly_names.json'),
         precinct_variant_overrides: null,
@@ -10310,6 +10319,7 @@ document.addEventListener('DOMContentLoaded', function() {
         election: withBase('./data/pa_elections_aggregated.json'),
         district_election: withBase('./data/pa_district_results_2022_lines.json'),
         district_contests_dir: withBase('./data/district_contests'),
+        district_contests_historical_dir: withBase('./data/district_contests_historical_blocks'),
         district_contests_2020_2024_dir: withBase('./data/district_contests'),
         district_contests_dirs: {
           '2022': withBase('./data/district_contests'),
@@ -11303,7 +11313,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let precinctsEnabled = false;
     let precinctSourceLoaded = false;
     let precinctLoadInFlight = false;
-    let precinctGeometryMode = null; // 'precinct' or 'vtd20' based on contest year
+    let precinctGeometryMode = null; // Unified current precinct keyspace for polygons and centroids.
     let lastPrecinctFillExpr = null; // Cached fill-color expression for precinct overlay.
     let lastPrecinctDotExpr = null; // Cached circle-color expression for precinct dots (statewide zoom).
     let lastCountyFillExpr = null; // Cached fill-color expression for county layer.
@@ -11768,12 +11778,16 @@ document.addEventListener('DOMContentLoaded', function() {
       const key = `${scope}_${contestType}_${year}`;
       const out = [];
       const calibrated2020Dir = (CONFIG.paths?.district_contests_2020_2024_dir || '').toString().trim();
+      const historicalDir = (CONFIG.paths?.district_contests_historical_dir || '').toString().trim();
       const baseDir = (getActiveDistrictContestsDir(linesYear, scope) || '').toString().trim();
 
       // Prefer calibrated slices only for congressional scope on 2022 lines.
       // Legislative scopes continue to use the primary district_contests data.
       if (ly === 2022 && scope === 'congressional' && Number.isFinite(y) && y >= 2020 && calibrated2020Dir) {
         out.push(`${calibrated2020Dir}/${key}.json`);
+      }
+      if (Number.isFinite(y) && y >= 2000 && y <= 2014 && historicalDir) {
+        out.push(`${historicalDir}/${key}.json`);
       }
       if (baseDir) out.push(`${baseDir}/${key}.json`);
 
@@ -12751,17 +12765,60 @@ document.addEventListener('DOMContentLoaded', function() {
       setViewportPrecinctCountText(`Viewing ${count.toLocaleString()} precinct${count === 1 ? '' : 's'}`);
     }
 
+    function refreshPrecinctCoverageStatus() {
+      const targets = document.querySelectorAll('[data-precinct-coverage]');
+      if (!targets.length) return;
+      const setText = (text) => targets.forEach((el) => {
+        el.textContent = text;
+        el.title = text;
+      });
+
+      if (!precinctCentroidsLoaded) {
+        setText(precinctCentroidsLoadInFlight ? 'Coverage loading...' : 'Coverage unavailable');
+        return;
+      }
+
+      const centroidFeatures = Array.isArray(precinctCentroidsData?.features) ? precinctCentroidsData.features : [];
+      const centroidNorms = new Set(centroidFeatures.map((f) => String(f?.properties?.precinct_norm || '').trim().toUpperCase()).filter(Boolean));
+      const polygonNorms = precinctPolygonNormSet instanceof Set ? precinctPolygonNormSet : new Set();
+      const polygonLayerLoaded = !!(precinctSourceLoaded && precinctPolygonNormSet instanceof Set);
+      const polygonCount = polygonLayerLoaded
+        ? Array.from(polygonNorms).filter((norm) => centroidNorms.has(norm)).length
+        : null;
+      const centroidOnlyCount = polygonLayerLoaded ? Math.max(0, centroidNorms.size - polygonCount) : null;
+      const zoom = Number(map?.getZoom?.() || 0);
+      const polygonMode = !!(precinctsEnabled && precinctSourceLoaded && zoom >= (CONFIG.precincts?.minZoom || 8.5));
+      const modeLabel = polygonMode
+        ? (centroidOnlyCount ? 'Polygon + centroid fallback' : 'Polygon mode')
+        : 'Centroid mode';
+
+      let resultLabel = '';
+      if (currentPrecinctResults instanceof Map) {
+        let matched = 0;
+        centroidNorms.forEach((norm) => { if (currentPrecinctResults.has(norm)) matched += 1; });
+        const pct = centroidNorms.size ? (matched / centroidNorms.size) * 100 : 0;
+        resultLabel = ` | Results ${matched.toLocaleString()}/${centroidNorms.size.toLocaleString()} (${pct.toFixed(1)}%)`;
+      }
+
+      const geometryLabel = `${polygonLayerLoaded ? polygonCount.toLocaleString() : '--'} polygons, ${centroidNorms.size.toLocaleString()} centroids`;
+      const fallbackLabel = polygonLayerLoaded
+        ? (centroidOnlyCount ? `; ${centroidOnlyCount.toLocaleString()} centroid-only` : '')
+        : '; polygon layer not loaded';
+      setText(`${modeLabel}: ${geometryLabel}${fallbackLabel}${resultLabel}`);
+    }
+
     function queueViewportPrecinctCountUpdate({ ensureLoaded = false } = {}) {
       if (ensureLoaded && !precinctCentroidsLoaded && !precinctCentroidsLoadInFlight) {
         setViewportPrecinctCountText('Viewing precincts...');
         ensurePrecinctCentroidsLoaded()
-          .then(() => queueViewportPrecinctCountUpdate())
+        .then(() => queueViewportPrecinctCountUpdate())
           .catch(() => setViewportPrecinctCountText('Viewing -- precincts'));
       }
       if (viewportPrecinctCountRaf) return;
       viewportPrecinctCountRaf = requestAnimationFrame(() => {
         viewportPrecinctCountRaf = null;
         refreshViewportPrecinctCount();
+        refreshPrecinctCoverageStatus();
       });
     }
 
@@ -15439,9 +15496,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Aggregate to precinct key "COUNTY - CODE" where CODE is the first token extracted from OpenElections `precinct`.
       const byPrecinct = new Map(); // key -> {dem, rep, other, demCand, repCand}
-      const officeOk = (s) => (s || '').toString().toUpperCase().includes('PRESIDENT');
+      const countyNameByFips = await ensureCountyNameByFipsMap();
+      const officeOk = (s) => {
+        const office = (s || '').toString().toUpperCase();
+        return office === 'USP' || office.includes('PRESIDENT');
+      };
+      const normalizeRawOpenElectionsRow = (raw) => {
+        if (!Array.isArray(raw)) return raw || {};
+        const fields = raw.map(value => (value ?? '').toString().trim().replace(/^"|"$/g, ''));
+        if (fields.length < 29) return null;
+        const longLayout = fields.length >= 37;
+        const countyFips = (longLayout ? fields[29] : fields[27]).replace(/[^0-9]/g, '').padStart(3, '0');
+        const nameStart = longLayout ? 22 : 20;
+        const precinctName = fields.slice(nameStart, nameStart + 5).filter(Boolean).join(' ').trim();
+        // The historical PA exports carry the stable VTD code at column 28;
+        // use it as the primary token and retain the human-readable name as a
+        // fallback for the alias bridge.
+        const precinctCode = fields[28] || '';
+        const precinct = precinctCode || precinctName;
+        const candidate = [fields[12], fields[13], fields[11], fields[14]].filter(Boolean).join(' ').trim();
+        return {
+          office: fields[8],
+          county: countyNameByFips?.get(countyFips) || '',
+          precinct,
+          party: fields[9],
+          candidate,
+          votes: fields[15]
+        };
+      };
       const ingestRows = (rows) => {
-        (rows || []).forEach(r => {
+        (rows || []).forEach(raw => {
+          const r = normalizeRawOpenElectionsRow(raw);
+          if (!r) return;
           const office = (r.office || '').toString();
           if (!officeOk(office)) return;
           const county = (r.county || '').toString().trim().toUpperCase();
@@ -15462,37 +15548,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       };
 
-      let workerParseError = null;
+      let parsedInWorker = false;
       if (typeof Papa !== 'undefined' && Papa && typeof Papa.parse === 'function') {
         try {
           await new Promise((resolve, reject) => {
             Papa.parse(downloadUrl, {
               download: true,
-              header: true,
-              dynamicTyping: true,
+              header: false,
+              dynamicTyping: false,
               skipEmptyLines: true,
               worker: true,
               chunkSize: 1024 * 256,
               chunk: (result) => ingestRows(result?.data || []),
-              error: (err) => reject(err),
-              complete: () => resolve()
+              error: reject,
+              complete: resolve
             });
           });
-        } catch (err) {
-          workerParseError = err || new Error(`Worker CSV parse failed for president ${year}`);
+          parsedInWorker = true;
+        } catch (_) {
           byPrecinct.clear();
         }
       }
-      if (!byPrecinct.size) {
-        try {
-          const csvText = await loadCSV(path);
-          ingestRows(parseCSV(csvText));
-        } catch (fallbackErr) {
-          if (workerParseError) {
-            throw new Error(`${workerParseError?.message || workerParseError}; fallback parse failed: ${fallbackErr?.message || fallbackErr}`);
-          }
-          throw fallbackErr;
-        }
+      if (!parsedInWorker) {
+        const csvText = await loadCSV(path);
+        const rawRows = (typeof Papa !== 'undefined' && Papa && typeof Papa.parse === 'function')
+          ? (Papa.parse(csvText, { header: false, dynamicTyping: false, skipEmptyLines: true }).data || [])
+          : csvText.split(/\r?\n/).filter(Boolean).map(line => line.split(','));
+        ingestRows(rawRows);
       }
 
       return Array.from(byPrecinct.entries()).map(([key, v]) => ({
@@ -18559,13 +18641,27 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
 	    async function loadContestSlice(contestType, year, opts = {}) {
-        const preferPrecinct = !!opts?.preferPrecinct && !!GENERAL_PRECINCT_CSV_BY_YEAR[Number(year)];
-        if (preferPrecinct) {
+        const preferPrecinct = !!opts?.preferPrecinct;
+        if (preferPrecinct && GENERAL_PRECINCT_CSV_BY_YEAR[Number(year)]) {
           try {
             const precinctRows = await loadGeneralPrecinctContestSlice(contestType, year);
             if (precinctRows && precinctRows.length) return precinctRows;
           } catch (err) {
             console.warn(`Precinct contest load failed for ${contestType} ${year}; using county aggregates.`, err?.message || err);
+          }
+        }
+        // Older presidential contest manifests are county aggregates, but the
+        // repository also contains precinct-level OpenElections CSVs for these
+        // years. In precinct mode, load those rows before accepting the compact
+        // county slice; otherwise every centroid/polygon in a county receives
+        // the same fallback color and the historical match rate is effectively 0%.
+        const historicalPresidentPrecinctPath = PRESIDENT_OPEN_ELECTIONS_CSV[Number(year)];
+        if (preferPrecinct && contestType === 'president' && historicalPresidentPrecinctPath) {
+          try {
+            const precinctRows = await loadPresidentSliceFromOpenElectionsCSV(Number(year));
+            if (precinctRows && precinctRows.length) return precinctRows;
+          } catch (err) {
+            console.warn(`Historical presidential precinct load failed for ${year}; using county aggregates.`, err?.message || err);
           }
         }
         const modeledDef = getModeledContestDefinition(contestType, year);
@@ -20235,6 +20331,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return 'Bob Casey, Jr.';
       }
       if (
+        norm === 'thomas w corbett jr' ||
+        norm === 'thomas corbett jr' ||
+        norm === 'tom corbett jr' ||
+        norm === 'tom corbett'
+      ) {
+        return 'Tom Corbett';
+      }
+      if (
         norm === 'david h mccormick' ||
         norm === 'mccormick david h'
       ) {
@@ -20262,12 +20366,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (hasToken('wolf') && !hasToken('kathy')) {
         return 'Tom Wolf';
       }
-      if (norm === 'joshua d shapiro' || norm === 'shapiro joshua d') {
-        return 'Joshua D. Shapiro';
+      if (norm === 'joshua d shapiro' || norm === 'shapiro joshua d' || norm === 'josh shapiro') {
+        return 'Josh Shapiro';
       }
       if (norm === 'douglas v mastriano' || norm === 'mastriano douglas v') {
-        return 'Douglas V. Mastriano';
+        return 'Doug Mastriano';
       }
+      if (norm === 'david sunday') return 'Dave Sunday';
+      if (norm === 'timothy defoor' || norm === 'timothy lionel defoor') return 'Tim DeFoor';
+      if (norm === 'eugene a depasquale' || norm === 'eugene a. depasquale') return 'Eugene DePasquale';
       return raw;
     }
 
@@ -20284,8 +20391,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const tidy = (s) => (s || '').toString().replace(/\s+/g, ' ').trim();
       const parts = raw.split(',').map(p => tidy(p)).filter(Boolean);
       const emit = (first, last, suffix = '') => {
-        const f = tidy(first);
-        const l = tidy(last);
+        // Candidate feeds commonly omit punctuation from middle initials
+        // (for example, "Harris, Kamala D"). Keep the canonical display as
+        // "Kamala D. Harris" while leaving already-punctuated initials alone.
+        const punctuateInitials = (value) => tidy(value).replace(/(^|\s)([A-Za-z])(?=\s|$)/g, '$1$2.');
+        const f = punctuateInitials(first);
+        const l = punctuateInitials(last);
         if (!f || !l) return raw;
         const s = normalizeSuffix(suffix);
         return s ? `${f} ${l}, ${s}` : `${f} ${l}`;
@@ -28781,10 +28892,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getDesiredPrecinctGeometryMode() {
-      const year = Number(currentContestMeta?.year);
-      // VTD20 is only useful for truly legacy cycles; modern precinct-level contest keys (2014+)
-      // are aligned to `data/Voting_Precincts.geojson` precinct IDs (including split precinct suffixes).
-      if (Number.isFinite(year) && year <= 2012) return 'vtd20';
+      // Keep every contest on the same current precinct keyspace. Historical labels are
+      // reconciled through the alias/variant bridge, while centroids remain the fast
+      // display and missing-polygon fallback layer. Switching polygon sources by year
+      // caused older contests to color dots while leaving polygons unmatched.
       return 'precinct';
     }
 
@@ -28823,12 +28934,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const fullNameByNorm = new Map();
       precincts.features = (precincts.features || []).map(feature => {
         const original = feature.properties || {};
-        const rawFips = (original.COUNTYFP20 || original.COUNTYFP || '').toString().replace(/[^0-9]/g, '').slice(-3).padStart(3, '0');
+        const rawFips = (original.COUNTYFP20 || original.COUNTYFP || original.COUNTY || '').toString().replace(/[^0-9]/g, '').slice(-3).padStart(3, '0');
         const countyFromFips = (countyNameByFips && rawFips) ? (countyNameByFips.get(rawFips) || '') : '';
         const countyRaw = (original.county_nam || original.COUNTYNAME || original.County || original.NAME20 || original.NAME || countyFromFips || '').toString().trim();
         const countyNorm = countyRaw.replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
-        const precRaw = (original.prec_id || original.PREC_ID || original.VTDST20 || original.VTDST10 || original.VTDST00 || '').toString().trim();
-        const fullNameRaw = (original.enr_desc || original.ENR_DESC || original.precinct_full_name || original.precinct_name || '').toString();
+        const precRaw = (original.prec_id || original.PREC_ID || original.VTDST20 || original.VTDST10 || original.VTDST00 || original.VTDST || original.VTD || '').toString().trim();
+        const fullNameRaw = (original.enr_desc || original.ENR_DESC || original.precinct_full_name || original.precinct_name || original.NAME || '').toString();
         const fullName = fullNameRaw.replace(/\s+/g, ' ').trim();
         const precinctRaw = countyRaw && precRaw ? `${countyRaw} - ${precRaw}` : countyRaw;
         const precinctNorm = (precinctRaw || '').replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
@@ -28879,6 +28990,7 @@ document.addEventListener('DOMContentLoaded', function() {
       precinctSourceLoaded = true;
       precinctGeometryMode = usedVtdFallback ? 'vtd20' : 'precinct';
       precinctLoadInFlight = false;
+      refreshPrecinctCoverageStatus();
       addPrecinctLayers();
       ensureSplitTicketOverlayLayers();
       if (splitTicketOverlayEnabled && currentContestMeta?.contestType && currentContestMeta?.year) {
@@ -29148,7 +29260,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
           } catch (_) {}
 	        map.addSource('precinct-centroids', { type: 'geojson', data: pts });
-	        precinctCentroidsLoaded = true;
+        precinctCentroidsLoaded = true;
+        refreshPrecinctCoverageStatus();
 	        // Build a lightweight county -> precinct code index for key-variant matching.
 	        try {
 	          if (!precinctCodeIndexByCounty && pts && pts.features) {
@@ -29786,6 +29899,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedVisible = precinctsEnabled && (dotVisible || (wantsPolygons && !selectedHasPolygon));
         map.setLayoutProperty('precinct-dot-selected', 'visibility', selectedVisible ? 'visible' : 'none');
       }
+      refreshPrecinctCoverageStatus();
       setSplitTicketOverlayVisibility();
       updateBellwetherLayerVisibility();
       reinforceMapLabelHalos();
@@ -33392,8 +33506,10 @@ document.addEventListener('DOMContentLoaded', function() {
           const repVotes = Number(adjusted.rep || 0);
           const otherVotes = Number(adjusted.other || 0);
           const totalVotes = Number(adjusted.total || 0);
-          const demCand = (row[`${contestType}_dem_candidate`] || '').toString();
-          const repCand = (row[`${contestType}_rep_candidate`] || '').toString();
+          // Keep county-layer labels aligned with the canonical candidate labels
+          // used by precinct, statewide, hover, and trend views.
+          const demCand = normalizeCandidateDisplayName(row[`${contestType}_dem_candidate`] || '', '');
+          const repCand = normalizeCandidateDisplayName(row[`${contestType}_rep_candidate`] || '', '');
 
           if (needsPrecinctDetail && !skipPrecinctRowBuild) {
             const norms = precinctNormVariants(rowName);
@@ -33524,6 +33640,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (needsPrecinctDetail && !skipPrecinctRowBuild && precinctCacheKey && currentPrecinctResults) {
           try { precinctAdjustedRowCache.set(precinctCacheKey, currentPrecinctResults); } catch (_) {}
         }
+        refreshPrecinctCoverageStatus();
       }
 
       currentElectionResults = countyAgg;

@@ -6,196 +6,269 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "unmatched_source_vtds": 14,
+    "unmatched_source_keys": [
+      [
+        "011",
+        "000000",
+        "CAERNARVON P 2"
+      ],
+      [
+        "011",
+        "000000",
+        "MAIDENCREEK P 4"
+      ],
+      [
+        "045",
+        "000826",
+        "CONCORD D CENTRAL WEST"
+      ],
+      [
+        "045",
+        "000000",
+        "CONCORD D MARIS GROVE"
+      ],
+      [
+        "079",
+        "000000",
+        "SALEM D 1"
+      ],
+      [
+        "079",
+        "000000",
+        "SALEM D 2"
+      ],
+      [
+        "091",
+        "000000",
+        "HORSHAM X 1 X 5"
+      ],
+      [
+        "091",
+        "000000",
+        "HORSHAM X 4 X 1"
+      ],
+      [
+        "091",
+        "000000",
+        "HORSHAM X 4 X 2"
+      ],
+      [
+        "091",
+        "000000",
+        "HORSHAM X 4 X 3"
+      ],
+      [
+        "091",
+        "000000",
+        "HORSHAM X 4 X 4"
+      ],
+      [
+        "091",
+        "002497",
+        "PLYMOUTH X 2 X 3C"
+      ],
+      [
+        "091",
+        "003085",
+        "UPPER DUBLIN X 3 X 1B"
+      ],
+      [
+        "095",
+        "000765",
+        "LOWER MT. BETHEL D INDEPENDENT"
+      ]
+    ]
   },
   "general": {
     "results": {
-      "13": {
-        "dem_votes": 125244,
-        "rep_votes": 174073,
-        "other_votes": 8034,
-        "total_votes": 307351,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "R",
-        "margin": 48829.0,
-        "margin_pct": 15.887047707669733
-      },
-      "17": {
-        "dem_votes": 202542,
-        "rep_votes": 154341,
-        "other_votes": 9556,
-        "total_votes": 366439,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "D",
-        "margin": 48201.0,
-        "margin_pct": 13.15389464549352
-      },
-      "12": {
-        "dem_votes": 242599,
-        "rep_votes": 124183,
-        "other_votes": 9807,
-        "total_votes": 376589,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "D",
-        "margin": 118416.0,
-        "margin_pct": 31.444359766217282
-      },
-      "15": {
-        "dem_votes": 133448,
-        "rep_votes": 156324,
-        "other_votes": 9621,
-        "total_votes": 299393,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "R",
-        "margin": 22876.0,
-        "margin_pct": 7.6407932049179506
-      },
-      "9": {
-        "dem_votes": 118133,
-        "rep_votes": 141897,
-        "other_votes": 7727,
-        "total_votes": 267757,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "R",
-        "margin": 23764.0,
-        "margin_pct": 8.875211479064973
-      },
-      "4": {
-        "dem_votes": 183446,
-        "rep_votes": 157972,
-        "other_votes": 4423,
-        "total_votes": 345841,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "D",
-        "margin": 25474.0,
-        "margin_pct": 7.365812613310741
-      },
-      "6": {
-        "dem_votes": 151431,
-        "rep_votes": 156486,
-        "other_votes": 8069,
-        "total_votes": 315986,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "R",
-        "margin": 5055.0,
-        "margin_pct": 1.599754419499598
-      },
       "1": {
-        "dem_votes": 182324,
-        "rep_votes": 171238,
-        "other_votes": 5406,
-        "total_votes": 358968,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "D",
-        "margin": 11086.0,
-        "margin_pct": 3.0882975641282786
-      },
-      "16": {
-        "dem_votes": 164956,
-        "rep_votes": 156573,
-        "other_votes": 8900,
-        "total_votes": 330429,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "D",
-        "margin": 8383.0,
-        "margin_pct": 2.5370049239019576
-      },
-      "7": {
-        "dem_votes": 160403,
-        "rep_votes": 125361,
-        "other_votes": 6165,
-        "total_votes": 291929,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "D",
-        "margin": 35042.0,
-        "margin_pct": 12.003603615947714
-      },
-      "5": {
-        "dem_votes": 194560,
-        "rep_votes": 132421,
-        "other_votes": 3466,
-        "total_votes": 330447,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "D",
-        "margin": 62139.0,
-        "margin_pct": 18.80452841151531
-      },
-      "10": {
-        "dem_votes": 147915,
-        "rep_votes": 151003,
-        "other_votes": 7151,
-        "total_votes": 306069,
-        "dem_candidate": "Robert Mccord",
+        "dem_votes": 208018,
+        "rep_votes": 208900,
+        "other_votes": 6340,
+        "total_votes": 423258,
+        "dem_candidate": "Bob McCord",
         "rep_candidate": "Tom Ellis",
         "winner": "R",
-        "margin": 3088.0,
-        "margin_pct": 1.0089228245918405
-      },
-      "14": {
-        "dem_votes": 181286,
-        "rep_votes": 146297,
-        "other_votes": 8311,
-        "total_votes": 335894,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "D",
-        "margin": 34989.0,
-        "margin_pct": 10.416679071373707
-      },
-      "8": {
-        "dem_votes": 184993,
-        "rep_votes": 111534,
-        "other_votes": 7630,
-        "total_votes": 304157,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "D",
-        "margin": 73459.0,
-        "margin_pct": 24.15167166956539
-      },
-      "11": {
-        "dem_votes": 119344,
-        "rep_votes": 170135,
-        "other_votes": 7199,
-        "total_votes": 296678,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "R",
-        "margin": 50791.0,
-        "margin_pct": 17.119907778803956
-      },
-      "3": {
-        "dem_votes": 317498,
-        "rep_votes": 32080,
-        "other_votes": 2845,
-        "total_votes": 352423,
-        "dem_candidate": "Robert Mccord",
-        "rep_candidate": "Tom Ellis",
-        "winner": "D",
-        "margin": 285418.0,
-        "margin_pct": 80.98733624082423
+        "margin": 882,
+        "margin_pct": 0.20838353911798477
       },
       "2": {
-        "dem_votes": 201974,
-        "rep_votes": 65161,
-        "other_votes": 2183,
-        "total_votes": 269318,
-        "dem_candidate": "Robert Mccord",
+        "dem_votes": 203095,
+        "rep_votes": 65068,
+        "other_votes": 2169,
+        "total_votes": 270332,
+        "dem_candidate": "Bob McCord",
         "rep_candidate": "Tom Ellis",
         "winner": "D",
-        "margin": 136813.0,
-        "margin_pct": 50.79979800830245
+        "margin": 138027,
+        "margin_pct": 51.05832827782134
+      },
+      "3": {
+        "dem_votes": 316416,
+        "rep_votes": 32190,
+        "other_votes": 2861,
+        "total_votes": 351467,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "D",
+        "margin": 284226,
+        "margin_pct": 80.86847413839706
+      },
+      "4": {
+        "dem_votes": 189121,
+        "rep_votes": 161769,
+        "other_votes": 4404,
+        "total_votes": 355294,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "D",
+        "margin": 27352,
+        "margin_pct": 7.6984131451699165
+      },
+      "5": {
+        "dem_votes": 248504,
+        "rep_votes": 183175,
+        "other_votes": 4537,
+        "total_votes": 436216,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "D",
+        "margin": 65329,
+        "margin_pct": 14.976296146863021
+      },
+      "6": {
+        "dem_votes": 176033,
+        "rep_votes": 179344,
+        "other_votes": 9347,
+        "total_votes": 364724,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "R",
+        "margin": 3311,
+        "margin_pct": 0.9078097410644761
+      },
+      "7": {
+        "dem_votes": 177366,
+        "rep_votes": 144017,
+        "other_votes": 6850,
+        "total_votes": 328233,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "D",
+        "margin": 33349,
+        "margin_pct": 10.160160617610051
+      },
+      "8": {
+        "dem_votes": 330125,
+        "rep_votes": 168728,
+        "other_votes": 13927,
+        "total_votes": 512780,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "D",
+        "margin": 161397,
+        "margin_pct": 31.474901517219863
+      },
+      "9": {
+        "dem_votes": 149692,
+        "rep_votes": 171087,
+        "other_votes": 9491,
+        "total_votes": 330270,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "R",
+        "margin": 21395,
+        "margin_pct": 6.478033124413359
+      },
+      "10": {
+        "dem_votes": 208553,
+        "rep_votes": 219749,
+        "other_votes": 9119,
+        "total_votes": 437421,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "R",
+        "margin": 11196,
+        "margin_pct": 2.5595478955057027
+      },
+      "11": {
+        "dem_votes": 152318,
+        "rep_votes": 213582,
+        "other_votes": 8574,
+        "total_votes": 374474,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "R",
+        "margin": 61264,
+        "margin_pct": 16.360014313410275
+      },
+      "12": {
+        "dem_votes": 243483,
+        "rep_votes": 123821,
+        "other_votes": 9812,
+        "total_votes": 377116,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "D",
+        "margin": 119662,
+        "margin_pct": 31.730820225076634
+      },
+      "13": {
+        "dem_votes": 141291,
+        "rep_votes": 184505,
+        "other_votes": 8628,
+        "total_votes": 334424,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "R",
+        "margin": 43214,
+        "margin_pct": 12.921919479463195
+      },
+      "14": {
+        "dem_votes": 182818,
+        "rep_votes": 147072,
+        "other_votes": 8378,
+        "total_votes": 338268,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "D",
+        "margin": 35746,
+        "margin_pct": 10.567360790852224
+      },
+      "15": {
+        "dem_votes": 145057,
+        "rep_votes": 169539,
+        "other_votes": 10452,
+        "total_votes": 325048,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "R",
+        "margin": 24482,
+        "margin_pct": 7.531810686421697
+      },
+      "16": {
+        "dem_votes": 182304,
+        "rep_votes": 178110,
+        "other_votes": 9816,
+        "total_votes": 370230,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "D",
+        "margin": 4194,
+        "margin_pct": 1.1328093347378656
+      },
+      "17": {
+        "dem_votes": 212571,
+        "rep_votes": 168248,
+        "other_votes": 10055,
+        "total_votes": 390874,
+        "dem_candidate": "Bob McCord",
+        "rep_candidate": "Tom Ellis",
+        "winner": "D",
+        "margin": 44323,
+        "margin_pct": 11.339459774761176
       }
     }
   }
