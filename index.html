@@ -10241,8 +10241,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-01-3';
-    const APP_BUILD_ID = '2026-08-01-3';
+    const DATA_CACHE_BUSTER = '2026-08-01-4';
+    const APP_BUILD_ID = '2026-08-01-4';
 
     function ensurePageCacheBuster() {
       return false;
@@ -26490,7 +26490,10 @@ document.addEventListener('DOMContentLoaded', function() {
       try { markOnboardingSeen(); } catch (_) {}
     }
 
-    function renderPrecinctHoverAtPoint(point, feature, { forceTooltip = false, pinSelection = false } = {}) {
+    async function renderPrecinctHoverAtPoint(point, feature, { forceTooltip = false, pinSelection = false } = {}) {
+      // Ensure hover labels use the dedicated code->friendly-name index instead
+      // of briefly exposing opaque Census/VTD codes while the map is starting.
+      try { await ensurePrecinctFriendlyNamesIndex(); } catch (_) {}
       const props = feature?.properties || {};
       const precinctNorm = (props.precinct_norm || '').toString().trim().toUpperCase();
       const countyName = (props.county_nam || '').toString().trim();
@@ -29534,7 +29537,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const rawCode = String(code || '').trim().toUpperCase();
       const canonicalCode = rawCode ? resolvePrecinctCanonicalCode(countyName, rawCode) : '';
       const friendly = rawCode ? getPrecinctFriendlyName(countyName, rawCode) : '';
-      const friendlyLabel = (canonicalCode && friendly) ? `${friendly} (${canonicalCode})` : '';
+      // Friendly names are the user-facing label. Keep the Census/VTD code
+      // available for matching, but do not append it to the displayed name.
+      const friendlyLabel = (canonicalCode && friendly) ? friendly : '';
 
       const full = String(fullName || '').replace(/\s+/g, ' ').trim();
       const fallbackFull = String(fallbackFullName || '').replace(/\s+/g, ' ').trim();
@@ -30680,6 +30685,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const code = (precinctCodeRaw || '').toString().trim().toUpperCase();
       try { await ensurePrecinctCodeIndex(); } catch (_) {}
       try { await ensurePrecinctAliasIndex(); } catch (_) {}
+      try { await ensurePrecinctFriendlyNamesIndex(); } catch (_) {}
       if (isNonGeographicPrecinctToken(code, county)) {
         setStatus(`${county} - ${code} is a non-geographic vote bucket (e.g., Early Vote/Absentee) and isn't mapped to a precinct shape.`);
         try { showCountyDetails(county); } catch (_) {}
