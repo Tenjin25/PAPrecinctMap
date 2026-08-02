@@ -10241,8 +10241,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-01-2';
-    const APP_BUILD_ID = '2026-08-01-2';
+    const DATA_CACHE_BUSTER = '2026-08-01-3';
+    const APP_BUILD_ID = '2026-08-01-3';
 
     function ensurePageCacheBuster() {
       return false;
@@ -11316,6 +11316,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let precinctCodeIndexByCounty = null; // Map<string countyNorm, Set<string prec_id>> built from precinct centroids.
     let precinctAliasIndexByCounty = null; // Map<string countyNorm, Map<string alias, string[] codes>>
     let precinctFriendlyNameByCountyCode = null; // Map<string countyNorm, Map<string code, string displayName>>
+    let precinctFriendlyCodeByCountyName = null; // Map<string countyNorm, Map<string normalized name, string code>>
     let precinctFriendlyNamesLoadInFlight = false;
     let precinctFriendlyNamesFileLoaded = false;
     let precinctAliasLoadInFlight = false;
@@ -29475,7 +29476,43 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!code) return '';
       const friendly = getPrecinctFriendlyName(countyNameOrNorm, code);
       if (!friendly) return `Precinct ${code}`;
-      return `${friendly} (${code})`;
+      return friendly;
+    }
+
+    function resolveUniquePrecinctCodeByFriendlyName(countyNameOrNorm, rawName) {
+      const countyNorm = normalizeCountyToken(countyNameOrNorm);
+      const target = String(rawName || '').trim().toUpperCase().replace(/[_]+/g, ' ').replace(/\s+/g, ' ');
+      const perCounty = precinctFriendlyNameByCountyCode && countyNorm
+        ? precinctFriendlyNameByCountyCode.get(countyNorm)
+        : null;
+      if (!target || !perCounty) return '';
+      const variants = (value) => {
+        const s = String(value || '').trim().toUpperCase().replace(/[_]+/g, ' ').replace(/\s+/g, ' ');
+        if (!s) return [];
+        const out = new Set([s, s.replace(/[^A-Z0-9 ]/g, '').replace(/\s+/g, ' ').trim()]);
+        const base = s.split(/\s+(?:DISTRICT|WARD|PRECINCT)\b/i, 1)[0].trim();
+        if (base && base !== s) out.add(base);
+        if (s.startsWith('MOUNT ')) out.add(`MT ${s.slice(6)}`);
+        if (s.startsWith('MC') && !s.startsWith('MC ')) out.add(`MC ${s.slice(2)}`);
+        return Array.from(out).filter(Boolean);
+      };
+      if (!precinctFriendlyCodeByCountyName) precinctFriendlyCodeByCountyName = new Map();
+      let reverse = precinctFriendlyCodeByCountyName.get(countyNorm);
+      if (!reverse) {
+        reverse = new Map();
+        perCounty.forEach((label, code) => {
+          variants(label).forEach(candidate => {
+            if (!reverse.has(candidate)) reverse.set(candidate, code);
+            else if (reverse.get(candidate) !== code) reverse.set(candidate, '');
+          });
+        });
+        precinctFriendlyCodeByCountyName.set(countyNorm, reverse);
+      }
+      for (const candidate of variants(target)) {
+        const code = reverse.get(candidate) || '';
+        if (code) return code;
+      }
+      return '';
     }
 
     function isNoisyPrecinctFullName(fullRaw, codeRaw = '') {
@@ -33100,6 +33137,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (needsPrecinctDetail) {
         try { precinctIdx = await ensurePrecinctCodeIndex(); } catch (_) { precinctIdx = null; }
         try { precinctAliasIdx = await ensurePrecinctAliasIndex(); } catch (_) { precinctAliasIdx = null; }
+        try { await ensurePrecinctFriendlyNamesIndex(); } catch (_) {}
         try { await ensurePrecinctVariantOverrides(); } catch (_) {}
       }
       if (staleCheck()) return;
@@ -33269,6 +33307,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const altFull = normalizeCountyName(`${countyOnly} - ${resolvedCode}`);
                 if (altFull) out.add(altFull);
               }
+            }
+          } catch (_) {}
+          try {
+            const resolvedCode = resolveUniquePrecinctCodeByFriendlyName(countyNorm, precRaw);
+            if (resolvedCode) {
+              const altFull = normalizeCountyName(`${countyOnly} - ${resolvedCode}`);
+              if (altFull) out.add(altFull);
             }
           } catch (_) {}
           try {
@@ -33622,6 +33667,9 @@ document.addEventListener('DOMContentLoaded', function() {
           if (map.getLayer('precinct-dot')) {
             map.setPaintProperty('precinct-dot', 'circle-color', exprPrecinct);
           }
+          if (map.getLayer('precinct-dot-missing')) {
+            map.setPaintProperty('precinct-dot-missing', 'circle-color', exprPrecinct);
+          }
         }
 
         applyLayerOpacityTuning();
@@ -33941,6 +33989,9 @@ document.addEventListener('DOMContentLoaded', function() {
           }
           if (map.getLayer('precinct-dot')) {
             map.setPaintProperty('precinct-dot', 'circle-color', exprPrecinct);
+          }
+          if (map.getLayer('precinct-dot-missing')) {
+            map.setPaintProperty('precinct-dot-missing', 'circle-color', exprPrecinct);
           }
           lastAppliedPrecinctPaintExpr = exprPrecinct;
         }
