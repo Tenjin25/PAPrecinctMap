@@ -10259,8 +10259,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-02-9';
-    const APP_BUILD_ID = '2026-08-02-9';
+    const DATA_CACHE_BUSTER = '2026-08-02-10';
+    const APP_BUILD_ID = '2026-08-02-10';
 
     function ensurePageCacheBuster() {
       return false;
@@ -10324,7 +10324,7 @@ document.addEventListener('DOMContentLoaded', function() {
         state_senate_2022: withBase('./data/tileset/pa_state_senate_2022_lines_tileset.geojson'),
         state_senate_2024: withBase('./data/tileset/pa_state_senate_2022_lines_tileset.geojson'),
         county_demographics: withBase('./data/county_demographics_2020_dp1.json'),
-        county_population_estimates: null,
+        county_population_estimates: withBase('./data/pa_county_population_estimates_2025.csv'),
         precinct_demographics: null,
         cvap_aggregates: {},
         election: withBase('./data/pa_elections_aggregated.json'),
