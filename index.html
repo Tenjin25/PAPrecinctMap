@@ -9129,6 +9129,7 @@ body {
   border: 1px solid rgba(255, 205, 0, 0.28) !important;
 }
 .controls-title-pill,
+.controls-collapsed-label,
 .tool-chip-btn,
 .fly-search-submit,
 .desktop-fly-submit,
@@ -9140,6 +9141,14 @@ body {
   color: #f8fafc !important;
 }
 .controls-title-pill::before {
+  background: linear-gradient(135deg, #ffe07a 0%, #ffcd00 100%) !important;
+  box-shadow: 0 0 0 4px rgba(255, 205, 0, 0.22) !important;
+}
+.controls-collapsed-label {
+  background: linear-gradient(135deg, rgba(12, 47, 90, 0.98) 0%, rgba(15, 76, 129, 0.94) 72%, rgba(182, 134, 0, 0.9) 100%) !important;
+  border-color: rgba(255, 205, 0, 0.30) !important;
+}
+.controls-collapsed-label::before {
   background: linear-gradient(135deg, #ffe07a 0%, #ffcd00 100%) !important;
   box-shadow: 0 0 0 4px rgba(255, 205, 0, 0.22) !important;
 }
@@ -10250,8 +10259,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-02-1';
-    const APP_BUILD_ID = '2026-08-02-1';
+    const DATA_CACHE_BUSTER = '2026-08-02-2';
+    const APP_BUILD_ID = '2026-08-02-2';
 
     function ensurePageCacheBuster() {
       return false;
@@ -11117,13 +11126,35 @@ document.addEventListener('DOMContentLoaded', function() {
       return resolveWinnerAndSignedMargin(row.margin_pct, row.winner, dem, rep, total).signed;
     }
 
+    // Pennsylvania's two Senate seats are different election classes. Keep
+    // timeline comparisons within the same class (for example, 2024 -> 2018,
+    // while 2022 -> 2016), rather than comparing the two seats in adjacent
+    // election years.
+    function getUsSenateSeatClass(year) {
+      const y = Number(year);
+      if (!Number.isFinite(y)) return '';
+      if ([2000, 2006, 2012, 2018, 2024].includes(y)) return 'class-1';
+      if ([2004, 2010, 2016, 2022].includes(y)) return 'class-3';
+      return '';
+    }
+
+    function filterUsSenateSeriesToSeatClass(series, selectedYear) {
+      if (!Array.isArray(series)) return [];
+      const seatClass = getUsSenateSeatClass(selectedYear);
+      if (!seatClass) return series.slice();
+      return series.filter(item => getUsSenateSeatClass(item?.year) === seatClass);
+    }
+
     function getVoteDeltaPairsForTooltip(contestType, toYear, maxPairs = 2) {
       const ct = String(contestType || '').trim();
       const y = Number(toYear);
       if (!ct || !Number.isFinite(y) || y <= 0) return [];
       const pairs = [];
 
-      const years = getAvailableContestYearsForType(ct);
+      const availableYears = getAvailableContestYearsForType(ct);
+      const years = (ct === 'us_senate' && getUsSenateSeatClass(y))
+        ? availableYears.filter(year => getUsSenateSeatClass(year) === getUsSenateSeatClass(y))
+        : availableYears;
       if (Array.isArray(years) && years.length) {
         let prev = null;
         // Prefer "last time this contest was up" when a seat/class cadence exists.
@@ -14904,6 +14935,13 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         } else {
           series = await getStatewideTrendSeries(contestType);
+        }
+
+        // Senate history must compare like-for-like seats. The raw manifest
+        // includes both Pennsylvania Senate classes, so an adjacent-year
+        // series would incorrectly create comparisons such as 2024 -> 2022.
+        if (contestType === 'us_senate') {
+          series = filterUsSenateSeriesToSeatClass(series, year);
         }
 
         if ((meta.kind === 'county' || meta.kind === 'precinct') && meta.county) {
