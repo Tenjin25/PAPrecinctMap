@@ -92,7 +92,7 @@ Election-cycle rules reflected in the manifests and build pipeline:
 - Actual district race slices currently present:
   - `us_house`: `2022`, `2024`
   - `state_house`: `2022`, `2024`
-  - `state_senate`: `2024`
+  - `state_senate`: `2022`, `2024`
 
 Note: district views can include both actual district races and statewide contests reallocated to current district lines, depending on contest type/year coverage.
 
@@ -148,15 +148,38 @@ Note: district views can include both actual district races and statewide contes
 - Actual district races are kept when directly available:
   - `us_house` (2022, 2024)
   - `state_house` (2022, 2024)
-  - `state_senate` (2024)
+  - `state_senate` (2022, 2024)
 - Other district-view contest displays are reallocated statewide results.
 - District coverage metadata is emitted per slice (`districts_observed`, `districts_expected`, `coverage_percent`, `source`).
 
-### 6. Optional Share Calibration
+### 6. How Early-Year Coverage Was Reconstructed
+
+The strong coverage in the early years was built from a constrained set of available resources rather than from one complete, stable precinct dataset. The project combines historical OpenElections exports and Pennsylvania precinct-return files with successive TIGER/VTD geography, LRC district materials, block-assignment data, and available VEST/MGGG-derived crosswalk and residual resources.
+
+The central problem is that a precinct label is not a permanent geographic identifier. Names, codes, splits, consolidations, and district assignments change over time. The workflow therefore treats historical coverage as a geographic reconstruction problem:
+
+1. Normalize historical contest, party, candidate, county, and precinct fields into a common schema.
+2. Match legacy precinct labels to a current VTD bridge using exact names, normalized aliases, and targeted county-specific exceptions.
+3. Use block-level assignments and district geometries to determine how matched VTDs relate to current congressional, state House, and state Senate lines.
+4. Allocate votes across split relationships using block counts, with largest-remainder rounding so allocated totals remain consistent.
+5. Track residuals and unresolved matches, preserve known exceptions, and use the best available crosswalk or source for each year rather than inventing a single universal mapping.
+6. Record the resulting district-row coverage and source in each emitted contest slice so reconstructed results can be distinguished from direct district returns.
+
+This workflow builds on the method developed for the project's Ohio coverage: establish a stable modern geography, construct historical crosswalks into that geography, use finer-grained blocks where boundaries split, and keep unresolved or residual cases explicit instead of hiding them. I then adapted that method to Pennsylvania's available source files and boundary history.
+
+Ohio also supplied an important practical advantage: county-precinct codes were available as durable identifiers, and those codes often remained stable even when the corresponding precinct names changed. That made it possible to anchor many Ohio historical matches by code first and use names as confirmation or a diagnostic when they diverged. Pennsylvania did not provide the same uniformly stable identifier across the full historical span, so the Pennsylvania workflow required more name normalization, county-specific alias rules, geography bridges, block crosswalks, and residual review.
+
+The project also credits the Redistricting Data Hub (RDH) and the Voting and Election Science Team (VEST) as important supporting resources. Their publicly available data products, crosswalks, and documentation were consulted—and, where appropriate, used as supplemental data—when Pennsylvania-specific source files were incomplete or a historical case was difficult to resolve. Their work helped provide reference points for checking geographic relationships and understanding how to handle the kinds of historical boundary and residual problems encountered here.
+
+It is an applied reconstruction workflow, not a claim that every historical precinct boundary or allocation is identical to an RDH, VEST, or other proprietary production dataset.
+
+The early-year result is therefore best understood as a layered evidence product: direct returns are used where available; historical precincts are reconciled through geography; and statewide contests are reallocated to current district lines when a direct district race is unavailable. High district-row coverage does not by itself prove perfect precinct-name matching or historical-boundary precision, which is why the repository retains source metadata, crosswalk artifacts, residual work queues, and explicit coverage caveats.
+
+### 7. Optional Share Calibration
 
 - If `data/district-statistics *.csv` files are present, `apply_dra_share_calibration(...)` can calibrate district shares for selected scope/contest/year combinations while preserving usable turnout totals.
 
-### 7. Manifest-Driven Delivery
+### 8. Manifest-Driven Delivery
 
 - `data/contests/manifest.json` indexes county/statewide slices.
 - `data/district_contests/manifest.json` indexes district slices.
@@ -235,7 +258,7 @@ Snapshot below is computed from current `data/district_contests/*.json` metadata
 |---|---:|---|---:|---:|
 | `congressional` | 45 | 2000-2024 | 100.00% | 100.00% |
 | `state_house` | 45 | 2000-2024 | 99.98% | 99.51% |
-| `state_senate` | 44 | 2000-2024 | 100.00% | 100.00% |
+| `state_senate` | 45 | 2000-2024 | 100.00% | 100.00% |
 
 Current non-100% district slices:
 
