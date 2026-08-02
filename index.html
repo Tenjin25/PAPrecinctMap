@@ -10309,8 +10309,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-02-12';
-    const APP_BUILD_ID = '2026-08-02-12';
+    const DATA_CACHE_BUSTER = '2026-08-02-13';
+    const APP_BUILD_ID = '2026-08-02-13';
 
     function ensurePageCacheBuster() {
       return false;
@@ -26807,6 +26807,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const votehubCore = (currentVizMode === 'population_change' && popChangeVotehubCore)
         ? popChangeVotehubCore
         : defaultVotehubCore;
+      const tooltipTopLine = (currentVizMode === 'population_change' && popChangeVotehubCore)
+        ? ''
+        : `${popChangeTopLineDesktop}${popChangeTopLineMobile}`;
       const detailLines = `
         ${finalInsight ? `<div class="tooltip-insight">${escapeHtml(finalInsight)}</div>` : ''}
         ${censusDetailLine}
@@ -26820,8 +26823,7 @@ document.addEventListener('DOMContentLoaded', function() {
       `.trim();
       const inner = pinnedShell
         ? `
-          ${popChangeTopLineDesktop}
-          ${popChangeTopLineMobile}
+          ${tooltipTopLine}
           ${votehubCore}
           <details class="tooltip-more" aria-label="More details">
             <summary>More details</summary>
@@ -26829,8 +26831,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </details>
         `.trim()
         : `
-          ${popChangeTopLineDesktop}
-          ${popChangeTopLineMobile}
+          ${tooltipTopLine}
           ${votehubCore}
         `.trim();
 
