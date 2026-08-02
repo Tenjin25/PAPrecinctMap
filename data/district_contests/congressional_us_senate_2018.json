@@ -6,196 +6,197 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+    "unmapped_blocks": 0,
+    "source": "RDH 2018 general election results disaggregated to 2020 Census blocks"
   },
   "general": {
     "results": {
-      "10": {
-        "dem_votes": 140266,
-        "rep_votes": 140967,
-        "other_votes": 5879,
-        "total_votes": 287112,
-        "dem_candidate": "Bob CASEY, JR.",
-        "rep_candidate": "Lou BARLETTA",
-        "winner": "R",
-        "margin": 701.0,
-        "margin_pct": 0.24415559084956392
-      },
-      "11": {
-        "dem_votes": 92989,
-        "rep_votes": 119486,
-        "other_votes": 4948,
-        "total_votes": 217423,
-        "dem_candidate": "Bob CASEY, JR.",
-        "rep_candidate": "Lou BARLETTA",
-        "winner": "R",
-        "margin": 26497.0,
-        "margin_pct": 12.186843158267525
-      },
-      "3": {
-        "dem_votes": 290356,
-        "rep_votes": 19940,
-        "other_votes": 3703,
-        "total_votes": 313999,
-        "dem_candidate": "BOB CASEY JR",
-        "rep_candidate": "LOU BARLETTA",
+      "1": {
+        "dem_votes": 193340,
+        "rep_votes": 145614,
+        "other_votes": 5600,
+        "total_votes": 344554,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
         "winner": "D",
-        "margin": 270416.0,
-        "margin_pct": 86.12001949050793
-      },
-      "5": {
-        "dem_votes": 348023,
-        "rep_votes": 168165,
-        "other_votes": 7131,
-        "total_votes": 523319,
-        "dem_candidate": "BOB CASEY JR",
-        "rep_candidate": "LOU BARLETTA",
-        "winner": "D",
-        "margin": 179858.0,
-        "margin_pct": 34.36871200930981
+        "margin": 47726,
+        "margin_pct": 13.851529803746294
       },
       "2": {
         "dem_votes": 171455,
         "rep_votes": 42896,
-        "other_votes": 2608,
-        "total_votes": 216959,
-        "dem_candidate": "BOB CASEY JR",
-        "rep_candidate": "LOU BARLETTA",
-        "winner": "D",
-        "margin": 128559.0,
-        "margin_pct": 59.25497444217571
-      },
-      "17": {
-        "dem_votes": 196909,
-        "rep_votes": 129106,
-        "other_votes": 5995,
-        "total_votes": 332010,
-        "dem_candidate": "Bob Casey, Jr.",
-        "rep_candidate": "Lou Barletta",
-        "winner": "D",
-        "margin": 67803.0,
-        "margin_pct": 20.421975241709585
-      },
-      "12": {
-        "dem_votes": 199844,
-        "rep_votes": 89133,
-        "other_votes": 5373,
-        "total_votes": 294350,
-        "dem_candidate": "Bob Casey, Jr.",
-        "rep_candidate": "Lou Barletta",
-        "winner": "D",
-        "margin": 110711.0,
-        "margin_pct": 37.612026499065735
-      },
-      "16": {
-        "dem_votes": 110987,
-        "rep_votes": 128865,
-        "other_votes": 4259,
-        "total_votes": 244111,
-        "dem_candidate": "BOB CASEY, JR",
-        "rep_candidate": "LOU BARLETTA",
-        "winner": "R",
-        "margin": 17878.0,
-        "margin_pct": 7.3237174891750065
-      },
-      "15": {
-        "dem_votes": 60739,
-        "rep_votes": 114783,
-        "other_votes": 3172,
-        "total_votes": 178694,
+        "other_votes": 2556,
+        "total_votes": 216907,
         "dem_candidate": "Bob Casey Jr.",
         "rep_candidate": "Lou Barletta",
-        "winner": "R",
-        "margin": 54044.0,
-        "margin_pct": 30.243880600355915
-      },
-      "8": {
-        "dem_votes": 135819,
-        "rep_votes": 119736,
-        "other_votes": 3096,
-        "total_votes": 258651,
-        "dem_candidate": "BOB CASEY, JR",
-        "rep_candidate": "LOU BARLETTA",
         "winner": "D",
-        "margin": 16083.0,
-        "margin_pct": 6.218031246737882
+        "margin": 128559,
+        "margin_pct": 59.26917987893429
       },
-      "9": {
-        "dem_votes": 81797,
-        "rep_votes": 141467,
-        "other_votes": 4131,
-        "total_votes": 227395,
-        "dem_candidate": "BOB CASEY, JR",
-        "rep_candidate": "LOU BARLETTA",
-        "winner": "R",
-        "margin": 59670.0,
-        "margin_pct": 26.24068251280811
-      },
-      "13": {
-        "dem_votes": 79715,
-        "rep_votes": 147404,
-        "other_votes": 4104,
-        "total_votes": 231223,
-        "dem_candidate": "Bob Casey Jr",
-        "rep_candidate": "Lou Barletta",
-        "winner": "R",
-        "margin": 67689.0,
-        "margin_pct": 29.274336895551052
-      },
-      "14": {
-        "dem_votes": 88974,
-        "rep_votes": 104984,
-        "other_votes": 3412,
-        "total_votes": 197370,
+      "3": {
+        "dem_votes": 290356,
+        "rep_votes": 19940,
+        "other_votes": 3658,
+        "total_votes": 313954,
         "dem_candidate": "Bob Casey Jr.",
         "rep_candidate": "Lou Barletta",
-        "winner": "R",
-        "margin": 16010.0,
-        "margin_pct": 8.111668439985815
-      },
-      "7": {
-        "dem_votes": 135207,
-        "rep_votes": 107968,
-        "other_votes": 4237,
-        "total_votes": 247412,
-        "dem_candidate": "Bob Casey Jr",
-        "rep_candidate": "Lou Barletta",
         "winner": "D",
-        "margin": 27239.0,
-        "margin_pct": 11.009571079818278
-      },
-      "1": {
-        "dem_votes": 190940,
-        "rep_votes": 143848,
-        "other_votes": 5539,
-        "total_votes": 340327,
-        "dem_candidate": "Casey, Jr., Bob",
-        "rep_candidate": "Barletta, Lou",
-        "winner": "D",
-        "margin": 47092.0,
-        "margin_pct": 13.837280027738027
-      },
-      "6": {
-        "dem_votes": 146306,
-        "rep_votes": 99627,
-        "other_votes": 4424,
-        "total_votes": 250357,
-        "dem_candidate": "BOB CASEY JR",
-        "rep_candidate": "LOU BARLETTA",
-        "winner": "D",
-        "margin": 46679.0,
-        "margin_pct": 18.64497497573465
+        "margin": 270416,
+        "margin_pct": 86.13236333985233
       },
       "4": {
-        "dem_votes": 193890,
-        "rep_votes": 110907,
-        "other_votes": 4846,
-        "total_votes": 309643,
-        "dem_candidate": "BOB CASEY JR",
-        "rep_candidate": "LOU BARLETTA",
+        "dem_votes": 211359,
+        "rep_votes": 122401,
+        "other_votes": 5282,
+        "total_votes": 339042,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
         "winner": "D",
-        "margin": 82983.0,
-        "margin_pct": 26.799572410808576
+        "margin": 88958,
+        "margin_pct": 26.238047203591297
+      },
+      "5": {
+        "dem_votes": 216747,
+        "rep_votes": 97694,
+        "other_votes": 4165,
+        "total_votes": 318606,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "D",
+        "margin": 119053,
+        "margin_pct": 37.36684180461134
+      },
+      "6": {
+        "dem_votes": 180911,
+        "rep_votes": 120745,
+        "other_votes": 5442,
+        "total_votes": 307098,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "D",
+        "margin": 60166,
+        "margin_pct": 19.591791545369883
+      },
+      "7": {
+        "dem_votes": 146387,
+        "rep_votes": 119087,
+        "other_votes": 4572,
+        "total_votes": 270046,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "D",
+        "margin": 27300,
+        "margin_pct": 10.109388770802012
+      },
+      "8": {
+        "dem_votes": 140480,
+        "rep_votes": 124026,
+        "other_votes": 3107,
+        "total_votes": 267613,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "D",
+        "margin": 16454,
+        "margin_pct": 6.148430756353391
+      },
+      "9": {
+        "dem_votes": 98643,
+        "rep_votes": 166746,
+        "other_votes": 4507,
+        "total_votes": 269896,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "R",
+        "margin": 68103,
+        "margin_pct": 25.23305273142247
+      },
+      "10": {
+        "dem_votes": 144159,
+        "rep_votes": 142309,
+        "other_votes": 5902,
+        "total_votes": 292370,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "D",
+        "margin": 1850,
+        "margin_pct": 0.6327598590826693
+      },
+      "11": {
+        "dem_votes": 120182,
+        "rep_votes": 157957,
+        "other_votes": 6230,
+        "total_votes": 284369,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "R",
+        "margin": 37775,
+        "margin_pct": 13.283796757030478
+      },
+      "12": {
+        "dem_votes": 210652,
+        "rep_votes": 102294,
+        "other_votes": 5497,
+        "total_votes": 318443,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "D",
+        "margin": 108358,
+        "margin_pct": 34.02743976158998
+      },
+      "13": {
+        "dem_votes": 93996,
+        "rep_votes": 176603,
+        "other_votes": 4692,
+        "total_votes": 275291,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "R",
+        "margin": 82607,
+        "margin_pct": 30.007156063946876
+      },
+      "14": {
+        "dem_votes": 128579,
+        "rep_votes": 153491,
+        "other_votes": 4671,
+        "total_votes": 286741,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "R",
+        "margin": 24912,
+        "margin_pct": 8.687979744787109
+      },
+      "15": {
+        "dem_votes": 108113,
+        "rep_votes": 161143,
+        "other_votes": 5248,
+        "total_votes": 274504,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "R",
+        "margin": 53030,
+        "margin_pct": 19.318479876431674
+      },
+      "16": {
+        "dem_votes": 136845,
+        "rep_votes": 148964,
+        "other_votes": 5031,
+        "total_votes": 290840,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "R",
+        "margin": 12119,
+        "margin_pct": 4.166895887773346
+      },
+      "17": {
+        "dem_votes": 200409,
+        "rep_votes": 133354,
+        "other_votes": 5998,
+        "total_votes": 339761,
+        "dem_candidate": "Bob Casey Jr.",
+        "rep_candidate": "Lou Barletta",
+        "winner": "D",
+        "margin": 67055,
+        "margin_pct": 19.735932022804263
       }
     }
   }
