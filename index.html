@@ -10259,8 +10259,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-02-10';
-    const APP_BUILD_ID = '2026-08-02-10';
+    const DATA_CACHE_BUSTER = '2026-08-02-11';
+    const APP_BUILD_ID = '2026-08-02-11';
 
     function ensurePageCacheBuster() {
       return false;
@@ -13231,7 +13231,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const preset = getOverlayOpacityPresetConfig();
       const contestIsActive = hasActiveContestSelection();
       const demographicsModeActive = currentVizMode === 'demographics';
-      const useTurnoutOpacity = turnoutBivariateEnabled && !demographicsModeActive;
+      const populationChangeModeActive = currentVizMode === 'population_change' && currentView === 'counties';
+      const useTurnoutOpacity = turnoutBivariateEnabled && !demographicsModeActive && !populationChangeModeActive;
       const precinctsActuallyVisible =
         precinctsEnabled &&
         map.getZoom() >= (CONFIG.precincts?.minZoom || 8.5);
@@ -13265,6 +13266,9 @@ document.addEventListener('DOMContentLoaded', function() {
           precinctFillBaseOpacity = Math.max(precinctFillBaseOpacity, 0.90);
           precinctDotBaseOpacity = Math.max(precinctDotBaseOpacity, 0.97);
         }
+      }
+      if (contestIsActive && populationChangeModeActive) {
+        countyBaseOpacity = precinctsActuallyVisible ? Math.max(countyBaseOpacity, 0.16) : Math.max(countyBaseOpacity, 0.84);
       }
 
       if (map.getLayer('county-fill')) {
@@ -33972,6 +33976,11 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       if (mode === 'population_change' && currentView === 'counties') {
+        // The secondary-data warmup is intentionally idle-scheduled, but Pop Change
+        // needs its county index synchronously before it can build the fill expression.
+        if (!countyPopulationEstimatesByNorm && CONFIG.paths.county_population_estimates) {
+          await warmSecondaryReferenceData();
+        }
         renderLegendForVizMode('population_change');
         vizShiftCache = null;
         if (staleCheck()) return;
