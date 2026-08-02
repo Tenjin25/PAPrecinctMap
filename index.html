@@ -10241,8 +10241,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-01-1';
-    const APP_BUILD_ID = '2026-08-01-1';
+    const DATA_CACHE_BUSTER = '2026-08-01-2';
+    const APP_BUILD_ID = '2026-08-01-2';
 
     function ensurePageCacheBuster() {
       return false;
@@ -10290,7 +10290,7 @@ document.addEventListener('DOMContentLoaded', function() {
         precincts: withBase('./data/Voting_Precincts.geojson'),
         precincts_fallback_vtd20: null,
         precinct_centroids: withBase('./data/precinct_centroids.geojson'),
-        precinct_aliases: null,
+        precinct_aliases: withBase('./data/precinct_alias_index.json'),
         precinct_friendly_names: withBase('./data/precinct_friendly_names.json'),
         precinct_variant_overrides: null,
         districts: withBase('./data/tileset/pa_cd118_tileset.geojson'),

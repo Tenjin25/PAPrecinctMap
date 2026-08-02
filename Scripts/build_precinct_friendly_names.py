@@ -1,6 +1,8 @@
 """Build the county-scoped PA precinct friendly-name index from Census VTD data."""
 
 import json
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -49,6 +51,7 @@ def main():
         'counties': dict(sorted(named_counties.items())),
     }
     OUTPUT.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    subprocess.run([sys.executable, str(Path(__file__).with_name('build_precinct_alias_index.py'))], check=True)
     print(f'Wrote {sum(len(v) for v in named_counties.values())} names across {len(named_counties)} counties to {OUTPUT}')
 
 
