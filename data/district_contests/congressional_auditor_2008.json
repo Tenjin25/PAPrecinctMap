@@ -6,196 +6,269 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "unmatched_source_vtds": 14,
+    "unmatched_source_keys": [
+      [
+        "011",
+        "000000",
+        "CAERNARVON P 2"
+      ],
+      [
+        "011",
+        "000000",
+        "MAIDENCREEK P 4"
+      ],
+      [
+        "045",
+        "000826",
+        "CONCORD D CENTRAL WEST"
+      ],
+      [
+        "045",
+        "000000",
+        "CONCORD D MARIS GROVE"
+      ],
+      [
+        "079",
+        "000000",
+        "SALEM D 1"
+      ],
+      [
+        "079",
+        "000000",
+        "SALEM D 2"
+      ],
+      [
+        "091",
+        "000000",
+        "HORSHAM X 1 X 5"
+      ],
+      [
+        "091",
+        "000000",
+        "HORSHAM X 4 X 1"
+      ],
+      [
+        "091",
+        "000000",
+        "HORSHAM X 4 X 2"
+      ],
+      [
+        "091",
+        "000000",
+        "HORSHAM X 4 X 3"
+      ],
+      [
+        "091",
+        "000000",
+        "HORSHAM X 4 X 4"
+      ],
+      [
+        "091",
+        "002497",
+        "PLYMOUTH X 2 X 3C"
+      ],
+      [
+        "091",
+        "003085",
+        "UPPER DUBLIN X 3 X 1B"
+      ],
+      [
+        "095",
+        "000765",
+        "LOWER MT. BETHEL D INDEPENDENT"
+      ]
+    ]
   },
   "general": {
     "results": {
-      "13": {
-        "dem_votes": 137488,
-        "rep_votes": 154566,
-        "other_votes": 14741,
-        "total_votes": 306795,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "R",
-        "margin": 17078.0,
-        "margin_pct": 5.566583549275575
-      },
-      "17": {
-        "dem_votes": 244677,
-        "rep_votes": 113059,
-        "other_votes": 12491,
-        "total_votes": 370227,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 131618.0,
-        "margin_pct": 35.550621645639026
-      },
-      "12": {
-        "dem_votes": 277822,
-        "rep_votes": 91093,
-        "other_votes": 11832,
-        "total_votes": 380747,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 186729.0,
-        "margin_pct": 49.042802701006174
-      },
-      "15": {
-        "dem_votes": 147738,
-        "rep_votes": 136096,
-        "other_votes": 14639,
-        "total_votes": 298473,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 11642.0,
-        "margin_pct": 3.900520315070375
-      },
-      "9": {
-        "dem_votes": 120870,
-        "rep_votes": 132227,
-        "other_votes": 13646,
-        "total_votes": 266743,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "R",
-        "margin": 11357.0,
-        "margin_pct": 4.257656245899611
-      },
-      "4": {
-        "dem_votes": 197264,
-        "rep_votes": 142077,
-        "other_votes": 5296,
-        "total_votes": 344637,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 55187.0,
-        "margin_pct": 16.013080429553415
-      },
-      "6": {
-        "dem_votes": 159288,
-        "rep_votes": 134087,
-        "other_votes": 12210,
-        "total_votes": 305585,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 25201.0,
-        "margin_pct": 8.246805307852153
-      },
       "1": {
-        "dem_votes": 193365,
-        "rep_votes": 160214,
-        "other_votes": 6787,
-        "total_votes": 360366,
+        "dem_votes": 221104,
+        "rep_votes": 195559,
+        "other_votes": 8094,
+        "total_votes": 424757,
         "dem_candidate": "Jack Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 33151.0,
-        "margin_pct": 9.19925853160398
-      },
-      "16": {
-        "dem_votes": 188704,
-        "rep_votes": 128073,
-        "other_votes": 13677,
-        "total_votes": 330454,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 60631.0,
-        "margin_pct": 18.34778819442343
-      },
-      "7": {
-        "dem_votes": 168434,
-        "rep_votes": 115179,
-        "other_votes": 8680,
-        "total_votes": 292293,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 53255.0,
-        "margin_pct": 18.219731570718423
-      },
-      "5": {
-        "dem_votes": 203910,
-        "rep_votes": 122003,
-        "other_votes": 4613,
-        "total_votes": 330526,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 81907.0,
-        "margin_pct": 24.780803930704394
-      },
-      "10": {
-        "dem_votes": 151347,
-        "rep_votes": 143485,
-        "other_votes": 10880,
-        "total_votes": 305712,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 7862.0,
-        "margin_pct": 2.571701470665201
-      },
-      "14": {
-        "dem_votes": 210019,
-        "rep_votes": 114458,
-        "other_votes": 12258,
-        "total_votes": 336735,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 95561.0,
-        "margin_pct": 28.3786954133072
-      },
-      "8": {
-        "dem_votes": 188690,
-        "rep_votes": 100792,
-        "other_votes": 13681,
-        "total_votes": 303163,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 87898.0,
-        "margin_pct": 28.993643683431024
-      },
-      "11": {
-        "dem_votes": 116280,
-        "rep_votes": 169690,
-        "other_votes": 11461,
-        "total_votes": 297431,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "R",
-        "margin": 53410.0,
-        "margin_pct": 17.957106017866327
-      },
-      "3": {
-        "dem_votes": 321261,
-        "rep_votes": 28052,
-        "other_votes": 3610,
-        "total_votes": 352923,
-        "dem_candidate": "Jack Wagner",
-        "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 293209.0,
-        "margin_pct": 83.08016196167436
+        "margin": 25545,
+        "margin_pct": 6.014026843583508
       },
       "2": {
-        "dem_votes": 209744,
-        "rep_votes": 57823,
-        "other_votes": 2721,
-        "total_votes": 270288,
+        "dem_votes": 210853,
+        "rep_votes": 57736,
+        "other_votes": 2706,
+        "total_votes": 271295,
         "dem_candidate": "Jack Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 151921.0,
-        "margin_pct": 56.207082815367315
+        "margin": 153117,
+        "margin_pct": 56.4393003925616
+      },
+      "3": {
+        "dem_votes": 320182,
+        "rep_votes": 28158,
+        "other_votes": 3627,
+        "total_votes": 351967,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 292024,
+        "margin_pct": 82.96914199342552
+      },
+      "4": {
+        "dem_votes": 203211,
+        "rep_votes": 145568,
+        "other_votes": 5253,
+        "total_votes": 354032,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 57643,
+        "margin_pct": 16.28186152664166
+      },
+      "5": {
+        "dem_votes": 261772,
+        "rep_votes": 168998,
+        "other_votes": 5828,
+        "total_votes": 436598,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 92774,
+        "margin_pct": 21.249295690772747
+      },
+      "6": {
+        "dem_votes": 185155,
+        "rep_votes": 155123,
+        "other_votes": 14111,
+        "total_votes": 354389,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 30032,
+        "margin_pct": 8.474303660666669
+      },
+      "7": {
+        "dem_votes": 186372,
+        "rep_votes": 131672,
+        "other_votes": 9831,
+        "total_votes": 327875,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 54700,
+        "margin_pct": 16.683187190240183
+      },
+      "8": {
+        "dem_votes": 335078,
+        "rep_votes": 150260,
+        "other_votes": 25358,
+        "total_votes": 510696,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 184818,
+        "margin_pct": 36.1894355937779
+      },
+      "9": {
+        "dem_votes": 152973,
+        "rep_votes": 159286,
+        "other_votes": 16744,
+        "total_votes": 329003,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "R",
+        "margin": 6313,
+        "margin_pct": 1.9188274878952472
+      },
+      "10": {
+        "dem_votes": 214606,
+        "rep_votes": 209351,
+        "other_votes": 13661,
+        "total_votes": 437618,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 5255,
+        "margin_pct": 1.2008189791096344
+      },
+      "11": {
+        "dem_votes": 147199,
+        "rep_votes": 214845,
+        "other_votes": 13353,
+        "total_votes": 375397,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "R",
+        "margin": 67646,
+        "margin_pct": 18.01985631211757
+      },
+      "12": {
+        "dem_votes": 278274,
+        "rep_votes": 91118,
+        "other_votes": 11854,
+        "total_votes": 381246,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 187156,
+        "margin_pct": 49.090613409714464
+      },
+      "13": {
+        "dem_votes": 155047,
+        "rep_votes": 163034,
+        "other_votes": 15724,
+        "total_votes": 333805,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "R",
+        "margin": 7987,
+        "margin_pct": 2.392714309252408
+      },
+      "14": {
+        "dem_votes": 211712,
+        "rep_votes": 115049,
+        "other_votes": 12363,
+        "total_votes": 339124,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 96663,
+        "margin_pct": 28.50373314775716
+      },
+      "15": {
+        "dem_votes": 160705,
+        "rep_votes": 147544,
+        "other_votes": 15918,
+        "total_votes": 324167,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 13161,
+        "margin_pct": 4.059944411368215
+      },
+      "16": {
+        "dem_votes": 208428,
+        "rep_votes": 147057,
+        "other_votes": 14852,
+        "total_votes": 370337,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 61371,
+        "margin_pct": 16.57166310684593
+      },
+      "17": {
+        "dem_votes": 258239,
+        "rep_votes": 123540,
+        "other_votes": 13136,
+        "total_votes": 394915,
+        "dem_candidate": "Jack Wagner",
+        "rep_candidate": "Chet Beiler",
+        "winner": "D",
+        "margin": 134699,
+        "margin_pct": 34.108352430269804
       }
     }
   }
