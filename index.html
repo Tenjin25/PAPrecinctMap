@@ -9146,6 +9146,8 @@ body.focus-active #hover-tooltip[data-context="preview"] {
   --ui-accent-2: #0c2f5a;
   --ui-gold: #ffcd00;
   --ui-gold-soft: #f2c94c;
+  --state-ribbon: linear-gradient(90deg, #0c2f5a 0%, #0f4c81 58%, #ffcd00 100%);
+  --state-accent-gradient: linear-gradient(135deg, #0c2f5a 0%, #0f4c81 72%, #b68600 100%);
 }
 body {
   background:
@@ -9229,6 +9231,21 @@ body {
   border: 1px solid rgba(255, 205, 0, 0.30);
   color: #f8fafc !important;
   box-shadow: 0 8px 18px rgba(12, 47, 90, 0.20);
+}
+.hover-tooltip {
+  position: absolute;
+  overflow: hidden;
+  border-top: 0;
+}
+.hover-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--state-ribbon);
+  pointer-events: none;
 }
 .county-details,
 .statewide-results {
@@ -10323,8 +10340,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-03-04';
-    const APP_BUILD_ID = '2026-08-03-04';
+    const DATA_CACHE_BUSTER = '2026-08-03-06';
+    const APP_BUILD_ID = '2026-08-03-06';
 
     function ensurePageCacheBuster() {
       return false;
