@@ -9224,6 +9224,20 @@ body {
 .legend-header {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 252, 0.94) 100%) !important;
 }
+.legend-badge {
+  background: linear-gradient(135deg, #0c2f5a 0%, #0f4c81 72%, #b68600 100%) !important;
+  border: 1px solid rgba(255, 205, 0, 0.30);
+  color: #f8fafc !important;
+  box-shadow: 0 8px 18px rgba(12, 47, 90, 0.20);
+}
+.county-details,
+.statewide-results {
+  background: linear-gradient(180deg, rgba(239, 246, 255, 0.84) 0%, rgba(248, 250, 252, 0.96) 100%);
+  border-color: rgba(15, 76, 129, 0.18);
+}
+.statewide-results {
+  border-top-color: rgba(15, 76, 129, 0.36);
+}
 </style>
 </head>
 <body>
@@ -10309,8 +10323,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-03-03';
-    const APP_BUILD_ID = '2026-08-03-03';
+    const DATA_CACHE_BUSTER = '2026-08-03-04';
+    const APP_BUILD_ID = '2026-08-03-04';
 
     function ensurePageCacheBuster() {
       return false;
