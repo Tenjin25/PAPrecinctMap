@@ -249,7 +249,7 @@
   }
   
 
-  /* PA index refinements ported into the NCMap shell: control/legend depth only. */
+  /* Pennsylvania control and legend depth refinements. */
   body.focus-active .legend {
     box-shadow: 0 20px 48px rgba(15, 23, 42, 0.26);
   }
@@ -434,7 +434,7 @@
       }
 
       // Keyboard shortcuts (ignore when typing in inputs/selects).
-      // Compatibility hookup: support both PA index aliases and NCMap-specific control IDs.
+      // Compatibility hookup for the page's control aliases.
       function clickFirstControl(ids) {
         for (const id of ids) {
           const el = document.getElementById(id);
@@ -9135,7 +9135,7 @@ body.focus-active #hover-tooltip[data-context="preview"] {
   }
     
 
-/* PA theme carryover from the original index build. Keep NCMap tooltip internals, but skin the app as Keystone State Explorer. */
+/* Shared tooltip styling for Keystone State Explorer. */
 :root {
   --ui-bg: rgba(255, 255, 255, 0.90);
   --ui-border: rgba(15, 23, 42, 0.12);
@@ -10309,8 +10309,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-03-01';
-    const APP_BUILD_ID = '2026-08-03-01';
+    const DATA_CACHE_BUSTER = '2026-08-03-02';
+    const APP_BUILD_ID = '2026-08-03-02';
 
     function ensurePageCacheBuster() {
       return false;
@@ -11053,7 +11053,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const year = Number(entry.year);
       if (!contestType || !Number.isFinite(year) || year <= 0) return false;
 
-      // NCMap manifests usually carry rows/district counts, but the PA index
+      // Manifests may carry rows/district counts, but the Pennsylvania index
       // district manifest can be file/year/scope based.  Treat missing count
       // fields as valid instead of filtering the entry out; only reject an
       // explicit zero count.  Otherwise shift/flip can never discover the
@@ -31263,7 +31263,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function getHistoricalTrends(countyName, isDistrict = false, districtNum = null) {
       const presidentialYears = [2024, 2020, 2016, 2012, 2008];
       const stateHouseYears = [2024, 2022, 2020, 2018, 2016]; // Recent state house elections
-      // Governor-election comparison helper retained from NCMap core; harmless for PA contest builds.
+      // Governor-election comparison helper retained for compatibility with older contest builds.
       const governorYears = [2024, 2020, 2016, 2012, 2008];
       const trends = [];
       

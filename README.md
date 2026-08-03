@@ -38,7 +38,7 @@ The app is Pages-aware and auto-detects this project base path at runtime so dat
 - Use fly-to search for counties, districts, and precinct tokens.
 - Enable precinct overlay for fine-grained local patterns.
 - Pin hover cards and inspect trend history for selected geography.
-- Use the NCMap-style hover tooltip system in `index.html`, with compact desktop previews and mobile-friendly expandable detail cards.
+- Use the compact hover tooltip system in `index.html`, with desktop previews and mobile-friendly expandable detail cards.
 
 ## Local Preview Notes
 
@@ -100,7 +100,7 @@ Note: district views can include both actual district races and statewide contes
 
 - Primary app entry: `index.html`
 - Supporting pipeline script: `build_pa_data_layers.py`
-- `NCMap.html` is a UI base/sandbox file and is not the primary PA production entrypoint.
+- `index.html` is the primary PA production entrypoint.
 
 ## Access
 
@@ -294,7 +294,6 @@ Important limitation:
 ```text
 .
 |-- index.html
-|-- NCMap.html
 |-- build_pa_data_layers.py
 |-- requirements.txt
 |-- Scripts/

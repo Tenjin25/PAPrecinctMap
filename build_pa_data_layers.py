@@ -273,7 +273,7 @@ def build_vtd_precinct_and_centroid_layers(vtd_zip: Path, county_lookup: dict, p
     geodf['county_nam'] = county_name
     geodf['county_norm'] = geodf['county_nam'].str.upper().str.replace(r'[^A-Z0-9 .\-]', '', regex=True).str.replace(r'\s+', ' ', regex=True).str.strip()
     # TIGER's NAME20/NAMELSAD20 values are the human-readable precinct labels
-    # used by the NC atlas pattern. Keep the stable VTD code as the fallback.
+    # used by the atlas-style geometry pattern. Keep the stable VTD code as the fallback.
     source_name_col = 'NAME20' if 'NAME20' in geodf.columns else ('NAMELSAD20' if 'NAMELSAD20' in geodf.columns else None)
     geodf['precinct_name'] = geodf[source_name_col].fillna('').astype(str).str.strip() if source_name_col else geodf['VTD']
     geodf.loc[geodf['precinct_name'].eq(''), 'precinct_name'] = geodf.loc[geodf['precinct_name'].eq(''), 'VTD']
