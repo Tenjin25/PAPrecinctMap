@@ -9146,6 +9146,8 @@ body.focus-active #hover-tooltip[data-context="preview"] {
   --ui-accent-2: #0c2f5a;
   --ui-gold: #ffcd00;
   --ui-gold-soft: #f2c94c;
+  --state-ribbon: linear-gradient(90deg, #0c2f5a 0%, #0f4c81 58%, #ffcd00 100%);
+  --state-accent-gradient: linear-gradient(135deg, #0c2f5a 0%, #0f4c81 72%, #b68600 100%);
 }
 body {
   background:
@@ -10323,8 +10325,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-03-04';
-    const APP_BUILD_ID = '2026-08-03-04';
+    const DATA_CACHE_BUSTER = '2026-08-03-05';
+    const APP_BUILD_ID = '2026-08-03-05';
 
     function ensurePageCacheBuster() {
       return false;
