@@ -1,0 +1,24 @@
+{
+  "generated_by": "build_pa_precinct_returns.py",
+  "frontend_geometry": {
+    "source": "data/pa_current_voting_districts.geojson",
+    "features": 9530,
+    "features_with_precinct_norm": 9530
+  },
+  "years": [
+    {
+      "year": 2020,
+      "status": "built",
+      "source": "data/ElectionReturns_2020_General_PrecinctReturns.txt",
+      "source_type": "official_pa_precinct_export",
+      "output": "data/Openelections/2020/20201103__pa__general__precinct.csv",
+      "rows": 180801,
+      "counties": 67,
+      "precincts": 9152,
+      "crosswalk": "data/crosswalks/pa_modern_precinct_to_vtd20.csv",
+      "matched_rows": 30129,
+      "unmatched_rows": 149378,
+      "joined_rows": 180801
+    }
+  ]
+}
