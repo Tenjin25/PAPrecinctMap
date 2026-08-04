@@ -15623,10 +15623,18 @@ document.addEventListener('DOMContentLoaded', function() {
           if (!label || /ABSENTEE|PROVISIONAL|ONE STOP|CURBSIDE/.test(label)) return;
           const party = String(raw.party || '').trim().toUpperCase();
           const votes = Number(raw.votes) || 0;
-          const targets = crosswalk.get(`${county}\u0000${crosswalkNameKey(label)}`) || [];
-          const outputTargets = targets.length
-            ? targets
-            : [{ county, vtd: '', weight: 1 }];
+          // The build pipeline may already have applied the crosswalk and emit
+          // current keys such as "ADAMS - 000010". Do not crosswalk those rows
+          // a second time.
+          const canonical = label.match(/^(.+?)\s+-\s+(\d{6})$/);
+          const canonicalCounty = canonical ? canonical[1].trim() : '';
+          const canonicalVtd = canonical ? canonical[2] : '';
+          const targets = (!canonical || canonicalCounty !== county)
+            ? (crosswalk.get(`${county}\u0000${crosswalkNameKey(label)}`) || [])
+            : [];
+          const outputTargets = canonical && canonicalCounty === county
+            ? [{ county, vtd: canonicalVtd, weight: 1 }]
+            : (targets.length ? targets : [{ county, vtd: '', weight: 1 }]);
           outputTargets.forEach(target => {
             const precinct = target.vtd
               ? `${target.county} - ${target.vtd}`
@@ -15756,14 +15764,20 @@ document.addEventListener('DOMContentLoaded', function() {
           const county = (r.county || '').toString().trim().toUpperCase();
           const precinctRaw = (r.precinct || '').toString().trim();
           if (!county || !precinctRaw) return;
-          const code = extractPrecinctCode(precinctRaw);
+          const canonical = precinctRaw.match(/^(.+?)\s+-\s+(\d{6})$/i);
+          const canonicalCounty = canonical ? canonical[1].trim().toUpperCase() : '';
+          const code = canonical ? canonical[2] : extractPrecinctCode(precinctRaw);
           if (!code) return;
           const party = (r.party || '').toString().trim().toUpperCase();
           const cand = (r.candidate || '').toString().trim();
           const votes = Number(r.votes) || 0;
           const countyFips = String(countyFipsByName.get(county) || '').padStart(3, '0');
-          const targets = historicalCrosswalk.get(`${y}|${countyFips}|${code}`) || [];
-          const outputTargets = targets.length ? targets : [{ county, vtd: code, weight: 1 }];
+          const targets = (!canonical || canonicalCounty !== county)
+            ? (historicalCrosswalk.get(`${y}|${countyFips}|${code}`) || [])
+            : [];
+          const outputTargets = canonical && canonicalCounty === county
+            ? [{ county, vtd: code, weight: 1 }]
+            : (targets.length ? targets : [{ county, vtd: code, weight: 1 }]);
           outputTargets.forEach(target => {
             const targetCounty = countyNameByFips?.get(target.county) || county;
             const key = `${targetCounty} - ${target.vtd}`.replace(/\s+/g, ' ').trim();

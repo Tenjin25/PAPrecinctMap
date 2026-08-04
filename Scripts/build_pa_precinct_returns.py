@@ -28,6 +28,7 @@ CURRENT_GEOMETRY_PATH = DATA / "pa_current_voting_districts.geojson"
 COUNTIES_PATH = DATA / "pa_counties.geojson"
 MODERN_CROSSWALK_PATH = DATA / "crosswalks" / "pa_modern_precinct_to_vtd20.csv"
 HISTORICAL_CROSSWALK_PATH = DATA / "crosswalks" / "pa_historical_precinct_to_vtd20.csv"
+CURRENT_CROSSWALK_PATH = DATA / "crosswalks" / "pa_vtd20_to_current_precinct.csv"
 
 FIELDS = [
     "county",
@@ -140,19 +141,35 @@ def source_variants(value: object) -> list[str]:
     base = normalize_token(value)
     if not base:
         return []
-    variants = [base]
+    variants = []
+    queue = [base]
     replacements = (
         (r"\bD\s+(\d+)\b", r"DISTRICT \1"),
         (r"\bX\s+(\d+)\b", r"DISTRICT \1"),
         (r"\bWD\s+(\d+)\b", r"WARD \1"),
         (r"\bW\s+(\d+)\b", r"WARD \1"),
         (r"\bPCT\s+(\d+)\b", r"PRECINCT \1"),
+        (r"\bP\s+(\d+)\b", r"PRECINCT \1"),
     )
-    for pattern, replacement in replacements:
-        expanded = re.sub(pattern, replacement, base)
-        if expanded != base:
-            variants.append(expanded)
-    return list(dict.fromkeys(variants))
+    seen = set()
+    while queue:
+        candidate = normalize_token(queue.pop())
+        if not candidate or candidate in seen:
+            continue
+        seen.add(candidate)
+        variants.append(candidate)
+        tokens = candidate.split()
+        # PA's raw exports sometimes repeat the ward/district suffix, e.g.
+        # "CARLISLE W 1 P 1 W 1 P 1".
+        for width in range(1, len(tokens) // 2 + 1):
+            if tokens[-2 * width:-width] == tokens[-width:]:
+                queue.append(" ".join(tokens[:-width]))
+                break
+        for pattern, replacement in replacements:
+            expanded = re.sub(pattern, replacement, candidate)
+            if expanded != candidate:
+                queue.append(expanded)
+    return variants
 
 
 def load_county_fips() -> dict[str, str]:
@@ -187,10 +204,48 @@ def load_crosswalk(year: int, county_fips_by_name: dict[str, str]) -> dict[tuple
     return index
 
 
+def load_current_crosswalk() -> dict[tuple[str, str], list[tuple[str, str, str, float]]]:
+    """Map legacy VTD20 targets into the precinct polygons used by the frontend."""
+    index: dict[tuple[str, str], list[tuple[str, str, str, float]]] = {}
+    if not CURRENT_CROSSWALK_PATH.exists():
+        return index
+    with CURRENT_CROSSWALK_PATH.open("r", newline="", encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            county = str(row.get("countyfp") or "").zfill(3)
+            vtd20 = str(row.get("vtd20") or "").zfill(6)
+            current_county = str(row.get("current_countyfp") or county).zfill(3)
+            current_vtd = str(row.get("current_vtd") or "").zfill(6)
+            current_precinct = normalize_token(row.get("current_precinct_norm"))
+            weight = float(row.get("weight") or 0)
+            if county and vtd20 and current_vtd and current_precinct and weight > 0:
+                index.setdefault((county, vtd20), []).append(
+                    (current_county, current_vtd, current_precinct, weight)
+                )
+    return index
+
+
+def load_current_vtd_keys() -> set[tuple[str, str]]:
+    """Return county/VTD IDs that are actually present in the frontend layer."""
+    try:
+        payload = json.loads(CURRENT_GEOMETRY_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return set()
+    keys = set()
+    for feature in payload.get("features") or []:
+        props = feature.get("properties") or {}
+        county = str(props.get("COUNTYFP") or props.get("COUNTY") or "").zfill(3)
+        vtd = str(props.get("VTD20") or props.get("VTDST") or props.get("VTD") or "").zfill(6)
+        if county and vtd and vtd != "000000":
+            keys.add((county, vtd))
+    return keys
+
+
 def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], dict]:
     county_fips_by_name = load_county_fips()
     county_names_by_fips = {v: k for k, v in county_fips_by_name.items()}
     crosswalk = load_crosswalk(year, county_fips_by_name)
+    current_crosswalk = load_current_crosswalk()
+    current_vtd_keys = load_current_vtd_keys()
     joined = []
     matched_rows = 0
     unmatched_rows = 0
@@ -198,10 +253,19 @@ def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[di
         county = normalize_token(row["county"])
         county_fips = county_fips_by_name.get(county, "")
         source = normalize_token(row.get("source_precinct") or row["precinct"])
+        canonical = re.match(r"^(.+?)\s+-\s+(\d{6})$", source)
+        if canonical and normalize_token(canonical.group(1)) == county:
+            joined.append({**row, "county": county, "precinct": f"{county} - {canonical.group(2)}", "source_precinct": source})
+            matched_rows += 1
+            continue
         if year < 2018 and source.isdigit():
             source = source.zfill(6)
         targets = []
+        if source.isdigit() and (county_fips, source.zfill(6)) in current_vtd_keys:
+            targets = [(county_fips, source.zfill(6), 1.0)]
         for variant in source_variants(source):
+            if targets:
+                break
             targets = crosswalk.get((county_fips, variant), [])
             if targets:
                 break
@@ -211,17 +275,22 @@ def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[di
             continue
         matched_rows += 1
         for dst_county, dst_vtd, weight in targets:
-            votes = float(row.get("votes") or 0) * weight
-            target_county = county_names_by_fips.get(dst_county, county)
-            joined.append({
-                **row,
-                "county": target_county,
-                "precinct": f"{target_county} - {dst_vtd}",
-                "votes": f"{votes:.12f}".rstrip("0").rstrip("."),
-                "source_precinct": source,
-            })
+            current_targets = current_crosswalk.get((dst_county, dst_vtd))
+            if not current_targets:
+                current_targets = [(dst_county, dst_vtd, f"{county_names_by_fips.get(dst_county, county)} - {dst_vtd}", 1.0)]
+            for current_county, current_vtd, current_precinct, current_weight in current_targets:
+                votes = float(row.get("votes") or 0) * weight * current_weight
+                target_county = county_names_by_fips.get(current_county, county)
+                joined.append({
+                    **row,
+                    "county": target_county,
+                    "precinct": current_precinct,
+                    "votes": f"{votes:.12f}".rstrip("0").rstrip("."),
+                    "source_precinct": source,
+                })
     return joined, {
         "crosswalk": str((HISTORICAL_CROSSWALK_PATH if year < 2018 else MODERN_CROSSWALK_PATH).relative_to(BASE)).replace("\\", "/"),
+        "current_crosswalk": str(CURRENT_CROSSWALK_PATH.relative_to(BASE)).replace("\\", "/"),
         "matched_rows": matched_rows,
         "unmatched_rows": unmatched_rows,
         "joined_rows": len(joined),
@@ -256,12 +325,12 @@ def choose_source(year: int) -> tuple[Path | None, str]:
     raw_backup = target.with_suffix(target.suffix + ".raw")
     if year < 2018 and raw_backup.exists():
         return raw_backup, "openelections_raw_export"
-    if target.exists():
-        return target, "openelections_or_existing_standardized"
-
     preserved_source = target.with_suffix(target.suffix + ".source")
     if preserved_source.exists():
         return preserved_source, "preserved_standardized_source"
+
+    if target.exists():
+        return target, "openelections_or_existing_standardized"
 
     if raw_backup.exists():
         return raw_backup, "openelections_raw_export"
