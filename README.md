@@ -37,12 +37,16 @@ The app is Pages-aware and auto-detects this project base path at runtime so dat
   - Flips (bold colors for actual flips, lighter party tints for held areas, gray when no usable prior exists)
 - Use fly-to search for counties, districts, and precinct tokens.
 - Enable precinct overlay for fine-grained local patterns.
+- View browser-ready precinct returns for presidential and statewide election years from `2000` through `2024`, with current-precinct geometry alignment.
+- Aggregate the same precinct-return rows in county mode or inspect them at precinct level when the overlay is enabled.
 - Pin hover cards and inspect trend history for selected geography.
 - Use the compact hover tooltip system in `index.html`, with desktop previews and mobile-friendly expandable detail cards.
+- Use the Pennsylvania-themed legend, selected-area panel, hover ribbons, and responsive mobile controls.
 
 ## Local Preview Notes
 
 - `index.html` now stamps a build id onto both the page URL and data requests to shake loose stale browser cache when testing local updates.
+- Precinct-return data is indexed by `data/precinct_returns_manifest.json`; rebuilds should refresh the manifest and the browser cache-buster together.
 - If you are comparing behavior against the older backup file `index .v1.html`, remember it is a separate snapshot and will not automatically pick up fixes made in `index.html`.
 
 ## Audience Workflows
@@ -183,7 +187,25 @@ The early-year result is therefore best understood as a layered evidence product
 
 - `data/contests/manifest.json` indexes county/statewide slices.
 - `data/district_contests/manifest.json` indexes district slices.
+- `data/precinct_returns_manifest.json` indexes the browser-ready raw precinct-return tables and records source files, row counts, crosswalks, and matched/unmatched rows for each year.
 - The frontend prioritizes manifest-based loading and only falls back to legacy aggregate payloads when needed.
+
+### 9. Current Precinct Returns
+
+`Scripts/build_pa_precinct_returns.py` converts Pennsylvania Department of State fixed-column exports and standardized OpenElections files into a common browser-ready table. The generated rows retain county, precinct, office, district, party, candidate, vote, Election Day, mail, and provisional fields.
+
+The return builder uses historical or modern precinct-to-2020-VTD crosswalks first, then applies `data/crosswalks/pa_vtd20_to_current_precinct.csv` to align those VTD targets with the current precinct polygons used by the frontend. This lets the app show historical returns on a stable current geometry while preserving source and matching metadata in `data/precinct_returns_manifest.json`.
+
+The current build covers eight general-election years (`2000`, `2004`, `2008`, `2012`, `2016`, `2020`, `2022`, and `2024`), all 67 counties, and 9,530 current voting-district features. Official Pennsylvania bulk exports take precedence when available for `2008`, `2020`, `2022`, and `2024`.
+
+To rebuild the return tables after changing source data:
+
+```powershell
+python Scripts/build_pa_current_precinct_crosswalk.py
+python Scripts/build_pa_precinct_returns.py
+```
+
+The manifest is the source of truth for which years are built and which source/crosswalk artifacts were used. Nonzero unmatched-row counts are expected for historical exports and should be treated as a coverage caveat rather than silently filled.
 
 ## How the Layers Work in the App
 
@@ -245,6 +267,10 @@ The early-year result is therefore best understood as a layered evidence product
 | `data/Voting_Precincts.geojson` | `build_vtd_precinct_and_centroid_layers(...)` | 2020 VTD geometry + county lookup + VTD block counts | Precinct polygon overlay |
 | `data/precinct_centroids.geojson` | `build_vtd_precinct_and_centroid_layers(...)` | 2020 VTD geometry transformed to representative points | Precinct dot layer and missing-polygon fallback |
 | `data/vtd_block_counts.csv` | `build_vtd_block_counts_report(...)` | `data/BlockAssign_ST42_PA.zip` (`BlockAssign_ST42_PA_VTD.txt`) | Precinct metadata (`BLOCK_COUNT`) |
+| `data/Openelections/*/*__pa__general__precinct.csv` | `Scripts/build_pa_precinct_returns.py` | PA official exports, standardized OpenElections files, historical/modern VTD crosswalks, current precinct crosswalk | County aggregation and precinct-return map coloring |
+| `data/crosswalks/pa_vtd20_to_current_precinct.csv` | `Scripts/build_pa_current_precinct_crosswalk.py` | 2020 VTD geometry, current Pennsylvania voting-district geometry, precinct aliases | Historical-return alignment to frontend precinct polygons |
+| `data/precinct_returns_manifest.json` | `Scripts/build_pa_precinct_returns.py` | Generated precinct-return tables and crosswalk metadata | Precinct-return loading, source display, and coverage checks |
+| `data/pa_current_voting_districts.geojson` | Current-precinct geometry build | Current Pennsylvania voting-district source geometry | Stable frontend geometry for precinct returns |
 | `data/pa_district_results_2022_lines.json` | `build_district_results_2022_lines(...)` | Synthetic placeholder payload | Legacy fallback path (explicitly disabled for synthetic district fallback) |
 | `data/pa_congressional_districts.csv`, `data/pa_state_house_districts.csv`, `data/pa_state_senate_districts.csv` | `build_pa_congressional_districts(...)`, `build_state_house_csv(...)`, `build_state_senate_csv(...)` | Generated district metadata scaffolding | Sidebar district demographics/labels |
 | `data/pa_district_descriptions.json` | `build_district_descriptions(...)` | Generated district description scaffolding | Tooltip/side-panel district labels |
@@ -297,12 +323,17 @@ Important limitation:
 |-- build_pa_data_layers.py
 |-- requirements.txt
 |-- Scripts/
+|   |-- build_pa_current_precinct_crosswalk.py
+|   |-- build_pa_precinct_returns.py
 |   |-- convert_pa_2022_precinct_returns_to_openelections.py
 |   `-- convert_pa_2024_precinct_returns_to_openelections.py
 `-- data/
+    |-- crosswalks/
     |-- contests/
     |-- district_contests/
     |-- Openelections/
+    |-- precinct_returns_manifest.json
+    |-- pa_current_voting_districts.geojson
     |-- tileset/
     |-- Voting_Precincts.geojson
     |-- precinct_centroids.geojson
@@ -321,6 +352,8 @@ Important limitation:
 - Large raw files can make cloning/pushing slower.
 - Coverage varies by year and contest type based on available source files.
 - Some derived district outputs depend on crosswalk quality and matching coverage.
+- Historical precinct-return alignment can leave unmatched rows when source labels cannot be reconciled to the current geometry; the per-year manifest records those counts.
+- Current precinct geometry represents a stable display geography for comparison and is not a claim that historical precinct boundaries were identical.
 - This repo currently has no `LICENSE` file; add one before broad public reuse.
 
 ## Candidate Name Display Normalization
