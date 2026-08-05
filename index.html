@@ -10340,8 +10340,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-05-01';
-    const APP_BUILD_ID = '2026-08-05-01';
+    const DATA_CACHE_BUSTER = '2026-08-05-02';
+    const APP_BUILD_ID = '2026-08-05-02';
 
     function ensurePageCacheBuster() {
       return false;
@@ -20610,6 +20610,9 @@ document.addEventListener('DOMContentLoaded', function() {
         norm === 'matt cartwright'
       ) {
         return 'Matt Cartwright';
+      }
+      if (norm === 'jack wagner' || norm === 'jack e wagner') {
+        return 'Jack E. Wagner';
       }
       if (
         norm === 'wagner bartos' ||
