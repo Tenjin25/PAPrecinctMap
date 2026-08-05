@@ -46,7 +46,7 @@ The app is Pages-aware and auto-detects this project base path at runtime so dat
 ## Local Preview Notes
 
 - `index.html` now stamps a build id onto both the page URL and data requests to shake loose stale browser cache when testing local updates.
-- Precinct-return data is indexed by `data/precinct_returns_manifest.json`; rebuilds should refresh the manifest and the browser cache-buster together.
+- Precinct-return data is indexed by `data/precinct_returns_manifest.json`; rebuilds should refresh the manifest and bump both `DATA_CACHE_BUSTER` and `APP_BUILD_ID` in `index.html` together.
 - If you are comparing behavior against the older backup file `index .v1.html`, remember it is a separate snapshot and will not automatically pick up fixes made in `index.html`.
 
 ## Audience Workflows
