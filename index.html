@@ -558,7 +558,7 @@
   </script>
   <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
   <script>
-    window.__SDE_BUILD_ID = '2026-06-28-5-shift-flip-v1';
+    window.__SDE_BUILD_ID = '2026-08-05-01';
     // Reduce noisy console errors when ad blockers block Mapbox telemetry (events.mapbox.com).
     try {
       if (window.mapboxgl && typeof window.mapboxgl.setTelemetryEnabled === 'function') {
@@ -10340,8 +10340,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-04-01';
-    const APP_BUILD_ID = '2026-08-04-01';
+    const DATA_CACHE_BUSTER = '2026-08-05-01';
+    const APP_BUILD_ID = '2026-08-05-01';
 
     function ensurePageCacheBuster() {
       return false;
@@ -15623,10 +15623,18 @@ document.addEventListener('DOMContentLoaded', function() {
           if (!label || /ABSENTEE|PROVISIONAL|ONE STOP|CURBSIDE/.test(label)) return;
           const party = String(raw.party || '').trim().toUpperCase();
           const votes = Number(raw.votes) || 0;
-          const targets = crosswalk.get(`${county}\u0000${crosswalkNameKey(label)}`) || [];
-          const outputTargets = targets.length
-            ? targets
-            : [{ county, vtd: '', weight: 1 }];
+          // The build pipeline may already have applied the crosswalk and emit
+          // current keys such as "ADAMS - 000010". Do not crosswalk those rows
+          // a second time.
+          const canonical = label.match(/^(.+?)\s+-\s+(\d{6})$/);
+          const canonicalCounty = canonical ? canonical[1].trim() : '';
+          const canonicalVtd = canonical ? canonical[2] : '';
+          const targets = (!canonical || canonicalCounty !== county)
+            ? (crosswalk.get(`${county}\u0000${crosswalkNameKey(label)}`) || [])
+            : [];
+          const outputTargets = canonical && canonicalCounty === county
+            ? [{ county, vtd: canonicalVtd, weight: 1 }]
+            : (targets.length ? targets : [{ county, vtd: '', weight: 1 }]);
           outputTargets.forEach(target => {
             const precinct = target.vtd
               ? `${target.county} - ${target.vtd}`
@@ -15756,14 +15764,20 @@ document.addEventListener('DOMContentLoaded', function() {
           const county = (r.county || '').toString().trim().toUpperCase();
           const precinctRaw = (r.precinct || '').toString().trim();
           if (!county || !precinctRaw) return;
-          const code = extractPrecinctCode(precinctRaw);
+          const canonical = precinctRaw.match(/^(.+?)\s+-\s+(\d{6})$/i);
+          const canonicalCounty = canonical ? canonical[1].trim().toUpperCase() : '';
+          const code = canonical ? canonical[2] : extractPrecinctCode(precinctRaw);
           if (!code) return;
           const party = (r.party || '').toString().trim().toUpperCase();
           const cand = (r.candidate || '').toString().trim();
           const votes = Number(r.votes) || 0;
           const countyFips = String(countyFipsByName.get(county) || '').padStart(3, '0');
-          const targets = historicalCrosswalk.get(`${y}|${countyFips}|${code}`) || [];
-          const outputTargets = targets.length ? targets : [{ county, vtd: code, weight: 1 }];
+          const targets = (!canonical || canonicalCounty !== county)
+            ? (historicalCrosswalk.get(`${y}|${countyFips}|${code}`) || [])
+            : [];
+          const outputTargets = canonical && canonicalCounty === county
+            ? [{ county, vtd: code, weight: 1 }]
+            : (targets.length ? targets : [{ county, vtd: code, weight: 1 }]);
           outputTargets.forEach(target => {
             const targetCounty = countyNameByFips?.get(target.county) || county;
             const key = `${targetCounty} - ${target.vtd}`.replace(/\s+/g, ' ').trim();
@@ -19409,7 +19423,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'us_senate': 'United States Senator',
 	        'lieutenant_governor': 'Lieutenant Governor',
 	        'attorney_general': 'Attorney General',
-	        'auditor': 'State Auditor',
+	        'auditor': 'Auditor General',
 	        'labor_commissioner': 'Commissioner of Labor',
 	        'insurance_commissioner': 'Commissioner of Insurance',
 	        'superintendent': 'Superintendent of Public Instruction',
@@ -19692,7 +19706,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	        if (contestType === 'attorney_general') return 'Attorney General';
 	        if (contestType === 'secretary_of_state') return 'Secretary of State';
 	        if (contestType === 'treasurer') return 'Treasurer';
-	        if (contestType === 'auditor') return 'Auditor';
+	        if (contestType === 'auditor') return 'Auditor General';
 	        if (contestType === 'labor_commissioner') return 'Labor Commissioner';
 	        if (contestType === 'insurance_commissioner') return 'Insurance Commissioner';
 	        if (contestType === 'agriculture_commissioner') return 'Agriculture Commissioner';
@@ -19715,7 +19729,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'Attorney General',
 	        'Secretary of State',
 	        'Treasurer',
-	        'Auditor',
+	        'Auditor General',
 	        'Labor Commissioner',
 	        'Insurance Commissioner',
 	        'Agriculture Commissioner',
@@ -19876,7 +19890,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	        if (contestType === 'attorney_general') return 'Attorney General';
 	        if (contestType === 'secretary_of_state') return 'Secretary of State';
 	        if (contestType === 'treasurer') return 'Treasurer';
-	        if (contestType === 'auditor') return 'Auditor';
+	        if (contestType === 'auditor') return 'Auditor General';
 	        if (contestType === 'labor_commissioner') return 'Labor Commissioner';
 	        if (contestType === 'insurance_commissioner') return 'Insurance Commissioner';
 	        if (contestType === 'agriculture_commissioner') return 'Agriculture Commissioner';
@@ -19892,7 +19906,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'Attorney General',
 	        'Secretary of State',
 	        'Treasurer',
-	        'Auditor',
+	        'Auditor General',
 	        'Labor Commissioner',
 	        'Insurance Commissioner',
 	        'Agriculture Commissioner',
