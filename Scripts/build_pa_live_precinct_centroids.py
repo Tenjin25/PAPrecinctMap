@@ -26,7 +26,7 @@ def main() -> None:
         props = feature.get("properties", {})
         county = norm(props.get("county_nam") or props.get("county_norm") or props.get("COUNTYFP20"))
         vtd = str(props.get("VTD") or props.get("VTDST") or props.get("prec_id") or "").strip()
-        vtd = re.sub(r"\D", "", vtd).zfill(6)
+        vtd = re.sub(r"[^A-Z0-9]", "", vtd.upper()).zfill(6)
         name = norm(props.get("precinct_name") or props.get("NAME") or vtd)
         point = shape(feature.get("geometry")).representative_point()
         features.append({
