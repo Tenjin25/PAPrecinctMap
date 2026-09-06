@@ -29,6 +29,7 @@ COUNTIES_PATH = DATA / "pa_counties.geojson"
 MODERN_CROSSWALK_PATH = DATA / "crosswalks" / "pa_modern_precinct_to_vtd20.csv"
 HISTORICAL_CROSSWALK_PATH = DATA / "crosswalks" / "pa_historical_precinct_to_vtd20.csv"
 CURRENT_CROSSWALK_PATH = DATA / "crosswalks" / "pa_vtd20_to_current_precinct.csv"
+CONTEST_ROOT = DATA / "contests"
 
 FIELDS = [
     "county",
@@ -134,6 +135,57 @@ def canonical_rows(source: Path, year: int) -> list[dict[str, str]]:
 
 def normalize_token(value: object) -> str:
     return " ".join(str(value or "").upper().replace("_", " ").split())
+
+
+def contest_type_from_office(value: object) -> str:
+    label = re.sub(r"[^A-Z0-9]+", " ", normalize_token(value)).strip()
+    if "PRESIDENT" in label:
+        return "president"
+    if "UNITED STATES SENATOR" in label or label in {"US SENATE", "U S SENATOR"}:
+        return "us_senate"
+    if "LIEUTENANT GOVERNOR" in label:
+        return "lieutenant_governor"
+    if "GOVERNOR" in label:
+        return "governor"
+    if "ATTORNEY GENERAL" in label:
+        return "attorney_general"
+    if "TREASURER" in label:
+        return "treasurer"
+    if "AUDITOR GENERAL" in label or label == "AUDITOR":
+        return "auditor"
+    return ""
+
+
+def load_canonical_candidates(year: int) -> dict[tuple[str, str], str]:
+    """Use the county-layer candidate spelling as the precinct-layer authority."""
+    result = {}
+    for path in CONTEST_ROOT.glob(f"*_{year}.json"):
+        contest_type = path.stem[: -(len(str(year)) + 1)]
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        for row in payload.get("rows") or []:
+            dem = str(row.get("dem_candidate") or "").strip()
+            rep = str(row.get("rep_candidate") or "").strip()
+            if dem:
+                result[(contest_type, "dem")] = dem
+            if rep:
+                result[(contest_type, "rep")] = rep
+            if dem and rep:
+                break
+    return result
+
+
+def align_candidate_names(rows: list[dict[str, str]], year: int) -> None:
+    canonical = load_canonical_candidates(year)
+    for row in rows:
+        contest_type = contest_type_from_office(row.get("office"))
+        party = normalize_token(row.get("party"))
+        party_bucket = "dem" if party.startswith("DEM") else ("rep" if party.startswith("REP") else "")
+        candidate = canonical.get((contest_type, party_bucket))
+        if candidate:
+            row["candidate"] = candidate
 
 
 def source_variants(value: object) -> list[str]:
@@ -372,6 +424,7 @@ def build_year(year: int, force: bool = False) -> dict:
         source_type = "existing_standardized"
     else:
         rows = canonical_rows(source, year)
+    align_candidate_names(rows, year)
     rows, crosswalk_meta = join_to_current_vtds(year, rows)
     for row in rows:
         row.pop("source_precinct", None)
