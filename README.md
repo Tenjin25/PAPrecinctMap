@@ -194,7 +194,9 @@ The early-year result is therefore best understood as a layered evidence product
 
 `Scripts/build_pa_precinct_returns.py` converts Pennsylvania Department of State fixed-column exports and standardized OpenElections files into a common browser-ready table. The generated rows retain county, precinct, office, district, party, candidate, vote, Election Day, mail, and provisional fields.
 
-The return builder uses historical or modern precinct-to-2020-VTD crosswalks first, then applies `data/crosswalks/pa_vtd20_to_current_precinct.csv` to align those VTD targets with the current precinct polygons used by the frontend. This lets the app show historical returns on a stable current geometry while preserving source and matching metadata in `data/precinct_returns_manifest.json`.
+The return builder uses historical or modern precinct-to-2020-VTD crosswalks first, then applies `data/crosswalks/pa_vtd20_to_current_precinct.csv` to align those VTD targets with the current precinct polygons used by the frontend. One-to-one VTD identities are retained directly; split or changed VTDs are disaggregated with 2020 census-block assignments. The bridge build fails if a source VTD's weights do not sum to one, preventing duplicated votes. Polygon-area overlap is reserved for cases without usable block assignments.
+
+Precinct candidate labels are normalized from the matching county contest slices during the build, so precinct cards, county results, and district/statewide displays use the same canonical spelling.
 
 The current build covers eight general-election years (`2000`, `2004`, `2008`, `2012`, `2016`, `2020`, `2022`, and `2024`), all 67 counties, and 9,530 current voting-district features. Official Pennsylvania bulk exports take precedence when available for `2008`, `2020`, `2022`, and `2024`.
 
