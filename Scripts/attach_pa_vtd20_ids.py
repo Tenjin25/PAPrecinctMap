@@ -24,11 +24,20 @@ def main() -> None:
     matched = 0
 
     for feature in current.get("features", []):
+        props = feature.setdefault("properties", {})
+        county_fips = str(props.get("COUNTYFP") or props.get("COUNTY") or "").strip().zfill(3)
+        local_vtd = "".join(
+            ch for ch in str(props.get("VTD_RAW", "")).strip().upper() if ch.isalnum()
+        ).zfill(3)
+        current_vtd = f"{county_fips}{local_vtd}"
         geometry = shape(feature["geometry"])
         best_index = None
         best_area = 0.0
         for candidate in tree.query(geometry):
             candidate_index = int(candidate)
+            candidate_props = ref_features[candidate_index].get("properties", {})
+            if str(candidate_props.get("COUNTYFP20") or "").zfill(3) != county_fips:
+                continue
             overlap = geometry.intersection(ref_geometries[candidate_index]).area
             if overlap > best_area:
                 best_area = overlap
@@ -36,20 +45,19 @@ def main() -> None:
         if best_index is None or best_area <= 0:
             continue
         source = ref_features[best_index].get("properties", {})
-        props = feature.setdefault("properties", {})
         county = str(source.get("county_nam") or source.get("county_norm") or "").strip().upper()
-        vtd = str(source.get("VTD") or source.get("VTDST") or source.get("prec_id") or "").strip()
-        if not county or not vtd:
+        vtd20 = str(source.get("VTD") or source.get("VTDST") or source.get("prec_id") or "").strip()
+        if not county or not vtd20 or not current_vtd:
             continue
         props.update(
             {
-                "VTD20": vtd,
-                "VTD": vtd,
-                "VTDST": vtd,
-                "prec_id": vtd,
+                "VTD20": vtd20,
+                "VTD": current_vtd,
+                "VTDST": current_vtd,
+                "prec_id": current_vtd,
                 "county_nam": county,
                 "county_norm": county,
-                "precinct_norm": f"{county} - {vtd}",
+                "precinct_norm": f"{county} - {current_vtd}",
             }
         )
         matched += 1

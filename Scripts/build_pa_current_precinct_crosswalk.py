@@ -27,10 +27,16 @@ BLOCK_ASSIGNMENTS = DATA / "BlockAssign_ST42_PA.zip"
 BLOCK_ASSIGNMENT_MEMBER = "BlockAssign_ST42_PA_VTD.txt"
 
 
-def norm(value: object, width: int = 0) -> str:
+def norm_digits(value: object, width: int = 0) -> str:
     text = "" if value is None else str(value).strip()
     digits = "".join(ch for ch in text if ch.isdigit())
     return digits.zfill(width) if digits else ""
+
+
+def norm_vtd(value: object, width: int = 6) -> str:
+    """Normalize a VTD identifier without discarding significant letters."""
+    code = "".join(ch for ch in str(value or "").strip().upper() if ch.isalnum())
+    return code.zfill(width) if code else ""
 
 
 def load_block_vtd_assignments() -> dict[str, tuple[str, str]]:
@@ -51,9 +57,9 @@ def load_block_vtd_assignments() -> dict[str, tuple[str, str]]:
                 parts = encoded.decode("utf-8", errors="ignore").rstrip("\r\n").split("|")
                 if len(parts) <= max(block_idx, county_idx, vtd_idx):
                     continue
-                block = norm(parts[block_idx], 15)
-                county = norm(parts[county_idx], 3)
-                vtd = norm(parts[vtd_idx], 6)
+                block = norm_digits(parts[block_idx], 15)
+                county = norm_digits(parts[county_idx], 3)
+                vtd = norm_vtd(parts[vtd_idx])
                 if block and county and vtd:
                     result[block] = (county, vtd)
     return result
@@ -71,27 +77,32 @@ def build_block_weights(current: gpd.GeoDataFrame) -> dict[tuple[str, str], dict
     joined = gpd.sjoin(points, current[["geometry"]], how="left", predicate="within")
     counts: dict[tuple[str, str], dict[int, int]] = defaultdict(lambda: defaultdict(int))
     for row in joined.itertuples():
-        assignment = assignments.get(norm(row.GEOID20, 15))
+        assignment = assignments.get(norm_digits(row.GEOID20, 15))
         target_idx = getattr(row, "index_right", None)
         if assignment and target_idx is not None and target_idx == target_idx:
-            counts[assignment][int(target_idx)] += 1
+            target_idx = int(target_idx)
+            # Border blocks can fall in a neighboring county's polygon because
+            # the two source layers do not have perfectly coincident edges.
+            # A VTD allocation must never cross a county boundary.
+            if current.loc[target_idx, "countyfp"] == assignment[0]:
+                counts[assignment][target_idx] += 1
     return counts
 
 
 def main() -> None:
     old = gpd.read_file(OLD_GEOMETRY).to_crs(5070)
     current = gpd.read_file(CURRENT_GEOMETRY).to_crs(5070)
-    old["countyfp"] = old["COUNTYFP20"].map(lambda v: norm(v, 3))
-    old["vtd20"] = old["VTD"].map(lambda v: norm(v, 6))
+    old["countyfp"] = old["COUNTYFP20"].map(lambda v: norm_digits(v, 3))
+    old["vtd20"] = old["VTD"].map(norm_vtd)
     old = old[old["countyfp"].ne("") & old["vtd20"].ne("")]
     # TIGER can contain multipart VTD records with the same county/VTD key.
     # Treat that key as one source precinct so its allocation is emitted once.
     old = old[["countyfp", "vtd20", "geometry"]].dissolve(
         by=["countyfp", "vtd20"], as_index=False
     )
-    current["countyfp"] = current["COUNTYFP"].map(lambda v: norm(v, 3))
-    current["vtd"] = current["VTD"].map(lambda v: norm(v, 6))
-    current["vtd20"] = current["VTD20"].map(lambda v: norm(v, 6))
+    current["countyfp"] = current["COUNTYFP"].map(lambda v: norm_digits(v, 3))
+    current["vtd"] = current["VTD"].map(norm_vtd)
+    current["vtd20"] = current["VTD20"].map(norm_vtd)
     current["precinct_norm"] = current["precinct_norm"].astype(str).str.upper().str.strip()
 
     direct = {}
@@ -163,6 +174,22 @@ def main() -> None:
                 "weight": f"{area / total:.12f}",
                 "method": "geometry_overlap",
             })
+
+    # Multipart current precincts legitimately share an identifier. Collapse
+    # their component weights so the returns contain one row per precinct key.
+    collapsed = {}
+    for row in rows:
+        key = (
+            row["countyfp"], row["vtd20"], row["current_countyfp"],
+            row["current_vtd"], row["current_precinct_norm"], row["method"],
+        )
+        if key not in collapsed:
+            collapsed[key] = {**row, "weight": 0.0}
+        collapsed[key]["weight"] += float(row["weight"])
+    rows = [
+        {**row, "weight": f"{row['weight']:.12f}"}
+        for row in collapsed.values()
+    ]
 
     sums = defaultdict(float)
     for row in rows:

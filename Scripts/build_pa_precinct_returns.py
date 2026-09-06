@@ -286,7 +286,7 @@ def load_current_vtd_keys() -> set[tuple[str, str]]:
     for feature in payload.get("features") or []:
         props = feature.get("properties") or {}
         county = str(props.get("COUNTYFP") or props.get("COUNTY") or "").zfill(3)
-        vtd = str(props.get("VTD20") or props.get("VTDST") or props.get("VTD") or "").zfill(6)
+        vtd = str(props.get("VTD") or props.get("VTDST") or "").zfill(6)
         if county and vtd and vtd != "000000":
             keys.add((county, vtd))
     return keys
@@ -305,7 +305,7 @@ def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[di
         county = normalize_token(row["county"])
         county_fips = county_fips_by_name.get(county, "")
         source = normalize_token(row.get("source_precinct") or row["precinct"])
-        canonical = re.match(r"^(.+?)\s+-\s+(\d{6})$", source)
+        canonical = re.match(r"^(.+?)\s+-\s+([A-Z0-9]{6,})$", source)
         if canonical and normalize_token(canonical.group(1)) == county:
             joined.append({**row, "county": county, "precinct": f"{county} - {canonical.group(2)}", "source_precinct": source})
             matched_rows += 1

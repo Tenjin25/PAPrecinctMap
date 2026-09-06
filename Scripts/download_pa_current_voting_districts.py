@@ -64,7 +64,11 @@ def main() -> None:
     for feature in features:
         props = feature.setdefault("properties", {})
         county_fips = str(props.get("COUNTY", "")).strip().zfill(3)
-        local_vtd = "".join(ch for ch in str(props.get("VTD", "")) if ch.isdigit()).zfill(3)
+        # Several counties (notably Allegheny) use letters in their local VTD
+        # identifiers.  They are significant and must survive normalization.
+        local_vtd = "".join(
+            ch for ch in str(props.get("VTD", "")).strip().upper() if ch.isalnum()
+        ).zfill(3)
         vtd = f"{county_fips}{local_vtd}"
         county = county_names.get(county_fips, county_fips)
         name = " ".join(str(props.get("NAME", "")).split()).upper()
