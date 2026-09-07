@@ -151,6 +151,9 @@ BLOCK_FALLBACKS = {
     ("091", "WHITPAIN 04 92"): [("091", "003825", 1.0)],
     ("091", "WHITPAIN 05 92"): [("091", "003831", 1.0)],
     ("091", "WHITPAIN 06 92"): [("091", "003835", 1.0)],
+    # The 2018/2020 RDH bridge identifies the same legacy Whitpain label by
+    # the state's adjusted VTD code; this is an exact, one-to-one carryover.
+    ("091", "WHITPAIN 01 92"): [("091", "003812", 1.0)],
     ("101", "PHILADELPHIA WARD 40-30 A (SENATE 1)"): [("101", "004030", 1.0)],
     ("101", "PHILADELPHIA WARD 40-30 B (SENATE 8)"): [("101", "004030", 1.0)],
     # Both historical subprecincts were consolidated into one current VTD.
@@ -217,8 +220,8 @@ def canonical_rows(source: Path, year: int) -> list[dict[str, str]]:
                 source_precinct = source_precincts[raw_index]
                 raw_index += 1
         output.append({
-            "county": county,
-            "precinct": precinct,
+            "county": normalize_token(county),
+            "precinct": normalize_token(precinct),
             "office": office,
             "district": str(row.get("district") or "").strip(),
             "party": str(row.get("party") or "").strip(),
@@ -301,6 +304,7 @@ def source_variants(value: object) -> list[str]:
         (r"\bW\s+(\d+)\b", r"WARD \1"),
         (r"\bPCT\s+(\d+)\b", r"PRECINCT \1"),
         (r"\bP\s+(\d+)\b", r"PRECINCT \1"),
+        (r"\bP\s+([A-Z])\b", r"PRECINCT \1"),
         (r"\bTWP\b", "TOWNSHIP"),
         (r"\bBORO\b", "BOROUGH"),
     )
@@ -455,8 +459,20 @@ def load_unambiguous_precinct_aliases(
     return result
 
 
+def neighbor_key(value: object) -> str:
+    """Canonical key for exact cross-year label reuse (never fuzzy)."""
+    label = normalize_token(value)
+    label = re.sub(r"\b(?:D|X)\s+0*(\d+)\b", r"DISTRICT \1", label)
+    label = re.sub(r"\bW\s+0*(\d+)\b", r"WARD \1", label)
+    label = re.sub(r"\bP\s+0*(\d+)\b", r"PRECINCT \1", label)
+    label = re.sub(r"\bWARD\s+0*(\d+)\s*[-/]\s*0*(\d+)\b", r"WARD \1 DISTRICT \2", label)
+    label = re.sub(r"\b(DISTRICT|WARD|PRECINCT)\s+0+(\d+)\b", r"\1 \2", label)
+    return normalize_token(label)
+
+
 def load_neighbor_year_crosswalk(year: int) -> dict[tuple[str, str], list[tuple[str, str, float]]]:
     """Use the closest other-year mapping for the exact same precinct label."""
+
     grouped: dict[tuple[int, str, str], list[tuple[str, str, float]]] = {}
     for path in (HISTORICAL_CROSSWALK_PATH, MODERN_CROSSWALK_PATH):
         if not path.exists():
@@ -469,7 +485,7 @@ def load_neighbor_year_crosswalk(year: int) -> dict[tuple[str, str], list[tuple[
                 if ref_year == year or not dst_vtd or weight <= 0:
                     continue
                 county = str(row.get("countyfp") or "").zfill(3)
-                label = normalize_token(row.get("source_precinct"))
+                label = neighbor_key(row.get("source_precinct"))
                 dst_county = str(row.get("dst_countyfp") or county).zfill(3)
                 grouped.setdefault((ref_year, county, label), []).append((dst_county, dst_vtd, weight))
     choices: dict[tuple[str, str], list[tuple[int, list[tuple[str, str, float]]]]] = {}
@@ -478,7 +494,17 @@ def load_neighbor_year_crosswalk(year: int) -> dict[tuple[str, str], list[tuple[
     result = {}
     for key, options in choices.items():
         # Prefer the closest year; on a tie, prefer the later boundary vintage.
-        _, targets = min(options, key=lambda item: (abs(item[0] - year), item[0] < year))
+        best_rank = min((abs(item[0] - year), item[0] < year) for item in options)
+        nearest = [item for item in options if (abs(item[0] - year), item[0] < year) == best_rank]
+        signatures = {
+            tuple(sorted((county, vtd, round(weight, 12)) for county, vtd, weight in targets))
+            for _, targets in nearest
+        }
+        # If two precincts collapse to the same alias but lead to different
+        # block allocations, leave the alias unmatched rather than guess.
+        if len(signatures) != 1:
+            continue
+        _, targets = nearest[0]
         total = sum(weight for _, _, weight in targets) or 1.0
         result[key] = [(county, vtd, weight / total) for county, vtd, weight in targets]
     return result
@@ -524,7 +550,7 @@ def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[di
                     break
         if not targets:
             for variant in source_variants(row.get("precinct")) + source_variants(source):
-                targets = neighbor_crosswalk.get((county_fips, variant), [])
+                targets = neighbor_crosswalk.get((county_fips, neighbor_key(variant)), [])
                 if targets:
                     break
         if not targets:
@@ -552,7 +578,7 @@ def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[di
                 continue
         if not targets:
             unmatched_rows += 1
-            joined.append({**row, "precinct": row["precinct"], "source_precinct": source})
+            joined.append({**row, "precinct": normalize_token(row["precinct"]), "source_precinct": source})
             continue
         matched_rows += 1
         for dst_county, dst_vtd, weight in targets:
@@ -615,6 +641,75 @@ def is_standardized(path: Path) -> bool:
         return header.startswith("county,precinct,office,")
     except OSError:
         return False
+
+
+def normalize_existing_output(year: int) -> dict:
+    """Uppercase county/precinct labels without changing joins or vote values."""
+    target = OUTPUT_ROOT / str(year) / TARGETS[year]
+    if not target.exists() or not is_standardized(target):
+        return {"year": year, "status": "missing", "output": str(target.relative_to(BASE)), "changed_rows": 0}
+    with target.open(newline="", encoding="utf-8-sig") as handle:
+        rows = list(csv.DictReader(handle))
+    changed = 0
+    for row in rows:
+        county = normalize_token(row.get("county"))
+        precinct = normalize_token(row.get("precinct"))
+        if county != str(row.get("county") or "") or precinct != str(row.get("precinct") or ""):
+            changed += 1
+        row["county"] = county
+        row["precinct"] = precinct
+    if changed:
+        write_rows(target, rows)
+    return {"year": year, "status": "normalized", "output": str(target.relative_to(BASE)), "changed_rows": changed}
+
+
+def current_precinct_norms() -> set[str]:
+    payload = json.loads(CURRENT_GEOMETRY_PATH.read_text(encoding="utf-8"))
+    return {
+        normalize_token((feature.get("properties") or {}).get("precinct_norm"))
+        for feature in payload.get("features") or []
+        if normalize_token((feature.get("properties") or {}).get("precinct_norm"))
+    }
+
+
+def repair_unmatched_output(year: int) -> dict:
+    """Re-run crosswalks only for rows that do not match current geometry."""
+    target = OUTPUT_ROOT / str(year) / TARGETS[year]
+    if not target.exists() or not is_standardized(target):
+        return {"year": year, "status": "missing", "changed_rows": 0, "before": 0, "after": 0}
+    with target.open(newline="", encoding="utf-8-sig") as handle:
+        rows = list(csv.DictReader(handle))
+    valid = current_precinct_norms()
+    matched = [row for row in rows if normalize_token(row.get("precinct")) in valid]
+    unmatched = [row for row in rows if normalize_token(row.get("precinct")) not in valid]
+    if not unmatched:
+        return {"year": year, "status": "unchanged", "changed_rows": 0, "before": 0, "after": 0}
+    repaired, _ = join_to_current_vtds(year, unmatched)
+    remaining = sum(normalize_token(row.get("precinct")) not in valid for row in repaired)
+    before_totals: dict[str, float] = {}
+    after_totals: dict[str, float] = {}
+    for row in unmatched:
+        office = normalize_token(row.get("office"))
+        before_totals[office] = before_totals.get(office, 0.0) + float(row.get("votes") or 0)
+    for row in repaired:
+        office = normalize_token(row.get("office"))
+        after_totals[office] = after_totals.get(office, 0.0) + float(row.get("votes") or 0)
+    if set(before_totals) != set(after_totals) or any(
+        abs(before_totals[key] - after_totals[key]) > 1e-6 for key in before_totals
+    ):
+        raise RuntimeError(f"{year} unmatched repair did not preserve contest vote totals")
+    for row in repaired:
+        row.pop("source_precinct", None)
+        row["county"] = normalize_token(row.get("county"))
+        row["precinct"] = normalize_token(row.get("precinct"))
+    write_rows(target, matched + repaired)
+    return {
+        "year": year,
+        "status": "repaired",
+        "changed_rows": len(unmatched),
+        "before": len(unmatched),
+        "after": remaining,
+    }
 
 
 def choose_source(year: int) -> tuple[Path | None, str]:
@@ -708,11 +803,35 @@ def main() -> None:
         action="store_true",
         help="Rewrite standardized outputs even when they already exist.",
     )
+    parser.add_argument(
+        "--normalize-only",
+        action="store_true",
+        help="Only uppercase existing county/precinct labels; do not rerun crosswalks.",
+    )
+    parser.add_argument(
+        "--repair-unmatched-only",
+        action="store_true",
+        help="Re-run crosswalks only for output rows that do not match current geometry.",
+    )
     args = parser.parse_args()
 
     unknown = sorted(set(args.years) - set(TARGETS))
     if unknown:
         parser.error(f"unsupported year(s): {', '.join(map(str, unknown))}")
+
+    if args.normalize_only:
+        for year in sorted(set(args.years)):
+            result = normalize_existing_output(year)
+            print(f"{year}: {result['status']}, {result['changed_rows']:,} rows changed")
+        return
+    if args.repair_unmatched_only:
+        for year in sorted(set(args.years)):
+            result = repair_unmatched_output(year)
+            print(
+                f"{year}: {result['status']}, {result['before']:,} unmatched rows before, "
+                f"{result['after']:,} after"
+            )
+        return
 
     built_results = [build_year(year, force=args.force) for year in sorted(set(args.years))]
     results = built_results
