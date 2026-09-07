@@ -15674,6 +15674,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // precinct overlay.  The compact contest JSON files are county aggregates,
     // so loading them alone makes every precinct in a county share one color.
     const GENERAL_PRECINCT_CSV_BY_YEAR = {
+      2000: withBase('./data/Openelections/2000/20001107__pa__general__precinct.csv'),
+      2004: withBase('./data/Openelections/2004/20041102__pa__general__precinct.csv'),
+      2008: withBase('./data/Openelections/2008/20081104__pa__general__precinct.csv'),
+      2012: withBase('./data/Openelections/2012/20121106__pa__general__precinct.csv'),
       2016: withBase('./data/Openelections/2016/20161108__pa__general__precinct.csv'),
       2020: withBase('./data/Openelections/2020/20201103__pa__general__precinct.csv'),
       2022: withBase('./data/Openelections/2022/20221108__pa__general__precinct.csv'),
@@ -15784,7 +15788,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // The build pipeline may already have applied the crosswalk and emit
           // current keys such as "ADAMS - 000010". Do not crosswalk those rows
           // a second time.
-          const canonical = label.match(/^(.+?)\s+-\s+(\d{6})$/);
+          const canonical = label.match(/^(.+?)\s+-\s+([A-Z0-9]{6,})$/);
           const canonicalCounty = canonical ? canonical[1].trim() : '';
           const canonicalVtd = canonical ? canonical[2] : '';
           const targets = (!canonical || canonicalCounty !== county)
