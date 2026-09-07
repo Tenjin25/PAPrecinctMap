@@ -48,6 +48,7 @@ FIELDS = [
 # Official PA bulk exports take precedence over partial/community files.
 OFFICIAL_SOURCES = {
     2008: DATA / "ElectionReturns_2008_General_PrecinctReturns.txt",
+    2018: DATA / "pa_official_2018_general_returns.txt",
     2020: DATA / "ElectionReturns_2020_General_PrecinctReturns.txt",
     2022: DATA / "ElectionReturns_2022_General_PrecinctReturns.txt",
     2024: DATA / "erstat_2024_g_268768_20250129.txt",
@@ -55,10 +56,15 @@ OFFICIAL_SOURCES = {
 
 TARGETS = {
     2000: "20001107__pa__general__precinct.csv",
+    2002: "20021105__pa__general__precinct.csv",
     2004: "20041102__pa__general__precinct.csv",
+    2006: "20061107__pa__general__precinct.csv",
     2008: "20081104__pa__general__precinct.csv",
+    2010: "20101102__pa__general__precinct.csv",
     2012: "20121106__pa__general__precinct.csv",
+    2014: "20141104__pa__general__precinct.csv",
     2016: "20161108__pa__general__precinct.csv",
+    2018: "20181106__pa__general__precinct.csv",
     2020: "20201103__pa__general__precinct.csv",
     2022: "20221108__pa__general__precinct.csv",
     2024: "20241105__pa__general__precinct_official.csv",
@@ -217,7 +223,7 @@ def canonical_rows(source: Path, year: int) -> list[dict[str, str]]:
             "district": str(row.get("district") or "").strip(),
             "party": str(row.get("party") or "").strip(),
             "candidate": candidate,
-            "votes": str(row.get("votes") or "").strip(),
+            "votes": str(row.get("votes") or "").replace(",", "").strip(),
             "election_day": str(row.get("election_day") or "").strip(),
             "mail": str(row.get("mail") or row.get("early_voting") or "").strip(),
             "provisional": str(row.get("provisional") or "").strip(),
@@ -234,7 +240,7 @@ def contest_type_from_office(value: object) -> str:
     label = re.sub(r"[^A-Z0-9]+", " ", normalize_token(value)).strip()
     if "PRESIDENT" in label:
         return "president"
-    if "UNITED STATES SENATOR" in label or label in {"US SENATE", "U S SENATOR"}:
+    if "UNITED STATES SENATOR" in label or label in {"US SENATE", "U S SENATE", "U S SENATOR"}:
         return "us_senate"
     if "LIEUTENANT GOVERNOR" in label:
         return "lieutenant_governor"

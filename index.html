@@ -10422,8 +10422,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-06-pa-block-precinct-data-v4';
-    const APP_BUILD_ID = '2026-09-06-pa-block-precinct-data-v4';
+    const DATA_CACHE_BUSTER = '2026-09-06-pa-block-precinct-data-v5';
+    const APP_BUILD_ID = '2026-09-06-pa-block-precinct-data-v5';
 
     function ensurePageCacheBuster() {
       return false;
@@ -15675,10 +15675,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // so loading them alone makes every precinct in a county share one color.
     const GENERAL_PRECINCT_CSV_BY_YEAR = {
       2000: withBase('./data/Openelections/2000/20001107__pa__general__precinct.csv'),
+      2002: withBase('./data/Openelections/2002/20021105__pa__general__precinct.csv'),
       2004: withBase('./data/Openelections/2004/20041102__pa__general__precinct.csv'),
+      2006: withBase('./data/Openelections/2006/20061107__pa__general__precinct.csv'),
       2008: withBase('./data/Openelections/2008/20081104__pa__general__precinct.csv'),
+      2010: withBase('./data/Openelections/2010/20101102__pa__general__precinct.csv'),
       2012: withBase('./data/Openelections/2012/20121106__pa__general__precinct.csv'),
+      2014: withBase('./data/Openelections/2014/20141104__pa__general__precinct.csv'),
       2016: withBase('./data/Openelections/2016/20161108__pa__general__precinct.csv'),
+      2018: withBase('./data/Openelections/2018/20181106__pa__general__precinct.csv'),
       2020: withBase('./data/Openelections/2020/20201103__pa__general__precinct.csv'),
       2022: withBase('./data/Openelections/2022/20221108__pa__general__precinct.csv'),
       2024: withBase('./data/Openelections/2024/20241105__pa__general__precinct_official.csv')
