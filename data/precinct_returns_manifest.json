@@ -177,14 +177,14 @@
       "source": "data/ElectionReturns_2022_General_PrecinctReturns.txt",
       "source_type": "official_pa_precinct_export",
       "output": "data/Openelections/2022/20221108__pa__general__precinct.csv",
-      "rows": 163325,
+      "rows": 163367,
       "counties": 67,
-      "precincts": 9400,
+      "precincts": 9402,
       "crosswalk": "data/crosswalks/pa_modern_precinct_to_vtd20.csv",
       "current_crosswalk": "data/crosswalks/pa_vtd20_to_current_precinct.csv",
       "matched_rows": 131796,
       "unmatched_rows": 0,
-      "joined_rows": 163325
+      "joined_rows": 163367
     },
     {
       "year": 2024,
@@ -192,14 +192,14 @@
       "source": "data/erstat_2024_g_268768_20250129.txt",
       "source_type": "official_pa_precinct_export",
       "output": "data/Openelections/2024/20241105__pa__general__precinct_official.csv",
-      "rows": 332941,
+      "rows": 333323,
       "counties": 67,
-      "precincts": 9390,
+      "precincts": 9402,
       "crosswalk": "data/crosswalks/pa_modern_precinct_to_vtd20.csv",
       "current_crosswalk": "data/crosswalks/pa_vtd20_to_current_precinct.csv",
       "matched_rows": 268768,
       "unmatched_rows": 0,
-      "joined_rows": 332941
+      "joined_rows": 333323
     }
   ]
 }
