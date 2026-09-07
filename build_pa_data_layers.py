@@ -1620,7 +1620,7 @@ def build_district_manifests(contest_dir: Path):
 
     for (scope, contest_type, year), results in sorted(district_nodes.items(), key=lambda item: (item[0][0], item[0][2], item[0][1])):
         finalized = {}
-        for district_id, node in results.items():
+        for district_id, node in sorted(results.items(), key=lambda item: int(item[0])):
             finalize_result_node(node)
             finalized[district_id] = node
         if not finalized:
