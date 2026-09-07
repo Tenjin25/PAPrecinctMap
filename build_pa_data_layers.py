@@ -1640,7 +1640,7 @@ def build_district_manifests(contest_dir: Path):
             'general': {'results': finalized}
         }
         with (contest_dir / fname).open('w', encoding='utf-8') as f:
-            json.dump(payload, f)
+            json.dump(payload, f, indent=2)
         files.append({'scope': scope, 'contest_type': contest_type, 'year': year, 'file': fname, 'districts': expected, 'rows': len(finalized)})
 
     manifest = {'scope': 'multi', 'files': files}
