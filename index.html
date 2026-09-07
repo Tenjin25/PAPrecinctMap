@@ -10422,8 +10422,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-07-population-block-disaggregation-v8';
-    const APP_BUILD_ID = '2026-09-07-population-block-disaggregation-v8';
+    const DATA_CACHE_BUSTER = '2026-09-07-friendly-precinct-names-v9';
+    const APP_BUILD_ID = '2026-09-07-friendly-precinct-names-v9';
 
     function ensurePageCacheBuster() {
       return false;
@@ -30023,7 +30023,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!code) return;
             const cleaned = String(nameRaw || '').replace(/[_]+/g, ' ').replace(/\s+/g, ' ').trim();
             if (!cleaned) return;
-            perCounty.set(code, toTitleCaseName(cleaned));
+            perCounty.set(code, formatPrecinctFriendlyText(cleaned));
           });
           if (perCounty && perCounty.size) out.set(countyNorm, perCounty);
         });
@@ -30052,6 +30052,15 @@ document.addEventListener('DOMContentLoaded', function() {
       push(raw);
       push(raw.replace(/[_]+/g, ' ').replace(/\s+/g, ' ').trim());
       push(raw.replace(/[^A-Z0-9]/g, ''));
+
+      // Current-map identifiers prepend the three-digit county FIPS to the
+      // local VTD code (for example 041600), while Census friendly names are
+      // keyed by the six-digit local code (000600). Keep the full identifier
+      // as the stable join key, but also try its county-prefix-free form.
+      const rawDigits = raw.replace(/\D/g, '');
+      if (/^\d{6,}$/.test(rawDigits)) {
+        push(rawDigits.slice(3).padStart(6, '0'));
+      }
 
       // Common variant: leading zero prefixes ("00CRDM" -> "CRDM").
       const stripped = raw.replace(/^0+/, '');
@@ -30106,7 +30115,22 @@ document.addEventListener('DOMContentLoaded', function() {
       const perCounty = precinctFriendlyNameByCountyCode ? precinctFriendlyNameByCountyCode.get(countyNorm) : null;
       const rawName = perCounty ? (perCounty.get(code) || '') : '';
       if (!rawName) return '';
-      return toTitleCaseName(String(rawName).replace(/[_]+/g, ' ').replace(/\s+/g, ' ').trim());
+      return formatPrecinctFriendlyText(rawName);
+    }
+
+    function formatPrecinctFriendlyText(rawName) {
+      const cleaned = String(rawName || '').replace(/[_]+/g, ' ').replace(/\s+/g, ' ').trim();
+      if (!cleaned) return '';
+      return toTitleCaseName(cleaned)
+        .replace(/\bTwp\b/g, 'Township')
+        .replace(/\bPct\b/g, 'Precinct')
+        .replace(/\bWd\b/g, 'Ward')
+        .replace(/\bDist\b/g, 'District')
+        .replace(/\bBoro\b/g, 'Borough')
+        .replace(/\bVtd\b/g, 'Precinct')
+        .replace(/\bEd\b/g, 'Election District')
+        .replace(/\s+/g, ' ')
+        .trim();
     }
 
     function formatPrecinctDisplayLabel(countyNameOrNorm, precinctCodeRaw) {
@@ -30179,21 +30203,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const full = String(fullName || '').replace(/\s+/g, ' ').trim();
       const fallbackFull = String(fallbackFullName || '').replace(/\s+/g, ' ').trim();
 
-      // If the shapefile's "full name" is just a code-ish token (or a "VOTING DISTRICT" placeholder),
-      // prefer a real friendly label when we have it.
-      if (friendlyLabel && (isNoisyPrecinctFullName(full, rawCode) || isNoisyPrecinctFullName(fallbackFull, rawCode))) {
-        return friendlyLabel;
-      }
-
-      // If the full name looks like "CRDM CREEDMOOR" or "01 PATTERSON", prefer the normalized friendly label.
-      if (friendlyLabel && rawCode) {
-        const fullUpper = full.toUpperCase();
-        const fullCompact = fullUpper.replace(/[_]+/g, ' ').replace(/\s+/g, ' ').trim();
-        if (fullCompact.startsWith(`${rawCode} `) || fullCompact.startsWith(`${rawCode}_`)) return friendlyLabel;
-      }
+      // The dedicated index is county-scoped and canonical. Prefer it over
+      // uppercase shapefile attributes whenever the code resolves.
+      if (friendlyLabel) return friendlyLabel;
 
       const codeOnly = canonicalCode || rawCode;
-      return full || fallbackFull || friendlyLabel || (codeOnly ? `Precinct ${codeOnly}` : '');
+      return formatPrecinctFriendlyText(full || fallbackFull) || (codeOnly ? `Precinct ${codeOnly}` : '');
     }
 
     async function ensurePrecinctVariantOverrides() {
