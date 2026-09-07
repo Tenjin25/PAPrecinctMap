@@ -65,17 +65,24 @@ def load_block_vtd_assignments() -> dict[str, tuple[str, str]]:
     return result
 
 
-def build_block_weights(current: gpd.GeoDataFrame) -> dict[tuple[str, str], dict[int, int]]:
-    """Count disaggregated census blocks in each current-precinct target."""
+def build_block_weights(current: gpd.GeoDataFrame) -> tuple[
+    dict[tuple[str, str], dict[int, float]], dict[tuple[str, str], str]
+]:
+    """Weight current targets by block population, with housing/count fallbacks."""
     assignments = load_block_vtd_assignments()
-    blocks = gpd.read_file(f"zip://{BLOCK_GEOMETRY.resolve()}", columns=["GEOID20", "geometry"])
+    blocks = gpd.read_file(
+        f"zip://{BLOCK_GEOMETRY.resolve()}",
+        columns=["GEOID20", "POP20", "HOUSING20", "geometry"],
+    )
     blocks = blocks.to_crs(current.crs)
     # Representative points avoid duplicating a block when polygon boundaries
     # merely touch and are substantially cheaper than full overlay geometry.
-    points = blocks[["GEOID20", "geometry"]].copy()
+    points = blocks[["GEOID20", "POP20", "HOUSING20", "geometry"]].copy()
     points["geometry"] = points.geometry.representative_point()
     joined = gpd.sjoin(points, current[["geometry"]], how="left", predicate="within")
-    counts: dict[tuple[str, str], dict[int, int]] = defaultdict(lambda: defaultdict(int))
+    measures: dict[tuple[str, str], dict[int, list[float]]] = defaultdict(
+        lambda: defaultdict(lambda: [0.0, 0.0, 0.0])
+    )
     for row in joined.itertuples():
         assignment = assignments.get(norm_digits(row.GEOID20, 15))
         target_idx = getattr(row, "index_right", None)
@@ -85,8 +92,27 @@ def build_block_weights(current: gpd.GeoDataFrame) -> dict[tuple[str, str], dict
             # the two source layers do not have perfectly coincident edges.
             # A VTD allocation must never cross a county boundary.
             if current.loc[target_idx, "countyfp"] == assignment[0]:
-                counts[assignment][target_idx] += 1
-    return counts
+                values = measures[assignment][target_idx]
+                values[0] += float(getattr(row, "POP20", 0) or 0)
+                values[1] += float(getattr(row, "HOUSING20", 0) or 0)
+                values[2] += 1.0
+    weights = {}
+    methods = {}
+    for source, targets in measures.items():
+        population = sum(values[0] for values in targets.values())
+        housing = sum(values[1] for values in targets.values())
+        measure_idx, method = (
+            (0, "census_block_population") if population > 0 else
+            (1, "census_block_housing") if housing > 0 else
+            (2, "census_block_count")
+        )
+        weights[source] = {
+            target_idx: values[measure_idx]
+            for target_idx, values in targets.items()
+            if values[measure_idx] > 0
+        }
+        methods[source] = method
+    return weights, methods
 
 
 def main() -> None:
@@ -110,7 +136,7 @@ def main() -> None:
         if row.countyfp and row.vtd20 and row.precinct_norm:
             direct.setdefault((row.countyfp, row.vtd20), []).append((row.countyfp, row.vtd, row.precinct_norm))
 
-    block_weights = build_block_weights(current)
+    block_weights, block_methods = build_block_weights(current)
 
     spatial_index = current.sindex
     rows = []
@@ -147,7 +173,7 @@ def main() -> None:
                     "current_vtd": current_row["vtd"],
                     "current_precinct_norm": current_row["precinct_norm"],
                     "weight": f"{block_count / total_blocks:.12f}",
-                    "method": "census_block_count",
+                    "method": block_methods[key],
                 })
             continue
 
