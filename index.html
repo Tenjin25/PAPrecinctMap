@@ -15690,7 +15690,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const label = String(office || '').toUpperCase().replace(/[^A-Z0-9]+/g, ' ').trim();
       if (!label) return '';
       if (label.includes('PRESIDENT')) return 'president';
-      if (label.includes('UNITED STATES SENATOR') || label === 'US SENATE' || label.includes('U S SENATOR')) return 'us_senate';
+      if (
+        label.includes('UNITED STATES SENATOR') ||
+        label === 'US SENATE' ||
+        label === 'U S SENATE' ||
+        label.includes('U S SENATOR')
+      ) return 'us_senate';
       if (label.includes('LIEUTENANT GOVERNOR')) return 'lieutenant_governor';
       if (label === 'GOVERNOR' || label.includes('GOVERNOR')) return 'governor';
       if (label.includes('ATTORNEY GENERAL')) return 'attorney_general';

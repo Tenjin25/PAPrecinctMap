@@ -133,6 +133,20 @@ BLOCK_FALLBACKS = {
     ("089", "EAST STROUDSBURG DISTRICT 3-10TH CONGRESSIONAL"): [("089", "000090", 1.0)],
     ("089", "EAST STROUDSBURG DISTRICT 4-11TH CONGRESSIONAL"): [("089", "000100", 1.0)],
     ("089", "EAST STROUDSBURG DISTRICT 5-11TH CONGRESSIONAL"): [("089", "000110", 1.0)],
+    # Legacy subprecincts that consolidate into uniquely identifiable current VTDs.
+    ("027", "FERGUSON NORTHEAST 1A"): [("027", "000205", 1.0)],
+    ("027", "FERGUSON NORTHEAST 1B"): [("027", "000205", 1.0)],
+    ("027", "FERGUSON NORTH CENTRAL 2"): [("027", "000200", 1.0)],
+    ("027", "FERGUSON WEST CENTRAL 1"): [("027", "000230", 1.0)],
+    ("061", "PENN PRECINCT A (5TH CONG)"): [("061", "000380", 1.0)],
+    ("061", "PENN PRECINCT B (9TH CONG)"): [("061", "000380", 1.0)],
+    ("091", "WHITPAIN 02 92"): [("091", "003860", 1.0)],
+    ("091", "WHITPAIN 03 92"): [("091", "003821", 1.0)],
+    ("091", "WHITPAIN 04 92"): [("091", "003825", 1.0)],
+    ("091", "WHITPAIN 05 92"): [("091", "003831", 1.0)],
+    ("091", "WHITPAIN 06 92"): [("091", "003835", 1.0)],
+    ("101", "PHILADELPHIA WARD 40-30 A (SENATE 1)"): [("101", "004030", 1.0)],
+    ("101", "PHILADELPHIA WARD 40-30 B (SENATE 8)"): [("101", "004030", 1.0)],
     # Both historical subprecincts were consolidated into one current VTD.
     ("045", "NETHER PROVIDENCE W 3 D 2"): [
         ("045", "002061", 1.0),
