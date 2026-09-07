@@ -92196,15 +92196,15 @@ year,countyfp,source_precinct,method,dst_countyfp,dst_vtd,weight
 2008,003,001980,historical_vtd_block_chain,003,001980,1.000000000000
 2008,003,001981,historical_vtd_block_chain,003,002043,1.000000000000
 2008,003,001990,historical_vtd_block_chain,003,002025,1.000000000000
-2008,003,002000,unmatched,,,
+2008,003,002000,allegheny_2018_block_name_fallback,003,001998,1.000000000000
 2008,003,002010,historical_vtd_block_chain,003,002010,1.000000000000
 2008,003,002011,historical_vtd_block_chain,003,002011,1.000000000000
 2008,003,002022,unmatched,,,
 2008,003,002025,unmatched,,,
 2008,003,002032,unmatched,,,
 2008,003,002035,unmatched,,,
-2008,003,002042,unmatched,,,
-2008,003,002045,unmatched,,,
+2008,003,002042,allegheny_2018_block_name_fallback,003,002043,1.000000000000
+2008,003,002045,allegheny_2018_block_name_fallback,003,002043,1.000000000000
 2008,003,002071,historical_vtd_block_chain,003,002071,1.000000000000
 2008,003,002090,historical_vtd_block_chain,003,002090,1.000000000000
 2008,003,002100,historical_vtd_block_chain,003,002100,1.000000000000
@@ -93622,12 +93622,15 @@ year,countyfp,source_precinct,method,dst_countyfp,dst_vtd,weight
 2008,003,H121,historical_vtd_block_chain,003,00H121,0.956521739130
 2008,003,H135,historical_vtd_block_chain,003,00H135,1.000000000000
 2008,003,H155,historical_vtd_block_chain,003,00H155,1.000000000000
-2008,003,SOUTH FAYETTE D 10,unmatched,,,
-2008,003,SOUTH FAYETTE D 11,unmatched,,,
-2008,003,SOUTH FAYETTE D 12,unmatched,,,
-2008,003,SOUTH FAYETTE D 7,unmatched,,,
-2008,003,SOUTH FAYETTE D 8,unmatched,,,
-2008,003,SOUTH FAYETTE D 9,unmatched,,,
+2008,003,OHIO D 3,allegheny_2018_block_name_fallback,003,005386,1.000000000000
+2008,003,SOUTH FAYETTE D 10,allegheny_2018_block_name_fallback,003,00F435,1.000000000000
+2008,003,SOUTH FAYETTE D 11,allegheny_2018_block_name_fallback,003,00F395,0.016033755274
+2008,003,SOUTH FAYETTE D 11,allegheny_2018_block_name_fallback,003,00F399,0.011814345992
+2008,003,SOUTH FAYETTE D 11,allegheny_2018_block_name_fallback,003,00F437,0.972151898734
+2008,003,SOUTH FAYETTE D 12,allegheny_2018_block_name_fallback,003,00F445,1.000000000000
+2008,003,SOUTH FAYETTE D 7,allegheny_2018_block_name_fallback,003,00F417,1.000000000000
+2008,003,SOUTH FAYETTE D 8,allegheny_2018_block_name_fallback,003,00F425,1.000000000000
+2008,003,SOUTH FAYETTE D 9,allegheny_2018_block_name_fallback,003,00F427,1.000000000000
 2008,005,000010,historical_vtd_block_chain,005,000015,1.000000000000
 2008,005,000020,historical_vtd_block_chain,005,000015,1.000000000000
 2008,005,000030,historical_vtd_block_chain,005,000030,1.000000000000
@@ -117461,15 +117464,15 @@ year,countyfp,source_precinct,method,dst_countyfp,dst_vtd,weight
 2012,003,001980,historical_vtd_block_chain,003,001980,1.000000000000
 2012,003,001981,historical_vtd_block_chain,003,002043,1.000000000000
 2012,003,001990,historical_vtd_block_chain,003,002025,1.000000000000
-2012,003,002000,unmatched,,,
+2012,003,002000,allegheny_2018_block_name_fallback,003,001998,1.000000000000
 2012,003,002010,historical_vtd_block_chain,003,002010,1.000000000000
 2012,003,002011,historical_vtd_block_chain,003,002011,1.000000000000
 2012,003,002022,unmatched,,,
 2012,003,002025,unmatched,,,
 2012,003,002032,unmatched,,,
 2012,003,002035,unmatched,,,
-2012,003,002042,unmatched,,,
-2012,003,002045,unmatched,,,
+2012,003,002042,allegheny_2018_block_name_fallback,003,002043,1.000000000000
+2012,003,002045,allegheny_2018_block_name_fallback,003,002043,1.000000000000
 2012,003,002071,historical_vtd_block_chain,003,002071,1.000000000000
 2012,003,002090,historical_vtd_block_chain,003,002090,1.000000000000
 2012,003,002100,historical_vtd_block_chain,003,002100,1.000000000000
@@ -118899,7 +118902,7 @@ year,countyfp,source_precinct,method,dst_countyfp,dst_vtd,weight
 2012,003,H121,historical_vtd_block_chain,003,00H121,0.956521739130
 2012,003,H135,historical_vtd_block_chain,003,00H135,1.000000000000
 2012,003,H155,historical_vtd_block_chain,003,00H155,1.000000000000
-2012,003,WHITEHALL D 1 B (CONG 18),unmatched,,,
+2012,003,WHITEHALL D 1 B (CONG 18),allegheny_2018_block_name_fallback,003,00G740,1.000000000000
 2012,005,000015,unmatched,,,
 2012,005,000030,historical_vtd_block_chain,005,000030,1.000000000000
 2012,005,000040,historical_vtd_block_chain,005,000040,1.000000000000
@@ -142507,7 +142510,7 @@ year,countyfp,source_precinct,method,dst_countyfp,dst_vtd,weight
 2016,003,CORAOPOLIS WARD 1-1,rdh_precinct_blocks,003,001331,1.000000000000
 2016,003,CORAOPOLIS WARD 1-2,rdh_precinct_blocks,003,001331,0.020472440945
 2016,003,CORAOPOLIS WARD 1-2,rdh_precinct_blocks,003,001341,0.979527559055
-2016,003,CORAOPOLIS WARD 2,unmatched,,,
+2016,003,CORAOPOLIS WARD 2,allegheny_2018_block_name_fallback,003,001351,1.000000000000
 2016,003,CORAOPOLIS WARD 3-1,rdh_precinct_blocks,003,001371,1.000000000000
 2016,003,CORAOPOLIS WARD 3-2,rdh_precinct_blocks,003,001381,1.000000000000
 2016,003,CORAOPOLIS WARD 4-1,rdh_precinct_blocks,003,001390,1.000000000000
@@ -142571,7 +142574,7 @@ year,countyfp,source_precinct,method,dst_countyfp,dst_vtd,weight
 2016,003,ELIZABETH WARD 1-2,rdh_precinct_blocks,003,002032,0.357142857143
 2016,003,ELIZABETH WARD 1-2,rdh_precinct_blocks,003,002035,0.638157894737
 2016,003,ELIZABETH WARD 2,historical_name_to_vtd_block_chain,003,002025,1.000000000000
-2016,003,ELIZABETH WARD 3,unmatched,,,
+2016,003,ELIZABETH WARD 3,allegheny_2018_block_name_fallback,003,001998,1.000000000000
 2016,003,ELIZABETH WARD 4-1,rdh_precinct_blocks,003,002010,0.754826254826
 2016,003,ELIZABETH WARD 4-1,rdh_precinct_blocks,003,002032,0.245173745174
 2016,003,ELIZABETH WARD 4-2,rdh_precinct_blocks,003,002011,1.000000000000
@@ -143848,8 +143851,8 @@ year,countyfp,source_precinct,method,dst_countyfp,dst_vtd,weight
 2016,003,WHITE OAK DISTRICT 5,rdh_precinct_blocks,003,00G710,1.000000000000
 2016,003,WHITE OAK DISTRICT 6,rdh_precinct_blocks,003,00G720,1.000000000000
 2016,003,WHITE OAK DISTRICT 7,rdh_precinct_blocks,003,00G730,1.000000000000
-2016,003,WHITEHALL DISTRICT 1 A,unmatched,,,
-2016,003,WHITEHALL DISTRICT 1 B,unmatched,,,
+2016,003,WHITEHALL DISTRICT 1 A,allegheny_2018_block_name_fallback,003,00G740,1.000000000000
+2016,003,WHITEHALL DISTRICT 1 B,allegheny_2018_block_name_fallback,003,00G740,1.000000000000
 2016,003,WHITEHALL DISTRICT 10,rdh_precinct_blocks,003,00G830,1.000000000000
 2016,003,WHITEHALL DISTRICT 11,rdh_precinct_blocks,003,00G840,1.000000000000
 2016,003,WHITEHALL DISTRICT 12,rdh_precinct_blocks,003,00G850,1.000000000000
