@@ -10422,8 +10422,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-06-pa-block-precinct-data-v3';
-    const APP_BUILD_ID = '2026-09-06-pa-block-precinct-data-v3';
+    const DATA_CACHE_BUSTER = '2026-09-06-pa-block-precinct-data-v4';
+    const APP_BUILD_ID = '2026-09-06-pa-block-precinct-data-v4';
 
     function ensurePageCacheBuster() {
       return false;
@@ -34526,34 +34526,10 @@ document.addEventListener('DOMContentLoaded', function() {
           // Only apply this on older-year analysis where we intentionally use VTD20 geometry.
           return getDesiredPrecinctGeometryMode() === 'vtd20';
         })();
-        const countyFallbackExpr = (() => {
-          // For modern precinct geometry, some polygons may exist that have no row in the selected
-          // contest/year (newer splits/renames vs historical exports). Keep those transparent when
-          // at least one detailed precinct row matched. If the detailed source is unavailable (or
-          // produced zero geometry matches), however, the contest loader returns county aggregates;
-          // using transparent here makes the entire precinct overlay look like it never populated.
-          let hasGeometryMatch = false;
-          try {
-            const geometryNorms = precinctPolygonNormSet;
-            if (geometryNorms && geometryNorms.size && currentPrecinctResults?.size) {
-              for (const norm of currentPrecinctResults.keys()) {
-                if (geometryNorms.has(String(norm || '').toUpperCase())) {
-                  hasGeometryMatch = true;
-                  break;
-                }
-              }
-            }
-          } catch (_) {}
-          const useCountyColors = useVtdCountyBackfill || !hasGeometryMatch;
-          if (!useCountyColors) return 'rgba(0,0,0,0)';
-          if (!countyFillColorByNorm.size) return '#d1d5db';
-          const fb = ['match', ['get', 'county_norm']];
-          countyFillColorByNorm.forEach((color, countyNorm) => {
-            fb.push(countyNorm, color);
-          });
-          fb.push('#d1d5db');
-          return fb;
-        })();
+        // Never substitute county aggregates for missing precinct results. A polygon
+        // without a matched precinct row should remain unfilled so the map does not
+        // imply precinct-level data that the selected contest/year does not contain.
+        const countyFallbackExpr = 'rgba(0,0,0,0)';
 
         const geomMode = String(getDesiredPrecinctGeometryMode() || '');
         const precinctFallbackMode = (() => {
