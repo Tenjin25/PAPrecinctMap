@@ -30,6 +30,7 @@ MODERN_CROSSWALK_PATH = DATA / "crosswalks" / "pa_modern_precinct_to_vtd20.csv"
 HISTORICAL_CROSSWALK_PATH = DATA / "crosswalks" / "pa_historical_precinct_to_vtd20.csv"
 CURRENT_CROSSWALK_PATH = DATA / "crosswalks" / "pa_vtd20_to_current_precinct.csv"
 CONTEST_ROOT = DATA / "contests"
+PRECINCT_ALIAS_PATH = DATA / "precinct_alias_index.json"
 
 FIELDS = [
     "county",
@@ -61,6 +62,84 @@ TARGETS = {
     2020: "20201103__pa__general__precinct.csv",
     2022: "20221108__pa__general__precinct.csv",
     2024: "20241105__pa__general__precinct_official.csv",
+}
+
+# Source labels that are unmatched in their own-year crosswalk but have a
+# direct block-derived match in an adjacent-year RDH crosswalk.
+BLOCK_FALLBACKS = {
+    ("079", "HAZLE DISTRICT 1"): [
+        ("079", "000806", 0.178627553693),
+        ("079", "000807", 0.821372446307),
+    ],
+    ("091", "FRANCONIA PRECINCT 2"): [
+        ("091", "000915", 0.009714632665),
+        ("091", "000918", 0.990285367335),
+    ],
+    ("091", "HORSHAM DISTRICT 4 DISTRICT 2"): [
+        ("091", "001143", 0.717573221757),
+        ("091", "001144", 0.282426778243),
+    ],
+    ("095", "LOWER MOUNT BETHEL D INDEPENDENT"): [
+        ("095", "000750", 1.0),
+    ],
+    ("095", "LOWER MOUNT BETHEL DISTRICT INDEPENDENT"): [
+        ("095", "000750", 1.0),
+    ],
+    ("091", "UPPER MERION DISTRICT GULPH DISTRICT 02"): [
+        ("091", "003350", 1.0),
+    ],
+    ("091", "UPPER MERION X GULPH X 02"): [
+        ("091", "003350", 1.0),
+    ],
+    ("091", "UPPER MERION GULPH 02"): [("091", "003350", 1.0)],
+    # Congressional fragments of precincts that are single current VTDs.
+    ("031", "PINEY P B (CONG 5)"): [("031", "000340", 1.0)],
+    ("031", "PINEY PRECINCT A (CONG 3)"): [("031", "000340", 1.0)],
+    ("031", "PINEY PRECINCT B (CONG 5)"): [("031", "000340", 1.0)],
+    ("097", "RIVERSIDE P B (CONG 11)"): [("097", "000560", 1.0)],
+    ("097", "RIVERSIDE PRECINCT A (CONG 10)"): [("097", "000560", 1.0)],
+    ("097", "RIVERSIDE PRECINCT B (CONG 11)"): [("097", "000560", 1.0)],
+    ("117", "SHIPPEN P B (CONG 10)"): [("117", "000350", 1.0)],
+    ("117", "SHIPPEN PRECINCT A (CONG 5)"): [("117", "000350", 1.0)],
+    ("117", "SHIPPEN PRECINCT B (CONG 10)"): [("117", "000350", 1.0)],
+    # Historical labels that differ from a uniquely identifiable current VTD.
+    ("007", "BEAVER WARD 3-1"): [("007", "000310", 1.0)],
+    ("007", "NORTH SEWICKLEY 04 ELLWOOD CITY BOROUGH"): [("007", "001320", 1.0)],
+    ("017", "TINICUM TINICM"): [("017", "002400", 1.0)],
+    ("021", "JOHNSTOWN WARD 11"): [("021", "000942", 1.0)],
+    ("029", "PHOENIXVILLE WARD MIDDLE-1"): [("029", "000917", 1.0)],
+    ("043", "SUSQUEHANNA WARD 1 (WARD 4)"): [("043", "001135", 1.0)],
+    ("071", "MANOR MANOR,NEW"): [("071", "001402", 1.0)],
+    ("073", "NEW BEAVER PRECINCT 1"): [("073", "000255", 1.0)],
+    ("095", "LEHIGH DISTRICT PENN"): [("095", "000730", 1.0)],
+    ("029", "KENNETT PRECINCT 2 A (CONG 7)"): [("029", "000610", 1.0)],
+    ("029", "KENNETT PRECINCT 2 B (CONG 16)"): [("029", "000610", 1.0)],
+    ("091", "LOWER MERION WARD 2-2 A (CONG 2)"): [("091", "001430", 1.0)],
+    ("091", "LOWER MERION WARD 2-2 B (CONG 13)"): [("091", "001430", 1.0)],
+    ("091", "PLYMOUTH 2 3A (CONG 7)"): [("091", "002488", 1.0)],
+    ("091", "PLYMOUTH 2 3B (CONG 13)"): [("091", "002488", 1.0)],
+    ("091", "HATFIELD 5 2 A (CONG 13)"): [("091", "001036", 1.0)],
+    ("091", "HATFIELD 5 2 B (CONG 8)"): [("091", "001036", 1.0)],
+    ("125", "FALLOWFIELD 2 A (CONG 9)"): [("125", "000910", 1.0)],
+    ("125", "FALLOWFIELD 2 B (CONG 18)"): [("125", "000910", 1.0)],
+    ("071", "MANHEIM DISTRICT 7:00 AM"): [("071", "001200", 1.0)],
+    ("075", "NORTH LEBANON EAST A (CONG 6)"): [("075", "000350", 1.0)],
+    ("075", "NORTH LEBANON EAST B (CONG 15)"): [("075", "000350", 1.0)],
+    ("091", "HORSHAM 2 2 A (CONG 7)"): [("091", "001085", 1.0)],
+    ("091", "HORSHAM 2 2 B (CONG 13)"): [("091", "001085", 1.0)],
+    ("045", "SPRINGFIELD WARD 3-02(161)"): [("045", "002810", 1.0)],
+    ("045", "SPRINGFIELD WARD 3-02(165)"): [("045", "002820", 1.0)],
+    ("089", "EAST STROUDSBURG DISTRICT 1-11TH CONGRESSIONAL"): [("089", "000070", 1.0)],
+    ("089", "EAST STROUDSBURG DISTRICT 3-10TH CONGRESSIONAL"): [("089", "000090", 1.0)],
+    ("089", "EAST STROUDSBURG DISTRICT 4-11TH CONGRESSIONAL"): [("089", "000100", 1.0)],
+    ("089", "EAST STROUDSBURG DISTRICT 5-11TH CONGRESSIONAL"): [("089", "000110", 1.0)],
+    # Both historical subprecincts were consolidated into one current VTD.
+    ("045", "NETHER PROVIDENCE W 3 D 2"): [
+        ("045", "002061", 1.0),
+    ],
+    ("095", "BETHLEHEM TOWNSHIP W 2 D 3"): [
+        ("095", "000339", 1.0),
+    ],
 }
 
 
@@ -202,6 +281,8 @@ def source_variants(value: object) -> list[str]:
         (r"\bW\s+(\d+)\b", r"WARD \1"),
         (r"\bPCT\s+(\d+)\b", r"PRECINCT \1"),
         (r"\bP\s+(\d+)\b", r"PRECINCT \1"),
+        (r"\bTWP\b", "TOWNSHIP"),
+        (r"\bBORO\b", "BOROUGH"),
     )
     seen = set()
     while queue:
@@ -210,6 +291,28 @@ def source_variants(value: object) -> list[str]:
             continue
         seen.add(candidate)
         variants.append(candidate)
+        expanded_mount = re.sub(r"\bMT\.?", "MOUNT", candidate)
+        if expanded_mount != candidate:
+            queue.append(expanded_mount)
+        unpadded_numbers = re.sub(r"\b0+(\d+)\b", r"\1", candidate)
+        if unpadded_numbers != candidate:
+            queue.append(unpadded_numbers)
+        without_district_note = re.sub(
+            r"(?:\s+[AB])?\s*\([^)]*(?:CONG|CONGRESSIONAL|USC|SENATE|STH)[^)]*\)",
+            "",
+            candidate,
+        )
+        without_district_note = re.sub(
+            r"[-\s]+\d+(?:ST|ND|RD|TH)?\s+CONGRESSIONAL$",
+            "",
+            without_district_note,
+        )
+        without_district_note = re.sub(r"\s*\(\d+\)$", "", without_district_note)
+        if without_district_note != candidate:
+            queue.append(without_district_note)
+        without_split_suffix = re.sub(r"(?<=\d)\s*[AB]$", "", candidate)
+        if without_split_suffix != candidate:
+            queue.append(without_split_suffix)
         tokens = candidate.split()
         # PA's raw exports sometimes repeat the ward/district suffix, e.g.
         # "CARLISLE W 1 P 1 W 1 P 1".
@@ -292,12 +395,84 @@ def load_current_vtd_keys() -> set[tuple[str, str]]:
     return keys
 
 
+def load_current_name_crosswalk() -> dict[tuple[str, str], tuple[str, str]]:
+    """Return unambiguous county/name aliases for current geometry precincts."""
+    try:
+        payload = json.loads(CURRENT_GEOMETRY_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    candidates: dict[tuple[str, str], set[tuple[str, str]]] = {}
+    for feature in payload.get("features") or []:
+        props = feature.get("properties") or {}
+        county = str(props.get("COUNTYFP") or props.get("COUNTY") or "").zfill(3)
+        vtd = str(props.get("VTD") or props.get("VTDST") or "").zfill(6)
+        precinct = normalize_token(props.get("precinct_norm"))
+        name = props.get("precinct_name") or props.get("NAME")
+        if not county or not vtd or not precinct or not name:
+            continue
+        for alias in source_variants(name):
+            candidates.setdefault((county, alias), set()).add((vtd, precinct))
+    return {key: next(iter(values)) for key, values in candidates.items() if len(values) == 1}
+
+
+def load_unambiguous_precinct_aliases(
+    county_fips_by_name: dict[str, str],
+) -> dict[tuple[str, str], str]:
+    """Map unique historical name aliases to a single VTD identifier."""
+    try:
+        payload = json.loads(PRECINCT_ALIAS_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    result = {}
+    for county_name, aliases in (payload.get("counties") or {}).items():
+        county = county_fips_by_name.get(normalize_token(county_name))
+        if not county:
+            continue
+        for alias, values in (aliases or {}).items():
+            unique = {str(value).strip().upper().zfill(6) for value in values if str(value).strip()}
+            if len(unique) == 1:
+                result[(county, normalize_token(alias))] = next(iter(unique))
+    return result
+
+
+def load_neighbor_year_crosswalk(year: int) -> dict[tuple[str, str], list[tuple[str, str, float]]]:
+    """Use the closest other-year mapping for the exact same precinct label."""
+    grouped: dict[tuple[int, str, str], list[tuple[str, str, float]]] = {}
+    for path in (HISTORICAL_CROSSWALK_PATH, MODERN_CROSSWALK_PATH):
+        if not path.exists():
+            continue
+        with path.open("r", newline="", encoding="utf-8-sig") as handle:
+            for row in csv.DictReader(handle):
+                ref_year = int(row.get("year") or 0)
+                dst_vtd = str(row.get("dst_vtd") or "").strip().upper().zfill(6)
+                weight = float(row.get("weight") or 0)
+                if ref_year == year or not dst_vtd or weight <= 0:
+                    continue
+                county = str(row.get("countyfp") or "").zfill(3)
+                label = normalize_token(row.get("source_precinct"))
+                dst_county = str(row.get("dst_countyfp") or county).zfill(3)
+                grouped.setdefault((ref_year, county, label), []).append((dst_county, dst_vtd, weight))
+    choices: dict[tuple[str, str], list[tuple[int, list[tuple[str, str, float]]]]] = {}
+    for (ref_year, county, label), targets in grouped.items():
+        choices.setdefault((county, label), []).append((ref_year, targets))
+    result = {}
+    for key, options in choices.items():
+        # Prefer the closest year; on a tie, prefer the later boundary vintage.
+        _, targets = min(options, key=lambda item: (abs(item[0] - year), item[0] < year))
+        total = sum(weight for _, _, weight in targets) or 1.0
+        result[key] = [(county, vtd, weight / total) for county, vtd, weight in targets]
+    return result
+
+
 def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[dict[str, str]], dict]:
     county_fips_by_name = load_county_fips()
     county_names_by_fips = {v: k for k, v in county_fips_by_name.items()}
     crosswalk = load_crosswalk(year, county_fips_by_name)
     current_crosswalk = load_current_crosswalk()
     current_vtd_keys = load_current_vtd_keys()
+    current_name_crosswalk = load_current_name_crosswalk()
+    precinct_aliases = load_unambiguous_precinct_aliases(county_fips_by_name)
+    neighbor_crosswalk = load_neighbor_year_crosswalk(year)
     joined = []
     matched_rows = 0
     unmatched_rows = 0
@@ -305,16 +480,17 @@ def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[di
         county = normalize_token(row["county"])
         county_fips = county_fips_by_name.get(county, "")
         source = normalize_token(row.get("source_precinct") or row["precinct"])
+        if source.isdigit() and not int(source):
+            source = normalize_token(row["precinct"])
         canonical = re.match(r"^(.+?)\s+-\s+([A-Z0-9]{6,})$", source)
         if canonical and normalize_token(canonical.group(1)) == county:
-            joined.append({**row, "county": county, "precinct": f"{county} - {canonical.group(2)}", "source_precinct": source})
-            matched_rows += 1
-            continue
+            source = canonical.group(2)
         if year < 2018 and source.isdigit():
             source = source.zfill(6)
         targets = []
-        if source.isdigit() and (county_fips, source.zfill(6)) in current_vtd_keys:
-            targets = [(county_fips, source.zfill(6), 1.0)]
+        source_code = source.zfill(6)
+        if (county_fips, source_code) in current_vtd_keys or (county_fips, source_code) in current_crosswalk:
+            targets = [(county_fips, source_code, 1.0)]
         for variant in source_variants(source):
             if targets:
                 break
@@ -322,12 +498,65 @@ def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[di
             if targets:
                 break
         if not targets:
+            for variant in source_variants(row.get("precinct")) + source_variants(source):
+                targets = BLOCK_FALLBACKS.get((county_fips, variant), [])
+                if targets:
+                    break
+        if not targets:
+            for variant in source_variants(row.get("precinct")) + source_variants(source):
+                targets = neighbor_crosswalk.get((county_fips, variant), [])
+                if targets:
+                    break
+        if not targets:
+            for variant in source_variants(row.get("precinct")) + source_variants(source):
+                alias_vtd = precinct_aliases.get((county_fips, variant))
+                if alias_vtd and (county_fips, alias_vtd) in current_crosswalk:
+                    targets = [(county_fips, alias_vtd, 1.0)]
+                    break
+        if not targets:
+            for alias in source_variants(row.get("precinct")) + source_variants(source):
+                named_target = current_name_crosswalk.get((county_fips, alias))
+                if named_target:
+                    _, named_precinct = named_target
+                    joined.append({
+                        **row,
+                        "county": county,
+                        "precinct": named_precinct,
+                        "source_precinct": source,
+                    })
+                    matched_rows += 1
+                    break
+            else:
+                named_target = None
+            if named_target:
+                continue
+        if not targets:
             unmatched_rows += 1
             joined.append({**row, "precinct": row["precinct"], "source_precinct": source})
             continue
         matched_rows += 1
         for dst_county, dst_vtd, weight in targets:
             current_targets = current_crosswalk.get((dst_county, dst_vtd))
+            # Some county-specific modern exceptions store the state's local
+            # code (for example Allegheny F411 or Cumberland 620), rather than
+            # a Census VTD20 code. Resolve it to the namespaced current key.
+            if not current_targets:
+                local_code = dst_vtd.lstrip("0").zfill(3)
+                local_current_vtd = f"{dst_county}{local_code}"
+                if (dst_county, local_current_vtd) in current_vtd_keys:
+                    current_targets = [(
+                        dst_county,
+                        local_current_vtd,
+                        f"{county_names_by_fips.get(dst_county, county)} - {local_current_vtd}",
+                        1.0,
+                    )]
+            if not current_targets and dst_county == county_fips:
+                for alias in source_variants(row.get("precinct")) + source_variants(source):
+                    named_target = current_name_crosswalk.get((dst_county, alias))
+                    if named_target:
+                        named_vtd, named_precinct = named_target
+                        current_targets = [(dst_county, named_vtd, named_precinct, 1.0)]
+                        break
             if not current_targets:
                 current_targets = [(dst_county, dst_vtd, f"{county_names_by_fips.get(dst_county, county)} - {dst_vtd}", 1.0)]
             for current_county, current_vtd, current_precinct, current_weight in current_targets:
@@ -465,7 +694,17 @@ def main() -> None:
     if unknown:
         parser.error(f"unsupported year(s): {', '.join(map(str, unknown))}")
 
-    results = [build_year(year, force=args.force) for year in sorted(set(args.years))]
+    built_results = [build_year(year, force=args.force) for year in sorted(set(args.years))]
+    results = built_results
+    # A targeted rebuild must not erase metadata for the other configured years.
+    if set(args.years) != set(TARGETS) and MANIFEST_PATH.exists():
+        try:
+            existing = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+            by_year = {entry["year"]: entry for entry in existing.get("years", [])}
+            by_year.update({entry["year"]: entry for entry in results})
+            results = [by_year[year] for year in sorted(by_year)]
+        except (OSError, json.JSONDecodeError, KeyError, TypeError):
+            pass
     MANIFEST_PATH.write_text(
         json.dumps({
             "generated_by": Path(__file__).name,
@@ -474,7 +713,7 @@ def main() -> None:
         }, indent=2) + "\n",
         encoding="utf-8",
     )
-    for result in results:
+    for result in built_results:
         print(
             f"{result['year']}: {result['status']} "
             f"{result['rows']:,} rows, {result['counties']} counties, "

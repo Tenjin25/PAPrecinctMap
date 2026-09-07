@@ -14,16 +14,113 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 OUT = DATA / "crosswalks" / "pa_historical_precinct_to_vtd20.csv"
 sys.path.insert(0, str(ROOT / "Scripts"))
-import regenerate_pa_district_jsons_from_crosswalks as r  # noqa: E402
+try:
+    import regenerate_pa_district_jsons_from_crosswalks as r  # noqa: E402
+except ModuleNotFoundError:
+    r = None
 
 
 def keys(value: str) -> set[str]:
+    if r is None:
+        return {re.sub(r"\s+", " ", str(value or "").upper()).strip()}
     raw = r.normalize_modern_precinct_name(value)
     out = set(r.historical_name_keys(raw)) | {r.compact_live_name(raw)}
     stripped = re.sub(r"^0*\d{1,5}[ _-]+", "", raw).strip()
     if stripped and stripped != raw:
         out |= set(r.historical_name_keys(stripped)) | {r.compact_live_name(stripped)}
     return {v for v in out if v}
+
+
+# Allegheny labels that the older source files do not connect to a usable
+# historic VTD code. These targets are carried back from the 2018 RDH
+# block-derived crosswalk for the same named precincts. Split/consolidated
+# labels are intentionally listed one by one rather than applied statewide.
+_ALLEGHENY_EXCEPTION_ROWS = {
+    (2008, "002000"): [("003", "001998", 1.0)],
+    (2008, "002042"): [("003", "002043", 1.0)],
+    (2008, "002045"): [("003", "002043", 1.0)],
+    (2008, "OHIO D 3"): [("003", "005386", 1.0)],
+    (2008, "SOUTH FAYETTE D 7"): [("003", "00F417", 1.0)],
+    (2008, "SOUTH FAYETTE D 8"): [("003", "00F425", 1.0)],
+    (2008, "SOUTH FAYETTE D 9"): [("003", "00F427", 1.0)],
+    (2008, "SOUTH FAYETTE D 10"): [("003", "00F435", 1.0)],
+    (2008, "SOUTH FAYETTE D 11"): [
+        ("003", "00F395", 0.016033755274),
+        ("003", "00F399", 0.011814345992),
+        ("003", "00F437", 0.972151898734),
+    ],
+    (2008, "SOUTH FAYETTE D 12"): [("003", "00F445", 1.0)],
+    (2012, "002000"): [("003", "001998", 1.0)],
+    (2012, "002042"): [("003", "002043", 1.0)],
+    (2012, "002045"): [("003", "002043", 1.0)],
+    (2012, "WHITEHALL D 1 B (CONG 18)"): [("003", "00G740", 1.0)],
+    (2016, "CORAOPOLIS WARD 2"): [("003", "001351", 1.0)],
+    (2016, "ELIZABETH WARD 3"): [("003", "001998", 1.0)],
+    (2016, "WHITEHALL DISTRICT 1 A"): [("003", "00G740", 1.0)],
+    (2016, "WHITEHALL DISTRICT 1 B"): [("003", "00G740", 1.0)],
+}
+
+ALLEGHENY_EXCEPTIONS = {
+    (year, key): targets
+    for (year, label), targets in _ALLEGHENY_EXCEPTION_ROWS.items()
+    for key in keys(label)
+}
+
+
+def apply_allegheny_exceptions() -> None:
+    """Patch the known rows without rebuilding unrelated historical years."""
+    with OUT.open(newline="", encoding="utf-8-sig") as handle:
+        existing = list(csv.DictReader(handle))
+    output = []
+    replaced = set()
+    for row in existing:
+        year = int(row["year"])
+        targets = []
+        if row["countyfp"] == "003":
+            for key in keys(row["source_precinct"]):
+                targets = ALLEGHENY_EXCEPTIONS.get((year, key), [])
+                if targets:
+                    break
+        exception_key = (year, row["countyfp"], row["source_precinct"])
+        if not targets:
+            output.append(row)
+            continue
+        if exception_key in replaced:
+            continue
+        replaced.add(exception_key)
+        total = sum(weight for _, _, weight in targets) or 1.0
+        for dst_county, dst_vtd, weight in targets:
+            output.append({
+                "year": year,
+                "countyfp": row["countyfp"],
+                "source_precinct": row["source_precinct"],
+                "method": "allegheny_2018_block_name_fallback",
+                "dst_countyfp": dst_county,
+                "dst_vtd": dst_vtd,
+                "weight": f"{weight / total:.12f}",
+            })
+    for (year, label), targets in _ALLEGHENY_EXCEPTION_ROWS.items():
+        exception_key = (year, "003", label)
+        if exception_key in replaced:
+            continue
+        total = sum(weight for _, _, weight in targets) or 1.0
+        for dst_county, dst_vtd, weight in targets:
+            output.append({
+                "year": year,
+                "countyfp": "003",
+                "source_precinct": label,
+                "method": "allegheny_2018_block_name_fallback",
+                "dst_countyfp": dst_county,
+                "dst_vtd": dst_vtd,
+                "weight": f"{weight / total:.12f}",
+            })
+        replaced.add(exception_key)
+    output.sort(key=lambda row: (int(row["year"]), row["countyfp"], row["source_precinct"], row["dst_countyfp"], row["dst_vtd"]))
+    with OUT.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=["year", "countyfp", "source_precinct", "method", "dst_countyfp", "dst_vtd", "weight"])
+        writer.writeheader()
+        writer.writerows(output)
+    print(f"patched {len(replaced):,} Allegheny historical precinct mappings in {OUT}")
 
 
 def block_targets(year: int) -> dict[tuple[str, str], list[tuple[str, str, float]]]:
@@ -63,6 +160,11 @@ def chain_targets(path: Path) -> dict[tuple[str, str], list[tuple[str, str, floa
 
 
 def main() -> None:
+    if r is None:
+        raise RuntimeError(
+            "full rebuild requires Scripts/regenerate_pa_district_jsons_from_crosswalks.py; "
+            "use --apply-allegheny-exceptions for the targeted patch"
+        )
     rows = []
     block_by_year = {2016: block_targets(2016)}
     chains = {
@@ -102,6 +204,12 @@ def main() -> None:
                 for historical_vtd in sorted(historical_vtds):
                     targets.extend(chain.get((county, r.norm(historical_vtd, 6)), []))
                 if targets: method = "historical_name_to_vtd_block_chain"
+            if not targets and county == "003":
+                for key in keys(name):
+                    targets = ALLEGHENY_EXCEPTIONS.get((year, key), [])
+                    if targets:
+                        method = "allegheny_2018_block_name_fallback"
+                        break
             if not targets:
                 rows.append({"year": year, "countyfp": county, "source_precinct": source_label, "method": method, "dst_countyfp": "", "dst_vtd": "", "weight": ""})
                 continue
@@ -138,4 +246,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    if "--apply-allegheny-exceptions" in sys.argv:
+        apply_allegheny_exceptions()
+    else:
+        main()
