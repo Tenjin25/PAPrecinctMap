@@ -10028,6 +10028,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <button type="button" class="region-jump-btn" data-region-jump="south_central">South Central</button>
                   <button type="button" class="region-jump-btn" data-region-jump="northwest">Northwest</button>
                   <button type="button" class="region-jump-btn" data-region-jump="northeast">Northeast</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="the_t">Pennsyltucky / The T</button>
                 </div>
             </div>
             <div class="control-group" style="margin-bottom:10px;">
@@ -10422,8 +10423,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-07-lower-yoder-v15';
-    const APP_BUILD_ID = '2026-09-07-lower-yoder-v15';
+    const DATA_CACHE_BUSTER = '2026-09-07-pennsyltucky-t-zoom-v16';
+    const APP_BUILD_ID = '2026-09-07-pennsyltucky-t-zoom-v16';
 
     function ensurePageCacheBuster() {
       return false;
@@ -10559,6 +10560,24 @@ document.addEventListener('DOMContentLoaded', function() {
         label: 'Northeast',
         bounds: [[-76.65, 40.75], [-74.65, 42.35]],
         counties: ['Bradford', 'Lackawanna', 'Luzerne', 'Pike', 'Susquehanna', 'Wayne', 'Wyoming']
+      },
+      the_t: {
+        label: 'Pennsyltucky / The T',
+        // Frame the rural northern bar and central/southwestern stem while
+        // leaving the Philadelphia and Pittsburgh urban anchors outside the view.
+        bounds: [[-79.95, 39.65], [-75.45, 42.35]],
+        counties: [
+          'Adams', 'Armstrong', 'Bedford', 'Blair', 'Bradford', 'Butler',
+          'Cambria', 'Cameron', 'Carbon', 'Centre', 'Clarion', 'Clearfield',
+          'Clinton', 'Columbia', 'Crawford', 'Cumberland', 'Dauphin', 'Elk',
+          'Erie', 'Fayette', 'Forest', 'Franklin', 'Fulton', 'Greene',
+          'Huntingdon', 'Indiana', 'Jefferson', 'Juniata', 'Lackawanna',
+          'Lancaster', 'Lawrence', 'Lebanon', 'Luzerne', 'Lycoming', 'McKean',
+          'Mercer', 'Mifflin', 'Monroe', 'Montour', 'Northumberland', 'Perry',
+          'Pike', 'Potter', 'Schuylkill', 'Snyder', 'Somerset', 'Sullivan',
+          'Susquehanna', 'Tioga', 'Union', 'Venango', 'Warren', 'Washington',
+          'Wayne', 'Westmoreland', 'Wyoming', 'York'
+        ]
       }
     };
 
