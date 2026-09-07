@@ -10422,8 +10422,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-07-precinct-block-cleanup-v14';
-    const APP_BUILD_ID = '2026-09-07-precinct-block-cleanup-v14';
+    const DATA_CACHE_BUSTER = '2026-09-07-lower-yoder-v15';
+    const APP_BUILD_ID = '2026-09-07-lower-yoder-v15';
 
     function ensurePageCacheBuster() {
       return false;
@@ -13503,14 +13503,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       if (contestIsActive && populationChangeModeActive) {
         countyBaseOpacity = precinctsActuallyVisible ? Math.max(countyBaseOpacity, 0.16) : Math.max(countyBaseOpacity, 0.84);
-      }
-
-      // At polygon zoom, the precinct layer is the authoritative election surface.
-      // Leaving even a faint county fill underneath makes unmatched/transparent
-      // precincts look as though they inherited the county result. Keep the county
-      // backdrop for statewide centroid dots, but remove it behind precinct polygons.
-      if (contestIsActive && precinctsActuallyVisible) {
-        countyBaseOpacity = 0;
       }
 
       if (map.getLayer('county-fill')) {
@@ -34063,6 +34055,8 @@ document.addEventListener('DOMContentLoaded', function() {
               [`${contestType}_rep`]: repVotes,
               [`${contestType}_other`]: otherVotes,
               [`${contestType}_total`]: totalVotes,
+              [`${contestType}_dem_candidate`]: demCand,
+              [`${contestType}_rep_candidate`]: repCand,
               [`${contestType}_margin_pct`]: adjustedSigned,
               [`${contestType}_winner`]: adjustedWinner
             };
