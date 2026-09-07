@@ -2,8 +2,8 @@
   "generated_by": "build_pa_precinct_returns.py",
   "frontend_geometry": {
     "source": "data/pa_current_voting_districts.geojson",
-    "features": 9530,
-    "features_with_precinct_norm": 9530
+    "features": 9529,
+    "features_with_precinct_norm": 9529
   },
   "years": [
     {
@@ -177,14 +177,14 @@
       "source": "data/ElectionReturns_2022_General_PrecinctReturns.txt",
       "source_type": "official_pa_precinct_export",
       "output": "data/Openelections/2022/20221108__pa__general__precinct.csv",
-      "rows": 163367,
+      "rows": 163406,
       "counties": 67,
       "precincts": 9403,
       "crosswalk": "data/crosswalks/pa_modern_precinct_to_vtd20.csv",
       "current_crosswalk": "data/crosswalks/pa_vtd20_to_current_precinct.csv",
       "matched_rows": 131796,
       "unmatched_rows": 0,
-      "joined_rows": 163367
+      "joined_rows": 163406
     },
     {
       "year": 2024,
@@ -192,14 +192,14 @@
       "source": "data/erstat_2024_g_268768_20250129.txt",
       "source_type": "official_pa_precinct_export",
       "output": "data/Openelections/2024/20241105__pa__general__precinct_official.csv",
-      "rows": 333323,
+      "rows": 333410,
       "counties": 67,
       "precincts": 9403,
       "crosswalk": "data/crosswalks/pa_modern_precinct_to_vtd20.csv",
       "current_crosswalk": "data/crosswalks/pa_vtd20_to_current_precinct.csv",
       "matched_rows": 268768,
       "unmatched_rows": 0,
-      "joined_rows": 333323
+      "joined_rows": 333410
     }
   ]
 }
