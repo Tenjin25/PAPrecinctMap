@@ -17,6 +17,7 @@ import csv
 import json
 import os
 import re
+from collections import defaultdict
 from pathlib import Path
 
 
@@ -29,6 +30,7 @@ COUNTIES_PATH = DATA / "pa_counties.geojson"
 MODERN_CROSSWALK_PATH = DATA / "crosswalks" / "pa_modern_precinct_to_vtd20.csv"
 HISTORICAL_CROSSWALK_PATH = DATA / "crosswalks" / "pa_historical_precinct_to_vtd20.csv"
 CURRENT_CROSSWALK_PATH = DATA / "crosswalks" / "pa_vtd20_to_current_precinct.csv"
+VTD10_CHAIN_PATH = DATA / "crosswalks" / "pa_vtd10_to_vtd20_block_chain.csv"
 CONTEST_ROOT = DATA / "contests"
 PRECINCT_ALIAS_PATH = DATA / "precinct_alias_index.json"
 
@@ -403,6 +405,22 @@ def load_current_crosswalk() -> dict[tuple[str, str], list[tuple[str, str, str, 
     return index
 
 
+def load_vtd_chain(path: Path) -> dict[tuple[str, str], list[tuple[str, str, float]]]:
+    index: dict[tuple[str, str], list[tuple[str, str, float]]] = {}
+    if not path.exists():
+        return index
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            county = str(row.get("countyfp") or "").zfill(3)
+            source = str(row.get("src_vtd") or "").strip().upper().zfill(6)
+            dst_county = str(row.get("dst_countyfp") or county).zfill(3)
+            dst_vtd = str(row.get("dst_vtd") or "").strip().upper().zfill(6)
+            weight = float(row.get("weight") or 0)
+            if county and source and dst_vtd and weight > 0:
+                index.setdefault((county, source), []).append((dst_county, dst_vtd, weight))
+    return index
+
+
 def load_current_vtd_keys() -> set[tuple[str, str]]:
     """Return county/VTD IDs that are actually present in the frontend layer."""
     try:
@@ -515,6 +533,7 @@ def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[di
     county_names_by_fips = {v: k for k, v in county_fips_by_name.items()}
     crosswalk = load_crosswalk(year, county_fips_by_name)
     current_crosswalk = load_current_crosswalk()
+    vtd10_chain = load_vtd_chain(VTD10_CHAIN_PATH) if 2008 <= year < 2018 else {}
     current_vtd_keys = load_current_vtd_keys()
     current_name_crosswalk = load_current_name_crosswalk()
     precinct_aliases = load_unambiguous_precinct_aliases(county_fips_by_name)
@@ -543,6 +562,8 @@ def join_to_current_vtds(year: int, rows: list[dict[str, str]]) -> tuple[list[di
             targets = crosswalk.get((county_fips, variant), [])
             if targets:
                 break
+        if not targets and source.isdigit() and vtd10_chain:
+            targets = vtd10_chain.get((county_fips, source.zfill(6)), [])
         if not targets:
             for variant in source_variants(row.get("precinct")) + source_variants(source):
                 targets = BLOCK_FALLBACKS.get((county_fips, variant), [])
@@ -634,6 +655,25 @@ def write_rows(path: Path, rows: list[dict[str, str]]) -> None:
     os.replace(temp, path)
 
 
+def refresh_manifest_output_stats(year: int, rows: list[dict[str, str]]) -> None:
+    """Keep output row and precinct counts accurate after targeted transforms."""
+    if not MANIFEST_PATH.exists():
+        return
+    payload = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    changed = False
+    for entry in payload.get("years", []):
+        if int(entry.get("year") or 0) != year:
+            continue
+        entry["rows"] = len(rows)
+        entry["counties"] = len({normalize_token(row.get("county")) for row in rows})
+        entry["precincts"] = len({normalize_token(row.get("precinct")) for row in rows})
+        entry["joined_rows"] = len(rows)
+        changed = True
+        break
+    if changed:
+        MANIFEST_PATH.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+
 def is_standardized(path: Path) -> bool:
     try:
         with path.open("r", encoding="utf-8-sig", errors="ignore") as handle:
@@ -709,6 +749,111 @@ def repair_unmatched_output(year: int) -> dict:
         "changed_rows": len(unmatched),
         "before": len(unmatched),
         "after": remaining,
+    }
+
+
+def fill_single_sibling_block_splits(year: int, dry_run: bool = False) -> dict:
+    """Split one observed VTD20 sibling across its block-backed current targets."""
+    target = OUTPUT_ROOT / str(year) / TARGETS[year]
+    if not target.exists() or not is_standardized(target):
+        return {"year": year, "status": "missing", "groups": 0, "added_targets": 0}
+    with target.open(newline="", encoding="utf-8-sig") as handle:
+        rows = list(csv.DictReader(handle))
+    by_precinct: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in rows:
+        by_precinct[normalize_token(row.get("precinct"))].append(row)
+
+    groups: dict[tuple[str, str], dict[str, float]] = defaultdict(lambda: defaultdict(float))
+    methods: dict[tuple[str, str], set[str]] = defaultdict(set)
+    with CURRENT_CROSSWALK_PATH.open(newline="", encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            source = (str(row.get("countyfp") or "").zfill(3), str(row.get("vtd20") or "").zfill(6))
+            current = normalize_token(row.get("current_precinct_norm"))
+            weight = float(row.get("weight") or 0)
+            if current and weight > 0:
+                groups[source][current] += weight
+                methods[source].add(str(row.get("method") or ""))
+
+    candidates = []
+    for source, target_weights in groups.items():
+        # Identity-only groups contain no disaggregation evidence.
+        if methods[source] <= {"vtd20_identity"}:
+            continue
+        observed = [name for name in target_weights if name in by_precinct]
+        missing = [name for name in target_weights if name not in by_precinct]
+        if len(observed) == 1 and missing:
+            candidates.append((source, observed[0], target_weights))
+
+    source_use: dict[str, int] = defaultdict(int)
+    for _, observed, _ in candidates:
+        source_use[observed] += 1
+    replacements: dict[str, list[dict[str, str]]] = {}
+    added_targets = 0
+    for _, observed, target_weights in candidates:
+        if source_use[observed] != 1:
+            continue
+        total_weight = sum(target_weights.values()) or 1.0
+        replacement = []
+        for row in by_precinct[observed]:
+            for current, raw_weight in sorted(target_weights.items()):
+                weight = raw_weight / total_weight
+                county = current.split(" - ", 1)[0]
+                replacement.append({
+                    **row,
+                    "county": county,
+                    "precinct": current,
+                    "votes": f"{float(row.get('votes') or 0) * weight:.12f}".rstrip("0").rstrip("."),
+                })
+        replacements[observed] = replacement
+        added_targets += len(target_weights) - 1
+
+    details = []
+    for source, observed, target_weights in candidates:
+        if observed in replacements:
+            details.append({
+                "source": f"{source[0]}-{source[1]}",
+                "observed": observed,
+                "targets": dict(sorted(target_weights.items())),
+                "methods": sorted(methods[source]),
+            })
+    if not replacements:
+        return {"year": year, "status": "unchanged", "groups": 0, "added_targets": 0, "details": []}
+    if dry_run:
+        return {
+            "year": year,
+            "status": "candidate",
+            "groups": len(replacements),
+            "added_targets": added_targets,
+            "details": details,
+        }
+
+    before_totals: dict[str, float] = defaultdict(float)
+    after_totals: dict[str, float] = defaultdict(float)
+    for row in rows:
+        before_totals[normalize_token(row.get("office"))] += float(row.get("votes") or 0)
+    output = []
+    emitted = set()
+    for row in rows:
+        precinct = normalize_token(row.get("precinct"))
+        if precinct not in replacements:
+            output.append(row)
+        elif precinct not in emitted:
+            output.extend(replacements[precinct])
+            emitted.add(precinct)
+    for row in output:
+        after_totals[normalize_token(row.get("office"))] += float(row.get("votes") or 0)
+    if set(before_totals) != set(after_totals) or any(
+        abs(before_totals[key] - after_totals[key]) > 1e-6 for key in before_totals
+    ):
+        raise RuntimeError(f"{year} block split did not preserve contest vote totals")
+    write_rows(target, output)
+    refresh_manifest_output_stats(year, output)
+    return {
+        "year": year,
+        "status": "disaggregated",
+        "groups": len(replacements),
+        "added_targets": added_targets,
+        "details": details,
     }
 
 
@@ -813,6 +958,16 @@ def main() -> None:
         action="store_true",
         help="Re-run crosswalks only for output rows that do not match current geometry.",
     )
+    parser.add_argument(
+        "--fill-single-sibling-block-splits",
+        action="store_true",
+        help="Populate missing current siblings only when one result represents a block-backed VTD20 split.",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Report block-split candidates without changing output files.",
+    )
     args = parser.parse_args()
 
     unknown = sorted(set(args.years) - set(TARGETS))
@@ -831,6 +986,22 @@ def main() -> None:
                 f"{year}: {result['status']}, {result['before']:,} unmatched rows before, "
                 f"{result['after']:,} after"
             )
+        return
+    if args.fill_single_sibling_block_splits:
+        for year in sorted(set(args.years)):
+            result = fill_single_sibling_block_splits(year, dry_run=args.dry_run)
+            print(
+                f"{year}: {result['status']}, {result['groups']:,} source groups, "
+                f"{result['added_targets']:,} targets added"
+            )
+            for detail in result.get("details", []):
+                targets = ", ".join(
+                    f"{name}={weight:.6f}" for name, weight in detail["targets"].items()
+                )
+                print(
+                    f"  {detail['source']}: {detail['observed']} -> {targets} "
+                    f"({', '.join(detail['methods'])})"
+                )
         return
 
     built_results = [build_year(year, force=args.force) for year in sorted(set(args.years))]
