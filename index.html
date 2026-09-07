@@ -10422,8 +10422,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-06-pa-block-precinct-data-v5';
-    const APP_BUILD_ID = '2026-09-06-pa-block-precinct-data-v5';
+    const DATA_CACHE_BUSTER = '2026-09-06-precinct-authoritative-fill-v6';
+    const APP_BUILD_ID = '2026-09-06-precinct-authoritative-fill-v6';
 
     function ensurePageCacheBuster() {
       return false;
@@ -13503,6 +13503,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       if (contestIsActive && populationChangeModeActive) {
         countyBaseOpacity = precinctsActuallyVisible ? Math.max(countyBaseOpacity, 0.16) : Math.max(countyBaseOpacity, 0.84);
+      }
+
+      // At polygon zoom, the precinct layer is the authoritative election surface.
+      // Leaving even a faint county fill underneath makes unmatched/transparent
+      // precincts look as though they inherited the county result. Keep the county
+      // backdrop for statewide centroid dots, but remove it behind precinct polygons.
+      if (contestIsActive && precinctsActuallyVisible) {
+        countyBaseOpacity = 0;
       }
 
       if (map.getLayer('county-fill')) {
