@@ -1009,6 +1009,34 @@ def apply_dra_presidential_shares(scope, contest, year, results):
     return path.name
 
 
+def apply_exact_district_benchmarks(scope, contest, year, results):
+    """Replace reviewed district rows with sourced exact-vote benchmarks."""
+    path = DATA / "benchmarks" / f"pa_{scope}_{year}_{contest}.csv"
+    if not path.exists():
+        return ""
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            district = norm(row.get("district")).lstrip("0") or "0"
+            result = results.get(district)
+            if not result:
+                continue
+            dem = int(float(row.get("dem_votes") or 0))
+            rep = int(float(row.get("rep_votes") or 0))
+            other = int(float(row.get("other_votes") or 0))
+            total = dem + rep + other
+            margin = dem - rep
+            result.update({
+                "dem_votes": dem,
+                "rep_votes": rep,
+                "other_votes": other,
+                "total_votes": total,
+                "winner": "D" if margin > 0 else "R" if margin < 0 else "T",
+                "margin": float(abs(margin)),
+                "margin_pct": abs(margin) / total * 100 if total else 0.0,
+            })
+    return path.relative_to(DATA).as_posix()
+
+
 def expected_districts(scope):
     _, filename = SCOPES[scope]
     frame = pd.read_csv(DATA / filename, dtype=str)
@@ -1267,6 +1295,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
         expected = expected_districts(scope)
         results = district_result_rows(votes, candidates)
         calibration_source = apply_dra_presidential_shares(scope, contest, year, results)
+        exact_benchmark_source = apply_exact_district_benchmarks(scope, contest, year, results)
         output = {
             "scope": scope,
             "contest_type": contest,
@@ -1278,6 +1307,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
                 "source": (
                     f"precinct_returns_to_vtd_block_chain_{weight_mode}_districts"
                     + (f"+dra_share_calibration/{calibration_source}" if calibration_source else "")
+                    + (f"+exact_district_benchmark/{exact_benchmark_source}" if exact_benchmark_source else "")
                 ),
                 "unmatched_source_vtds": unmatched,
                 "unmatched_source_votes": unmatched_votes,

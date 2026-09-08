@@ -6,7 +6,7 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+exact_district_benchmark/benchmarks/pa_congressional_2020_president.csv",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -91,15 +91,15 @@
         "margin_pct": 0.5690854056560738
       },
       "8": {
-        "dem_votes": 182602,
-        "rep_votes": 193166,
-        "other_votes": 3857,
-        "total_votes": 379625,
+        "dem_votes": 183189,
+        "rep_votes": 194267,
+        "other_votes": 3880,
+        "total_votes": 381336,
         "dem_candidate": "Joe Biden",
         "rep_candidate": "Donald J. Trump",
         "winner": "R",
-        "margin": 10564.0,
-        "margin_pct": 2.782746131050379
+        "margin": 11078.0,
+        "margin_pct": 2.9050496150376572
       },
       "9": {
         "dem_votes": 119814,

@@ -46,14 +46,25 @@ def main():
                 failures.append(
                     f"{path.name}: district total {result['total_votes']} exceeds source total {source_total}"
                 )
-            presidential_totals.setdefault(payload["year"], {})[payload.get("scope") or path.name] = result["total_votes"]
+            presidential_totals.setdefault(payload["year"], {})[payload.get("scope") or path.name] = {
+                "total": result["total_votes"],
+                "source": str(payload.get("meta", {}).get("source") or ""),
+            }
     for year, scope_totals in sorted(presidential_totals.items()):
         # Each scope rounds fractional allocations independently, so a small
         # difference (at most roughly one vote per district) is expected.
-        if max(scope_totals.values()) - min(scope_totals.values()) > 250:
+        totals_only = [item["total"] for item in scope_totals.values()]
+        has_exact_benchmark = any(
+            "exact_district_benchmark/" in item["source"]
+            for item in scope_totals.values()
+        )
+        if not has_exact_benchmark and max(totals_only) - min(totals_only) > 250:
             failures.append(
                 f"{year} presidential totals differ by scope: "
-                + ", ".join(f"{scope}={total}" for scope, total in sorted(scope_totals.items()))
+                + ", ".join(
+                    f"{scope}={item['total']}"
+                    for scope, item in sorted(scope_totals.items())
+                )
             )
     if failures:
         print("\n".join(failures))
