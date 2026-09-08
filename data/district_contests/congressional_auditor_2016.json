@@ -6,175 +6,253 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "unmapped_blocks": 0,
-    "source": "RDH 2016 general election results disaggregated to 2020 Census blocks"
+    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "unmatched_source_vtds": 15,
+    "unmatched_source_votes": 7858.0,
+    "unmatched_source_keys": [
+      [
+        "007",
+        "000000",
+        "BEAVER WARD 3-1"
+      ],
+      [
+        "021",
+        "000000",
+        "BARR A (SOUTH CONG 9)"
+      ],
+      [
+        "021",
+        "000000",
+        "BARR B (SOUTH CONG 12)"
+      ],
+      [
+        "021",
+        "000000",
+        "NORTHERN CAMBRIA WARD 3 A"
+      ],
+      [
+        "021",
+        "000000",
+        "NORTHERN CAMBRIA WARD 3 B"
+      ],
+      [
+        "025",
+        "000000",
+        "BANKS DISTRICT 4"
+      ],
+      [
+        "027",
+        "000000",
+        "FERGUSON NORTHEAST 1A"
+      ],
+      [
+        "027",
+        "000000",
+        "FERGUSON NORTHEAST 1B"
+      ],
+      [
+        "027",
+        "000000",
+        "FERGUSON NORTH CENTRAL 2"
+      ],
+      [
+        "045",
+        "000000",
+        "SPRINGFIELD WARD 3-02(161)"
+      ],
+      [
+        "045",
+        "000000",
+        "SPRINGFIELD WARD 3-02(165)"
+      ],
+      [
+        "071",
+        "000000",
+        "MANOR MANOR,NEW"
+      ],
+      [
+        "091",
+        "000000",
+        "PLYMOUTH 2 3A"
+      ],
+      [
+        "091",
+        "000000",
+        "PLYMOUTH 2 3B"
+      ],
+      [
+        "095",
+        "000000",
+        "LOWER MOUNT BETHEL DISTRICT INDEPENDENT"
+      ]
+    ]
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 178835,
-        "rep_votes": 197771,
+        "dem_votes": 178848,
+        "rep_votes": 197788,
         "other_votes": 12297,
-        "total_votes": 388903,
+        "total_votes": 388933,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "R",
-        "margin": 18936,
-        "margin_pct": 4.869080464794563
+        "margin": 18940.0,
+        "margin_pct": 4.869733347388882
       },
       "2": {
-        "dem_votes": 205170,
-        "rep_votes": 64854,
-        "other_votes": 7458,
-        "total_votes": 277482,
+        "dem_votes": 207410,
+        "rep_votes": 64229,
+        "other_votes": 7358,
+        "total_votes": 278997,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "D",
-        "margin": 140316,
-        "margin_pct": 50.56760438514931
+        "margin": 143181.0,
+        "margin_pct": 51.319906665663076
       },
       "3": {
-        "dem_votes": 316499,
-        "rep_votes": 33926,
-        "other_votes": 9793,
-        "total_votes": 360218,
+        "dem_votes": 314991,
+        "rep_votes": 34560,
+        "other_votes": 9900,
+        "total_votes": 359451,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "D",
-        "margin": 282573,
-        "margin_pct": 78.44499719614234
+        "margin": 280431.0,
+        "margin_pct": 78.01647512456496
       },
       "4": {
-        "dem_votes": 194393,
-        "rep_votes": 173819,
-        "other_votes": 10745,
-        "total_votes": 378957,
+        "dem_votes": 194109,
+        "rep_votes": 173687,
+        "other_votes": 10770,
+        "total_votes": 378566,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "D",
-        "margin": 20574,
-        "margin_pct": 5.429112010069744
+        "margin": 20422.0,
+        "margin_pct": 5.394567922106052
       },
       "5": {
-        "dem_votes": 214624,
-        "rep_votes": 140285,
-        "other_votes": 9708,
-        "total_votes": 364617,
+        "dem_votes": 213611,
+        "rep_votes": 140019,
+        "other_votes": 9678,
+        "total_votes": 363308,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "D",
-        "margin": 74339,
-        "margin_pct": 20.388243005674447
+        "margin": 73592.0,
+        "margin_pct": 20.25609125039911
       },
       "6": {
-        "dem_votes": 161783,
-        "rep_votes": 167439,
-        "other_votes": 21863,
-        "total_votes": 351085,
+        "dem_votes": 161601,
+        "rep_votes": 167181,
+        "other_votes": 21833,
+        "total_votes": 350615,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "R",
-        "margin": 5656,
-        "margin_pct": 1.6110058817665238
+        "margin": 5580.0,
+        "margin_pct": 1.5914892403348404
       },
       "7": {
-        "dem_votes": 150041,
-        "rep_votes": 155748,
-        "other_votes": 16318,
-        "total_votes": 322107,
+        "dem_votes": 149934,
+        "rep_votes": 155740,
+        "other_votes": 16302,
+        "total_votes": 321976,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "R",
-        "margin": 5707,
-        "margin_pct": 1.7717714920818237
+        "margin": 5806.0,
+        "margin_pct": 1.8032399930429595
       },
       "8": {
-        "dem_votes": 161784,
-        "rep_votes": 132646,
-        "other_votes": 19346,
-        "total_votes": 313776,
+        "dem_votes": 161602,
+        "rep_votes": 132320,
+        "other_votes": 19330,
+        "total_votes": 313252,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "D",
-        "margin": 29138,
-        "margin_pct": 9.28624241497119
+        "margin": 29282.0,
+        "margin_pct": 9.347745585024198
       },
       "9": {
-        "dem_votes": 109723,
-        "rep_votes": 195605,
-        "other_votes": 22488,
-        "total_votes": 327816,
+        "dem_votes": 109549,
+        "rep_votes": 195340,
+        "other_votes": 22459,
+        "total_votes": 327348,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "R",
-        "margin": 85882,
-        "margin_pct": 26.198233155184614
+        "margin": 85791.0,
+        "margin_pct": 26.207888852230653
       },
       "10": {
-        "dem_votes": 163387,
-        "rep_votes": 162761,
-        "other_votes": 15340,
-        "total_votes": 341488,
+        "dem_votes": 162057,
+        "rep_votes": 162506,
+        "other_votes": 15247,
+        "total_votes": 339810,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
-        "winner": "D",
-        "margin": 626,
-        "margin_pct": 0.18331537272173545
+        "rep_candidate": "John A. Brown",
+        "winner": "R",
+        "margin": 449.0,
+        "margin_pct": 0.13213266237014804
       },
       "11": {
-        "dem_votes": 123159,
-        "rep_votes": 193517,
-        "other_votes": 20818,
-        "total_votes": 337494,
+        "dem_votes": 124156,
+        "rep_votes": 192854,
+        "other_votes": 20848,
+        "total_votes": 337858,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "R",
-        "margin": 70358,
-        "margin_pct": 20.847185431444707
+        "margin": 68698.0,
+        "margin_pct": 20.333394503016063
       },
       "12": {
-        "dem_votes": 243628,
-        "rep_votes": 120298,
-        "other_votes": 19441,
-        "total_votes": 383367,
+        "dem_votes": 242788,
+        "rep_votes": 119952,
+        "other_votes": 19367,
+        "total_votes": 382107,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "D",
-        "margin": 123330,
-        "margin_pct": 32.17021809388915
+        "margin": 122836.0,
+        "margin_pct": 32.14701641163339
       },
       "13": {
-        "dem_votes": 106923,
-        "rep_votes": 211481,
-        "other_votes": 21183,
-        "total_votes": 339587,
+        "dem_votes": 106527,
+        "rep_votes": 210671,
+        "other_votes": 21118,
+        "total_votes": 338316,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "R",
-        "margin": 104558,
-        "margin_pct": 30.789753435791123
+        "margin": 104144.0,
+        "margin_pct": 30.783054895423213
       },
       "14": {
-        "dem_votes": 154621,
-        "rep_votes": 178923,
-        "other_votes": 19008,
-        "total_votes": 352552,
+        "dem_votes": 154623,
+        "rep_votes": 178920,
+        "other_votes": 19007,
+        "total_votes": 352550,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "R",
-        "margin": 24302,
-        "margin_pct": 6.893167532732759
+        "margin": 24297.0,
+        "margin_pct": 6.891788398808679
       },
       "15": {
-        "dem_votes": 115640,
-        "rep_votes": 198433,
-        "other_votes": 22205,
-        "total_votes": 336278,
+        "dem_votes": 114521,
+        "rep_votes": 197876,
+        "other_votes": 22032,
+        "total_votes": 334429,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "R",
-        "margin": 82793,
-        "margin_pct": 24.6204033567465
+        "margin": 83355.0,
+        "margin_pct": 24.92457292878309
       },
       "16": {
         "dem_votes": 142560,
@@ -182,21 +260,21 @@
         "other_votes": 22667,
         "total_votes": 349557,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "R",
-        "margin": 41770,
+        "margin": 41770.0,
         "margin_pct": 11.949410253549493
       },
       "17": {
-        "dem_votes": 216053,
-        "rep_votes": 155481,
-        "other_votes": 20119,
-        "total_votes": 391653,
+        "dem_votes": 216487,
+        "rep_votes": 155372,
+        "other_votes": 20142,
+        "total_votes": 392001,
         "dem_candidate": "Eugene DePasquale",
-        "rep_candidate": "John Brown",
+        "rep_candidate": "John A. Brown",
         "winner": "D",
-        "margin": 60572,
-        "margin_pct": 15.465731144661218
+        "margin": 61115.0,
+        "margin_pct": 15.590521452751396
       }
     }
   }

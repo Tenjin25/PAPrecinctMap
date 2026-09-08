@@ -6,8 +6,10 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "unmapped_blocks": 0,
-    "source": "RDH 2020 general election results disaggregated to 2020 Census blocks"
+    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "unmatched_source_vtds": 0,
+    "unmatched_source_votes": 0.0,
+    "unmatched_source_keys": []
   },
   "general": {
     "results": {
@@ -19,7 +21,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 6218,
+        "margin": 6218.0,
         "margin_pct": 24.875980156825094
       },
       "2": {
@@ -30,7 +32,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 1772,
+        "margin": 1772.0,
         "margin_pct": 5.542696277760401
       },
       "3": {
@@ -41,7 +43,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 1759,
+        "margin": 1759.0,
         "margin_pct": 4.661331354674581
       },
       "4": {
@@ -52,30 +54,30 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 8975,
+        "margin": 8975.0,
         "margin_pct": 27.153359755544127
       },
       "5": {
-        "dem_votes": 11241,
-        "rep_votes": 21632,
-        "other_votes": 1572,
-        "total_votes": 34445,
+        "dem_votes": 11218,
+        "rep_votes": 21594,
+        "other_votes": 1569,
+        "total_votes": 34381,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 10391,
-        "margin_pct": 30.16693279140659
+        "margin": 10376.0,
+        "margin_pct": 30.179459585236028
       },
       "6": {
         "dem_votes": 9598,
-        "rep_votes": 20834,
+        "rep_votes": 20833,
         "other_votes": 1568,
-        "total_votes": 32000,
+        "total_votes": 31999,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 11236,
-        "margin_pct": 35.112500000000004
+        "margin": 11235.0,
+        "margin_pct": 35.11047220225632
       },
       "7": {
         "dem_votes": 13824,
@@ -85,7 +87,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 4466,
+        "margin": 4466.0,
         "margin_pct": 13.287316652286455
       },
       "8": {
@@ -96,7 +98,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 16281,
+        "margin": 16281.0,
         "margin_pct": 41.93324061196106
       },
       "9": {
@@ -107,41 +109,41 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 7166,
+        "margin": 7166.0,
         "margin_pct": 22.2691817645048
       },
       "10": {
-        "dem_votes": 23081,
-        "rep_votes": 1647,
-        "other_votes": 738,
-        "total_votes": 25466,
+        "dem_votes": 23394,
+        "rep_votes": 1672,
+        "other_votes": 745,
+        "total_votes": 25811,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 21434,
-        "margin_pct": 84.16712479384277
+        "margin": 21722.0,
+        "margin_pct": 84.1579171670993
       },
       "11": {
-        "dem_votes": 10207,
-        "rep_votes": 23337,
-        "other_votes": 1633,
-        "total_votes": 35177,
+        "dem_votes": 9534,
+        "rep_votes": 21109,
+        "other_votes": 1519,
+        "total_votes": 32162,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13130,
-        "margin_pct": 37.325525201125735
+        "margin": 11575.0,
+        "margin_pct": 35.98967725887693
       },
       "12": {
         "dem_votes": 13690,
         "rep_votes": 24460,
-        "other_votes": 1464,
-        "total_votes": 39614,
+        "other_votes": 1463,
+        "total_votes": 39613,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 10770,
-        "margin_pct": 27.1873580047458
+        "margin": 10770.0,
+        "margin_pct": 27.188044328881933
       },
       "13": {
         "dem_votes": 14357,
@@ -151,7 +153,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 3793,
+        "margin": 3793.0,
         "margin_pct": 11.19506508072371
       },
       "14": {
@@ -162,7 +164,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 8913,
+        "margin": 8913.0,
         "margin_pct": 24.31193911786367
       },
       "15": {
@@ -173,7 +175,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 11794,
+        "margin": 11794.0,
         "margin_pct": 31.362016699462853
       },
       "16": {
@@ -184,7 +186,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 595,
+        "margin": 595.0,
         "margin_pct": 1.715290590405904
       },
       "17": {
@@ -195,7 +197,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 15687,
+        "margin": 15687.0,
         "margin_pct": 47.754878382903584
       },
       "18": {
@@ -206,7 +208,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 435,
+        "margin": 435.0,
         "margin_pct": 1.350386489926427
       },
       "19": {
@@ -217,19 +219,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 16552,
+        "margin": 16552.0,
         "margin_pct": 61.86044773330344
       },
       "20": {
         "dem_votes": 19607,
         "rep_votes": 14885,
-        "other_votes": 1784,
-        "total_votes": 36276,
+        "other_votes": 1783,
+        "total_votes": 36275,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 4722,
-        "margin_pct": 13.01687065828647
+        "margin": 4722.0,
+        "margin_pct": 13.017229496898691
       },
       "21": {
         "dem_votes": 22170,
@@ -239,19 +241,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 7758,
+        "margin": 7758.0,
         "margin_pct": 20.13809573253037
       },
       "22": {
-        "dem_votes": 11432,
-        "rep_votes": 5327,
-        "other_votes": 1044,
-        "total_votes": 17803,
+        "dem_votes": 11422,
+        "rep_votes": 5324,
+        "other_votes": 1040,
+        "total_votes": 17786,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 6105,
-        "margin_pct": 34.29197326293321
+        "margin": 6098.0,
+        "margin_pct": 34.285393005734846
       },
       "23": {
         "dem_votes": 24485,
@@ -261,7 +263,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 18828,
+        "margin": 18828.0,
         "margin_pct": 59.74297953355545
       },
       "24": {
@@ -272,7 +274,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 24380,
+        "margin": 24380.0,
         "margin_pct": 74.9208690574967
       },
       "25": {
@@ -283,7 +285,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2980,
+        "margin": 2980.0,
         "margin_pct": 8.42355202532719
       },
       "26": {
@@ -294,19 +296,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 1478,
+        "margin": 1478.0,
         "margin_pct": 3.931896781058792
       },
       "27": {
-        "dem_votes": 19401,
+        "dem_votes": 19402,
         "rep_votes": 12803,
         "other_votes": 1650,
-        "total_votes": 33854,
+        "total_votes": 33855,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 6598,
-        "margin_pct": 19.48957287174337
+        "margin": 6599.0,
+        "margin_pct": 19.4919509673608
       },
       "28": {
         "dem_votes": 15533,
@@ -316,7 +318,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 6543,
+        "margin": 6543.0,
         "margin_pct": 16.793716793716793
       },
       "29": {
@@ -327,7 +329,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2327,
+        "margin": 2327.0,
         "margin_pct": 5.204768614820282
       },
       "30": {
@@ -338,30 +340,30 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 1444,
+        "margin": 1444.0,
         "margin_pct": 3.606213475850357
       },
       "31": {
-        "dem_votes": 24165,
+        "dem_votes": 24164,
         "rep_votes": 21415,
         "other_votes": 1370,
-        "total_votes": 46950,
+        "total_votes": 46949,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2750,
-        "margin_pct": 5.857294994675186
+        "margin": 2749.0,
+        "margin_pct": 5.8552897825299794
       },
       "32": {
         "dem_votes": 22219,
-        "rep_votes": 13222,
+        "rep_votes": 13221,
         "other_votes": 1571,
-        "total_votes": 37012,
+        "total_votes": 37011,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 8997,
-        "margin_pct": 24.308332432724523
+        "margin": 8998.0,
+        "margin_pct": 24.311691118856558
       },
       "33": {
         "dem_votes": 17086,
@@ -371,7 +373,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 431,
+        "margin": 431.0,
         "margin_pct": 1.2179958175549652
       },
       "34": {
@@ -382,7 +384,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 21275,
+        "margin": 21275.0,
         "margin_pct": 58.971089613881425
       },
       "35": {
@@ -393,7 +395,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 6580,
+        "margin": 6580.0,
         "margin_pct": 21.139883055966074
       },
       "36": {
@@ -404,30 +406,30 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 8789,
+        "margin": 8789.0,
         "margin_pct": 27.82914318282566
       },
       "37": {
-        "dem_votes": 11628,
-        "rep_votes": 25016,
-        "other_votes": 1296,
-        "total_votes": 37940,
+        "dem_votes": 12020,
+        "rep_votes": 25243,
+        "other_votes": 1300,
+        "total_votes": 38563,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13388,
-        "margin_pct": 35.28729573010016
+        "margin": 13223.0,
+        "margin_pct": 34.28934470865856
       },
       "38": {
-        "dem_votes": 17773,
-        "rep_votes": 15787,
-        "other_votes": 1571,
-        "total_votes": 35131,
+        "dem_votes": 18458,
+        "rep_votes": 16355,
+        "other_votes": 1616,
+        "total_votes": 36429,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 1986,
-        "margin_pct": 5.653126868008312
+        "margin": 2103.0,
+        "margin_pct": 5.772873260314585
       },
       "39": {
         "dem_votes": 15150,
@@ -437,7 +439,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 6691,
+        "margin": 6691.0,
         "margin_pct": 17.364787708917266
       },
       "40": {
@@ -448,7 +450,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 6211,
+        "margin": 6211.0,
         "margin_pct": 14.46874927201994
       },
       "41": {
@@ -459,19 +461,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 4145,
+        "margin": 4145.0,
         "margin_pct": 12.025298093939481
       },
       "42": {
-        "dem_votes": 23730,
-        "rep_votes": 15469,
-        "other_votes": 1633,
-        "total_votes": 40832,
+        "dem_votes": 23045,
+        "rep_votes": 14901,
+        "other_votes": 1588,
+        "total_votes": 39534,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 8261,
-        "margin_pct": 20.231681034482758
+        "margin": 8144.0,
+        "margin_pct": 20.599989882126778
       },
       "43": {
         "dem_votes": 8073,
@@ -481,7 +483,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 11339,
+        "margin": 11339.0,
         "margin_pct": 39.501828949660336
       },
       "44": {
@@ -492,7 +494,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 3085,
+        "margin": 3085.0,
         "margin_pct": 8.293456637453627
       },
       "45": {
@@ -503,19 +505,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 1850,
+        "margin": 1850.0,
         "margin_pct": 5.150334075723831
       },
       "46": {
-        "dem_votes": 14952,
-        "rep_votes": 21165,
-        "other_votes": 1421,
-        "total_votes": 37538,
+        "dem_votes": 15996,
+        "rep_votes": 22291,
+        "other_votes": 1494,
+        "total_votes": 39781,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 6213,
-        "margin_pct": 16.551228088869944
+        "margin": 6295.0,
+        "margin_pct": 15.824137150901185
       },
       "47": {
         "dem_votes": 11971,
@@ -525,7 +527,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 8436,
+        "margin": 8436.0,
         "margin_pct": 24.865151649129015
       },
       "48": {
@@ -536,19 +538,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 8078,
+        "margin": 8078.0,
         "margin_pct": 22.555425252694477
       },
       "49": {
-        "dem_votes": 14732,
-        "rep_votes": 7492,
-        "other_votes": 1296,
-        "total_votes": 23520,
+        "dem_votes": 15021,
+        "rep_votes": 7574,
+        "other_votes": 1319,
+        "total_votes": 23914,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 7240,
-        "margin_pct": 30.782312925170068
+        "margin": 7447.0,
+        "margin_pct": 31.140754369825206
       },
       "50": {
         "dem_votes": 10865,
@@ -558,7 +560,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 8682,
+        "margin": 8682.0,
         "margin_pct": 27.166906564866387
       },
       "51": {
@@ -569,30 +571,30 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 7300,
+        "margin": 7300.0,
         "margin_pct": 24.398395721925134
       },
       "52": {
-        "dem_votes": 9624,
+        "dem_votes": 9622,
         "rep_votes": 19626,
         "other_votes": 997,
-        "total_votes": 30247,
+        "total_votes": 30245,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 10002,
-        "margin_pct": 33.06774225543029
+        "margin": 10004.0,
+        "margin_pct": 33.07654157712018
       },
       "53": {
-        "dem_votes": 18016,
-        "rep_votes": 15019,
-        "other_votes": 1612,
-        "total_votes": 34647,
+        "dem_votes": 17459,
+        "rep_votes": 14305,
+        "other_votes": 1544,
+        "total_votes": 33308,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2997,
-        "margin_pct": 8.650099575720843
+        "margin": 3154.0,
+        "margin_pct": 9.46919658940795
       },
       "54": {
         "dem_votes": 18176,
@@ -602,7 +604,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 10162,
+        "margin": 10162.0,
         "margin_pct": 36.849548536824166
       },
       "55": {
@@ -613,7 +615,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 9111,
+        "margin": 9111.0,
         "margin_pct": 23.731506563867473
       },
       "56": {
@@ -624,7 +626,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 11348,
+        "margin": 11348.0,
         "margin_pct": 29.536699635606457
       },
       "57": {
@@ -635,41 +637,41 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 9264,
+        "margin": 9264.0,
         "margin_pct": 24.887838164575665
       },
       "58": {
-        "dem_votes": 11872,
-        "rep_votes": 21855,
-        "other_votes": 1332,
-        "total_votes": 35059,
+        "dem_votes": 11975,
+        "rep_votes": 22148,
+        "other_votes": 1335,
+        "total_votes": 35458,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 9983,
-        "margin_pct": 28.474856670184543
+        "margin": 10173.0,
+        "margin_pct": 28.6902814597552
       },
       "59": {
-        "dem_votes": 11424,
-        "rep_votes": 24776,
-        "other_votes": 1478,
-        "total_votes": 37678,
+        "dem_votes": 11611,
+        "rep_votes": 25268,
+        "other_votes": 1503,
+        "total_votes": 38382,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13352,
-        "margin_pct": 35.437125112797915
+        "margin": 13657.0,
+        "margin_pct": 35.58178312750769
       },
       "60": {
-        "dem_votes": 10462,
+        "dem_votes": 10463,
         "rep_votes": 23267,
-        "other_votes": 1512,
-        "total_votes": 35241,
+        "other_votes": 1513,
+        "total_votes": 35243,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 12805,
-        "margin_pct": 36.335518288357314
+        "margin": 12804.0,
+        "margin_pct": 36.33061884629572
       },
       "61": {
         "dem_votes": 22464,
@@ -679,7 +681,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 4949,
+        "margin": 4949.0,
         "margin_pct": 11.948911101453474
       },
       "62": {
@@ -690,7 +692,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 10077,
+        "margin": 10077.0,
         "margin_pct": 31.329084408518575
       },
       "63": {
@@ -701,7 +703,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 18556,
+        "margin": 18556.0,
         "margin_pct": 54.73261953219479
       },
       "64": {
@@ -712,19 +714,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13860,
+        "margin": 13860.0,
         "margin_pct": 44.451571520205256
       },
       "65": {
         "dem_votes": 8149,
-        "rep_votes": 21431,
+        "rep_votes": 21430,
         "other_votes": 1626,
-        "total_votes": 31206,
+        "total_votes": 31205,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13282,
-        "margin_pct": 42.562327757482535
+        "margin": 13281.0,
+        "margin_pct": 42.560487101426055
       },
       "66": {
         "dem_votes": 5485,
@@ -734,7 +736,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 18611,
+        "margin": 18611.0,
         "margin_pct": 60.31956958579114
       },
       "67": {
@@ -745,19 +747,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 16246,
+        "margin": 16246.0,
         "margin_pct": 53.60124055561054
       },
       "68": {
         "dem_votes": 6346,
-        "rep_votes": 23772,
+        "rep_votes": 23773,
         "other_votes": 1586,
-        "total_votes": 31704,
+        "total_votes": 31705,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 17426,
-        "margin_pct": 54.96467322735301
+        "margin": 17427.0,
+        "margin_pct": 54.96609367607633
       },
       "69": {
         "dem_votes": 6446,
@@ -767,7 +769,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 21008,
+        "margin": 21008.0,
         "margin_pct": 59.62253441180644
       },
       "70": {
@@ -778,7 +780,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3346,
+        "margin": 3346.0,
         "margin_pct": 8.30870849991309
       },
       "71": {
@@ -789,7 +791,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 14150,
+        "margin": 14150.0,
         "margin_pct": 42.41861022843096
       },
       "72": {
@@ -800,19 +802,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 9218,
+        "margin": 9218.0,
         "margin_pct": 28.187016481668348
       },
       "73": {
         "dem_votes": 7012,
-        "rep_votes": 22032,
+        "rep_votes": 22033,
         "other_votes": 1349,
-        "total_votes": 30393,
+        "total_votes": 30394,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 15020,
-        "margin_pct": 49.419274174974504
+        "margin": 15021.0,
+        "margin_pct": 49.420938343094036
       },
       "74": {
         "dem_votes": 16345,
@@ -822,7 +824,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2596,
+        "margin": 2596.0,
         "margin_pct": 8.292605015173296
       },
       "75": {
@@ -833,7 +835,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 15567,
+        "margin": 15567.0,
         "margin_pct": 46.90833483999277
       },
       "76": {
@@ -844,41 +846,41 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 10561,
+        "margin": 10561.0,
         "margin_pct": 36.13192377433371
       },
       "77": {
-        "dem_votes": 15509,
-        "rep_votes": 12868,
-        "other_votes": 1358,
-        "total_votes": 29735,
+        "dem_votes": 15494,
+        "rep_votes": 12862,
+        "other_votes": 1357,
+        "total_votes": 29713,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2641,
-        "margin_pct": 8.881789137380192
+        "margin": 2632.0,
+        "margin_pct": 8.858075589809175
       },
       "78": {
-        "dem_votes": 4735,
-        "rep_votes": 29116,
-        "other_votes": 1020,
-        "total_votes": 34871,
+        "dem_votes": 4618,
+        "rep_votes": 28565,
+        "other_votes": 997,
+        "total_votes": 34180,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 24381,
-        "margin_pct": 69.91769665337961
+        "margin": 23947.0,
+        "margin_pct": 70.061439438268
       },
       "79": {
-        "dem_votes": 8825,
+        "dem_votes": 8824,
         "rep_votes": 19600,
         "other_votes": 1433,
-        "total_votes": 29858,
+        "total_votes": 29857,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 10775,
-        "margin_pct": 36.08748074217965
+        "margin": 10776.0,
+        "margin_pct": 36.092038717888606
       },
       "80": {
         "dem_votes": 6691,
@@ -888,7 +890,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 19724,
+        "margin": 19724.0,
         "margin_pct": 57.32054635280441
       },
       "81": {
@@ -899,19 +901,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 18048,
+        "margin": 18048.0,
         "margin_pct": 54.65116279069767
       },
       "82": {
-        "dem_votes": 13438,
-        "rep_votes": 14004,
-        "other_votes": 1289,
-        "total_votes": 28731,
+        "dem_votes": 13452,
+        "rep_votes": 14008,
+        "other_votes": 1290,
+        "total_votes": 28750,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 566,
-        "margin_pct": 1.9699975636072535
+        "margin": 556.0,
+        "margin_pct": 1.933913043478261
       },
       "83": {
         "dem_votes": 9372,
@@ -921,19 +923,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 8087,
+        "margin": 8087.0,
         "margin_pct": 28.731303513695956
       },
       "84": {
         "dem_votes": 7643,
         "rep_votes": 27591,
-        "other_votes": 1473,
-        "total_votes": 36707,
+        "other_votes": 1472,
+        "total_votes": 36706,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 19948,
-        "margin_pct": 54.34385811970469
+        "margin": 19948.0,
+        "margin_pct": 54.34533863673514
       },
       "85": {
         "dem_votes": 8311,
@@ -943,7 +945,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 14949,
+        "margin": 14949.0,
         "margin_pct": 45.375626043405674
       },
       "86": {
@@ -954,30 +956,30 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 18275,
+        "margin": 18275.0,
         "margin_pct": 55.04849689740345
       },
       "87": {
-        "dem_votes": 13797,
-        "rep_votes": 22451,
-        "other_votes": 1518,
-        "total_votes": 37766,
+        "dem_votes": 13807,
+        "rep_votes": 22466,
+        "other_votes": 1519,
+        "total_votes": 37792,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 8654,
-        "margin_pct": 22.914791081925543
+        "margin": 8659.0,
+        "margin_pct": 22.912256562235395
       },
       "88": {
-        "dem_votes": 15320,
-        "rep_votes": 19756,
-        "other_votes": 1668,
-        "total_votes": 36744,
+        "dem_votes": 15318,
+        "rep_votes": 19752,
+        "other_votes": 1667,
+        "total_votes": 36737,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 4436,
-        "margin_pct": 12.072719355541041
+        "margin": 4434.0,
+        "margin_pct": 12.069575632196424
       },
       "89": {
         "dem_votes": 9670,
@@ -987,7 +989,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 12662,
+        "margin": 12662.0,
         "margin_pct": 37.8489866682609
       },
       "90": {
@@ -998,19 +1000,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 17592,
+        "margin": 17592.0,
         "margin_pct": 52.588783929212
       },
       "91": {
         "dem_votes": 10916,
         "rep_votes": 22902,
-        "other_votes": 1720,
-        "total_votes": 35538,
+        "other_votes": 1719,
+        "total_votes": 35537,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 11986,
-        "margin_pct": 33.727277843435196
+        "margin": 11986.0,
+        "margin_pct": 33.728226918423054
       },
       "92": {
         "dem_votes": 10406,
@@ -1020,63 +1022,63 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 15136,
+        "margin": 15136.0,
         "margin_pct": 40.28639109951824
       },
       "93": {
-        "dem_votes": 11765,
-        "rep_votes": 23461,
-        "other_votes": 1656,
-        "total_votes": 36882,
+        "dem_votes": 11245,
+        "rep_votes": 22156,
+        "other_votes": 1618,
+        "total_votes": 35019,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 11696,
-        "margin_pct": 31.711946206821757
+        "margin": 10911.0,
+        "margin_pct": 31.15737171249893
       },
       "94": {
-        "dem_votes": 9746,
-        "rep_votes": 22099,
-        "other_votes": 1651,
-        "total_votes": 33496,
+        "dem_votes": 9750,
+        "rep_votes": 22106,
+        "other_votes": 1652,
+        "total_votes": 33508,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 12353,
-        "margin_pct": 36.87903033197994
+        "margin": 12356.0,
+        "margin_pct": 36.87477617285425
       },
       "95": {
-        "dem_votes": 13331,
-        "rep_votes": 7974,
-        "other_votes": 1248,
-        "total_votes": 22553,
+        "dem_votes": 13847,
+        "rep_votes": 9272,
+        "other_votes": 1285,
+        "total_votes": 24404,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 5357,
-        "margin_pct": 23.75293752494125
+        "margin": 4575.0,
+        "margin_pct": 18.746926733322404
       },
       "96": {
-        "dem_votes": 19176,
-        "rep_votes": 14331,
-        "other_votes": 1503,
-        "total_votes": 35010,
+        "dem_votes": 18433,
+        "rep_votes": 13474,
+        "other_votes": 1454,
+        "total_votes": 33361,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 4845,
-        "margin_pct": 13.838903170522707
+        "margin": 4959.0,
+        "margin_pct": 14.86466233026588
       },
       "97": {
-        "dem_votes": 13408,
-        "rep_votes": 22955,
-        "other_votes": 1371,
-        "total_votes": 37734,
+        "dem_votes": 12899,
+        "rep_votes": 22335,
+        "other_votes": 1345,
+        "total_votes": 36579,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 9547,
-        "margin_pct": 25.300789738697194
+        "margin": 9436.0,
+        "margin_pct": 25.796221875939747
       },
       "98": {
         "dem_votes": 11576,
@@ -1086,19 +1088,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 11988,
+        "margin": 11988.0,
         "margin_pct": 32.58405588323231
       },
       "99": {
-        "dem_votes": 7800,
-        "rep_votes": 21780,
-        "other_votes": 1284,
-        "total_votes": 30864,
+        "dem_votes": 7795,
+        "rep_votes": 21765,
+        "other_votes": 1281,
+        "total_votes": 30841,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13980,
-        "margin_pct": 45.295489891135304
+        "margin": 13970.0,
+        "margin_pct": 45.296845108783764
       },
       "100": {
         "dem_votes": 5647,
@@ -1108,7 +1110,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13931,
+        "margin": 13931.0,
         "margin_pct": 53.20627888324485
       },
       "101": {
@@ -1119,7 +1121,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 7416,
+        "margin": 7416.0,
         "margin_pct": 25.402479961635954
       },
       "102": {
@@ -1130,30 +1132,30 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 15668,
+        "margin": 15668.0,
         "margin_pct": 46.51742770619322
       },
       "103": {
-        "dem_votes": 18020,
-        "rep_votes": 12379,
-        "other_votes": 1608,
-        "total_votes": 32007,
+        "dem_votes": 17265,
+        "rep_votes": 12177,
+        "other_votes": 1550,
+        "total_votes": 30992,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 5641,
-        "margin_pct": 17.624269691005093
+        "margin": 5088.0,
+        "margin_pct": 16.41713990707279
       },
       "104": {
-        "dem_votes": 15388,
-        "rep_votes": 8740,
-        "other_votes": 1302,
-        "total_votes": 25430,
+        "dem_votes": 16143,
+        "rep_votes": 8942,
+        "other_votes": 1360,
+        "total_votes": 26445,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 6648,
-        "margin_pct": 26.142351553283522
+        "margin": 7201.0,
+        "margin_pct": 27.230100207978825
       },
       "105": {
         "dem_votes": 18410,
@@ -1163,41 +1165,41 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 5104,
+        "margin": 5104.0,
         "margin_pct": 15.405046480743692
       },
       "106": {
         "dem_votes": 14338,
-        "rep_votes": 20941,
+        "rep_votes": 20940,
         "other_votes": 1763,
-        "total_votes": 37042,
+        "total_votes": 37041,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 6603,
-        "margin_pct": 17.82571135467847
+        "margin": 6602.0,
+        "margin_pct": 17.823492886261167
       },
       "107": {
-        "dem_votes": 7727,
-        "rep_votes": 21404,
-        "other_votes": 1595,
-        "total_votes": 30726,
+        "dem_votes": 7773,
+        "rep_votes": 21683,
+        "other_votes": 1606,
+        "total_votes": 31062,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13677,
-        "margin_pct": 44.51279047061121
+        "margin": 13910.0,
+        "margin_pct": 44.78140493207134
       },
       "108": {
         "dem_votes": 9581,
         "rep_votes": 20568,
-        "other_votes": 1505,
-        "total_votes": 31654,
+        "other_votes": 1504,
+        "total_votes": 31653,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 10987,
-        "margin_pct": 34.70967334302142
+        "margin": 10987.0,
+        "margin_pct": 34.710769911224844
       },
       "109": {
         "dem_votes": 9693,
@@ -1207,19 +1209,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 9451,
+        "margin": 9451.0,
         "margin_pct": 31.063270336894
       },
       "110": {
         "dem_votes": 8839,
-        "rep_votes": 22152,
+        "rep_votes": 22151,
         "other_votes": 1703,
-        "total_votes": 32694,
+        "total_votes": 32693,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13313,
-        "margin_pct": 40.720009787728635
+        "margin": 13312.0,
+        "margin_pct": 40.71819655583764
       },
       "111": {
         "dem_votes": 9640,
@@ -1229,7 +1231,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 14212,
+        "margin": 14212.0,
         "margin_pct": 40.508493900353436
       },
       "112": {
@@ -1240,19 +1242,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 4278,
+        "margin": 4278.0,
         "margin_pct": 12.352737352737353
       },
       "113": {
         "dem_votes": 14699,
         "rep_votes": 10910,
-        "other_votes": 1316,
-        "total_votes": 26925,
+        "other_votes": 1315,
+        "total_votes": 26924,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3789,
-        "margin_pct": 14.07242339832869
+        "margin": 3789.0,
+        "margin_pct": 14.072946070420441
       },
       "114": {
         "dem_votes": 17655,
@@ -1262,96 +1264,96 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3559,
+        "margin": 3559.0,
         "margin_pct": 10.712458236763688
       },
       "115": {
-        "dem_votes": 15808,
+        "dem_votes": 15809,
         "rep_votes": 11980,
         "other_votes": 1424,
-        "total_votes": 29212,
+        "total_votes": 29213,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3828,
-        "margin_pct": 13.104203751882787
+        "margin": 3829.0,
+        "margin_pct": 13.107178311025914
       },
       "116": {
-        "dem_votes": 7688,
-        "rep_votes": 11886,
-        "other_votes": 869,
-        "total_votes": 20443,
+        "dem_votes": 7369,
+        "rep_votes": 11281,
+        "other_votes": 836,
+        "total_votes": 19486,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 4198,
-        "margin_pct": 20.535146504916106
+        "margin": 3912.0,
+        "margin_pct": 20.075951965513703
       },
       "117": {
-        "dem_votes": 9621,
-        "rep_votes": 22142,
-        "other_votes": 1409,
-        "total_votes": 33172,
+        "dem_votes": 9651,
+        "rep_votes": 22178,
+        "other_votes": 1418,
+        "total_votes": 33247,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 12521,
-        "margin_pct": 37.74568913541541
+        "margin": 12527.0,
+        "margin_pct": 37.67858754173309
       },
       "118": {
-        "dem_votes": 16562,
-        "rep_votes": 16363,
+        "dem_votes": 16571,
+        "rep_votes": 16378,
         "other_votes": 1498,
-        "total_votes": 34423,
+        "total_votes": 34447,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 199,
-        "margin_pct": 0.5781018505069285
+        "margin": 193.0,
+        "margin_pct": 0.560281011408831
       },
       "119": {
-        "dem_votes": 12359,
-        "rep_votes": 14647,
-        "other_votes": 1328,
-        "total_votes": 28334,
+        "dem_votes": 12372,
+        "rep_votes": 14667,
+        "other_votes": 1331,
+        "total_votes": 28370,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 2288,
-        "margin_pct": 8.07510411519729
+        "margin": 2295.0,
+        "margin_pct": 8.089531194924216
       },
       "120": {
-        "dem_votes": 14529,
-        "rep_votes": 17095,
-        "other_votes": 1421,
-        "total_votes": 33045,
+        "dem_votes": 14551,
+        "rep_votes": 17116,
+        "other_votes": 1423,
+        "total_votes": 33090,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 2566,
-        "margin_pct": 7.765168709335754
+        "margin": 2565.0,
+        "margin_pct": 7.751586582048957
       },
       "121": {
-        "dem_votes": 11638,
-        "rep_votes": 9681,
+        "dem_votes": 11651,
+        "rep_votes": 9694,
         "other_votes": 1058,
-        "total_votes": 22377,
+        "total_votes": 22403,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 1957,
-        "margin_pct": 8.745586986638065
+        "margin": 1957.0,
+        "margin_pct": 8.7354372182297
       },
       "122": {
         "dem_votes": 10544,
         "rep_votes": 20750,
-        "other_votes": 1489,
-        "total_votes": 32783,
+        "other_votes": 1490,
+        "total_votes": 32784,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 10206,
-        "margin_pct": 31.131989140713173
+        "margin": 10206.0,
+        "margin_pct": 31.13103953147877
       },
       "123": {
         "dem_votes": 10591,
@@ -1361,19 +1363,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 8859,
+        "margin": 8859.0,
         "margin_pct": 27.87076071226326
       },
       "124": {
-        "dem_votes": 9372,
-        "rep_votes": 21871,
-        "other_votes": 1712,
-        "total_votes": 32955,
+        "dem_votes": 9356,
+        "rep_votes": 21848,
+        "other_votes": 1711,
+        "total_votes": 32915,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 12499,
-        "margin_pct": 37.927476862388104
+        "margin": 12492.0,
+        "margin_pct": 37.95230138234847
       },
       "125": {
         "dem_votes": 11095,
@@ -1383,162 +1385,162 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 12944,
+        "margin": 12944.0,
         "margin_pct": 35.23231443425243
       },
       "126": {
-        "dem_votes": 13768,
-        "rep_votes": 11126,
-        "other_votes": 1321,
-        "total_votes": 26215,
+        "dem_votes": 13755,
+        "rep_votes": 11117,
+        "other_votes": 1319,
+        "total_votes": 26191,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2642,
-        "margin_pct": 10.078199504100706
+        "margin": 2638.0,
+        "margin_pct": 10.072162193119775
       },
       "127": {
-        "dem_votes": 11195,
-        "rep_votes": 5659,
-        "other_votes": 958,
-        "total_votes": 17812,
+        "dem_votes": 11167,
+        "rep_votes": 5652,
+        "other_votes": 957,
+        "total_votes": 17776,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 5536,
-        "margin_pct": 31.080170671457445
+        "margin": 5515.0,
+        "margin_pct": 31.024977497749774
       },
       "128": {
-        "dem_votes": 13441,
-        "rep_votes": 20877,
-        "other_votes": 1723,
-        "total_votes": 36041,
+        "dem_votes": 13408,
+        "rep_votes": 20848,
+        "other_votes": 1714,
+        "total_votes": 35970,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 7436,
-        "margin_pct": 20.63205793401959
+        "margin": 7440.0,
+        "margin_pct": 20.683903252710593
       },
       "129": {
-        "dem_votes": 14590,
-        "rep_votes": 10936,
-        "other_votes": 1188,
-        "total_votes": 26714,
+        "dem_votes": 14564,
+        "rep_votes": 10911,
+        "other_votes": 1183,
+        "total_votes": 26658,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3654,
-        "margin_pct": 13.678221157445533
+        "margin": 3653.0,
+        "margin_pct": 13.703203541150874
       },
       "130": {
-        "dem_votes": 11856,
-        "rep_votes": 22453,
-        "other_votes": 1717,
-        "total_votes": 36026,
+        "dem_votes": 11559,
+        "rep_votes": 21880,
+        "other_votes": 1668,
+        "total_votes": 35107,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 10597,
-        "margin_pct": 29.41486704047077
+        "margin": 10321.0,
+        "margin_pct": 29.39869541686843
       },
       "131": {
-        "dem_votes": 15838,
-        "rep_votes": 21712,
-        "other_votes": 1689,
-        "total_votes": 39239,
+        "dem_votes": 15815,
+        "rep_votes": 21679,
+        "other_votes": 1687,
+        "total_votes": 39181,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 5874,
-        "margin_pct": 14.969800453630317
+        "margin": 5864.0,
+        "margin_pct": 14.966437814246703
       },
       "132": {
-        "dem_votes": 17721,
-        "rep_votes": 14763,
-        "other_votes": 1396,
-        "total_votes": 33880,
+        "dem_votes": 17682,
+        "rep_votes": 14725,
+        "other_votes": 1393,
+        "total_votes": 33800,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2958,
-        "margin_pct": 8.73081463990555
+        "margin": 2957.0,
+        "margin_pct": 8.748520710059172
       },
       "133": {
-        "dem_votes": 16966,
-        "rep_votes": 13306,
-        "other_votes": 1609,
-        "total_votes": 31881,
+        "dem_votes": 16937,
+        "rep_votes": 13286,
+        "other_votes": 1606,
+        "total_votes": 31829,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3660,
-        "margin_pct": 11.480191963865625
+        "margin": 3651.0,
+        "margin_pct": 11.470671400295327
       },
       "134": {
-        "dem_votes": 14312,
-        "rep_votes": 9638,
-        "other_votes": 1282,
-        "total_votes": 25232,
+        "dem_votes": 14284,
+        "rep_votes": 9614,
+        "other_votes": 1280,
+        "total_votes": 25178,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 4674,
-        "margin_pct": 18.52409638554217
+        "margin": 4670.0,
+        "margin_pct": 18.547938676622447
       },
       "135": {
-        "dem_votes": 18802,
-        "rep_votes": 10904,
-        "other_votes": 1241,
-        "total_votes": 30947,
+        "dem_votes": 19522,
+        "rep_votes": 11964,
+        "other_votes": 1322,
+        "total_votes": 32808,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 7898,
-        "margin_pct": 25.521052121368793
+        "margin": 7558.0,
+        "margin_pct": 23.03706413069983
       },
       "136": {
-        "dem_votes": 15147,
-        "rep_votes": 11647,
-        "other_votes": 1404,
-        "total_votes": 28198,
+        "dem_votes": 15234,
+        "rep_votes": 11750,
+        "other_votes": 1411,
+        "total_votes": 28395,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3500,
-        "margin_pct": 12.412227817575715
+        "margin": 3484.0,
+        "margin_pct": 12.269765803838704
       },
       "137": {
-        "dem_votes": 17527,
-        "rep_votes": 18992,
-        "other_votes": 1442,
-        "total_votes": 37961,
+        "dem_votes": 16720,
+        "rep_votes": 17832,
+        "other_votes": 1359,
+        "total_votes": 35911,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 1465,
-        "margin_pct": 3.8592239403598434
+        "margin": 1112.0,
+        "margin_pct": 3.096544234357161
       },
       "138": {
         "dem_votes": 13836,
-        "rep_votes": 22305,
-        "other_votes": 1581,
-        "total_votes": 37722,
+        "rep_votes": 22296,
+        "other_votes": 1592,
+        "total_votes": 37724,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 8469,
-        "margin_pct": 22.4510895498648
+        "margin": 8460.0,
+        "margin_pct": 22.426041777118012
       },
       "139": {
-        "dem_votes": 11935,
-        "rep_votes": 22945,
-        "other_votes": 1490,
-        "total_votes": 36370,
+        "dem_votes": 11917,
+        "rep_votes": 22920,
+        "other_votes": 1486,
+        "total_votes": 36323,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 11010,
-        "margin_pct": 30.2722023645862
+        "margin": 11003.0,
+        "margin_pct": 30.292101423340583
       },
       "140": {
         "dem_votes": 16795,
@@ -1548,7 +1550,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2460,
+        "margin": 2460.0,
         "margin_pct": 7.546012269938649
       },
       "141": {
@@ -1559,19 +1561,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3497,
+        "margin": 3497.0,
         "margin_pct": 11.08785947556993
       },
       "142": {
-        "dem_votes": 17967,
+        "dem_votes": 17968,
         "rep_votes": 19746,
         "other_votes": 1291,
-        "total_votes": 39004,
+        "total_votes": 39005,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 1779,
-        "margin_pct": 4.5610706594195465
+        "margin": 1778.0,
+        "margin_pct": 4.55838995000641
       },
       "143": {
         "dem_votes": 17459,
@@ -1581,7 +1583,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 5115,
+        "margin": 5115.0,
         "margin_pct": 12.295673076923077
       },
       "144": {
@@ -1592,7 +1594,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 1901,
+        "margin": 1901.0,
         "margin_pct": 4.825975476631718
       },
       "145": {
@@ -1603,7 +1605,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 6941,
+        "margin": 6941.0,
         "margin_pct": 18.96707200437218
       },
       "146": {
@@ -1614,30 +1616,30 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2311,
+        "margin": 2311.0,
         "margin_pct": 6.906135134327466
       },
       "147": {
         "dem_votes": 15937,
-        "rep_votes": 21643,
-        "other_votes": 1674,
-        "total_votes": 39254,
+        "rep_votes": 21805,
+        "other_votes": 1688,
+        "total_votes": 39430,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 5706,
-        "margin_pct": 14.536098232027308
+        "margin": 5868.0,
+        "margin_pct": 14.88206949023586
       },
       "148": {
-        "dem_votes": 28488,
-        "rep_votes": 11707,
-        "other_votes": 1255,
-        "total_votes": 41450,
+        "dem_votes": 27201,
+        "rep_votes": 11197,
+        "other_votes": 1208,
+        "total_votes": 39606,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 16781,
-        "margin_pct": 40.48492159227985
+        "margin": 16004.0,
+        "margin_pct": 40.40801898702217
       },
       "149": {
         "dem_votes": 23384,
@@ -1647,7 +1649,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 11344,
+        "margin": 11344.0,
         "margin_pct": 30.751714603269264
       },
       "150": {
@@ -1658,19 +1660,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2960,
+        "margin": 2960.0,
         "margin_pct": 7.971990304336115
       },
       "151": {
-        "dem_votes": 22160,
-        "rep_votes": 16475,
-        "other_votes": 1573,
-        "total_votes": 40208,
+        "dem_votes": 21382,
+        "rep_votes": 15633,
+        "other_votes": 1514,
+        "total_votes": 38529,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 5685,
-        "margin_pct": 14.138977317946678
+        "margin": 5749.0,
+        "margin_pct": 14.921228165797192
       },
       "152": {
         "dem_votes": 19781,
@@ -1680,19 +1682,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 5432,
+        "margin": 5432.0,
         "margin_pct": 15.154558643008592
       },
       "153": {
-        "dem_votes": 23840,
+        "dem_votes": 23841,
         "rep_votes": 13471,
         "other_votes": 1767,
-        "total_votes": 39078,
+        "total_votes": 39079,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 10369,
-        "margin_pct": 26.534111264650186
+        "margin": 10370.0,
+        "margin_pct": 26.535991197318253
       },
       "154": {
         "dem_votes": 29768,
@@ -1702,7 +1704,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 21493,
+        "margin": 21493.0,
         "margin_pct": 54.525851133999694
       },
       "155": {
@@ -1713,7 +1715,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2544,
+        "margin": 2544.0,
         "margin_pct": 6.491286264703631
       },
       "156": {
@@ -1724,7 +1726,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3713,
+        "margin": 3713.0,
         "margin_pct": 9.863981722543967
       },
       "157": {
@@ -1735,7 +1737,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3963,
+        "margin": 3963.0,
         "margin_pct": 9.653139767135967
       },
       "158": {
@@ -1746,19 +1748,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2567,
+        "margin": 2567.0,
         "margin_pct": 6.977060230484888
       },
       "159": {
-        "dem_votes": 18080,
-        "rep_votes": 8118,
-        "other_votes": 1124,
-        "total_votes": 27322,
+        "dem_votes": 17557,
+        "rep_votes": 8086,
+        "other_votes": 1098,
+        "total_votes": 26741,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 9962,
-        "margin_pct": 36.461459629602516
+        "margin": 9471.0,
+        "margin_pct": 35.41752365281777
       },
       "160": {
         "dem_votes": 18866,
@@ -1768,19 +1770,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 2745,
+        "margin": 2745.0,
         "margin_pct": 6.588896089868222
       },
       "161": {
-        "dem_votes": 19699,
-        "rep_votes": 16958,
-        "other_votes": 1429,
-        "total_votes": 38086,
+        "dem_votes": 20222,
+        "rep_votes": 16990,
+        "other_votes": 1455,
+        "total_votes": 38667,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2741,
-        "margin_pct": 7.1968702410334515
+        "margin": 3232.0,
+        "margin_pct": 8.358548633201437
       },
       "162": {
         "dem_votes": 18430,
@@ -1790,19 +1792,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2980,
+        "margin": 2980.0,
         "margin_pct": 8.398387960431757
       },
       "163": {
-        "dem_votes": 19651,
-        "rep_votes": 13398,
-        "other_votes": 1399,
-        "total_votes": 34448,
+        "dem_votes": 19206,
+        "rep_votes": 12946,
+        "other_votes": 1356,
+        "total_votes": 33508,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 6253,
-        "margin_pct": 18.151997213190896
+        "margin": 6260.0,
+        "margin_pct": 18.682105765787274
       },
       "164": {
         "dem_votes": 21314,
@@ -1812,19 +1814,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 16367,
+        "margin": 16367.0,
         "margin_pct": 59.93481763585763
       },
       "165": {
-        "dem_votes": 21505,
-        "rep_votes": 18198,
-        "other_votes": 1466,
-        "total_votes": 41169,
+        "dem_votes": 21515,
+        "rep_votes": 18298,
+        "other_votes": 1487,
+        "total_votes": 41300,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3307,
-        "margin_pct": 8.032743083387986
+        "margin": 3217.0,
+        "margin_pct": 7.789346246973365
       },
       "166": {
         "dem_votes": 23156,
@@ -1834,7 +1836,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 6536,
+        "margin": 6536.0,
         "margin_pct": 15.85522645125294
       },
       "167": {
@@ -1845,7 +1847,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3840,
+        "margin": 3840.0,
         "margin_pct": 10.066586273790175
       },
       "168": {
@@ -1856,7 +1858,7 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3202,
+        "margin": 3202.0,
         "margin_pct": 8.672806067172264
       },
       "169": {
@@ -1867,74 +1869,74 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 12793,
+        "margin": 12793.0,
         "margin_pct": 37.20842301204119
       },
       "170": {
-        "dem_votes": 12481,
-        "rep_votes": 14696,
-        "other_votes": 1051,
-        "total_votes": 28228,
+        "dem_votes": 12471,
+        "rep_votes": 14679,
+        "other_votes": 1048,
+        "total_votes": 28198,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 2215,
-        "margin_pct": 7.846818761513391
+        "margin": 2208.0,
+        "margin_pct": 7.830342577487764
       },
       "171": {
-        "dem_votes": 8717,
-        "rep_votes": 22205,
+        "dem_votes": 8718,
+        "rep_votes": 22207,
         "other_votes": 1438,
-        "total_votes": 32360,
+        "total_votes": 32363,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13488,
-        "margin_pct": 41.68108776266996
+        "margin": 13489.0,
+        "margin_pct": 41.68031393875722
       },
       "172": {
-        "dem_votes": 13718,
-        "rep_votes": 11984,
+        "dem_votes": 13711,
+        "rep_votes": 11976,
         "other_votes": 965,
-        "total_votes": 26667,
+        "total_votes": 26652,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 1734,
-        "margin_pct": 6.502418719766003
+        "margin": 1735.0,
+        "margin_pct": 6.509830406723697
       },
       "173": {
-        "dem_votes": 12717,
-        "rep_votes": 9839,
-        "other_votes": 1004,
-        "total_votes": 23560,
+        "dem_votes": 12713,
+        "rep_votes": 9833,
+        "other_votes": 1002,
+        "total_votes": 23548,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 2878,
-        "margin_pct": 12.215619694397283
+        "margin": 2880.0,
+        "margin_pct": 12.230338032953966
       },
       "174": {
-        "dem_votes": 13627,
-        "rep_votes": 10435,
-        "other_votes": 946,
-        "total_votes": 25008,
+        "dem_votes": 13614,
+        "rep_votes": 10431,
+        "other_votes": 944,
+        "total_votes": 24989,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3192,
-        "margin_pct": 12.76391554702495
+        "margin": 3183.0,
+        "margin_pct": 12.73760454600024
       },
       "175": {
-        "dem_votes": 26206,
-        "rep_votes": 6015,
-        "other_votes": 1389,
-        "total_votes": 33610,
+        "dem_votes": 32200,
+        "rep_votes": 6737,
+        "other_votes": 1612,
+        "total_votes": 40549,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 20191,
-        "margin_pct": 60.074382624218984
+        "margin": 25463.0,
+        "margin_pct": 62.795629978544476
       },
       "176": {
         "dem_votes": 13040,
@@ -1944,19 +1946,19 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 4554,
+        "margin": 4554.0,
         "margin_pct": 14.153406265539534
       },
       "177": {
-        "dem_votes": 15581,
-        "rep_votes": 8411,
-        "other_votes": 1297,
-        "total_votes": 25289,
+        "dem_votes": 14288,
+        "rep_votes": 7963,
+        "other_votes": 1203,
+        "total_votes": 23454,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 7170,
-        "margin_pct": 28.352248012970065
+        "margin": 6325.0,
+        "margin_pct": 26.967681418947727
       },
       "178": {
         "dem_votes": 17760,
@@ -1966,162 +1968,162 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 7453,
+        "margin": 7453.0,
         "margin_pct": 16.883381660021747
       },
       "179": {
-        "dem_votes": 16772,
-        "rep_votes": 2491,
-        "other_votes": 656,
-        "total_votes": 19919,
+        "dem_votes": 16767,
+        "rep_votes": 2489,
+        "other_votes": 655,
+        "total_votes": 19911,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 14281,
-        "margin_pct": 71.69536623324464
+        "margin": 14278.0,
+        "margin_pct": 71.70910551956206
       },
       "180": {
-        "dem_votes": 12942,
-        "rep_votes": 2598,
+        "dem_votes": 12934,
+        "rep_votes": 2597,
         "other_votes": 656,
-        "total_votes": 16196,
+        "total_votes": 16187,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 10344,
-        "margin_pct": 63.86762163497159
+        "margin": 10337.0,
+        "margin_pct": 63.85988756409464
       },
       "181": {
-        "dem_votes": 20753,
-        "rep_votes": 2025,
+        "dem_votes": 20740,
+        "rep_votes": 2020,
         "other_votes": 820,
-        "total_votes": 23598,
+        "total_votes": 23580,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 18728,
-        "margin_pct": 79.36265785236037
+        "margin": 18720.0,
+        "margin_pct": 79.38931297709924
       },
       "182": {
-        "dem_votes": 30599,
-        "rep_votes": 5597,
-        "other_votes": 1167,
-        "total_votes": 37363,
+        "dem_votes": 34846,
+        "rep_votes": 6138,
+        "other_votes": 1370,
+        "total_votes": 42354,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 25002,
-        "margin_pct": 66.91646816369136
+        "margin": 28708.0,
+        "margin_pct": 67.78108325069651
       },
       "183": {
-        "dem_votes": 13512,
-        "rep_votes": 22010,
-        "other_votes": 1656,
-        "total_votes": 37178,
+        "dem_votes": 12770,
+        "rep_votes": 21170,
+        "other_votes": 1600,
+        "total_votes": 35540,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 8498,
-        "margin_pct": 22.85760395933079
+        "margin": 8400.0,
+        "margin_pct": 23.635340461451886
       },
       "184": {
-        "dem_votes": 18230,
-        "rep_votes": 8340,
-        "other_votes": 1128,
-        "total_votes": 27698,
+        "dem_votes": 20347,
+        "rep_votes": 8384,
+        "other_votes": 1192,
+        "total_votes": 29923,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 9890,
-        "margin_pct": 35.70654920932919
+        "margin": 11963.0,
+        "margin_pct": 39.97928015239114
       },
       "185": {
-        "dem_votes": 19492,
-        "rep_votes": 8140,
-        "other_votes": 852,
-        "total_votes": 28484,
+        "dem_votes": 19478,
+        "rep_votes": 8136,
+        "other_votes": 850,
+        "total_votes": 28464,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 11352,
-        "margin_pct": 39.853953096475216
+        "margin": 11342.0,
+        "margin_pct": 39.84682405845981
       },
       "186": {
-        "dem_votes": 27716,
-        "rep_votes": 3160,
-        "other_votes": 1046,
-        "total_votes": 31922,
+        "dem_votes": 27124,
+        "rep_votes": 3135,
+        "other_votes": 1023,
+        "total_votes": 31282,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 24556,
-        "margin_pct": 76.9250046989537
+        "margin": 23989.0,
+        "margin_pct": 76.68627325618567
       },
       "187": {
-        "dem_votes": 15599,
-        "rep_votes": 21371,
-        "other_votes": 1639,
-        "total_votes": 38609,
+        "dem_votes": 15559,
+        "rep_votes": 21323,
+        "other_votes": 1635,
+        "total_votes": 38517,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 5772,
-        "margin_pct": 14.949882151829886
+        "margin": 5764.0,
+        "margin_pct": 14.96482072850949
       },
       "188": {
-        "dem_votes": 24861,
-        "rep_votes": 1457,
-        "other_votes": 1102,
-        "total_votes": 27420,
+        "dem_votes": 23359,
+        "rep_votes": 1409,
+        "other_votes": 1032,
+        "total_votes": 25800,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 23404,
-        "margin_pct": 85.35375638220277
+        "margin": 21950.0,
+        "margin_pct": 85.07751937984496
       },
       "189": {
-        "dem_votes": 15245,
-        "rep_votes": 11718,
-        "other_votes": 1326,
-        "total_votes": 28289,
+        "dem_votes": 15235,
+        "rep_votes": 11714,
+        "other_votes": 1325,
+        "total_votes": 28274,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 3527,
-        "margin_pct": 12.467743645940118
+        "margin": 3521.0,
+        "margin_pct": 12.453137157812831
       },
       "190": {
-        "dem_votes": 27328,
-        "rep_votes": 1010,
-        "other_votes": 658,
-        "total_votes": 28996,
+        "dem_votes": 24014,
+        "rep_votes": 843,
+        "other_votes": 549,
+        "total_votes": 25406,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 26318,
-        "margin_pct": 90.7642433439095
+        "margin": 23171.0,
+        "margin_pct": 91.20286546485083
       },
       "191": {
-        "dem_votes": 25771,
-        "rep_votes": 1107,
-        "other_votes": 653,
-        "total_votes": 27531,
+        "dem_votes": 27568,
+        "rep_votes": 1903,
+        "other_votes": 813,
+        "total_votes": 30284,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 24664,
-        "margin_pct": 89.58628455195961
+        "margin": 25665.0,
+        "margin_pct": 84.74772156914543
       },
       "192": {
-        "dem_votes": 28448,
-        "rep_votes": 1159,
-        "other_votes": 627,
-        "total_votes": 30234,
+        "dem_votes": 29297,
+        "rep_votes": 1432,
+        "other_votes": 676,
+        "total_votes": 31405,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 27289,
-        "margin_pct": 90.25931070979692
+        "margin": 27865.0,
+        "margin_pct": 88.72790956854004
       },
       "193": {
         "dem_votes": 8362,
@@ -2131,118 +2133,118 @@
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13694,
+        "margin": 13694.0,
         "margin_pct": 42.997990454659636
       },
       "194": {
-        "dem_votes": 25243,
-        "rep_votes": 8529,
-        "other_votes": 1604,
-        "total_votes": 35376,
+        "dem_votes": 22632,
+        "rep_votes": 7700,
+        "other_votes": 1406,
+        "total_votes": 31738,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 16714,
-        "margin_pct": 47.24672094075079
+        "margin": 14932.0,
+        "margin_pct": 47.04770306887642
       },
       "195": {
-        "dem_votes": 26320,
-        "rep_votes": 2339,
-        "other_votes": 917,
-        "total_votes": 29576,
+        "dem_votes": 26070,
+        "rep_votes": 2334,
+        "other_votes": 911,
+        "total_votes": 29315,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 23981,
-        "margin_pct": 81.0826345685691
+        "margin": 23736.0,
+        "margin_pct": 80.96878731025072
       },
       "196": {
         "dem_votes": 10483,
-        "rep_votes": 23724,
+        "rep_votes": 23723,
         "other_votes": 1633,
-        "total_votes": 35840,
+        "total_votes": 35839,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 13241,
-        "margin_pct": 36.94475446428571
+        "margin": 13240.0,
+        "margin_pct": 36.94299506124613
       },
       "197": {
-        "dem_votes": 18289,
-        "rep_votes": 1993,
-        "other_votes": 655,
-        "total_votes": 20937,
+        "dem_votes": 17754,
+        "rep_votes": 1906,
+        "other_votes": 621,
+        "total_votes": 20281,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 16296,
-        "margin_pct": 77.83350050150452
+        "margin": 15848.0,
+        "margin_pct": 78.14210344657562
       },
       "198": {
-        "dem_votes": 26436,
-        "rep_votes": 1181,
-        "other_votes": 719,
-        "total_votes": 28336,
+        "dem_votes": 25772,
+        "rep_votes": 1105,
+        "other_votes": 693,
+        "total_votes": 27570,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 25255,
-        "margin_pct": 89.12690570299266
+        "margin": 24667.0,
+        "margin_pct": 89.47043888284367
       },
       "199": {
-        "dem_votes": 11594,
-        "rep_votes": 19369,
-        "other_votes": 1464,
-        "total_votes": 32427,
+        "dem_votes": 11588,
+        "rep_votes": 19358,
+        "other_votes": 1463,
+        "total_votes": 32409,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 7775,
-        "margin_pct": 23.976932802911154
+        "margin": 7770.0,
+        "margin_pct": 23.974821808756825
       },
       "200": {
-        "dem_votes": 37987,
-        "rep_votes": 1338,
-        "other_votes": 859,
-        "total_votes": 40184,
+        "dem_votes": 35476,
+        "rep_votes": 1219,
+        "other_votes": 770,
+        "total_votes": 37465,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 36649,
-        "margin_pct": 91.20296635476807
+        "margin": 34257.0,
+        "margin_pct": 91.43734151875084
       },
       "201": {
-        "dem_votes": 29471,
-        "rep_votes": 866,
-        "other_votes": 788,
-        "total_votes": 31125,
+        "dem_votes": 29073,
+        "rep_votes": 856,
+        "other_votes": 780,
+        "total_votes": 30709,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 28605,
-        "margin_pct": 91.90361445783132
+        "margin": 28217.0,
+        "margin_pct": 91.88511511283338
       },
       "202": {
-        "dem_votes": 12557,
+        "dem_votes": 12547,
         "rep_votes": 4860,
-        "other_votes": 749,
-        "total_votes": 18166,
+        "other_votes": 748,
+        "total_votes": 18155,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 7697,
-        "margin_pct": 42.37036221512716
+        "margin": 7687.0,
+        "margin_pct": 42.340952905535666
       },
       "203": {
-        "dem_votes": 19614,
-        "rep_votes": 3848,
-        "other_votes": 735,
-        "total_votes": 24197,
+        "dem_votes": 18163,
+        "rep_votes": 3632,
+        "other_votes": 702,
+        "total_votes": 22497,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "D",
-        "margin": 15766,
-        "margin_pct": 65.1568376244989
+        "margin": 14531.0,
+        "margin_pct": 64.59083433346669
       }
     }
   }

@@ -6,65 +6,67 @@
     "districts_observed": 50,
     "districts_expected": 50,
     "coverage_percent": 100.0,
-    "unmapped_blocks": 0,
-    "source": "RDH 2020 general election results disaggregated to 2020 Census blocks"
+    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "unmatched_source_vtds": 0,
+    "unmatched_source_votes": 0.0,
+    "unmatched_source_keys": []
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 101092,
-        "rep_votes": 24441,
-        "other_votes": 4312,
-        "total_votes": 129845,
+        "dem_votes": 112665,
+        "rep_votes": 25426,
+        "other_votes": 4695,
+        "total_votes": 142786,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 76651,
-        "margin_pct": 59.03269282606184
+        "margin": 87239.0,
+        "margin_pct": 61.0977266678806
       },
       "2": {
-        "dem_votes": 62338,
-        "rep_votes": 18150,
-        "other_votes": 2250,
-        "total_votes": 82738,
+        "dem_votes": 60840,
+        "rep_votes": 17922,
+        "other_votes": 2222,
+        "total_votes": 80984,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 44188,
-        "margin_pct": 53.407140612535954
+        "margin": 42918.0,
+        "margin_pct": 52.99565346241233
       },
       "3": {
-        "dem_votes": 96015,
-        "rep_votes": 7227,
-        "other_votes": 2622,
-        "total_votes": 105864,
+        "dem_votes": 93288,
+        "rep_votes": 7079,
+        "other_votes": 2566,
+        "total_votes": 102933,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 88788,
-        "margin_pct": 83.86987077760145
+        "margin": 86209.0,
+        "margin_pct": 83.75253805873723
       },
       "4": {
-        "dem_votes": 132523,
-        "rep_votes": 20344,
-        "other_votes": 3543,
-        "total_votes": 156410,
+        "dem_votes": 129583,
+        "rep_votes": 20220,
+        "other_votes": 3450,
+        "total_votes": 153253,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 112179,
-        "margin_pct": 71.72111757560258
+        "margin": 109363.0,
+        "margin_pct": 71.36108265417317
       },
       "5": {
-        "dem_votes": 61975,
-        "rep_votes": 45289,
-        "other_votes": 2534,
-        "total_votes": 109798,
+        "dem_votes": 61076,
+        "rep_votes": 44975,
+        "other_votes": 2484,
+        "total_votes": 108535,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 16686,
-        "margin_pct": 15.196998123827393
+        "margin": 16101.0,
+        "margin_pct": 14.834845902243515
       },
       "6": {
         "dem_votes": 80416,
@@ -74,41 +76,41 @@
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 3054,
+        "margin": 3054.0,
         "margin_pct": 1.8917596337890321
       },
       "7": {
-        "dem_votes": 111552,
-        "rep_votes": 16565,
-        "other_votes": 3934,
-        "total_votes": 132051,
+        "dem_votes": 108376,
+        "rep_votes": 16019,
+        "other_votes": 3757,
+        "total_votes": 128152,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 94987,
-        "margin_pct": 71.9320565539072
+        "margin": 92357.0,
+        "margin_pct": 72.06832511392722
       },
       "8": {
-        "dem_votes": 100555,
-        "rep_votes": 16249,
-        "other_votes": 3433,
-        "total_votes": 120237,
+        "dem_votes": 99867,
+        "rep_votes": 16501,
+        "other_votes": 3423,
+        "total_votes": 119791,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 84306,
-        "margin_pct": 70.11651987325033
+        "margin": 83366.0,
+        "margin_pct": 69.59287425599587
       },
       "9": {
-        "dem_votes": 80160,
+        "dem_votes": 79860,
         "rep_votes": 60432,
-        "other_votes": 3261,
-        "total_votes": 143853,
+        "other_votes": 3262,
+        "total_votes": 143554,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 19728,
-        "margin_pct": 13.713999708035285
+        "margin": 19428.0,
+        "margin_pct": 13.533583181241902
       },
       "10": {
         "dem_votes": 91751,
@@ -118,52 +120,52 @@
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 22472,
+        "margin": 22472.0,
         "margin_pct": 13.581119874293657
       },
       "11": {
-        "dem_votes": 60408,
-        "rep_votes": 47825,
-        "other_votes": 3662,
-        "total_votes": 111895,
+        "dem_votes": 60296,
+        "rep_votes": 47750,
+        "other_votes": 3649,
+        "total_votes": 111695,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 12583,
-        "margin_pct": 11.24536395728138
+        "margin": 12546.0,
+        "margin_pct": 11.232373875285376
       },
       "12": {
-        "dem_votes": 94455,
-        "rep_votes": 61494,
-        "other_votes": 4090,
-        "total_votes": 160039,
+        "dem_votes": 92942,
+        "rep_votes": 60221,
+        "other_votes": 4013,
+        "total_votes": 157176,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 32961,
-        "margin_pct": 20.5956048213248
+        "margin": 32721.0,
+        "margin_pct": 20.818063826538403
       },
       "13": {
-        "dem_votes": 50007,
-        "rep_votes": 65958,
-        "other_votes": 3592,
-        "total_votes": 119557,
+        "dem_votes": 49999,
+        "rep_votes": 65937,
+        "other_votes": 3591,
+        "total_votes": 119527,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 15951,
-        "margin_pct": 13.341753305954482
+        "margin": 15938.0,
+        "margin_pct": 13.334225739791009
       },
       "14": {
-        "dem_votes": 64600,
-        "rep_votes": 51982,
-        "other_votes": 3787,
-        "total_votes": 120369,
+        "dem_votes": 64524,
+        "rep_votes": 51928,
+        "other_votes": 3738,
+        "total_votes": 120190,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 12618,
-        "margin_pct": 10.482765496099494
+        "margin": 12596.0,
+        "margin_pct": 10.480073217405774
       },
       "15": {
         "dem_votes": 74807,
@@ -173,41 +175,41 @@
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 22077,
+        "margin": 22077.0,
         "margin_pct": 16.767554019671135
       },
       "16": {
-        "dem_votes": 70062,
-        "rep_votes": 81364,
-        "other_votes": 4572,
-        "total_votes": 155998,
+        "dem_votes": 69961,
+        "rep_votes": 81261,
+        "other_votes": 4564,
+        "total_votes": 155786,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 11302,
-        "margin_pct": 7.2449646790343465
+        "margin": 11300.0,
+        "margin_pct": 7.2535401127187304
       },
       "17": {
-        "dem_votes": 101052,
-        "rep_votes": 42761,
-        "other_votes": 3464,
-        "total_votes": 147277,
+        "dem_votes": 99636,
+        "rep_votes": 42344,
+        "other_votes": 3433,
+        "total_votes": 145413,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 58291,
-        "margin_pct": 39.579160357693326
+        "margin": 57292.0,
+        "margin_pct": 39.399503483182386
       },
       "18": {
-        "dem_votes": 71820,
-        "rep_votes": 58972,
-        "other_votes": 4204,
-        "total_votes": 134996,
+        "dem_votes": 71844,
+        "rep_votes": 58969,
+        "other_votes": 4213,
+        "total_votes": 135026,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 12848,
-        "margin_pct": 9.517319031675013
+        "margin": 12875.0,
+        "margin_pct": 9.535200628027194
       },
       "19": {
         "dem_votes": 81704,
@@ -217,206 +219,206 @@
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 21197,
+        "margin": 21197.0,
         "margin_pct": 14.520880144681318
       },
       "20": {
-        "dem_votes": 59378,
-        "rep_votes": 80975,
-        "other_votes": 4064,
-        "total_votes": 144417,
+        "dem_votes": 59395,
+        "rep_votes": 80984,
+        "other_votes": 4066,
+        "total_votes": 144445,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 21597,
-        "margin_pct": 14.954610606784518
+        "margin": 21589.0,
+        "margin_pct": 14.946173283948907
       },
       "21": {
-        "dem_votes": 43847,
-        "rep_votes": 88515,
-        "other_votes": 3929,
-        "total_votes": 136291,
+        "dem_votes": 42955,
+        "rep_votes": 86424,
+        "other_votes": 3860,
+        "total_votes": 133239,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 44668,
-        "margin_pct": 32.77399094584382
+        "margin": 43469.0,
+        "margin_pct": 32.6248320686886
       },
       "22": {
-        "dem_votes": 71729,
-        "rep_votes": 44785,
+        "dem_votes": 71755,
+        "rep_votes": 44809,
         "other_votes": 3219,
-        "total_votes": 119733,
+        "total_votes": 119783,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 26944,
-        "margin_pct": 22.503403405911488
+        "margin": 26946.0,
+        "margin_pct": 22.495679687434777
       },
       "23": {
         "dem_votes": 39432,
         "rep_votes": 89163,
-        "other_votes": 3939,
-        "total_votes": 132534,
+        "other_votes": 3938,
+        "total_votes": 132533,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 49731,
-        "margin_pct": 37.52320159355335
+        "margin": 49731.0,
+        "margin_pct": 37.52348471701388
       },
       "24": {
-        "dem_votes": 72942,
-        "rep_votes": 72261,
-        "other_votes": 4613,
-        "total_votes": 149816,
+        "dem_votes": 72608,
+        "rep_votes": 71715,
+        "other_votes": 4581,
+        "total_votes": 148904,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 681,
-        "margin_pct": 0.45455759064452395
+        "margin": 893.0,
+        "margin_pct": 0.5997152527803148
       },
       "25": {
-        "dem_votes": 46431,
-        "rep_votes": 80104,
-        "other_votes": 3745,
-        "total_votes": 130280,
+        "dem_votes": 46651,
+        "rep_votes": 80111,
+        "other_votes": 3747,
+        "total_votes": 130509,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 33673,
-        "margin_pct": 25.846638010439055
+        "margin": 33460.0,
+        "margin_pct": 25.6380785999433
       },
       "26": {
-        "dem_votes": 85271,
-        "rep_votes": 56161,
-        "other_votes": 3292,
-        "total_votes": 144724,
+        "dem_votes": 85518,
+        "rep_votes": 56409,
+        "other_votes": 3315,
+        "total_votes": 145242,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 29110,
-        "margin_pct": 20.114148309886403
+        "margin": 29109.0,
+        "margin_pct": 20.041723468418226
       },
       "27": {
-        "dem_votes": 44911,
-        "rep_votes": 78847,
-        "other_votes": 3825,
-        "total_votes": 127583,
+        "dem_votes": 44996,
+        "rep_votes": 79144,
+        "other_votes": 3833,
+        "total_votes": 127973,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 33936,
-        "margin_pct": 26.599155059843394
+        "margin": 34148.0,
+        "margin_pct": 26.6837536042759
       },
       "28": {
-        "dem_votes": 48007,
-        "rep_votes": 88831,
-        "other_votes": 4426,
-        "total_votes": 141264,
+        "dem_votes": 47421,
+        "rep_votes": 87598,
+        "other_votes": 4386,
+        "total_votes": 139405,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 40824,
-        "margin_pct": 28.899082568807337
+        "margin": 40177.0,
+        "margin_pct": 28.820343603170617
       },
       "29": {
-        "dem_votes": 44946,
-        "rep_votes": 73610,
-        "other_votes": 3641,
-        "total_votes": 122197,
+        "dem_votes": 44573,
+        "rep_votes": 73032,
+        "other_votes": 3619,
+        "total_votes": 121224,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 28664,
-        "margin_pct": 23.4572043503523
+        "margin": 28459.0,
+        "margin_pct": 23.4763743153171
       },
       "30": {
         "dem_votes": 31660,
-        "rep_votes": 91698,
-        "other_votes": 3105,
-        "total_votes": 126463,
+        "rep_votes": 91699,
+        "other_votes": 3106,
+        "total_votes": 126465,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 60038,
-        "margin_pct": 47.47475546207191
+        "margin": 60039.0,
+        "margin_pct": 47.474795397936184
       },
       "31": {
-        "dem_votes": 54480,
-        "rep_votes": 71343,
-        "other_votes": 3897,
-        "total_votes": 129720,
+        "dem_votes": 55066,
+        "rep_votes": 72576,
+        "other_votes": 3937,
+        "total_votes": 131579,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 16863,
-        "margin_pct": 12.9995374653099
+        "margin": 17510.0,
+        "margin_pct": 13.307594676962129
       },
       "32": {
-        "dem_votes": 39956,
-        "rep_votes": 88245,
-        "other_votes": 2551,
-        "total_votes": 130752,
+        "dem_votes": 39816,
+        "rep_votes": 87697,
+        "other_votes": 2539,
+        "total_votes": 130052,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 48289,
-        "margin_pct": 36.93174865394028
+        "margin": 47881.0,
+        "margin_pct": 36.816811736843725
       },
       "33": {
         "dem_votes": 39543,
         "rep_votes": 91821,
-        "other_votes": 3934,
-        "total_votes": 135298,
+        "other_votes": 3933,
+        "total_votes": 135297,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 52278,
-        "margin_pct": 38.639152093896435
+        "margin": 52278.0,
+        "margin_pct": 38.63943768154505
       },
       "34": {
-        "dem_votes": 53376,
+        "dem_votes": 53375,
         "rep_votes": 85431,
-        "other_votes": 4051,
-        "total_votes": 142858,
+        "other_votes": 4050,
+        "total_votes": 142856,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 32055,
-        "margin_pct": 22.43836536980778
+        "margin": 32056.0,
+        "margin_pct": 22.43937951503612
       },
       "35": {
-        "dem_votes": 49418,
-        "rep_votes": 81354,
-        "other_votes": 3322,
-        "total_votes": 134094,
+        "dem_votes": 49398,
+        "rep_votes": 81347,
+        "other_votes": 3320,
+        "total_votes": 134065,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 31936,
-        "margin_pct": 23.81612898414545
+        "margin": 31949.0,
+        "margin_pct": 23.830977510908887
       },
       "36": {
-        "dem_votes": 57703,
-        "rep_votes": 85779,
-        "other_votes": 4013,
-        "total_votes": 147495,
+        "dem_votes": 57096,
+        "rep_votes": 84629,
+        "other_votes": 3971,
+        "total_votes": 145696,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 28076,
-        "margin_pct": 19.03522153293332
+        "margin": 27533.0,
+        "margin_pct": 18.89756753788711
       },
       "37": {
-        "dem_votes": 77152,
-        "rep_votes": 68808,
-        "other_votes": 3750,
-        "total_votes": 149710,
+        "dem_votes": 78339,
+        "rep_votes": 69828,
+        "other_votes": 3814,
+        "total_votes": 151981,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 8344,
-        "margin_pct": 5.573441987843164
+        "margin": 8511.0,
+        "margin_pct": 5.6000421105269735
       },
       "38": {
         "dem_votes": 88282,
@@ -426,19 +428,19 @@
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 26674,
+        "margin": 26674.0,
         "margin_pct": 17.271655939600357
       },
       "39": {
-        "dem_votes": 62354,
-        "rep_votes": 86677,
-        "other_votes": 3435,
-        "total_votes": 152466,
+        "dem_votes": 62708,
+        "rep_votes": 87412,
+        "other_votes": 3457,
+        "total_votes": 153577,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 24323,
-        "margin_pct": 15.95306494562722
+        "margin": 24704.0,
+        "margin_pct": 16.085742005638863
       },
       "40": {
         "dem_votes": 66773,
@@ -448,30 +450,30 @@
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 7841,
+        "margin": 7841.0,
         "margin_pct": 6.04786770434018
       },
       "41": {
         "dem_votes": 47556,
         "rep_votes": 82735,
-        "other_votes": 3314,
-        "total_votes": 133605,
+        "other_votes": 3315,
+        "total_votes": 133606,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 35179,
-        "margin_pct": 26.330601399648216
+        "margin": 35179.0,
+        "margin_pct": 26.33040432315914
       },
       "42": {
-        "dem_votes": 93653,
+        "dem_votes": 93654,
         "rep_votes": 39063,
-        "other_votes": 5283,
+        "other_votes": 5282,
         "total_votes": 137999,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 54590,
-        "margin_pct": 39.558257668533834
+        "margin": 54591.0,
+        "margin_pct": 39.558982311466025
       },
       "43": {
         "dem_votes": 105271,
@@ -481,19 +483,19 @@
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 79705,
+        "margin": 79705.0,
         "margin_pct": 58.568289869129764
       },
       "44": {
-        "dem_votes": 81510,
-        "rep_votes": 68407,
+        "dem_votes": 81508,
+        "rep_votes": 68405,
         "other_votes": 4473,
-        "total_votes": 154390,
+        "total_votes": 154386,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 13103,
-        "margin_pct": 8.486948636569727
+        "margin": 13103.0,
+        "margin_pct": 8.487168525643517
       },
       "45": {
         "dem_votes": 78808,
@@ -503,41 +505,41 @@
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 27600,
+        "margin": 27600.0,
         "margin_pct": 20.59885959936711
       },
       "46": {
-        "dem_votes": 57888,
+        "dem_votes": 57889,
         "rep_votes": 76652,
-        "other_votes": 3551,
+        "other_votes": 3550,
         "total_votes": 138091,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 18764,
-        "margin_pct": 13.588141153297464
+        "margin": 18763.0,
+        "margin_pct": 13.587416993142204
       },
       "47": {
         "dem_votes": 64987,
         "rep_votes": 77909,
-        "other_votes": 3983,
-        "total_votes": 146879,
+        "other_votes": 3984,
+        "total_votes": 146880,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 12922,
-        "margin_pct": 8.79771784938623
+        "margin": 12922.0,
+        "margin_pct": 8.797657952069716
       },
       "48": {
-        "dem_votes": 44702,
-        "rep_votes": 87027,
-        "other_votes": 4135,
-        "total_votes": 135864,
+        "dem_votes": 44663,
+        "rep_votes": 86974,
+        "other_votes": 4131,
+        "total_votes": 135768,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 42325,
-        "margin_pct": 31.152476005417185
+        "margin": 42311.0,
+        "margin_pct": 31.164191856696714
       },
       "49": {
         "dem_votes": 68192,
@@ -547,19 +549,19 @@
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "D",
-        "margin": 11309,
+        "margin": 11309.0,
         "margin_pct": 8.721436889310477
       },
       "50": {
         "dem_votes": 50104,
-        "rep_votes": 81095,
+        "rep_votes": 81094,
         "other_votes": 3771,
-        "total_votes": 134970,
+        "total_votes": 134969,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 30991,
-        "margin_pct": 22.96139882936949
+        "margin": 30990.0,
+        "margin_pct": 22.96082804199483
       }
     }
   }
