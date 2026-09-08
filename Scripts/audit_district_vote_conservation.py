@@ -17,6 +17,7 @@ def main():
     contest_dir = Path(sys.argv[1] if len(sys.argv) > 1 else "data/district_contests")
     selected_year = int(sys.argv[2]) if len(sys.argv) > 2 else None
     failures = []
+    presidential_totals = {}
     statewide = {}
     for source in Path("data/Openelections").glob("*/*__pa__general__precinct.csv"):
         try:
@@ -45,6 +46,15 @@ def main():
                 failures.append(
                     f"{path.name}: district total {result['total_votes']} exceeds source total {source_total}"
                 )
+            presidential_totals.setdefault(payload["year"], {})[payload.get("scope") or path.name] = result["total_votes"]
+    for year, scope_totals in sorted(presidential_totals.items()):
+        # Each scope rounds fractional allocations independently, so a small
+        # difference (at most roughly one vote per district) is expected.
+        if max(scope_totals.values()) - min(scope_totals.values()) > 250:
+            failures.append(
+                f"{year} presidential totals differ by scope: "
+                + ", ".join(f"{scope}={total}" for scope, total in sorted(scope_totals.items()))
+            )
     if failures:
         print("\n".join(failures))
         return 1

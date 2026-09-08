@@ -6,196 +6,470 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "unmatched_source_vtds": 54,
+    "unmatched_source_votes": 37318.0,
+    "unmatched_source_keys": [
+      [
+        "007",
+        "000095",
+        "ALIQUIPPA X 9"
+      ],
+      [
+        "011",
+        "000192",
+        "CAERNARVON P 2"
+      ],
+      [
+        "021",
+        "000000",
+        "NORTHERN CAMBRIA W 3 B (CONG 12)"
+      ],
+      [
+        "029",
+        "000338",
+        "EAST MARLBOROUGH X SOUTH"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 3"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 4"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 5"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 6"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 7"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 8"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 9"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 4"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 5"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 6"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 7"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 8"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 9"
+      ],
+      [
+        "045",
+        "000000",
+        "BETHEL P 5"
+      ],
+      [
+        "045",
+        "000000",
+        "BETHEL P 6"
+      ],
+      [
+        "045",
+        "000835",
+        "CONCORD D SOUTHCENTRAL"
+      ],
+      [
+        "045",
+        "000855",
+        "CONCORD D FOXHILL"
+      ],
+      [
+        "045",
+        "000832",
+        "CONCORD D MARIS GROVE"
+      ],
+      [
+        "045",
+        "001005",
+        "EDGMONT P 1"
+      ],
+      [
+        "045",
+        "001015",
+        "EDGMONT P 2"
+      ],
+      [
+        "045",
+        "002912",
+        "THORNBURY P 1"
+      ],
+      [
+        "045",
+        "002916",
+        "THORNBURY P 2"
+      ],
+      [
+        "045",
+        "002921",
+        "THORNBURY P 3"
+      ],
+      [
+        "045",
+        "002924",
+        "THORNBURY P 4"
+      ],
+      [
+        "045",
+        "002928",
+        "THORNBURY P 5"
+      ],
+      [
+        "055",
+        "000546",
+        "SOUTHAMPTON X EAST"
+      ],
+      [
+        "071",
+        "000262",
+        "EAST COCALICO X SWARTZVILLE"
+      ],
+      [
+        "071",
+        "001402",
+        "MANOR X MANOR,NEW"
+      ],
+      [
+        "091",
+        "000919",
+        "FRANCONIA P 3"
+      ],
+      [
+        "091",
+        "000924",
+        "FRANCONIA P 4"
+      ],
+      [
+        "091",
+        "000931",
+        "FRANCONIA P 6"
+      ],
+      [
+        "091",
+        "000933",
+        "FRANCONIA P 7"
+      ],
+      [
+        "091",
+        "002488",
+        "PLYMOUTH X 2 X 3A"
+      ],
+      [
+        "091",
+        "002492",
+        "PLYMOUTH X 2 X 3B"
+      ],
+      [
+        "091",
+        "002495",
+        "PLYMOUTH X 2 X 3C"
+      ],
+      [
+        "091",
+        "003078",
+        "UPPER DUBLIN X 3 X 1A"
+      ],
+      [
+        "091",
+        "003082",
+        "UPPER DUBLIN X 3 X 1B"
+      ],
+      [
+        "091",
+        "002815",
+        "UPPER DUBLIN X 5 X 3"
+      ],
+      [
+        "091",
+        "002873",
+        "UPPER DUBLIN X 6 X 3A"
+      ],
+      [
+        "091",
+        "002877",
+        "UPPER DUBLIN X 6 X 3B"
+      ],
+      [
+        "095",
+        "000755",
+        "LOWER MT. BETHEL D INDEPENDENT"
+      ],
+      [
+        "107",
+        "000796",
+        "NORTH MANHEIM P 2"
+      ],
+      [
+        "107",
+        "000802",
+        "NORTH MANHEIM P 3"
+      ],
+      [
+        "107",
+        "001235",
+        "RUSH D ELIXIR"
+      ],
+      [
+        "107",
+        "001385",
+        "SHENANDOAH P 6"
+      ],
+      [
+        "107",
+        "001505",
+        "TAMAQUA P 1"
+      ],
+      [
+        "107",
+        "001515",
+        "TAMAQUA P 2"
+      ],
+      [
+        "107",
+        "001525",
+        "TAMAQUA P 3"
+      ],
+      [
+        "107",
+        "001535",
+        "TAMAQUA P 4"
+      ],
+      [
+        "125",
+        "000695",
+        "DONEGAL X 3"
+      ]
+    ]
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 174246,
-        "rep_votes": 174069,
-        "other_votes": 7447,
-        "total_votes": 355762,
+        "dem_votes": 173958,
+        "rep_votes": 172579,
+        "other_votes": 7445,
+        "total_votes": 353982,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 177.0,
-        "margin_pct": 0.0497523625345034
+        "margin": 1379.0,
+        "margin_pct": 0.3895678311326564
       },
       "2": {
-        "dem_votes": 202312,
-        "rep_votes": 52768,
-        "other_votes": 3025,
-        "total_votes": 258105,
+        "dem_votes": 203144,
+        "rep_votes": 52667,
+        "other_votes": 3014,
+        "total_votes": 258825,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 149544.0,
-        "margin_pct": 57.939210786307896
+        "margin": 150477.0,
+        "margin_pct": 58.13851057664445
       },
       "3": {
-        "dem_votes": 317345,
-        "rep_votes": 28177,
-        "other_votes": 4148,
-        "total_votes": 349670,
+        "dem_votes": 316372,
+        "rep_votes": 28320,
+        "other_votes": 4157,
+        "total_votes": 348849,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 289168.0,
-        "margin_pct": 82.69740040609717
+        "margin": 288052.0,
+        "margin_pct": 82.57211572915503
       },
       "4": {
-        "dem_votes": 184346,
-        "rep_votes": 150684,
-        "other_votes": 6090,
-        "total_votes": 341120,
+        "dem_votes": 188560,
+        "rep_votes": 154815,
+        "other_votes": 6242,
+        "total_votes": 349617,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 33662.0,
-        "margin_pct": 9.868081613508444
+        "margin": 33745.0,
+        "margin_pct": 9.651990606864084
       },
       "5": {
-        "dem_votes": 197112,
-        "rep_votes": 119281,
-        "other_votes": 4891,
-        "total_votes": 321284,
+        "dem_votes": 205579,
+        "rep_votes": 122662,
+        "other_votes": 5184,
+        "total_votes": 333425,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 77831.0,
-        "margin_pct": 24.224984748695856
+        "margin": 82917.0,
+        "margin_pct": 24.868261228162254
       },
       "6": {
-        "dem_votes": 144783,
-        "rep_votes": 143915,
-        "other_votes": 11069,
-        "total_votes": 299767,
+        "dem_votes": 154716,
+        "rep_votes": 153261,
+        "other_votes": 11886,
+        "total_votes": 319863,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 868.0,
-        "margin_pct": 0.28955822355362665
+        "margin": 1455.0,
+        "margin_pct": 0.45488224646176645
       },
       "7": {
-        "dem_votes": 150232,
-        "rep_votes": 129572,
-        "other_votes": 9665,
-        "total_votes": 289469,
+        "dem_votes": 150543,
+        "rep_votes": 129862,
+        "other_votes": 9683,
+        "total_votes": 290088,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 20660.0,
-        "margin_pct": 7.137206402067234
+        "margin": 20681.0,
+        "margin_pct": 7.1292159620528945
       },
       "8": {
-        "dem_votes": 161793,
-        "rep_votes": 108469,
-        "other_votes": 12601,
-        "total_votes": 282863,
+        "dem_votes": 162848,
+        "rep_votes": 108987,
+        "other_votes": 12671,
+        "total_votes": 284506,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 53324.0,
-        "margin_pct": 18.85152883197873
+        "margin": 53861.0,
+        "margin_pct": 18.931410936851947
       },
       "9": {
-        "dem_votes": 106121,
-        "rep_votes": 149217,
-        "other_votes": 13124,
-        "total_votes": 268462,
+        "dem_votes": 117047,
+        "rep_votes": 163403,
+        "other_votes": 14354,
+        "total_votes": 294804,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "R",
-        "margin": 43096.0,
-        "margin_pct": 16.05292369124867
+        "margin": 46356.0,
+        "margin_pct": 15.724345666951603
       },
       "10": {
-        "dem_votes": 141732,
-        "rep_votes": 152987,
-        "other_votes": 11425,
-        "total_votes": 306144,
+        "dem_votes": 139599,
+        "rep_votes": 150050,
+        "other_votes": 11236,
+        "total_votes": 300885,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "R",
-        "margin": 11255.0,
-        "margin_pct": 3.676374516567367
+        "margin": 10451.0,
+        "margin_pct": 3.473420077438224
       },
       "11": {
-        "dem_votes": 107719,
-        "rep_votes": 171830,
-        "other_votes": 12813,
-        "total_votes": 292362,
+        "dem_votes": 110717,
+        "rep_votes": 178056,
+        "other_votes": 13209,
+        "total_votes": 301982,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "R",
-        "margin": 64111.0,
-        "margin_pct": 21.92863641649736
+        "margin": 67339.0,
+        "margin_pct": 22.299011199343006
       },
       "12": {
-        "dem_votes": 219146,
-        "rep_votes": 124358,
-        "other_votes": 15288,
-        "total_votes": 358792,
+        "dem_votes": 219466,
+        "rep_votes": 124442,
+        "other_votes": 15275,
+        "total_votes": 359183,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 94788.0,
-        "margin_pct": 26.418649245245156
+        "margin": 95024.0,
+        "margin_pct": 26.45559505878619
       },
       "13": {
-        "dem_votes": 99890,
-        "rep_votes": 171423,
-        "other_votes": 13653,
-        "total_votes": 284966,
+        "dem_votes": 104623,
+        "rep_votes": 178539,
+        "other_votes": 14230,
+        "total_votes": 297392,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "R",
-        "margin": 71533.0,
-        "margin_pct": 25.102292905118507
+        "margin": 73916.0,
+        "margin_pct": 24.854737181901328
       },
       "14": {
-        "dem_votes": 144177,
-        "rep_votes": 165820,
-        "other_votes": 13670,
-        "total_votes": 323667,
+        "dem_votes": 145210,
+        "rep_votes": 166847,
+        "other_votes": 13800,
+        "total_votes": 325857,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "R",
-        "margin": 21643.0,
-        "margin_pct": 6.6868108271773155
+        "margin": 21637.0,
+        "margin_pct": 6.640029215269275
       },
       "15": {
-        "dem_votes": 109673,
-        "rep_votes": 158642,
-        "other_votes": 15291,
-        "total_votes": 283606,
+        "dem_votes": 118507,
+        "rep_votes": 172355,
+        "other_votes": 16474,
+        "total_votes": 307336,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "R",
-        "margin": 48969.0,
-        "margin_pct": 17.266559945840356
+        "margin": 53848.0,
+        "margin_pct": 17.52088918968165
       },
       "16": {
-        "dem_votes": 147312,
-        "rep_votes": 155799,
-        "other_votes": 14410,
-        "total_votes": 317521,
+        "dem_votes": 152516,
+        "rep_votes": 161632,
+        "other_votes": 14897,
+        "total_votes": 329045,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "R",
-        "margin": 8487.0,
-        "margin_pct": 2.6728940762973155
+        "margin": 9116.0,
+        "margin_pct": 2.7704417328936772
       },
       "17": {
-        "dem_votes": 186005,
-        "rep_votes": 157824,
-        "other_votes": 15330,
-        "total_votes": 359159,
+        "dem_votes": 187839,
+        "rep_votes": 162112,
+        "other_votes": 15571,
+        "total_votes": 365522,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 28181.0,
-        "margin_pct": 7.846385584100634
+        "margin": 25727.0,
+        "margin_pct": 7.038427235569952
       }
     }
   }
