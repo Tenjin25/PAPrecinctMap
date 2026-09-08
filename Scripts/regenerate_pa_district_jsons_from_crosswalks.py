@@ -1199,6 +1199,8 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
     unmatched = 0
     unmatched_votes = 0.0
     unmatched_keys = []
+    membership_gap_votes = defaultdict(float)
+    membership_gap_keys = defaultdict(list)
     for source_key, values in source_votes.items():
         county, source_vtd, precinct_name = source_key
         vest_targets = vest_crosswalk.get((county, compact_live_name(precinct_name)), [])
@@ -1273,6 +1275,11 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
             for target_county, target_vtd, _weight in targets
             for scope in selected_scopes
         )
+        if year < 2020 and targets and not target_has_membership:
+            # A legacy export code is not useful merely because it produced a
+            # syntactically valid target. Retry by precinct name when that VTD
+            # has no membership on the modern geometry.
+            targets = []
         if year >= 2020 and source_vtd != "000000" and (not source_vtd_source or not target_has_membership):
             live_vtds = {source_vtd}
             live_vtds.update(resolve_current_alias_vtds(county, precinct_name, live_aliases))
@@ -1295,7 +1302,9 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
             alias_keys = historical_name_keys(precinct_name)
             alias_vtds = expand_historical_alias_vtds(county, alias_keys, historical_aliases)
             for alias_vtd in alias_vtds:
-                targets.extend(source_to_target.get((county, alias_vtd), []))
+                targets.extend(maintained_historical_targets.get((county, norm(alias_vtd, 6)), []))
+                if chain is not None:
+                    targets.extend(source_to_target.get((county, alias_vtd), []))
             if not targets and fallback_aliases is not None:
                 fallback_vtds = expand_historical_alias_vtds(county, alias_keys, fallback_aliases)
                 for alias_vtd in fallback_vtds:
@@ -1335,6 +1344,16 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
             unmatched_votes += sum(float(value or 0) for value in values.values())
             unmatched_keys.append(source_key)
             continue
+        source_row_total = sum(float(value or 0) for value in values.values())
+        for scope in selected_scopes:
+            assigned_factor = sum(
+                chain_weight * sum(weight for _district, weight in memberships[scope].get((county, vtd), []))
+                for county, vtd, chain_weight in targets
+            )
+            gap = max(0.0, 1.0 - assigned_factor)
+            if gap > 1e-9:
+                membership_gap_votes[scope] += source_row_total * gap
+                membership_gap_keys[scope].append([*source_key, gap])
         for county, vtd, chain_weight in targets:
             for scope in selected_scopes:
                 for district, district_weight in memberships[scope].get((county, vtd), []):
@@ -1388,6 +1407,8 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
                 "unmatched_source_vtds": unmatched,
                 "unmatched_source_votes": unmatched_votes,
                 "unmatched_source_keys": [list(key) for key in unmatched_keys],
+                "district_membership_gap_votes": membership_gap_votes[scope],
+                "district_membership_gap_keys": membership_gap_keys[scope],
             },
             "general": {"results": results},
         }
