@@ -1322,6 +1322,29 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
             "general": {"results": results},
         }
         path = out_dir / f"{scope}_{contest}_{year}.json"
+        # The reviewed 2020 legislative files were produced from RDH's
+        # block-level disaggregation. Do not silently replace them with a
+        # lower-coverage precinct/VTD rebuild. This specifically guards the
+        # split-district redistribution that removed roughly 14,700 votes.
+        if year == 2020 and contest == "president" and scope in {"state_house", "state_senate"} and path.exists():
+            existing = json.loads(path.read_text(encoding="utf-8"))
+            if "RDH 2020 general election results disaggregated" in existing.get("meta", {}).get("source", ""):
+                existing_results = existing.get("general", {}).get("results", {})
+                changed = []
+                for district, existing_row in existing_results.items():
+                    rebuilt_row = results.get(district)
+                    if not rebuilt_row:
+                        changed.append(district)
+                        continue
+                    delta = abs(int(rebuilt_row["total_votes"]) - int(existing_row["total_votes"]))
+                    tolerance = max(5, round(int(existing_row["total_votes"]) * 0.0005))
+                    if delta > tolerance:
+                        changed.append(district)
+                if changed:
+                    raise RuntimeError(
+                        f"Refusing to overwrite reviewed RDH 2020 {scope} turnout; "
+                        f"material district changes in {len(changed)} districts"
+                    )
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8")
         print(f"wrote {path.relative_to(ROOT)} districts={len(results)} unmatched_source_vtds={unmatched}")
