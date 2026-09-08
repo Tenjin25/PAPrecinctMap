@@ -908,8 +908,11 @@ def parse_precinct_returns(path, year, office_code):
             if len(row) <= precinct_idx or row[8].strip().upper() != office_code.upper():
                 continue
             county = norm(row[county_idx], 3)
-            precinct = norm(row[precinct_idx], 6)
-            if not county or not precinct:
+            # Older PA exports sometimes leave the numeric VTD code blank even
+            # though the precinct name is populated. Preserve those rows for
+            # the historical name/geometry resolver instead of dropping them.
+            precinct = norm(row[precinct_idx], 6) or "000000"
+            if not county:
                 continue
             try:
                 votes = float(row[15] or 0)
@@ -1041,6 +1044,71 @@ def apply_exact_district_benchmarks(scope, contest, year, results):
                 "margin_pct": abs(margin) / total * 100 if total else 0.0,
             })
     return path.relative_to(DATA).as_posix()
+
+
+def read_statewide_vote_control(contest, year):
+    """Return authoritative statewide party totals for district-layer raking."""
+    benchmark = DATA / "benchmarks" / f"pa_congressional_{year}_{contest}.csv"
+    if benchmark.exists():
+        totals = {"dem_votes": 0, "rep_votes": 0, "other_votes": 0}
+        with benchmark.open(newline="", encoding="utf-8-sig") as handle:
+            rows = list(csv.DictReader(handle))
+        if rows:
+            for row in rows:
+                for field in totals:
+                    totals[field] += int(float(row.get(field) or 0))
+            return totals, benchmark.relative_to(DATA).as_posix()
+
+    path = DATA / "contests" / f"{contest}_{year}.json"
+    if not path.exists():
+        return {}, ""
+    document = json.loads(path.read_text(encoding="utf-8"))
+    totals = {
+        field: sum(int(row.get(field) or 0) for row in document.get("rows", []))
+        for field in ("dem_votes", "rep_votes", "other_votes")
+    }
+    return totals, path.relative_to(DATA).as_posix()
+
+
+def apply_statewide_vote_control(contest, year, results):
+    """Rake district party totals to statewide controls with exact rounding."""
+    controls, source = read_statewide_vote_control(contest, year)
+    if not controls or not results:
+        return ""
+    districts = sorted(results, key=lambda value: int(value) if value.isdigit() else value)
+    for field, target in controls.items():
+        observed = sum(int(results[district].get(field) or 0) for district in districts)
+        if observed > 0:
+            basis = [int(results[district].get(field) or 0) for district in districts]
+        else:
+            # Some rounded DRA tables omit minor-party votes entirely. In that
+            # case district turnout is the least-distorting allocation basis.
+            basis = [int(results[district].get("total_votes") or 0) for district in districts]
+            observed = sum(basis)
+        if observed <= 0:
+            continue
+        raw = [value * target / observed for value in basis]
+        allocated = [int(value) for value in raw]
+        remainder = target - sum(allocated)
+        order = sorted(range(len(raw)), key=lambda index: raw[index] - allocated[index], reverse=True)
+        for index in order[:remainder]:
+            allocated[index] += 1
+        for district, value in zip(districts, allocated):
+            results[district][field] = value
+
+    for result in results.values():
+        dem = int(result["dem_votes"])
+        rep = int(result["rep_votes"])
+        other = int(result["other_votes"])
+        total = dem + rep + other
+        margin = dem - rep
+        result.update({
+            "total_votes": total,
+            "winner": "D" if margin > 0 else "R" if margin < 0 else "T",
+            "margin": float(abs(margin)),
+            "margin_pct": abs(margin) / total * 100 if total else 0.0,
+        })
+    return source
 
 
 def expected_districts(scope):
@@ -1302,6 +1370,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
         results = district_result_rows(votes, candidates)
         calibration_source = apply_dra_presidential_shares(scope, contest, year, results)
         exact_benchmark_source = apply_exact_district_benchmarks(scope, contest, year, results)
+        statewide_control_source = apply_statewide_vote_control(contest, year, results)
         output = {
             "scope": scope,
             "contest_type": contest,
@@ -1314,6 +1383,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
                     f"precinct_returns_to_vtd_block_chain_{weight_mode}_districts"
                     + (f"+dra_share_calibration/{calibration_source}" if calibration_source else "")
                     + (f"+exact_district_benchmark/{exact_benchmark_source}" if exact_benchmark_source else "")
+                    + (f"+statewide_vote_control/{statewide_control_source}" if statewide_control_source else "")
                 ),
                 "unmatched_source_vtds": unmatched,
                 "unmatched_source_votes": unmatched_votes,

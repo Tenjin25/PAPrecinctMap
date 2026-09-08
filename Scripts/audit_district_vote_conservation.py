@@ -13,6 +13,25 @@ def totals(path: Path):
     }
 
 
+def statewide_control(year: int, contest: str):
+    benchmark = Path(f"data/benchmarks/pa_congressional_{year}_{contest}.csv")
+    if benchmark.exists():
+        with benchmark.open(encoding="utf-8-sig", newline="") as handle:
+            rows = list(csv.DictReader(handle))
+        return {
+            key: sum(int(float(row.get(key) or 0)) for row in rows)
+            for key in ("dem_votes", "rep_votes", "other_votes", "total_votes")
+        }
+    path = Path(f"data/contests/{contest}_{year}.json")
+    if not path.exists():
+        return {}
+    rows = json.loads(path.read_text(encoding="utf-8")).get("rows", [])
+    return {
+        key: sum(int(row.get(key) or 0) for row in rows)
+        for key in ("dem_votes", "rep_votes", "other_votes", "total_votes")
+    }
+
+
 def main():
     contest_dir = Path(sys.argv[1] if len(sys.argv) > 1 else "data/district_contests")
     selected_year = int(sys.argv[2]) if len(sys.argv) > 2 else None
@@ -40,7 +59,15 @@ def main():
         component_total = result["dem_votes"] + result["rep_votes"] + result["other_votes"]
         if component_total != result["total_votes"]:
             failures.append(f"{path.name}: components={component_total}, total={result['total_votes']}")
-        if payload.get("contest_type") == "president" and payload.get("year") in statewide:
+        source_label = str(payload.get("meta", {}).get("source") or "")
+        if payload.get("contest_type") == "president" and "statewide_vote_control/" in source_label:
+            control = statewide_control(payload["year"], "president")
+            for key, expected in control.items():
+                if result[key] != expected:
+                    failures.append(
+                        f"{path.name}: controlled {key} {result[key]} != statewide {expected}"
+                    )
+        elif payload.get("contest_type") == "president" and payload.get("year") in statewide:
             source_total = round(statewide[payload["year"]])
             if result["total_votes"] > source_total:
                 failures.append(
@@ -48,7 +75,7 @@ def main():
                 )
             presidential_totals.setdefault(payload["year"], {})[payload.get("scope") or path.name] = {
                 "total": result["total_votes"],
-                "source": str(payload.get("meta", {}).get("source") or ""),
+                "source": source_label,
             }
     for year, scope_totals in sorted(presidential_totals.items()):
         # Each scope rounds fractional allocations independently, so a small
