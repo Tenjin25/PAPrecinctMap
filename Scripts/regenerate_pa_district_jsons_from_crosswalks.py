@@ -72,6 +72,31 @@ PA_2006_GEOMETRY_CODE_ALIASES = {
     ("091", "003085"): "003082",  # Upper Dublin 3-1B
 }
 
+# High-confidence 2008 precinct-to-2010 VTD successors. These cover explicit
+# renames and code transitions only; consolidated or spatially ambiguous
+# precincts remain unmatched and are reported for review.
+PA_2008_VTD10_PROXY_ALIASES = {
+    ("003", "F150", "SHALER W 3 D 1"): "F142",
+    ("011", "000000", "CAERNARVON P 2"): "000195",
+    ("011", "000000", "FLEETWOOD D 2"): "400A",
+    ("011", "000000", "ROCKLAND P 2"): "1140B",
+    ("021", "001330", "NANTY GLO W 2 X 2"): "PR164",
+    ("049", "000000", "MILLCREEK D 24"): "PR155",
+    ("055", "000000", "SOUTHAMPTON X EAST"): "000551",
+    ("071", "001352", "MANHEIM D 20"): "PR245",
+    ("071", "001353", "MANHEIM D 21"): "PR243",
+    ("071", "001354", "MANHEIM D 22"): "PR244",
+    ("071", "001578", "NEW HOLLAND X 3"): "PR248",
+    ("091", "002495", "PLYMOUTH X 2 X 3B"): "002490",
+    ("091", "002497", "PLYMOUTH X 2 X 3C"): "002490",
+    ("091", "000000", "POTTSTOWN X 7 X 1"): "PR415",
+    ("091", "000000", "POTTSTOWN X 7 X 2"): "PR416",
+    ("091", "000000", "SKIPPACK X 3"): "PR417",
+    ("091", "003085", "UPPER DUBLIN X 3 X 1B"): "003080",
+    ("109", "000160", "PENN D 1"): "PR28",
+    ("109", "000164", "PENN D 2"): "PR26",
+}
+
 
 def norm(value, width=None):
     text = str(value or "").strip()
@@ -1152,6 +1177,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
     historical_aliases = read_historical_vtd_aliases(year)
     fallback_year = 2010 if year == 2008 else 2008 if year == 2010 else None
     fallback_chain = read_vtd_chain(fallback_year) if fallback_year else None
+    fallback_maintained_targets = read_historical_precinct_crosswalk(fallback_year) if fallback_year else {}
     fallback_aliases = read_historical_vtd_aliases(fallback_year) if fallback_year else None
     # The local 2011 boundary file is useful for auditing names, but its
     # GEOID10 values are not the source IDs used by the 2010 block-chain
@@ -1299,6 +1325,13 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
                             district_votes[scope][district][bucket] += values[bucket] * district_weight
                 continue
         if not targets and year < 2020:
+            if year == 2008 and fallback_source_to_target:
+                proxy_vtd = PA_2008_VTD10_PROXY_ALIASES.get(source_key)
+                if proxy_vtd:
+                    proxy_keys = {norm(proxy_vtd, 6), str(proxy_vtd).upper().zfill(6)}
+                    for proxy_key in proxy_keys:
+                        targets.extend(fallback_maintained_targets.get((county, proxy_key), []))
+                        targets.extend(fallback_source_to_target.get((county, proxy_key), []))
             alias_keys = historical_name_keys(precinct_name)
             alias_vtds = expand_historical_alias_vtds(county, alias_keys, historical_aliases)
             for alias_vtd in alias_vtds:

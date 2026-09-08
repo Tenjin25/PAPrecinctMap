@@ -7,38 +7,13 @@
     "districts_expected": 17,
     "coverage_percent": 100.0,
     "source": "precinct_returns_to_vtd_block_chain_area_districts+statewide_vote_control/contests/president_2008.json",
-    "unmatched_source_vtds": 49,
-    "unmatched_source_votes": 28420.0,
+    "unmatched_source_vtds": 30,
+    "unmatched_source_votes": 12621.0,
     "unmatched_source_keys": [
-      [
-        "003",
-        "F150",
-        "SHALER W 3 D 1"
-      ],
-      [
-        "011",
-        "000000",
-        "CAERNARVON P 2"
-      ],
-      [
-        "011",
-        "000000",
-        "FLEETWOOD D 2"
-      ],
-      [
-        "011",
-        "000000",
-        "ROCKLAND P 2"
-      ],
       [
         "021",
         "000680",
         "GEISTOWN X 3"
-      ],
-      [
-        "021",
-        "001330",
-        "NANTY GLO W 2 X 2"
       ],
       [
         "045",
@@ -81,69 +56,9 @@
         "THORNBURY P 5"
       ],
       [
-        "049",
-        "000000",
-        "MILLCREEK D 24"
-      ],
-      [
         "051",
         "000720",
         "PERRY D 4"
-      ],
-      [
-        "055",
-        "000000",
-        "SOUTHAMPTON X EAST"
-      ],
-      [
-        "071",
-        "001352",
-        "MANHEIM D 20"
-      ],
-      [
-        "071",
-        "001353",
-        "MANHEIM D 21"
-      ],
-      [
-        "071",
-        "001354",
-        "MANHEIM D 22"
-      ],
-      [
-        "071",
-        "001578",
-        "NEW HOLLAND X 3"
-      ],
-      [
-        "091",
-        "002495",
-        "PLYMOUTH X 2 X 3B"
-      ],
-      [
-        "091",
-        "002497",
-        "PLYMOUTH X 2 X 3C"
-      ],
-      [
-        "091",
-        "000000",
-        "POTTSTOWN X 7 X 1"
-      ],
-      [
-        "091",
-        "000000",
-        "POTTSTOWN X 7 X 2"
-      ],
-      [
-        "091",
-        "000000",
-        "SKIPPACK X 3"
-      ],
-      [
-        "091",
-        "003085",
-        "UPPER DUBLIN X 3 X 1B"
       ],
       [
         "091",
@@ -241,16 +156,6 @@
         "WEST MAHANOY X WILLIAM PENN"
       ],
       [
-        "109",
-        "000160",
-        "PENN D 1"
-      ],
-      [
-        "109",
-        "000164",
-        "PENN D 2"
-      ],
-      [
         "119",
         "000000",
         "UNION INDEPENDENT"
@@ -262,191 +167,191 @@
   "general": {
     "results": {
       "1": {
-        "dem_votes": 208790,
-        "rep_votes": 177339,
-        "other_votes": 4149,
-        "total_votes": 390278,
+        "dem_votes": 208318,
+        "rep_votes": 176786,
+        "other_votes": 4141,
+        "total_votes": 389245,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 31451.0,
-        "margin_pct": 8.058614628546831
+        "margin": 31532.0,
+        "margin_pct": 8.100810543488034
       },
       "2": {
-        "dem_votes": 222058,
-        "rep_votes": 77620,
-        "other_votes": 2694,
-        "total_votes": 302372,
+        "dem_votes": 221556,
+        "rep_votes": 77377,
+        "other_votes": 2689,
+        "total_votes": 301622,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 144438.0,
-        "margin_pct": 47.7683118807297
+        "margin": 144179.0,
+        "margin_pct": 47.801221396317246
       },
       "3": {
-        "dem_votes": 351823,
-        "rep_votes": 33848,
-        "other_votes": 1999,
-        "total_votes": 387670,
+        "dem_votes": 351027,
+        "rep_votes": 33743,
+        "other_votes": 1995,
+        "total_votes": 386765,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 317975.0,
-        "margin_pct": 82.02208063559213
+        "margin": 317284.0,
+        "margin_pct": 82.0353444598141
       },
       "4": {
-        "dem_votes": 217673,
-        "rep_votes": 153555,
-        "other_votes": 3706,
-        "total_votes": 374934,
+        "dem_votes": 220442,
+        "rep_votes": 155866,
+        "other_votes": 3757,
+        "total_votes": 380065,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 64118.0,
-        "margin_pct": 17.10114313452501
+        "margin": 64576.0,
+        "margin_pct": 16.990777893255103
       },
       "5": {
-        "dem_votes": 237765,
-        "rep_votes": 133904,
-        "other_votes": 3836,
-        "total_votes": 375505,
+        "dem_votes": 237227,
+        "rep_votes": 133487,
+        "other_votes": 3829,
+        "total_votes": 374543,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 103861.0,
-        "margin_pct": 27.659019187494177
+        "margin": 103740.0,
+        "margin_pct": 27.697754329943425
       },
       "6": {
-        "dem_votes": 192272,
-        "rep_votes": 150328,
+        "dem_votes": 192236,
+        "rep_votes": 150461,
         "other_votes": 4349,
-        "total_votes": 346949,
+        "total_votes": 347046,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 41944.0,
-        "margin_pct": 12.089384895186324
+        "margin": 41775.0,
+        "margin_pct": 12.037309175152574
       },
       "7": {
-        "dem_votes": 178981,
-        "rep_votes": 138081,
-        "other_votes": 4860,
-        "total_votes": 321922,
+        "dem_votes": 178576,
+        "rep_votes": 137650,
+        "other_votes": 4851,
+        "total_votes": 321077,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 40900.0,
-        "margin_pct": 12.7049409484285
+        "margin": 40926.0,
+        "margin_pct": 12.746475144591486
       },
       "8": {
-        "dem_votes": 189661,
-        "rep_votes": 139889,
-        "other_votes": 4730,
-        "total_votes": 334280,
+        "dem_votes": 189232,
+        "rep_votes": 139453,
+        "other_votes": 4721,
+        "total_votes": 333406,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 49772.0,
-        "margin_pct": 14.889314347253798
+        "margin": 49779.0,
+        "margin_pct": 14.930445162954475
       },
       "9": {
-        "dem_votes": 139005,
-        "rep_votes": 184091,
-        "other_votes": 5775,
-        "total_votes": 328871,
+        "dem_votes": 138691,
+        "rep_votes": 183517,
+        "other_votes": 5764,
+        "total_votes": 327972,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "R",
-        "margin": 45086.0,
-        "margin_pct": 13.709326757299975
+        "margin": 44826.0,
+        "margin_pct": 13.667630163550548
       },
       "10": {
-        "dem_votes": 161989,
-        "rep_votes": 169947,
-        "other_votes": 4477,
-        "total_votes": 336413,
+        "dem_votes": 161622,
+        "rep_votes": 169417,
+        "other_votes": 4469,
+        "total_votes": 335508,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "R",
-        "margin": 7958.0,
-        "margin_pct": 2.3655447322190284
+        "margin": 7795.0,
+        "margin_pct": 2.3233425134423022
       },
       "11": {
-        "dem_votes": 134024,
-        "rep_votes": 181991,
-        "other_votes": 4735,
-        "total_votes": 320750,
+        "dem_votes": 135439,
+        "rep_votes": 183510,
+        "other_votes": 4756,
+        "total_votes": 323705,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "R",
-        "margin": 47967.0,
-        "margin_pct": 14.954637568199534
+        "margin": 48071.0,
+        "margin_pct": 14.850249455522777
       },
       "12": {
-        "dem_votes": 237989,
-        "rep_votes": 159792,
-        "other_votes": 3886,
-        "total_votes": 401667,
+        "dem_votes": 237451,
+        "rep_votes": 159293,
+        "other_votes": 3879,
+        "total_votes": 400623,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 78197.0,
-        "margin_pct": 19.468116623969607
+        "margin": 78158.0,
+        "margin_pct": 19.509114554082014
       },
       "13": {
-        "dem_votes": 124403,
-        "rep_votes": 202226,
-        "other_votes": 4953,
-        "total_votes": 331582,
+        "dem_votes": 124616,
+        "rep_votes": 202329,
+        "other_votes": 4960,
+        "total_votes": 331905,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "R",
-        "margin": 77823.0,
-        "margin_pct": 23.470212496456384
+        "margin": 77713.0,
+        "margin_pct": 23.41422997544478
       },
       "14": {
-        "dem_votes": 160298,
-        "rep_votes": 191129,
-        "other_votes": 5050,
-        "total_votes": 356477,
+        "dem_votes": 159935,
+        "rep_votes": 190533,
+        "other_votes": 5040,
+        "total_votes": 355508,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "R",
-        "margin": 30831.0,
-        "margin_pct": 8.648804831728274
+        "margin": 30598.0,
+        "margin_pct": 8.6068386646714
       },
       "15": {
-        "dem_votes": 146312,
-        "rep_votes": 187624,
-        "other_votes": 6204,
-        "total_votes": 340140,
+        "dem_votes": 146670,
+        "rep_votes": 187987,
+        "other_votes": 6208,
+        "total_votes": 340865,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "R",
-        "margin": 41312.0,
-        "margin_pct": 12.14558711118951
+        "margin": 41317.0,
+        "margin_pct": 12.121221011250787
       },
       "16": {
-        "dem_votes": 174693,
-        "rep_votes": 181869,
-        "other_votes": 5795,
-        "total_votes": 362357,
+        "dem_votes": 174918,
+        "rep_votes": 182157,
+        "other_votes": 5797,
+        "total_votes": 362872,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "R",
-        "margin": 7176.0,
-        "margin_pct": 1.9803674277025143
+        "margin": 7239.0,
+        "margin_pct": 1.9949183183050772
       },
       "17": {
-        "dem_votes": 197963,
-        "rep_votes": 192147,
-        "other_votes": 4291,
-        "total_votes": 394401,
+        "dem_votes": 197743,
+        "rep_votes": 191814,
+        "other_votes": 4284,
+        "total_votes": 393841,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 5816.0,
-        "margin_pct": 1.4746412914774556
+        "margin": 5929.0,
+        "margin_pct": 1.505429856211009
       }
     }
   }
