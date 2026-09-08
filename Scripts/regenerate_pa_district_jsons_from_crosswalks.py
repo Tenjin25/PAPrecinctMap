@@ -35,6 +35,7 @@ SCOPES = {
 
 VTD_CHAIN_CACHE = {}
 HISTORICAL_PRECINCT_CROSSWALK_CACHE = {}
+MODERN_PRECINCT_CROSSWALK_CACHE = {}
 VTD_MEMBERSHIP_CACHE = {}
 VTD_ALIAS_CACHE = {}
 PROXY_ALIAS_CACHE = None
@@ -208,7 +209,11 @@ def read_vtd_chain(year):
     if year >= 2020:
         return None
     filename = "pa_vtd00_to_vtd20_block_chain.csv" if year < 2010 else "pa_vtd10_to_vtd20_block_chain.csv"
-    frame = read_csv(CROSSWALKS / filename)
+    path = CROSSWALKS / filename
+    if not path.exists():
+        VTD_CHAIN_CACHE[year] = None
+        return None
+    frame = read_csv(path)
     dst_county_column = "countyfp_dst" if "countyfp_dst" in frame.columns else "dst_countyfp"
     if dst_county_column != "dst_countyfp":
         frame = frame.rename(columns={dst_county_column: "dst_countyfp"})
@@ -241,6 +246,30 @@ def read_historical_precinct_crosswalk(year):
             if county and source and dst_county and dst_vtd and weight > 0:
                 result[(county, source)].append((dst_county, dst_vtd, weight))
     HISTORICAL_PRECINCT_CROSSWALK_CACHE[year] = result
+    return result
+
+
+def read_modern_precinct_crosswalk(year):
+    """Read maintained modern precinct-name to VTD20 allocations."""
+    if year in MODERN_PRECINCT_CROSSWALK_CACHE:
+        return MODERN_PRECINCT_CROSSWALK_CACHE[year]
+    path = CROSSWALKS / "pa_modern_precinct_to_vtd20.csv"
+    result = defaultdict(list)
+    if path.exists():
+        frame = read_csv(path)
+        frame = frame[pd.to_numeric(frame["year"], errors="coerce") == year]
+        for row in frame.itertuples(index=False):
+            county = norm(row.countyfp, 3)
+            source = normalize_modern_precinct_name(row.source_precinct)
+            dst_county = norm(row.dst_countyfp, 3)
+            dst_vtd = norm(row.dst_vtd, 6)
+            try:
+                weight = float(row.weight or 0)
+            except (TypeError, ValueError):
+                weight = 0.0
+            if county and source and dst_county and dst_vtd and weight > 0:
+                result[(county, source)].append((dst_county, dst_vtd, weight))
+    MODERN_PRECINCT_CROSSWALK_CACHE[year] = result
     return result
 
 
@@ -1017,6 +1046,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
     memberships = {scope: read_area_weighted_district_memberships(scope, weight_mode, block_vtd_source) for scope in selected_scopes}
     chain = read_vtd_chain(year)
     maintained_historical_targets = read_historical_precinct_crosswalk(year) if year < 2018 else {}
+    maintained_modern_targets = read_modern_precinct_crosswalk(year) if year >= 2018 else {}
     historical_aliases = read_historical_vtd_aliases(year)
     fallback_year = 2010 if year == 2008 else 2008 if year == 2010 else None
     fallback_chain = read_vtd_chain(fallback_year) if fallback_year else None
@@ -1096,6 +1126,10 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
         if year < 2018:
             historical_key = precinct_name if source_vtd == "000000" else source_vtd
             targets = maintained_historical_targets.get((county, norm(historical_key, 6)), [])
+        else:
+            targets = maintained_modern_targets.get(
+                (county, normalize_modern_precinct_name(precinct_name)), []
+            )
         if not targets and source_vtd != "000000":
             targets = source_to_target.get((county, source_vtd, precinct_name), []) if chain is None else source_to_target.get((county, source_vtd), [])
         if not targets and modern_exceptions:

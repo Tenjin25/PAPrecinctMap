@@ -8,20 +8,21 @@
     "coverage_percent": 100.0,
     "source": "precinct_returns_to_vtd_block_chain_area_districts",
     "unmatched_source_vtds": 0,
+    "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 191951,
-        "rep_votes": 187448,
-        "other_votes": 2206,
-        "total_votes": 381605,
+        "dem_votes": 184577,
+        "rep_votes": 178125,
+        "other_votes": 2109,
+        "total_votes": 364811,
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "D",
-        "margin": 4503,
-        "margin_pct": 1.180015985115499
+        "margin": 6452.0,
+        "margin_pct": 1.768587021772918
       },
       "2": {
         "dem_votes": 204288,
@@ -31,7 +32,7 @@
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "D",
-        "margin": 120667,
+        "margin": 120667.0,
         "margin_pct": 41.75747739392534
       },
       "3": {
@@ -42,30 +43,30 @@
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "D",
-        "margin": 273464,
+        "margin": 273464.0,
         "margin_pct": 77.40167843647839
       },
       "4": {
-        "dem_votes": 188927,
-        "rep_votes": 162037,
-        "other_votes": 1781,
-        "total_votes": 352745,
+        "dem_votes": 188907,
+        "rep_votes": 162013,
+        "other_votes": 1780,
+        "total_votes": 352700,
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "D",
-        "margin": 26890,
-        "margin_pct": 7.623070490014033
+        "margin": 26894.0,
+        "margin_pct": 7.625177204423022
       },
       "5": {
-        "dem_votes": 226647,
-        "rep_votes": 152823,
-        "other_votes": 1844,
-        "total_votes": 381314,
+        "dem_votes": 216242,
+        "rep_votes": 141398,
+        "other_votes": 1774,
+        "total_votes": 359414,
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "D",
-        "margin": 73824,
-        "margin_pct": 19.36042211930325
+        "margin": 74844.0,
+        "margin_pct": 20.82389667625635
       },
       "6": {
         "dem_votes": 150664,
@@ -75,19 +76,19 @@
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 8018,
+        "margin": 8018.0,
         "margin_pct": 2.5755677620378403
       },
       "7": {
-        "dem_votes": 160861,
-        "rep_votes": 148173,
-        "other_votes": 2935,
-        "total_votes": 311969,
+        "dem_votes": 146677,
+        "rep_votes": 142725,
+        "other_votes": 2819,
+        "total_votes": 292221,
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "D",
-        "margin": 12688,
-        "margin_pct": 4.067070766646686
+        "margin": 3952.0,
+        "margin_pct": 1.3524010936927873
       },
       "8": {
         "dem_votes": 164240,
@@ -97,7 +98,7 @@
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "D",
-        "margin": 14610,
+        "margin": 14610.0,
         "margin_pct": 4.600951682134388
       },
       "9": {
@@ -108,19 +109,19 @@
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 77431,
+        "margin": 77431.0,
         "margin_pct": 23.699352966742367
       },
       "10": {
-        "dem_votes": 169615,
-        "rep_votes": 254085,
-        "other_votes": 2167,
-        "total_votes": 425867,
+        "dem_votes": 125556,
+        "rep_votes": 181836,
+        "other_votes": 1880,
+        "total_votes": 309272,
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 84470,
-        "margin_pct": 19.83483106228001
+        "margin": 56280.0,
+        "margin_pct": 18.19757365684575
       },
       "11": {
         "dem_votes": 101991,
@@ -130,7 +131,7 @@
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 102734,
+        "margin": 102734.0,
         "margin_pct": 33.25219935653851
       },
       "12": {
@@ -141,52 +142,52 @@
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "D",
-        "margin": 78925,
+        "margin": 78925.0,
         "margin_pct": 20.065950046780294
       },
       "13": {
-        "dem_votes": 110120,
-        "rep_votes": 211566,
-        "other_votes": 1953,
-        "total_votes": 323639,
+        "dem_votes": 109064,
+        "rep_votes": 210694,
+        "other_votes": 1938,
+        "total_votes": 321696,
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 101446,
-        "margin_pct": 31.345418815408525
+        "margin": 101630.0,
+        "margin_pct": 31.59193773003084
       },
       "14": {
-        "dem_votes": 166566,
-        "rep_votes": 186651,
-        "other_votes": 1949,
-        "total_votes": 355166,
+        "dem_votes": 166279,
+        "rep_votes": 186421,
+        "other_votes": 1946,
+        "total_votes": 354646,
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 20085,
-        "margin_pct": 5.655102121261607
+        "margin": 20142.0,
+        "margin_pct": 5.679466284689521
       },
       "15": {
-        "dem_votes": 128521,
-        "rep_votes": 202248,
-        "other_votes": 2528,
-        "total_votes": 333297,
+        "dem_votes": 128147,
+        "rep_votes": 201153,
+        "other_votes": 2512,
+        "total_votes": 331812,
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 73727,
-        "margin_pct": 22.120511135713794
+        "margin": 73006.0,
+        "margin_pct": 22.002218123515725
       },
       "16": {
-        "dem_votes": 164287,
-        "rep_votes": 188693,
-        "other_votes": 5587,
-        "total_votes": 358567,
+        "dem_votes": 163667,
+        "rep_votes": 188034,
+        "other_votes": 5579,
+        "total_votes": 357280,
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 24406,
-        "margin_pct": 6.8065382480819485
+        "margin": 24367.0,
+        "margin_pct": 6.82014106583072
       },
       "17": {
         "dem_votes": 197251,
@@ -196,7 +197,7 @@
         "dem_candidate": "John F. Kerry",
         "rep_candidate": "George W. Bush",
         "winner": "D",
-        "margin": 8304,
+        "margin": 8304.0,
         "margin_pct": 2.1356761302700713
       }
     }

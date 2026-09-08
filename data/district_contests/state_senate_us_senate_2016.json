@@ -6,21 +6,99 @@
     "districts_observed": 50,
     "districts_expected": 50,
     "coverage_percent": 100.0,
-    "unmapped_blocks": 0,
-    "source": "RDH 2016 general election results disaggregated to 2020 Census blocks"
+    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "unmatched_source_vtds": 15,
+    "unmatched_source_votes": 8029.0,
+    "unmatched_source_keys": [
+      [
+        "007",
+        "000000",
+        "BEAVER WARD 3-1"
+      ],
+      [
+        "021",
+        "000000",
+        "BARR A (SOUTH CONG 9)"
+      ],
+      [
+        "021",
+        "000000",
+        "BARR B (SOUTH CONG 12)"
+      ],
+      [
+        "021",
+        "000000",
+        "NORTHERN CAMBRIA WARD 3 A"
+      ],
+      [
+        "021",
+        "000000",
+        "NORTHERN CAMBRIA WARD 3 B"
+      ],
+      [
+        "025",
+        "000000",
+        "BANKS DISTRICT 4"
+      ],
+      [
+        "027",
+        "000000",
+        "FERGUSON NORTHEAST 1A"
+      ],
+      [
+        "027",
+        "000000",
+        "FERGUSON NORTHEAST 1B"
+      ],
+      [
+        "027",
+        "000000",
+        "FERGUSON NORTH CENTRAL 2"
+      ],
+      [
+        "045",
+        "000000",
+        "SPRINGFIELD WARD 3-02(161)"
+      ],
+      [
+        "045",
+        "000000",
+        "SPRINGFIELD WARD 3-02(165)"
+      ],
+      [
+        "071",
+        "000000",
+        "MANOR MANOR,NEW"
+      ],
+      [
+        "091",
+        "000000",
+        "PLYMOUTH 2 3A"
+      ],
+      [
+        "091",
+        "000000",
+        "PLYMOUTH 2 3B"
+      ],
+      [
+        "095",
+        "000000",
+        "LOWER MOUNT BETHEL DISTRICT INDEPENDENT"
+      ]
+    ]
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 86619,
-        "rep_votes": 24072,
-        "other_votes": 1611,
-        "total_votes": 112302,
+        "dem_votes": 79062,
+        "rep_votes": 22110,
+        "other_votes": 1459,
+        "total_votes": 102631,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 62547,
-        "margin_pct": 55.69535716193834
+        "margin": 56952.0,
+        "margin_pct": 55.492005339517306
       },
       "2": {
         "dem_votes": 67958,
@@ -30,74 +108,74 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 51003,
+        "margin": 51003.0,
         "margin_pct": 59.254138832413595
       },
       "3": {
-        "dem_votes": 103477,
-        "rep_votes": 6758,
-        "other_votes": 936,
-        "total_votes": 111171,
+        "dem_votes": 106741,
+        "rep_votes": 7046,
+        "other_votes": 971,
+        "total_votes": 114758,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 96719,
-        "margin_pct": 87.00020688848711
+        "margin": 99695.0,
+        "margin_pct": 86.87411770856933
       },
       "4": {
-        "dem_votes": 120424,
-        "rep_votes": 24823,
-        "other_votes": 1347,
-        "total_votes": 146594,
+        "dem_votes": 122378,
+        "rep_votes": 25365,
+        "other_votes": 1377,
+        "total_votes": 149120,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 95601,
-        "margin_pct": 65.21481097452829
+        "margin": 97013.0,
+        "margin_pct": 65.05700107296137
       },
       "5": {
-        "dem_votes": 55222,
-        "rep_votes": 45765,
-        "other_votes": 1587,
-        "total_votes": 102574,
+        "dem_votes": 58178,
+        "rep_votes": 45826,
+        "other_votes": 1613,
+        "total_votes": 105617,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 9457,
-        "margin_pct": 9.219685300368514
+        "margin": 12352.0,
+        "margin_pct": 11.695086965166594
       },
       "6": {
-        "dem_votes": 63635,
-        "rep_votes": 74136,
-        "other_votes": 2154,
-        "total_votes": 139925,
+        "dem_votes": 63634,
+        "rep_votes": 74137,
+        "other_votes": 2153,
+        "total_votes": 139924,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 10501,
-        "margin_pct": 7.504734679292478
+        "margin": 10503.0,
+        "margin_pct": 7.506217661015981
       },
       "7": {
-        "dem_votes": 105903,
-        "rep_votes": 18807,
-        "other_votes": 1533,
-        "total_votes": 126243,
+        "dem_votes": 105101,
+        "rep_votes": 19385,
+        "other_votes": 1555,
+        "total_votes": 126041,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 87096,
-        "margin_pct": 68.99075592310069
+        "margin": 85716.0,
+        "margin_pct": 68.00644234812482
       },
       "8": {
-        "dem_votes": 98391,
-        "rep_votes": 15549,
-        "other_votes": 1114,
-        "total_votes": 115054,
+        "dem_votes": 98576,
+        "rep_votes": 16042,
+        "other_votes": 1152,
+        "total_votes": 115770,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 82842,
-        "margin_pct": 72.00271177012533
+        "margin": 82534.0,
+        "margin_pct": 71.29135354582361
       },
       "9": {
         "dem_votes": 65722,
@@ -107,7 +185,7 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 4586,
+        "margin": 4586.0,
         "margin_pct": 3.5436934465625556
       },
       "10": {
@@ -118,7 +196,7 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 3757,
+        "margin": 3757.0,
         "margin_pct": 2.6019807465890987
       },
       "11": {
@@ -129,63 +207,63 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 5820,
+        "margin": 5820.0,
         "margin_pct": 5.754115378911464
       },
       "12": {
-        "dem_votes": 69710,
-        "rep_votes": 65960,
-        "other_votes": 1701,
-        "total_votes": 137371,
+        "dem_votes": 69243,
+        "rep_votes": 65514,
+        "other_votes": 1692,
+        "total_votes": 136449,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 3750,
-        "margin_pct": 2.729833807717786
+        "margin": 3729.0,
+        "margin_pct": 2.732889211353693
       },
       "13": {
-        "dem_votes": 43903,
-        "rep_votes": 58429,
-        "other_votes": 4217,
-        "total_votes": 106549,
+        "dem_votes": 43582,
+        "rep_votes": 57544,
+        "other_votes": 4174,
+        "total_votes": 105300,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 14526,
-        "margin_pct": 13.633164084130305
+        "margin": 13962.0,
+        "margin_pct": 13.25925925925926
       },
       "14": {
-        "dem_votes": 54393,
-        "rep_votes": 48702,
-        "other_votes": 4092,
-        "total_votes": 107187,
+        "dem_votes": 54567,
+        "rep_votes": 48944,
+        "other_votes": 4093,
+        "total_votes": 107604,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 5691,
-        "margin_pct": 5.309412522040919
+        "margin": 5623.0,
+        "margin_pct": 5.22564216943608
       },
       "15": {
-        "dem_votes": 59661,
+        "dem_votes": 59662,
         "rep_votes": 55084,
         "other_votes": 2142,
-        "total_votes": 116887,
+        "total_votes": 116888,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 4577,
-        "margin_pct": 3.915747687937923
+        "margin": 4578.0,
+        "margin_pct": 3.916569707754432
       },
       "16": {
-        "dem_votes": 51628,
-        "rep_votes": 77128,
-        "other_votes": 4166,
-        "total_votes": 132922,
+        "dem_votes": 51623,
+        "rep_votes": 77118,
+        "other_votes": 4165,
+        "total_votes": 132906,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 25500,
-        "margin_pct": 19.184183205188006
+        "margin": 25495.0,
+        "margin_pct": 19.182730651738822
       },
       "17": {
         "dem_votes": 79833,
@@ -195,19 +273,19 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 31530,
+        "margin": 31530.0,
         "margin_pct": 24.33490009030077
       },
       "18": {
-        "dem_votes": 56645,
-        "rep_votes": 55285,
-        "other_votes": 3062,
-        "total_votes": 114992,
+        "dem_votes": 56395,
+        "rep_votes": 54927,
+        "other_votes": 3058,
+        "total_votes": 114380,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 1360,
-        "margin_pct": 1.1826909698065953
+        "margin": 1468.0,
+        "margin_pct": 1.2834411610421403
       },
       "19": {
         "dem_votes": 64249,
@@ -217,41 +295,41 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 2783,
+        "margin": 2783.0,
         "margin_pct": 2.140160108276875
       },
       "20": {
-        "dem_votes": 45696,
-        "rep_votes": 69922,
-        "other_votes": 8366,
-        "total_votes": 123984,
+        "dem_votes": 45684,
+        "rep_votes": 69919,
+        "other_votes": 8365,
+        "total_votes": 123968,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 24226,
-        "margin_pct": 19.539618015227774
+        "margin": 24235.0,
+        "margin_pct": 19.54939984512132
       },
       "21": {
         "dem_votes": 35649,
-        "rep_votes": 78803,
+        "rep_votes": 78804,
         "other_votes": 7968,
-        "total_votes": 122420,
+        "total_votes": 122421,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 43154,
-        "margin_pct": 35.250776016990685
+        "margin": 43155.0,
+        "margin_pct": 35.25130492317495
       },
       "22": {
         "dem_votes": 57871,
-        "rep_votes": 42654,
+        "rep_votes": 42653,
         "other_votes": 7526,
-        "total_votes": 108051,
+        "total_votes": 108050,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 15217,
-        "margin_pct": 14.083164431610998
+        "margin": 15218.0,
+        "margin_pct": 14.084220268394262
       },
       "23": {
         "dem_votes": 32123,
@@ -261,7 +339,7 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 43472,
+        "margin": 43472.0,
         "margin_pct": 37.83661461869201
       },
       "24": {
@@ -272,7 +350,7 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 16031,
+        "margin": 16031.0,
         "margin_pct": 12.804824473820839
       },
       "25": {
@@ -283,74 +361,74 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 27454,
+        "margin": 27454.0,
         "margin_pct": 22.793049340384727
       },
       "26": {
-        "dem_votes": 69833,
-        "rep_votes": 58866,
-        "other_votes": 1795,
-        "total_votes": 130494,
+        "dem_votes": 69502,
+        "rep_votes": 58583,
+        "other_votes": 1792,
+        "total_votes": 129877,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 10967,
-        "margin_pct": 8.40421781844376
+        "margin": 10919.0,
+        "margin_pct": 8.40718525989975
       },
       "27": {
         "dem_votes": 35212,
-        "rep_votes": 68456,
+        "rep_votes": 67956,
         "other_votes": 7651,
-        "total_votes": 111319,
+        "total_votes": 110819,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 33244,
-        "margin_pct": 29.863724970580048
+        "margin": 32744.0,
+        "margin_pct": 29.54727979859049
       },
       "28": {
-        "dem_votes": 38050,
-        "rep_votes": 79002,
-        "other_votes": 6116,
-        "total_votes": 123168,
+        "dem_votes": 39367,
+        "rep_votes": 79404,
+        "other_votes": 6201,
+        "total_votes": 124972,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 40952,
-        "margin_pct": 33.248895817095345
+        "margin": 40037.0,
+        "margin_pct": 32.036776237877284
       },
       "29": {
-        "dem_votes": 37023,
-        "rep_votes": 63650,
-        "other_votes": 7674,
-        "total_votes": 108347,
+        "dem_votes": 36849,
+        "rep_votes": 63377,
+        "other_votes": 7649,
+        "total_votes": 107875,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 26627,
-        "margin_pct": 24.575668915613722
+        "margin": 26528.0,
+        "margin_pct": 24.591425260718424
       },
       "30": {
-        "dem_votes": 27422,
+        "dem_votes": 27421,
         "rep_votes": 75813,
-        "other_votes": 6510,
+        "other_votes": 6511,
         "total_votes": 109745,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 48391,
-        "margin_pct": 44.09403617476878
+        "margin": 48392.0,
+        "margin_pct": 44.09494737801267
       },
       "31": {
-        "dem_votes": 43127,
-        "rep_votes": 64708,
-        "other_votes": 5713,
-        "total_votes": 113548,
+        "dem_votes": 41810,
+        "rep_votes": 64306,
+        "other_votes": 5627,
+        "total_votes": 111743,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 21581,
-        "margin_pct": 19.00605911156515
+        "margin": 22496.0,
+        "margin_pct": 20.131909828803593
       },
       "32": {
         "dem_votes": 33978,
@@ -360,7 +438,7 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 40102,
+        "margin": 40102.0,
         "margin_pct": 35.045005680328586
       },
       "33": {
@@ -371,30 +449,30 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 46730,
+        "margin": 46730.0,
         "margin_pct": 39.839041066693945
       },
       "34": {
         "dem_votes": 40863,
-        "rep_votes": 77832,
+        "rep_votes": 77831,
         "other_votes": 5423,
-        "total_votes": 124118,
+        "total_votes": 124117,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 36969,
-        "margin_pct": 29.785365539244914
+        "margin": 36968.0,
+        "margin_pct": 29.78479982597066
       },
       "35": {
-        "dem_votes": 42605,
-        "rep_votes": 70160,
-        "other_votes": 7577,
-        "total_votes": 120342,
+        "dem_votes": 40996,
+        "rep_votes": 68320,
+        "other_votes": 7379,
+        "total_votes": 116695,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 27555,
-        "margin_pct": 22.89724285785511
+        "margin": 27324.0,
+        "margin_pct": 23.414884956510562
       },
       "36": {
         "dem_votes": 44737,
@@ -404,19 +482,19 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 33672,
+        "margin": 33672.0,
         "margin_pct": 26.207970112079703
       },
       "37": {
-        "dem_votes": 53186,
-        "rep_votes": 69803,
-        "other_votes": 4950,
-        "total_votes": 127939,
+        "dem_votes": 53184,
+        "rep_votes": 69800,
+        "other_votes": 4949,
+        "total_votes": 127933,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 16617,
-        "margin_pct": 12.988220949046031
+        "margin": 16616.0,
+        "margin_pct": 12.988048431600916
       },
       "38": {
         "dem_votes": 66618,
@@ -426,7 +504,7 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 1910,
+        "margin": 1910.0,
         "margin_pct": 1.3915602960890598
       },
       "39": {
@@ -437,63 +515,63 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 35629,
+        "margin": 35629.0,
         "margin_pct": 26.303200324831128
       },
       "40": {
-        "dem_votes": 53167,
+        "dem_votes": 53166,
         "rep_votes": 51372,
         "other_votes": 5244,
-        "total_votes": 109783,
+        "total_votes": 109782,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 1795,
-        "margin_pct": 1.635043677072042
+        "margin": 1794.0,
+        "margin_pct": 1.6341476744821555
       },
       "41": {
-        "dem_votes": 38305,
+        "dem_votes": 38306,
         "rep_votes": 72484,
         "other_votes": 8271,
-        "total_votes": 119060,
+        "total_votes": 119061,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 34179,
-        "margin_pct": 28.707374433058963
+        "margin": 34178.0,
+        "margin_pct": 28.706293412620422
       },
       "42": {
-        "dem_votes": 76860,
+        "dem_votes": 76859,
         "rep_votes": 43096,
         "other_votes": 5863,
-        "total_votes": 125819,
+        "total_votes": 125818,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 33764,
-        "margin_pct": 26.835374625454023
+        "margin": 33763.0,
+        "margin_pct": 26.834793113862883
       },
       "43": {
-        "dem_votes": 96913,
+        "dem_votes": 96912,
         "rep_votes": 31332,
         "other_votes": 4898,
-        "total_votes": 133143,
+        "total_votes": 133142,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 65581,
-        "margin_pct": 49.25606302997529
+        "margin": 65580.0,
+        "margin_pct": 49.25568190353157
       },
       "44": {
-        "dem_votes": 58069,
+        "dem_votes": 58070,
         "rep_votes": 66465,
         "other_votes": 4455,
-        "total_votes": 128989,
+        "total_votes": 128990,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 8396,
-        "margin_pct": 6.509082169797424
+        "margin": 8395.0,
+        "margin_pct": 6.508256453988681
       },
       "45": {
         "dem_votes": 63874,
@@ -503,41 +581,41 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 11498,
+        "margin": 11498.0,
         "margin_pct": 9.357857898592007
       },
       "46": {
-        "dem_votes": 44684,
-        "rep_votes": 67814,
-        "other_votes": 6892,
-        "total_votes": 119390,
+        "dem_votes": 44686,
+        "rep_votes": 67817,
+        "other_votes": 6891,
+        "total_votes": 119394,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 23130,
-        "margin_pct": 19.373481866152943
+        "margin": 23131.0,
+        "margin_pct": 19.373670368695244
       },
       "47": {
-        "dem_votes": 48202,
-        "rep_votes": 71888,
-        "other_votes": 7020,
-        "total_votes": 127110,
+        "dem_votes": 47860,
+        "rep_votes": 71375,
+        "other_votes": 6968,
+        "total_votes": 126203,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 23686,
-        "margin_pct": 18.634253795924792
+        "margin": 23515.0,
+        "margin_pct": 18.632679096376474
       },
       "48": {
-        "dem_votes": 35743,
+        "dem_votes": 35742,
         "rep_votes": 76963,
         "other_votes": 5535,
-        "total_votes": 118241,
+        "total_votes": 118240,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 41220,
-        "margin_pct": 34.861004220194346
+        "margin": 41221.0,
+        "margin_pct": 34.862144790257105
       },
       "49": {
         "dem_votes": 55772,
@@ -547,19 +625,19 @@
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 2660,
+        "margin": 2660.0,
         "margin_pct": 2.235688650938401
       },
       "50": {
-        "dem_votes": 42622,
+        "dem_votes": 42623,
         "rep_votes": 73449,
         "other_votes": 5586,
-        "total_votes": 121657,
+        "total_votes": 121658,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 30827,
-        "margin_pct": 25.339273531321666
+        "margin": 30826.0,
+        "margin_pct": 25.338243272123496
       }
     }
   }
