@@ -6,196 +6,470 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "unmatched_source_vtds": 54,
+    "unmatched_source_votes": 37975.0,
+    "unmatched_source_keys": [
+      [
+        "007",
+        "000095",
+        "ALIQUIPPA X 9"
+      ],
+      [
+        "011",
+        "000192",
+        "CAERNARVON P 2"
+      ],
+      [
+        "021",
+        "000000",
+        "NORTHERN CAMBRIA W 3 B (CONG 12)"
+      ],
+      [
+        "029",
+        "000338",
+        "EAST MARLBOROUGH X SOUTH"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 3"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 4"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 5"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 6"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 7"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 8"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 9"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 4"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 5"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 6"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 7"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 8"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 9"
+      ],
+      [
+        "045",
+        "000000",
+        "BETHEL P 5"
+      ],
+      [
+        "045",
+        "000000",
+        "BETHEL P 6"
+      ],
+      [
+        "045",
+        "000835",
+        "CONCORD D SOUTHCENTRAL"
+      ],
+      [
+        "045",
+        "000855",
+        "CONCORD D FOXHILL"
+      ],
+      [
+        "045",
+        "000832",
+        "CONCORD D MARIS GROVE"
+      ],
+      [
+        "045",
+        "001005",
+        "EDGMONT P 1"
+      ],
+      [
+        "045",
+        "001015",
+        "EDGMONT P 2"
+      ],
+      [
+        "045",
+        "002912",
+        "THORNBURY P 1"
+      ],
+      [
+        "045",
+        "002916",
+        "THORNBURY P 2"
+      ],
+      [
+        "045",
+        "002921",
+        "THORNBURY P 3"
+      ],
+      [
+        "045",
+        "002924",
+        "THORNBURY P 4"
+      ],
+      [
+        "045",
+        "002928",
+        "THORNBURY P 5"
+      ],
+      [
+        "055",
+        "000546",
+        "SOUTHAMPTON X EAST"
+      ],
+      [
+        "071",
+        "000262",
+        "EAST COCALICO X SWARTZVILLE"
+      ],
+      [
+        "071",
+        "001402",
+        "MANOR X MANOR,NEW"
+      ],
+      [
+        "091",
+        "000919",
+        "FRANCONIA P 3"
+      ],
+      [
+        "091",
+        "000924",
+        "FRANCONIA P 4"
+      ],
+      [
+        "091",
+        "000931",
+        "FRANCONIA P 6"
+      ],
+      [
+        "091",
+        "000933",
+        "FRANCONIA P 7"
+      ],
+      [
+        "091",
+        "002488",
+        "PLYMOUTH X 2 X 3A"
+      ],
+      [
+        "091",
+        "002492",
+        "PLYMOUTH X 2 X 3B"
+      ],
+      [
+        "091",
+        "002495",
+        "PLYMOUTH X 2 X 3C"
+      ],
+      [
+        "091",
+        "003078",
+        "UPPER DUBLIN X 3 X 1A"
+      ],
+      [
+        "091",
+        "003082",
+        "UPPER DUBLIN X 3 X 1B"
+      ],
+      [
+        "091",
+        "002815",
+        "UPPER DUBLIN X 5 X 3"
+      ],
+      [
+        "091",
+        "002873",
+        "UPPER DUBLIN X 6 X 3A"
+      ],
+      [
+        "091",
+        "002877",
+        "UPPER DUBLIN X 6 X 3B"
+      ],
+      [
+        "095",
+        "000755",
+        "LOWER MT. BETHEL D INDEPENDENT"
+      ],
+      [
+        "107",
+        "000796",
+        "NORTH MANHEIM P 2"
+      ],
+      [
+        "107",
+        "000802",
+        "NORTH MANHEIM P 3"
+      ],
+      [
+        "107",
+        "001235",
+        "RUSH D ELIXIR"
+      ],
+      [
+        "107",
+        "001385",
+        "SHENANDOAH P 6"
+      ],
+      [
+        "107",
+        "001505",
+        "TAMAQUA P 1"
+      ],
+      [
+        "107",
+        "001515",
+        "TAMAQUA P 2"
+      ],
+      [
+        "107",
+        "001525",
+        "TAMAQUA P 3"
+      ],
+      [
+        "107",
+        "001535",
+        "TAMAQUA P 4"
+      ],
+      [
+        "125",
+        "000695",
+        "DONEGAL X 3"
+      ]
+    ]
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 186894,
-        "rep_votes": 169477,
-        "other_votes": 5631,
-        "total_votes": 362002,
+        "dem_votes": 186572,
+        "rep_votes": 168007,
+        "other_votes": 5635,
+        "total_votes": 360214,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 17417.0,
-        "margin_pct": 4.8112993850862695
+        "margin": 18565.0,
+        "margin_pct": 5.153880748666071
       },
       "2": {
-        "dem_votes": 209740,
-        "rep_votes": 52846,
-        "other_votes": 2189,
-        "total_votes": 264775,
+        "dem_votes": 210577,
+        "rep_votes": 52747,
+        "other_votes": 2183,
+        "total_votes": 265507,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 156894.0,
-        "margin_pct": 59.25559437258049
+        "margin": 157830.0,
+        "margin_pct": 59.44476040179731
       },
       "3": {
-        "dem_votes": 325773,
-        "rep_votes": 27444,
-        "other_votes": 3106,
-        "total_votes": 356323,
+        "dem_votes": 324798,
+        "rep_votes": 27583,
+        "other_votes": 3110,
+        "total_votes": 355491,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 298329.0,
-        "margin_pct": 83.72431754335253
+        "margin": 297215.0,
+        "margin_pct": 83.60689862753206
       },
       "4": {
-        "dem_votes": 195841,
-        "rep_votes": 147297,
-        "other_votes": 4384,
-        "total_votes": 347522,
+        "dem_votes": 200372,
+        "rep_votes": 151294,
+        "other_votes": 4490,
+        "total_votes": 356156,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 48544.0,
-        "margin_pct": 13.968612059092662
+        "margin": 49078.0,
+        "margin_pct": 13.779916665730745
       },
       "5": {
-        "dem_votes": 208613,
-        "rep_votes": 114724,
-        "other_votes": 3574,
-        "total_votes": 326911,
+        "dem_votes": 217501,
+        "rep_votes": 117999,
+        "other_votes": 3787,
+        "total_votes": 339287,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 93889.0,
-        "margin_pct": 28.720049187699402
+        "margin": 99502.0,
+        "margin_pct": 29.3267941300433
       },
       "6": {
-        "dem_votes": 159290,
-        "rep_votes": 138059,
-        "other_votes": 7183,
-        "total_votes": 304532,
+        "dem_votes": 170078,
+        "rep_votes": 147021,
+        "other_votes": 7735,
+        "total_votes": 324834,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 21231.0,
-        "margin_pct": 6.9716811369576925
+        "margin": 23057.0,
+        "margin_pct": 7.098087022910163
       },
       "7": {
-        "dem_votes": 163628,
-        "rep_votes": 126700,
-        "other_votes": 6257,
-        "total_votes": 296585,
+        "dem_votes": 163950,
+        "rep_votes": 126986,
+        "other_votes": 6275,
+        "total_votes": 297211,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 36928.0,
-        "margin_pct": 12.451067990626633
+        "margin": 36964.0,
+        "margin_pct": 12.436955563555857
       },
       "8": {
-        "dem_votes": 182360,
-        "rep_votes": 102898,
-        "other_votes": 7450,
-        "total_votes": 292708,
+        "dem_votes": 183516,
+        "rep_votes": 103389,
+        "other_votes": 7502,
+        "total_votes": 294407,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 79462.0,
-        "margin_pct": 27.147191057299423
+        "margin": 80127.0,
+        "margin_pct": 27.216404501251667
       },
       "9": {
-        "dem_votes": 124152,
-        "rep_votes": 141868,
-        "other_votes": 7852,
-        "total_votes": 273872,
+        "dem_votes": 136821,
+        "rep_votes": 155377,
+        "other_votes": 8629,
+        "total_votes": 300827,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "R",
-        "margin": 17716.0,
-        "margin_pct": 6.468715312262663
+        "margin": 18556.0,
+        "margin_pct": 6.168329305547707
       },
       "10": {
-        "dem_votes": 150334,
-        "rep_votes": 154542,
-        "other_votes": 7073,
-        "total_votes": 311949,
+        "dem_votes": 148196,
+        "rep_votes": 151469,
+        "other_votes": 6943,
+        "total_votes": 306608,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "R",
-        "margin": 4208.0,
-        "margin_pct": 1.3489384482719933
+        "margin": 3273.0,
+        "margin_pct": 1.0674868235662474
       },
       "11": {
-        "dem_votes": 126201,
-        "rep_votes": 162593,
-        "other_votes": 7790,
-        "total_votes": 296584,
+        "dem_votes": 129751,
+        "rep_votes": 168576,
+        "other_votes": 8018,
+        "total_votes": 306345,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "R",
-        "margin": 36392.0,
-        "margin_pct": 12.270385455722494
+        "margin": 38825.0,
+        "margin_pct": 12.6736196118755
       },
       "12": {
-        "dem_votes": 232024,
-        "rep_votes": 121661,
-        "other_votes": 10702,
-        "total_votes": 364387,
+        "dem_votes": 232439,
+        "rep_votes": 121698,
+        "other_votes": 10672,
+        "total_votes": 364809,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 110363.0,
-        "margin_pct": 30.287304431826602
+        "margin": 110741.0,
+        "margin_pct": 30.355884860296754
       },
       "13": {
-        "dem_votes": 120222,
-        "rep_votes": 161010,
-        "other_votes": 8596,
-        "total_votes": 289828,
+        "dem_votes": 125878,
+        "rep_votes": 167622,
+        "other_votes": 8949,
+        "total_votes": 302449,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "R",
-        "margin": 40788.0,
-        "margin_pct": 14.07317443449218
+        "margin": 41744.0,
+        "margin_pct": 13.801996369635871
       },
       "14": {
-        "dem_votes": 165757,
-        "rep_votes": 151944,
-        "other_votes": 9746,
-        "total_votes": 327447,
+        "dem_votes": 166990,
+        "rep_votes": 152832,
+        "other_votes": 9841,
+        "total_votes": 329663,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 13813.0,
-        "margin_pct": 4.218392594832141
+        "margin": 14158.0,
+        "margin_pct": 4.2946888185814
       },
       "15": {
-        "dem_votes": 129615,
-        "rep_votes": 148075,
-        "other_votes": 10438,
-        "total_votes": 288128,
+        "dem_votes": 140112,
+        "rep_votes": 160834,
+        "other_votes": 11276,
+        "total_votes": 312222,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "R",
-        "margin": 18460.0,
-        "margin_pct": 6.4068747223456235
+        "margin": 20722.0,
+        "margin_pct": 6.636944225583079
       },
       "16": {
-        "dem_votes": 157425,
-        "rep_votes": 152612,
-        "other_votes": 11279,
-        "total_votes": 321316,
+        "dem_votes": 162903,
+        "rep_votes": 158390,
+        "other_votes": 11689,
+        "total_votes": 332982,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 4813.0,
-        "margin_pct": 1.4979023764767394
+        "margin": 4513.0,
+        "margin_pct": 1.355328516256134
       },
       "17": {
-        "dem_votes": 200122,
-        "rep_votes": 153487,
-        "other_votes": 10637,
-        "total_votes": 364246,
+        "dem_votes": 202191,
+        "rep_votes": 157676,
+        "other_votes": 10811,
+        "total_votes": 370678,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 46635.0,
-        "margin_pct": 12.80316050141937
+        "margin": 44515.0,
+        "margin_pct": 12.00907526208731
       }
     }
   }
