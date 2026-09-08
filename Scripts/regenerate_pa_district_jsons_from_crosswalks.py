@@ -951,6 +951,12 @@ def parse_historical_vtd_returns(path, year):
 
 
 def district_result_rows(votes, candidates):
+    # Pennsylvania's official export stores 2020 names surname-first. Keep the
+    # public district files aligned with the county-result labels.
+    if candidates.get("dem") == "Biden Joseph Robinette, Jr":
+        candidates = {**candidates, "dem": "Joe Biden"}
+    if candidates.get("rep") == "Trump Donald J.":
+        candidates = {**candidates, "rep": "Donald J. Trump"}
     results = {}
     for district, values in sorted(votes.items(), key=lambda item: int(item[0]) if item[0].isdigit() else item[0]):
         dem = int(round(values["dem"]))
