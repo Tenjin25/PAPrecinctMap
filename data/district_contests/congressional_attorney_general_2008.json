@@ -6,64 +6,40 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
-    "unmatched_source_vtds": 8,
-    "unmatched_source_votes": 6481.0,
-    "unmatched_source_keys": [
-      [
-        "011",
-        "000000",
-        "CAERNARVON P 2"
-      ],
-      [
-        "011",
-        "000000",
-        "ROCKLAND P 2"
-      ],
-      [
-        "045",
-        "000000",
-        "CONCORD D MARIS GROVE"
-      ],
-      [
-        "049",
-        "000000",
-        "MILLCREEK D 24"
-      ],
-      [
-        "055",
-        "000000",
-        "SOUTHAMPTON X EAST"
-      ],
-      [
-        "091",
-        "000000",
-        "POTTSTOWN X 7 X 1"
-      ],
-      [
-        "091",
-        "000000",
-        "POTTSTOWN X 7 X 2"
-      ],
-      [
-        "119",
-        "000000",
-        "UNION INDEPENDENT"
-      ]
-    ]
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_aggregate_geometry+statewide_vote_control/contests/attorney_general_2008.json",
+    "unmatched_source_vtds": 0,
+    "unmatched_source_votes": 0.0,
+    "unmatched_source_keys": [],
+    "historical_aggregate_groups": [
+      "HG_ASHLAND",
+      "HG_COALDALE",
+      "HG_DELAWARE_CONCORD",
+      "HG_DELAWARE_THORNBURY",
+      "HG_FAYETTE_PERRY",
+      "HG_GEISTOWN",
+      "HG_LOWER_MT_BETHEL",
+      "HG_SHENANDOAH",
+      "HG_TAMAQUA_MIDDLE",
+      "HG_UPPER_DUBLIN_5",
+      "HG_UPPER_DUBLIN_6_3",
+      "HG_WAYNE",
+      "HG_WEST_MAHANOY"
+    ],
+    "district_membership_gap_votes": 0.0,
+    "district_membership_gap_keys": []
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 166033,
-        "rep_votes": 193926,
-        "other_votes": 4823,
-        "total_votes": 364782,
+        "dem_votes": 168764,
+        "rep_votes": 196367,
+        "other_votes": 4869,
+        "total_votes": 370000,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 27893.0,
-        "margin_pct": 7.646484749795768
+        "margin": 27603.0,
+        "margin_pct": 7.460270270270271
       },
       "2": {
         "dem_votes": 191253,
@@ -77,169 +53,169 @@
         "margin_pct": 41.58480656989339
       },
       "3": {
-        "dem_votes": 304174,
+        "dem_votes": 304173,
         "rep_votes": 43766,
         "other_votes": 4119,
-        "total_votes": 352059,
+        "total_votes": 352058,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 260408.0,
-        "margin_pct": 73.96714755197283
+        "margin": 260407.0,
+        "margin_pct": 73.96707360718973
       },
       "4": {
-        "dem_votes": 169057,
-        "rep_votes": 179207,
-        "other_votes": 4069,
-        "total_votes": 352333,
+        "dem_votes": 173791,
+        "rep_votes": 184301,
+        "other_votes": 4221,
+        "total_votes": 362313,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 10150.0,
-        "margin_pct": 2.880797427433706
+        "margin": 10510.0,
+        "margin_pct": 2.9008067610049872
       },
       "5": {
-        "dem_votes": 188794,
-        "rep_votes": 154825,
-        "other_votes": 3792,
-        "total_votes": 347411,
+        "dem_votes": 192593,
+        "rep_votes": 160701,
+        "other_votes": 3896,
+        "total_votes": 357190,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 33969.0,
-        "margin_pct": 9.777756029601827
+        "margin": 31892.0,
+        "margin_pct": 8.928581427251602
       },
       "6": {
-        "dem_votes": 147517,
-        "rep_votes": 177019,
-        "other_votes": 7909,
-        "total_votes": 332445,
+        "dem_votes": 147826,
+        "rep_votes": 177668,
+        "other_votes": 7927,
+        "total_votes": 333421,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 29502.0,
-        "margin_pct": 8.874249875919325
+        "margin": 29842.0,
+        "margin_pct": 8.950246085279572
       },
       "7": {
-        "dem_votes": 170628,
-        "rep_votes": 120055,
-        "other_votes": 4831,
-        "total_votes": 295514,
+        "dem_votes": 176360,
+        "rep_votes": 125080,
+        "other_votes": 5009,
+        "total_votes": 306449,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 50573.0,
-        "margin_pct": 17.113571607436533
+        "margin": 51280.0,
+        "margin_pct": 16.733616360307916
       },
       "8": {
-        "dem_votes": 139706,
-        "rep_votes": 153530,
-        "other_votes": 6471,
-        "total_votes": 299707,
+        "dem_votes": 146975,
+        "rep_votes": 160276,
+        "other_votes": 6788,
+        "total_votes": 314039,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 13824.0,
-        "margin_pct": 4.612504879765904
+        "margin": 13301.0,
+        "margin_pct": 4.2354612006788965
       },
       "9": {
-        "dem_votes": 97950,
-        "rep_votes": 200008,
-        "other_votes": 7601,
-        "total_votes": 305559,
+        "dem_votes": 104463,
+        "rep_votes": 208115,
+        "other_votes": 7970,
+        "total_votes": 320548,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 102058.0,
-        "margin_pct": 33.400423486135246
+        "margin": 103652.0,
+        "margin_pct": 32.335874814380375
       },
       "10": {
-        "dem_votes": 108876,
-        "rep_votes": 207848,
-        "other_votes": 6226,
-        "total_votes": 322950,
+        "dem_votes": 109076,
+        "rep_votes": 208603,
+        "other_votes": 6239,
+        "total_votes": 323918,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 98972.0,
-        "margin_pct": 30.64623006657377
+        "margin": 99527.0,
+        "margin_pct": 30.72598620638557
       },
       "11": {
-        "dem_votes": 91019,
-        "rep_votes": 210470,
-        "other_votes": 6222,
-        "total_votes": 307711,
+        "dem_votes": 92440,
+        "rep_votes": 213488,
+        "other_votes": 6280,
+        "total_votes": 312208,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 119451.0,
-        "margin_pct": 38.81921673258349
+        "margin": 121048.0,
+        "margin_pct": 38.7715881719879
       },
       "12": {
         "dem_votes": 191691,
         "rep_votes": 182174,
-        "other_votes": 8890,
-        "total_votes": 382755,
+        "other_votes": 8889,
+        "total_votes": 382754,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
         "margin": 9517.0,
-        "margin_pct": 2.486446943867487
+        "margin_pct": 2.486453440068556
       },
       "13": {
-        "dem_votes": 92895,
-        "rep_votes": 221035,
-        "other_votes": 7594,
-        "total_votes": 321524,
+        "dem_votes": 94112,
+        "rep_votes": 223125,
+        "other_votes": 7679,
+        "total_votes": 324916,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 128140.0,
-        "margin_pct": 39.85394558415546
+        "margin": 129013.0,
+        "margin_pct": 39.70657031355797
       },
       "14": {
-        "dem_votes": 131634,
-        "rep_votes": 202556,
-        "other_votes": 7384,
-        "total_votes": 341574,
+        "dem_votes": 132596,
+        "rep_votes": 203623,
+        "other_votes": 7429,
+        "total_votes": 343648,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 70922.0,
-        "margin_pct": 20.763289945956075
+        "margin": 71027.0,
+        "margin_pct": 20.668532917403855
       },
       "15": {
-        "dem_votes": 110524,
-        "rep_votes": 205921,
-        "other_votes": 9515,
-        "total_votes": 325960,
+        "dem_votes": 111546,
+        "rep_votes": 208059,
+        "other_votes": 9602,
+        "total_votes": 329207,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 95397.0,
-        "margin_pct": 29.266474414038534
+        "margin": 96513.0,
+        "margin_pct": 29.316812825972715
       },
       "16": {
-        "dem_votes": 128039,
-        "rep_votes": 197492,
-        "other_votes": 9185,
-        "total_votes": 334716,
+        "dem_votes": 134245,
+        "rep_votes": 206211,
+        "other_votes": 9513,
+        "total_votes": 349969,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 69453.0,
-        "margin_pct": 20.749829706377945
+        "margin": 71966.0,
+        "margin_pct": 20.563535627441286
       },
       "17": {
-        "dem_votes": 147350,
-        "rep_votes": 221726,
-        "other_votes": 8205,
-        "total_votes": 377281,
+        "dem_votes": 147826,
+        "rep_votes": 223021,
+        "other_votes": 8228,
+        "total_votes": 379075,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 74376.0,
-        "margin_pct": 19.713688205873076
+        "margin": 75195.0,
+        "margin_pct": 19.836443975466597
       }
     }
   }

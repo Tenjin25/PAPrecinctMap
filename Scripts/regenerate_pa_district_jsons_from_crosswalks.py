@@ -723,9 +723,12 @@ def read_historical_geometry_targets(year, source_keys, source_path=None):
     columns = set(historical.columns)
     if {"COUNTYFP10", "GEOID10"}.issubset(columns):
         historical["countyfp"] = historical["COUNTYFP10"].map(lambda v: norm(v, 3))
-        historical["src_vtd"] = historical["GEOID10"].map(
-            lambda v: norm(str(v).split(".", 1)[0][5:], 6) if str(v).split(".", 1)[0].isdigit() else ""
-        )
+        if "VTDST10" in columns:
+            historical["src_vtd"] = historical["VTDST10"].map(lambda v: norm(v, 6))
+        else:
+            historical["src_vtd"] = historical["GEOID10"].map(
+                lambda v: norm(str(v).split(".", 1)[0][5:], 6) if str(v).split(".", 1)[0].isdigit() else ""
+            )
         name_columns = [column for column in ("NAME10", "NAMELSAD10") if column in columns]
     elif {"COUNTYFP00", "VTDST00"}.issubset(columns):
         historical["countyfp"] = historical["COUNTYFP00"].map(lambda v: norm(v, 3))
@@ -771,9 +774,12 @@ def read_historical_geometry_targets(year, source_keys, source_path=None):
             historical["src_vtd"] = historical["VTDST00"].map(lambda v: norm(v, 6))
         else:
             historical["countyfp"] = historical["COUNTYFP10"].map(lambda v: norm(v, 3))
-            historical["src_vtd"] = historical["GEOID10"].map(
-                lambda v: norm(str(v).split(".", 1)[0][5:], 6) if str(v).split(".", 1)[0].isdigit() else ""
-            )
+            if "VTDST10" in historical.columns:
+                historical["src_vtd"] = historical["VTDST10"].map(lambda v: norm(v, 6))
+            else:
+                historical["src_vtd"] = historical["GEOID10"].map(
+                    lambda v: norm(str(v).split(".", 1)[0][5:], 6) if str(v).split(".", 1)[0].isdigit() else ""
+                )
         historical["name_keys"] = historical.apply(
             lambda row: set().union(*(historical_name_keys(row[column]) for column in name_columns)) | set().union(*(compact_live_name(row[column]) for column in name_columns)),
             axis=1,
@@ -1018,26 +1024,36 @@ def parse_precinct_returns(path, year, office_code):
     return totals, candidates
 
 
-def parse_historical_vtd_returns(path, year):
-    """Read a historical VTD layer whose 2016 votes are already on VTD10."""
-    if year != 2016:
-        raise ValueError("The historical VTD source currently supports only 2016")
+def parse_historical_vtd_returns(path, year, office_code="USP"):
+    """Read contest votes already disaggregated onto Census VTD10 polygons."""
+    fields = {
+        (2006, "GOV"): ("GOVDV2006", "GOVRV2006"),
+        (2006, "USS"): ("USSDV2006", "USSRV2006"),
+        (2016, "USP"): ("T16PRESD", "T16PRESR", "T16PRESOTH"),
+    }
+    vote_fields = fields.get((year, office_code.upper()))
+    if not vote_fields:
+        raise ValueError(f"Unsupported historical VTD contest: {year} {office_code}")
     frame = gpd.read_file(
         f"zip://{Path(path).resolve().as_posix()}" if str(path).lower().endswith(".zip")
         else str(Path(path).resolve()),
-        columns=["COUNTYFP10", "VTDST10", "T16PRESD", "T16PRESR", "T16PRESOTH"],
+        columns=["COUNTYFP10", "VTDST10", *vote_fields],
     )
     totals = {}
-    candidates = {"dem": "Hillary Clinton", "rep": "Donald J Trump"}
+    candidates = {
+        (2006, "GOV"): {"dem": "Ed Rendell", "rep": "Lynn Swann"},
+        (2006, "USS"): {"dem": "Bob Casey Jr.", "rep": "Rick Santorum"},
+        (2016, "USP"): {"dem": "Hillary Clinton", "rep": "Donald J Trump"},
+    }[(year, office_code.upper())]
     for row in frame.itertuples(index=False):
         county = norm(row.COUNTYFP10, 3)
         vtd = norm(row.VTDST10, 6)
         if not county or not vtd:
             continue
         totals[(county, vtd, "")] = {
-            "dem": float(row.T16PRESD or 0),
-            "rep": float(row.T16PRESR or 0),
-            "other": float(row.T16PRESOTH or 0),
+            "dem": float(getattr(row, vote_fields[0]) or 0),
+            "rep": float(getattr(row, vote_fields[1]) or 0),
+            "other": float(getattr(row, vote_fields[2]) or 0) if len(vote_fields) > 2 else 0.0,
         }
     return totals, candidates
 
@@ -1224,7 +1240,7 @@ def normalize_vtd_targets(targets):
 
 def build_one(year, source_file, contest, office_code, out_dir, weight_mode, scopes=None, historical_vtd_source=None, historical_geometry_source=None, block_vtd_source=None, source_vtd_source=None, exception_source=None, county_precinct_source=None, vest_crosswalk_source=None):
     if historical_vtd_source:
-        source_votes, candidates = parse_historical_vtd_returns(historical_vtd_source, year)
+        source_votes, candidates = parse_historical_vtd_returns(historical_vtd_source, year, office_code)
     else:
         source_votes, candidates = parse_precinct_returns(source_file, year, office_code)
     harvard_aggregate_groups = {}
@@ -1241,7 +1257,8 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
     selected_scopes = scopes or list(SCOPES)
     district_votes = {scope: defaultdict(lambda: {"dem": 0.0, "rep": 0.0, "other": 0.0}) for scope in selected_scopes}
     memberships = {scope: read_area_weighted_district_memberships(scope, weight_mode, block_vtd_source) for scope in selected_scopes}
-    chain = read_vtd_chain(year)
+    chain_year = 2010 if historical_vtd_source and year <= 2010 else year
+    chain = read_vtd_chain(chain_year)
     maintained_historical_targets = read_historical_precinct_crosswalk(year) if year < 2018 else {}
     maintained_modern_targets = read_modern_precinct_crosswalk(year) if year >= 2018 else {}
     historical_aliases = read_historical_vtd_aliases(year)
@@ -1276,7 +1293,11 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
         source_to_target = defaultdict(list)
         for row in chain.itertuples(index=False):
             source_to_target[(row.countyfp, row.src_vtd)].append((row.dst_countyfp, row.dst_vtd, float(row.weight)))
-    geometry_source_keys = list(source_votes.keys())
+    geometry_source_keys = (
+        [key for key in source_votes if not source_to_target.get((key[0], key[1]), [])]
+        if historical_vtd_source and chain is not None
+        else list(source_votes.keys())
+    )
     geometry_source_keys.extend(
         (county, vtd, "")
         for group_targets in harvard_aggregate_groups.values()
@@ -1517,6 +1538,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
                 "coverage_percent": (len(set(results) & expected) / len(expected) * 100) if expected else 0.0,
                 "source": (
                     f"precinct_returns_to_vtd_block_chain_{weight_mode}_districts"
+                    + ("+harvard_pa_2011_vtd10_votes" if historical_vtd_source else "")
                     + ("+harvard_pa_2011_aggregate_geometry" if harvard_aggregate_groups else "")
                     + (f"+dra_share_calibration/{calibration_source}" if calibration_source else "")
                     + (f"+exact_district_benchmark/{exact_benchmark_source}" if exact_benchmark_source else "")

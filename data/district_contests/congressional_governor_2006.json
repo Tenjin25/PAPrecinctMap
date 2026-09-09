@@ -6,204 +6,202 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
-    "unmatched_source_vtds": 1,
-    "unmatched_source_keys": [
-      [
-        "095",
-        "000765",
-        "LOWER MT. BETHEL D INDEPENDENT"
-      ]
-    ]
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_vtd10_votes+statewide_vote_control/contests/governor_2006.json",
+    "unmatched_source_vtds": 0,
+    "unmatched_source_votes": 0.0,
+    "unmatched_source_keys": [],
+    "historical_aggregate_groups": [],
+    "district_membership_gap_votes": 0.0,
+    "district_membership_gap_keys": []
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 202481,
-        "rep_votes": 90722,
-        "other_votes": 0,
-        "total_votes": 293203,
+        "dem_votes": 186417,
+        "rep_votes": 82576,
+        "other_votes": 176,
+        "total_votes": 269169,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 111759,
-        "margin_pct": 38.116594987090856
+        "margin": 103841.0,
+        "margin_pct": 38.57836526494507
       },
       "2": {
-        "dem_votes": 156908,
-        "rep_votes": 27363,
-        "other_votes": 84,
-        "total_votes": 184355,
+        "dem_votes": 158721,
+        "rep_votes": 27648,
+        "other_votes": 122,
+        "total_votes": 186491,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 129545,
-        "margin_pct": 70.2693173496786
+        "margin": 131073.0,
+        "margin_pct": 70.28382066694907
       },
       "3": {
-        "dem_votes": 210704,
-        "rep_votes": 16117,
-        "other_votes": 152,
-        "total_votes": 226973,
+        "dem_votes": 211632,
+        "rep_votes": 16093,
+        "other_votes": 149,
+        "total_votes": 227874,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 194587,
-        "margin_pct": 85.73134249448172
+        "margin": 195539.0,
+        "margin_pct": 85.8101406917858
       },
       "4": {
-        "dem_votes": 182516,
-        "rep_votes": 81792,
-        "other_votes": 0,
-        "total_votes": 264308,
+        "dem_votes": 181536,
+        "rep_votes": 81065,
+        "other_votes": 171,
+        "total_votes": 262772,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 100724,
-        "margin_pct": 38.1085703043419
+        "margin": 100471.0,
+        "margin_pct": 38.235047874202735
       },
       "5": {
-        "dem_votes": 227750,
-        "rep_votes": 74567,
-        "other_votes": 164,
-        "total_votes": 302481,
+        "dem_votes": 199494,
+        "rep_votes": 63875,
+        "other_votes": 172,
+        "total_votes": 263541,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 153183,
-        "margin_pct": 50.64218909617464
+        "margin": 135619.0,
+        "margin_pct": 51.46030408930679
       },
       "6": {
-        "dem_votes": 157768,
-        "rep_votes": 90006,
-        "other_votes": 241,
-        "total_votes": 248015,
+        "dem_votes": 149285,
+        "rep_votes": 83150,
+        "other_votes": 152,
+        "total_votes": 232587,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 67762,
-        "margin_pct": 27.321734572505697
+        "margin": 66135.0,
+        "margin_pct": 28.434521275909656
       },
       "7": {
-        "dem_votes": 141013,
-        "rep_votes": 83626,
-        "other_votes": 4,
-        "total_votes": 224643,
+        "dem_votes": 125345,
+        "rep_votes": 73188,
+        "other_votes": 130,
+        "total_votes": 198663,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 57387,
-        "margin_pct": 25.545866107557323
+        "margin": 52157.0,
+        "margin_pct": 26.254008043772618
       },
       "8": {
-        "dem_votes": 217815,
-        "rep_votes": 93164,
-        "other_votes": 109,
-        "total_votes": 311088,
+        "dem_votes": 144645,
+        "rep_votes": 70685,
+        "other_votes": 141,
+        "total_votes": 215471,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 124651,
-        "margin_pct": 40.069369438872606
+        "margin": 73960.0,
+        "margin_pct": 34.32480473010289
       },
       "9": {
-        "dem_votes": 118046,
-        "rep_votes": 121622,
-        "other_votes": 279,
-        "total_votes": 239947,
+        "dem_votes": 112278,
+        "rep_votes": 117764,
+        "other_votes": 150,
+        "total_votes": 230192,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "R",
-        "margin": 3576,
-        "margin_pct": 1.4903291143460848
+        "margin": 5486.0,
+        "margin_pct": 2.383227914089108
       },
       "10": {
-        "dem_votes": 139585,
-        "rep_votes": 176922,
-        "other_votes": 457,
-        "total_votes": 316964,
+        "dem_votes": 100809,
+        "rep_votes": 126307,
+        "other_votes": 148,
+        "total_votes": 227264,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "R",
-        "margin": 37337,
-        "margin_pct": 11.779571181585291
+        "margin": 25498.0,
+        "margin_pct": 11.219550830751901
       },
       "11": {
-        "dem_votes": 110225,
-        "rep_votes": 145150,
-        "other_votes": 432,
-        "total_votes": 255807,
+        "dem_votes": 89227,
+        "rep_votes": 123561,
+        "other_votes": 139,
+        "total_votes": 212927,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "R",
-        "margin": 34925,
-        "margin_pct": 13.652871109860168
+        "margin": 34334.0,
+        "margin_pct": 16.12477515768315
       },
       "12": {
-        "dem_votes": 171278,
-        "rep_votes": 104130,
-        "other_votes": 54,
-        "total_votes": 275462,
+        "dem_votes": 172540,
+        "rep_votes": 104592,
+        "other_votes": 181,
+        "total_votes": 277313,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 67148,
-        "margin_pct": 24.37650202205749
+        "margin": 67948.0,
+        "margin_pct": 24.502277210228154
       },
       "13": {
-        "dem_votes": 105209,
-        "rep_votes": 134335,
-        "other_votes": 86,
-        "total_votes": 239630,
+        "dem_votes": 105837,
+        "rep_votes": 134945,
+        "other_votes": 157,
+        "total_votes": 240939,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "R",
-        "margin": 29126,
-        "margin_pct": 12.154571631264867
+        "margin": 29108.0,
+        "margin_pct": 12.081066161974608
       },
       "14": {
-        "dem_votes": 133757,
-        "rep_votes": 127892,
-        "other_votes": 185,
-        "total_votes": 261834,
+        "dem_votes": 134570,
+        "rep_votes": 128618,
+        "other_votes": 172,
+        "total_votes": 263360,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 5865,
-        "margin_pct": 2.2399688352162057
+        "margin": 5952.0,
+        "margin_pct": 2.2600243013365735
       },
       "15": {
-        "dem_votes": 110736,
-        "rep_votes": 125865,
-        "other_votes": 215,
-        "total_votes": 236816,
+        "dem_votes": 111240,
+        "rep_votes": 126144,
+        "other_votes": 155,
+        "total_votes": 237539,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "R",
-        "margin": 15129,
-        "margin_pct": 6.388504155124654
+        "margin": 14904.0,
+        "margin_pct": 6.27433810868952
       },
       "16": {
-        "dem_votes": 127541,
-        "rep_votes": 127491,
-        "other_votes": 223,
-        "total_votes": 255255,
+        "dem_votes": 124255,
+        "rep_votes": 126060,
+        "other_votes": 163,
+        "total_votes": 250478,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
-        "winner": "D",
-        "margin": 50,
-        "margin_pct": 0.01958825488237253
+        "winner": "R",
+        "margin": 1805.0,
+        "margin_pct": 0.7206221704101757
       },
       "17": {
-        "dem_votes": 158585,
-        "rep_votes": 134003,
-        "other_votes": 100,
-        "total_votes": 292688,
+        "dem_votes": 159366,
+        "rep_votes": 134205,
+        "other_votes": 192,
+        "total_votes": 293763,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Lynn Swann",
         "winner": "D",
-        "margin": 24582,
-        "margin_pct": 8.398704422456678
+        "margin": 25161.0,
+        "margin_pct": 8.565067758703444
       }
     }
   }
