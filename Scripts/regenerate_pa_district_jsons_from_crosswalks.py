@@ -1061,6 +1061,15 @@ def parse_historical_vtd_returns(path, year, office_code="USP"):
 def district_result_rows(votes, candidates):
     # Pennsylvania's official export stores 2020 names surname-first. Keep the
     # public district files aligned with the county-result labels.
+    canonical_names = {
+        "Bob Casey Jr.": "Bob Casey, Jr.",
+        "Jack Wagner": "Jack E. Wagner",
+        "Robert McCord": "Bob McCord",
+    }
+    candidates = {
+        bucket: canonical_names.get(name, name)
+        for bucket, name in candidates.items()
+    }
     if candidates.get("dem") == "Biden Joseph Robinette, Jr":
         candidates = {**candidates, "dem": "Joe Biden"}
     if candidates.get("rep") == "Trump Donald J.":
