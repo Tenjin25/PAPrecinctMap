@@ -97,6 +97,31 @@ PA_2008_VTD10_PROXY_ALIASES = {
     ("109", "000164", "PENN D 2"): "PR26",
 }
 
+# The Harvard Election Data Archive's 2011 Pennsylvania file documents cases
+# where the 2008 return precincts and Census VTD10 polygons were not one-to-one.
+# For these groups, the archive sums every listed return precinct and allocates
+# the result to the listed VTD10 polygons by voting-age population (FRACTION).
+# Keeping the group definitions here prevents partially matching a few rows and
+# dropping the rest, which would bias the allocation toward unchanged precincts.
+PA_2008_HARVARD_AGGREGATE_GROUPS = {
+    "geistown": ("021", r"^GEISTOWN X ", ("000660", "000675"), "FRACTION"),
+    "delaware_concord": ("045", r"^CONCORD ", ("000815", "000825", "000830", "000850"), "FRACTION"),
+    "delaware_thornbury": ("045", r"^THORNBURY P ", ("002915", "002925"), "FRACTION"),
+    "fayette_perry": ("051", r"^PERRY D [1-4]$", ("000690", "000700", "000710"), "FRACTION"),
+    "upper_dublin_5": ("091", r"^UPPER DUBLIN X 5 X ", ("003120", "003130"), "FRACTION"),
+    "upper_dublin_6_3": ("091", r"^UPPER DUBLIN X 6 X 3", ("002875",), "VAP"),
+    "shenandoah": ("107", r"^SHENANDOAH P ", ("001330", "001340", "001350", "001360", "001370"), "FRACTION"),
+    "tamaqua_middle": ("107", r"^TAMAQUA W (?:MIDDLE|NORTH|SOUTH)", ("001540", "001550"), "FRACTION"),
+    "wayne": ("107", r"^WAYNE D (?:NORTH|SOUTH)$", ("001670", "001683", "001671"), "FRACTION"),
+    # These revisions were not allocated in the archive's vote fields. Their
+    # unmatched return rows are contained within the named municipality, so
+    # disaggregate the municipality total among its VTD10 polygons by VAP.
+    "lower_mt_bethel": ("095", r"^LOWER MT\. BETHEL D ", ("000750", "000760"), "VAP"),
+    "ashland": ("107", r"^ASHLAND P ", ("000010", "000020"), "VAP"),
+    "coaldale": ("107", r"^COALDALE P ", ("000200", "000220"), "VAP"),
+    "west_mahanoy": ("107", r"^WEST MAHANOY X ", ("001710", "001730", "001735"), "VAP"),
+}
+
 
 def norm(value, width=None):
     text = str(value or "").strip()
@@ -837,6 +862,45 @@ def read_historical_geometry_targets(year, source_keys, source_path=None):
     return {key: cached.get(key, cached.get((key[0], key[1]), [])) for key in source_keys}
 
 
+def prepare_2008_harvard_aggregate_groups(source_votes, source_path):
+    """Collapse documented 2008 return groups and read their VAP weights."""
+    if not source_path:
+        return source_votes, {}
+    frame = gpd.read_file(source_path, ignore_geometry=True)
+    required = {"COUNTYFP10", "VTDST10", "FRACTION", "VAP"}
+    if not required.issubset(frame.columns):
+        return source_votes, {}
+
+    frame["countyfp"] = frame["COUNTYFP10"].map(lambda value: norm(value, 3))
+    frame["vtd"] = frame["VTDST10"].map(lambda value: norm(value, 6))
+    prepared = dict(source_votes)
+    groups = {}
+    for group_name, (county, pattern, historical_vtds, weight_column) in PA_2008_HARVARD_AGGREGATE_GROUPS.items():
+        matching_keys = [
+            key for key in prepared
+            if key[0] == county and re.search(pattern, key[2], flags=re.IGNORECASE)
+        ]
+        if len(matching_keys) < 2:
+            continue
+        rows = frame[(frame["countyfp"] == county) & (frame["vtd"].isin(historical_vtds))].copy()
+        rows["weight"] = pd.to_numeric(rows[weight_column], errors="coerce").fillna(0.0)
+        total_weight = float(rows["weight"].sum())
+        if len(rows) != len(historical_vtds) or total_weight <= 0:
+            continue
+        synthetic_key = (county, f"HG_{group_name.upper()}", f"HARVARD AGGREGATE {group_name.upper()}")
+        combined = {"dem": 0.0, "rep": 0.0, "other": 0.0}
+        for key in matching_keys:
+            values = prepared.pop(key)
+            for bucket in combined:
+                combined[bucket] += float(values.get(bucket, 0.0) or 0.0)
+        prepared[synthetic_key] = combined
+        groups[synthetic_key] = [
+            (county, row.vtd, float(row.weight) / total_weight)
+            for row in rows.itertuples(index=False)
+        ]
+    return prepared, groups
+
+
 def parse_precinct_returns(path, year, office_code):
     """Aggregate one raw PA export into county/source-VTD vote rows."""
     office_names = {
@@ -1163,6 +1227,12 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
         source_votes, candidates = parse_historical_vtd_returns(historical_vtd_source, year)
     else:
         source_votes, candidates = parse_precinct_returns(source_file, year, office_code)
+    harvard_aggregate_groups = {}
+    if year == 2008 and historical_geometry_source:
+        source_votes, harvard_aggregate_groups = prepare_2008_harvard_aggregate_groups(
+            source_votes,
+            historical_geometry_source,
+        )
     source_total = sum(
         float(value or 0)
         for row in source_votes.values()
@@ -1207,6 +1277,11 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
         for row in chain.itertuples(index=False):
             source_to_target[(row.countyfp, row.src_vtd)].append((row.dst_countyfp, row.dst_vtd, float(row.weight)))
     geometry_source_keys = list(source_votes.keys())
+    geometry_source_keys.extend(
+        (county, vtd, "")
+        for group_targets in harvard_aggregate_groups.values()
+        for county, vtd, _weight in group_targets
+    )
     if year == 2006:
         geometry_source_keys.extend(
             (county, alias_vtd, "")
@@ -1217,6 +1292,15 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
         geometry_source_keys,
         historical_geometry_source,
     ) if historical_geometry_source else {}
+    for synthetic_key, group_targets in harvard_aggregate_groups.items():
+        weighted = defaultdict(float)
+        for county, historical_vtd, group_weight in group_targets:
+            for dst_county, dst_vtd, geometry_weight in geometry_targets.get((county, historical_vtd, ""), []):
+                weighted[(dst_county, dst_vtd)] += group_weight * geometry_weight
+        geometry_targets[synthetic_key] = [
+            (dst_county, dst_vtd, weight)
+            for (dst_county, dst_vtd), weight in sorted(weighted.items())
+        ]
     fallback_source_to_target = defaultdict(list)
     if fallback_chain is not None:
         for row in fallback_chain.itertuples(index=False):
@@ -1433,6 +1517,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
                 "coverage_percent": (len(set(results) & expected) / len(expected) * 100) if expected else 0.0,
                 "source": (
                     f"precinct_returns_to_vtd_block_chain_{weight_mode}_districts"
+                    + ("+harvard_pa_2011_aggregate_geometry" if harvard_aggregate_groups else "")
                     + (f"+dra_share_calibration/{calibration_source}" if calibration_source else "")
                     + (f"+exact_district_benchmark/{exact_benchmark_source}" if exact_benchmark_source else "")
                     + (f"+statewide_vote_control/{statewide_control_source}" if statewide_control_source else "")
@@ -1440,6 +1525,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
                 "unmatched_source_vtds": unmatched,
                 "unmatched_source_votes": unmatched_votes,
                 "unmatched_source_keys": [list(key) for key in unmatched_keys],
+                "historical_aggregate_groups": sorted(key[1] for key in harvard_aggregate_groups),
                 "district_membership_gap_votes": membership_gap_votes[scope],
                 "district_membership_gap_keys": membership_gap_keys[scope],
             },
