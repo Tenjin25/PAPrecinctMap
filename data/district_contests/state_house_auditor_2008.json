@@ -6,51 +6,27 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
-    "unmatched_source_vtds": 8,
-    "unmatched_source_votes": 6371.0,
-    "unmatched_source_keys": [
-      [
-        "011",
-        "000000",
-        "CAERNARVON P 2"
-      ],
-      [
-        "011",
-        "000000",
-        "ROCKLAND P 2"
-      ],
-      [
-        "045",
-        "000000",
-        "CONCORD D MARIS GROVE"
-      ],
-      [
-        "049",
-        "000000",
-        "MILLCREEK D 24"
-      ],
-      [
-        "055",
-        "000000",
-        "SOUTHAMPTON X EAST"
-      ],
-      [
-        "091",
-        "000000",
-        "POTTSTOWN X 7 X 1"
-      ],
-      [
-        "091",
-        "000000",
-        "POTTSTOWN X 7 X 2"
-      ],
-      [
-        "119",
-        "000000",
-        "UNION INDEPENDENT"
-      ]
-    ]
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_aggregate_geometry+statewide_vote_control/contests/auditor_2008.json",
+    "unmatched_source_vtds": 0,
+    "unmatched_source_votes": 0.0,
+    "unmatched_source_keys": [],
+    "historical_aggregate_groups": [
+      "HG_ASHLAND",
+      "HG_COALDALE",
+      "HG_DELAWARE_CONCORD",
+      "HG_DELAWARE_THORNBURY",
+      "HG_FAYETTE_PERRY",
+      "HG_GEISTOWN",
+      "HG_LOWER_MT_BETHEL",
+      "HG_SHENANDOAH",
+      "HG_TAMAQUA_MIDDLE",
+      "HG_UPPER_DUBLIN_5",
+      "HG_UPPER_DUBLIN_6_3",
+      "HG_WAYNE",
+      "HG_WEST_MAHANOY"
+    ],
+    "district_membership_gap_votes": 0.0,
+    "district_membership_gap_keys": []
   },
   "general": {
     "results": {
@@ -77,15 +53,15 @@
         "margin_pct": 45.01383125864454
       },
       "3": {
-        "dem_votes": 18379,
-        "rep_votes": 11222,
-        "other_votes": 1146,
-        "total_votes": 30747,
+        "dem_votes": 19006,
+        "rep_votes": 11916,
+        "other_votes": 1180,
+        "total_votes": 32102,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 7157.0,
-        "margin_pct": 23.27706768139981
+        "margin": 7090.0,
+        "margin_pct": 22.08585134882562
       },
       "4": {
         "dem_votes": 16332,
@@ -99,15 +75,15 @@
         "margin_pct": 18.503538928210315
       },
       "5": {
-        "dem_votes": 12555,
-        "rep_votes": 13529,
-        "other_votes": 1008,
-        "total_votes": 27092,
+        "dem_votes": 12914,
+        "rep_votes": 13917,
+        "other_votes": 1044,
+        "total_votes": 27875,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 974.0,
-        "margin_pct": 3.5951572419902553
+        "margin": 1003.0,
+        "margin_pct": 3.598206278026906
       },
       "6": {
         "dem_votes": 15257,
@@ -132,26 +108,26 @@
         "margin_pct": 32.02374493345674
       },
       "8": {
-        "dem_votes": 14177,
-        "rep_votes": 13843,
-        "other_votes": 1275,
-        "total_votes": 29295,
+        "dem_votes": 15363,
+        "rep_votes": 14766,
+        "other_votes": 1385,
+        "total_votes": 31514,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 334.0,
-        "margin_pct": 1.1401263014166239
+        "margin": 597.0,
+        "margin_pct": 1.8943961413974741
       },
       "9": {
-        "dem_votes": 13350,
-        "rep_votes": 8696,
-        "other_votes": 841,
-        "total_votes": 22887,
+        "dem_votes": 18291,
+        "rep_votes": 10260,
+        "other_votes": 1085,
+        "total_votes": 29636,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 4654.0,
-        "margin_pct": 20.33468781404291
+        "margin": 8031.0,
+        "margin_pct": 27.098798758266973
       },
       "10": {
         "dem_votes": 23101,
@@ -176,15 +152,15 @@
         "margin_pct": 8.960392710644879
       },
       "12": {
-        "dem_votes": 10520,
-        "rep_votes": 11838,
-        "other_votes": 816,
-        "total_votes": 23174,
+        "dem_votes": 12886,
+        "rep_votes": 14006,
+        "other_votes": 974,
+        "total_votes": 27866,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 1318.0,
-        "margin_pct": 5.687408302407871
+        "margin": 1120.0,
+        "margin_pct": 4.019234909926075
       },
       "13": {
         "dem_votes": 11747,
@@ -275,26 +251,26 @@
         "margin_pct": 41.55477256134336
       },
       "21": {
-        "dem_votes": 23149,
-        "rep_votes": 7421,
-        "other_votes": 1147,
-        "total_votes": 31717,
+        "dem_votes": 23489,
+        "rep_votes": 7547,
+        "other_votes": 1160,
+        "total_votes": 32196,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 15728.0,
-        "margin_pct": 49.588548727811585
+        "margin": 15942.0,
+        "margin_pct": 49.515467759970186
       },
       "22": {
-        "dem_votes": 12440,
-        "rep_votes": 3008,
-        "other_votes": 433,
-        "total_votes": 15881,
+        "dem_votes": 12824,
+        "rep_votes": 3230,
+        "other_votes": 462,
+        "total_votes": 16516,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 9432.0,
-        "margin_pct": 59.39172596184119
+        "margin": 9594.0,
+        "margin_pct": 58.089125696294495
       },
       "23": {
         "dem_votes": 24596,
@@ -352,48 +328,48 @@
         "margin_pct": 52.56806722689076
       },
       "28": {
-        "dem_votes": 14514,
-        "rep_votes": 12233,
-        "other_votes": 853,
-        "total_votes": 27600,
+        "dem_votes": 14803,
+        "rep_votes": 12500,
+        "other_votes": 866,
+        "total_votes": 28169,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 2281.0,
-        "margin_pct": 8.26449275362319
+        "margin": 2303.0,
+        "margin_pct": 8.175654087827045
       },
       "29": {
         "dem_votes": 17754,
-        "rep_votes": 17531,
+        "rep_votes": 17530,
         "other_votes": 775,
-        "total_votes": 36060,
+        "total_votes": 36059,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 223.0,
-        "margin_pct": 0.6184137548530227
+        "margin": 224.0,
+        "margin_pct": 0.621204137663274
       },
       "30": {
-        "dem_votes": 17242,
-        "rep_votes": 12867,
-        "other_votes": 936,
-        "total_votes": 31045,
+        "dem_votes": 17661,
+        "rep_votes": 13153,
+        "other_votes": 956,
+        "total_votes": 31770,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 4375.0,
-        "margin_pct": 14.092446448703495
+        "margin": 4508.0,
+        "margin_pct": 14.189486937362291
       },
       "31": {
         "dem_votes": 18781,
-        "rep_votes": 17986,
+        "rep_votes": 17985,
         "other_votes": 766,
-        "total_votes": 37533,
+        "total_votes": 37532,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 795.0,
-        "margin_pct": 2.1181360402845497
+        "margin": 796.0,
+        "margin_pct": 2.1208568688052862
       },
       "32": {
         "dem_votes": 24302,
@@ -452,14 +428,14 @@
       },
       "37": {
         "dem_votes": 8860,
-        "rep_votes": 18430,
+        "rep_votes": 18429,
         "other_votes": 922,
-        "total_votes": 28212,
+        "total_votes": 28211,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 9570.0,
-        "margin_pct": 33.92173543173118
+        "margin": 9569.0,
+        "margin_pct": 33.9193931445181
       },
       "38": {
         "dem_votes": 23344,
@@ -517,15 +493,15 @@
         "margin_pct": 33.16737857486351
       },
       "43": {
-        "dem_votes": 6700,
-        "rep_votes": 14237,
-        "other_votes": 723,
-        "total_votes": 21660,
+        "dem_votes": 6878,
+        "rep_votes": 14630,
+        "other_votes": 738,
+        "total_votes": 22246,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 7537.0,
-        "margin_pct": 34.79686057248384
+        "margin": 7752.0,
+        "margin_pct": 34.84671401600288
       },
       "44": {
         "dem_votes": 17440,
@@ -605,48 +581,48 @@
         "margin_pct": 45.34542726590738
       },
       "51": {
-        "dem_votes": 16960,
-        "rep_votes": 6245,
-        "other_votes": 795,
-        "total_votes": 24000,
+        "dem_votes": 17373,
+        "rep_votes": 6296,
+        "other_votes": 806,
+        "total_votes": 24475,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 10715.0,
-        "margin_pct": 44.645833333333336
+        "margin": 11077.0,
+        "margin_pct": 45.258426966292134
       },
       "52": {
-        "dem_votes": 16507,
-        "rep_votes": 6702,
-        "other_votes": 795,
-        "total_votes": 24004,
+        "dem_votes": 17009,
+        "rep_votes": 6989,
+        "other_votes": 820,
+        "total_votes": 24818,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 9805.0,
-        "margin_pct": 40.84735877353774
+        "margin": 10020.0,
+        "margin_pct": 40.37392215327585
       },
       "53": {
-        "dem_votes": 11375,
-        "rep_votes": 8769,
-        "other_votes": 274,
-        "total_votes": 20418,
+        "dem_votes": 13685,
+        "rep_votes": 10674,
+        "other_votes": 313,
+        "total_votes": 24672,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 2606.0,
-        "margin_pct": 12.763248114408853
+        "margin": 3011.0,
+        "margin_pct": 12.20411802853437
       },
       "54": {
-        "dem_votes": 16537,
-        "rep_votes": 6465,
-        "other_votes": 206,
-        "total_votes": 23208,
+        "dem_votes": 16690,
+        "rep_votes": 6550,
+        "other_votes": 207,
+        "total_votes": 23447,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 10072.0,
-        "margin_pct": 43.39882799034815
+        "margin": 10140.0,
+        "margin_pct": 43.24647076385039
       },
       "55": {
         "dem_votes": 18765,
@@ -726,15 +702,15 @@
         "margin_pct": 4.726248951719181
       },
       "62": {
-        "dem_votes": 17118,
-        "rep_votes": 10205,
-        "other_votes": 1360,
-        "total_votes": 28683,
+        "dem_votes": 17583,
+        "rep_votes": 10473,
+        "other_votes": 1392,
+        "total_votes": 29448,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 6913.0,
-        "margin_pct": 24.101384095108603
+        "margin": 7110.0,
+        "margin_pct": 24.144254278728607
       },
       "63": {
         "dem_votes": 14567,
@@ -814,37 +790,37 @@
         "margin_pct": 6.1079925153702215
       },
       "70": {
-        "dem_votes": 15469,
-        "rep_votes": 13414,
-        "other_votes": 338,
-        "total_votes": 29221,
+        "dem_votes": 16167,
+        "rep_votes": 14354,
+        "other_votes": 357,
+        "total_votes": 30878,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 2055.0,
-        "margin_pct": 7.03261353136443
+        "margin": 1813.0,
+        "margin_pct": 5.871494267763456
       },
       "71": {
-        "dem_votes": 18299,
-        "rep_votes": 8743,
-        "other_votes": 1136,
-        "total_votes": 28178,
+        "dem_votes": 19004,
+        "rep_votes": 9031,
+        "other_votes": 1182,
+        "total_votes": 29217,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 9556.0,
-        "margin_pct": 33.91298175881894
+        "margin": 9973.0,
+        "margin_pct": 34.13423691686347
       },
       "72": {
-        "dem_votes": 21420,
-        "rep_votes": 8162,
-        "other_votes": 1173,
-        "total_votes": 30755,
+        "dem_votes": 21942,
+        "rep_votes": 8257,
+        "other_votes": 1198,
+        "total_votes": 31397,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 13258.0,
-        "margin_pct": 43.108437652414246
+        "margin": 13685.0,
+        "margin_pct": 43.58696690766634
       },
       "73": {
         "dem_votes": 15431,
@@ -891,15 +867,15 @@
         "margin_pct": 1.7043318434353982
       },
       "77": {
-        "dem_votes": 15890,
-        "rep_votes": 9797,
-        "other_votes": 1591,
-        "total_votes": 27278,
+        "dem_votes": 16758,
+        "rep_votes": 10409,
+        "other_votes": 1670,
+        "total_votes": 28837,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 6093.0,
-        "margin_pct": 22.33668157489552
+        "margin": 6349.0,
+        "margin_pct": 22.01685334812914
       },
       "78": {
         "dem_votes": 10089,
@@ -935,15 +911,15 @@
         "margin_pct": 21.81465059181355
       },
       "81": {
-        "dem_votes": 9914,
-        "rep_votes": 13916,
-        "other_votes": 1357,
-        "total_votes": 25187,
+        "dem_votes": 10172,
+        "rep_votes": 14421,
+        "other_votes": 1387,
+        "total_votes": 25980,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 4002.0,
-        "margin_pct": 15.889149164251398
+        "margin": 4249.0,
+        "margin_pct": 16.354888375673596
       },
       "82": {
         "dem_votes": 17019,
@@ -979,15 +955,15 @@
         "margin_pct": 21.6676810712112
       },
       "85": {
-        "dem_votes": 9236,
-        "rep_votes": 13992,
-        "other_votes": 1063,
-        "total_votes": 24291,
+        "dem_votes": 9913,
+        "rep_votes": 14856,
+        "other_votes": 1143,
+        "total_votes": 25912,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 4756.0,
-        "margin_pct": 19.57926804166152
+        "margin": 4943.0,
+        "margin_pct": 19.0761037357209
       },
       "86": {
         "dem_votes": 9811,
@@ -1001,15 +977,15 @@
         "margin_pct": 19.793092956032254
       },
       "87": {
-        "dem_votes": 9741,
-        "rep_votes": 14219,
-        "other_votes": 960,
-        "total_votes": 24920,
+        "dem_votes": 10121,
+        "rep_votes": 14770,
+        "other_votes": 985,
+        "total_votes": 25876,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 4478.0,
-        "margin_pct": 17.969502407704656
+        "margin": 4649.0,
+        "margin_pct": 17.966455402689753
       },
       "88": {
         "dem_votes": 12894,
@@ -1045,15 +1021,15 @@
         "margin_pct": 26.402951102739188
       },
       "91": {
-        "dem_votes": 11654,
-        "rep_votes": 13448,
-        "other_votes": 1567,
-        "total_votes": 26669,
+        "dem_votes": 11980,
+        "rep_votes": 13926,
+        "other_votes": 1628,
+        "total_votes": 27534,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 1794.0,
-        "margin_pct": 6.726911395252916
+        "margin": 1946.0,
+        "margin_pct": 7.067625481223215
       },
       "92": {
         "dem_votes": 10929,
@@ -1100,26 +1076,26 @@
         "margin_pct": 38.58026084209577
       },
       "96": {
-        "dem_votes": 13542,
-        "rep_votes": 11406,
-        "other_votes": 961,
-        "total_votes": 25909,
+        "dem_votes": 14787,
+        "rep_votes": 13146,
+        "other_votes": 1026,
+        "total_votes": 28959,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 2136.0,
-        "margin_pct": 8.244239453471765
+        "margin": 1641.0,
+        "margin_pct": 5.6666321350875375
       },
       "97": {
-        "dem_votes": 8767,
-        "rep_votes": 17432,
-        "other_votes": 725,
-        "total_votes": 26924,
+        "dem_votes": 9127,
+        "rep_votes": 17835,
+        "other_votes": 759,
+        "total_votes": 27721,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 8665.0,
-        "margin_pct": 32.18318229089288
+        "margin": 8708.0,
+        "margin_pct": 31.413008188737777
       },
       "98": {
         "dem_votes": 9039,
@@ -1221,15 +1197,15 @@
         "margin_pct": 13.913072484072183
       },
       "107": {
-        "dem_votes": 12150,
-        "rep_votes": 10580,
-        "other_votes": 1434,
-        "total_votes": 24164,
+        "dem_votes": 12287,
+        "rep_votes": 10808,
+        "other_votes": 1451,
+        "total_votes": 24546,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 1570.0,
-        "margin_pct": 6.497268664128455
+        "margin": 1479.0,
+        "margin_pct": 6.025421657296504
       },
       "108": {
         "dem_votes": 10385,
@@ -1243,15 +1219,15 @@
         "margin_pct": 8.001494830378276
       },
       "109": {
-        "dem_votes": 13420,
-        "rep_votes": 11310,
-        "other_votes": 1377,
-        "total_votes": 26107,
+        "dem_votes": 13600,
+        "rep_votes": 11408,
+        "other_votes": 1391,
+        "total_votes": 26399,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 2110.0,
-        "margin_pct": 8.08212356839162
+        "margin": 2192.0,
+        "margin_pct": 8.303344823667564
       },
       "110": {
         "dem_votes": 12021,
@@ -1276,15 +1252,15 @@
         "margin_pct": 6.267729298932865
       },
       "112": {
-        "dem_votes": 21418,
-        "rep_votes": 6183,
-        "other_votes": 1236,
-        "total_votes": 28837,
+        "dem_votes": 23062,
+        "rep_votes": 6661,
+        "other_votes": 1334,
+        "total_votes": 31057,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 15235.0,
-        "margin_pct": 52.831431841037556
+        "margin": 16401.0,
+        "margin_pct": 52.809350548990565
       },
       "113": {
         "dem_votes": 17353,
@@ -1298,15 +1274,15 @@
         "margin_pct": 41.43120996581129
       },
       "114": {
-        "dem_votes": 18862,
-        "rep_votes": 8201,
-        "other_votes": 1403,
-        "total_votes": 28466,
+        "dem_votes": 19711,
+        "rep_votes": 8939,
+        "other_votes": 1489,
+        "total_votes": 30139,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 10661.0,
-        "margin_pct": 37.45169676104827
+        "margin": 10772.0,
+        "margin_pct": 35.74106639238197
       },
       "115": {
         "dem_votes": 13856,
@@ -1320,103 +1296,103 @@
         "margin_pct": 25.72483102098897
       },
       "116": {
-        "dem_votes": 7984,
-        "rep_votes": 4942,
-        "other_votes": 646,
-        "total_votes": 13572,
+        "dem_votes": 10943,
+        "rep_votes": 6458,
+        "other_votes": 909,
+        "total_votes": 18310,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 3042.0,
-        "margin_pct": 22.413793103448278
+        "margin": 4485.0,
+        "margin_pct": 24.494811578372474
       },
       "117": {
-        "dem_votes": 12612,
-        "rep_votes": 12140,
-        "other_votes": 1407,
-        "total_votes": 26159,
+        "dem_votes": 12977,
+        "rep_votes": 12468,
+        "other_votes": 1447,
+        "total_votes": 26892,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 472.0,
-        "margin_pct": 1.8043503192018042
+        "margin": 509.0,
+        "margin_pct": 1.8927562100252864
       },
       "118": {
-        "dem_votes": 19417,
-        "rep_votes": 7835,
-        "other_votes": 1395,
-        "total_votes": 28647,
+        "dem_votes": 19792,
+        "rep_votes": 7937,
+        "other_votes": 1405,
+        "total_votes": 29134,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 11582.0,
-        "margin_pct": 40.4300624847279
+        "margin": 11855.0,
+        "margin_pct": 40.691288528866615
       },
       "119": {
-        "dem_votes": 14085,
-        "rep_votes": 6560,
-        "other_votes": 1191,
-        "total_votes": 21836,
+        "dem_votes": 15046,
+        "rep_votes": 6897,
+        "other_votes": 1255,
+        "total_votes": 23198,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 7525.0,
-        "margin_pct": 34.46143982414361
+        "margin": 8149.0,
+        "margin_pct": 35.12802827829986
       },
       "120": {
-        "dem_votes": 15265,
-        "rep_votes": 8795,
-        "other_votes": 1344,
-        "total_votes": 25404,
+        "dem_votes": 15285,
+        "rep_votes": 8800,
+        "other_votes": 1345,
+        "total_votes": 25430,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 6470.0,
-        "margin_pct": 25.468430168477408
+        "margin": 6485.0,
+        "margin_pct": 25.501376327172633
       },
       "121": {
-        "dem_votes": 10113,
-        "rep_votes": 3767,
-        "other_votes": 862,
-        "total_votes": 14742,
+        "dem_votes": 14454,
+        "rep_votes": 5040,
+        "other_votes": 1189,
+        "total_votes": 20683,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 6346.0,
-        "margin_pct": 43.04707638040971
+        "margin": 9414.0,
+        "margin_pct": 45.51564086447807
       },
       "122": {
-        "dem_votes": 10618,
-        "rep_votes": 7157,
-        "other_votes": 1062,
-        "total_votes": 18837,
+        "dem_votes": 13574,
+        "rep_votes": 9629,
+        "other_votes": 1401,
+        "total_votes": 24604,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 3461.0,
-        "margin_pct": 18.373414025587937
+        "margin": 3945.0,
+        "margin_pct": 16.033978214924403
       },
       "123": {
-        "dem_votes": 11487,
-        "rep_votes": 7706,
-        "other_votes": 963,
-        "total_votes": 20156,
+        "dem_votes": 16705,
+        "rep_votes": 10597,
+        "other_votes": 1371,
+        "total_votes": 28673,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 3781.0,
-        "margin_pct": 18.758682278229806
+        "margin": 6108.0,
+        "margin_pct": 21.302270428626233
       },
       "124": {
-        "dem_votes": 12832,
-        "rep_votes": 13341,
-        "other_votes": 1256,
-        "total_votes": 27429,
+        "dem_votes": 13516,
+        "rep_votes": 13949,
+        "other_votes": 1335,
+        "total_votes": 28800,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 509.0,
-        "margin_pct": 1.8557001713514893
+        "margin": 433.0,
+        "margin_pct": 1.503472222222222
       },
       "125": {
         "dem_votes": 12663,
@@ -1430,15 +1406,15 @@
         "margin_pct": 11.003158472946993
       },
       "126": {
-        "dem_votes": 13570,
-        "rep_votes": 6170,
-        "other_votes": 692,
-        "total_votes": 20432,
+        "dem_votes": 15257,
+        "rep_votes": 7251,
+        "other_votes": 786,
+        "total_votes": 23294,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 7400.0,
-        "margin_pct": 36.21769772905247
+        "margin": 8006.0,
+        "margin_pct": 34.36936550184597
       },
       "127": {
         "dem_votes": 12690,
@@ -1452,15 +1428,15 @@
         "margin_pct": 52.45167373880245
       },
       "128": {
-        "dem_votes": 13025,
-        "rep_votes": 12903,
-        "other_votes": 975,
-        "total_votes": 26903,
+        "dem_votes": 13380,
+        "rep_votes": 13490,
+        "other_votes": 995,
+        "total_votes": 27865,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
-        "winner": "D",
-        "margin": 122.0,
-        "margin_pct": 0.4534810244210683
+        "winner": "R",
+        "margin": 110.0,
+        "margin_pct": 0.3947604521801543
       },
       "129": {
         "dem_votes": 14605,
@@ -1474,26 +1450,26 @@
         "margin_pct": 28.418426598993506
       },
       "130": {
-        "dem_votes": 13018,
-        "rep_votes": 12040,
-        "other_votes": 1016,
-        "total_votes": 26074,
+        "dem_votes": 13956,
+        "rep_votes": 12953,
+        "other_votes": 1095,
+        "total_votes": 28004,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 978.0,
-        "margin_pct": 3.7508629285878654
+        "margin": 1003.0,
+        "margin_pct": 3.5816311955434936
       },
       "131": {
-        "dem_votes": 12522,
-        "rep_votes": 13538,
-        "other_votes": 702,
-        "total_votes": 26762,
+        "dem_votes": 12859,
+        "rep_votes": 13800,
+        "other_votes": 727,
+        "total_votes": 27386,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 1016.0,
-        "margin_pct": 3.796427770719677
+        "margin": 941.0,
+        "margin_pct": 3.4360622215730663
       },
       "132": {
         "dem_votes": 14526,
@@ -1529,15 +1505,15 @@
         "margin_pct": 32.31919736169818
       },
       "135": {
-        "dem_votes": 16318,
-        "rep_votes": 8078,
-        "other_votes": 430,
-        "total_votes": 24826,
+        "dem_votes": 17450,
+        "rep_votes": 8790,
+        "other_votes": 456,
+        "total_votes": 26696,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 8240.0,
-        "margin_pct": 33.19100942560219
+        "margin": 8660.0,
+        "margin_pct": 32.43931675157327
       },
       "136": {
         "dem_votes": 14463,
@@ -1551,26 +1527,26 @@
         "margin_pct": 32.31762369086313
       },
       "137": {
-        "dem_votes": 13281,
-        "rep_votes": 10527,
-        "other_votes": 358,
-        "total_votes": 24166,
+        "dem_votes": 13736,
+        "rep_votes": 10731,
+        "other_votes": 367,
+        "total_votes": 24834,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 2754.0,
-        "margin_pct": 11.396176446246793
+        "margin": 3005.0,
+        "margin_pct": 12.100346299428203
       },
       "138": {
-        "dem_votes": 13435,
-        "rep_votes": 12262,
-        "other_votes": 421,
-        "total_votes": 26118,
+        "dem_votes": 13856,
+        "rep_votes": 12653,
+        "other_votes": 439,
+        "total_votes": 26948,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 1173.0,
-        "margin_pct": 4.491155524925339
+        "margin": 1203.0,
+        "margin_pct": 4.464153183909752
       },
       "139": {
         "dem_votes": 11690,
@@ -1595,15 +1571,15 @@
         "margin_pct": 35.65123401188975
       },
       "141": {
-        "dem_votes": 18952,
-        "rep_votes": 7007,
-        "other_votes": 498,
-        "total_votes": 26457,
+        "dem_votes": 19768,
+        "rep_votes": 7110,
+        "other_votes": 506,
+        "total_votes": 27384,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 11945.0,
-        "margin_pct": 45.14873190459991
+        "margin": 12658.0,
+        "margin_pct": 46.22407245106632
       },
       "142": {
         "dem_votes": 17958,
@@ -1650,15 +1626,15 @@
         "margin_pct": 1.3133079587148098
       },
       "146": {
-        "dem_votes": 14129,
-        "rep_votes": 10048,
-        "other_votes": 325,
-        "total_votes": 24502,
+        "dem_votes": 15205,
+        "rep_votes": 10541,
+        "other_votes": 340,
+        "total_votes": 26086,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 4081.0,
-        "margin_pct": 16.655783201371317
+        "margin": 4664.0,
+        "margin_pct": 17.879322241815533
       },
       "147": {
         "dem_votes": 13730,
@@ -1672,26 +1648,26 @@
         "margin_pct": 10.467283712559455
       },
       "148": {
-        "dem_votes": 22593,
-        "rep_votes": 11335,
-        "other_votes": 276,
-        "total_votes": 34204,
+        "dem_votes": 22669,
+        "rep_votes": 11365,
+        "other_votes": 277,
+        "total_votes": 34311,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 11258.0,
-        "margin_pct": 32.9142790316922
+        "margin": 11304.0,
+        "margin_pct": 32.945702544373525
       },
       "149": {
-        "dem_votes": 17992,
-        "rep_votes": 10737,
-        "other_votes": 347,
-        "total_votes": 29076,
+        "dem_votes": 18042,
+        "rep_votes": 10757,
+        "other_votes": 348,
+        "total_votes": 29147,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 7255.0,
-        "margin_pct": 24.951850323290685
+        "margin": 7285.0,
+        "margin_pct": 24.993995951555906
       },
       "150": {
         "dem_votes": 14220,
@@ -1705,15 +1681,15 @@
         "margin_pct": 4.983922829581994
       },
       "151": {
-        "dem_votes": 17064,
-        "rep_votes": 13507,
-        "other_votes": 249,
-        "total_votes": 30820,
+        "dem_votes": 17311,
+        "rep_votes": 13694,
+        "other_votes": 251,
+        "total_votes": 31256,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 3557.0,
-        "margin_pct": 11.54120700843608
+        "margin": 3617.0,
+        "margin_pct": 11.572178141796776
       },
       "152": {
         "dem_votes": 16919,
@@ -1727,15 +1703,15 @@
         "margin_pct": 17.69954183747287
       },
       "153": {
-        "dem_votes": 20162,
-        "rep_votes": 12250,
-        "other_votes": 299,
-        "total_votes": 32711,
+        "dem_votes": 20959,
+        "rep_votes": 12585,
+        "other_votes": 304,
+        "total_votes": 33848,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 7912.0,
-        "margin_pct": 24.18758215890679
+        "margin": 8374.0,
+        "margin_pct": 24.74001418104467
       },
       "154": {
         "dem_votes": 24983,
@@ -1804,26 +1780,26 @@
         "margin_pct": 45.416666666666664
       },
       "160": {
-        "dem_votes": 10727,
-        "rep_votes": 13158,
-        "other_votes": 656,
-        "total_votes": 24541,
+        "dem_votes": 14564,
+        "rep_votes": 17779,
+        "other_votes": 799,
+        "total_votes": 33142,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 2431.0,
-        "margin_pct": 9.905871806364859
+        "margin": 3215.0,
+        "margin_pct": 9.700681914187435
       },
       "161": {
-        "dem_votes": 16967,
-        "rep_votes": 14287,
-        "other_votes": 534,
-        "total_votes": 31788,
+        "dem_votes": 17370,
+        "rep_votes": 14544,
+        "other_votes": 553,
+        "total_votes": 32467,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 2680.0,
-        "margin_pct": 8.43085441046936
+        "margin": 2826.0,
+        "margin_pct": 8.704222749253088
       },
       "162": {
         "dem_votes": 18123,
@@ -1837,26 +1813,26 @@
         "margin_pct": 18.620111010713824
       },
       "163": {
-        "dem_votes": 16538,
-        "rep_votes": 13536,
-        "other_votes": 477,
-        "total_votes": 30551,
+        "dem_votes": 16615,
+        "rep_votes": 13565,
+        "other_votes": 478,
+        "total_votes": 30658,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 3002.0,
-        "margin_pct": 9.82619226866551
+        "margin": 3050.0,
+        "margin_pct": 9.948463696261987
       },
       "164": {
-        "dem_votes": 17338,
-        "rep_votes": 6402,
+        "dem_votes": 17443,
+        "rep_votes": 6443,
         "other_votes": 340,
-        "total_votes": 24080,
+        "total_votes": 24226,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 10936.0,
-        "margin_pct": 45.415282392026576
+        "margin": 11000.0,
+        "margin_pct": 45.405762404028735
       },
       "165": {
         "dem_votes": 17853,
@@ -2003,14 +1979,14 @@
       },
       "178": {
         "dem_votes": 16893,
-        "rep_votes": 18569,
+        "rep_votes": 18568,
         "other_votes": 680,
-        "total_votes": 36142,
+        "total_votes": 36141,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 1676.0,
-        "margin_pct": 4.637264124840906
+        "margin": 1675.0,
+        "margin_pct": 4.6346254945906304
       },
       "179": {
         "dem_votes": 17948,
@@ -2134,15 +2110,15 @@
         "margin_pct": 26.108149970388595
       },
       "190": {
-        "dem_votes": 30674,
+        "dem_votes": 30673,
         "rep_votes": 767,
         "other_votes": 120,
-        "total_votes": 31561,
+        "total_votes": 31560,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 29907.0,
-        "margin_pct": 94.75935490003485
+        "margin": 29906.0,
+        "margin_pct": 94.75918884664132
       },
       "191": {
         "dem_votes": 26361,
@@ -2244,26 +2220,26 @@
         "margin_pct": 8.207190160832544
       },
       "200": {
-        "dem_votes": 37431,
+        "dem_votes": 37430,
         "rep_votes": 1211,
         "other_votes": 247,
-        "total_votes": 38889,
+        "total_votes": 38888,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 36220.0,
-        "margin_pct": 93.1368767517807
+        "margin": 36219.0,
+        "margin_pct": 93.13670026743468
       },
       "201": {
-        "dem_votes": 32466,
+        "dem_votes": 32465,
         "rep_votes": 723,
         "other_votes": 164,
-        "total_votes": 33353,
+        "total_votes": 33352,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 31743.0,
-        "margin_pct": 95.1728480196684
+        "margin": 31742.0,
+        "margin_pct": 95.17270328615976
       },
       "202": {
         "dem_votes": 14008,
