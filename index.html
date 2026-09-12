@@ -10423,8 +10423,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-12-coterminous-house-controls-v34';
-    const APP_BUILD_ID = '2026-09-12-coterminous-house-controls-v34';
+    const DATA_CACHE_BUSTER = '2026-09-12-cvap-demographics-v35';
+    const APP_BUILD_ID = '2026-09-12-cvap-demographics-v35';
 
     function ensurePageCacheBuster() {
       return false;
@@ -10487,10 +10487,18 @@ document.addEventListener('DOMContentLoaded', function() {
         state_senate: withBase('./data/tileset/pa_state_senate_2022_lines_tileset.geojson'),
         state_senate_2022: withBase('./data/tileset/pa_state_senate_2022_lines_tileset.geojson'),
         state_senate_2024: withBase('./data/tileset/pa_state_senate_2022_lines_tileset.geojson'),
-        county_demographics: withBase('./data/county_demographics_2020_dp1.json'),
+        county_demographics: withBase('./data/pa_cvap_2024.json'),
         county_population_estimates: withBase('./data/pa_county_population_estimates_2025.csv'),
         precinct_demographics: null,
-        cvap_aggregates: {},
+        cvap_aggregates: {
+          county_2020: withBase('./data/pa_cvap_2024_county.csv'),
+          cd118_2022: withBase('./data/pa_cvap_2024_congressional.csv'),
+          cd119_2024: withBase('./data/pa_cvap_2024_congressional.csv'),
+          state_house_2022: withBase('./data/pa_cvap_2024_state_house.csv'),
+          state_house_2024: withBase('./data/pa_cvap_2024_state_house.csv'),
+          state_senate_2022: withBase('./data/pa_cvap_2024_state_senate.csv'),
+          state_senate_2024: withBase('./data/pa_cvap_2024_state_senate.csv')
+        },
         election: withBase('./data/pa_elections_aggregated.json'),
         district_election: withBase('./data/pa_district_results_2022_lines.json'),
         district_contests_dir: withBase('./data/district_contests'),
@@ -10500,9 +10508,9 @@ document.addEventListener('DOMContentLoaded', function() {
           '2022': withBase('./data/district_contests'),
           '2024': withBase('./data/district_contests')
         },
-        districts_info: withBase('./data/pa_congressional_districts.csv'),
-        state_house_info: withBase('./data/pa_state_house_districts.csv'),
-        state_senate_info: withBase('./data/pa_state_senate_districts.csv'),
+        districts_info: withBase('./data/pa_cvap_2024_congressional.csv'),
+        state_house_info: withBase('./data/pa_cvap_2024_state_house.csv'),
+        state_senate_info: withBase('./data/pa_cvap_2024_state_senate.csv'),
         district_descriptions: withBase('./data/pa_district_descriptions.json'),
         contests_dir: withBase('./data/contests'),
         reports_match_year_summary: null,
@@ -11006,7 +11014,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const districtViewResourceInflight = new Map();
     let secondaryReferenceWarmupScheduled = false;
     let districtDescriptions = null; // Optional labels like "Sampson & Bladen Counties" or "Concord–Harrisburg"
-    let countyDemographics = null; // County-level VAP (18+) + total-pop race/ethnicity from DP1 (includes AIAN/native)
+    let countyDemographics = null; // County and district CVAP race/ethnicity from the 2020-2024 ACS CVAP special tabulation
     let countyPopulationEstimatesByNorm = null; // Map<string countyNorm, growth/estimate summary from Vintage 2025 county estimates>
     let countyPopulationEstimateStatewide = null; // Statewide PA summary from the same file
 
@@ -21328,27 +21336,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function buildCountyDemographicsHoverHTML(demo, countyNormRaw = '') {
       if (!demo) return '';
-      const vap = numericOrZero(demo.vap_18plus);
+      const vap = numericOrZero(demo.cvap_total || demo.vap_18plus);
       const countyNorm = normalizeCountyToken(countyNormRaw || demo.county || '');
       const cvap = countyNorm ? getCvapCountyTotal(countyNorm) : null;
       const metricValue = Number.isFinite(Number(cvap)) ? Number(cvap) : vap;
       const metricLabel = Number.isFinite(Number(cvap)) ? 'CVAP (18+):' : 'VAP (18+):';
       const races = buildRaceChipRowHTML(
-        demo.white_pop_pct,
-        demo.black_pop_pct,
-        demo.hispanic_pop_pct,
-        demo.native_pop_pct,
+        demo.white_cvap_pct,
+        demo.black_cvap_pct,
+        demo.hispanic_cvap_pct,
+        demo.native_cvap_pct,
         {
-          asianPct: demo.asian_pop_pct,
-          pacificPct: demo.pacific_pop_pct,
-          multiracialPct: demo.multiracial_pop_pct
+          asianPct: demo.asian_cvap_pct,
+          pacificPct: demo.pacific_cvap_pct,
+          multiracialPct: demo.multiracial_cvap_pct
         }
       );
       return `
         <div class="demo-hover-card">
           <div class="demo-hover-metric">${metricLabel} ${Math.round(metricValue).toLocaleString()}</div>
           ${races}
-          <div class="demo-hover-note">${Number.isFinite(Number(cvap)) ? 'CVAP totals from ACS special tabulation (2020–2024). ' : ''}Race/ethnicity reflects total population (DP1), not VAP-by-race.</div>
+          <div class="demo-hover-note">Citizen voting-age population by race/ethnicity from the 2020–2024 ACS CVAP special tabulation.</div>
         </div>
       `;
     }
@@ -22206,14 +22214,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (header) header.textContent = 'Demographics';
         if (subtitle) {
           subtitle.textContent = demographicsHighContrastEnabled
-            ? 'High-contrast palette on: each geography is shaded by the largest reported race share (white, black, Hispanic, Native, Asian, Pacific, and multiracial where available).'
-            : 'Shades each geography by the largest reported race share (white, black, Hispanic, Native, Asian, Pacific, and multiracial where available).';
+            ? 'High-contrast palette on: each geography is shaded by its largest citizen voting-age population race or ethnicity share.'
+            : 'Shades each geography by its largest citizen voting-age population race or ethnicity share.';
         }
         if (badge) badge.textContent = demographicsHighContrastEnabled ? 'Demographics HC' : 'Demographics';
         if (footer) {
           footer.textContent = demographicsHighContrastEnabled
-            ? 'High-contrast colors enabled. County shares use DP1 total population; district/precinct shares use available VAP race fields.'
-            : 'County shares use DP1 total population; district/precinct shares use available VAP race fields.';
+            ? 'High-contrast colors enabled. Counties and districts use the 2020–2024 ACS CVAP special tabulation.'
+            : 'Counties and districts use the 2020–2024 ACS CVAP special tabulation.';
         }
         content.innerHTML = buildDemographicsLegendHTML();
       } else if (mode === 'population_change') {
@@ -28780,25 +28788,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   } catch (_) {}
 
-  // County demographics (DP1-derived: VAP 18+ + total-pop race/ethnicity shares).
+  // County citizen voting-age population demographics from the ACS CVAP special tabulation.
   let demoHtml = '';
   try {
     const demo = countyDemographics?.counties?.[norm] || null;
     if (demo) {
       const demoRaceChips = buildRaceChipRowHTML(
-        demo.white_pop_pct,
-        demo.black_pop_pct,
-        demo.hispanic_pop_pct,
-        demo.native_pop_pct,
+        demo.white_cvap_pct,
+        demo.black_cvap_pct,
+        demo.hispanic_cvap_pct,
+        demo.native_cvap_pct,
         {
-          asianPct: demo.asian_pop_pct,
-          pacificPct: demo.pacific_pop_pct,
-          multiracialPct: demo.multiracial_pop_pct
+          asianPct: demo.asian_cvap_pct,
+          pacificPct: demo.pacific_cvap_pct,
+          multiracialPct: demo.multiracial_cvap_pct
         },
         { extraClass: 'sidebar-demo-race-row' }
       );
-      demoHtml += `<p class="sidebar-breakdown"><b>VAP (18+):</b> ${escapeHtml(Number(demo.vap_18plus || 0).toLocaleString())}</p>`;
-      demoHtml += `<p class="sidebar-margin-details" style="margin-top:6px;">Race/ethnicity shown is total population (DP1), not VAP-by-race.</p>`;
+      demoHtml += `<p class="sidebar-breakdown"><b>CVAP (18+):</b> ${escapeHtml(Number(demo.cvap_total || 0).toLocaleString())}</p>`;
+      demoHtml += `<p class="sidebar-margin-details" style="margin-top:6px;">Citizen voting-age population by race/ethnicity, 2020–2024 ACS CVAP.</p>`;
       if (demoRaceChips) demoHtml += demoRaceChips;
     }
   } catch (_) {}
@@ -31908,8 +31916,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (districtInfo) {
         demographicInfo = `
           <div style="margin-bottom: 16px;">
-            <h5>👥 Demographics (VAP)</h5>
-            <p><strong>Total Population:</strong> ${districtInfo.total_population.toLocaleString()}</p>
+            <h5>👥 Demographics (CVAP)</h5>
+            <p><strong>CVAP (18+):</strong> ${Number(districtInfo.cvap_total || 0).toLocaleString()}</p>
             <p><strong>White:</strong> ${districtInfo.white_vap_pct}%</p>
             <p><strong>Black:</strong> ${districtInfo.black_vap_pct}%</p>
             <p><strong>Hispanic:</strong> ${districtInfo.hispanic_vap_pct}%</p>
@@ -32024,8 +32032,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (districtInfo) {
         demographicInfo = `
           <div style="margin-bottom: 16px;">
-            <h5>👥 Demographics (VAP)</h5>
-            <p><strong>Total Population:</strong> ${districtInfo.total_population.toLocaleString()}</p>
+            <h5>👥 Demographics (CVAP)</h5>
+            <p><strong>CVAP (18+):</strong> ${Number(districtInfo.cvap_total || 0).toLocaleString()}</p>
             <p><strong>White:</strong> ${districtInfo.white_vap_pct}%</p>
             <p><strong>Black:</strong> ${districtInfo.black_vap_pct}%</p>
             <p><strong>Hispanic:</strong> ${districtInfo.hispanic_vap_pct}%</p>
@@ -32272,7 +32280,7 @@ document.addEventListener('DOMContentLoaded', function() {
         demographicInfo = `
           <div style="margin-bottom: 12px;">
             ${desc ? `<div style="margin:0 0 10px 0;color:#475569;font-weight:800;">${desc}</div>` : ''}
-            <h5 style="margin:0 0 6px 0;">Demographics (VAP)</h5>
+            <h5 style="margin:0 0 6px 0;">Demographics (CVAP)</h5>
             <div style="font-size:14px;"><strong>${Number.isFinite(Number(cvapTotal)) ? 'CVAP (18+):' : 'Total Population:'}</strong> ${Math.round(Number.isFinite(Number(cvapTotal)) ? Number(cvapTotal) : Number(districtInfo.total_population || 0)).toLocaleString()}</div>
             <div style="font-size:14px;"><strong>White:</strong> ${districtInfo.white_vap_pct}%</div>
             <div style="font-size:14px;"><strong>Black:</strong> ${districtInfo.black_vap_pct}%</div>
@@ -32360,7 +32368,7 @@ document.addEventListener('DOMContentLoaded', function() {
         demographicInfo = `
           <div style="margin-bottom: 12px;">
             ${desc ? `<div style="margin:0 0 10px 0;color:#475569;font-weight:800;">${desc}</div>` : ''}
-            <h5 style="margin:0 0 6px 0;">Demographics (VAP)</h5>
+            <h5 style="margin:0 0 6px 0;">Demographics (CVAP)</h5>
             <div style="font-size:14px;"><strong>${Number.isFinite(Number(cvapTotal)) ? 'CVAP (18+):' : 'Total Population:'}</strong> ${Math.round(Number.isFinite(Number(cvapTotal)) ? Number(cvapTotal) : Number(infoRow.total_population || 0)).toLocaleString()}</div>
             <div style="font-size:14px;"><strong>White:</strong> ${infoRow.white_vap_pct}%</div>
             <div style="font-size:14px;"><strong>Black:</strong> ${infoRow.black_vap_pct}%</div>
@@ -34284,13 +34292,13 @@ document.addEventListener('DOMContentLoaded', function() {
           Object.keys(countyDemoRows).forEach(countyNorm => {
             const demo = countyDemoRows[countyNorm] || {};
             const color = colorForDemographicsMode(
-              demo.white_pop_pct,
-              demo.black_pop_pct,
-              demo.hispanic_pop_pct,
-              demo.native_pop_pct,
-              demo.asian_pop_pct,
-              demo.pacific_pop_pct,
-              demo.multiracial_pop_pct
+              demo.white_cvap_pct,
+              demo.black_cvap_pct,
+              demo.hispanic_cvap_pct,
+              demo.native_cvap_pct,
+              demo.asian_cvap_pct,
+              demo.pacific_cvap_pct,
+              demo.multiracial_cvap_pct
             );
             countyExpr.push([
               '==',

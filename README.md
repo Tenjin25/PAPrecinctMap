@@ -274,9 +274,9 @@ The manifest is the source of truth for which years are built and which source/c
 | `data/precinct_returns_manifest.json` | `Scripts/build_pa_precinct_returns.py` | Generated precinct-return tables and crosswalk metadata | Precinct-return loading, source display, and coverage checks |
 | `data/pa_current_voting_districts.geojson` | Current-precinct geometry build | Current Pennsylvania voting-district source geometry | Stable frontend geometry for precinct returns |
 | `data/pa_district_results_2022_lines.json` | `build_district_results_2022_lines(...)` | Synthetic placeholder payload | Legacy fallback path (explicitly disabled for synthetic district fallback) |
-| `data/pa_congressional_districts.csv`, `data/pa_state_house_districts.csv`, `data/pa_state_senate_districts.csv` | `build_pa_congressional_districts(...)`, `build_state_house_csv(...)`, `build_state_senate_csv(...)` | Generated district metadata scaffolding | Sidebar district demographics/labels |
+| `data/pa_cvap_2024_congressional.csv`, `data/pa_cvap_2024_state_house.csv`, `data/pa_cvap_2024_state_senate.csv` | `Scripts/build_pa_cvap_demographics.py` | Census 2020–2024 ACS CVAP special tabulation | District demographic shading, totals, and labels |
 | `data/pa_district_descriptions.json` | `build_district_descriptions(...)` | Generated district description scaffolding | Tooltip/side-panel district labels |
-| `data/county_demographics_2020_dp1.json` | `build_county_demographics(...)` | County geometry/name lookup + demographic source payload | County demographic display blocks |
+| `data/pa_cvap_2024.json`, `data/pa_cvap_2024_county.csv` | `Scripts/build_pa_cvap_demographics.py` | Census 2020–2024 ACS CVAP special tabulation | County demographic shading, totals, and display blocks |
 
 ## Matching Coverage Snapshot
 
