@@ -7,7 +7,7 @@
     "districts_expected": 203,
     "coverage_percent": 100.0,
     "unresolved_precinct_rows": 0,
-    "source": "Official PA 2024 precinct returns disaggregated to 2020 Census blocks using VAP_MOD"
+    "source": "Official PA 2024 precinct returns disaggregated to 2020 Census blocks using VAP_MOD+coterminous_county_control"
   },
   "general": {
     "results": {
@@ -860,14 +860,14 @@
       },
       "78": {
         "dem_votes": 4972,
-        "rep_votes": 29918,
+        "rep_votes": 29919,
         "other_votes": 832,
-        "total_votes": 35722,
+        "total_votes": 35723,
         "dem_candidate": "Eugenio DePasquale",
         "rep_candidate": "Dave Sunday",
         "winner": "R",
-        "margin": 24946,
-        "margin_pct": 69.83371591736184
+        "margin": 24947.0,
+        "margin_pct": 69.83456036727038
       },
       "79": {
         "dem_votes": 9363,
@@ -1200,15 +1200,15 @@
         "margin_pct": 34.54222440040432
       },
       "109": {
-        "dem_votes": 10381,
-        "rep_votes": 20450,
-        "other_votes": 1233,
-        "total_votes": 32064,
+        "dem_votes": 10369,
+        "rep_votes": 20426,
+        "other_votes": 1232,
+        "total_votes": 32027,
         "dem_candidate": "Eugenio DePasquale",
         "rep_candidate": "Dave Sunday",
         "winner": "R",
-        "margin": 10069,
-        "margin_pct": 31.402819361277444
+        "margin": 10057.0,
+        "margin_pct": 31.40162987479314
       },
       "110": {
         "dem_votes": 9219,

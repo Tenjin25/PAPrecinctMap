@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_aggregate_geometry+statewide_vote_control/contests/auditor_2008.json",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_aggregate_geometry+statewide_vote_control/contests/auditor_2008.json+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": [],
@@ -879,14 +879,14 @@
       },
       "78": {
         "dem_votes": 10089,
-        "rep_votes": 16312,
+        "rep_votes": 16313,
         "other_votes": 1348,
-        "total_votes": 27749,
+        "total_votes": 27750,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "R",
-        "margin": 6223.0,
-        "margin_pct": 22.42603337057191
+        "margin": 6224.0,
+        "margin_pct": 22.428828828828827
       },
       "79": {
         "dem_votes": 12863,
@@ -1219,15 +1219,15 @@
         "margin_pct": 8.001494830378276
       },
       "109": {
-        "dem_votes": 13600,
-        "rep_votes": 11408,
-        "other_votes": 1391,
-        "total_votes": 26399,
+        "dem_votes": 13594,
+        "rep_votes": 11409,
+        "other_votes": 1390,
+        "total_votes": 26393,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 2192.0,
-        "margin_pct": 8.303344823667564
+        "margin": 2185.0,
+        "margin_pct": 8.278710264085174
       },
       "110": {
         "dem_votes": 12021,
@@ -1362,15 +1362,15 @@
         "margin_pct": 45.51564086447807
       },
       "122": {
-        "dem_votes": 13574,
-        "rep_votes": 9629,
+        "dem_votes": 13576,
+        "rep_votes": 9630,
         "other_votes": 1401,
-        "total_votes": 24604,
+        "total_votes": 24607,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Chet Beiler",
         "winner": "D",
-        "margin": 3945.0,
-        "margin_pct": 16.033978214924403
+        "margin": 3946.0,
+        "margin_pct": 16.036087292233915
       },
       "123": {
         "dem_votes": 16705,

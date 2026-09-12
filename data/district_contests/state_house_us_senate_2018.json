@@ -7,7 +7,7 @@
     "districts_expected": 203,
     "coverage_percent": 100.0,
     "unmapped_blocks": 0,
-    "source": "RDH 2018 general election results disaggregated to 2020 Census blocks"
+    "source": "RDH 2018 general election results disaggregated to 2020 Census blocks+coterminous_county_control"
   },
   "general": {
     "results": {
@@ -740,13 +740,13 @@
       "67": {
         "dem_votes": 6162,
         "rep_votes": 13929,
-        "other_votes": 330,
-        "total_votes": 20421,
+        "other_votes": 337,
+        "total_votes": 20428,
         "dem_candidate": "Bob Casey Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 7767,
-        "margin_pct": 38.0343763772587
+        "margin": 7767.0,
+        "margin_pct": 38.021343254356765
       },
       "68": {
         "dem_votes": 6487,
@@ -861,13 +861,13 @@
       "78": {
         "dem_votes": 5628,
         "rep_votes": 18217,
-        "other_votes": 282,
-        "total_votes": 24127,
+        "other_votes": 289,
+        "total_votes": 24134,
         "dem_candidate": "Bob Casey Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 12589,
-        "margin_pct": 52.178057777593565
+        "margin": 12589.0,
+        "margin_pct": 52.162923676141546
       },
       "79": {
         "dem_votes": 7932,
@@ -1202,13 +1202,13 @@
       "109": {
         "dem_votes": 8837,
         "rep_votes": 13437,
-        "other_votes": 364,
-        "total_votes": 22638,
+        "other_votes": 370,
+        "total_votes": 22644,
         "dem_candidate": "Bob Casey Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 4600,
-        "margin_pct": 20.319816238183584
+        "margin": 4600.0,
+        "margin_pct": 20.314432079137962
       },
       "110": {
         "dem_votes": 8452,
@@ -1343,15 +1343,15 @@
         "margin_pct": 11.77274987568374
       },
       "122": {
-        "dem_votes": 8739,
-        "rep_votes": 13519,
-        "other_votes": 316,
-        "total_votes": 22574,
+        "dem_votes": 17478,
+        "rep_votes": 27038,
+        "other_votes": 642,
+        "total_votes": 45158,
         "dem_candidate": "Bob Casey Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 4780,
-        "margin_pct": 21.174802870559052
+        "margin": 9560.0,
+        "margin_pct": 21.1701138225785
       },
       "123": {
         "dem_votes": 9281,

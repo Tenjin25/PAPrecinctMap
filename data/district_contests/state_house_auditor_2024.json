@@ -7,7 +7,7 @@
     "districts_expected": 203,
     "coverage_percent": 100.0,
     "unresolved_precinct_rows": 0,
-    "source": "Official PA 2024 precinct returns disaggregated to 2020 Census blocks using VAP_MOD"
+    "source": "Official PA 2024 precinct returns disaggregated to 2020 Census blocks using VAP_MOD+coterminous_county_control"
   },
   "general": {
     "results": {
@@ -860,14 +860,14 @@
       },
       "78": {
         "dem_votes": 4911,
-        "rep_votes": 29421,
+        "rep_votes": 29422,
         "other_votes": 941,
-        "total_votes": 35273,
+        "total_votes": 35274,
         "dem_candidate": "Malcolm Kenyatta",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 24510,
-        "margin_pct": 69.48657613472061
+        "margin": 24511.0,
+        "margin_pct": 69.48744117480297
       },
       "79": {
         "dem_votes": 9329,
@@ -1200,15 +1200,15 @@
         "margin_pct": 37.54928536224742
       },
       "109": {
-        "dem_votes": 9926,
-        "rep_votes": 20700,
-        "other_votes": 1219,
-        "total_votes": 31845,
+        "dem_votes": 9914,
+        "rep_votes": 20676,
+        "other_votes": 1217,
+        "total_votes": 31807,
         "dem_candidate": "Malcolm Kenyatta",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 10774,
-        "margin_pct": 33.83262678599466
+        "margin": 10762.0,
+        "margin_pct": 33.83531926934323
       },
       "110": {
         "dem_votes": 8796,

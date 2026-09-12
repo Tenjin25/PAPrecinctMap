@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -861,15 +861,15 @@
         "margin_pct": 25.713833324536868
       },
       "78": {
-        "dem_votes": 6125,
-        "rep_votes": 17555,
+        "dem_votes": 6121,
+        "rep_votes": 17552,
         "other_votes": 560,
-        "total_votes": 24240,
+        "total_votes": 24233,
         "dem_candidate": "Ron Klink",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 11430.0,
-        "margin_pct": 47.15346534653465
+        "margin": 11431.0,
+        "margin_pct": 47.17121280897949
       },
       "79": {
         "dem_votes": 7580,
@@ -1202,15 +1202,15 @@
         "margin_pct": 39.745754761234636
       },
       "109": {
-        "dem_votes": 7345,
-        "rep_votes": 13411,
+        "dem_votes": 7337,
+        "rep_votes": 13405,
         "other_votes": 669,
-        "total_votes": 21425,
+        "total_votes": 21411,
         "dem_candidate": "Ron Klink",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 6066.0,
-        "margin_pct": 28.31271878646441
+        "margin": 6068.0,
+        "margin_pct": 28.340572602867688
       },
       "110": {
         "dem_votes": 7472,
@@ -1345,15 +1345,15 @@
         "margin_pct": 9.705263157894736
       },
       "122": {
-        "dem_votes": 8867,
-        "rep_votes": 10590,
+        "dem_votes": 8878,
+        "rep_votes": 10598,
         "other_votes": 453,
-        "total_votes": 19910,
+        "total_votes": 19929,
         "dem_candidate": "Ron Klink",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 1723.0,
-        "margin_pct": 8.653942742340533
+        "margin": 1720.0,
+        "margin_pct": 8.630638767625069
       },
       "123": {
         "dem_votes": 11629,

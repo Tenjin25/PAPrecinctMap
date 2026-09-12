@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_aggregate_geometry+statewide_vote_control/contests/attorney_general_2008.json",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_aggregate_geometry+statewide_vote_control/contests/attorney_general_2008.json+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": [],
@@ -879,14 +879,14 @@
       },
       "78": {
         "dem_votes": 6386,
-        "rep_votes": 21234,
+        "rep_votes": 21235,
         "other_votes": 564,
-        "total_votes": 28184,
+        "total_votes": 28185,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 14848.0,
-        "margin_pct": 52.68237297757593
+        "margin": 14849.0,
+        "margin_pct": 52.68405180060316
       },
       "79": {
         "dem_votes": 8260,
@@ -1219,15 +1219,15 @@
         "margin_pct": 41.349411195354094
       },
       "109": {
-        "dem_votes": 10366,
-        "rep_votes": 15999,
+        "dem_votes": 10362,
+        "rep_votes": 15997,
         "other_votes": 763,
-        "total_votes": 27128,
+        "total_votes": 27122,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 5633.0,
-        "margin_pct": 20.764523739309936
+        "margin": 5635.0,
+        "margin_pct": 20.776491409188115
       },
       "110": {
         "dem_votes": 8819,
@@ -1362,15 +1362,15 @@
         "margin_pct": 7.197093212838309
       },
       "122": {
-        "dem_votes": 11914,
-        "rep_votes": 13145,
+        "dem_votes": 11916,
+        "rep_votes": 13147,
         "other_votes": 601,
-        "total_votes": 25660,
+        "total_votes": 25664,
         "dem_candidate": "John M. Morganelli",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
         "margin": 1231.0,
-        "margin_pct": 4.797349961028838
+        "margin_pct": 4.796602244389027
       },
       "123": {
         "dem_votes": 12392,

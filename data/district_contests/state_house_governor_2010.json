@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 3,
     "unmatched_source_keys": [
       [
@@ -1217,15 +1217,15 @@
         "margin_pct": 43.27409800753904
       },
       "109": {
-        "dem_votes": 9509,
-        "rep_votes": 17660,
-        "other_votes": 80,
-        "total_votes": 27249,
+        "dem_votes": 6136,
+        "rep_votes": 12151,
+        "other_votes": 55,
+        "total_votes": 18342,
         "dem_candidate": "Dan Onorato",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 8151,
-        "margin_pct": 29.913024331168113
+        "margin": 6015.0,
+        "margin_pct": 32.793588485443244
       },
       "110": {
         "dem_votes": 6210,
@@ -1360,15 +1360,15 @@
         "margin_pct": 8.779761904761903
       },
       "122": {
-        "dem_votes": 7820,
-        "rep_votes": 11284,
+        "dem_votes": 7821,
+        "rep_votes": 11286,
         "other_votes": 0,
-        "total_votes": 19104,
+        "total_votes": 19107,
         "dem_candidate": "Dan Onorato",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 3464,
-        "margin_pct": 18.132328308207704
+        "margin": 3465.0,
+        "margin_pct": 18.134715025906736
       },
       "123": {
         "dem_votes": 8787,

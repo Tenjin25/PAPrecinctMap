@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts+statewide_vote_control/contests/president_2000.json",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+statewide_vote_control/contests/president_2000.json+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -740,15 +740,15 @@
         "margin_pct": 31.864463361709234
       },
       "67": {
-        "dem_votes": 8329,
-        "rep_votes": 15907,
-        "other_votes": 919,
-        "total_votes": 25155,
+        "dem_votes": 8326,
+        "rep_votes": 15902,
+        "other_votes": 918,
+        "total_votes": 25146,
         "dem_candidate": "Al Gore",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 7578.0,
-        "margin_pct": 30.125223613595708
+        "margin": 7576.0,
+        "margin_pct": 30.128052175296272
       },
       "68": {
         "dem_votes": 7206,
@@ -861,15 +861,15 @@
         "margin_pct": 7.194392908678624
       },
       "78": {
-        "dem_votes": 6902,
-        "rep_votes": 17353,
+        "dem_votes": 6895,
+        "rep_votes": 17345,
         "other_votes": 470,
-        "total_votes": 24725,
+        "total_votes": 24710,
         "dem_candidate": "Al Gore",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 10451.0,
-        "margin_pct": 42.26895854398382
+        "margin": 10450.0,
+        "margin_pct": 42.29057061918252
       },
       "79": {
         "dem_votes": 9186,
@@ -1202,15 +1202,15 @@
         "margin_pct": 27.298226565327543
       },
       "109": {
-        "dem_votes": 8981,
-        "rep_votes": 12092,
-        "other_votes": 841,
-        "total_votes": 21914,
+        "dem_votes": 8966,
+        "rep_votes": 12081,
+        "other_votes": 840,
+        "total_votes": 21887,
         "dem_candidate": "Al Gore",
         "rep_candidate": "George W. Bush",
         "winner": "R",
-        "margin": 3111.0,
-        "margin_pct": 14.196404125216757
+        "margin": 3115.0,
+        "margin_pct": 14.232192625759582
       },
       "110": {
         "dem_votes": 9704,
@@ -1345,15 +1345,15 @@
         "margin_pct": 22.65974325688735
       },
       "122": {
-        "dem_votes": 10638,
-        "rep_votes": 9687,
+        "dem_votes": 10647,
+        "rep_votes": 9692,
         "other_votes": 889,
-        "total_votes": 21214,
+        "total_votes": 21228,
         "dem_candidate": "Al Gore",
         "rep_candidate": "George W. Bush",
         "winner": "D",
-        "margin": 951.0,
-        "margin_pct": 4.482888658433111
+        "margin": 955.0,
+        "margin_pct": 4.498775202562653
       },
       "123": {
         "dem_votes": 14111,

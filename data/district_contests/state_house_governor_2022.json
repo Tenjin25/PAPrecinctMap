@@ -7,7 +7,7 @@
     "districts_expected": 203,
     "coverage_percent": 100.0,
     "unresolved_precinct_rows": 0,
-    "source": "Official PA 2022 precinct returns disaggregated to 2020 Census blocks using VAP_MOD"
+    "source": "Official PA 2022 precinct returns disaggregated to 2020 Census blocks using VAP_MOD+coterminous_county_control"
   },
   "general": {
     "results": {
@@ -860,14 +860,14 @@
       },
       "78": {
         "dem_votes": 5849,
-        "rep_votes": 22289,
+        "rep_votes": 22290,
         "other_votes": 368,
-        "total_votes": 28506,
+        "total_votes": 28507,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "R",
-        "margin": 16440,
-        "margin_pct": 57.67206903809724
+        "margin": 16441.0,
+        "margin_pct": 57.673553863963235
       },
       "79": {
         "dem_votes": 9636,
@@ -1200,15 +1200,15 @@
         "margin_pct": 16.220761949464134
       },
       "109": {
-        "dem_votes": 10159,
-        "rep_votes": 13975,
-        "other_votes": 598,
-        "total_votes": 24732,
+        "dem_votes": 10148,
+        "rep_votes": 13959,
+        "other_votes": 596,
+        "total_votes": 24703,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "R",
-        "margin": 3816,
-        "margin_pct": 15.429403202328967
+        "margin": 3811.0,
+        "margin_pct": 15.427276039347449
       },
       "110": {
         "dem_votes": 9551,

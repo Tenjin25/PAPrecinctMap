@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -861,15 +861,15 @@
         "margin_pct": 27.48124101963706
       },
       "78": {
-        "dem_votes": 6206,
-        "rep_votes": 17443,
+        "dem_votes": 6203,
+        "rep_votes": 17441,
         "other_votes": 539,
-        "total_votes": 24188,
+        "total_votes": 24183,
         "dem_candidate": "Jim Eisenhower",
         "rep_candidate": "Mike Fisher",
         "winner": "R",
-        "margin": 11237.0,
-        "margin_pct": 46.45692078716719
+        "margin": 11238.0,
+        "margin_pct": 46.47066120828681
       },
       "79": {
         "dem_votes": 6108,
@@ -1202,15 +1202,15 @@
         "margin_pct": 42.2201002625925
       },
       "109": {
-        "dem_votes": 7164,
-        "rep_votes": 12908,
+        "dem_votes": 7156,
+        "rep_votes": 12903,
         "other_votes": 888,
-        "total_votes": 20960,
+        "total_votes": 20947,
         "dem_candidate": "Jim Eisenhower",
         "rep_candidate": "Mike Fisher",
         "winner": "R",
-        "margin": 5744.0,
-        "margin_pct": 27.404580152671755
+        "margin": 5747.0,
+        "margin_pct": 27.435909676803362
       },
       "110": {
         "dem_votes": 7035,
@@ -1345,15 +1345,15 @@
         "margin_pct": 0.12241945356407545
       },
       "122": {
-        "dem_votes": 8857,
-        "rep_votes": 9915,
-        "other_votes": 655,
-        "total_votes": 19427,
+        "dem_votes": 8868,
+        "rep_votes": 9923,
+        "other_votes": 656,
+        "total_votes": 19447,
         "dem_candidate": "Jim Eisenhower",
         "rep_candidate": "Mike Fisher",
         "winner": "R",
-        "margin": 1058.0,
-        "margin_pct": 5.446028722911412
+        "margin": 1055.0,
+        "margin_pct": 5.425001285545329
       },
       "123": {
         "dem_votes": 11484,

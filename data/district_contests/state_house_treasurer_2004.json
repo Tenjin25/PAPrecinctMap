@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -861,15 +861,15 @@
         "margin_pct": 25.535494460402138
       },
       "78": {
-        "dem_votes": 13966,
-        "rep_votes": 13775,
+        "dem_votes": 13960,
+        "rep_votes": 13772,
         "other_votes": 572,
-        "total_votes": 28313,
+        "total_votes": 28304,
         "dem_candidate": "Bob Casey Jr.",
         "rep_candidate": "Jean Craige Pepper",
         "winner": "D",
-        "margin": 191.0,
-        "margin_pct": 0.6746017730371208
+        "margin": 188.0,
+        "margin_pct": 0.6642170717919729
       },
       "79": {
         "dem_votes": 16252,
@@ -1202,15 +1202,15 @@
         "margin_pct": 0.6178073894609327
       },
       "109": {
-        "dem_votes": 15785,
-        "rep_votes": 9601,
+        "dem_votes": 15774,
+        "rep_votes": 9597,
         "other_votes": 684,
-        "total_votes": 26070,
+        "total_votes": 26055,
         "dem_candidate": "Bob Casey Jr.",
         "rep_candidate": "Jean Craige Pepper",
         "winner": "D",
-        "margin": 6184.0,
-        "margin_pct": 23.720751822017643
+        "margin": 6177.0,
+        "margin_pct": 23.70754173862982
       },
       "110": {
         "dem_votes": 14200,
@@ -1345,15 +1345,15 @@
         "margin_pct": 45.548393124065775
       },
       "122": {
-        "dem_votes": 14252,
-        "rep_votes": 8597,
+        "dem_votes": 14269,
+        "rep_votes": 8603,
         "other_votes": 579,
-        "total_votes": 23428,
+        "total_votes": 23451,
         "dem_candidate": "Bob Casey Jr.",
         "rep_candidate": "Jean Craige Pepper",
         "winner": "D",
-        "margin": 5655.0,
-        "margin_pct": 24.137783848386547
+        "margin": 5666.0,
+        "margin_pct": 24.16101658777877
       },
       "123": {
         "dem_votes": 20691,

@@ -7,7 +7,7 @@
     "districts_expected": 203,
     "coverage_percent": 100.0,
     "unresolved_precinct_rows": 0,
-    "source": "Official PA 2024 precinct returns disaggregated to 2020 Census blocks using VAP_MOD"
+    "source": "Official PA 2024 precinct returns disaggregated to 2020 Census blocks using VAP_MOD+coterminous_county_control"
   },
   "general": {
     "results": {
@@ -860,14 +860,14 @@
       },
       "78": {
         "dem_votes": 5053,
-        "rep_votes": 29507,
+        "rep_votes": 29508,
         "other_votes": 733,
-        "total_votes": 35293,
+        "total_votes": 35294,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 24454,
-        "margin_pct": 69.28852747003656
+        "margin": 24455.0,
+        "margin_pct": 69.28939763132543
       },
       "79": {
         "dem_votes": 9312,
@@ -1200,15 +1200,15 @@
         "margin_pct": 38.981381751038626
       },
       "109": {
-        "dem_votes": 9822,
-        "rep_votes": 21156,
-        "other_votes": 947,
-        "total_votes": 31925,
+        "dem_votes": 9811,
+        "rep_votes": 21131,
+        "other_votes": 946,
+        "total_votes": 31888,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 11334,
-        "margin_pct": 35.50195771339076
+        "margin": 11320.0,
+        "margin_pct": 35.49924736578023
       },
       "110": {
         "dem_votes": 8120,

@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -861,15 +861,15 @@
         "margin_pct": 2.456418383518225
       },
       "78": {
-        "dem_votes": 8727,
-        "rep_votes": 18366,
-        "other_votes": 691,
-        "total_votes": 27784,
+        "dem_votes": 8722,
+        "rep_votes": 18362,
+        "other_votes": 690,
+        "total_votes": 27774,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Joe Peters",
         "winner": "R",
-        "margin": 9639.0,
-        "margin_pct": 34.69262885113735
+        "margin": 9640.0,
+        "margin_pct": 34.70872038597249
       },
       "79": {
         "dem_votes": 10761,
@@ -1202,15 +1202,15 @@
         "margin_pct": 27.354407946255616
       },
       "109": {
-        "dem_votes": 11118,
-        "rep_votes": 13366,
-        "other_votes": 900,
-        "total_votes": 25384,
+        "dem_votes": 11110,
+        "rep_votes": 13362,
+        "other_votes": 899,
+        "total_votes": 25371,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Joe Peters",
         "winner": "R",
-        "margin": 2248.0,
-        "margin_pct": 8.855972265994328
+        "margin": 2252.0,
+        "margin_pct": 8.876276063221788
       },
       "110": {
         "dem_votes": 9235,
@@ -1345,15 +1345,15 @@
         "margin_pct": 16.58117921893251
       },
       "122": {
-        "dem_votes": 11465,
-        "rep_votes": 10429,
-        "other_votes": 665,
-        "total_votes": 22559,
+        "dem_votes": 11478,
+        "rep_votes": 10438,
+        "other_votes": 666,
+        "total_votes": 22582,
         "dem_candidate": "Jack E. Wagner",
         "rep_candidate": "Joe Peters",
         "winner": "D",
-        "margin": 1036.0,
-        "margin_pct": 4.592402145485172
+        "margin": 1040.0,
+        "margin_pct": 4.60543795943672
       },
       "123": {
         "dem_votes": 15680,

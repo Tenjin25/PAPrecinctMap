@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 54,
     "unmatched_source_votes": 37318.0,
     "unmatched_source_keys": [
@@ -1473,15 +1473,15 @@
         "margin_pct": 21.409889151824636
       },
       "109": {
-        "dem_votes": 10853,
+        "dem_votes": 10848,
         "rep_votes": 12511,
         "other_votes": 1253,
-        "total_votes": 24617,
+        "total_votes": 24612,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "R",
-        "margin": 1658.0,
-        "margin_pct": 6.735183003615387
+        "margin": 1663.0,
+        "margin_pct": 6.756866569153258
       },
       "110": {
         "dem_votes": 9357,
@@ -1616,15 +1616,15 @@
         "margin_pct": 35.42202227934876
       },
       "122": {
-        "dem_votes": 11606,
-        "rep_votes": 11235,
+        "dem_votes": 11608,
+        "rep_votes": 11236,
         "other_votes": 1220,
-        "total_votes": 24061,
+        "total_votes": 24064,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Diana Irey Vaughan",
         "winner": "D",
-        "margin": 371.0,
-        "margin_pct": 1.5419143011512406
+        "margin": 372.0,
+        "margin_pct": 1.545877659574468
       },
       "123": {
         "dem_votes": 13934,

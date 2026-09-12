@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_vtd10_votes+statewide_vote_control/contests/us_senate_2006.json",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_vtd10_votes+statewide_vote_control/contests/us_senate_2006.json+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": [],
@@ -743,15 +743,15 @@
         "margin_pct": 8.03453529710513
       },
       "67": {
-        "dem_votes": 7940,
-        "rep_votes": 10437,
-        "other_votes": 13,
-        "total_votes": 18390,
+        "dem_votes": 7875,
+        "rep_votes": 10365,
+        "other_votes": 14,
+        "total_votes": 18254,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 2497.0,
-        "margin_pct": 13.578031538879825
+        "margin": 2490.0,
+        "margin_pct": 13.640845842007232
       },
       "68": {
         "dem_votes": 7640,
@@ -864,15 +864,15 @@
         "margin_pct": 15.395134180388581
       },
       "78": {
-        "dem_votes": 8671,
-        "rep_votes": 12462,
-        "other_votes": 15,
-        "total_votes": 21148,
+        "dem_votes": 8594,
+        "rep_votes": 12376,
+        "other_votes": 0,
+        "total_votes": 20970,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 3791.0,
-        "margin_pct": 17.926045016077172
+        "margin": 3782.0,
+        "margin_pct": 18.035288507391513
       },
       "79": {
         "dem_votes": 9441,
@@ -1205,15 +1205,15 @@
         "margin_pct": 14.407366012028314
       },
       "109": {
-        "dem_votes": 9414,
-        "rep_votes": 9038,
-        "other_votes": 13,
-        "total_votes": 18465,
+        "dem_votes": 9327,
+        "rep_votes": 8970,
+        "other_votes": 14,
+        "total_votes": 18311,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 376.0,
-        "margin_pct": 2.0362848632548065
+        "margin": 357.0,
+        "margin_pct": 1.9496477527169462
       },
       "110": {
         "dem_votes": 10191,
@@ -1348,15 +1348,15 @@
         "margin_pct": 32.64203300715642
       },
       "122": {
-        "dem_votes": 10071,
-        "rep_votes": 7486,
-        "other_votes": 13,
-        "total_votes": 17570,
+        "dem_votes": 9997,
+        "rep_votes": 7439,
+        "other_votes": 0,
+        "total_votes": 17436,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2585.0,
-        "margin_pct": 14.712578258394993
+        "margin": 2558.0,
+        "margin_pct": 14.670796054140858
       },
       "123": {
         "dem_votes": 9941,

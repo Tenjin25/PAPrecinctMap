@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 5,
     "unmatched_source_keys": [
       [
@@ -1227,15 +1227,15 @@
         "margin_pct": 8.890686244011697
       },
       "109": {
-        "dem_votes": 9872,
-        "rep_votes": 12459,
+        "dem_votes": 6572,
+        "rep_votes": 8585,
         "other_votes": 0,
-        "total_votes": 22331,
+        "total_votes": 15157,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 2587,
-        "margin_pct": 11.584792441001298
+        "margin": 2013.0,
+        "margin_pct": 13.28099228079435
       },
       "110": {
         "dem_votes": 6811,
@@ -1370,15 +1370,15 @@
         "margin_pct": 25.52954292084727
       },
       "122": {
-        "dem_votes": 9162,
-        "rep_votes": 7863,
+        "dem_votes": 9163,
+        "rep_votes": 7864,
         "other_votes": 0,
-        "total_votes": 17025,
+        "total_votes": 17027,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 1299,
-        "margin_pct": 7.6299559471365646
+        "margin": 1299.0,
+        "margin_pct": 7.6290597286662365
       },
       "123": {
         "dem_votes": 10694,

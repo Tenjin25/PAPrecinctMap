@@ -7,7 +7,7 @@
     "districts_expected": 203,
     "coverage_percent": 100.0,
     "unmapped_blocks": 0,
-    "source": "RDH 2018 general election results disaggregated to 2020 Census blocks"
+    "source": "RDH 2018 general election results disaggregated to 2020 Census blocks+coterminous_county_control"
   },
   "general": {
     "results": {
@@ -740,13 +740,13 @@
       "67": {
         "dem_votes": 5970,
         "rep_votes": 14326,
-        "other_votes": 318,
-        "total_votes": 20614,
+        "other_votes": 324,
+        "total_votes": 20620,
         "dem_candidate": "Tom Wolf",
         "rep_candidate": "Scott R. Wagner",
         "winner": "R",
-        "margin": 8356,
-        "margin_pct": 40.5355583583972
+        "margin": 8356.0,
+        "margin_pct": 40.52376333656645
       },
       "68": {
         "dem_votes": 6279,
@@ -861,13 +861,13 @@
       "78": {
         "dem_votes": 5445,
         "rep_votes": 18463,
-        "other_votes": 250,
-        "total_votes": 24158,
+        "other_votes": 266,
+        "total_votes": 24174,
         "dem_candidate": "Tom Wolf",
         "rep_candidate": "Scott R. Wagner",
         "winner": "R",
-        "margin": 13018,
-        "margin_pct": 53.88691116814306
+        "margin": 13018.0,
+        "margin_pct": 53.851245139405975
       },
       "79": {
         "dem_votes": 7943,
@@ -1202,13 +1202,13 @@
       "109": {
         "dem_votes": 9822,
         "rep_votes": 12424,
-        "other_votes": 392,
-        "total_votes": 22638,
+        "other_votes": 408,
+        "total_votes": 22654,
         "dem_candidate": "Tom Wolf",
         "rep_candidate": "Scott R. Wagner",
         "winner": "R",
-        "margin": 2602,
-        "margin_pct": 11.493948228642106
+        "margin": 2602.0,
+        "margin_pct": 11.48583031694182
       },
       "110": {
         "dem_votes": 8665,
@@ -1343,15 +1343,15 @@
         "margin_pct": 21.876949956320978
       },
       "122": {
-        "dem_votes": 9659,
-        "rep_votes": 12476,
-        "other_votes": 407,
-        "total_votes": 22542,
+        "dem_votes": 19318,
+        "rep_votes": 24952,
+        "other_votes": 854,
+        "total_votes": 45124,
         "dem_candidate": "Tom Wolf",
         "rep_candidate": "Scott R. Wagner",
         "winner": "R",
-        "margin": 2817,
-        "margin_pct": 12.496672877295714
+        "margin": 5634.0,
+        "margin_pct": 12.485595248648169
       },
       "123": {
         "dem_votes": 11090,

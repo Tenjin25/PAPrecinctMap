@@ -7,7 +7,7 @@
     "districts_expected": 203,
     "coverage_percent": 100.0,
     "unresolved_precinct_rows": 0,
-    "source": "Official PA 2022 precinct returns disaggregated to 2020 Census blocks using VAP_MOD"
+    "source": "Official PA 2022 precinct returns disaggregated to 2020 Census blocks using VAP_MOD+coterminous_county_control"
   },
   "general": {
     "results": {
@@ -860,14 +860,14 @@
       },
       "78": {
         "dem_votes": 4749,
-        "rep_votes": 23124,
+        "rep_votes": 23125,
         "other_votes": 613,
-        "total_votes": 28486,
+        "total_votes": 28487,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
-        "margin": 18375,
-        "margin_pct": 64.5053710594678
+        "margin": 18376.0,
+        "margin_pct": 64.50661705339277
       },
       "79": {
         "dem_votes": 8212,
@@ -1200,15 +1200,15 @@
         "margin_pct": 25.05880508075898
       },
       "109": {
-        "dem_votes": 9033,
-        "rep_votes": 14847,
-        "other_votes": 893,
-        "total_votes": 24773,
+        "dem_votes": 9023,
+        "rep_votes": 14830,
+        "other_votes": 892,
+        "total_votes": 24745,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
-        "margin": 5814,
-        "margin_pct": 23.46909942275865
+        "margin": 5807.0,
+        "margin_pct": 23.467367144877755
       },
       "110": {
         "dem_votes": 8583,

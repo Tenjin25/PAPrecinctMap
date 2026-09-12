@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -861,15 +861,15 @@
         "margin_pct": 12.9910789429389
       },
       "78": {
-        "dem_votes": 5251,
-        "rep_votes": 28279,
-        "other_votes": 701,
-        "total_votes": 34231,
+        "dem_votes": 5388,
+        "rep_votes": 28825,
+        "other_votes": 713,
+        "total_votes": 34926,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 23028.0,
-        "margin_pct": 67.27235546726651
+        "margin": 23437.0,
+        "margin_pct": 67.10473572696559
       },
       "79": {
         "dem_votes": 9578,

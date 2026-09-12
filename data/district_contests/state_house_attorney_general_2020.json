@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -861,15 +861,15 @@
         "margin_pct": 14.762048092037055
       },
       "78": {
-        "dem_votes": 5707,
-        "rep_votes": 28093,
-        "other_votes": 585,
-        "total_votes": 34385,
+        "dem_votes": 5846,
+        "rep_votes": 28641,
+        "other_votes": 597,
+        "total_votes": 35084,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Heather Heidelbaugh",
         "winner": "R",
-        "margin": 22386.0,
-        "margin_pct": 65.10396975425331
+        "margin": 22795.0,
+        "margin_pct": 64.97263709953255
       },
       "79": {
         "dem_votes": 9954,

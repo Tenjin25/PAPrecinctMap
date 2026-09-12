@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 15,
     "unmatched_source_votes": 7858.0,
     "unmatched_source_keys": [
@@ -1421,15 +1421,15 @@
         "margin_pct": 22.09767814251401
       },
       "122": {
-        "dem_votes": 10239,
-        "rep_votes": 14602,
-        "other_votes": 1947,
-        "total_votes": 26788,
+        "dem_votes": 10446,
+        "rep_votes": 14819,
+        "other_votes": 1980,
+        "total_votes": 27245,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John A. Brown",
         "winner": "R",
-        "margin": 4363.0,
-        "margin_pct": 16.28714349708825
+        "margin": 4373.0,
+        "margin_pct": 16.050651495687283
       },
       "123": {
         "dem_votes": 11239,

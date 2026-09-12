@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -861,15 +861,15 @@
         "margin_pct": 12.117557190527881
       },
       "78": {
-        "dem_votes": 6612,
-        "rep_votes": 19128,
+        "dem_votes": 6608,
+        "rep_votes": 19121,
         "other_votes": 2183,
-        "total_votes": 27923,
+        "total_votes": 27912,
         "dem_candidate": "Joseph M. Hoeffel",
         "rep_candidate": "Arlen Specter",
         "winner": "R",
-        "margin": 12516.0,
-        "margin_pct": 44.82326397593382
+        "margin": 12513.0,
+        "margin_pct": 44.83018056749785
       },
       "79": {
         "dem_votes": 8383,
@@ -1202,15 +1202,15 @@
         "margin_pct": 40.33589978856664
       },
       "109": {
-        "dem_votes": 8243,
-        "rep_votes": 16600,
-        "other_votes": 1444,
-        "total_votes": 26287,
+        "dem_votes": 8236,
+        "rep_votes": 16593,
+        "other_votes": 1443,
+        "total_votes": 26272,
         "dem_candidate": "Joseph M. Hoeffel",
         "rep_candidate": "Arlen Specter",
         "winner": "R",
         "margin": 8357.0,
-        "margin_pct": 31.7913797694678
+        "margin_pct": 31.80953105968331
       },
       "110": {
         "dem_votes": 7530,
@@ -1345,15 +1345,15 @@
         "margin_pct": 6.009459334137068
       },
       "122": {
-        "dem_votes": 9579,
-        "rep_votes": 13524,
-        "other_votes": 969,
-        "total_votes": 24072,
+        "dem_votes": 9590,
+        "rep_votes": 13535,
+        "other_votes": 970,
+        "total_votes": 24095,
         "dem_candidate": "Joseph M. Hoeffel",
         "rep_candidate": "Arlen Specter",
         "winner": "R",
         "margin": 3945.0,
-        "margin_pct": 16.388334995014954
+        "margin_pct": 16.37269142975721
       },
       "123": {
         "dem_votes": 11514,

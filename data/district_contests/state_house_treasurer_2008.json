@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_aggregate_geometry+statewide_vote_control/contests/treasurer_2008.json",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_aggregate_geometry+statewide_vote_control/contests/treasurer_2008.json+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": [],
@@ -879,14 +879,14 @@
       },
       "78": {
         "dem_votes": 8976,
-        "rep_votes": 18165,
+        "rep_votes": 18166,
         "other_votes": 628,
-        "total_votes": 27769,
+        "total_votes": 27770,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Tom Ellis",
         "winner": "R",
-        "margin": 9189.0,
-        "margin_pct": 33.09085671072059
+        "margin": 9190.0,
+        "margin_pct": 33.09326611451206
       },
       "79": {
         "dem_votes": 11513,
@@ -1219,15 +1219,15 @@
         "margin_pct": 14.808666057939737
       },
       "109": {
-        "dem_votes": 13229,
-        "rep_votes": 12599,
+        "dem_votes": 13223,
+        "rep_votes": 12600,
         "other_votes": 778,
-        "total_votes": 26606,
+        "total_votes": 26601,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Tom Ellis",
         "winner": "D",
-        "margin": 630.0,
-        "margin_pct": 2.3678869427948586
+        "margin": 623.0,
+        "margin_pct": 2.342017217397842
       },
       "110": {
         "dem_votes": 11537,
@@ -1362,15 +1362,15 @@
         "margin_pct": 39.635611960388424
       },
       "122": {
-        "dem_votes": 13632,
-        "rep_votes": 10380,
+        "dem_votes": 13634,
+        "rep_votes": 10381,
         "other_votes": 776,
-        "total_votes": 24788,
+        "total_votes": 24791,
         "dem_candidate": "Bob McCord",
         "rep_candidate": "Tom Ellis",
         "winner": "D",
-        "margin": 3252.0,
-        "margin_pct": 13.119251250605132
+        "margin": 3253.0,
+        "margin_pct": 13.121697390181922
       },
       "123": {
         "dem_votes": 16952,

@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -861,15 +861,15 @@
         "margin_pct": 8.858075589809175
       },
       "78": {
-        "dem_votes": 4618,
-        "rep_votes": 28565,
-        "other_votes": 997,
-        "total_votes": 34180,
+        "dem_votes": 4735,
+        "rep_votes": 29116,
+        "other_votes": 1020,
+        "total_votes": 34871,
         "dem_candidate": "Nina Ahmad",
         "rep_candidate": "Tim DeFoor",
         "winner": "R",
-        "margin": 23947.0,
-        "margin_pct": 70.061439438268
+        "margin": 24381.0,
+        "margin_pct": 69.91769665337961
       },
       "79": {
         "dem_votes": 8824,

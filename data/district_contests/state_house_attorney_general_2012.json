@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 54,
     "unmatched_source_votes": 37975.0,
     "unmatched_source_keys": [
@@ -1473,15 +1473,15 @@
         "margin_pct": 10.087952546533034
       },
       "109": {
-        "dem_votes": 12572,
+        "dem_votes": 12566,
         "rep_votes": 11782,
         "other_votes": 770,
-        "total_votes": 25124,
+        "total_votes": 25118,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 790.0,
-        "margin_pct": 3.1444037573634773
+        "margin": 784.0,
+        "margin_pct": 3.1212676168484754
       },
       "110": {
         "dem_votes": 11633,
@@ -1616,15 +1616,15 @@
         "margin_pct": 38.58925440857997
       },
       "122": {
-        "dem_votes": 13174,
-        "rep_votes": 10850,
+        "dem_votes": 13176,
+        "rep_votes": 10851,
         "other_votes": 757,
-        "total_votes": 24781,
+        "total_votes": 24784,
         "dem_candidate": "Kathleen G. Kane",
         "rep_candidate": "David J. Freed",
         "winner": "D",
-        "margin": 2324.0,
-        "margin_pct": 9.378152616924258
+        "margin": 2325.0,
+        "margin_pct": 9.381052291801161
       },
       "123": {
         "dem_votes": 14666,

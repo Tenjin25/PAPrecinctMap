@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 3,
     "unmatched_source_keys": [
       [
@@ -1217,15 +1217,15 @@
         "margin_pct": 33.45620121422376
       },
       "109": {
-        "dem_votes": 10627,
-        "rep_votes": 16333,
-        "other_votes": 66,
-        "total_votes": 27026,
+        "dem_votes": 6868,
+        "rep_votes": 11287,
+        "other_votes": 42,
+        "total_votes": 18197,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 5706,
-        "margin_pct": 21.113002294087174
+        "margin": 4419.0,
+        "margin_pct": 24.284222674067156
       },
       "110": {
         "dem_votes": 6681,
@@ -1360,15 +1360,15 @@
         "margin_pct": 18.410852713178294
       },
       "122": {
-        "dem_votes": 8543,
-        "rep_votes": 10415,
+        "dem_votes": 8544,
+        "rep_votes": 10416,
         "other_votes": 0,
-        "total_votes": 18958,
+        "total_votes": 18960,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 1872,
-        "margin_pct": 9.874459331153075
+        "margin": 1872.0,
+        "margin_pct": 9.873417721518987
       },
       "123": {
         "dem_votes": 9676,

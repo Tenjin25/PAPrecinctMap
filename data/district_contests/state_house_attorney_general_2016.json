@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 15,
     "unmatched_source_votes": 7902.0,
     "unmatched_source_keys": [
@@ -1421,15 +1421,15 @@
         "margin_pct": 19.621204529511978
       },
       "122": {
-        "dem_votes": 11303,
-        "rep_votes": 15692,
+        "dem_votes": 11511,
+        "rep_votes": 15943,
         "other_votes": 0,
-        "total_votes": 26995,
+        "total_votes": 27454,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John C. Rafferty, Jr.",
         "winner": "R",
-        "margin": 4389.0,
-        "margin_pct": 16.258566401185405
+        "margin": 4432.0,
+        "margin_pct": 16.143367086763313
       },
       "123": {
         "dem_votes": 11872,

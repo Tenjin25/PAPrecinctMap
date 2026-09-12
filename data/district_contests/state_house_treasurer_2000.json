@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -861,15 +861,15 @@
         "margin_pct": 13.159716674655165
       },
       "78": {
-        "dem_votes": 7640,
-        "rep_votes": 15906,
+        "dem_votes": 7637,
+        "rep_votes": 15903,
         "other_votes": 683,
-        "total_votes": 24229,
+        "total_votes": 24223,
         "dem_candidate": "Catherine Baker Knoll",
         "rep_candidate": "Barbara Hafer",
         "winner": "R",
         "margin": 8266.0,
-        "margin_pct": 34.11614181352925
+        "margin_pct": 34.1245923296041
       },
       "79": {
         "dem_votes": 8726,
@@ -1202,15 +1202,15 @@
         "margin_pct": 30.804953560371516
       },
       "109": {
-        "dem_votes": 8634,
-        "rep_votes": 11837,
+        "dem_votes": 8625,
+        "rep_votes": 11832,
         "other_votes": 930,
-        "total_votes": 21401,
+        "total_votes": 21387,
         "dem_candidate": "Catherine Baker Knoll",
         "rep_candidate": "Barbara Hafer",
         "winner": "R",
-        "margin": 3203.0,
-        "margin_pct": 14.966590346245503
+        "margin": 3207.0,
+        "margin_pct": 14.995090475522513
       },
       "110": {
         "dem_votes": 8425,
@@ -1345,15 +1345,15 @@
         "margin_pct": 20.77688917904358
       },
       "122": {
-        "dem_votes": 9670,
-        "rep_votes": 9385,
-        "other_votes": 831,
-        "total_votes": 19886,
+        "dem_votes": 9681,
+        "rep_votes": 9392,
+        "other_votes": 832,
+        "total_votes": 19905,
         "dem_candidate": "Catherine Baker Knoll",
         "rep_candidate": "Barbara Hafer",
         "winner": "D",
-        "margin": 285.0,
-        "margin_pct": 1.4331690636628784
+        "margin": 289.0,
+        "margin_pct": 1.451896508414971
       },
       "123": {
         "dem_votes": 12517,

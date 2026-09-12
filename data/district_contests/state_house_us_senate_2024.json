@@ -7,7 +7,7 @@
     "districts_expected": 203,
     "coverage_percent": 100.0,
     "unresolved_precinct_rows": 0,
-    "source": "Official PA 2024 precinct returns disaggregated to 2020 Census blocks using VAP_MOD"
+    "source": "Official PA 2024 precinct returns disaggregated to 2020 Census blocks using VAP_MOD+coterminous_county_control"
   },
   "general": {
     "results": {
@@ -860,14 +860,14 @@
       },
       "78": {
         "dem_votes": 5821,
-        "rep_votes": 29627,
+        "rep_votes": 29628,
         "other_votes": 710,
-        "total_votes": 36158,
+        "total_votes": 36159,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 23806,
-        "margin_pct": 65.83881851872339
+        "margin": 23807.0,
+        "margin_pct": 65.8397632677895
       },
       "79": {
         "dem_votes": 10386,
@@ -1200,15 +1200,15 @@
         "margin_pct": 30.333191721794016
       },
       "109": {
-        "dem_votes": 10975,
-        "rep_votes": 20624,
-        "other_votes": 814,
-        "total_votes": 32413,
+        "dem_votes": 10962,
+        "rep_votes": 20600,
+        "other_votes": 813,
+        "total_votes": 32375,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 9649,
-        "margin_pct": 29.7689198778268
+        "margin": 9638.0,
+        "margin_pct": 29.76988416988417
       },
       "110": {
         "dem_votes": 10169,

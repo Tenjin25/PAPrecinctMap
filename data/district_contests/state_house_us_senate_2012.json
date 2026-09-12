@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 54,
     "unmatched_source_votes": 38206.0,
     "unmatched_source_keys": [
@@ -1473,15 +1473,15 @@
         "margin_pct": 23.190929337922654
       },
       "109": {
-        "dem_votes": 11341,
-        "rep_votes": 13511,
+        "dem_votes": 11336,
+        "rep_votes": 13509,
         "other_votes": 592,
-        "total_votes": 25444,
+        "total_votes": 25437,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 2170.0,
-        "margin_pct": 8.528533249489074
+        "margin": 2173.0,
+        "margin_pct": 8.542674057475331
       },
       "110": {
         "dem_votes": 10607,
@@ -1616,15 +1616,15 @@
         "margin_pct": 29.859041075127568
       },
       "122": {
-        "dem_votes": 11922,
-        "rep_votes": 12756,
+        "dem_votes": 11924,
+        "rep_votes": 12758,
         "other_votes": 589,
-        "total_votes": 25267,
+        "total_votes": 25271,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
         "margin": 834.0,
-        "margin_pct": 3.3007480112399574
+        "margin_pct": 3.3002255549839736
       },
       "123": {
         "dem_votes": 12485,

@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_keys": []
   },
@@ -860,15 +860,15 @@
         "margin_pct": 8.938714499252615
       },
       "78": {
-        "dem_votes": 5656,
-        "rep_votes": 12972,
+        "dem_votes": 5654,
+        "rep_votes": 12971,
         "other_votes": 271,
-        "total_votes": 18899,
+        "total_votes": 18896,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Mike Fisher",
         "winner": "R",
-        "margin": 7316,
-        "margin_pct": 38.7110429123234
+        "margin": 7317.0,
+        "margin_pct": 38.72248094834886
       },
       "79": {
         "dem_votes": 5789,
@@ -1201,15 +1201,15 @@
         "margin_pct": 28.97361060440229
       },
       "109": {
-        "dem_votes": 7013,
-        "rep_votes": 9309,
-        "other_votes": 429,
-        "total_votes": 16751,
+        "dem_votes": 7004,
+        "rep_votes": 9304,
+        "other_votes": 428,
+        "total_votes": 16736,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Mike Fisher",
         "winner": "R",
-        "margin": 2296,
-        "margin_pct": 13.706644379440034
+        "margin": 2300.0,
+        "margin_pct": 13.74282982791587
       },
       "110": {
         "dem_votes": 6269,
@@ -1344,15 +1344,15 @@
         "margin_pct": 20.18814804641901
       },
       "122": {
-        "dem_votes": 8588,
-        "rep_votes": 6594,
+        "dem_votes": 8598,
+        "rep_votes": 6600,
         "other_votes": 496,
-        "total_votes": 15678,
+        "total_votes": 15694,
         "dem_candidate": "Ed Rendell",
         "rep_candidate": "Mike Fisher",
         "winner": "D",
-        "margin": 1994,
-        "margin_pct": 12.718458987115703
+        "margin": 1998.0,
+        "margin_pct": 12.730979992353767
       },
       "123": {
         "dem_votes": 14020,

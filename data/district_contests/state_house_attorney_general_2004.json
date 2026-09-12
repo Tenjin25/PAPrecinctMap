@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": []
@@ -861,15 +861,15 @@
         "margin_pct": 4.941573403554971
       },
       "78": {
-        "dem_votes": 8136,
-        "rep_votes": 19627,
+        "dem_votes": 8131,
+        "rep_votes": 19622,
         "other_votes": 336,
-        "total_votes": 28099,
+        "total_votes": 28089,
         "dem_candidate": "Jim Eisenhower",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
         "margin": 11491.0,
-        "margin_pct": 40.89469376134382
+        "margin_pct": 40.90925273238634
       },
       "79": {
         "dem_votes": 9604,
@@ -1202,15 +1202,15 @@
         "margin_pct": 37.78496295993124
       },
       "109": {
-        "dem_votes": 9928,
-        "rep_votes": 15079,
+        "dem_votes": 9920,
+        "rep_votes": 15074,
         "other_votes": 641,
-        "total_votes": 25648,
+        "total_votes": 25635,
         "dem_candidate": "Jim Eisenhower",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 5151.0,
-        "margin_pct": 20.083437305053025
+        "margin": 5154.0,
+        "margin_pct": 20.10532475131656
       },
       "110": {
         "dem_votes": 8903,
@@ -1345,15 +1345,15 @@
         "margin_pct": 10.030562653439551
       },
       "122": {
-        "dem_votes": 11109,
-        "rep_votes": 11646,
+        "dem_votes": 11122,
+        "rep_votes": 11655,
         "other_votes": 298,
-        "total_votes": 23053,
+        "total_votes": 23075,
         "dem_candidate": "Jim Eisenhower",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 537.0,
-        "margin_pct": 2.3294148267036827
+        "margin": 533.0,
+        "margin_pct": 2.3098591549295775
       },
       "123": {
         "dem_votes": 14336,

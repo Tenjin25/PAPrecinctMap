@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+coterminous_county_control",
     "unmatched_source_vtds": 54,
     "unmatched_source_votes": 37405.0,
     "unmatched_source_keys": [
@@ -1473,15 +1473,15 @@
         "margin_pct": 27.136033229491176
       },
       "109": {
-        "dem_votes": 10434,
+        "dem_votes": 10429,
         "rep_votes": 12912,
         "other_votes": 1431,
-        "total_votes": 24777,
+        "total_votes": 24772,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 2478.0,
-        "margin_pct": 10.001210800339024
+        "margin": 2483.0,
+        "margin_pct": 10.023413531406426
       },
       "110": {
         "dem_votes": 8657,
@@ -1616,15 +1616,15 @@
         "margin_pct": 26.815967810249898
       },
       "122": {
-        "dem_votes": 10657,
-        "rep_votes": 11972,
+        "dem_votes": 10659,
+        "rep_votes": 11973,
         "other_votes": 1523,
-        "total_votes": 24152,
+        "total_votes": 24155,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 1315.0,
-        "margin_pct": 5.444683670089433
+        "margin": 1314.0,
+        "margin_pct": 5.439867522252122
       },
       "123": {
         "dem_votes": 11810,

@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_aggregate_geometry+dra_share_calibration/district-statistics state house 2008 Pres.csv+statewide_vote_control/contests/president_2008.json",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+harvard_pa_2011_aggregate_geometry+dra_share_calibration/district-statistics state house 2008 Pres.csv+statewide_vote_control/contests/president_2008.json+coterminous_county_control",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": [],
@@ -757,15 +757,15 @@
         "margin_pct": 28.78230211925148
       },
       "67": {
-        "dem_votes": 9624,
-        "rep_votes": 15625,
-        "other_votes": 586,
-        "total_votes": 25835,
+        "dem_votes": 9644,
+        "rep_votes": 15656,
+        "other_votes": 555,
+        "total_votes": 25855,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "R",
-        "margin": 6001.0,
-        "margin_pct": 23.228178827172442
+        "margin": 6012.0,
+        "margin_pct": 23.252755753239217
       },
       "68": {
         "dem_votes": 9781,
@@ -878,15 +878,15 @@
         "margin_pct": 17.30018224420724
       },
       "78": {
-        "dem_votes": 7594,
-        "rep_votes": 20657,
-        "other_votes": 549,
-        "total_votes": 28800,
+        "dem_votes": 7635,
+        "rep_votes": 20766,
+        "other_votes": 413,
+        "total_votes": 28814,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "R",
-        "margin": 13063.0,
-        "margin_pct": 45.35763888888889
+        "margin": 13131.0,
+        "margin_pct": 45.57159714027903
       },
       "79": {
         "dem_votes": 11401,
@@ -1219,15 +1219,15 @@
         "margin_pct": 17.738543939694505
       },
       "109": {
-        "dem_votes": 13208,
-        "rep_votes": 14467,
-        "other_votes": 525,
-        "total_votes": 28200,
+        "dem_votes": 13191,
+        "rep_votes": 14447,
+        "other_votes": 570,
+        "total_votes": 28208,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "R",
-        "margin": 1259.0,
-        "margin_pct": 4.464539007092198
+        "margin": 1256.0,
+        "margin_pct": 4.45263754963131
       },
       "110": {
         "dem_votes": 12871,
@@ -1362,15 +1362,15 @@
         "margin_pct": 24.161220043572985
       },
       "122": {
-        "dem_votes": 13479,
-        "rep_votes": 12973,
-        "other_votes": 576,
-        "total_votes": 27028,
+        "dem_votes": 13464,
+        "rep_votes": 12957,
+        "other_votes": 629,
+        "total_votes": 27050,
         "dem_candidate": "Barack Obama",
         "rep_candidate": "John McCain",
         "winner": "D",
-        "margin": 506.0,
-        "margin_pct": 1.8721326032262837
+        "margin": 507.0,
+        "margin_pct": 1.8743068391866913
       },
       "123": {
         "dem_votes": 14534,
