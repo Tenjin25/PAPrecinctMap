@@ -1,17 +1,24 @@
 #!/usr/bin/env python3
-"""Snap coterminous House geometry and conserve statewide contest totals."""
+"""Snap coterminous House geometry and copy authoritative county vote totals."""
 
 from __future__ import annotations
 
 import argparse
 import json
-import math
 from pathlib import Path
+
+from shapely.geometry import mapping, shape
+from shapely.ops import unary_union
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
-PAIRS = {"CARBON": "122", "COLUMBIA": "109"}
+WHOLE_COUNTY_DISTRICTS = {
+    "67": ("MCKEAN", "POTTER", "CAMERON"),
+    "78": ("FULTON", "BEDFORD"),
+    "109": ("COLUMBIA",),
+    "122": ("CARBON",),
+}
 
 
 def load(path: Path):
@@ -24,28 +31,6 @@ def write(path: Path, payload, *, compact: bool = False):
     else:
         text = json.dumps(payload, indent=2)
     path.write_text(text + "\n", encoding="utf-8")
-
-
-def allocate_to_target(rows, field: str, fixed_ids: set[str], target: int):
-    fixed_total = sum(int(rows[district].get(field) or 0) for district in fixed_ids)
-    adjustable_ids = [district for district in rows if district not in fixed_ids]
-    adjustable_target = target - fixed_total
-    current = sum(int(rows[district].get(field) or 0) for district in adjustable_ids)
-    if adjustable_target < 0 or (current == 0 and adjustable_target):
-        raise RuntimeError(f"cannot reconcile {field}: target={target} fixed={fixed_total}")
-    if current == 0:
-        return
-    exact = {
-        district: int(rows[district].get(field) or 0) * adjustable_target / current
-        for district in adjustable_ids
-    }
-    allocated = {district: math.floor(value) for district, value in exact.items()}
-    remainder = adjustable_target - sum(allocated.values())
-    order = sorted(adjustable_ids, key=lambda district: (exact[district] - allocated[district], district), reverse=True)
-    for district in order[:remainder]:
-        allocated[district] += 1
-    for district, value in allocated.items():
-        rows[district][field] = value
 
 
 def refresh_derived(row):
@@ -66,14 +51,14 @@ def snap_geometry():
     counties = load(county_path)
     house = load(house_path)
     county_geometry = {
-        str(feature["properties"].get("NAME20") or feature["properties"].get("county")).upper(): feature["geometry"]
+        str(feature["properties"].get("NAME20") or feature["properties"].get("county")).upper(): shape(feature["geometry"])
         for feature in counties["features"]
     }
     for feature in house["features"]:
         district = str(feature["properties"].get("SLDLST") or feature["properties"].get("id"))
-        for county, paired_district in PAIRS.items():
-            if district == paired_district:
-                feature["geometry"] = county_geometry[county]
+        county_names = WHOLE_COUNTY_DISTRICTS.get(district)
+        if county_names:
+            feature["geometry"] = mapping(unary_union([county_geometry[county] for county in county_names]))
     write(house_path, house, compact=True)
 
 
@@ -89,19 +74,27 @@ def enforce_year(year: int):
             for row in load(county_path).get("rows", [])
         }
         rows = payload.get("general", {}).get("results", {})
-        if not all(county in county_rows and district in rows for county, district in PAIRS.items()):
+        if not all(
+            district in rows and all(county in county_rows for county in county_names)
+            for district, county_names in WHOLE_COUNTY_DISTRICTS.items()
+        ):
             continue
-        for county, district in PAIRS.items():
+        changed = False
+        for district, county_names in WHOLE_COUNTY_DISTRICTS.items():
+            exact = {
+                field: sum(int(county_rows[county].get(field) or 0) for county in county_names)
+                for field in ("dem_votes", "rep_votes", "other_votes")
+            }
+            if all(int(rows[district].get(field) or 0) == value for field, value in exact.items()):
+                continue
             for field in ("dem_votes", "rep_votes", "other_votes"):
-                rows[district][field] = int(county_rows[county].get(field) or 0)
-        fixed_ids = set(PAIRS.values())
-        for field in ("dem_votes", "rep_votes", "other_votes"):
-            statewide_target = sum(int(row.get(field) or 0) for row in county_rows.values())
-            allocate_to_target(rows, field, fixed_ids, statewide_target)
-        for row in rows.values():
-            refresh_derived(row)
+                rows[district][field] = exact[field]
+            refresh_derived(rows[district])
+            changed = True
+        if not changed:
+            continue
         source = payload.setdefault("meta", {}).get("source", "")
-        marker = "coterminous_county_control+statewide_vote_control"
+        marker = "coterminous_county_control"
         if marker not in source:
             payload["meta"]["source"] = f"{source}+{marker}" if source else marker
         write(district_path, payload)
