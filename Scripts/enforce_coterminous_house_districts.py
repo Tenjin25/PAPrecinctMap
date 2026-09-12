@@ -1,15 +1,11 @@
 #!/usr/bin/env python3
-"""Snap coterminous House geometry and copy authoritative county vote totals."""
+"""Copy authoritative county vote totals into whole-county House districts."""
 
 from __future__ import annotations
 
 import argparse
 import json
 from pathlib import Path
-
-from shapely.geometry import mapping, shape
-from shapely.ops import unary_union
-
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
@@ -43,23 +39,6 @@ def refresh_derived(row):
     row["winner"] = "D" if dem > rep else "R" if rep > dem else "T"
     row["margin"] = float(abs(margin))
     row["margin_pct"] = abs(margin) / total * 100 if total else 0.0
-
-
-def snap_geometry():
-    county_path = DATA / "pa_counties.geojson"
-    house_path = DATA / "tileset" / "pa_state_house_2022_lines_tileset.geojson"
-    counties = load(county_path)
-    house = load(house_path)
-    county_geometry = {
-        str(feature["properties"].get("NAME20") or feature["properties"].get("county")).upper(): shape(feature["geometry"])
-        for feature in counties["features"]
-    }
-    for feature in house["features"]:
-        district = str(feature["properties"].get("SLDLST") or feature["properties"].get("id"))
-        county_names = WHOLE_COUNTY_DISTRICTS.get(district)
-        if county_names:
-            feature["geometry"] = mapping(unary_union([county_geometry[county] for county in county_names]))
-    write(house_path, house, compact=True)
 
 
 def enforce_year(year: int):
@@ -104,10 +83,7 @@ def enforce_year(year: int):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--years", nargs="+", type=int, required=True)
-    parser.add_argument("--skip-geometry", action="store_true")
     args = parser.parse_args()
-    if not args.skip_geometry:
-        snap_geometry()
     for year in args.years:
         enforce_year(year)
 

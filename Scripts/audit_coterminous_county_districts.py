@@ -47,7 +47,7 @@ def geometry_rows(threshold: float):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--threshold", type=float, default=0.999)
+    parser.add_argument("--threshold", type=float, default=0.98)
     parser.add_argument("--show-matches", action="store_true")
     args = parser.parse_args()
 
