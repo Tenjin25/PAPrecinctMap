@@ -1,0 +1,202 @@
+{
+  "scope": "congressional",
+  "contest_type": "supreme_court",
+  "year": 2003,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 51422,
+        "rep_votes": 61771,
+        "other_votes": 0,
+        "total_votes": 113193,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 10349.0,
+        "margin_pct": 9.142791515376393
+      },
+      "2": {
+        "dem_votes": 106011,
+        "rep_votes": 58011,
+        "other_votes": 9,
+        "total_votes": 164031,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "D",
+        "margin": 48000.0,
+        "margin_pct": 29.262761307313863
+      },
+      "3": {
+        "dem_votes": 183888,
+        "rep_votes": 23559,
+        "other_votes": 32,
+        "total_votes": 207479,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "D",
+        "margin": 160329.0,
+        "margin_pct": 77.27480853483966
+      },
+      "4": {
+        "dem_votes": 63149,
+        "rep_votes": 71724,
+        "other_votes": 5,
+        "total_votes": 134878,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 8575.0,
+        "margin_pct": 6.3575972360207
+      },
+      "5": {
+        "dem_votes": 64394,
+        "rep_votes": 72704,
+        "other_votes": 3,
+        "total_votes": 137101,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 8310.0,
+        "margin_pct": 6.0612249363607855
+      },
+      "6": {
+        "dem_votes": 43174,
+        "rep_votes": 60629,
+        "other_votes": 188,
+        "total_votes": 103991,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 17455.0,
+        "margin_pct": 16.78510640343876
+      },
+      "7": {
+        "dem_votes": 28705,
+        "rep_votes": 44844,
+        "other_votes": 3,
+        "total_votes": 73552,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 16139.0,
+        "margin_pct": 21.94229932564716
+      },
+      "8": {
+        "dem_votes": 62050,
+        "rep_votes": 48023,
+        "other_votes": 1,
+        "total_votes": 110074,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "D",
+        "margin": 14027.0,
+        "margin_pct": 12.743245453058853
+      },
+      "9": {
+        "dem_votes": 53603,
+        "rep_votes": 81382,
+        "other_votes": 32,
+        "total_votes": 135017,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 27779.0,
+        "margin_pct": 20.5744461808513
+      },
+      "10": {
+        "dem_votes": 39549,
+        "rep_votes": 66906,
+        "other_votes": 17,
+        "total_votes": 106472,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 27357.0,
+        "margin_pct": 25.69407919453002
+      },
+      "11": {
+        "dem_votes": 26220,
+        "rep_votes": 63027,
+        "other_votes": 2,
+        "total_votes": 89249,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 36807.0,
+        "margin_pct": 41.24079821622651
+      },
+      "12": {
+        "dem_votes": 69858,
+        "rep_votes": 39162,
+        "other_votes": 0,
+        "total_votes": 109020,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "D",
+        "margin": 30696.0,
+        "margin_pct": 28.156301596037427
+      },
+      "13": {
+        "dem_votes": 55190,
+        "rep_votes": 86519,
+        "other_votes": 85,
+        "total_votes": 141794,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 31329.0,
+        "margin_pct": 22.094728973017194
+      },
+      "14": {
+        "dem_votes": 91229,
+        "rep_votes": 75113,
+        "other_votes": 3,
+        "total_votes": 166345,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "D",
+        "margin": 16116.0,
+        "margin_pct": 9.68829841594277
+      },
+      "15": {
+        "dem_votes": 63869,
+        "rep_votes": 88439,
+        "other_votes": 47,
+        "total_votes": 152355,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 24570.0,
+        "margin_pct": 16.126809097174363
+      },
+      "16": {
+        "dem_votes": 69851,
+        "rep_votes": 75581,
+        "other_votes": 21,
+        "total_votes": 145453,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "R",
+        "margin": 5730.0,
+        "margin_pct": 3.9394168563040983
+      },
+      "17": {
+        "dem_votes": 85801,
+        "rep_votes": 65866,
+        "other_votes": 0,
+        "total_votes": 151667,
+        "dem_candidate": "Max Baer",
+        "rep_candidate": "Joan Orie Melvin",
+        "winner": "D",
+        "margin": 19935.0,
+        "margin_pct": 13.143927156204052
+      }
+    }
+  }
+}

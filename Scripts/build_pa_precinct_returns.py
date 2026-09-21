@@ -49,27 +49,47 @@ FIELDS = [
 
 # Official PA bulk exports take precedence over partial/community files.
 OFFICIAL_SOURCES = {
+    2001: DATA / "ElectionReturns_2001_Municipal_PrecinctReturns.txt",
+    2003: DATA / "ElectionReturns_2003_Municipal_PrecinctReturns.txt",
+    2007: DATA / "ElectionReturns_2007_Municipal_PrecinctReturns.txt",
     2008: DATA / "ElectionReturns_2008_General_PrecinctReturns.txt",
     2018: DATA / "pa_official_2018_general_returns.txt",
+    2011: DATA / "ElectionReturns_2011_General_PrecinctReturns.txt",
+    2015: DATA / "ElectionReturns_2015_Municipal_Precinct.txt",
+    2017: DATA / "ElectionReturns_2017_Municipal_PrecinctReturns.txt",
+    2019: DATA / "ElectionReturns_2019_General_PrecinctReturns.txt",
     2020: DATA / "ElectionReturns_2020_General_PrecinctReturns.txt",
     2022: DATA / "ElectionReturns_2022_General_PrecinctReturns.txt",
+    2021: DATA / "ElectionReturns_2021_Municipal_PrecinctReturns.txt",
+    2023: DATA / "ElectionReturns_2023_Municipal_PrecinctReturns.txt",
     2024: DATA / "erstat_2024_g_268768_20250129.txt",
+    2025: DATA / "ElectionReturns_2025_Municipal_PrecinctReturns.txt",
 }
 
 TARGETS = {
     2000: "20001107__pa__general__precinct.csv",
+    2001: "20011106__pa__municipal__precinct.csv",
     2002: "20021105__pa__general__precinct.csv",
+    2003: "20031104__pa__municipal__precinct.csv",
     2004: "20041102__pa__general__precinct.csv",
     2006: "20061107__pa__general__precinct.csv",
+    2007: "20071106__pa__municipal__precinct.csv",
     2008: "20081104__pa__general__precinct.csv",
     2010: "20101102__pa__general__precinct.csv",
+    2011: "20111108__pa__municipal__precinct.csv",
     2012: "20121106__pa__general__precinct.csv",
     2014: "20141104__pa__general__precinct.csv",
+    2015: "20151103__pa__municipal__precinct.csv",
     2016: "20161108__pa__general__precinct.csv",
+    2017: "20171107__pa__municipal__precinct.csv",
     2018: "20181106__pa__general__precinct.csv",
+    2019: "20191105__pa__municipal__precinct.csv",
     2020: "20201103__pa__general__precinct.csv",
+    2021: "20211102__pa__municipal__precinct.csv",
     2022: "20221108__pa__general__precinct.csv",
+    2023: "20231107__pa__municipal__precinct.csv",
     2024: "20241105__pa__general__precinct_official.csv",
+    2025: "20251104__pa__municipal__precinct.csv",
 }
 
 # Source labels that are unmatched in their own-year crosswalk but have a
@@ -186,7 +206,7 @@ def canonical_rows(source: Path, year: int) -> list[dict[str, str]]:
     raw_source = text.splitlines() and not text.splitlines()[0].lower().startswith("county,")
     rows = pipeline.read_csv_rows(source)
     source_precincts = []
-    if raw_source:
+    if raw_source and year % 2 == 0:
         raw_rows = list(csv.reader(text.splitlines()))
         valid_offices = set(getattr(pipeline, "RAW_OFFICE_CODE_MAP", {}))
         summary_candidates = {"CAST VOTES", "OVER VOTES", "UNDER VOTES", "TOTAL VOTES"}
@@ -212,7 +232,7 @@ def canonical_rows(source: Path, year: int) -> list[dict[str, str]]:
         if not county or not precinct or not office or not candidate:
             continue
         source_precinct = str(row.get("precinct") or "").strip()
-        if raw_source:
+        if raw_source and year % 2 == 0:
             # read_csv_rows and read_raw_precinct_rows discard the same invalid
             # rows, but summary rows can differ; advance until the raw source
             # county/precinct pair agrees with the normalized row when possible.

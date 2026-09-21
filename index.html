@@ -7116,7 +7116,6 @@ body.focus-active #hover-tooltip[data-context="preview"] {
     font-size: 9px;
     letter-spacing: 0;
   }
-
   .legend-axis span {
     text-align: center;
     line-height: 1.2;
@@ -19745,6 +19744,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'us_house': 'US House',
 	        'state_senate': 'State Senate',
 	        'state_house': 'State House'
+	        ,'supreme_court': 'Pennsylvania Supreme Court'
+	        ,'superior_court': 'Pennsylvania Superior Court'
+	        ,'commonwealth_court': 'Pennsylvania Commonwealth Court'
 	      };
 
 	      if (contestType.startsWith('a') && contestType.length <= 3) {
@@ -19753,6 +19755,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	      if (contestType.startsWith('d')) {
 	        return `Judicial Retention ${contestType.toUpperCase()}`;
+	      }
+	      const paRetention = contestType.match(/^(supreme|superior|commonwealth)_court_retention_(.+)$/);
+	      if (paRetention) {
+	        const court = paRetention[1][0].toUpperCase() + paRetention[1].slice(1);
+	        const justice = fullCandidateLabel(paRetention[2].replace(/_/g, ' '));
+	        return `${court} Court retention: ${justice}`;
 	      }
 
 	      if (contestType.startsWith('nc_court_of_appeals_judge_seat_')) {
@@ -20023,6 +20031,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	        if (contestType === 'insurance_commissioner') return 'Insurance Commissioner';
 	        if (contestType === 'agriculture_commissioner') return 'Agriculture Commissioner';
 	        if (contestType === 'superintendent') return 'Superintendent of Public Instruction';
+	        if (contestType === 'supreme_court') return 'Pennsylvania Supreme Court';
+	        if (contestType === 'superior_court') return 'Pennsylvania Superior Court';
+	        if (contestType === 'commonwealth_court') return 'Pennsylvania Commonwealth Court';
+	        if (contestType.startsWith('supreme_court_retention_')) return 'Pennsylvania Supreme Court';
+	        if (contestType.startsWith('superior_court_retention_')) return 'Pennsylvania Superior Court';
+	        if (contestType.startsWith('commonwealth_court_retention_')) return 'Pennsylvania Commonwealth Court';
 	        if (contestType.startsWith('nc_supreme_court_')) return 'Supreme Court';
 	        if (contestType.startsWith('nc_court_of_appeals_')) return 'Court of Appeals';
 	        return formatContestName(contestType, '');
@@ -20046,6 +20060,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'Insurance Commissioner',
 	        'Agriculture Commissioner',
 	        'Superintendent of Public Instruction',
+	        'Pennsylvania Supreme Court',
+	        'Pennsylvania Superior Court',
+	        'Pennsylvania Commonwealth Court',
 	        'Supreme Court',
 	        'Court of Appeals'
 	      ];
@@ -21177,9 +21194,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function fullCandidateLabel(name, fallback = '') {
-      const raw = (name || '').toString().trim();
+      const raw = (name || '').toString().replace(/\uFFFD/g, '-').trim();
       if (!raw) return fallback;
-      const ticketLead = normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(raw)));
+      // Court races can have multiple candidates, and retention records add a
+      // Yes/No prefix. Normalize every displayed person independently rather
+      // than treating the whole slash-separated label as one candidate.
+      const ticketLead = raw.split(/\s*\/\s*/)
+        .map(part => normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(part))))
+        .filter(Boolean)
+        .join(' / ');
       const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',-]/g, ' ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
       return toTitleCaseName(cleaned);

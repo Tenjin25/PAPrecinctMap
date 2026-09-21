@@ -1,0 +1,202 @@
+{
+  "scope": "congressional",
+  "contest_type": "superior_court",
+  "year": 2023,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 236312,
+        "rep_votes": 199214,
+        "other_votes": 0,
+        "total_votes": 435526,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "D",
+        "margin": 37098.0,
+        "margin_pct": 8.517975964695564
+      },
+      "2": {
+        "dem_votes": 134476,
+        "rep_votes": 55946,
+        "other_votes": 0,
+        "total_votes": 190422,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "D",
+        "margin": 78530.0,
+        "margin_pct": 41.23998277509951
+      },
+      "3": {
+        "dem_votes": 293664,
+        "rep_votes": 27237,
+        "other_votes": 0,
+        "total_votes": 320901,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "D",
+        "margin": 266427.0,
+        "margin_pct": 83.02467116026439
+      },
+      "4": {
+        "dem_votes": 259702,
+        "rep_votes": 151382,
+        "other_votes": 0,
+        "total_votes": 411084,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "D",
+        "margin": 108320.0,
+        "margin_pct": 26.34984577361318
+      },
+      "5": {
+        "dem_votes": 225566,
+        "rep_votes": 128432,
+        "other_votes": 0,
+        "total_votes": 353998,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "D",
+        "margin": 97134.0,
+        "margin_pct": 27.43913807422641
+      },
+      "6": {
+        "dem_votes": 215100,
+        "rep_votes": 158438,
+        "other_votes": 0,
+        "total_votes": 373538,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "D",
+        "margin": 56662.0,
+        "margin_pct": 15.1690055630217
+      },
+      "7": {
+        "dem_votes": 159090,
+        "rep_votes": 137569,
+        "other_votes": 0,
+        "total_votes": 296659,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "D",
+        "margin": 21521.0,
+        "margin_pct": 7.254457137656366
+      },
+      "8": {
+        "dem_votes": 152063,
+        "rep_votes": 129860,
+        "other_votes": 0,
+        "total_votes": 281923,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "D",
+        "margin": 22203.0,
+        "margin_pct": 7.8755546727297885
+      },
+      "9": {
+        "dem_votes": 105971,
+        "rep_votes": 191347,
+        "other_votes": 0,
+        "total_votes": 297318,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "R",
+        "margin": 85376.0,
+        "margin_pct": 28.71538218338614
+      },
+      "10": {
+        "dem_votes": 155338,
+        "rep_votes": 159115,
+        "other_votes": 0,
+        "total_votes": 314453,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "R",
+        "margin": 3777.0,
+        "margin_pct": 1.2011333967238347
+      },
+      "11": {
+        "dem_votes": 131873,
+        "rep_votes": 176339,
+        "other_votes": 0,
+        "total_votes": 308212,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "R",
+        "margin": 44466.0,
+        "margin_pct": 14.427082657391665
+      },
+      "12": {
+        "dem_votes": 140914,
+        "rep_votes": 83171,
+        "other_votes": 0,
+        "total_votes": 224085,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "D",
+        "margin": 57743.0,
+        "margin_pct": 25.7683468326751
+      },
+      "13": {
+        "dem_votes": 94478,
+        "rep_votes": 195902,
+        "other_votes": 0,
+        "total_votes": 290380,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "R",
+        "margin": 101424.0,
+        "margin_pct": 34.92802534609822
+      },
+      "14": {
+        "dem_votes": 131049,
+        "rep_votes": 195105,
+        "other_votes": 0,
+        "total_votes": 326154,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "R",
+        "margin": 64056.0,
+        "margin_pct": 19.639802056697143
+      },
+      "15": {
+        "dem_votes": 113518,
+        "rep_votes": 200165,
+        "other_votes": 0,
+        "total_votes": 313683,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "R",
+        "margin": 86647.0,
+        "margin_pct": 27.622472368601425
+      },
+      "16": {
+        "dem_votes": 140657,
+        "rep_votes": 177464,
+        "other_votes": 0,
+        "total_votes": 318121,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "R",
+        "margin": 36807.0,
+        "margin_pct": 11.570125832623436
+      },
+      "17": {
+        "dem_votes": 170518,
+        "rep_votes": 139995,
+        "other_votes": 0,
+        "total_votes": 310513,
+        "dem_candidate": "Timika Lane / Jill L Beck",
+        "rep_candidate": "Maria C Battista / Harry F Smail Jr.",
+        "winner": "D",
+        "margin": 30523.0,
+        "margin_pct": 9.829862195785683
+      }
+    }
+  }
+}
