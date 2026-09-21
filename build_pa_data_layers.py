@@ -299,7 +299,11 @@ DATA_ROOT = base / 'data' / 'Openelections'
 
 PARTY_DEM = {'DEM', 'D', 'DEMOCRATIC', 'DEMOCRAT'}
 PARTY_REP = {'REP', 'R', 'REPUBLICAN'}
-STATEWIDE_CONTEST_TYPES = ['president', 'governor', 'us_senate', 'attorney_general', 'secretary_of_state', 'treasurer', 'auditor']
+STATEWIDE_CONTEST_TYPES = [
+    'president', 'governor', 'us_senate', 'attorney_general',
+    'secretary_of_state', 'treasurer', 'auditor',
+    'supreme_court', 'superior_court', 'commonwealth_court',
+]
 DISTRICT_SCOPE_BY_CONTEST = {
     'us_house': 'congressional',
     'state_house': 'state_house',
@@ -317,6 +321,18 @@ EXPECTED_DISTRICT_COUNT = {
 }
 OFFICIAL_2024_STATEWIDE_OE_SOURCE = DATA_ROOT / '2024' / '20241105__pa__general__precinct_official.csv'
 OFFICIAL_2020_STATEWIDE_SOURCE = base / 'data' / 'ElectionReturns_2020_General_PrecinctReturns.txt'
+OFFICIAL_JUDICIAL_SOURCES = {
+    2001: base / 'data' / 'ElectionReturns_2001_Municipal_PrecinctReturns.txt',
+    2003: base / 'data' / 'ElectionReturns_2003_Municipal_PrecinctReturns.txt',
+    2007: base / 'data' / 'ElectionReturns_2007_Municipal_PrecinctReturns.txt',
+    2011: base / 'data' / 'ElectionReturns_2011_General_PrecinctReturns.txt',
+    2015: base / 'data' / 'ElectionReturns_2015_Municipal_Precinct.txt',
+    2017: base / 'data' / 'ElectionReturns_2017_Municipal_PrecinctReturns.txt',
+    2019: base / 'data' / 'ElectionReturns_2019_General_PrecinctReturns.txt',
+    2021: base / 'data' / 'ElectionReturns_2021_Municipal_PrecinctReturns.txt',
+    2023: base / 'data' / 'ElectionReturns_2023_Municipal_PrecinctReturns.txt',
+    2025: base / 'data' / 'ElectionReturns_2025_Municipal_PrecinctReturns.txt',
+}
 OFFICIAL_2024_DISTRICT_SOURCE = base / 'data' / 'erstat_2024_g_268768_20250129.txt'
 DRA_DISTRICT_STATS_FILENAME = re.compile(
     r'^district-statistics\s+(state house|state senate)\s+(\d{4})\s+(.+?)\.csv$',
@@ -340,12 +356,16 @@ RAW_OFFICE_CODE_MAP = {
     'USC': 'U.S. House',
     'STH': 'State House',
     'STS': 'State Senate',
+    'SPM': 'Supreme Court',
+    'SPR': 'Superior Court',
+    'CCJ': 'Commonwealth Court',
 }
 COUNTY_FIPS_BY_NAME = None
 VTD_BRIDGE_INDEX = None
 VTD_CURRENT_DISTRICT_BLOCKS = None
 VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = None
 RAW_COUNTY_NAME_BY_FIPS = None
+CURRENT_PRECINCT_TO_VTDS = None
 
 
 def iter_openelections_csvs():
@@ -371,6 +391,15 @@ def iter_openelections_csvs():
         for fp in files:
             yield y, fp
 
+    for y in sorted(OFFICIAL_JUDICIAL_SOURCES):
+        year_dir = DATA_ROOT / str(y)
+        normalized = sorted(year_dir.glob('*__pa__municipal__precinct.csv'))
+        if normalized:
+            for fp in normalized:
+                yield y, fp
+        elif OFFICIAL_JUDICIAL_SOURCES[y].exists():
+            yield y, OFFICIAL_JUDICIAL_SOURCES[y]
+
 
 def read_csv_rows(path: Path):
     with path.open('r', encoding='utf-8-sig', errors='ignore') as f:
@@ -380,7 +409,7 @@ def read_csv_rows(path: Path):
     if not lines:
         return rows
     first = [p.strip().strip('"') for p in lines[0].split(',')]
-    if first and first[0].isdigit() and (len(first) < 2 or first[1].upper() in {'G', 'P', 'S'}):
+    if first and first[0].isdigit() and (len(first) < 2 or first[1].upper() in {'G', 'M', 'P', 'S'}):
         rows = infer_missing_parties(read_raw_precinct_rows(lines))
         return [row for row in rows if not is_summary_result_row(row)]
     header = [h.strip() for h in lines[0].split(',')]
@@ -443,7 +472,7 @@ def read_raw_precinct_rows(lines):
         if not office:
             continue
         county_fips = ''
-        if len(raw) >= 37 and str(raw[29]).isdigit():
+        if len(raw) >= 35 and str(raw[29]).isdigit():
             county_fips = str(raw[29]).zfill(3)
         elif len(raw) >= 28 and str(raw[27]).isdigit():
             county_fips = str(raw[27]).zfill(3)
@@ -470,7 +499,7 @@ def read_raw_precinct_rows(lines):
             precinct_sldu = ''
             precinct_sldl = ''
         candidate = ' '.join(part for part in [raw[12], raw[13], raw[11], raw[14]] if part).strip().title() or 'Write Ins'
-        rows.append({
+        parsed_row = {
             'county': county,
             'precinct': precinct,
             'office': office,
@@ -481,7 +510,23 @@ def read_raw_precinct_rows(lines):
             'party': (raw[9] or '').strip(),
             'candidate': candidate,
             'votes': (raw[15] or '').strip(),
-        })
+        }
+        # Retention questions encode YES and NO in separate columns on one
+        # official-export row. Expand them to ordinary OpenElections-style
+        # candidate rows so no votes are discarded during normalization.
+        is_retention = (
+            office_code in {'SPM', 'SPR', 'CCJ'}
+            and not (raw[9] or '').strip()
+            and len(raw) > 17
+            and ((raw[16] or '').strip() or (raw[17] or '').strip())
+        )
+        if is_retention:
+            retention_office = f'{office} Retention - {candidate}'
+            yes_row = dict(parsed_row, office=retention_office, party='YES', candidate='Yes', votes=(raw[16] or '').strip())
+            no_row = dict(parsed_row, office=retention_office, party='NO', candidate='No', votes=(raw[17] or '').strip())
+            rows.extend([yes_row, no_row])
+        else:
+            rows.append(parsed_row)
     return rows
 
 
@@ -546,6 +591,10 @@ def infer_missing_parties(rows):
 
 def office_mapping_for_contest(office: str):
     o = re.sub(r'\s+', ' ', (office or '').strip().lower())
+    retention = re.match(r'^(supreme|superior|commonwealth) court retention - (.+)$', o)
+    if retention:
+        court, justice = retention.groups()
+        return f'{court}_court_retention_{re.sub(r"[^a-z0-9]+", "_", justice).strip("_")}'
     if 'president' in o:
         return 'president'
     if o == 'governor':
@@ -566,7 +615,19 @@ def office_mapping_for_contest(office: str):
         return 'state_house'
     if o == 'state senate':
         return 'state_senate'
+    if o in ('supreme court', 'justice of the supreme court') or o.startswith('supreme court retention -'):
+        return 'supreme_court'
+    if o in ('superior court', 'judge of the superior court') or o.startswith('superior court retention -'):
+        return 'superior_court'
+    if o in ('commonwealth court', 'judge of the commonwealth court') or o.startswith('commonwealth court retention -'):
+        return 'commonwealth_court'
     return None
+
+
+def is_statewide_contest_type(contest_type):
+    return contest_type in STATEWIDE_CONTEST_TYPES or bool(re.match(
+        r'^(supreme|superior|commonwealth)_court_retention_[a-z0-9_]+$', contest_type or ''
+    ))
 
 
 def safe_int(value):
@@ -1164,6 +1225,28 @@ def match_row_to_current_vtds(row):
     precinct = row.get('precinct') or ''
     if not precinct:
         return []
+    # Normalized OpenElections outputs already carry the current precinct id
+    # (for example ``ADAMS - 001010``). Resolve it back to the source VTD20
+    # keys used by the block-to-district allocator instead of name-matching it
+    # against historical VTD labels.
+    global CURRENT_PRECINCT_TO_VTDS
+    if CURRENT_PRECINCT_TO_VTDS is None:
+        CURRENT_PRECINCT_TO_VTDS = defaultdict(set)
+        crosswalk_path = data_dir / 'crosswalks' / 'pa_vtd20_to_current_precinct.csv'
+        if crosswalk_path.exists():
+            with crosswalk_path.open('r', encoding='utf-8-sig', newline='') as handle:
+                for item in csv.DictReader(handle):
+                    current_county = str(item.get('current_countyfp') or '').zfill(3)
+                    current_vtd = str(item.get('current_vtd') or '').strip()
+                    source_county = str(item.get('countyfp') or '').zfill(3)
+                    source_vtd = str(item.get('vtd20') or '').strip()
+                    if current_county and current_vtd and source_county and source_vtd:
+                        CURRENT_PRECINCT_TO_VTDS[(current_county, current_vtd)].add((source_county, source_vtd))
+    canonical = re.search(r'\b([0-9]{6,})$', str(precinct).strip())
+    if canonical:
+        source_keys = CURRENT_PRECINCT_TO_VTDS.get((countyfp, canonical.group(1))) or set()
+        if source_keys:
+            return sorted(source_keys)
     index = load_vtd_bridge_index().get(countyfp) or {}
     candidate_names = {precinct}
     precise_candidate_names = set()
@@ -1293,17 +1376,26 @@ def allocate_votes_by_block_counts(votes: int, district_counts):
 def add_result_votes(node, votes: int, party: str, candidate: str):
     if votes <= 0:
         return
-    if party in PARTY_DEM:
+    if party in PARTY_DEM or party == 'YES':
         node['dem_votes'] += votes
-        if candidate and not node['dem_candidate']:
-            node['dem_candidate'] = candidate
-    elif party in PARTY_REP:
+        node['dem_candidate'] = merge_candidate_label(node.get('dem_candidate'), candidate)
+    elif party in PARTY_REP or party == 'NO':
         node['rep_votes'] += votes
-        if candidate and not node['rep_candidate']:
-            node['rep_candidate'] = candidate
+        node['rep_candidate'] = merge_candidate_label(node.get('rep_candidate'), candidate)
     else:
         node['other_votes'] += votes
     node['total_votes'] += votes
+
+
+def merge_candidate_label(existing, candidate):
+    existing = (existing or '').strip()
+    candidate = (candidate or '').strip()
+    if not candidate:
+        return existing
+    names = [part.strip() for part in existing.split(' / ') if part.strip()]
+    if candidate not in names:
+        names.append(candidate)
+    return ' / '.join(names)
 
 
 def finalize_result_node(node):
@@ -1451,6 +1543,12 @@ def aggregate_county_results_from_openelections():
         except Exception:
             continue
 
+        partisan_courts = {
+            office_mapping_for_contest(r.get('office') or '')
+            for r in rows
+            if (r.get('party') or '').strip().upper() in PARTY_DEM | PARTY_REP
+        }
+
         for r in rows:
             county = (r.get('county') or '').strip()
             office = (r.get('office') or '').strip()
@@ -1458,11 +1556,16 @@ def aggregate_county_results_from_openelections():
                 continue
 
             office_key = office_mapping_for_contest(office)
-            if office_key not in STATEWIDE_CONTEST_TYPES:
+            if not is_statewide_contest_type(office_key):
+                continue
+            if ' retention - ' in office.lower() and office_key in partisan_courts:
                 continue
 
             party = (r.get('party') or '').strip().upper()
             candidate = (r.get('candidate') or '').strip()
+            if ' retention - ' in office.lower():
+                justice = office.split(' - ', 1)[1].strip()
+                candidate = f'{candidate} — {justice}'
             votes = safe_int(r.get('votes'))
             if votes <= 0:
                 continue
@@ -1480,14 +1583,12 @@ def aggregate_county_results_from_openelections():
                 'rep_candidate': '',
             })
 
-            if party in PARTY_DEM:
+            if party in PARTY_DEM or party == 'YES':
                 cnode['dem_votes'] += votes
-                if candidate and not cnode['dem_candidate']:
-                    cnode['dem_candidate'] = candidate
-            elif party in PARTY_REP:
+                cnode['dem_candidate'] = merge_candidate_label(cnode.get('dem_candidate'), candidate)
+            elif party in PARTY_REP or party == 'NO':
                 cnode['rep_votes'] += votes
-                if candidate and not cnode['rep_candidate']:
-                    cnode['rep_candidate'] = candidate
+                cnode['rep_candidate'] = merge_candidate_label(cnode.get('rep_candidate'), candidate)
             else:
                 cnode['other_votes'] += votes
             cnode['total_votes'] += votes
@@ -1523,7 +1624,8 @@ def build_district_results_2022_lines(out_path: Path):
         json.dump(payload, f, indent=2)
 
 
-def build_district_manifests(contest_dir: Path):
+def build_district_manifests(contest_dir: Path, contest_types=None):
+    contest_types = set(contest_types or [])
     target_years = {
         'us_house': {2022, 2024},
         'state_house': {2022, 2024},
@@ -1532,6 +1634,16 @@ def build_district_manifests(contest_dir: Path):
     district_nodes = {}
     source_by_key = {}
     files = []
+    manifest_path = contest_dir / 'manifest.json'
+    if contest_types and manifest_path.exists():
+        try:
+            existing_manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+            files = [
+                entry for entry in (existing_manifest.get('files') or [])
+                if entry.get('contest_type') not in contest_types
+            ]
+        except (OSError, json.JSONDecodeError):
+            files = []
     source_rows = []
     vtd_match_cache = {}
 
@@ -1552,13 +1664,27 @@ def build_district_manifests(contest_dir: Path):
         except Exception:
             continue
 
+        partisan_courts = {
+            office_mapping_for_contest(r.get('office') or '')
+            for r in rows
+            if (r.get('party') or '').strip().upper() in PARTY_DEM | PARTY_REP
+        }
+
         for row in rows:
             office_key = office_mapping_for_contest(row.get('office') or '')
+            if contest_types and office_key not in contest_types:
+                continue
+            if ' retention - ' in (row.get('office') or '').lower() and office_key in partisan_courts:
+                continue
             votes = safe_int(row.get('votes'))
             if votes <= 0:
                 continue
             party = (row.get('party') or '').strip().upper()
             candidate = (row.get('candidate') or '').strip()
+            office = (row.get('office') or '').strip()
+            if ' retention - ' in office.lower():
+                justice = office.split(' - ', 1)[1].strip()
+                candidate = f'{candidate} — {justice}'
 
             if office_key in target_years and year in target_years[office_key]:
                 district_id = normalize_district_id(row.get('district') or '')
@@ -1577,7 +1703,7 @@ def build_district_manifests(contest_dir: Path):
                     })
                     add_result_votes(node, votes, party, candidate)
 
-            if office_key in STATEWIDE_CONTEST_TYPES:
+            if is_statewide_contest_type(office_key):
                 match_key = (
                     normalize_county_name(row.get('county') or ''),
                     normalize_bridge_precinct_name(row.get('precinct') or '')
@@ -1618,7 +1744,20 @@ def build_district_manifests(contest_dir: Path):
 
     apply_dra_share_calibration(district_nodes, source_by_key)
 
+    allowed_incremental_contests = None
+    if contest_types:
+        try:
+            county_manifest = json.loads((data_dir / 'contests' / 'manifest.json').read_text(encoding='utf-8'))
+            allowed_incremental_contests = {
+                (entry.get('contest_type'), int(entry.get('year')))
+                for entry in (county_manifest.get('files') or [])
+            }
+        except (OSError, ValueError, TypeError):
+            allowed_incremental_contests = None
+
     for (scope, contest_type, year), results in sorted(district_nodes.items(), key=lambda item: (item[0][0], item[0][2], item[0][1])):
+        if allowed_incremental_contests is not None and (contest_type, int(year)) not in allowed_incremental_contests:
+            continue
         finalized = {}
         for district_id, node in sorted(results.items(), key=lambda item: int(item[0])):
             finalize_result_node(node)
@@ -1654,10 +1793,17 @@ def build_contest_manifests(contest_dir: Path, aggregated_payload=None):
     files = []
     for year in sorted(results_by_year.keys(), key=int):
         year_bucket = results_by_year.get(year, {})
-        for contest_type in STATEWIDE_CONTEST_TYPES:
+        for contest_type in sorted(year_bucket):
+            if not is_statewide_contest_type(contest_type):
+                continue
             contest = year_bucket.get(contest_type, {}).get('statewide') or {}
             contest_results = contest.get('results') or {}
             if not contest_results:
+                continue
+            if contest_type in {'supreme_court', 'superior_court', 'commonwealth_court'} and len(contest_results) < 67:
+                # Several legacy official precinct exports contain court rows
+                # with literal zero vote totals for whole counties. Do not
+                # advertise a visibly incomplete statewide contest.
                 continue
             fname = f'{contest_type}_{year}.json'
             rows = []

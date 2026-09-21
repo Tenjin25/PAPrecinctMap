@@ -19634,6 +19634,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'us_house': 'US House',
 	        'state_senate': 'State Senate',
 	        'state_house': 'State House'
+	        ,'supreme_court': 'Pennsylvania Supreme Court'
+	        ,'superior_court': 'Pennsylvania Superior Court'
+	        ,'commonwealth_court': 'Pennsylvania Commonwealth Court'
 	      };
 
 	      if (contestType.startsWith('a') && contestType.length <= 3) {
@@ -19642,6 +19645,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	      if (contestType.startsWith('d')) {
 	        return `Judicial Retention ${contestType.toUpperCase()}`;
+	      }
+	      const paRetention = contestType.match(/^(supreme|superior|commonwealth)_court_retention_(.+)$/);
+	      if (paRetention) {
+	        const court = paRetention[1][0].toUpperCase() + paRetention[1].slice(1);
+	        const justice = paRetention[2].split('_').map(part => part ? part[0].toUpperCase() + part.slice(1) : part).join(' ');
+	        return `${court} Court retention: ${justice}`;
 	      }
 
 	      if (contestType.startsWith('nc_court_of_appeals_judge_seat_')) {
@@ -19912,6 +19921,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	        if (contestType === 'insurance_commissioner') return 'Insurance Commissioner';
 	        if (contestType === 'agriculture_commissioner') return 'Agriculture Commissioner';
 	        if (contestType === 'superintendent') return 'Superintendent of Public Instruction';
+	        if (contestType === 'supreme_court') return 'Pennsylvania Supreme Court';
+	        if (contestType === 'superior_court') return 'Pennsylvania Superior Court';
+	        if (contestType === 'commonwealth_court') return 'Pennsylvania Commonwealth Court';
+	        if (contestType.startsWith('supreme_court_retention_')) return 'Pennsylvania Supreme Court';
+	        if (contestType.startsWith('superior_court_retention_')) return 'Pennsylvania Superior Court';
+	        if (contestType.startsWith('commonwealth_court_retention_')) return 'Pennsylvania Commonwealth Court';
 	        if (contestType.startsWith('nc_supreme_court_')) return 'Supreme Court';
 	        if (contestType.startsWith('nc_court_of_appeals_')) return 'Court of Appeals';
 	        return formatContestName(contestType, '');
@@ -19935,6 +19950,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'Insurance Commissioner',
 	        'Agriculture Commissioner',
 	        'Superintendent of Public Instruction',
+	        'Pennsylvania Supreme Court',
+	        'Pennsylvania Superior Court',
+	        'Pennsylvania Commonwealth Court',
 	        'Supreme Court',
 	        'Court of Appeals'
 	      ];

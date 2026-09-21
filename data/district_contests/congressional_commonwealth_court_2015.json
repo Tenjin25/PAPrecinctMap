@@ -1,0 +1,202 @@
+{
+  "scope": "congressional",
+  "contest_type": "commonwealth_court",
+  "year": 2015,
+  "meta": {
+    "districts_observed": 17,
+    "districts_expected": 17,
+    "coverage_percent": 100.0,
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 61240,
+        "rep_votes": 62606,
+        "other_votes": 0,
+        "total_votes": 123846,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "R",
+        "margin": 1366.0,
+        "margin_pct": 1.1029827366245175
+      },
+      "2": {
+        "dem_votes": 59150,
+        "rep_votes": 16727,
+        "other_votes": 0,
+        "total_votes": 75877,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "D",
+        "margin": 42423.0,
+        "margin_pct": 55.9102231242669
+      },
+      "3": {
+        "dem_votes": 108611,
+        "rep_votes": 8761,
+        "other_votes": 0,
+        "total_votes": 117372,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "D",
+        "margin": 99850.0,
+        "margin_pct": 85.07139692601302
+      },
+      "4": {
+        "dem_votes": 74486,
+        "rep_votes": 61552,
+        "other_votes": 0,
+        "total_votes": 136038,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "D",
+        "margin": 12934.0,
+        "margin_pct": 9.507637571854923
+      },
+      "5": {
+        "dem_votes": 70443,
+        "rep_votes": 59053,
+        "other_votes": 0,
+        "total_votes": 129496,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "D",
+        "margin": 11390.0,
+        "margin_pct": 8.7956384753197
+      },
+      "6": {
+        "dem_votes": 52915,
+        "rep_votes": 57072,
+        "other_votes": 0,
+        "total_votes": 109987,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "R",
+        "margin": 4157.0,
+        "margin_pct": 3.7795375817142025
+      },
+      "7": {
+        "dem_votes": 44280,
+        "rep_votes": 42499,
+        "other_votes": 0,
+        "total_votes": 86779,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "D",
+        "margin": 1781.0,
+        "margin_pct": 2.052339851807465
+      },
+      "8": {
+        "dem_votes": 60980,
+        "rep_votes": 44652,
+        "other_votes": 0,
+        "total_votes": 105632,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "D",
+        "margin": 16328.0,
+        "margin_pct": 15.457437140260527
+      },
+      "9": {
+        "dem_votes": 47165,
+        "rep_votes": 72502,
+        "other_votes": 0,
+        "total_votes": 119667,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "R",
+        "margin": 25337.0,
+        "margin_pct": 21.17292152389548
+      },
+      "10": {
+        "dem_votes": 40572,
+        "rep_votes": 60290,
+        "other_votes": 0,
+        "total_votes": 100862,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "R",
+        "margin": 19718.0,
+        "margin_pct": 19.54948345263826
+      },
+      "11": {
+        "dem_votes": 30165,
+        "rep_votes": 56122,
+        "other_votes": 0,
+        "total_votes": 86287,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "R",
+        "margin": 25957.0,
+        "margin_pct": 30.082167649819784
+      },
+      "12": {
+        "dem_votes": 53360,
+        "rep_votes": 26604,
+        "other_votes": 0,
+        "total_votes": 79964,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "D",
+        "margin": 26756.0,
+        "margin_pct": 33.46005702566155
+      },
+      "13": {
+        "dem_votes": 44514,
+        "rep_votes": 75044,
+        "other_votes": 0,
+        "total_votes": 119558,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "R",
+        "margin": 30530.0,
+        "margin_pct": 25.5357232472942
+      },
+      "14": {
+        "dem_votes": 77639,
+        "rep_votes": 69257,
+        "other_votes": 0,
+        "total_votes": 146896,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "D",
+        "margin": 8382.0,
+        "margin_pct": 5.706077769306176
+      },
+      "15": {
+        "dem_votes": 55598,
+        "rep_votes": 80619,
+        "other_votes": 0,
+        "total_votes": 136217,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "R",
+        "margin": 25021.0,
+        "margin_pct": 18.36848557815838
+      },
+      "16": {
+        "dem_votes": 63331,
+        "rep_votes": 69625,
+        "other_votes": 0,
+        "total_votes": 132956,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "R",
+        "margin": 6294.0,
+        "margin_pct": 4.733896928307109
+      },
+      "17": {
+        "dem_votes": 58568,
+        "rep_votes": 45516,
+        "other_votes": 0,
+        "total_votes": 104084,
+        "dem_candidate": "Michael H Wojcik",
+        "rep_candidate": "Paul N Lalley",
+        "winner": "D",
+        "margin": 13052.0,
+        "margin_pct": 12.539871642135198
+      }
+    }
+  }
+}
