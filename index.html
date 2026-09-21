@@ -19649,7 +19649,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	      const paRetention = contestType.match(/^(supreme|superior|commonwealth)_court_retention_(.+)$/);
 	      if (paRetention) {
 	        const court = paRetention[1][0].toUpperCase() + paRetention[1].slice(1);
-	        const justice = paRetention[2].split('_').map(part => part ? part[0].toUpperCase() + part.slice(1) : part).join(' ');
+	        const justice = fullCandidateLabel(paRetention[2].replace(/_/g, ' '));
 	        return `${court} Court retention: ${justice}`;
 	      }
 
@@ -21084,9 +21084,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function fullCandidateLabel(name, fallback = '') {
-      const raw = (name || '').toString().trim();
+      const raw = (name || '').toString().replace(/\uFFFD/g, '-').trim();
       if (!raw) return fallback;
-      const ticketLead = normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(raw)));
+      // Court races can have multiple candidates, and retention records add a
+      // Yes/No prefix. Normalize every displayed person independently rather
+      // than treating the whole slash-separated label as one candidate.
+      const ticketLead = raw.split(/\s*\/\s*/)
+        .map(part => normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(part))))
+        .filter(Boolean)
+        .join(' / ');
       const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',-]/g, ' ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
       return toTitleCaseName(cleaned);
