@@ -1604,7 +1604,7 @@ def aggregate_county_results_from_openelections():
 def build_election_aggregated(out_path: Path, county_names=None):
     payload = aggregate_county_results_from_openelections()
     with out_path.open('w', encoding='utf-8') as f:
-        json.dump(payload, f)
+        json.dump(payload, f, indent=2)
     return payload
 
 
@@ -1825,7 +1825,7 @@ def build_contest_manifests(contest_dir: Path, aggregated_payload=None):
             payload = {'contest': contest_type, 'year': year, 'rows': []}
             payload['rows'] = rows
             with (contest_dir / fname).open('w', encoding='utf-8') as f:
-                json.dump(payload, f)
+                json.dump(payload, f, indent=2)
             files.append({'contest_type': contest_type, 'year': int(year), 'file': fname, 'rows': len(rows)})
 
     with (contest_dir / 'manifest.json').open('w', encoding='utf-8') as f:
