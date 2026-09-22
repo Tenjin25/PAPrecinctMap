@@ -20395,7 +20395,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const otherPct = (otherVotes / totalVotes) * 100;
         const marginPct = marginPctValue(repVotes, demVotes, totalVotes);
         const marginLabel = formatMarginPctForDisplay(marginPctDisplayValue(repVotes, demVotes, totalVotes));
-        const winner = demPct > repPct ? 'Democratic' : 'Republican';
+        const isRetention = isRetentionContestType(contestType);
+        const winner = isRetention
+          ? (demPct > repPct ? 'Yes' : (repPct > demPct ? 'No' : 'Tie'))
+          : (demPct > repPct ? 'Democratic' : 'Republican');
+        const winnerCode = demPct > repPct ? 'D' : (repPct > demPct ? 'R' : 'T');
+        const winnerColor = isRetention
+          ? retentionWinnerColor(winnerCode)
+          : (winner === 'Republican' ? '#dc2626' : '#2563eb');
+        const winnerCandidate = winnerCode === 'R' ? repCandidate : (winnerCode === 'D' ? demCandidate : 'Tie');
         let officeName = formatContestName(contestType, year);
         let demKey = `${year}|${officeName}|Democrat`;
         let repKey = `${year}|${officeName}|Republican`;
@@ -20436,14 +20444,18 @@ document.addEventListener('DOMContentLoaded', function() {
           compLabel = winner === 'Democratic' ? 'Tossup (Democratic Win - <0.50%)' : 'Tossup (Republican Win - <0.50%)';
           compColor = winner === 'Democratic' ? '#2563eb' : '#dc2626';
         }
+        if (isRetention) {
+          compLabel = winner === 'Tie' ? 'Even retention vote' : `${winner} to retain leads`;
+          compColor = winnerColor;
+        }
 
         // Build the horizontal bar with D/R/Other if present.
         // On narrow screens, tiny Other shares can be visually invisible, so we add a marker.
         let barFlex = '';
         if (otherVotes > 0) {
-          barFlex = `<div style="width:${demPct}%;background:#2563eb;"></div><div style="width:${repPct}%;background:#dc2626;"></div><div style="width:${otherPct}%;background:#6b7280;"></div>`;
+          barFlex = `<div style="width:${demPct}%;background:${isRetention ? '#15803d' : '#2563eb'};"></div><div style="width:${repPct}%;background:${isRetention ? '#9f1239' : '#dc2626'};"></div><div style="width:${otherPct}%;background:#6b7280;"></div>`;
         } else {
-          barFlex = `<div style="width:${demPct}%;background:#2563eb;"></div><div style="width:${repPct}%;background:#dc2626;"></div>`;
+          barFlex = `<div style="width:${demPct}%;background:${isRetention ? '#15803d' : '#2563eb'};"></div><div style="width:${repPct}%;background:${isRetention ? '#9f1239' : '#dc2626'};"></div>`;
         }
         const tinyOtherMarker = (isMobile && otherVotes > 0 && otherPct > 0 && otherPct < 1.5)
           ? `<div style="position:absolute;top:0;right:0;width:3px;height:100%;background:#6b7280;border-left:1px solid rgba(255,255,255,0.75);" aria-hidden="true"></div>`
@@ -20453,14 +20465,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Breakdown row
         const breakdownItems = [
           {
-            label: 'D',
-            color: '#2563eb',
+            label: isRetention ? 'Yes — retain' : 'D',
+            color: isRetention ? '#15803d' : '#2563eb',
             votes: demVotes,
             pct: demPct
           },
           {
-            label: 'R',
-            color: '#dc2626',
+            label: isRetention ? 'No — do not retain' : 'R',
+            color: isRetention ? '#9f1239' : '#dc2626',
             votes: repVotes,
             pct: repPct
           }
@@ -20500,9 +20512,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         statewideContent.innerHTML = `
           <div class="statewide-margin" style="margin-bottom:0;">
-            <div class="margin-text" style="color: ${winner === 'Republican' ? '#dc2626' : '#2563eb'};font-size:18px;font-weight:700;text-align:left;">
-              Winner: <span style="color:${winner === 'Republican' ? '#dc2626' : '#2563eb'}">${fullCandidateLabel(winner === 'Republican' ? repCandidate : demCandidate, winner === 'Republican' ? 'Republican' : 'Democratic')} (${winner === 'Republican' ? 'R' : 'D'})</span><br>
-              Margin: <span style="color:${winner === 'Republican' ? '#dc2626' : '#2563eb'}">${winnerMarginLabel(repVotes, demVotes, totalVotes, repCandidate, demCandidate)}</span> <span style="color:#64748b;font-size:14px;">(${Math.abs(repVotes-demVotes).toLocaleString()} votes)</span>
+            <div class="margin-text" style="color: ${winnerColor};font-size:18px;font-weight:700;text-align:left;">
+              Winner: <span style="color:${winnerColor}">${fullCandidateLabel(winnerCandidate, isRetention ? '' : (winnerCode === 'R' ? 'Republican' : 'Democratic'))}${winnerCode === 'T' ? '' : (isRetention ? ` (${winner === 'Yes' ? 'Yes to retain' : 'No to retain'})` : ` (${winnerCode})`)}</span><br>
+              Margin: <span style="color:${winnerColor}">${winnerMarginLabel(repVotes, demVotes, totalVotes, repCandidate, demCandidate)}</span> <span style="color:#64748b;font-size:14px;">(${Math.abs(repVotes-demVotes).toLocaleString()} votes)</span>
             </div>
             ${splitSection}
             <div style="margin-top:10px;font-size:15px;color:#374151;font-weight:600;">
@@ -22226,6 +22238,17 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
     }
 
+    function buildRetentionLegendHTML(mode) {
+      const isWinners = mode === 'winners';
+      return `
+        <div class="legend-tier-list" role="list">
+          <div class="legend-tier-row" role="listitem"><span class="legend-color" style="background: ${isWinners ? retentionWinnerColor('D') : retentionMarginColor(20, 'D')};"></span><span class="legend-tier-label" style="color:#15803d;">Yes — retain</span><span class="legend-tier-range">${isWinners ? 'Yes leads' : 'Darker = larger lead'}</span></div>
+          <div class="legend-tier-row" role="listitem"><span class="legend-color" style="background: ${isWinners ? retentionWinnerColor('R') : retentionMarginColor(20, 'R')};"></span><span class="legend-tier-label" style="color:#9f1239;">No — do not retain</span><span class="legend-tier-range">${isWinners ? 'No leads' : 'Darker = larger lead'}</span></div>
+          <div class="legend-tier-row" role="listitem"><span class="legend-color" style="background:#9ca3af;"></span><span class="legend-tier-label tie">Tie or no data</span><span class="legend-tier-range">Even / missing</span></div>
+        </div>
+      `;
+    }
+
     function buildFlipsLegendHTML() {
       return `
         ${buildColorblindLegendNote()}
@@ -22395,6 +22418,18 @@ document.addEventListener('DOMContentLoaded', function() {
       const footer = document.getElementById('legend-footer');
       const content = document.getElementById('legend-content');
       if (!content) return;
+
+      if (isRetentionContestActive() && (mode === 'margins' || mode === 'winners')) {
+        const isWinners = mode === 'winners';
+        if (header) header.textContent = isWinners ? 'Retention Result' : 'Retention Margin';
+        if (subtitle) subtitle.textContent = isWinners
+          ? 'Green means a majority voted Yes to retain; maroon means a majority voted No.'
+          : 'Margin between Yes — retain and No — do not retain. These are nonpartisan ballot questions.';
+        if (badge) badge.textContent = isWinners ? 'Retention result' : 'Retention margin';
+        if (footer) footer.textContent = 'Green = Yes, retain. Maroon = No, do not retain. Party colors are not used.';
+        content.innerHTML = buildRetentionLegendHTML(mode);
+        return;
+      }
 
       if (mode === 'winners') {
         if (header) header.textContent = 'Winners';
@@ -33298,13 +33333,53 @@ document.addEventListener('DOMContentLoaded', function() {
       return winner === 'R' ? repRamp[tier] : demRamp[tier];
     }
 
+    function isRetentionContestType(contestType) {
+      return /^(supreme|superior|commonwealth)_court_retention_/.test(String(contestType || '').trim());
+    }
+
+    function isRetentionContestActive() {
+      const selected = getSelectedContestTypeYear();
+      return isRetentionContestType(currentContestMeta?.contestType || selected.contestType);
+    }
+
+    // Retention votes are Yes/No ballot questions, not partisan D/R contests.
+    // In the underlying shared result shape, D carries Yes and R carries No.
+    function retentionWinnerColor(winner) {
+      if (winner === 'D') return '#15803d'; // Yes — retain
+      if (winner === 'R') return '#9f1239'; // No — do not retain
+      return '#9ca3af';
+    }
+
+    function retentionHeldColor(winner) {
+      if (winner === 'D') return '#86efac';
+      if (winner === 'R') return '#fda4af';
+      return '#e2e8f0';
+    }
+
+    function retentionMarginColor(marginPct, winner) {
+      const yesRamp = ['#dcfce7', '#bbf7d0', '#86efac', '#4ade80', '#22c55e', '#16a34a', '#15803d'];
+      const noRamp = ['#ffe4e6', '#fecdd3', '#fda4af', '#fb7185', '#f43f5e', '#be123c', '#9f1239'];
+      const tier = marginPct >= 40 ? 6
+        : marginPct >= 30 ? 5
+          : marginPct >= 20 ? 4
+            : marginPct >= 10 ? 3
+              : marginPct >= 5.5 ? 2
+                : marginPct >= 1 ? 1
+                  : marginPct >= 0.5 ? 0
+                    : -1;
+      if (tier < 0) return '#f1f5f9';
+      return winner === 'D' ? yesRamp[tier] : noRamp[tier];
+    }
+
     function colorForMarginMode(marginPctAbs, winner) {
+      if (isRetentionContestActive()) return retentionMarginColor(marginPctAbs, winner);
       return isColorblindModeActive()
         ? accessibilityMarginColor(marginPctAbs, winner)
         : categoryColorForMargin(marginPctAbs, winner);
     }
 
     function colorForWinnerMode(winner) {
+      if (isRetentionContestActive()) return retentionWinnerColor(winner);
       const cb = isColorblindModeActive();
       if (winner === 'R') return cb ? '#d65300' : '#dc2626';
       if (winner === 'D') return cb ? '#0072b2' : '#2563eb';
@@ -33312,12 +33387,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function colorForFlipMode(toWinner) {
+      if (isRetentionContestActive()) return retentionWinnerColor(toWinner);
       if (toWinner === 'R') return isColorblindModeActive() ? '#d65300' : '#dc2626';
       if (toWinner === 'D') return isColorblindModeActive() ? '#0072b2' : '#2563eb';
       return '#e2e8f0';
     }
 
     function colorForHeldFlipMode(currentWinner) {
+      if (isRetentionContestActive()) return retentionHeldColor(currentWinner);
       if (currentWinner === 'R') return isColorblindModeActive() ? '#fdba74' : '#fca5a5';
       if (currentWinner === 'D') return '#93c5fd';
       return '#e2e8f0';
