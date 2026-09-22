@@ -1388,14 +1388,49 @@ def add_result_votes(node, votes: int, party: str, candidate: str):
 
 
 def merge_candidate_label(existing, candidate):
-    existing = (existing or '').strip()
-    candidate = (candidate or '').strip()
+    existing = normalize_candidate_label(existing)
+    candidate = normalize_candidate_label(candidate)
     if not candidate:
         return existing
     names = [part.strip() for part in existing.split(' / ') if part.strip()]
     if candidate not in names:
         names.append(candidate)
     return ' / '.join(names)
+
+
+def normalize_candidate_label(value):
+    """Normalize exported candidate labels without altering candidate identity."""
+    value = re.sub(r'\s+', ' ', (value or '').strip())
+    if not value:
+        return ''
+
+    def format_name(name):
+        words = []
+        for raw_word in re.split(r'\s+', name.strip()):
+            bare = raw_word.rstrip('.')
+            upper = bare.upper()
+            if not bare:
+                continue
+            if upper in {'JR', 'SR'}:
+                words.append(f'{upper.title()}.')
+            elif upper in {'II', 'III', 'IV', 'V', 'VI'}:
+                words.append(upper)
+            elif len(bare) == 1 and bare.isalpha():
+                words.append(f'{bare.upper()}.')
+            else:
+                parts = []
+                for part in raw_word.split('-'):
+                    titled = part[:1].upper() + part[1:].lower()
+                    if len(titled) > 3 and titled.lower().startswith('mc'):
+                        titled = 'Mc' + titled[2:3].upper() + titled[3:]
+                    parts.append(titled)
+                words.append('-'.join(parts))
+        return ' '.join(words)
+
+    retention = re.match(r'^(Yes|No)\s+(?:—|�|\x96)\s+(.+)$', value, re.I)
+    if retention:
+        return f'{retention.group(1).title()} — {format_name(retention.group(2))}'
+    return ' / '.join(format_name(part) for part in value.split('/') if part.strip())
 
 
 def finalize_result_node(node):
