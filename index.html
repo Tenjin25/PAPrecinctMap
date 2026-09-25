@@ -10540,8 +10540,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-21-pa-judicial-contests-v37';
-    const APP_BUILD_ID = '2026-09-21-pa-judicial-contests-v37';
+    const DATA_CACHE_BUSTER = '2026-09-25-pa-judicial-candidate-labels-v38';
+    const APP_BUILD_ID = '2026-09-25-pa-judicial-candidate-labels-v38';
 
     function ensurePageCacheBuster() {
       return false;
@@ -14279,8 +14279,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!demCandidate) demCandidate = getCandidateName(year, officeName, 'Democrat');
         if (!repCandidate) repCandidate = getCandidateName(year, officeName, 'Republican');
       }
-      demCandidate = stripRunningMateName(demCandidate);
-      repCandidate = stripRunningMateName(repCandidate);
+      demCandidate = displayCandidateForContest(demCandidate, contestType);
+      repCandidate = displayCandidateForContest(repCandidate, contestType);
       return { demCandidate, repCandidate };
     }
 
@@ -20409,9 +20409,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let repKey = `${year}|${officeName}|Republican`;
         let demCandidate = (opts?.demCandidate || '').toString().trim() || getCandidateName(year, officeName, 'Democrat');
         let repCandidate = (opts?.repCandidate || '').toString().trim() || getCandidateName(year, officeName, 'Republican');
-        // If the contest JSON includes presidential tickets, show the top of the ticket.
-        demCandidate = stripRunningMateName(demCandidate);
-        repCandidate = stripRunningMateName(repCandidate);
+        // Preserve judicial slates; show only the lead name for presidential tickets.
+        demCandidate = displayCandidateForContest(demCandidate, contestType);
+        repCandidate = displayCandidateForContest(repCandidate, contestType);
         if ((year == 2008 && officeName === 'President of the United States') || (year == 2010 && officeName === 'Governor')) {
           debugLog('DEBUG Candidate Lookup:', { demKey, demCandidate, repKey, repCandidate });
         }
@@ -21070,6 +21070,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function shortCandidateLabel(name, fallback) {
       const raw = (name || '').toString().trim();
       if (!raw) return fallback;
+      if (raw.includes('/')) {
+        const names = raw.split(/\s*\/\s*/).map(part => shortCandidateLabel(part, '')).filter(Boolean);
+        return names.length ? names.join(' / ') : fallback;
+      }
       const ticketLead = normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(raw)));
       const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',-]/g, ' ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
@@ -21215,7 +21219,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .map(part => normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(part))))
         .filter(Boolean)
         .join(' / ');
-      const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',-]/g, ' ').replace(/\s+/g, ' ').trim();
+      const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',/\-]/g, ' ').replace(/\s*\/\s*/g, ' / ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
       return toTitleCaseName(cleaned);
     }
@@ -21664,6 +21668,12 @@ document.addEventListener('DOMContentLoaded', function() {
       if (key === 'ROMNEY' || key === 'M. ROMNEY' || key === 'M ROMNEY') return 'Mitt Romney';
       if (key === 'MCCAIN' || key === 'J. MCCAIN' || key === 'J MCCAIN') return 'John McCain';
       return raw;
+    }
+
+    function displayCandidateForContest(name, contestType) {
+      const raw = (name || '').toString().trim();
+      return /^(supreme|superior|commonwealth)_court$/.test(String(contestType || '').trim().toLowerCase())
+        ? raw : stripRunningMateName(raw);
     }
 
     function stripRunningMateName(name) {
@@ -22845,8 +22855,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const officeName = formatContestName(contestType, year);
         let demCandidate = (opts?.demCandidate || '').toString().trim() || getCandidateName(year, officeName, 'Democrat');
         let repCandidate = (opts?.repCandidate || '').toString().trim() || getCandidateName(year, officeName, 'Republican');
-        demCandidate = stripRunningMateName(demCandidate);
-        repCandidate = stripRunningMateName(repCandidate);
+        demCandidate = displayCandidateForContest(demCandidate, contestType);
+        repCandidate = displayCandidateForContest(repCandidate, contestType);
 
         const winnerCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
         let compLabel = '';
@@ -28721,8 +28731,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Candidate names
   let demCandidate = (countyData[`${contestType}_dem_candidate`] || '').toString().trim() || getCandidateName(year, formatContestName(contestType, year), 'Democrat');
   let repCandidate = (countyData[`${contestType}_rep_candidate`] || '').toString().trim() || getCandidateName(year, formatContestName(contestType, year), 'Republican');
-  demCandidate = stripRunningMateName(demCandidate);
-  repCandidate = stripRunningMateName(repCandidate);
+  demCandidate = displayCandidateForContest(demCandidate, contestType);
+  repCandidate = displayCandidateForContest(repCandidate, contestType);
       pinVoteCounterState(
         `Selected: ${countyDisplay} County`,
         `${formatContestLabel(contestType, year)}`,
@@ -32382,10 +32392,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const totalVotes = Number(row.total_votes || (demVotes + repVotes + otherVotes));
       if (totalVotes <= 0) return '<div style="color:#999;">No results for this district/contest.</div>';
 
-      let demCandidate = stripRunningMateName((row.dem_candidate || '').toString().trim());
-      let repCandidate = stripRunningMateName((row.rep_candidate || '').toString().trim());
-      if (!demCandidate) demCandidate = stripRunningMateName((fallbackCandidates?.dem || '').toString().trim());
-      if (!repCandidate) repCandidate = stripRunningMateName((fallbackCandidates?.rep || '').toString().trim());
+      let demCandidate = displayCandidateForContest(row.dem_candidate, contestType);
+      let repCandidate = displayCandidateForContest(row.rep_candidate, contestType);
+      if (!demCandidate) demCandidate = displayCandidateForContest(fallbackCandidates?.dem, contestType);
+      if (!repCandidate) repCandidate = displayCandidateForContest(fallbackCandidates?.rep, contestType);
       if (!demCandidate) demCandidate = 'D';
       if (!repCandidate) repCandidate = 'R';
 
@@ -35141,8 +35151,8 @@ document.addEventListener('DOMContentLoaded', function() {
       let statewideRepCandidate = '';
       try {
         const contestCandidates = await getContestCandidates(contestType, year);
-        statewideDemCandidate = stripRunningMateName((contestCandidates?.dem || '').toString().trim());
-        statewideRepCandidate = stripRunningMateName((contestCandidates?.rep || '').toString().trim());
+        statewideDemCandidate = displayCandidateForContest(contestCandidates?.dem, contestType);
+        statewideRepCandidate = displayCandidateForContest(contestCandidates?.rep, contestType);
       } catch (_) {}
 
       function legislativeLeaderCandidateOverrides(ct, y) {
@@ -35195,8 +35205,8 @@ document.addEventListener('DOMContentLoaded', function() {
           acc.rep += repVotes;
           acc.other += otherVotes;
           acc.total += totalVotes > 0 ? totalVotes : (demVotes + repVotes + otherVotes);
-          if (!acc.demCandidate) acc.demCandidate = stripRunningMateName((row?.[`${contestKey}_dem_candidate`] || '').toString().trim());
-          if (!acc.repCandidate) acc.repCandidate = stripRunningMateName((row?.[`${contestKey}_rep_candidate`] || '').toString().trim());
+          if (!acc.demCandidate) acc.demCandidate = displayCandidateForContest(row?.[`${contestKey}_dem_candidate`], contestKey);
+          if (!acc.repCandidate) acc.repCandidate = displayCandidateForContest(row?.[`${contestKey}_rep_candidate`], contestKey);
           return acc;
         }, { dem: 0, rep: 0, other: 0, total: 0, demCandidate: '', repCandidate: '' });
       }
@@ -35336,8 +35346,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
           Object.keys(districtResults).forEach(districtId => {
             const row = districtResults[districtId] || {};
-            if (!statewideDemCandidate) statewideDemCandidate = stripRunningMateName((row.dem_candidate || '').toString().trim());
-            if (!statewideRepCandidate) statewideRepCandidate = stripRunningMateName((row.rep_candidate || '').toString().trim());
+            if (!statewideDemCandidate) statewideDemCandidate = displayCandidateForContest(row.dem_candidate, contestType);
+            if (!statewideRepCandidate) statewideRepCandidate = displayCandidateForContest(row.rep_candidate, contestType);
             const adjusted = applyScenarioShiftToVotes(
               '',
               Number(row.dem_votes) || 0,
@@ -35571,8 +35581,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let totalRep = 0;
         let totalVotes = 0;
         contestData.forEach(row => {
-          if (!statewideDemCandidate) statewideDemCandidate = stripRunningMateName((row[`${contestType}_dem_candidate`] || '').toString().trim());
-          if (!statewideRepCandidate) statewideRepCandidate = stripRunningMateName((row[`${contestType}_rep_candidate`] || '').toString().trim());
+          if (!statewideDemCandidate) statewideDemCandidate = displayCandidateForContest(row[`${contestType}_dem_candidate`], contestType);
+          if (!statewideRepCandidate) statewideRepCandidate = displayCandidateForContest(row[`${contestType}_rep_candidate`], contestType);
           const countyNorm = normalizeCountyToken(row?.county || '');
           const fallbackTotal = (Number(row[`${contestType}_dem`]) || 0) + (Number(row[`${contestType}_rep`]) || 0);
           const adjusted = applyScenarioShiftToVotes(
@@ -35616,8 +35626,8 @@ document.addEventListener('DOMContentLoaded', function() {
       let totalVotes = 0;
 
       contestData.forEach(row => {
-        if (!statewideDemCandidate) statewideDemCandidate = stripRunningMateName((row[`${contestType}_dem_candidate`] || '').toString().trim());
-        if (!statewideRepCandidate) statewideRepCandidate = stripRunningMateName((row[`${contestType}_rep_candidate`] || '').toString().trim());
+        if (!statewideDemCandidate) statewideDemCandidate = displayCandidateForContest(row[`${contestType}_dem_candidate`], contestType);
+        if (!statewideRepCandidate) statewideRepCandidate = displayCandidateForContest(row[`${contestType}_rep_candidate`], contestType);
         const countyNorm = normalizeCountyToken(row?.county || '');
         const fallbackTotal = (Number(row[`${contestType}_dem`]) || 0) + (Number(row[`${contestType}_rep`]) || 0);
         const adjusted = applyScenarioShiftToVotes(
