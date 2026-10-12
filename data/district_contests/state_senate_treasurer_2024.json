@@ -6,56 +6,32 @@
     "districts_observed": 50,
     "districts_expected": 50,
     "coverage_percent": 100.0,
-    "source": "official_pa_precinct_export_to_current_lines_via_vtd_block_assign",
-    "allocation_audit": {
-      "source_rows": 43224,
-      "source_votes": 6824596,
-      "matched_rows": 43224,
-      "matched_votes": 6824596,
-      "unmatched_rows": 0,
-      "unmatched_votes": 0,
-      "unmatched_precincts": [],
-      "unmatched_precinct_votes": {},
-      "mapping_methods": {
-        "adjusted_vtd_code": 38548,
-        "adjusted_vtd_code+adjusted_vtd_name": 20,
-        "adjusted_vtd_name": 4861,
-        "census_block_population": 20,
-        "corrected_from_2020_block_chain": 10,
-        "current_precinct_or_vtd_name": 194,
-        "live_vtd_chain": 788
-      },
-      "allocated_rows": 43224,
-      "allocated_votes": 6824596,
-      "unallocated_rows": 0,
-      "unallocated_votes": 0,
-      "allocation_vote_delta": 0,
-      "conserved_for_matched_rows": true
-    }
+    "unresolved_precinct_rows": 0,
+    "source": "Official PA 2024 precinct returns disaggregated to 2020 Census blocks using VAP_MOD"
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 102202,
-        "rep_votes": 27383,
-        "other_votes": 2515,
-        "total_votes": 132100,
+        "dem_votes": 97103,
+        "rep_votes": 26250,
+        "other_votes": 2373,
+        "total_votes": 125726,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 74819.0,
-        "margin_pct": 56.638152914458736
+        "margin": 70853,
+        "margin_pct": 56.35508963937451
       },
       "2": {
-        "dem_votes": 50783,
-        "rep_votes": 20442,
-        "other_votes": 1701,
-        "total_votes": 72926,
+        "dem_votes": 52451,
+        "rep_votes": 20856,
+        "other_votes": 1755,
+        "total_votes": 75062,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 30341.0,
-        "margin_pct": 41.60518882154513
+        "margin": 31595,
+        "margin_pct": 42.09187072020463
       },
       "3": {
         "dem_votes": 87256,
@@ -65,30 +41,30 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 77830.0,
+        "margin": 77830,
         "margin_pct": 79.06017634391127
       },
       "4": {
-        "dem_votes": 121020,
-        "rep_votes": 26268,
-        "other_votes": 2684,
-        "total_votes": 149972,
+        "dem_votes": 121745,
+        "rep_votes": 26414,
+        "other_votes": 2705,
+        "total_votes": 150864,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 94752.0,
-        "margin_pct": 63.179793561464805
+        "margin": 95331,
+        "margin_pct": 63.190025453388486
       },
       "5": {
-        "dem_votes": 48120,
-        "rep_votes": 48546,
-        "other_votes": 2010,
-        "total_votes": 98676,
+        "dem_votes": 48072,
+        "rep_votes": 48491,
+        "other_votes": 2008,
+        "total_votes": 98571,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 426.0,
-        "margin_pct": 0.4317159187644412
+        "margin": 419,
+        "margin_pct": 0.42507431191729816
       },
       "6": {
         "dem_votes": 69151,
@@ -98,41 +74,41 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 18400.0,
+        "margin": 18400,
         "margin_pct": 11.511943641528086
       },
       "7": {
-        "dem_votes": 105308,
-        "rep_votes": 20245,
-        "other_votes": 2632,
-        "total_votes": 128185,
+        "dem_votes": 106895,
+        "rep_votes": 20553,
+        "other_votes": 2664,
+        "total_votes": 130112,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 85063.0,
-        "margin_pct": 66.35955845067676
+        "margin": 86342,
+        "margin_pct": 66.35975159862272
       },
       "8": {
-        "dem_votes": 94878,
-        "rep_votes": 18799,
-        "other_votes": 2050,
-        "total_votes": 115727,
+        "dem_votes": 95283,
+        "rep_votes": 18938,
+        "other_votes": 2065,
+        "total_votes": 116286,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 76079.0,
-        "margin_pct": 65.74006066000155
+        "margin": 76345,
+        "margin_pct": 65.6527870938892
       },
       "9": {
-        "dem_votes": 76386,
-        "rep_votes": 65966,
-        "other_votes": 2855,
-        "total_votes": 145207,
+        "dem_votes": 76352,
+        "rep_votes": 65931,
+        "other_votes": 2854,
+        "total_votes": 145137,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 10420.0,
-        "margin_pct": 7.1759625913351295
+        "margin": 10421,
+        "margin_pct": 7.180112583283381
       },
       "10": {
         "dem_votes": 83672,
@@ -142,7 +118,7 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 5682.0,
+        "margin": 5682,
         "margin_pct": 3.4370954668086187
       },
       "11": {
@@ -153,41 +129,41 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 316.0,
+        "margin": 316,
         "margin_pct": 0.2972746686234113
       },
       "12": {
-        "dem_votes": 85863,
-        "rep_votes": 73452,
-        "other_votes": 3315,
-        "total_votes": 162630,
+        "dem_votes": 85613,
+        "rep_votes": 73285,
+        "other_votes": 3304,
+        "total_votes": 162202,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 12411.0,
-        "margin_pct": 7.631433314886553
+        "margin": 12328,
+        "margin_pct": 7.60039950185571
       },
       "13": {
-        "dem_votes": 47461,
-        "rep_votes": 71247,
+        "dem_votes": 47460,
+        "rep_votes": 71243,
         "other_votes": 3237,
-        "total_votes": 121945,
+        "total_votes": 121940,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 23786.0,
-        "margin_pct": 19.505514781253844
+        "margin": 23783,
+        "margin_pct": 19.503854354600623
       },
       "14": {
-        "dem_votes": 58245,
-        "rep_votes": 59402,
-        "other_votes": 3303,
-        "total_votes": 120950,
+        "dem_votes": 58397,
+        "rep_votes": 59465,
+        "other_votes": 3309,
+        "total_votes": 121171,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 1157.0,
-        "margin_pct": 0.9565936337329476
+        "margin": 1068,
+        "margin_pct": 0.8813990146157084
       },
       "15": {
         "dem_votes": 65914,
@@ -197,52 +173,52 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 4223.0,
+        "margin": 4223,
         "margin_pct": 3.2069683024255404
       },
       "16": {
-        "dem_votes": 66747,
-        "rep_votes": 90723,
-        "other_votes": 3884,
-        "total_votes": 161354,
+        "dem_votes": 66624,
+        "rep_votes": 90672,
+        "other_votes": 3879,
+        "total_votes": 161175,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 23976.0,
-        "margin_pct": 14.859253566691871
+        "margin": 24048,
+        "margin_pct": 14.920428106095859
       },
       "17": {
-        "dem_votes": 95052,
-        "rep_votes": 50833,
-        "other_votes": 2703,
-        "total_votes": 148588,
+        "dem_votes": 94645,
+        "rep_votes": 50486,
+        "other_votes": 2690,
+        "total_votes": 147821,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 44219.0,
-        "margin_pct": 29.759469136134815
+        "margin": 44159,
+        "margin_pct": 29.873292698601688
       },
       "18": {
-        "dem_votes": 69349,
-        "rep_votes": 66555,
-        "other_votes": 2982,
-        "total_votes": 138886,
+        "dem_votes": 69320,
+        "rep_votes": 66543,
+        "other_votes": 2981,
+        "total_votes": 138844,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 2794.0,
-        "margin_pct": 2.0117218438143514
+        "margin": 2777,
+        "margin_pct": 2.0000864279335078
       },
       "19": {
-        "dem_votes": 79079,
-        "rep_votes": 67249,
-        "other_votes": 3083,
-        "total_votes": 149411,
+        "dem_votes": 79099,
+        "rep_votes": 67262,
+        "other_votes": 3082,
+        "total_votes": 149443,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 11830.0,
-        "margin_pct": 7.917757059386524
+        "margin": 11837,
+        "margin_pct": 7.920745702374818
       },
       "20": {
         "dem_votes": 50180,
@@ -252,19 +228,19 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 44106.0,
+        "margin": 44106,
         "margin_pct": 29.762539391199315
       },
       "21": {
-        "dem_votes": 37331,
-        "rep_votes": 101310,
-        "other_votes": 4045,
-        "total_votes": 142686,
+        "dem_votes": 35933,
+        "rep_votes": 99063,
+        "other_votes": 3962,
+        "total_votes": 138958,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 63979.0,
-        "margin_pct": 44.83901714253676
+        "margin": 63130,
+        "margin_pct": 45.430993537615684
       },
       "22": {
         "dem_votes": 59901,
@@ -274,7 +250,7 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 5304.0,
+        "margin": 5304,
         "margin_pct": 4.512160886098563
       },
       "23": {
@@ -285,30 +261,30 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 65113.0,
+        "margin": 65113,
         "margin_pct": 48.24578952438112
       },
       "24": {
-        "dem_votes": 69399,
-        "rep_votes": 81647,
-        "other_votes": 3711,
-        "total_votes": 154757,
+        "dem_votes": 69262,
+        "rep_votes": 81433,
+        "other_votes": 3703,
+        "total_votes": 154398,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 12248.0,
-        "margin_pct": 7.914343131490013
+        "margin": 12171,
+        "margin_pct": 7.882874130493918
       },
       "25": {
-        "dem_votes": 42803,
-        "rep_votes": 87307,
+        "dem_votes": 42813,
+        "rep_votes": 87326,
         "other_votes": 3268,
-        "total_votes": 133378,
+        "total_votes": 133407,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 44504.0,
-        "margin_pct": 33.36682211459161
+        "margin": 44513,
+        "margin_pct": 33.366315110901226
       },
       "26": {
         "dem_votes": 79037,
@@ -318,41 +294,41 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 18446.0,
+        "margin": 18446,
         "margin_pct": 12.947741550556277
       },
       "27": {
         "dem_votes": 36958,
-        "rep_votes": 90991,
+        "rep_votes": 90992,
         "other_votes": 3560,
-        "total_votes": 131509,
+        "total_votes": 131510,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 54033.0,
-        "margin_pct": 41.08692180763293
+        "margin": 54034,
+        "margin_pct": 41.087369781765645
       },
       "28": {
-        "dem_votes": 45178,
-        "rep_votes": 96166,
-        "other_votes": 4047,
-        "total_votes": 145391,
+        "dem_votes": 45428,
+        "rep_votes": 96587,
+        "other_votes": 4061,
+        "total_votes": 146076,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 50988.0,
-        "margin_pct": 35.06957101883886
+        "margin": 51159,
+        "margin_pct": 35.02218023494619
       },
       "29": {
         "dem_votes": 36344,
-        "rep_votes": 85550,
+        "rep_votes": 85549,
         "other_votes": 3638,
-        "total_votes": 125532,
+        "total_votes": 125531,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 49206.0,
-        "margin_pct": 39.19797342510276
+        "margin": 49205,
+        "margin_pct": 39.19748906644574
       },
       "30": {
         "dem_votes": 28140,
@@ -362,30 +338,30 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 68324.0,
+        "margin": 68324,
         "margin_pct": 53.52364240278257
       },
       "31": {
-        "dem_votes": 50167,
-        "rep_votes": 80270,
-        "other_votes": 3677,
-        "total_votes": 134114,
+        "dem_votes": 49922,
+        "rep_votes": 79861,
+        "other_votes": 3663,
+        "total_votes": 133446,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 30103.0,
-        "margin_pct": 22.44582966729797
+        "margin": 29939,
+        "margin_pct": 22.4352921781095
       },
       "32": {
         "dem_votes": 31849,
-        "rep_votes": 95729,
+        "rep_votes": 95727,
         "other_votes": 2935,
-        "total_votes": 130513,
+        "total_votes": 130511,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 63880.0,
-        "margin_pct": 48.945315792296554
+        "margin": 63878,
+        "margin_pct": 48.94453341097685
       },
       "33": {
         "dem_votes": 37734,
@@ -395,7 +371,7 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 61792.0,
+        "margin": 61792,
         "margin_pct": 43.7663791027439
       },
       "34": {
@@ -406,63 +382,63 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 45022.0,
+        "margin": 45022,
         "margin_pct": 30.38639354773395
       },
       "35": {
-        "dem_votes": 43369,
-        "rep_votes": 87499,
+        "dem_votes": 43360,
+        "rep_votes": 87481,
         "other_votes": 3428,
-        "total_votes": 134296,
+        "total_votes": 134269,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 44130.0,
-        "margin_pct": 32.860249002204085
+        "margin": 44121,
+        "margin_pct": 32.86015387021576
       },
       "36": {
-        "dem_votes": 55975,
-        "rep_votes": 92961,
+        "dem_votes": 55971,
+        "rep_votes": 92952,
         "other_votes": 3706,
-        "total_votes": 152642,
+        "total_votes": 152629,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 36986.0,
-        "margin_pct": 24.23055253468901
+        "margin": 36981,
+        "margin_pct": 24.22934042678652
       },
       "37": {
-        "dem_votes": 67577,
-        "rep_votes": 79454,
+        "dem_votes": 67581,
+        "rep_votes": 79465,
         "other_votes": 3682,
-        "total_votes": 150713,
+        "total_votes": 150728,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 11877.0,
-        "margin_pct": 7.880541161014644
+        "margin": 11884,
+        "margin_pct": 7.884401040284486
       },
       "38": {
-        "dem_votes": 78228,
-        "rep_votes": 71135,
+        "dem_votes": 78229,
+        "rep_votes": 71137,
         "other_votes": 3813,
-        "total_votes": 153176,
+        "total_votes": 153179,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 7093.0,
-        "margin_pct": 4.630620985010707
+        "margin": 7092,
+        "margin_pct": 4.629877463620993
       },
       "39": {
-        "dem_votes": 51066,
-        "rep_votes": 99069,
-        "other_votes": 3889,
-        "total_votes": 154024,
+        "dem_votes": 51065,
+        "rep_votes": 99066,
+        "other_votes": 3888,
+        "total_votes": 154019,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 48003.0,
-        "margin_pct": 31.1659221939438
+        "margin": 48001,
+        "margin_pct": 31.16563540861842
       },
       "40": {
         "dem_votes": 59474,
@@ -472,19 +448,19 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 9659.0,
+        "margin": 9659,
         "margin_pct": 7.299286621123269
       },
       "41": {
         "dem_votes": 38013,
-        "rep_votes": 92368,
+        "rep_votes": 92369,
         "other_votes": 3648,
-        "total_votes": 134029,
+        "total_votes": 134030,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 54355.0,
-        "margin_pct": 40.55465608189272
+        "margin": 54356,
+        "margin_pct": 40.555099604566145
       },
       "42": {
         "dem_votes": 84790,
@@ -494,7 +470,7 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 40097.0,
+        "margin": 40097,
         "margin_pct": 29.983324733980904
       },
       "43": {
@@ -505,63 +481,63 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 68315.0,
+        "margin": 68315,
         "margin_pct": 51.6751007934887
       },
       "44": {
-        "dem_votes": 80039,
-        "rep_votes": 76133,
-        "other_votes": 3590,
-        "total_votes": 159762,
+        "dem_votes": 79750,
+        "rep_votes": 75864,
+        "other_votes": 3580,
+        "total_votes": 159194,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 3906.0,
-        "margin_pct": 2.44488676906899
+        "margin": 3886,
+        "margin_pct": 2.44104677311959
       },
       "45": {
-        "dem_votes": 66773,
-        "rep_votes": 58961,
+        "dem_votes": 66774,
+        "rep_votes": 58962,
         "other_votes": 3928,
-        "total_votes": 129662,
+        "total_votes": 129664,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 7812.0,
-        "margin_pct": 6.024895497524333
+        "margin": 7812,
+        "margin_pct": 6.0248025666337615
       },
       "46": {
-        "dem_votes": 47176,
-        "rep_votes": 88241,
+        "dem_votes": 47180,
+        "rep_votes": 88246,
         "other_votes": 3456,
-        "total_votes": 138873,
+        "total_votes": 138882,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 41065.0,
-        "margin_pct": 29.570182828915627
+        "margin": 41066,
+        "margin_pct": 29.568986621736435
       },
       "47": {
-        "dem_votes": 53974,
-        "rep_votes": 89636,
-        "other_votes": 3837,
-        "total_votes": 147447,
+        "dem_votes": 55364,
+        "rep_votes": 91865,
+        "other_votes": 3920,
+        "total_votes": 151149,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 35662.0,
-        "margin_pct": 24.186317795546874
+        "margin": 36501,
+        "margin_pct": 24.149018518150964
       },
       "48": {
         "dem_votes": 40467,
-        "rep_votes": 94600,
+        "rep_votes": 94601,
         "other_votes": 3853,
-        "total_votes": 138920,
+        "total_votes": 138921,
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 54133.0,
-        "margin_pct": 38.96703138496977
+        "margin": 54134,
+        "margin_pct": 38.967470720769356
       },
       "49": {
         "dem_votes": 60955,
@@ -571,7 +547,7 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 4372.0,
+        "margin": 4372,
         "margin_pct": 3.364189693514009
       },
       "50": {
@@ -582,7 +558,7 @@
         "dem_candidate": "Erin R. McClelland",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 47410.0,
+        "margin": 47410,
         "margin_pct": 34.693459393797475
       }
     }

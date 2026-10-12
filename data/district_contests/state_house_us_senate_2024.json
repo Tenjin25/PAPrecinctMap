@@ -6,78 +6,54 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "official_pa_precinct_export_to_current_lines_via_vtd_block_assign",
-    "allocation_audit": {
-      "source_rows": 43144,
-      "source_votes": 6960775,
-      "matched_rows": 43144,
-      "matched_votes": 6960775,
-      "unmatched_rows": 0,
-      "unmatched_votes": 0,
-      "unmatched_precincts": [],
-      "unmatched_precinct_votes": {},
-      "mapping_methods": {
-        "adjusted_vtd_code": 38536,
-        "adjusted_vtd_code+adjusted_vtd_name": 20,
-        "adjusted_vtd_name": 4807,
-        "census_block_population": 18,
-        "corrected_from_2020_block_chain": 10,
-        "current_precinct_or_vtd_name": 190,
-        "live_vtd_chain": 789
-      },
-      "allocated_rows": 43144,
-      "allocated_votes": 6960775,
-      "unallocated_rows": 0,
-      "unallocated_votes": 0,
-      "allocation_vote_delta": 0,
-      "conserved_for_matched_rows": true
-    }
+    "unresolved_precinct_rows": 0,
+    "source": "Official PA 2024 precinct returns disaggregated to 2020 Census blocks using VAP_MOD+coterminous_county_control"
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 14972,
-        "rep_votes": 8600,
-        "other_votes": 840,
-        "total_votes": 24412,
+        "dem_votes": 15518,
+        "rep_votes": 8836,
+        "other_votes": 872,
+        "total_votes": 25226,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 6372.0,
-        "margin_pct": 26.101917089955762
+        "margin": 6682,
+        "margin_pct": 26.488543566161898
       },
       "2": {
-        "dem_votes": 18103,
-        "rep_votes": 14668,
-        "other_votes": 781,
-        "total_votes": 33552,
+        "dem_votes": 17874,
+        "rep_votes": 14568,
+        "other_votes": 767,
+        "total_votes": 33209,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 3435.0,
-        "margin_pct": 10.237839771101575
+        "margin": 3306,
+        "margin_pct": 9.955132644764973
       },
       "3": {
-        "dem_votes": 19998,
-        "rep_votes": 18559,
-        "other_votes": 752,
-        "total_votes": 39309,
+        "dem_votes": 19812,
+        "rep_votes": 18474,
+        "other_votes": 742,
+        "total_votes": 39028,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 1439.0,
-        "margin_pct": 3.6607392709048816
+        "margin": 1338,
+        "margin_pct": 3.4283078815209596
       },
       "4": {
-        "dem_votes": 13156,
-        "rep_votes": 20863,
-        "other_votes": 878,
-        "total_votes": 34897,
+        "dem_votes": 13025,
+        "rep_votes": 20812,
+        "other_votes": 870,
+        "total_votes": 34707,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 7707.0,
-        "margin_pct": 22.084992979339198
+        "margin": 7787,
+        "margin_pct": 22.43639611605728
       },
       "5": {
         "dem_votes": 13020,
@@ -87,7 +63,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 8836.0,
+        "margin": 8836,
         "margin_pct": 24.593631707860165
       },
       "6": {
@@ -98,30 +74,30 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 10230.0,
+        "margin": 10230,
         "margin_pct": 30.76691729323308
       },
       "7": {
-        "dem_votes": 13353,
-        "rep_votes": 18692,
-        "other_votes": 685,
-        "total_votes": 32730,
+        "dem_votes": 14137,
+        "rep_votes": 19177,
+        "other_votes": 739,
+        "total_votes": 34053,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 5339.0,
-        "margin_pct": 16.312251756798045
+        "margin": 5040,
+        "margin_pct": 14.800458109417672
       },
       "8": {
-        "dem_votes": 12866,
-        "rep_votes": 29175,
-        "other_votes": 981,
-        "total_votes": 43022,
+        "dem_votes": 12512,
+        "rep_votes": 28703,
+        "other_votes": 970,
+        "total_votes": 42185,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 16309.0,
-        "margin_pct": 37.90851192413184
+        "margin": 16191,
+        "margin_pct": 38.3809410928055
       },
       "9": {
         "dem_votes": 12266,
@@ -131,7 +107,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 8189.0,
+        "margin": 8189,
         "margin_pct": 24.386539606908876
       },
       "10": {
@@ -142,30 +118,30 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 21082.0,
+        "margin": 21082,
         "margin_pct": 80.60717289898295
       },
       "11": {
-        "dem_votes": 13223,
-        "rep_votes": 26359,
-        "other_votes": 1028,
-        "total_votes": 40610,
+        "dem_votes": 11984,
+        "rep_votes": 24679,
+        "other_votes": 984,
+        "total_votes": 37647,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 13136.0,
-        "margin_pct": 32.346712632356564
+        "margin": 12695,
+        "margin_pct": 33.72114643929131
       },
       "12": {
-        "dem_votes": 15812,
-        "rep_votes": 23485,
-        "other_votes": 735,
-        "total_votes": 40032,
+        "dem_votes": 17393,
+        "rep_votes": 25618,
+        "other_votes": 790,
+        "total_votes": 43801,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 7673.0,
-        "margin_pct": 19.16716626698641
+        "margin": 8225,
+        "margin_pct": 18.778110088810756
       },
       "13": {
         "dem_votes": 16492,
@@ -175,19 +151,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 1886.0,
+        "margin": 1886,
         "margin_pct": 5.2787729511867445
       },
       "14": {
-        "dem_votes": 14018,
-        "rep_votes": 22486,
+        "dem_votes": 14020,
+        "rep_votes": 22488,
         "other_votes": 1049,
-        "total_votes": 37553,
+        "total_votes": 37557,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 8468.0,
-        "margin_pct": 22.549463425025966
+        "margin": 8468,
+        "margin_pct": 22.54706179939825
       },
       "15": {
         "dem_votes": 13138,
@@ -197,7 +173,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 11309.0,
+        "margin": 11309,
         "margin_pct": 29.265326191030717
       },
       "16": {
@@ -208,19 +184,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 702.0,
+        "margin": 702,
         "margin_pct": 2.005370507912929
       },
       "17": {
-        "dem_votes": 9931,
-        "rep_votes": 25035,
-        "other_votes": 907,
-        "total_votes": 35873,
+        "dem_votes": 9147,
+        "rep_votes": 24550,
+        "other_votes": 853,
+        "total_votes": 34550,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 15104.0,
-        "margin_pct": 42.104089426588246
+        "margin": 15403,
+        "margin_pct": 44.581765557163536
       },
       "18": {
         "dem_votes": 16018,
@@ -230,7 +206,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 106.0,
+        "margin": 106,
         "margin_pct": 0.3207552879232608
       },
       "19": {
@@ -241,7 +217,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 16613.0,
+        "margin": 16613,
         "margin_pct": 62.19069366974881
       },
       "20": {
@@ -252,7 +228,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 7047.0,
+        "margin": 7047,
         "margin_pct": 19.219964543842902
       },
       "21": {
@@ -263,19 +239,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 9944.0,
+        "margin": 9944,
         "margin_pct": 25.19764848976282
       },
       "22": {
-        "dem_votes": 10010,
-        "rep_votes": 6468,
-        "other_votes": 668,
-        "total_votes": 17146,
+        "dem_votes": 10381,
+        "rep_votes": 6611,
+        "other_votes": 692,
+        "total_votes": 17684,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 3542.0,
-        "margin_pct": 20.657879388778724
+        "margin": 3770,
+        "margin_pct": 21.318706175073512
       },
       "23": {
         "dem_votes": 27661,
@@ -285,7 +261,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 21565.0,
+        "margin": 21565,
         "margin_pct": 62.285186147936344
       },
       "24": {
@@ -296,19 +272,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 24002.0,
+        "margin": 24002,
         "margin_pct": 76.04955483032857
       },
       "25": {
         "dem_votes": 19585,
-        "rep_votes": 15078,
+        "rep_votes": 15079,
         "other_votes": 960,
-        "total_votes": 35623,
+        "total_votes": 35624,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 4507.0,
-        "margin_pct": 12.651938354433934
+        "margin": 4506,
+        "margin_pct": 12.648776105995957
       },
       "26": {
         "dem_votes": 21316,
@@ -318,7 +294,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 4201.0,
+        "margin": 4201,
         "margin_pct": 10.624683864441073
       },
       "27": {
@@ -329,19 +305,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 7612.0,
+        "margin": 7612,
         "margin_pct": 22.761796543268943
       },
       "28": {
-        "dem_votes": 18466,
-        "rep_votes": 21993,
+        "dem_votes": 18476,
+        "rep_votes": 22010,
         "other_votes": 718,
-        "total_votes": 41177,
+        "total_votes": 41204,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 3527.0,
-        "margin_pct": 8.565461301211842
+        "margin": 3534,
+        "margin_pct": 8.576837200271818
       },
       "29": {
         "dem_votes": 25418,
@@ -351,7 +327,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 5795.0,
+        "margin": 5795,
         "margin_pct": 12.618674331504224
       },
       "30": {
@@ -362,7 +338,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2563.0,
+        "margin": 2563,
         "margin_pct": 6.2770933849281185
       },
       "31": {
@@ -373,19 +349,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 6334.0,
+        "margin": 6334,
         "margin_pct": 13.175795144883823
       },
       "32": {
         "dem_votes": 23590,
-        "rep_votes": 12883,
+        "rep_votes": 12884,
         "other_votes": 973,
-        "total_votes": 37446,
+        "total_votes": 37447,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 10707.0,
-        "margin_pct": 28.593174170805963
+        "margin": 10706,
+        "margin_pct": 28.589740166101425
       },
       "33": {
         "dem_votes": 18804,
@@ -395,7 +371,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2040.0,
+        "margin": 2040,
         "margin_pct": 5.59317851561429
       },
       "34": {
@@ -406,7 +382,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 21757.0,
+        "margin": 21757,
         "margin_pct": 61.74650925190146
       },
       "35": {
@@ -417,7 +393,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 6108.0,
+        "margin": 6108,
         "margin_pct": 20.074935910076906
       },
       "36": {
@@ -428,30 +404,30 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 10013.0,
+        "margin": 10013,
         "margin_pct": 31.97304978126896
       },
       "37": {
-        "dem_votes": 14490,
-        "rep_votes": 24511,
+        "dem_votes": 14478,
+        "rep_votes": 24491,
         "other_votes": 951,
-        "total_votes": 39952,
+        "total_votes": 39920,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 10021.0,
-        "margin_pct": 25.082599118942735
+        "margin": 10013,
+        "margin_pct": 25.082665330661325
       },
       "38": {
-        "dem_votes": 18973,
-        "rep_votes": 16168,
-        "other_votes": 965,
-        "total_votes": 36106,
+        "dem_votes": 18995,
+        "rep_votes": 16172,
+        "other_votes": 960,
+        "total_votes": 36127,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2805.0,
-        "margin_pct": 7.768791890544508
+        "margin": 2823,
+        "margin_pct": 7.814100257425194
       },
       "39": {
         "dem_votes": 16441,
@@ -461,7 +437,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 6151.0,
+        "margin": 6151,
         "margin_pct": 15.396360541663537
       },
       "40": {
@@ -472,85 +448,85 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 2735.0,
+        "margin": 2735,
         "margin_pct": 6.246003471270668
       },
       "41": {
-        "dem_votes": 16985,
-        "rep_votes": 18469,
+        "dem_votes": 16991,
+        "rep_votes": 18479,
         "other_votes": 959,
-        "total_votes": 36413,
+        "total_votes": 36429,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 1484.0,
-        "margin_pct": 4.075467552797078
+        "margin": 1488,
+        "margin_pct": 4.08465782755497
       },
       "42": {
-        "dem_votes": 25937,
-        "rep_votes": 14528,
-        "other_votes": 776,
-        "total_votes": 41241,
+        "dem_votes": 25915,
+        "rep_votes": 14524,
+        "other_votes": 781,
+        "total_votes": 41220,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 11409.0,
-        "margin_pct": 27.664217647486723
+        "margin": 11391,
+        "margin_pct": 27.634643377001456
       },
       "43": {
-        "dem_votes": 9818,
-        "rep_votes": 19328,
-        "other_votes": 853,
-        "total_votes": 29999,
+        "dem_votes": 9808,
+        "rep_votes": 19312,
+        "other_votes": 852,
+        "total_votes": 29972,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 9510.0,
-        "margin_pct": 31.701056701890064
+        "margin": 9504,
+        "margin_pct": 31.709595622581077
       },
       "44": {
-        "dem_votes": 18511,
-        "rep_votes": 19775,
+        "dem_votes": 18512,
+        "rep_votes": 19776,
         "other_votes": 734,
-        "total_votes": 39020,
+        "total_votes": 39022,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 1264.0,
-        "margin_pct": 3.239364428498206
+        "margin": 1264,
+        "margin_pct": 3.2391984009020556
       },
       "45": {
-        "dem_votes": 19158,
-        "rep_votes": 16666,
+        "dem_votes": 19160,
+        "rep_votes": 16668,
         "other_votes": 903,
-        "total_votes": 36727,
+        "total_votes": 36731,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2492.0,
-        "margin_pct": 6.785198899991832
+        "margin": 2492,
+        "margin_pct": 6.78445999292151
       },
       "46": {
-        "dem_votes": 17438,
-        "rep_votes": 22436,
+        "dem_votes": 17435,
+        "rep_votes": 22432,
         "other_votes": 878,
-        "total_votes": 40752,
+        "total_votes": 40745,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 4998.0,
-        "margin_pct": 12.264428739693757
+        "margin": 4997,
+        "margin_pct": 12.264081482390479
       },
       "47": {
-        "dem_votes": 14571,
-        "rep_votes": 20856,
-        "other_votes": 1172,
-        "total_votes": 36599,
+        "dem_votes": 14476,
+        "rep_votes": 20732,
+        "other_votes": 1165,
+        "total_votes": 36373,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 6285.0,
-        "margin_pct": 17.1726003442717
+        "margin": 6256,
+        "margin_pct": 17.199571110439063
       },
       "48": {
         "dem_votes": 14112,
@@ -560,19 +536,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 7516.0,
+        "margin": 7516,
         "margin_pct": 20.581630976504737
       },
       "49": {
-        "dem_votes": 15623,
-        "rep_votes": 7944,
+        "dem_votes": 15625,
+        "rep_votes": 7948,
         "other_votes": 836,
-        "total_votes": 24403,
+        "total_votes": 24409,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 7679.0,
-        "margin_pct": 31.467442527558088
+        "margin": 7677,
+        "margin_pct": 31.451513785898644
       },
       "50": {
         "dem_votes": 10756,
@@ -582,7 +558,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 9599.0,
+        "margin": 9599,
         "margin_pct": 30.03159903638582
       },
       "51": {
@@ -593,7 +569,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 8453.0,
+        "margin": 8453,
         "margin_pct": 27.178316506977048
       },
       "52": {
@@ -604,7 +580,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 11599.0,
+        "margin": 11599,
         "margin_pct": 36.425588041327764
       },
       "53": {
@@ -615,7 +591,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 4290.0,
+        "margin": 4290,
         "margin_pct": 11.91071131101116
       },
       "54": {
@@ -626,19 +602,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 10027.0,
+        "margin": 10027,
         "margin_pct": 36.106009866407405
       },
       "55": {
-        "dem_votes": 15228,
-        "rep_votes": 23301,
+        "dem_votes": 15227,
+        "rep_votes": 23300,
         "other_votes": 893,
-        "total_votes": 39422,
+        "total_votes": 39420,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 8073.0,
-        "margin_pct": 20.47841306884481
+        "margin": 8073,
+        "margin_pct": 20.47945205479452
       },
       "56": {
         "dem_votes": 14870,
@@ -648,7 +624,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 9852.0,
+        "margin": 9852,
         "margin_pct": 24.355392944550196
       },
       "57": {
@@ -659,7 +635,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 7386.0,
+        "margin": 7386,
         "margin_pct": 19.334066279252397
       },
       "58": {
@@ -670,7 +646,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 10786.0,
+        "margin": 10786,
         "margin_pct": 29.195539194456476
       },
       "59": {
@@ -681,7 +657,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 12697.0,
+        "margin": 12697,
         "margin_pct": 32.400224558538326
       },
       "60": {
@@ -692,7 +668,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 12184.0,
+        "margin": 12184,
         "margin_pct": 33.44129110171817
       },
       "61": {
@@ -703,7 +679,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 8610.0,
+        "margin": 8610,
         "margin_pct": 20.36038592508513
       },
       "62": {
@@ -714,7 +690,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 9692.0,
+        "margin": 9692,
         "margin_pct": 28.956410026590184
       },
       "63": {
@@ -725,7 +701,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 18071.0,
+        "margin": 18071,
         "margin_pct": 51.75119562415876
       },
       "64": {
@@ -736,7 +712,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 12111.0,
+        "margin": 12111,
         "margin_pct": 37.93816370641857
       },
       "65": {
@@ -747,7 +723,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 12027.0,
+        "margin": 12027,
         "margin_pct": 37.39738805970149
       },
       "66": {
@@ -758,7 +734,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 17792.0,
+        "margin": 17792,
         "margin_pct": 56.17048145224941
       },
       "67": {
@@ -769,19 +745,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 14960.0,
+        "margin": 14960,
         "margin_pct": 48.50843060959792
       },
       "68": {
-        "dem_votes": 7656,
-        "rep_votes": 24651,
+        "dem_votes": 7654,
+        "rep_votes": 24645,
         "other_votes": 876,
-        "total_votes": 33183,
+        "total_votes": 33175,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 16995.0,
-        "margin_pct": 51.21598408823795
+        "margin": 16991,
+        "margin_pct": 51.216277317256974
       },
       "69": {
         "dem_votes": 7646,
@@ -791,52 +767,52 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 19787.0,
+        "margin": 19787,
         "margin_pct": 54.87700030507252
       },
       "70": {
-        "dem_votes": 23369,
-        "rep_votes": 17562,
-        "other_votes": 891,
-        "total_votes": 41822,
+        "dem_votes": 23052,
+        "rep_votes": 17305,
+        "other_votes": 875,
+        "total_votes": 41232,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 5807.0,
-        "margin_pct": 13.885036583616278
+        "margin": 5747,
+        "margin_pct": 13.938203337213814
       },
       "71": {
-        "dem_votes": 10426,
-        "rep_votes": 24007,
-        "other_votes": 790,
-        "total_votes": 35223,
+        "dem_votes": 10045,
+        "rep_votes": 23615,
+        "other_votes": 763,
+        "total_votes": 34423,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 13581.0,
-        "margin_pct": 38.557192743377904
+        "margin": 13570,
+        "margin_pct": 39.42131714260814
       },
       "72": {
-        "dem_votes": 11706,
-        "rep_votes": 19613,
-        "other_votes": 755,
-        "total_votes": 32074,
+        "dem_votes": 12087,
+        "rep_votes": 20005,
+        "other_votes": 782,
+        "total_votes": 32874,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 7907.0,
-        "margin_pct": 24.652366402693772
+        "margin": 7918,
+        "margin_pct": 24.08590375372635
       },
       "73": {
-        "dem_votes": 7879,
-        "rep_votes": 23023,
+        "dem_votes": 7883,
+        "rep_votes": 23034,
         "other_votes": 828,
-        "total_votes": 31730,
+        "total_votes": 31745,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 15144.0,
-        "margin_pct": 47.72770248975733
+        "margin": 15151,
+        "margin_pct": 47.727201134036854
       },
       "74": {
         "dem_votes": 17242,
@@ -846,7 +822,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 3047.0,
+        "margin": 3047,
         "margin_pct": 9.405482158291147
       },
       "75": {
@@ -857,7 +833,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 14983.0,
+        "margin": 14983,
         "margin_pct": 44.04821402322504
       },
       "76": {
@@ -868,19 +844,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 10262.0,
+        "margin": 10262,
         "margin_pct": 32.970281124497994
       },
       "77": {
-        "dem_votes": 17380,
-        "rep_votes": 12698,
+        "dem_votes": 17361,
+        "rep_votes": 12667,
         "other_votes": 774,
-        "total_votes": 30852,
+        "total_votes": 30802,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 4682.0,
-        "margin_pct": 15.175677427719434
+        "margin": 4694,
+        "margin_pct": 15.239270177261217
       },
       "78": {
         "dem_votes": 5821,
@@ -901,41 +877,41 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 8910.0,
+        "margin": 8910,
         "margin_pct": 29.235160941037503
       },
       "80": {
-        "dem_votes": 8408,
-        "rep_votes": 26635,
+        "dem_votes": 8407,
+        "rep_votes": 26634,
         "other_votes": 776,
-        "total_votes": 35819,
+        "total_votes": 35817,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 18227.0,
-        "margin_pct": 50.88640107205673
+        "margin": 18227,
+        "margin_pct": 50.88924253845939
       },
       "81": {
         "dem_votes": 8016,
-        "rep_votes": 25304,
+        "rep_votes": 25305,
         "other_votes": 853,
-        "total_votes": 34173,
+        "total_votes": 34174,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 17288.0,
-        "margin_pct": 50.58964679717906
+        "margin": 17289,
+        "margin_pct": 50.59109264353017
       },
       "82": {
-        "dem_votes": 15988,
-        "rep_votes": 14592,
-        "other_votes": 751,
-        "total_votes": 31331,
+        "dem_votes": 15987,
+        "rep_votes": 14595,
+        "other_votes": 750,
+        "total_votes": 31332,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 1396.0,
-        "margin_pct": 4.455650952730522
+        "margin": 1392,
+        "margin_pct": 4.442742244350823
       },
       "83": {
         "dem_votes": 10148,
@@ -945,7 +921,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 7108.0,
+        "margin": 7108,
         "margin_pct": 25.184240362811792
       },
       "84": {
@@ -956,7 +932,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 19340.0,
+        "margin": 19340,
         "margin_pct": 51.11533988793742
       },
       "85": {
@@ -967,19 +943,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 13801.0,
+        "margin": 13801,
         "margin_pct": 39.36507031004878
       },
       "86": {
-        "dem_votes": 8476,
-        "rep_votes": 25256,
+        "dem_votes": 8478,
+        "rep_votes": 25258,
         "other_votes": 1103,
-        "total_votes": 34835,
+        "total_votes": 34839,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 16780.0,
-        "margin_pct": 48.16994402181714
+        "margin": 16780,
+        "margin_pct": 48.164413444702774
       },
       "87": {
         "dem_votes": 17395,
@@ -989,7 +965,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 4842.0,
+        "margin": 4842,
         "margin_pct": 11.864157600705674
       },
       "88": {
@@ -1000,7 +976,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 366.0,
+        "margin": 366,
         "margin_pct": 0.9576388707187524
       },
       "89": {
@@ -1011,7 +987,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 10422.0,
+        "margin": 10422,
         "margin_pct": 29.941392783268217
       },
       "90": {
@@ -1022,7 +998,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 16404.0,
+        "margin": 16404,
         "margin_pct": 46.08124051913029
       },
       "91": {
@@ -1033,52 +1009,52 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 10339.0,
+        "margin": 10339,
         "margin_pct": 26.625634158275606
       },
       "92": {
-        "dem_votes": 13198,
-        "rep_votes": 26240,
-        "other_votes": 1198,
-        "total_votes": 40636,
+        "dem_votes": 13130,
+        "rep_votes": 26149,
+        "other_votes": 1194,
+        "total_votes": 40473,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 13042.0,
-        "margin_pct": 32.09469435968107
+        "margin": 13019,
+        "margin_pct": 32.16712376152003
       },
       "93": {
-        "dem_votes": 13690,
-        "rep_votes": 22871,
-        "other_votes": 1171,
-        "total_votes": 37732,
+        "dem_votes": 14353,
+        "rep_votes": 23759,
+        "other_votes": 1221,
+        "total_votes": 39333,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 9181.0,
-        "margin_pct": 24.3321318774515
+        "margin": 9406,
+        "margin_pct": 23.913761981033737
       },
       "94": {
-        "dem_votes": 11808,
-        "rep_votes": 22734,
-        "other_votes": 1077,
-        "total_votes": 35619,
+        "dem_votes": 11608,
+        "rep_votes": 22469,
+        "other_votes": 1063,
+        "total_votes": 35140,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 10926.0,
-        "margin_pct": 30.674639939358205
+        "margin": 10861,
+        "margin_pct": 30.90779738190097
       },
       "95": {
-        "dem_votes": 13498,
-        "rep_votes": 7966,
-        "other_votes": 978,
-        "total_votes": 22442,
+        "dem_votes": 13418,
+        "rep_votes": 7859,
+        "other_votes": 971,
+        "total_votes": 22248,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 5532.0,
-        "margin_pct": 24.650209428749665
+        "margin": 5559,
+        "margin_pct": 24.986515641855448
       },
       "96": {
         "dem_votes": 21341,
@@ -1088,30 +1064,30 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 7492.0,
+        "margin": 7492,
         "margin_pct": 20.69841971488562
       },
       "97": {
-        "dem_votes": 16191,
-        "rep_votes": 22331,
+        "dem_votes": 16185,
+        "rep_votes": 22322,
         "other_votes": 931,
-        "total_votes": 39453,
+        "total_votes": 39438,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 6140.0,
-        "margin_pct": 15.5628215851773
+        "margin": 6137,
+        "margin_pct": 15.561133931740962
       },
       "98": {
-        "dem_votes": 14584,
-        "rep_votes": 23520,
-        "other_votes": 1094,
-        "total_votes": 39198,
+        "dem_votes": 14595,
+        "rep_votes": 23539,
+        "other_votes": 1095,
+        "total_votes": 39229,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 8936.0,
-        "margin_pct": 22.79708148374917
+        "margin": 8944,
+        "margin_pct": 22.799459583471414
       },
       "99": {
         "dem_votes": 9205,
@@ -1121,19 +1097,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 13061.0,
+        "margin": 13061,
         "margin_pct": 40.377778464772625
       },
       "100": {
-        "dem_votes": 6816,
-        "rep_votes": 20221,
+        "dem_votes": 6819,
+        "rep_votes": 20222,
         "other_votes": 661,
-        "total_votes": 27698,
+        "total_votes": 27702,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 13405.0,
-        "margin_pct": 48.39699617300888
+        "margin": 13403,
+        "margin_pct": 48.382788246336005
       },
       "101": {
         "dem_votes": 11643,
@@ -1143,7 +1119,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 6169.0,
+        "margin": 6169,
         "margin_pct": 20.271424815983174
       },
       "102": {
@@ -1154,7 +1130,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 13414.0,
+        "margin": 13414,
         "margin_pct": 38.347627215551746
       },
       "103": {
@@ -1165,7 +1141,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 7960.0,
+        "margin": 7960,
         "margin_pct": 24.880442596818053
       },
       "104": {
@@ -1176,7 +1152,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 7402.0,
+        "margin": 7402,
         "margin_pct": 28.93893189459692
       },
       "105": {
@@ -1187,7 +1163,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 8259.0,
+        "margin": 8259,
         "margin_pct": 24.026880781986385
       },
       "106": {
@@ -1198,19 +1174,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 3567.0,
+        "margin": 3567,
         "margin_pct": 9.326953247568245
       },
       "107": {
-        "dem_votes": 8876,
-        "rep_votes": 22666,
-        "other_votes": 930,
-        "total_votes": 32472,
+        "dem_votes": 8863,
+        "rep_votes": 22642,
+        "other_votes": 929,
+        "total_votes": 32434,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 13790.0,
-        "margin_pct": 42.46735649174674
+        "margin": 13779,
+        "margin_pct": 42.48319664549547
       },
       "108": {
         "dem_votes": 11064,
@@ -1220,7 +1196,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 9996.0,
+        "margin": 9996,
         "margin_pct": 30.333191721794016
       },
       "109": {
@@ -1235,15 +1211,15 @@
         "margin_pct": 29.76988416988417
       },
       "110": {
-        "dem_votes": 10167,
-        "rep_votes": 23143,
+        "dem_votes": 10169,
+        "rep_votes": 23149,
         "other_votes": 865,
-        "total_votes": 34175,
+        "total_votes": 34183,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 12976.0,
-        "margin_pct": 37.96927578639357
+        "margin": 12980,
+        "margin_pct": 37.972091390457244
       },
       "111": {
         "dem_votes": 10761,
@@ -1253,7 +1229,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 14589.0,
+        "margin": 14589,
         "margin_pct": 39.45532237126785
       },
       "112": {
@@ -1264,7 +1240,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2773.0,
+        "margin": 2773,
         "margin_pct": 7.624206098265102
       },
       "113": {
@@ -1275,7 +1251,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 3451.0,
+        "margin": 3451,
         "margin_pct": 12.388713383113153
       },
       "114": {
@@ -1286,41 +1262,41 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 3908.0,
+        "margin": 3908,
         "margin_pct": 11.330492012409033
       },
       "115": {
-        "dem_votes": 16043,
-        "rep_votes": 13344,
-        "other_votes": 855,
-        "total_votes": 30242,
+        "dem_votes": 16064,
+        "rep_votes": 13359,
+        "other_votes": 856,
+        "total_votes": 30279,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2699.0,
-        "margin_pct": 8.924674294028174
+        "margin": 2705,
+        "margin_pct": 8.933584332375574
       },
       "116": {
         "dem_votes": 7509,
-        "rep_votes": 13343,
+        "rep_votes": 13342,
         "other_votes": 506,
-        "total_votes": 21358,
+        "total_votes": 21357,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 5834.0,
-        "margin_pct": 27.31529169397884
+        "margin": 5833,
+        "margin_pct": 27.311888373835274
       },
       "117": {
         "dem_votes": 10573,
-        "rep_votes": 24300,
+        "rep_votes": 24301,
         "other_votes": 717,
-        "total_votes": 35590,
+        "total_votes": 35591,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 13727.0,
-        "margin_pct": 38.56982298398427
+        "margin": 13728,
+        "margin_pct": 38.57154898710348
       },
       "118": {
         "dem_votes": 17518,
@@ -1330,7 +1306,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 681.0,
+        "margin": 681,
         "margin_pct": 1.8712903934930754
       },
       "119": {
@@ -1341,7 +1317,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 3581.0,
+        "margin": 3581,
         "margin_pct": 12.020812353138636
       },
       "120": {
@@ -1352,7 +1328,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 2816.0,
+        "margin": 2816,
         "margin_pct": 8.221657761817173
       },
       "121": {
@@ -1363,7 +1339,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 773.0,
+        "margin": 773,
         "margin_pct": 3.3872310591122208
       },
       "122": {
@@ -1374,7 +1350,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 11033.0,
+        "margin": 11033,
         "margin_pct": 31.459040232670866
       },
       "123": {
@@ -1385,7 +1361,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 9025.0,
+        "margin": 9025,
         "margin_pct": 27.22227249419359
       },
       "124": {
@@ -1396,7 +1372,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 12076.0,
+        "margin": 12076,
         "margin_pct": 34.77109127555428
       },
       "125": {
@@ -1407,19 +1383,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 9315.0,
+        "margin": 9315,
         "margin_pct": 23.51975760636283
       },
       "126": {
-        "dem_votes": 13556,
-        "rep_votes": 10975,
+        "dem_votes": 13550,
+        "rep_votes": 10969,
         "other_votes": 941,
-        "total_votes": 25472,
+        "total_votes": 25460,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2581.0,
-        "margin_pct": 10.13269472361809
+        "margin": 2581,
+        "margin_pct": 10.137470542026708
       },
       "127": {
         "dem_votes": 9971,
@@ -1429,19 +1405,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 4046.0,
+        "margin": 4046,
         "margin_pct": 24.35148961781523
       },
       "128": {
-        "dem_votes": 15015,
-        "rep_votes": 20751,
+        "dem_votes": 15021,
+        "rep_votes": 20757,
         "other_votes": 1047,
-        "total_votes": 36813,
+        "total_votes": 36825,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 5736.0,
-        "margin_pct": 15.581452204384322
+        "margin": 5736,
+        "margin_pct": 15.576374745417516
       },
       "129": {
         "dem_votes": 14906,
@@ -1451,7 +1427,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 4109.0,
+        "margin": 4109,
         "margin_pct": 15.49046218804192
       },
       "130": {
@@ -1462,63 +1438,63 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 8999.0,
+        "margin": 8999,
         "margin_pct": 24.004374616554188
       },
       "131": {
-        "dem_votes": 18389,
-        "rep_votes": 22541,
-        "other_votes": 969,
-        "total_votes": 41899,
+        "dem_votes": 18275,
+        "rep_votes": 22386,
+        "other_votes": 961,
+        "total_votes": 41622,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 4152.0,
-        "margin_pct": 9.909544380534141
+        "margin": 4111,
+        "margin_pct": 9.876988131276729
       },
       "132": {
-        "dem_votes": 19818,
-        "rep_votes": 15202,
-        "other_votes": 1095,
-        "total_votes": 36115,
+        "dem_votes": 19713,
+        "rep_votes": 15161,
+        "other_votes": 1088,
+        "total_votes": 35962,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 4616.0,
-        "margin_pct": 12.781392773085976
+        "margin": 4552,
+        "margin_pct": 12.657805461320281
       },
       "133": {
-        "dem_votes": 17591,
-        "rep_votes": 14121,
-        "other_votes": 1111,
-        "total_votes": 32823,
+        "dem_votes": 17489,
+        "rep_votes": 14084,
+        "other_votes": 1104,
+        "total_votes": 32677,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 3470.0,
-        "margin_pct": 10.571855101605582
+        "margin": 3405,
+        "margin_pct": 10.42017321051504
       },
       "134": {
-        "dem_votes": 14599,
-        "rep_votes": 10564,
-        "other_votes": 837,
-        "total_votes": 26000,
+        "dem_votes": 14513,
+        "rep_votes": 10530,
+        "other_votes": 832,
+        "total_votes": 25875,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 4035.0,
-        "margin_pct": 15.519230769230768
+        "margin": 3983,
+        "margin_pct": 15.393236714975844
       },
       "135": {
-        "dem_votes": 20235,
-        "rep_votes": 11917,
-        "other_votes": 762,
-        "total_votes": 32914,
+        "dem_votes": 19782,
+        "rep_votes": 11517,
+        "other_votes": 741,
+        "total_votes": 32040,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 8318.0,
-        "margin_pct": 25.271920763201067
+        "margin": 8265,
+        "margin_pct": 25.79588014981273
       },
       "136": {
         "dem_votes": 16552,
@@ -1528,19 +1504,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 3898.0,
+        "margin": 3898,
         "margin_pct": 12.96696716676092
       },
       "137": {
-        "dem_votes": 19578,
-        "rep_votes": 19370,
-        "other_votes": 864,
-        "total_votes": 39812,
+        "dem_votes": 20031,
+        "rep_votes": 19770,
+        "other_votes": 885,
+        "total_votes": 40686,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 208.0,
-        "margin_pct": 0.5224555410429016
+        "margin": 261,
+        "margin_pct": 0.6414983040849432
       },
       "138": {
         "dem_votes": 15524,
@@ -1550,7 +1526,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 8248.0,
+        "margin": 8248,
         "margin_pct": 20.520475692889487
       },
       "139": {
@@ -1561,7 +1537,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 11832.0,
+        "margin": 11832,
         "margin_pct": 29.91202346041056
       },
       "140": {
@@ -1572,7 +1548,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2278.0,
+        "margin": 2278,
         "margin_pct": 6.8556638979174185
       },
       "141": {
@@ -1583,7 +1559,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2515.0,
+        "margin": 2515,
         "margin_pct": 7.699136717075859
       },
       "142": {
@@ -1594,7 +1570,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 885.0,
+        "margin": 885,
         "margin_pct": 2.2568470444229103
       },
       "143": {
@@ -1605,7 +1581,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 2613.0,
+        "margin": 2613,
         "margin_pct": 5.976396322217648
       },
       "144": {
@@ -1616,7 +1592,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 92.0,
+        "margin": 92,
         "margin_pct": 0.2269531539087747
       },
       "145": {
@@ -1627,19 +1603,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 5674.0,
+        "margin": 5674,
         "margin_pct": 14.58386881200843
       },
       "146": {
-        "dem_votes": 19205,
-        "rep_votes": 15411,
-        "other_votes": 1018,
-        "total_votes": 35634,
+        "dem_votes": 19143,
+        "rep_votes": 15354,
+        "other_votes": 1016,
+        "total_votes": 35513,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 3794.0,
-        "margin_pct": 10.647134758938092
+        "margin": 3789,
+        "margin_pct": 10.669332357164981
       },
       "147": {
         "dem_votes": 18390,
@@ -1649,85 +1625,85 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 4143.0,
+        "margin": 4143,
         "margin_pct": 9.895385497277157
       },
       "148": {
-        "dem_votes": 30796,
-        "rep_votes": 11645,
+        "dem_votes": 30786,
+        "rep_votes": 11637,
         "other_votes": 652,
-        "total_votes": 43093,
+        "total_votes": 43075,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 19151.0,
-        "margin_pct": 44.44109252082705
+        "margin": 19149,
+        "margin_pct": 44.45502031340685
       },
       "149": {
-        "dem_votes": 25808,
-        "rep_votes": 12041,
+        "dem_votes": 25668,
+        "rep_votes": 11969,
         "other_votes": 861,
-        "total_votes": 38710,
+        "total_votes": 38498,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 13767.0,
-        "margin_pct": 35.564453629553086
+        "margin": 13699,
+        "margin_pct": 35.58366668398358
       },
       "150": {
-        "dem_votes": 22070,
-        "rep_votes": 16227,
-        "other_votes": 908,
-        "total_votes": 39205,
+        "dem_votes": 21780,
+        "rep_votes": 15989,
+        "other_votes": 895,
+        "total_votes": 38664,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 5843.0,
-        "margin_pct": 14.903711261318708
+        "margin": 5791,
+        "margin_pct": 14.977757086695634
       },
       "151": {
-        "dem_votes": 25518,
-        "rep_votes": 16468,
-        "other_votes": 838,
-        "total_votes": 42824,
+        "dem_votes": 24833,
+        "rep_votes": 16165,
+        "other_votes": 827,
+        "total_votes": 41825,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 9050.0,
-        "margin_pct": 21.13300952736783
+        "margin": 8668,
+        "margin_pct": 20.72444710101614
       },
       "152": {
-        "dem_votes": 21105,
-        "rep_votes": 14515,
-        "other_votes": 890,
-        "total_votes": 36510,
+        "dem_votes": 21047,
+        "rep_votes": 14478,
+        "other_votes": 886,
+        "total_votes": 36411,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 6590.0,
-        "margin_pct": 18.049849356340726
+        "margin": 6569,
+        "margin_pct": 18.04125127022054
       },
       "153": {
-        "dem_votes": 25147,
-        "rep_votes": 13262,
-        "other_votes": 821,
-        "total_votes": 39230,
+        "dem_votes": 25626,
+        "rep_votes": 13467,
+        "other_votes": 825,
+        "total_votes": 39918,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 11885.0,
-        "margin_pct": 30.295692072393578
+        "margin": 12159,
+        "margin_pct": 30.459942882909964
       },
       "154": {
-        "dem_votes": 31137,
-        "rep_votes": 8000,
-        "other_votes": 841,
-        "total_votes": 39978,
+        "dem_votes": 30758,
+        "rep_votes": 7912,
+        "other_votes": 828,
+        "total_votes": 39498,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 23137.0,
-        "margin_pct": 57.874330881985095
+        "margin": 22846,
+        "margin_pct": 57.840903336877815
       },
       "155": {
         "dem_votes": 22969,
@@ -1737,7 +1713,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 5641.0,
+        "margin": 5641,
         "margin_pct": 13.685768353631907
       },
       "156": {
@@ -1748,7 +1724,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 6670.0,
+        "margin": 6670,
         "margin_pct": 16.952598805439063
       },
       "157": {
@@ -1759,7 +1735,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 8134.0,
+        "margin": 8134,
         "margin_pct": 19.312407996581037
       },
       "158": {
@@ -1770,41 +1746,41 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 5948.0,
+        "margin": 5948,
         "margin_pct": 15.488776626217385
       },
       "159": {
-        "dem_votes": 18227,
-        "rep_votes": 8235,
-        "other_votes": 825,
-        "total_votes": 27287,
+        "dem_votes": 18120,
+        "rep_votes": 8226,
+        "other_votes": 817,
+        "total_votes": 27163,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 9992.0,
-        "margin_pct": 36.61816982445853
+        "margin": 9894,
+        "margin_pct": 36.42454809851636
       },
       "160": {
-        "dem_votes": 21566,
-        "rep_votes": 20330,
-        "other_votes": 674,
-        "total_votes": 42570,
+        "dem_votes": 21529,
+        "rep_votes": 20297,
+        "other_votes": 673,
+        "total_votes": 42499,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 1236.0,
-        "margin_pct": 2.9034531360112754
+        "margin": 1232,
+        "margin_pct": 2.8988917386291444
       },
       "161": {
-        "dem_votes": 21732,
-        "rep_votes": 16424,
-        "other_votes": 898,
-        "total_votes": 39054,
+        "dem_votes": 21840,
+        "rep_votes": 16433,
+        "other_votes": 906,
+        "total_votes": 39179,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 5308.0,
-        "margin_pct": 13.591437496799303
+        "margin": 5407,
+        "margin_pct": 13.800760611552107
       },
       "162": {
         "dem_votes": 19724,
@@ -1814,19 +1790,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 4772.0,
+        "margin": 4772,
         "margin_pct": 13.372940253334828
       },
       "163": {
-        "dem_votes": 21446,
-        "rep_votes": 11500,
-        "other_votes": 954,
-        "total_votes": 33900,
+        "dem_votes": 21387,
+        "rep_votes": 11719,
+        "other_votes": 960,
+        "total_votes": 34066,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 9946.0,
-        "margin_pct": 29.339233038348084
+        "margin": 9668,
+        "margin_pct": 28.380203135090703
       },
       "164": {
         "dem_votes": 20010,
@@ -1836,7 +1812,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 14898.0,
+        "margin": 14898,
         "margin_pct": 57.06734084118593
       },
       "165": {
@@ -1847,7 +1823,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 6742.0,
+        "margin": 6742,
         "margin_pct": 16.05238095238095
       },
       "166": {
@@ -1858,7 +1834,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 9547.0,
+        "margin": 9547,
         "margin_pct": 22.547885028695593
       },
       "167": {
@@ -1869,7 +1845,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 7605.0,
+        "margin": 7605,
         "margin_pct": 18.85225582548339
       },
       "168": {
@@ -1880,19 +1856,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 6336.0,
+        "margin": 6336,
         "margin_pct": 15.964925542369038
       },
       "169": {
-        "dem_votes": 12455,
-        "rep_votes": 23615,
-        "other_votes": 1290,
-        "total_votes": 37360,
+        "dem_votes": 12332,
+        "rep_votes": 23450,
+        "other_votes": 1280,
+        "total_votes": 37062,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 11160.0,
-        "margin_pct": 29.871520342612417
+        "margin": 11118,
+        "margin_pct": 29.998381091144566
       },
       "170": {
         "dem_votes": 11895,
@@ -1902,30 +1878,30 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 2711.0,
+        "margin": 2711,
         "margin_pct": 10.007752224150025
       },
       "171": {
-        "dem_votes": 10454,
-        "rep_votes": 22210,
-        "other_votes": 846,
-        "total_votes": 33510,
+        "dem_votes": 10470,
+        "rep_votes": 22228,
+        "other_votes": 847,
+        "total_votes": 33545,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 11756.0,
-        "margin_pct": 35.0820650552074
+        "margin": 11758,
+        "margin_pct": 35.05142346102251
       },
       "172": {
-        "dem_votes": 12778,
-        "rep_votes": 12031,
-        "other_votes": 707,
-        "total_votes": 25516,
+        "dem_votes": 12724,
+        "rep_votes": 11979,
+        "other_votes": 705,
+        "total_votes": 25408,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 747.0,
-        "margin_pct": 2.9275748549929457
+        "margin": 745,
+        "margin_pct": 2.932147355163728
       },
       "173": {
         "dem_votes": 11559,
@@ -1935,7 +1911,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2045.0,
+        "margin": 2045,
         "margin_pct": 9.429177425304315
       },
       "174": {
@@ -1946,19 +1922,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 1968.0,
+        "margin": 1968,
         "margin_pct": 8.25884426539091
       },
       "175": {
-        "dem_votes": 29352,
-        "rep_votes": 5518,
-        "other_votes": 964,
-        "total_votes": 35834,
+        "dem_votes": 23810,
+        "rep_votes": 4524,
+        "other_votes": 779,
+        "total_votes": 29113,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 23834.0,
-        "margin_pct": 66.51225093486633
+        "margin": 19286,
+        "margin_pct": 66.24531996015526
       },
       "176": {
         "dem_votes": 13977,
@@ -1968,7 +1944,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 5558.0,
+        "margin": 5558,
         "margin_pct": 16.129781182889314
       },
       "177": {
@@ -1979,7 +1955,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 6982.0,
+        "margin": 6982,
         "margin_pct": 27.566329753632346
       },
       "178": {
@@ -1990,7 +1966,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 5311.0,
+        "margin": 5311,
         "margin_pct": 11.930541827657471
       },
       "179": {
@@ -2001,7 +1977,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 11129.0,
+        "margin": 11129,
         "margin_pct": 61.90343753476471
       },
       "180": {
@@ -2012,7 +1988,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 7822.0,
+        "margin": 7822,
         "margin_pct": 51.278353218827846
       },
       "181": {
@@ -2023,30 +1999,30 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 20434.0,
+        "margin": 20434,
         "margin_pct": 78.86530297182554
       },
       "182": {
-        "dem_votes": 32576,
-        "rep_votes": 4939,
-        "other_votes": 797,
-        "total_votes": 38312,
+        "dem_votes": 32757,
+        "rep_votes": 4945,
+        "other_votes": 802,
+        "total_votes": 38504,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 27637.0,
-        "margin_pct": 72.13666736270619
+        "margin": 27812,
+        "margin_pct": 72.23145647205486
       },
       "183": {
-        "dem_votes": 15580,
-        "rep_votes": 23381,
-        "other_votes": 898,
-        "total_votes": 39859,
+        "dem_votes": 15548,
+        "rep_votes": 23368,
+        "other_votes": 896,
+        "total_votes": 39812,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 7801.0,
-        "margin_pct": 19.571489500489225
+        "margin": 7820,
+        "margin_pct": 19.642318898824477
       },
       "184": {
         "dem_votes": 18858,
@@ -2056,96 +2032,96 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 10598.0,
+        "margin": 10598,
         "margin_pct": 37.963891675025074
       },
       "185": {
-        "dem_votes": 18795,
+        "dem_votes": 18792,
         "rep_votes": 8628,
         "other_votes": 629,
-        "total_votes": 28052,
+        "total_votes": 28049,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 10167.0,
-        "margin_pct": 36.24340510480536
+        "margin": 10164,
+        "margin_pct": 36.236585974544546
       },
       "186": {
-        "dem_votes": 27314,
-        "rep_votes": 3419,
-        "other_votes": 987,
-        "total_votes": 31720,
+        "dem_votes": 27288,
+        "rep_votes": 3431,
+        "other_votes": 989,
+        "total_votes": 31708,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 23895.0,
-        "margin_pct": 75.33102143757881
+        "margin": 23857,
+        "margin_pct": 75.23968714519995
       },
       "187": {
-        "dem_votes": 17875,
-        "rep_votes": 21429,
-        "other_votes": 1089,
-        "total_votes": 40393,
+        "dem_votes": 17853,
+        "rep_votes": 21420,
+        "other_votes": 1088,
+        "total_votes": 40361,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 3554.0,
-        "margin_pct": 8.798554204936499
+        "margin": 3567,
+        "margin_pct": 8.837739401897872
       },
       "188": {
-        "dem_votes": 26088,
-        "rep_votes": 2140,
-        "other_votes": 1340,
-        "total_votes": 29568,
+        "dem_votes": 26737,
+        "rep_votes": 2254,
+        "other_votes": 1360,
+        "total_votes": 30351,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 23948.0,
-        "margin_pct": 80.99296536796537
+        "margin": 24483,
+        "margin_pct": 80.66620539685677
       },
       "189": {
-        "dem_votes": 15901,
-        "rep_votes": 13117,
-        "other_votes": 938,
-        "total_votes": 29956,
+        "dem_votes": 15880,
+        "rep_votes": 13102,
+        "other_votes": 937,
+        "total_votes": 29919,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 2784.0,
-        "margin_pct": 9.293630658298838
+        "margin": 2778,
+        "margin_pct": 9.285069688158027
       },
       "190": {
-        "dem_votes": 24765,
-        "rep_votes": 1402,
-        "other_votes": 659,
-        "total_votes": 26826,
+        "dem_votes": 25769,
+        "rep_votes": 1592,
+        "other_votes": 689,
+        "total_votes": 28050,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 23363.0,
-        "margin_pct": 87.09088198016849
+        "margin": 24177,
+        "margin_pct": 86.19251336898395
       },
       "191": {
-        "dem_votes": 24058,
-        "rep_votes": 1841,
-        "other_votes": 652,
-        "total_votes": 26551,
+        "dem_votes": 23936,
+        "rep_votes": 1616,
+        "other_votes": 641,
+        "total_votes": 26193,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 22217.0,
-        "margin_pct": 83.67669767617039
+        "margin": 22320,
+        "margin_pct": 85.21360668880999
       },
       "192": {
-        "dem_votes": 26565,
-        "rep_votes": 1789,
-        "other_votes": 706,
-        "total_votes": 29060,
+        "dem_votes": 26850,
+        "rep_votes": 1834,
+        "other_votes": 718,
+        "total_votes": 29402,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 24776.0,
-        "margin_pct": 85.25808671713696
+        "margin": 25016,
+        "margin_pct": 85.08264743894973
       },
       "193": {
         "dem_votes": 10620,
@@ -2155,19 +2131,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 12009.0,
+        "margin": 12009,
         "margin_pct": 35.023915072328506
       },
       "194": {
-        "dem_votes": 28129,
-        "rep_votes": 7784,
-        "other_votes": 1125,
-        "total_votes": 37038,
+        "dem_votes": 28479,
+        "rep_votes": 7808,
+        "other_votes": 1126,
+        "total_votes": 37413,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 20345.0,
-        "margin_pct": 54.93007181813273
+        "margin": 20671,
+        "margin_pct": 55.25084863550103
       },
       "195": {
         "dem_votes": 26711,
@@ -2177,19 +2153,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 24467.0,
+        "margin": 24467,
         "margin_pct": 82.0297046300332
       },
       "196": {
-        "dem_votes": 12559,
-        "rep_votes": 23816,
-        "other_votes": 1165,
-        "total_votes": 37540,
+        "dem_votes": 12467,
+        "rep_votes": 23692,
+        "other_votes": 1158,
+        "total_votes": 37317,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 11257.0,
-        "margin_pct": 29.986680873734684
+        "margin": 11225,
+        "margin_pct": 30.080124340113084
       },
       "197": {
         "dem_votes": 16905,
@@ -2199,7 +2175,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 13991.0,
+        "margin": 13991,
         "margin_pct": 68.53965610150394
       },
       "198": {
@@ -2210,30 +2186,30 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 21839.0,
+        "margin": 21839,
         "margin_pct": 84.47375546358256
       },
       "199": {
-        "dem_votes": 14248,
-        "rep_votes": 19381,
+        "dem_votes": 14246,
+        "rep_votes": 19379,
         "other_votes": 1062,
-        "total_votes": 34691,
+        "total_votes": 34687,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "R",
-        "margin": 5133.0,
-        "margin_pct": 14.79634487331008
+        "margin": 5133,
+        "margin_pct": 14.79805114307954
       },
       "200": {
-        "dem_votes": 36304,
-        "rep_votes": 1797,
-        "other_votes": 812,
-        "total_votes": 38913,
+        "dem_votes": 37507,
+        "rep_votes": 2001,
+        "other_votes": 850,
+        "total_votes": 40358,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 34507.0,
-        "margin_pct": 88.6773057846992
+        "margin": 35506,
+        "margin_pct": 87.97760047574211
       },
       "201": {
         "dem_votes": 27229,
@@ -2243,7 +2219,7 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 25880.0,
+        "margin": 25880,
         "margin_pct": 87.92851561172833
       },
       "202": {
@@ -2254,19 +2230,19 @@
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 5227.0,
+        "margin": 5227,
         "margin_pct": 34.52899986788215
       },
       "203": {
-        "dem_votes": 17212,
-        "rep_votes": 4359,
-        "other_votes": 579,
-        "total_votes": 22150,
+        "dem_votes": 18955,
+        "rep_votes": 4739,
+        "other_votes": 643,
+        "total_votes": 24337,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "David H. McCormick",
         "winner": "D",
-        "margin": 12853.0,
-        "margin_pct": 58.02708803611738
+        "margin": 14216,
+        "margin_pct": 58.41311583186095
       }
     }
   }

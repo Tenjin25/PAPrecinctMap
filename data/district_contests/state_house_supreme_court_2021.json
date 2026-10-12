@@ -6,287 +6,262 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
-    "allocation_audit": {
-      "source_rows": 18147,
-      "source_votes": 2760484,
-      "matched_rows": 18147,
-      "matched_votes": 2760484,
-      "unmatched_rows": 0,
-      "unmatched_votes": 0,
-      "unmatched_precincts": [],
-      "unmatched_precinct_votes": {},
-      "mapping_methods": {
-        "adjusted_vtd_code": 16217,
-        "adjusted_vtd_code+adjusted_vtd_name": 8,
-        "adjusted_vtd_name": 2014,
-        "census_block_population": 8,
-        "corrected_from_2020_block_chain": 4,
-        "current_precinct_or_vtd_name": 84,
-        "live_vtd_chain": 302
-      },
-      "allocated_rows": 18147,
-      "allocated_votes": 2760484,
-      "unallocated_rows": 0,
-      "unallocated_votes": 0,
-      "allocation_vote_delta": 0,
-      "conserved_for_matched_rows": true
-    }
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 7849,
-        "rep_votes": 3267,
+        "dem_votes": 8180,
+        "rep_votes": 3390,
         "other_votes": 0,
-        "total_votes": 11116,
+        "total_votes": 11570,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 4582.0,
-        "margin_pct": 41.21986326016553
+        "margin": 4790.0,
+        "margin_pct": 41.400172860847015
       },
       "2": {
-        "dem_votes": 10463,
-        "rep_votes": 6237,
+        "dem_votes": 10379,
+        "rep_votes": 6219,
         "other_votes": 0,
-        "total_votes": 16700,
+        "total_votes": 16598,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 4226.0,
-        "margin_pct": 25.305389221556883
+        "margin": 4160.0,
+        "margin_pct": 25.063260633811304
       },
       "3": {
-        "dem_votes": 11550,
-        "rep_votes": 8710,
+        "dem_votes": 10835,
+        "rep_votes": 8275,
         "other_votes": 0,
-        "total_votes": 20260,
+        "total_votes": 19110,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2840.0,
-        "margin_pct": 14.0177690029615
+        "margin": 2560.0,
+        "margin_pct": 13.396127681841968
       },
       "4": {
-        "dem_votes": 7705,
-        "rep_votes": 9189,
+        "dem_votes": 8164,
+        "rep_votes": 9510,
         "other_votes": 0,
-        "total_votes": 16894,
+        "total_votes": 17674,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1484.0,
-        "margin_pct": 8.784183733870012
+        "margin": 1346.0,
+        "margin_pct": 7.615706687789974
       },
       "5": {
-        "dem_votes": 4987,
-        "rep_votes": 8811,
+        "dem_votes": 4867,
+        "rep_votes": 8590,
         "other_votes": 0,
-        "total_votes": 13798,
+        "total_votes": 13457,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3824.0,
-        "margin_pct": 27.7141614726772
+        "margin": 3723.0,
+        "margin_pct": 27.665898788734488
       },
       "6": {
-        "dem_votes": 5480,
-        "rep_votes": 8271,
+        "dem_votes": 5479,
+        "rep_votes": 8270,
         "other_votes": 0,
-        "total_votes": 13751,
+        "total_votes": 13749,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 2791.0,
-        "margin_pct": 20.296705694131337
+        "margin_pct": 20.29965815695687
       },
       "7": {
-        "dem_votes": 5902,
-        "rep_votes": 6973,
+        "dem_votes": 6152,
+        "rep_votes": 7080,
         "other_votes": 0,
-        "total_votes": 12875,
+        "total_votes": 13232,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1071.0,
-        "margin_pct": 8.318446601941748
+        "margin": 928.0,
+        "margin_pct": 7.013301088270858
       },
       "8": {
-        "dem_votes": 5211,
-        "rep_votes": 11283,
+        "dem_votes": 5170,
+        "rep_votes": 11235,
         "other_votes": 0,
-        "total_votes": 16494,
+        "total_votes": 16405,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 6072.0,
-        "margin_pct": 36.81338668606766
+        "margin": 6065.0,
+        "margin_pct": 36.97043584273088
       },
       "9": {
-        "dem_votes": 5237,
-        "rep_votes": 6987,
+        "dem_votes": 5208,
+        "rep_votes": 6959,
         "other_votes": 0,
-        "total_votes": 12224,
+        "total_votes": 12167,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1750.0,
-        "margin_pct": 14.316099476439788
+        "margin": 1751.0,
+        "margin_pct": 14.39138653735514
       },
       "10": {
-        "dem_votes": 6723,
-        "rep_votes": 437,
+        "dem_votes": 6722,
+        "rep_votes": 436,
         "other_votes": 0,
-        "total_votes": 7160,
+        "total_votes": 7158,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 6286.0,
-        "margin_pct": 87.79329608938548
+        "margin_pct": 87.8178262084381
       },
       "11": {
-        "dem_votes": 5223,
-        "rep_votes": 9903,
+        "dem_votes": 4651,
+        "rep_votes": 9064,
         "other_votes": 0,
-        "total_votes": 15126,
+        "total_votes": 13715,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4680.0,
-        "margin_pct": 30.94010313367711
+        "margin": 4413.0,
+        "margin_pct": 32.176449143273786
       },
       "12": {
-        "dem_votes": 5285,
-        "rep_votes": 7907,
+        "dem_votes": 5877,
+        "rep_votes": 8773,
         "other_votes": 0,
-        "total_votes": 13192,
+        "total_votes": 14650,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2622.0,
-        "margin_pct": 19.87568223165555
+        "margin": 2896.0,
+        "margin_pct": 19.7679180887372
       },
       "13": {
-        "dem_votes": 6859,
-        "rep_votes": 8622,
+        "dem_votes": 6857,
+        "rep_votes": 8621,
         "other_votes": 0,
-        "total_votes": 15481,
+        "total_votes": 15478,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1763.0,
-        "margin_pct": 11.388153220076221
+        "margin": 1764.0,
+        "margin_pct": 11.396821294740922
       },
       "14": {
-        "dem_votes": 6144,
-        "rep_votes": 8730,
+        "dem_votes": 6143,
+        "rep_votes": 8728,
         "other_votes": 0,
-        "total_votes": 14874,
+        "total_votes": 14871,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2586.0,
-        "margin_pct": 17.386042759177087
+        "margin": 2585.0,
+        "margin_pct": 17.382825633783874
       },
       "15": {
-        "dem_votes": 6187,
-        "rep_votes": 9877,
+        "dem_votes": 6185,
+        "rep_votes": 9874,
         "other_votes": 0,
-        "total_votes": 16064,
+        "total_votes": 16059,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3690.0,
-        "margin_pct": 22.970617529880478
+        "margin": 3689.0,
+        "margin_pct": 22.971542437262592
       },
       "16": {
-        "dem_votes": 6938,
-        "rep_votes": 6040,
+        "dem_votes": 6932,
+        "rep_votes": 6035,
         "other_votes": 0,
-        "total_votes": 12978,
+        "total_votes": 12967,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 898.0,
-        "margin_pct": 6.9194020650331325
+        "margin": 897.0,
+        "margin_pct": 6.917559959898203
       },
       "17": {
-        "dem_votes": 4207,
-        "rep_votes": 10080,
+        "dem_votes": 3941,
+        "rep_votes": 9958,
         "other_votes": 0,
-        "total_votes": 14287,
+        "total_votes": 13899,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 5873.0,
-        "margin_pct": 41.10730034296913
+        "margin": 6017.0,
+        "margin_pct": 43.29088423627599
       },
       "18": {
-        "dem_votes": 6964,
-        "rep_votes": 8242,
+        "dem_votes": 6962,
+        "rep_votes": 8239,
         "other_votes": 0,
-        "total_votes": 15206,
+        "total_votes": 15201,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1278.0,
-        "margin_pct": 8.404577140602393
+        "margin": 1277.0,
+        "margin_pct": 8.400763107690283
       },
       "19": {
-        "dem_votes": 8862,
-        "rep_votes": 1635,
+        "dem_votes": 1673,
+        "rep_votes": 226,
         "other_votes": 0,
-        "total_votes": 10497,
+        "total_votes": 1899,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 7227.0,
-        "margin_pct": 68.84824235495856
+        "margin": 1447.0,
+        "margin_pct": 76.19799894681411
       },
       "20": {
-        "dem_votes": 9240,
-        "rep_votes": 6047,
+        "dem_votes": 1790,
+        "rep_votes": 854,
         "other_votes": 0,
-        "total_votes": 15287,
+        "total_votes": 2644,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 3193.0,
-        "margin_pct": 20.887028193890234
+        "margin": 936.0,
+        "margin_pct": 35.400907715582456
       },
       "21": {
-        "dem_votes": 10921,
-        "rep_votes": 5606,
+        "dem_votes": 4978,
+        "rep_votes": 1212,
         "other_votes": 0,
-        "total_votes": 16527,
+        "total_votes": 6190,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 5315.0,
-        "margin_pct": 32.159496581351725
+        "margin": 3766.0,
+        "margin_pct": 60.84006462035541
       },
       "22": {
-        "dem_votes": 2976,
-        "rep_votes": 1655,
+        "dem_votes": 3098,
+        "rep_votes": 1716,
         "other_votes": 0,
-        "total_votes": 4631,
+        "total_votes": 4814,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1321.0,
-        "margin_pct": 28.525156553660118
+        "margin": 1382.0,
+        "margin_pct": 28.707935189031993
       },
       "23": {
-        "dem_votes": 12226,
-        "rep_votes": 2293,
+        "dem_votes": 11715,
+        "rep_votes": 2114,
         "other_votes": 0,
-        "total_votes": 14519,
+        "total_votes": 13829,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 9933.0,
-        "margin_pct": 68.41380260348508
+        "margin": 9601.0,
+        "margin_pct": 69.42656735844963
       },
       "24": {
         "dem_votes": 12519,
@@ -300,48 +275,48 @@
         "margin_pct": 82.78580814717476
       },
       "25": {
-        "dem_votes": 7567,
-        "rep_votes": 5771,
+        "dem_votes": 5294,
+        "rep_votes": 3650,
         "other_votes": 0,
-        "total_votes": 13338,
+        "total_votes": 8944,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1796.0,
-        "margin_pct": 13.465287149497676
+        "margin": 1644.0,
+        "margin_pct": 18.38103756708408
       },
       "26": {
-        "dem_votes": 8851,
-        "rep_votes": 7973,
+        "dem_votes": 8486,
+        "rep_votes": 7749,
         "other_votes": 0,
-        "total_votes": 16824,
+        "total_votes": 16235,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 878.0,
-        "margin_pct": 5.218735140275797
+        "margin": 737.0,
+        "margin_pct": 4.539574992300585
       },
       "27": {
-        "dem_votes": 9296,
-        "rep_votes": 5398,
+        "dem_votes": 2366,
+        "rep_votes": 1521,
         "other_votes": 0,
-        "total_votes": 14694,
+        "total_votes": 3887,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 3898.0,
-        "margin_pct": 26.527834490268138
+        "margin": 845.0,
+        "margin_pct": 21.73913043478261
       },
       "28": {
-        "dem_votes": 7731,
-        "rep_votes": 9305,
+        "dem_votes": 5032,
+        "rep_votes": 5784,
         "other_votes": 0,
-        "total_votes": 17036,
+        "total_votes": 10816,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1574.0,
-        "margin_pct": 9.239258041793848
+        "margin": 752.0,
+        "margin_pct": 6.952662721893491
       },
       "29": {
         "dem_votes": 13760,
@@ -355,312 +330,312 @@
         "margin_pct": 10.999072318799662
       },
       "30": {
-        "dem_votes": 9943,
-        "rep_votes": 8825,
+        "dem_votes": 9936,
+        "rep_votes": 8819,
         "other_votes": 0,
-        "total_votes": 18768,
+        "total_votes": 18755,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1118.0,
-        "margin_pct": 5.956947996589941
+        "margin": 1117.0,
+        "margin_pct": 5.9557451346307655
       },
       "31": {
-        "dem_votes": 14485,
-        "rep_votes": 12055,
+        "dem_votes": 14483,
+        "rep_votes": 12052,
         "other_votes": 0,
-        "total_votes": 26540,
+        "total_votes": 26535,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2430.0,
-        "margin_pct": 9.155990957045969
+        "margin": 2431.0,
+        "margin_pct": 9.161484831354814
       },
       "32": {
-        "dem_votes": 9634,
-        "rep_votes": 5292,
+        "dem_votes": 7718,
+        "rep_votes": 3359,
         "other_votes": 0,
-        "total_votes": 14926,
+        "total_votes": 11077,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 4342.0,
-        "margin_pct": 29.09017821251507
+        "margin": 4359.0,
+        "margin_pct": 39.351810056874605
       },
       "33": {
-        "dem_votes": 8861,
-        "rep_votes": 6824,
+        "dem_votes": 7451,
+        "rep_votes": 5666,
         "other_votes": 0,
-        "total_votes": 15685,
+        "total_votes": 13117,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2037.0,
-        "margin_pct": 12.98693018807778
+        "margin": 1785.0,
+        "margin_pct": 13.60829457955325
       },
       "34": {
-        "dem_votes": 12597,
-        "rep_votes": 2610,
+        "dem_votes": 6932,
+        "rep_votes": 1580,
         "other_votes": 0,
-        "total_votes": 15207,
+        "total_votes": 8512,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 9987.0,
-        "margin_pct": 65.67370289998027
+        "margin": 5352.0,
+        "margin_pct": 62.87593984962406
       },
       "35": {
-        "dem_votes": 7198,
-        "rep_votes": 4300,
+        "dem_votes": 4947,
+        "rep_votes": 2232,
         "other_votes": 0,
-        "total_votes": 11498,
+        "total_votes": 7179,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2898.0,
-        "margin_pct": 25.20438337102105
+        "margin": 2715.0,
+        "margin_pct": 37.818637693272045
       },
       "36": {
-        "dem_votes": 8675,
-        "rep_votes": 4360,
+        "dem_votes": 1488,
+        "rep_votes": 915,
         "other_votes": 0,
-        "total_votes": 13035,
+        "total_votes": 2403,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 4315.0,
-        "margin_pct": 33.103183736095126
+        "margin": 573.0,
+        "margin_pct": 23.845193508114857
       },
       "37": {
-        "dem_votes": 5456,
-        "rep_votes": 11504,
+        "dem_votes": 5381,
+        "rep_votes": 11311,
         "other_votes": 0,
-        "total_votes": 16960,
+        "total_votes": 16692,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 6048.0,
-        "margin_pct": 35.660377358490564
+        "margin": 5930.0,
+        "margin_pct": 35.52600047927151
       },
       "38": {
-        "dem_votes": 7782,
-        "rep_votes": 5801,
+        "dem_votes": 2747,
+        "rep_votes": 1938,
         "other_votes": 0,
-        "total_votes": 13583,
+        "total_votes": 4685,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1981.0,
-        "margin_pct": 14.584406979312375
+        "margin": 809.0,
+        "margin_pct": 17.26787620064034
       },
       "39": {
-        "dem_votes": 7214,
-        "rep_votes": 8411,
+        "dem_votes": 4444,
+        "rep_votes": 5803,
         "other_votes": 0,
-        "total_votes": 15625,
+        "total_votes": 10247,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1197.0,
-        "margin_pct": 7.660799999999999
+        "margin": 1359.0,
+        "margin_pct": 13.26241826876159
       },
       "40": {
-        "dem_votes": 8829,
-        "rep_votes": 10615,
+        "dem_votes": 7786,
+        "rep_votes": 9648,
         "other_votes": 0,
-        "total_votes": 19444,
+        "total_votes": 17434,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1786.0,
-        "margin_pct": 9.185352808064184
+        "margin": 1862.0,
+        "margin_pct": 10.680279912814042
       },
       "41": {
-        "dem_votes": 6051,
-        "rep_votes": 8127,
+        "dem_votes": 6075,
+        "rep_votes": 8317,
         "other_votes": 0,
-        "total_votes": 14178,
+        "total_votes": 14392,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2076.0,
-        "margin_pct": 14.64240372407956
+        "margin": 2242.0,
+        "margin_pct": 15.578098943857698
       },
       "42": {
-        "dem_votes": 12237,
-        "rep_votes": 6802,
+        "dem_votes": 10713,
+        "rep_votes": 5424,
         "other_votes": 0,
-        "total_votes": 19039,
+        "total_votes": 16137,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 5435.0,
-        "margin_pct": 28.54666736698356
+        "margin": 5289.0,
+        "margin_pct": 32.77560884922848
       },
       "43": {
-        "dem_votes": 2998,
-        "rep_votes": 7336,
+        "dem_votes": 3066,
+        "rep_votes": 7521,
         "other_votes": 0,
-        "total_votes": 10334,
+        "total_votes": 10587,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4338.0,
-        "margin_pct": 41.977936907296304
+        "margin": 4455.0,
+        "margin_pct": 42.079909322754325
       },
       "44": {
-        "dem_votes": 7624,
-        "rep_votes": 7854,
+        "dem_votes": 6653,
+        "rep_votes": 7042,
         "other_votes": 0,
-        "total_votes": 15478,
+        "total_votes": 13695,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 230.0,
-        "margin_pct": 1.4859801007882156
+        "margin": 389.0,
+        "margin_pct": 2.8404527199707923
       },
       "45": {
-        "dem_votes": 7999,
-        "rep_votes": 5998,
+        "dem_votes": 5373,
+        "rep_votes": 3876,
         "other_votes": 0,
-        "total_votes": 13997,
+        "total_votes": 9249,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2001.0,
-        "margin_pct": 14.295920554404514
+        "margin": 1497.0,
+        "margin_pct": 16.185533571196885
       },
       "46": {
-        "dem_votes": 6823,
-        "rep_votes": 7948,
+        "dem_votes": 5070,
+        "rep_votes": 6369,
         "other_votes": 0,
-        "total_votes": 14771,
+        "total_votes": 11439,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1125.0,
-        "margin_pct": 7.616275133707941
+        "margin": 1299.0,
+        "margin_pct": 11.355887752425911
       },
       "47": {
-        "dem_votes": 5708,
-        "rep_votes": 8564,
+        "dem_votes": 5684,
+        "rep_votes": 8518,
         "other_votes": 0,
-        "total_votes": 14272,
+        "total_votes": 14202,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2856.0,
-        "margin_pct": 20.01121076233184
+        "margin": 2834.0,
+        "margin_pct": 19.954935924517674
       },
       "48": {
-        "dem_votes": 6701,
-        "rep_votes": 9144,
+        "dem_votes": 6398,
+        "rep_votes": 8716,
         "other_votes": 0,
-        "total_votes": 15845,
+        "total_votes": 15114,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2443.0,
-        "margin_pct": 15.418112969390977
+        "margin": 2318.0,
+        "margin_pct": 15.336773852057695
       },
       "49": {
-        "dem_votes": 4411,
-        "rep_votes": 2317,
+        "dem_votes": 4393,
+        "rep_votes": 2402,
         "other_votes": 0,
-        "total_votes": 6728,
+        "total_votes": 6795,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2094.0,
-        "margin_pct": 31.123662306777643
+        "margin": 1991.0,
+        "margin_pct": 29.300956585724798
       },
       "50": {
-        "dem_votes": 5934,
-        "rep_votes": 8280,
+        "dem_votes": 6147,
+        "rep_votes": 8558,
         "other_votes": 0,
-        "total_votes": 14214,
+        "total_votes": 14705,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2346.0,
-        "margin_pct": 16.50485436893204
+        "margin": 2411.0,
+        "margin_pct": 16.395783747024822
       },
       "51": {
-        "dem_votes": 5367,
-        "rep_votes": 6320,
+        "dem_votes": 5358,
+        "rep_votes": 6311,
         "other_votes": 0,
-        "total_votes": 11687,
+        "total_votes": 11669,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 953.0,
-        "margin_pct": 8.15435954479336
+        "margin_pct": 8.166938040963236
       },
       "52": {
-        "dem_votes": 4545,
-        "rep_votes": 6633,
+        "dem_votes": 4526,
+        "rep_votes": 6612,
         "other_votes": 0,
-        "total_votes": 11178,
+        "total_votes": 11138,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2088.0,
-        "margin_pct": 18.679549114331724
+        "margin": 2086.0,
+        "margin_pct": 18.728676602621654
       },
       "53": {
-        "dem_votes": 8104,
-        "rep_votes": 7231,
+        "dem_votes": 7811,
+        "rep_votes": 6853,
         "other_votes": 0,
-        "total_votes": 15335,
+        "total_votes": 14664,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 873.0,
-        "margin_pct": 5.6928594717965435
+        "margin": 958.0,
+        "margin_pct": 6.533006001091107
       },
       "54": {
-        "dem_votes": 6813,
-        "rep_votes": 3283,
+        "dem_votes": 6811,
+        "rep_votes": 3281,
         "other_votes": 0,
-        "total_votes": 10096,
+        "total_votes": 10092,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 3530.0,
-        "margin_pct": 34.96434231378764
+        "margin_pct": 34.97820055489497
       },
       "55": {
-        "dem_votes": 6112,
-        "rep_votes": 9603,
+        "dem_votes": 6094,
+        "rep_votes": 9585,
         "other_votes": 0,
-        "total_votes": 15715,
+        "total_votes": 15679,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 3491.0,
-        "margin_pct": 22.21444479796373
+        "margin_pct": 22.26545060271701
       },
       "56": {
-        "dem_votes": 6330,
-        "rep_votes": 10230,
+        "dem_votes": 6326,
+        "rep_votes": 10226,
         "other_votes": 0,
-        "total_votes": 16560,
+        "total_votes": 16552,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 3900.0,
-        "margin_pct": 23.55072463768116
+        "margin_pct": 23.562107298211696
       },
       "57": {
-        "dem_votes": 6643,
-        "rep_votes": 9312,
+        "dem_votes": 6641,
+        "rep_votes": 9309,
         "other_votes": 0,
-        "total_votes": 15955,
+        "total_votes": 15950,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2669.0,
-        "margin_pct": 16.72829833907866
+        "margin": 2668.0,
+        "margin_pct": 16.727272727272727
       },
       "58": {
         "dem_votes": 5947,
@@ -674,37 +649,37 @@
         "margin_pct": 20.211980948547662
       },
       "59": {
-        "dem_votes": 6106,
-        "rep_votes": 10316,
+        "dem_votes": 6101,
+        "rep_votes": 10311,
         "other_votes": 0,
-        "total_votes": 16422,
+        "total_votes": 16412,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 4210.0,
-        "margin_pct": 25.636341493118987
+        "margin_pct": 25.65196197903973
       },
       "60": {
-        "dem_votes": 5185,
-        "rep_votes": 9275,
+        "dem_votes": 5175,
+        "rep_votes": 9267,
         "other_votes": 0,
-        "total_votes": 14460,
+        "total_votes": 14442,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4090.0,
-        "margin_pct": 28.284923928077454
+        "margin": 4092.0,
+        "margin_pct": 28.334025758205232
       },
       "61": {
-        "dem_votes": 11820,
-        "rep_votes": 8779,
+        "dem_votes": 11819,
+        "rep_votes": 8778,
         "other_votes": 0,
-        "total_votes": 20599,
+        "total_votes": 20597,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 3041.0,
-        "margin_pct": 14.762852565658527
+        "margin_pct": 14.764286061076856
       },
       "62": {
         "dem_votes": 6295,
@@ -718,81 +693,81 @@
         "margin_pct": 23.217661767396475
       },
       "63": {
-        "dem_votes": 3762,
-        "rep_votes": 10804,
+        "dem_votes": 3751,
+        "rep_votes": 10791,
         "other_votes": 0,
-        "total_votes": 14566,
+        "total_votes": 14542,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 7042.0,
-        "margin_pct": 48.34546203487574
+        "margin": 7040.0,
+        "margin_pct": 48.41149773071105
       },
       "64": {
-        "dem_votes": 3776,
-        "rep_votes": 7718,
+        "dem_votes": 3770,
+        "rep_votes": 7712,
         "other_votes": 0,
-        "total_votes": 11494,
+        "total_votes": 11482,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 3942.0,
-        "margin_pct": 34.296154515399344
+        "margin_pct": 34.331997909771815
       },
       "65": {
-        "dem_votes": 4383,
-        "rep_votes": 8855,
+        "dem_votes": 4379,
+        "rep_votes": 8850,
         "other_votes": 0,
-        "total_votes": 13238,
+        "total_votes": 13229,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4472.0,
-        "margin_pct": 33.781537996676235
+        "margin": 4471.0,
+        "margin_pct": 33.796961221558696
       },
       "66": {
-        "dem_votes": 3407,
-        "rep_votes": 10819,
+        "dem_votes": 3390,
+        "rep_votes": 10798,
         "other_votes": 0,
-        "total_votes": 14226,
+        "total_votes": 14188,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 7412.0,
-        "margin_pct": 52.101785463236325
+        "margin": 7408.0,
+        "margin_pct": 52.213137862982805
       },
       "67": {
-        "dem_votes": 3338,
-        "rep_votes": 9650,
+        "dem_votes": 3331,
+        "rep_votes": 9645,
         "other_votes": 0,
-        "total_votes": 12988,
+        "total_votes": 12976,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 6312.0,
-        "margin_pct": 48.59870649830613
+        "margin": 6314.0,
+        "margin_pct": 48.65906288532676
       },
       "68": {
-        "dem_votes": 3253,
-        "rep_votes": 10386,
+        "dem_votes": 3245,
+        "rep_votes": 10373,
         "other_votes": 0,
-        "total_votes": 13639,
+        "total_votes": 13618,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 7133.0,
-        "margin_pct": 52.298555612581566
+        "margin": 7128.0,
+        "margin_pct": 52.34248788368336
       },
       "69": {
-        "dem_votes": 4160,
-        "rep_votes": 12655,
+        "dem_votes": 4158,
+        "rep_votes": 12653,
         "other_votes": 0,
-        "total_votes": 16815,
+        "total_votes": 16811,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 8495.0,
-        "margin_pct": 50.52036871840618
+        "margin_pct": 50.5323895068705
       },
       "70": {
         "dem_votes": 9672,
@@ -806,488 +781,488 @@
         "margin_pct": 8.363677104924093
       },
       "71": {
-        "dem_votes": 4772,
-        "rep_votes": 9055,
+        "dem_votes": 4657,
+        "rep_votes": 8975,
         "other_votes": 0,
-        "total_votes": 13827,
+        "total_votes": 13632,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4283.0,
-        "margin_pct": 30.975627395675126
+        "margin": 4318.0,
+        "margin_pct": 31.675469483568076
       },
       "72": {
-        "dem_votes": 5716,
-        "rep_votes": 8353,
+        "dem_votes": 5784,
+        "rep_votes": 8391,
         "other_votes": 0,
-        "total_votes": 14069,
+        "total_votes": 14175,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2637.0,
-        "margin_pct": 18.74333641339114
+        "margin": 2607.0,
+        "margin_pct": 18.391534391534393
       },
       "73": {
-        "dem_votes": 4036,
-        "rep_votes": 8920,
+        "dem_votes": 4028,
+        "rep_votes": 8913,
         "other_votes": 0,
-        "total_votes": 12956,
+        "total_votes": 12941,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4884.0,
-        "margin_pct": 37.69682000617475
+        "margin": 4885.0,
+        "margin_pct": 37.748242021482106
       },
       "74": {
-        "dem_votes": 5786,
-        "rep_votes": 5505,
+        "dem_votes": 5772,
+        "rep_votes": 5492,
         "other_votes": 0,
-        "total_votes": 11291,
+        "total_votes": 11264,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 281.0,
-        "margin_pct": 2.4887078203879196
+        "margin": 280.0,
+        "margin_pct": 2.4857954545454546
       },
       "75": {
-        "dem_votes": 4854,
-        "rep_votes": 10437,
+        "dem_votes": 4848,
+        "rep_votes": 10430,
         "other_votes": 0,
-        "total_votes": 15291,
+        "total_votes": 15278,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 5583.0,
-        "margin_pct": 36.51167353345105
+        "margin": 5582.0,
+        "margin_pct": 36.53619583715146
       },
       "76": {
-        "dem_votes": 4127,
-        "rep_votes": 8071,
+        "dem_votes": 4125,
+        "rep_votes": 8066,
         "other_votes": 0,
-        "total_votes": 12198,
+        "total_votes": 12191,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3944.0,
-        "margin_pct": 32.3331693720282
+        "margin": 3941.0,
+        "margin_pct": 32.327126568780244
       },
       "77": {
-        "dem_votes": 7648,
-        "rep_votes": 5731,
+        "dem_votes": 7340,
+        "rep_votes": 5546,
         "other_votes": 0,
-        "total_votes": 13379,
+        "total_votes": 12886,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1917.0,
-        "margin_pct": 14.328425143882203
+        "margin": 1794.0,
+        "margin_pct": 13.922085984789694
       },
       "78": {
-        "dem_votes": 2564,
-        "rep_votes": 9956,
+        "dem_votes": 2561,
+        "rep_votes": 9953,
         "other_votes": 0,
-        "total_votes": 12520,
+        "total_votes": 12514,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 7392.0,
-        "margin_pct": 59.04153354632587
+        "margin_pct": 59.06984177720953
       },
       "79": {
-        "dem_votes": 3728,
-        "rep_votes": 7394,
+        "dem_votes": 3679,
+        "rep_votes": 7271,
         "other_votes": 0,
-        "total_votes": 11122,
+        "total_votes": 10950,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3666.0,
-        "margin_pct": 32.96169753641431
+        "margin": 3592.0,
+        "margin_pct": 32.80365296803653
       },
       "80": {
-        "dem_votes": 3614,
-        "rep_votes": 11509,
+        "dem_votes": 3638,
+        "rep_votes": 11605,
         "other_votes": 0,
-        "total_votes": 15123,
+        "total_votes": 15243,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 7895.0,
-        "margin_pct": 52.205250281028896
+        "margin": 7967.0,
+        "margin_pct": 52.26661418355967
       },
       "81": {
-        "dem_votes": 3288,
-        "rep_votes": 9560,
+        "dem_votes": 3285,
+        "rep_votes": 9558,
         "other_votes": 0,
-        "total_votes": 12848,
+        "total_votes": 12843,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 6272.0,
-        "margin_pct": 48.81693648816937
+        "margin": 6273.0,
+        "margin_pct": 48.84372810091101
       },
       "82": {
-        "dem_votes": 6695,
-        "rep_votes": 5798,
+        "dem_votes": 7272,
+        "rep_votes": 6386,
         "other_votes": 0,
-        "total_votes": 12493,
+        "total_votes": 13658,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 897.0,
-        "margin_pct": 7.1800208116545265
+        "margin": 886.0,
+        "margin_pct": 6.487040562307805
       },
       "83": {
-        "dem_votes": 3448,
-        "rep_votes": 7022,
+        "dem_votes": 3439,
+        "rep_votes": 7013,
         "other_votes": 0,
-        "total_votes": 10470,
+        "total_votes": 10452,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 3574.0,
-        "margin_pct": 34.13562559694365
+        "margin_pct": 34.19441255262151
       },
       "84": {
-        "dem_votes": 3322,
-        "rep_votes": 11871,
+        "dem_votes": 3320,
+        "rep_votes": 11870,
         "other_votes": 0,
-        "total_votes": 15193,
+        "total_votes": 15190,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 8549.0,
-        "margin_pct": 56.26933456196933
+        "margin": 8550.0,
+        "margin_pct": 56.28703094140882
       },
       "85": {
-        "dem_votes": 4180,
-        "rep_votes": 10379,
+        "dem_votes": 4132,
+        "rep_votes": 10228,
         "other_votes": 0,
-        "total_votes": 14559,
+        "total_votes": 14360,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 6199.0,
-        "margin_pct": 42.578473796277216
+        "margin": 6096.0,
+        "margin_pct": 42.45125348189415
       },
       "86": {
-        "dem_votes": 3047,
-        "rep_votes": 10543,
+        "dem_votes": 3043,
+        "rep_votes": 10538,
         "other_votes": 0,
-        "total_votes": 13590,
+        "total_votes": 13581,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 7496.0,
-        "margin_pct": 55.15820456217807
+        "margin": 7495.0,
+        "margin_pct": 55.187394153596934
       },
       "87": {
-        "dem_votes": 6136,
-        "rep_votes": 9348,
+        "dem_votes": 6115,
+        "rep_votes": 9305,
         "other_votes": 0,
-        "total_votes": 15484,
+        "total_votes": 15420,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3212.0,
-        "margin_pct": 20.743993800051665
+        "margin": 3190.0,
+        "margin_pct": 20.68741893644617
       },
       "88": {
-        "dem_votes": 6937,
-        "rep_votes": 8261,
+        "dem_votes": 6791,
+        "rep_votes": 8061,
         "other_votes": 0,
-        "total_votes": 15198,
+        "total_votes": 14852,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1324.0,
-        "margin_pct": 8.711672588498487
+        "margin": 1270.0,
+        "margin_pct": 8.551036897387556
       },
       "89": {
-        "dem_votes": 4137,
-        "rep_votes": 8980,
+        "dem_votes": 4133,
+        "rep_votes": 8975,
         "other_votes": 0,
-        "total_votes": 13117,
+        "total_votes": 13108,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4843.0,
-        "margin_pct": 36.92155218418846
+        "margin": 4842.0,
+        "margin_pct": 36.939273725968874
       },
       "90": {
-        "dem_votes": 2880,
-        "rep_votes": 8960,
+        "dem_votes": 2877,
+        "rep_votes": 8956,
         "other_votes": 0,
-        "total_votes": 11840,
+        "total_votes": 11833,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 6080.0,
-        "margin_pct": 51.35135135135135
+        "margin": 6079.0,
+        "margin_pct": 51.373278120510435
       },
       "91": {
-        "dem_votes": 5321,
-        "rep_votes": 8522,
+        "dem_votes": 5317,
+        "rep_votes": 8518,
         "other_votes": 0,
-        "total_votes": 13843,
+        "total_votes": 13835,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 3201.0,
-        "margin_pct": 23.123600375641118
+        "margin_pct": 23.136971449222983
       },
       "92": {
-        "dem_votes": 4391,
-        "rep_votes": 9582,
+        "dem_votes": 4375,
+        "rep_votes": 9550,
         "other_votes": 0,
-        "total_votes": 13973,
+        "total_votes": 13925,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 5191.0,
-        "margin_pct": 37.15021827810778
+        "margin": 5175.0,
+        "margin_pct": 37.16337522441652
       },
       "93": {
-        "dem_votes": 4204,
-        "rep_votes": 8102,
+        "dem_votes": 4240,
+        "rep_votes": 8175,
         "other_votes": 0,
-        "total_votes": 12306,
+        "total_votes": 12415,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3898.0,
-        "margin_pct": 31.67560539574191
+        "margin": 3935.0,
+        "margin_pct": 31.69552960128876
       },
       "94": {
-        "dem_votes": 4018,
-        "rep_votes": 8134,
+        "dem_votes": 4084,
+        "rep_votes": 8269,
         "other_votes": 0,
-        "total_votes": 12152,
+        "total_votes": 12353,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4116.0,
-        "margin_pct": 33.87096774193548
+        "margin": 4185.0,
+        "margin_pct": 33.878410102809035
       },
       "95": {
-        "dem_votes": 4212,
-        "rep_votes": 2879,
+        "dem_votes": 4192,
+        "rep_votes": 2840,
         "other_votes": 0,
-        "total_votes": 7091,
+        "total_votes": 7032,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1333.0,
-        "margin_pct": 18.7984769426033
+        "margin": 1352.0,
+        "margin_pct": 19.226393629124004
       },
       "96": {
-        "dem_votes": 8494,
-        "rep_votes": 6408,
+        "dem_votes": 8456,
+        "rep_votes": 6324,
         "other_votes": 0,
-        "total_votes": 14902,
+        "total_votes": 14780,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2086.0,
-        "margin_pct": 13.998121057576165
+        "margin": 2132.0,
+        "margin_pct": 14.424898511502029
       },
       "97": {
-        "dem_votes": 5808,
-        "rep_votes": 10074,
+        "dem_votes": 5865,
+        "rep_votes": 10003,
         "other_votes": 0,
-        "total_votes": 15882,
+        "total_votes": 15868,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4266.0,
-        "margin_pct": 26.860596902153382
+        "margin": 4138.0,
+        "margin_pct": 26.077640534408875
       },
       "98": {
-        "dem_votes": 5458,
-        "rep_votes": 10207,
+        "dem_votes": 5455,
+        "rep_votes": 10204,
         "other_votes": 0,
-        "total_votes": 15665,
+        "total_votes": 15659,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 4749.0,
-        "margin_pct": 30.31599106287903
+        "margin_pct": 30.32760712689188
       },
       "99": {
-        "dem_votes": 3228,
-        "rep_votes": 8830,
+        "dem_votes": 3177,
+        "rep_votes": 8709,
         "other_votes": 0,
-        "total_votes": 12058,
+        "total_votes": 11886,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 5602.0,
-        "margin_pct": 46.45878255100349
+        "margin": 5532.0,
+        "margin_pct": 46.54215042907622
       },
       "100": {
-        "dem_votes": 2325,
-        "rep_votes": 7587,
+        "dem_votes": 2265,
+        "rep_votes": 7435,
         "other_votes": 0,
-        "total_votes": 9912,
+        "total_votes": 9700,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 5262.0,
-        "margin_pct": 53.08716707021792
+        "margin": 5170.0,
+        "margin_pct": 53.29896907216495
       },
       "101": {
-        "dem_votes": 4107,
-        "rep_votes": 6758,
+        "dem_votes": 4046,
+        "rep_votes": 6572,
         "other_votes": 0,
-        "total_votes": 10865,
+        "total_votes": 10618,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2651.0,
-        "margin_pct": 24.399447768062586
+        "margin": 2526.0,
+        "margin_pct": 23.789790921077415
       },
       "102": {
-        "dem_votes": 3364,
-        "rep_votes": 9369,
+        "dem_votes": 3423,
+        "rep_votes": 9553,
         "other_votes": 0,
-        "total_votes": 12733,
+        "total_votes": 12976,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 6005.0,
-        "margin_pct": 47.160920442943535
+        "margin": 6130.0,
+        "margin_pct": 47.24106041923552
       },
       "103": {
-        "dem_votes": 8206,
-        "rep_votes": 5351,
+        "dem_votes": 8203,
+        "rep_votes": 5348,
         "other_votes": 0,
-        "total_votes": 13557,
+        "total_votes": 13551,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 2855.0,
-        "margin_pct": 21.059231393376116
+        "margin_pct": 21.06855582613829
       },
       "104": {
-        "dem_votes": 5307,
-        "rep_votes": 3872,
+        "dem_votes": 5302,
+        "rep_votes": 3868,
         "other_votes": 0,
-        "total_votes": 9179,
+        "total_votes": 9170,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1435.0,
-        "margin_pct": 15.6335112757381
+        "margin": 1434.0,
+        "margin_pct": 15.637949836423118
       },
       "105": {
-        "dem_votes": 7698,
-        "rep_votes": 5827,
+        "dem_votes": 7658,
+        "rep_votes": 5832,
         "other_votes": 0,
-        "total_votes": 13525,
+        "total_votes": 13490,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1871.0,
-        "margin_pct": 13.833641404805915
+        "margin": 1826.0,
+        "margin_pct": 13.535952557449962
       },
       "106": {
-        "dem_votes": 6387,
-        "rep_votes": 9424,
+        "dem_votes": 6386,
+        "rep_votes": 9423,
         "other_votes": 0,
-        "total_votes": 15811,
+        "total_votes": 15809,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 3037.0,
-        "margin_pct": 19.2081462273101
+        "margin_pct": 19.210576254032514
       },
       "107": {
-        "dem_votes": 3871,
-        "rep_votes": 8499,
+        "dem_votes": 3807,
+        "rep_votes": 8389,
         "other_votes": 0,
-        "total_votes": 12370,
+        "total_votes": 12196,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4628.0,
-        "margin_pct": 37.41309620048504
+        "margin": 4582.0,
+        "margin_pct": 37.5696949819613
       },
       "108": {
-        "dem_votes": 4173,
-        "rep_votes": 8085,
+        "dem_votes": 4164,
+        "rep_votes": 8079,
         "other_votes": 0,
-        "total_votes": 12258,
+        "total_votes": 12243,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3912.0,
-        "margin_pct": 31.91385217816936
+        "margin": 3915.0,
+        "margin_pct": 31.977456505758393
       },
       "109": {
-        "dem_votes": 4237,
-        "rep_votes": 7865,
+        "dem_votes": 4213,
+        "rep_votes": 7844,
         "other_votes": 0,
-        "total_votes": 12102,
+        "total_votes": 12057,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3628.0,
-        "margin_pct": 29.97851594777723
+        "margin": 3631.0,
+        "margin_pct": 30.115285726134193
       },
       "110": {
-        "dem_votes": 4130,
-        "rep_votes": 9787,
+        "dem_votes": 4125,
+        "rep_votes": 9780,
         "other_votes": 0,
-        "total_votes": 13917,
+        "total_votes": 13905,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 5657.0,
-        "margin_pct": 40.64812818854639
+        "margin": 5655.0,
+        "margin_pct": 40.668824163969795
       },
       "111": {
-        "dem_votes": 4522,
-        "rep_votes": 10362,
+        "dem_votes": 4513,
+        "rep_votes": 10352,
         "other_votes": 0,
-        "total_votes": 14884,
+        "total_votes": 14865,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 5840.0,
-        "margin_pct": 39.23676431066917
+        "margin": 5839.0,
+        "margin_pct": 39.28018836192398
       },
       "112": {
-        "dem_votes": 9382,
-        "rep_votes": 5832,
+        "dem_votes": 9492,
+        "rep_votes": 5921,
         "other_votes": 0,
-        "total_votes": 15214,
+        "total_votes": 15413,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 3550.0,
-        "margin_pct": 23.333771526225846
+        "margin": 3571.0,
+        "margin_pct": 23.168753649516642
       },
       "113": {
-        "dem_votes": 6846,
-        "rep_votes": 4481,
+        "dem_votes": 6830,
+        "rep_votes": 4454,
         "other_votes": 0,
-        "total_votes": 11327,
+        "total_votes": 11284,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2365.0,
-        "margin_pct": 20.879314911273948
+        "margin": 2376.0,
+        "margin_pct": 21.056362991846864
       },
       "114": {
-        "dem_votes": 9243,
-        "rep_votes": 6383,
+        "dem_votes": 9047,
+        "rep_votes": 6213,
         "other_votes": 0,
-        "total_votes": 15626,
+        "total_votes": 15260,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2860.0,
-        "margin_pct": 18.302828618968388
+        "margin": 2834.0,
+        "margin_pct": 18.571428571428573
       },
       "115": {
         "dem_votes": 5255,
@@ -1301,290 +1276,290 @@
         "margin_pct": 12.370362450550626
       },
       "116": {
-        "dem_votes": 2908,
-        "rep_votes": 5118,
+        "dem_votes": 3083,
+        "rep_votes": 5694,
         "other_votes": 0,
-        "total_votes": 8026,
+        "total_votes": 8777,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2210.0,
-        "margin_pct": 27.535509593820084
+        "margin": 2611.0,
+        "margin_pct": 29.748205537199503
       },
       "117": {
-        "dem_votes": 4250,
-        "rep_votes": 9529,
+        "dem_votes": 3976,
+        "rep_votes": 8730,
         "other_votes": 0,
-        "total_votes": 13779,
+        "total_votes": 12706,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 5279.0,
-        "margin_pct": 38.31192394223093
+        "margin": 4754.0,
+        "margin_pct": 37.41539430190461
       },
       "118": {
-        "dem_votes": 8021,
-        "rep_votes": 7004,
+        "dem_votes": 7980,
+        "rep_votes": 6970,
         "other_votes": 0,
-        "total_votes": 15025,
+        "total_votes": 14950,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1017.0,
-        "margin_pct": 6.7687188019966715
+        "margin": 1010.0,
+        "margin_pct": 6.755852842809365
       },
       "119": {
-        "dem_votes": 5073,
-        "rep_votes": 5929,
+        "dem_votes": 5107,
+        "rep_votes": 6169,
         "other_votes": 0,
-        "total_votes": 11002,
+        "total_votes": 11276,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 856.0,
-        "margin_pct": 7.780403562988547
+        "margin": 1062.0,
+        "margin_pct": 9.418233416105002
       },
       "120": {
-        "dem_votes": 6628,
-        "rep_votes": 7663,
+        "dem_votes": 6601,
+        "rep_votes": 7566,
         "other_votes": 0,
-        "total_votes": 14291,
+        "total_votes": 14167,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1035.0,
-        "margin_pct": 7.242320341473654
+        "margin": 965.0,
+        "margin_pct": 6.811604432836875
       },
       "121": {
-        "dem_votes": 3901,
-        "rep_votes": 3726,
+        "dem_votes": 3862,
+        "rep_votes": 3683,
         "other_votes": 0,
-        "total_votes": 7627,
+        "total_votes": 7545,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 175.0,
-        "margin_pct": 2.294480136357677
+        "margin": 179.0,
+        "margin_pct": 2.3724320742213383
       },
       "122": {
-        "dem_votes": 4948,
+        "dem_votes": 4943,
         "rep_votes": 0,
         "other_votes": 0,
-        "total_votes": 4948,
+        "total_votes": 4943,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "",
         "winner": "D",
-        "margin": 4948.0,
+        "margin": 4943.0,
         "margin_pct": 100.0
       },
       "123": {
-        "dem_votes": 5811,
-        "rep_votes": 8981,
+        "dem_votes": 5777,
+        "rep_votes": 8972,
         "other_votes": 0,
-        "total_votes": 14792,
+        "total_votes": 14749,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3170.0,
-        "margin_pct": 21.430502974580854
+        "margin": 3195.0,
+        "margin_pct": 21.66248559224354
       },
       "124": {
-        "dem_votes": 4681,
-        "rep_votes": 9529,
+        "dem_votes": 4735,
+        "rep_votes": 9648,
         "other_votes": 0,
-        "total_votes": 14210,
+        "total_votes": 14383,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4848.0,
-        "margin_pct": 34.11681914144968
+        "margin": 4913.0,
+        "margin_pct": 34.15838142251269
       },
       "125": {
-        "dem_votes": 5620,
-        "rep_votes": 11271,
+        "dem_votes": 5653,
+        "rep_votes": 11261,
         "other_votes": 0,
-        "total_votes": 16891,
+        "total_votes": 16914,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 5651.0,
-        "margin_pct": 33.4556864602451
+        "margin": 5608.0,
+        "margin_pct": 33.15596547238974
       },
       "126": {
-        "dem_votes": 4208,
-        "rep_votes": 3614,
+        "dem_votes": 3927,
+        "rep_votes": 3345,
         "other_votes": 0,
-        "total_votes": 7822,
+        "total_votes": 7272,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 594.0,
-        "margin_pct": 7.593965737663002
+        "margin": 582.0,
+        "margin_pct": 8.003300330033003
       },
       "127": {
-        "dem_votes": 2412,
-        "rep_votes": 1693,
+        "dem_votes": 2287,
+        "rep_votes": 1596,
         "other_votes": 0,
-        "total_votes": 4105,
+        "total_votes": 3883,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 719.0,
-        "margin_pct": 17.515225334957368
+        "margin": 691.0,
+        "margin_pct": 17.795518928663405
       },
       "128": {
-        "dem_votes": 5184,
-        "rep_votes": 7726,
+        "dem_votes": 5287,
+        "rep_votes": 7770,
         "other_votes": 0,
-        "total_votes": 12910,
+        "total_votes": 13057,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2542.0,
-        "margin_pct": 19.690162664601086
+        "margin": 2483.0,
+        "margin_pct": 19.01661943784943
       },
       "129": {
-        "dem_votes": 4695,
-        "rep_votes": 4146,
+        "dem_votes": 5071,
+        "rep_votes": 4647,
         "other_votes": 0,
-        "total_votes": 8841,
+        "total_votes": 9718,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 549.0,
-        "margin_pct": 6.209704784526638
+        "margin": 424.0,
+        "margin_pct": 4.363037662070385
       },
       "130": {
-        "dem_votes": 5355,
-        "rep_votes": 8744,
+        "dem_votes": 5351,
+        "rep_votes": 8741,
         "other_votes": 0,
-        "total_votes": 14099,
+        "total_votes": 14092,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3389.0,
-        "margin_pct": 24.037165756436625
+        "margin": 3390.0,
+        "margin_pct": 24.056202100482544
       },
       "131": {
-        "dem_votes": 8214,
-        "rep_votes": 10241,
+        "dem_votes": 9369,
+        "rep_votes": 11424,
         "other_votes": 0,
-        "total_votes": 18455,
+        "total_votes": 20793,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2027.0,
-        "margin_pct": 10.983473313465185
+        "margin": 2055.0,
+        "margin_pct": 9.883133746934064
       },
       "132": {
-        "dem_votes": 8157,
-        "rep_votes": 6473,
+        "dem_votes": 8163,
+        "rep_votes": 6492,
         "other_votes": 0,
-        "total_votes": 14630,
+        "total_votes": 14655,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1684.0,
-        "margin_pct": 11.510594668489405
+        "margin": 1671.0,
+        "margin_pct": 11.402251791197543
       },
       "133": {
-        "dem_votes": 6775,
-        "rep_votes": 5311,
+        "dem_votes": 6748,
+        "rep_votes": 5304,
         "other_votes": 0,
-        "total_votes": 12086,
+        "total_votes": 12052,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1464.0,
-        "margin_pct": 12.113188813503227
+        "margin": 1444.0,
+        "margin_pct": 11.981413873216065
       },
       "134": {
-        "dem_votes": 5054,
-        "rep_votes": 3803,
+        "dem_votes": 4320,
+        "rep_votes": 3127,
         "other_votes": 0,
-        "total_votes": 8857,
+        "total_votes": 7447,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1251.0,
-        "margin_pct": 14.124421361634864
+        "margin": 1193.0,
+        "margin_pct": 16.019873774674366
       },
       "135": {
-        "dem_votes": 7921,
-        "rep_votes": 4421,
+        "dem_votes": 7881,
+        "rep_votes": 4370,
         "other_votes": 0,
-        "total_votes": 12342,
+        "total_votes": 12251,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 3500.0,
-        "margin_pct": 28.358450818343865
+        "margin": 3511.0,
+        "margin_pct": 28.658884988980493
       },
       "136": {
-        "dem_votes": 6086,
-        "rep_votes": 4373,
+        "dem_votes": 5989,
+        "rep_votes": 4220,
         "other_votes": 0,
-        "total_votes": 10459,
+        "total_votes": 10209,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1713.0,
-        "margin_pct": 16.37823883736495
+        "margin": 1769.0,
+        "margin_pct": 17.327847977274953
       },
       "137": {
-        "dem_votes": 8284,
-        "rep_votes": 7628,
+        "dem_votes": 8587,
+        "rep_votes": 7937,
         "other_votes": 0,
-        "total_votes": 15912,
+        "total_votes": 16524,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 656.0,
-        "margin_pct": 4.122674710910005
+        "margin": 650.0,
+        "margin_pct": 3.9336722343258295
       },
       "138": {
-        "dem_votes": 6884,
-        "rep_votes": 9722,
+        "dem_votes": 6606,
+        "rep_votes": 9449,
         "other_votes": 0,
-        "total_votes": 16606,
+        "total_votes": 16055,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2838.0,
-        "margin_pct": 17.090208358424665
+        "margin": 2843.0,
+        "margin_pct": 17.707879165369043
       },
       "139": {
         "dem_votes": 5434,
-        "rep_votes": 9601,
+        "rep_votes": 9600,
         "other_votes": 0,
-        "total_votes": 15035,
+        "total_votes": 15034,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4167.0,
-        "margin_pct": 27.715330894579317
+        "margin": 4166.0,
+        "margin_pct": 27.710522814952775
       },
       "140": {
-        "dem_votes": 7288,
-        "rep_votes": 6502,
+        "dem_votes": 7287,
+        "rep_votes": 6501,
         "other_votes": 0,
-        "total_votes": 13790,
+        "total_votes": 13788,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 786.0,
-        "margin_pct": 5.699782451051487
+        "margin_pct": 5.700609225413403
       },
       "141": {
-        "dem_votes": 6331,
-        "rep_votes": 4917,
+        "dem_votes": 6323,
+        "rep_votes": 4905,
         "other_votes": 0,
-        "total_votes": 11248,
+        "total_votes": 11228,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1414.0,
-        "margin_pct": 12.571123755334282
+        "margin": 1418.0,
+        "margin_pct": 12.62914143213395
       },
       "142": {
         "dem_votes": 8978,
@@ -1598,15 +1573,15 @@
         "margin_pct": 3.8912380238719693
       },
       "143": {
-        "dem_votes": 9836,
-        "rep_votes": 11944,
+        "dem_votes": 9835,
+        "rep_votes": 11943,
         "other_votes": 0,
-        "total_votes": 21780,
+        "total_votes": 21778,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 2108.0,
-        "margin_pct": 9.67860422405877
+        "margin_pct": 9.679493066397281
       },
       "144": {
         "dem_votes": 9179,
@@ -1620,37 +1595,37 @@
         "margin_pct": 3.5160561307615494
       },
       "145": {
-        "dem_votes": 7277,
-        "rep_votes": 10472,
+        "dem_votes": 7275,
+        "rep_votes": 10470,
         "other_votes": 0,
-        "total_votes": 17749,
+        "total_votes": 17745,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 3195.0,
-        "margin_pct": 18.001014141641782
+        "margin_pct": 18.005071851225697
       },
       "146": {
-        "dem_votes": 6466,
-        "rep_votes": 5749,
+        "dem_votes": 6463,
+        "rep_votes": 5746,
         "other_votes": 0,
-        "total_votes": 12215,
+        "total_votes": 12209,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 717.0,
-        "margin_pct": 5.869832173557102
+        "margin_pct": 5.872716848226718
       },
       "147": {
-        "dem_votes": 7377,
-        "rep_votes": 10130,
+        "dem_votes": 7665,
+        "rep_votes": 10503,
         "other_votes": 0,
-        "total_votes": 17507,
+        "total_votes": 18168,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2753.0,
-        "margin_pct": 15.725138516022163
+        "margin": 2838.0,
+        "margin_pct": 15.620871862615587
       },
       "148": {
         "dem_votes": 15124,
@@ -1686,15 +1661,15 @@
         "margin_pct": 8.671512792627784
       },
       "151": {
-        "dem_votes": 10631,
-        "rep_votes": 7335,
+        "dem_votes": 10255,
+        "rep_votes": 7169,
         "other_votes": 0,
-        "total_votes": 17966,
+        "total_votes": 17424,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 3296.0,
-        "margin_pct": 18.34576422130691
+        "margin": 3086.0,
+        "margin_pct": 17.711202938475665
       },
       "152": {
         "dem_votes": 9001,
@@ -1708,15 +1683,15 @@
         "margin_pct": 17.66013071895425
       },
       "153": {
-        "dem_votes": 11418,
-        "rep_votes": 5984,
+        "dem_votes": 11787,
+        "rep_votes": 6144,
         "other_votes": 0,
-        "total_votes": 17402,
+        "total_votes": 17931,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 5434.0,
-        "margin_pct": 31.22629582806574
+        "margin": 5643.0,
+        "margin_pct": 31.470637443533544
       },
       "154": {
         "dem_votes": 14927,
@@ -1730,15 +1705,15 @@
         "margin_pct": 59.681215233204966
       },
       "155": {
-        "dem_votes": 9640,
-        "rep_votes": 8278,
+        "dem_votes": 9638,
+        "rep_votes": 8276,
         "other_votes": 0,
-        "total_votes": 17918,
+        "total_votes": 17914,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 1362.0,
-        "margin_pct": 7.601294787364661
+        "margin_pct": 7.602992073238808
       },
       "156": {
         "dem_votes": 10075,
@@ -1752,15 +1727,15 @@
         "margin_pct": 13.431659536140508
       },
       "157": {
-        "dem_votes": 12223,
-        "rep_votes": 9114,
+        "dem_votes": 12843,
+        "rep_votes": 9529,
         "other_votes": 0,
-        "total_votes": 21337,
+        "total_votes": 22372,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 3109.0,
-        "margin_pct": 14.57093312086985
+        "margin": 3314.0,
+        "margin_pct": 14.813159306275702
       },
       "158": {
         "dem_votes": 9176,
@@ -1774,158 +1749,158 @@
         "margin_pct": 9.47267955141971
       },
       "159": {
-        "dem_votes": 5746,
-        "rep_votes": 3722,
+        "dem_votes": 5710,
+        "rep_votes": 3714,
         "other_votes": 0,
-        "total_votes": 9468,
+        "total_votes": 9424,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2024.0,
-        "margin_pct": 21.377270806928603
+        "margin": 1996.0,
+        "margin_pct": 21.179966044142613
       },
       "160": {
-        "dem_votes": 9669,
-        "rep_votes": 11004,
+        "dem_votes": 9664,
+        "rep_votes": 11000,
         "other_votes": 0,
-        "total_votes": 20673,
+        "total_votes": 20664,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1335.0,
-        "margin_pct": 6.457698447250036
+        "margin": 1336.0,
+        "margin_pct": 6.465350367789393
       },
       "161": {
-        "dem_votes": 9399,
-        "rep_votes": 8465,
+        "dem_votes": 9425,
+        "rep_votes": 8462,
         "other_votes": 0,
-        "total_votes": 17864,
+        "total_votes": 17887,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 934.0,
-        "margin_pct": 5.228392297357814
+        "margin": 963.0,
+        "margin_pct": 5.383798289260357
       },
       "162": {
-        "dem_votes": 6888,
-        "rep_votes": 7209,
+        "dem_votes": 6886,
+        "rep_votes": 7207,
         "other_votes": 0,
-        "total_votes": 14097,
+        "total_votes": 14093,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
         "margin": 321.0,
-        "margin_pct": 2.2770802298361352
+        "margin_pct": 2.2777265309018664
       },
       "163": {
-        "dem_votes": 7500,
-        "rep_votes": 7196,
+        "dem_votes": 7550,
+        "rep_votes": 7243,
         "other_votes": 0,
-        "total_votes": 14696,
+        "total_votes": 14793,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 304.0,
-        "margin_pct": 2.0685900925421885
+        "margin": 307.0,
+        "margin_pct": 2.075305887919962
       },
       "164": {
-        "dem_votes": 6736,
-        "rep_votes": 2119,
+        "dem_votes": 6734,
+        "rep_votes": 2117,
         "other_votes": 0,
-        "total_votes": 8855,
+        "total_votes": 8851,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 4617.0,
-        "margin_pct": 52.140033879164314
+        "margin_pct": 52.16359733363461
       },
       "165": {
-        "dem_votes": 11937,
-        "rep_votes": 10385,
+        "dem_votes": 11885,
+        "rep_votes": 10313,
         "other_votes": 0,
-        "total_votes": 22322,
+        "total_votes": 22198,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1552.0,
-        "margin_pct": 6.952782008780575
+        "margin": 1572.0,
+        "margin_pct": 7.081719073790431
       },
       "166": {
-        "dem_votes": 12857,
-        "rep_votes": 8723,
+        "dem_votes": 12895,
+        "rep_votes": 8777,
         "other_votes": 0,
-        "total_votes": 21580,
+        "total_votes": 21672,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 4134.0,
-        "margin_pct": 19.156626506024097
+        "margin": 4118.0,
+        "margin_pct": 19.001476559616094
       },
       "167": {
-        "dem_votes": 10019,
-        "rep_votes": 7426,
+        "dem_votes": 9759,
+        "rep_votes": 7229,
         "other_votes": 0,
-        "total_votes": 17445,
+        "total_votes": 16988,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 2593.0,
-        "margin_pct": 14.863857838922328
+        "margin": 2530.0,
+        "margin_pct": 14.892865552154461
       },
       "168": {
-        "dem_votes": 10171,
-        "rep_votes": 8450,
+        "dem_votes": 10163,
+        "rep_votes": 8443,
         "other_votes": 0,
-        "total_votes": 18621,
+        "total_votes": 18606,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 1721.0,
-        "margin_pct": 9.242253369851243
+        "margin": 1720.0,
+        "margin_pct": 9.244329786090509
       },
       "169": {
-        "dem_votes": 3871,
-        "rep_votes": 7858,
+        "dem_votes": 3841,
+        "rep_votes": 7800,
         "other_votes": 0,
-        "total_votes": 11729,
+        "total_votes": 11641,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 3987.0,
-        "margin_pct": 33.99266774661097
+        "margin": 3959.0,
+        "margin_pct": 34.00910574692896
       },
       "170": {
-        "dem_votes": 4867,
-        "rep_votes": 5289,
+        "dem_votes": 4839,
+        "rep_votes": 5249,
         "other_votes": 0,
-        "total_votes": 10156,
+        "total_votes": 10088,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 422.0,
-        "margin_pct": 4.155179204411185
+        "margin": 410.0,
+        "margin_pct": 4.064234734337827
       },
       "171": {
-        "dem_votes": 4818,
-        "rep_votes": 9968,
+        "dem_votes": 4564,
+        "rep_votes": 9675,
         "other_votes": 0,
-        "total_votes": 14786,
+        "total_votes": 14239,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 5150.0,
-        "margin_pct": 34.830244826186934
+        "margin": 5111.0,
+        "margin_pct": 35.894374604958216
       },
       "172": {
-        "dem_votes": 5008,
-        "rep_votes": 4197,
+        "dem_votes": 5032,
+        "rep_votes": 4232,
         "other_votes": 0,
-        "total_votes": 9205,
+        "total_votes": 9264,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 811.0,
-        "margin_pct": 8.810429114611624
+        "margin": 800.0,
+        "margin_pct": 8.635578583765112
       },
       "173": {
         "dem_votes": 4072,
@@ -1950,15 +1925,15 @@
         "margin_pct": 13.769518647567427
       },
       "175": {
-        "dem_votes": 11227,
-        "rep_votes": 1685,
+        "dem_votes": 11511,
+        "rep_votes": 1706,
         "other_votes": 0,
-        "total_votes": 12912,
+        "total_votes": 13217,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 9542.0,
-        "margin_pct": 73.9002478314746
+        "margin": 9805.0,
+        "margin_pct": 74.18476204887645
       },
       "176": {
         "dem_votes": 4927,
@@ -1972,15 +1947,15 @@
         "margin_pct": 13.833508219657222
       },
       "177": {
-        "dem_votes": 4539,
-        "rep_votes": 2748,
+        "dem_votes": 4538,
+        "rep_votes": 2747,
         "other_votes": 0,
-        "total_votes": 7287,
+        "total_votes": 7285,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 1791.0,
-        "margin_pct": 24.578015644298066
+        "margin_pct": 24.584763212079615
       },
       "178": {
         "dem_votes": 9372,
@@ -2016,37 +1991,37 @@
         "margin_pct": 55.99022004889975
       },
       "181": {
-        "dem_votes": 5543,
-        "rep_votes": 334,
+        "dem_votes": 5248,
+        "rep_votes": 301,
         "other_votes": 0,
-        "total_votes": 5877,
+        "total_votes": 5549,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 5209.0,
-        "margin_pct": 88.63365662753105
+        "margin": 4947.0,
+        "margin_pct": 89.15119841412867
       },
       "182": {
-        "dem_votes": 13641,
-        "rep_votes": 1495,
+        "dem_votes": 13640,
+        "rep_votes": 1493,
         "other_votes": 0,
-        "total_votes": 15136,
+        "total_votes": 15133,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 12146.0,
-        "margin_pct": 80.24577167019028
+        "margin": 12147.0,
+        "margin_pct": 80.26828784774995
       },
       "183": {
-        "dem_votes": 6873,
-        "rep_votes": 9517,
+        "dem_votes": 6860,
+        "rep_votes": 9510,
         "other_votes": 0,
-        "total_votes": 16390,
+        "total_votes": 16370,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2644.0,
-        "margin_pct": 16.13178767541184
+        "margin": 2650.0,
+        "margin_pct": 16.188149053146
       },
       "184": {
         "dem_votes": 7814,
@@ -2060,15 +2035,15 @@
         "margin_pct": 51.68397554110453
       },
       "185": {
-        "dem_votes": 5492,
-        "rep_votes": 2744,
+        "dem_votes": 5491,
+        "rep_votes": 2743,
         "other_votes": 0,
-        "total_votes": 8236,
+        "total_votes": 8234,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 2748.0,
-        "margin_pct": 33.36571151044196
+        "margin_pct": 33.373815885353416
       },
       "186": {
         "dem_votes": 8810,
@@ -2082,59 +2057,59 @@
         "margin_pct": 85.55181128896378
       },
       "187": {
-        "dem_votes": 7370,
-        "rep_votes": 9348,
+        "dem_votes": 6940,
+        "rep_votes": 8912,
         "other_votes": 0,
-        "total_votes": 16718,
+        "total_votes": 15852,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 1978.0,
-        "margin_pct": 11.83155879889939
+        "margin": 1972.0,
+        "margin_pct": 12.440070653545295
       },
       "188": {
-        "dem_votes": 8546,
-        "rep_votes": 312,
+        "dem_votes": 8544,
+        "rep_votes": 310,
         "other_votes": 0,
-        "total_votes": 8858,
+        "total_votes": 8854,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 8234.0,
-        "margin_pct": 92.95552043350644
+        "margin_pct": 92.99751524734583
       },
       "189": {
-        "dem_votes": 5314,
-        "rep_votes": 4338,
+        "dem_votes": 5308,
+        "rep_votes": 4333,
         "other_votes": 0,
-        "total_votes": 9652,
+        "total_votes": 9641,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 976.0,
-        "margin_pct": 10.111893907998343
+        "margin": 975.0,
+        "margin_pct": 10.113058811326626
       },
       "190": {
-        "dem_votes": 7382,
-        "rep_votes": 265,
+        "dem_votes": 7381,
+        "rep_votes": 264,
         "other_votes": 0,
-        "total_votes": 7647,
+        "total_votes": 7645,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 7117.0,
-        "margin_pct": 93.06917745521119
+        "margin_pct": 93.09352517985612
       },
       "191": {
-        "dem_votes": 6938,
-        "rep_votes": 514,
+        "dem_votes": 6883,
+        "rep_votes": 461,
         "other_votes": 0,
-        "total_votes": 7452,
+        "total_votes": 7344,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
-        "margin": 6424.0,
-        "margin_pct": 86.20504562533549
+        "margin": 6422.0,
+        "margin_pct": 87.44553376906318
       },
       "192": {
         "dem_votes": 8300,
@@ -2148,15 +2123,15 @@
         "margin_pct": 91.68591224018475
       },
       "193": {
-        "dem_votes": 3712,
-        "rep_votes": 8509,
+        "dem_votes": 3707,
+        "rep_votes": 8503,
         "other_votes": 0,
-        "total_votes": 12221,
+        "total_votes": 12210,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4797.0,
-        "margin_pct": 39.25210702888471
+        "margin": 4796.0,
+        "margin_pct": 39.27927927927928
       },
       "194": {
         "dem_votes": 11203,
@@ -2181,48 +2156,48 @@
         "margin_pct": 86.43168064550377
       },
       "196": {
-        "dem_votes": 4043,
-        "rep_votes": 8605,
+        "dem_votes": 4021,
+        "rep_votes": 8561,
         "other_votes": 0,
-        "total_votes": 12648,
+        "total_votes": 12582,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 4562.0,
-        "margin_pct": 36.068943706514865
+        "margin": 4540.0,
+        "margin_pct": 36.08329359402321
       },
       "197": {
-        "dem_votes": 3321,
-        "rep_votes": 253,
+        "dem_votes": 3319,
+        "rep_votes": 251,
         "other_votes": 0,
-        "total_votes": 3574,
+        "total_votes": 3570,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 3068.0,
-        "margin_pct": 85.84219362059318
+        "margin_pct": 85.93837535014006
       },
       "198": {
-        "dem_votes": 7056,
-        "rep_votes": 303,
+        "dem_votes": 7055,
+        "rep_votes": 302,
         "other_votes": 0,
-        "total_votes": 7359,
+        "total_votes": 7357,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "D",
         "margin": 6753.0,
-        "margin_pct": 91.76518548715859
+        "margin_pct": 91.79013184722034
       },
       "199": {
-        "dem_votes": 5055,
-        "rep_votes": 7619,
+        "dem_votes": 5208,
+        "rep_votes": 7847,
         "other_votes": 0,
-        "total_votes": 12674,
+        "total_votes": 13055,
         "dem_candidate": "Maria McLaughlin",
         "rep_candidate": "Kevin Brobson",
         "winner": "R",
-        "margin": 2564.0,
-        "margin_pct": 20.230392930408712
+        "margin": 2639.0,
+        "margin_pct": 20.214477211796247
       },
       "200": {
         "dem_votes": 16432,

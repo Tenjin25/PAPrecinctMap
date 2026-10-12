@@ -6,219 +6,196 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
-    "allocation_audit": {
-      "source_rows": 12518,
-      "source_votes": 1386320,
-      "matched_rows": 12518,
-      "matched_votes": 1386320,
-      "unmatched_rows": 0,
-      "unmatched_votes": 0,
-      "unmatched_precincts": [],
-      "unmatched_precinct_votes": {},
-      "mapping_methods": {
-        "adjacent_2000_historical_name_to_vtd_block_chain": 9,
-        "adjacent_2000_historical_vtd_block_chain": 72,
-        "adjacent_2002_historical_name_to_vtd_block_chain": 16,
-        "adjacent_2002_historical_vtd_block_chain": 30849,
-        "current_precinct_or_vtd_name": 34
-      },
-      "allocated_rows": 12518,
-      "allocated_votes": 1386320,
-      "unallocated_rows": 0,
-      "unallocated_votes": 0,
-      "allocation_vote_delta": 0,
-      "conserved_for_matched_rows": true
-    }
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 45518,
-        "rep_votes": 60044,
+        "dem_votes": 44487,
+        "rep_votes": 57514,
         "other_votes": 0,
-        "total_votes": 105562,
+        "total_votes": 102001,
         "dem_candidate": "Kate Ford Elliott",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 14526.0,
-        "margin_pct": 13.760633561319413
+        "margin": 13027.0,
+        "margin_pct": 12.7714434172214
       },
       "2": {
         "dem_votes": 0,
-        "rep_votes": 22171,
+        "rep_votes": 22034,
         "other_votes": 0,
-        "total_votes": 22171,
+        "total_votes": 22034,
         "dem_candidate": "",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 22171.0,
+        "margin": 22034.0,
         "margin_pct": 100.0
       },
       "3": {
-        "dem_votes": 5,
-        "rep_votes": 9296,
+        "dem_votes": 0,
+        "rep_votes": 9369,
         "other_votes": 0,
-        "total_votes": 9301,
+        "total_votes": 9369,
         "dem_candidate": "",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 9291.0,
-        "margin_pct": 99.89248467906677
+        "margin": 9369.0,
+        "margin_pct": 100.0
       },
       "4": {
-        "dem_votes": 48303,
-        "rep_votes": 60528,
-        "other_votes": 12,
-        "total_votes": 108843,
+        "dem_votes": 48340,
+        "rep_votes": 60987,
+        "other_votes": 11,
+        "total_votes": 109338,
         "dem_candidate": "Kate Ford Elliott",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 12225.0,
-        "margin_pct": 11.231774206885147
+        "margin": 12647.0,
+        "margin_pct": 11.566884340302549
       },
       "5": {
-        "dem_votes": 46292,
-        "rep_votes": 70448,
+        "dem_votes": 44901,
+        "rep_votes": 67650,
         "other_votes": 0,
-        "total_votes": 116740,
+        "total_votes": 112551,
         "dem_candidate": "Kate Ford Elliott",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 24156.0,
-        "margin_pct": 20.69213637142368
+        "margin": 22749.0,
+        "margin_pct": 20.2121704827145
       },
       "6": {
-        "dem_votes": 35801,
-        "rep_votes": 53141,
-        "other_votes": 137,
-        "total_votes": 89079,
+        "dem_votes": 33047,
+        "rep_votes": 48118,
+        "other_votes": 118,
+        "total_votes": 81283,
         "dem_candidate": "Kate Ford Elliott",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 17340.0,
-        "margin_pct": 19.46586737614926
+        "margin": 15071.0,
+        "margin_pct": 18.54139241907902
       },
       "7": {
-        "dem_votes": 19,
-        "rep_votes": 49905,
+        "dem_votes": 0,
+        "rep_votes": 47893,
         "other_votes": 0,
-        "total_votes": 49924,
+        "total_votes": 47893,
         "dem_candidate": "",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 49886.0,
-        "margin_pct": 99.92388430414229
+        "margin": 47893.0,
+        "margin_pct": 100.0
       },
       "8": {
         "dem_votes": 0,
-        "rep_votes": 60079,
+        "rep_votes": 52736,
         "other_votes": 0,
-        "total_votes": 60079,
+        "total_votes": 52736,
         "dem_candidate": "",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 60079.0,
+        "margin": 52736.0,
         "margin_pct": 100.0
       },
       "9": {
-        "dem_votes": 2769,
-        "rep_votes": 91037,
-        "other_votes": 6,
-        "total_votes": 93812,
+        "dem_votes": 2916,
+        "rep_votes": 81245,
+        "other_votes": 3,
+        "total_votes": 84164,
         "dem_candidate": "Kate Ford Elliott",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 88268.0,
-        "margin_pct": 94.09030827612672
+        "margin": 78329.0,
+        "margin_pct": 93.06710707665985
       },
       "10": {
-        "dem_votes": 10164,
-        "rep_votes": 72987,
+        "dem_votes": 9973,
+        "rep_votes": 68475,
         "other_votes": 0,
-        "total_votes": 83151,
+        "total_votes": 78448,
         "dem_candidate": "Kate Ford Elliott",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 62823.0,
-        "margin_pct": 75.55290976656926
+        "margin": 58502.0,
+        "margin_pct": 74.57424026106465
       },
       "11": {
-        "dem_votes": 6489,
-        "rep_votes": 61606,
+        "dem_votes": 6627,
+        "rep_votes": 59062,
         "other_votes": 0,
-        "total_votes": 68095,
+        "total_votes": 65689,
         "dem_candidate": "Kate Ford Elliott",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 55117.0,
-        "margin_pct": 80.94133196269917
+        "margin": 52435.0,
+        "margin_pct": 79.82310584724992
       },
       "12": {
-        "dem_votes": 76741,
-        "rep_votes": 51473,
+        "dem_votes": 14278,
+        "rep_votes": 18171,
         "other_votes": 0,
-        "total_votes": 128214,
+        "total_votes": 32449,
         "dem_candidate": "Kate Ford Elliott",
         "rep_candidate": "Mike Eakin",
-        "winner": "D",
-        "margin": 25268.0,
-        "margin_pct": 19.707676228804967
+        "winner": "R",
+        "margin": 3893.0,
+        "margin_pct": 11.997288052020092
       },
       "13": {
-        "dem_votes": 1,
-        "rep_votes": 82646,
+        "dem_votes": 0,
+        "rep_votes": 80663,
         "other_votes": 0,
-        "total_votes": 82647,
+        "total_votes": 80663,
         "dem_candidate": "",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 82645.0,
-        "margin_pct": 99.99758006945201
+        "margin": 80663.0,
+        "margin_pct": 100.0
       },
       "14": {
-        "dem_votes": 11975,
-        "rep_votes": 66335,
+        "dem_votes": 11590,
+        "rep_votes": 65649,
         "other_votes": 0,
-        "total_votes": 78310,
+        "total_votes": 77239,
         "dem_candidate": "Kate Ford Elliott",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 54360.0,
-        "margin_pct": 69.41642191291024
+        "margin": 54059.0,
+        "margin_pct": 69.98925413327464
       },
       "15": {
         "dem_votes": 0,
-        "rep_votes": 88372,
+        "rep_votes": 84902,
         "other_votes": 0,
-        "total_votes": 88372,
+        "total_votes": 84902,
         "dem_candidate": "",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 88372.0,
+        "margin": 84902.0,
         "margin_pct": 100.0
       },
       "16": {
-        "dem_votes": 4,
-        "rep_votes": 80623,
+        "dem_votes": 0,
+        "rep_votes": 77639,
         "other_votes": 0,
-        "total_votes": 80627,
+        "total_votes": 77639,
         "dem_candidate": "",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 80619.0,
-        "margin_pct": 99.9900777655128
+        "margin": 77639.0,
+        "margin_pct": 100.0
       },
       "17": {
-        "dem_votes": 55654,
-        "rep_votes": 65739,
+        "dem_votes": 24225,
+        "rep_votes": 38473,
         "other_votes": 0,
-        "total_votes": 121393,
+        "total_votes": 62698,
         "dem_candidate": "Kate Ford Elliott",
         "rep_candidate": "Mike Eakin",
         "winner": "R",
-        "margin": 10085.0,
-        "margin_pct": 8.307727793200597
+        "margin": 14248.0,
+        "margin_pct": 22.724807808861527
       }
     }
   }

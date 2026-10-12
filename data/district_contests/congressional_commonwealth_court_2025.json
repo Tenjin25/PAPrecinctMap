@@ -6,222 +6,196 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
-    "allocation_audit": {
-      "source_rows": 18269,
-      "source_votes": 3660293,
-      "matched_rows": 18269,
-      "matched_votes": 3660293,
-      "unmatched_rows": 0,
-      "unmatched_votes": 0,
-      "unmatched_precincts": [],
-      "unmatched_precinct_votes": {},
-      "mapping_methods": {
-        "adjusted_vtd_code": 16334,
-        "adjusted_vtd_code+adjusted_vtd_name": 8,
-        "adjusted_vtd_name": 2016,
-        "census_block_population": 8,
-        "corrected_from_2020_block_chain": 4,
-        "current_precinct_or_vtd_name": 80,
-        "live_vtd_chain": 322,
-        "vtd10_nhgis_block_chain": 5
-      },
-      "allocated_rows": 18269,
-      "allocated_votes": 3660293,
-      "unallocated_rows": 0,
-      "unallocated_votes": 0,
-      "allocation_vote_delta": 0,
-      "conserved_for_matched_rows": true
-    }
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 156857,
-        "rep_votes": 121753,
+        "dem_votes": 156942,
+        "rep_votes": 121765,
         "other_votes": 0,
-        "total_votes": 278610,
+        "total_votes": 278707,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 35104.0,
-        "margin_pct": 12.599691324790927
+        "margin": 35177.0,
+        "margin_pct": 12.621498563007027
       },
       "2": {
-        "dem_votes": 94488,
-        "rep_votes": 30916,
+        "dem_votes": 94772,
+        "rep_votes": 30925,
         "other_votes": 0,
-        "total_votes": 125404,
+        "total_votes": 125697,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 63572.0,
-        "margin_pct": 50.693757774871614
+        "margin": 63847.0,
+        "margin_pct": 50.79437058959243
       },
       "3": {
-        "dem_votes": 196758,
-        "rep_votes": 13742,
+        "dem_votes": 196450,
+        "rep_votes": 13707,
         "other_votes": 0,
-        "total_votes": 210500,
+        "total_votes": 210157,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 183016.0,
-        "margin_pct": 86.94346793349169
+        "margin": 182743.0,
+        "margin_pct": 86.95546662733099
       },
       "4": {
-        "dem_votes": 176704,
-        "rep_votes": 92371,
+        "dem_votes": 175830,
+        "rep_votes": 91872,
         "other_votes": 0,
-        "total_votes": 269075,
+        "total_votes": 267702,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 84333.0,
-        "margin_pct": 31.34181919539162
+        "margin": 83958.0,
+        "margin_pct": 31.36248515139969
       },
       "5": {
-        "dem_votes": 159662,
-        "rep_votes": 71649,
+        "dem_votes": 159773,
+        "rep_votes": 71656,
         "other_votes": 0,
-        "total_votes": 231311,
+        "total_votes": 231429,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 88013.0,
-        "margin_pct": 38.04963879798194
+        "margin": 88117.0,
+        "margin_pct": 38.07517640399431
       },
       "6": {
-        "dem_votes": 150071,
-        "rep_votes": 91154,
+        "dem_votes": 150499,
+        "rep_votes": 91442,
         "other_votes": 0,
-        "total_votes": 241225,
+        "total_votes": 241941,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 58917.0,
-        "margin_pct": 24.42408539745051
+        "margin": 59057.0,
+        "margin_pct": 24.40967012618779
       },
       "7": {
-        "dem_votes": 117393,
-        "rep_votes": 85353,
+        "dem_votes": 117354,
+        "rep_votes": 85317,
         "other_votes": 0,
-        "total_votes": 202746,
+        "total_votes": 202671,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 32040.0,
-        "margin_pct": 15.80302447397236
+        "margin": 32037.0,
+        "margin_pct": 15.80739227615199
       },
       "8": {
-        "dem_votes": 104390,
-        "rep_votes": 85785,
+        "dem_votes": 104292,
+        "rep_votes": 86216,
         "other_votes": 0,
-        "total_votes": 190175,
+        "total_votes": 190508,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 18605.0,
-        "margin_pct": 9.783094518206914
+        "margin": 18076.0,
+        "margin_pct": 9.48831545131963
       },
       "9": {
-        "dem_votes": 72538,
-        "rep_votes": 121719,
+        "dem_votes": 72281,
+        "rep_votes": 120890,
         "other_votes": 0,
-        "total_votes": 194257,
+        "total_votes": 193171,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "R",
-        "margin": 49181.0,
-        "margin_pct": 25.317491776358125
+        "margin": 48609.0,
+        "margin_pct": 25.163715050395762
       },
       "10": {
-        "dem_votes": 113440,
-        "rep_votes": 101328,
+        "dem_votes": 113229,
+        "rep_votes": 101098,
         "other_votes": 0,
-        "total_votes": 214768,
+        "total_votes": 214327,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 12112.0,
-        "margin_pct": 5.639573865752812
+        "margin": 12131.0,
+        "margin_pct": 5.66004283174775
       },
       "11": {
-        "dem_votes": 96218,
-        "rep_votes": 110985,
+        "dem_votes": 96352,
+        "rep_votes": 111143,
         "other_votes": 0,
-        "total_votes": 207203,
+        "total_votes": 207495,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "R",
-        "margin": 14767.0,
-        "margin_pct": 7.126827314276338
+        "margin": 14791.0,
+        "margin_pct": 7.1283645389045525
       },
       "12": {
-        "dem_votes": 157064,
-        "rep_votes": 71850,
+        "dem_votes": 98298,
+        "rep_votes": 45392,
         "other_votes": 0,
-        "total_votes": 228914,
+        "total_votes": 143690,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 85214.0,
-        "margin_pct": 37.225333531369856
+        "margin": 52906.0,
+        "margin_pct": 36.81954206973345
       },
       "13": {
-        "dem_votes": 66171,
-        "rep_votes": 127622,
+        "dem_votes": 66058,
+        "rep_votes": 127510,
         "other_votes": 0,
-        "total_votes": 193793,
+        "total_votes": 193568,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "R",
-        "margin": 61451.0,
-        "margin_pct": 31.7096076741678
+        "margin": 61452.0,
+        "margin_pct": 31.74698297239213
       },
       "14": {
-        "dem_votes": 87689,
-        "rep_votes": 116460,
+        "dem_votes": 87611,
+        "rep_votes": 116383,
         "other_votes": 0,
-        "total_votes": 204149,
+        "total_votes": 203994,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "R",
-        "margin": 28771.0,
-        "margin_pct": 14.093137855194001
+        "margin": 28772.0,
+        "margin_pct": 14.10433640205104
       },
       "15": {
-        "dem_votes": 75202,
-        "rep_votes": 128090,
+        "dem_votes": 75110,
+        "rep_votes": 127996,
         "other_votes": 0,
-        "total_votes": 203292,
+        "total_votes": 203106,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "R",
-        "margin": 52888.0,
-        "margin_pct": 26.015780256970267
+        "margin": 52886.0,
+        "margin_pct": 26.038620227861315
       },
       "16": {
-        "dem_votes": 97850,
-        "rep_votes": 117562,
+        "dem_votes": 97762,
+        "rep_votes": 117475,
         "other_votes": 0,
-        "total_votes": 215412,
+        "total_votes": 215237,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "R",
-        "margin": 19712.0,
-        "margin_pct": 9.150836536497502
+        "margin": 19713.0,
+        "margin_pct": 9.158741294480038
       },
       "17": {
-        "dem_votes": 153575,
-        "rep_votes": 95884,
+        "dem_votes": 113753,
+        "rep_votes": 72470,
         "other_votes": 0,
-        "total_votes": 249459,
+        "total_votes": 186223,
         "dem_candidate": "Stella Tsai",
         "rep_candidate": "Matthew Wolford",
         "winner": "D",
-        "margin": 57691.0,
-        "margin_pct": 23.126445628339727
+        "margin": 41283.0,
+        "margin_pct": 22.16858282811468
       }
     }
   }
