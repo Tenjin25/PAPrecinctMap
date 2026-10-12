@@ -1729,9 +1729,16 @@ def merge_candidate_label(existing, candidate):
     candidate = normalize_candidate_label(candidate)
     if not candidate:
         return existing
-    names = [part.strip() for part in existing.split(' / ') if part.strip()]
-    if candidate not in names:
-        names.append(candidate)
+    names = []
+    # Some official exports express a joint ticket with the same delimiter we
+    # use for multiple candidates.  Tokenize both values before de-duplicating;
+    # comparing the complete joint-ticket string to its individual components
+    # caused the ticket to be appended once for every precinct row.
+    for value in (existing, candidate):
+        for part in value.split(' / '):
+            part = part.strip()
+            if part and part not in names:
+                names.append(part)
     return ' / '.join(names)
 
 
