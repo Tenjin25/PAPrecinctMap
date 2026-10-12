@@ -1,0 +1,37 @@
+{
+  "source_url": "https://files7.philadelphiavotes.com/election-results/2011_GENERAL.csv",
+  "source_sha256": "9a6cbebe98c873a1ecd369082e9d9dbe0a40d676678db30cbd317f96878cc542",
+  "row_count": 16870,
+  "precinct_counts": {
+    "John T. Bender": 1687,
+    "Mary Hannah Leavitt": 1687,
+    "Mary Jane Bowes": 1687,
+    "Renee Cohn Jubelirer": 1687,
+    "Robin Simpson": 1687
+  },
+  "county_totals": {
+    "John T. Bender": [
+      64197,
+      22913
+    ],
+    "Mary Hannah Leavitt": [
+      61199,
+      22034
+    ],
+    "Mary Jane Bowes": [
+      65570,
+      20768
+    ],
+    "Renee Cohn Jubelirer": [
+      64126,
+      22600
+    ],
+    "Robin Simpson": [
+      62337,
+      21009
+    ]
+  },
+  "validation": "All five Yes/No totals exactly match official state county returns",
+  "aggregation": "Machine and ballot-type records summed once per ward/division and choice",
+  "geography_status": "Existing Philadelphia identifier convention; spatial matching not validated"
+}

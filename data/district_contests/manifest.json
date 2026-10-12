@@ -3,6 +3,54 @@
   "files": [
     {
       "scope": "congressional",
+      "contest_type": "us_house",
+      "year": 2022,
+      "file": "congressional_us_house_2022.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "us_house",
+      "year": 2024,
+      "file": "congressional_us_house_2024.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "year": 2022,
+      "file": "state_house_state_house_2022.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "year": 2024,
+      "file": "state_house_state_house_2024.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "state_senate",
+      "year": 2022,
+      "file": "state_senate_state_senate_2022.json",
+      "districts": 25,
+      "rows": 25
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "state_senate",
+      "year": 2024,
+      "file": "state_senate_state_senate_2024.json",
+      "districts": 25,
+      "rows": 25
+    },
+    {
+      "scope": "congressional",
       "contest_type": "attorney_general",
       "year": 2000,
       "file": "congressional_attorney_general_2000.json",
@@ -43,9 +91,25 @@
     },
     {
       "scope": "congressional",
+      "contest_type": "supreme_court",
+      "year": 2001,
+      "file": "congressional_supreme_court_2001.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
       "contest_type": "governor",
       "year": 2002,
       "file": "congressional_governor_2002.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "supreme_court",
+      "year": 2003,
+      "file": "congressional_supreme_court_2003.json",
       "districts": 17,
       "rows": 17
     },
@@ -102,6 +166,22 @@
       "contest_type": "us_senate",
       "year": 2006,
       "file": "congressional_us_senate_2006.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court",
+      "year": 2007,
+      "file": "congressional_superior_court_2007.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "supreme_court",
+      "year": 2007,
+      "file": "congressional_supreme_court_2007.json",
       "districts": 17,
       "rows": 17
     },
@@ -203,6 +283,14 @@
     },
     {
       "scope": "congressional",
+      "contest_type": "supreme_court",
+      "year": 2015,
+      "file": "congressional_supreme_court_2015.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
       "contest_type": "attorney_general",
       "year": 2016,
       "file": "congressional_attorney_general_2016.json",
@@ -243,6 +331,54 @@
     },
     {
       "scope": "congressional",
+      "contest_type": "commonwealth_court",
+      "year": 2017,
+      "file": "congressional_commonwealth_court_2017.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court",
+      "year": 2017,
+      "file": "congressional_superior_court_2017.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court_retention_jacqueline_o_shogan",
+      "year": 2017,
+      "file": "congressional_superior_court_retention_jacqueline_o_shogan_2017.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "supreme_court",
+      "year": 2017,
+      "file": "congressional_supreme_court_2017.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "supreme_court_retention_debra_todd",
+      "year": 2017,
+      "file": "congressional_supreme_court_retention_debra_todd_2017.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "supreme_court_retention_thomas_g_saylor",
+      "year": 2017,
+      "file": "congressional_supreme_court_retention_thomas_g_saylor_2017.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
       "contest_type": "governor",
       "year": 2018,
       "file": "congressional_governor_2018.json",
@@ -254,6 +390,38 @@
       "contest_type": "us_senate",
       "year": 2018,
       "file": "congressional_us_senate_2018.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "commonwealth_court_retention_p_kevin_brobson",
+      "year": 2019,
+      "file": "congressional_commonwealth_court_retention_p_kevin_brobson_2019.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "commonwealth_court_retention_patricia_a_mccullough",
+      "year": 2019,
+      "file": "congressional_commonwealth_court_retention_patricia_a_mccullough_2019.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court_retention_anne_e_lazarus",
+      "year": 2019,
+      "file": "congressional_superior_court_retention_anne_e_lazarus_2019.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court_retention_judy_olson",
+      "year": 2019,
+      "file": "congressional_superior_court_retention_judy_olson_2019.json",
       "districts": 17,
       "rows": 17
     },
@@ -291,6 +459,54 @@
     },
     {
       "scope": "congressional",
+      "contest_type": "commonwealth_court_retention_anne_covey",
+      "year": 2021,
+      "file": "congressional_commonwealth_court_retention_anne_covey_2021.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "commonwealth_court_retention_renee_cohn_jubelirer",
+      "year": 2021,
+      "file": "congressional_commonwealth_court_retention_renee_cohn_jubelirer_2021.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court",
+      "year": 2021,
+      "file": "congressional_superior_court_2021.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court_retention_john_t_bender",
+      "year": 2021,
+      "file": "congressional_superior_court_retention_john_t_bender_2021.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court_retention_mary_jane_bowes",
+      "year": 2021,
+      "file": "congressional_superior_court_retention_mary_jane_bowes_2021.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "supreme_court",
+      "year": 2021,
+      "file": "congressional_supreme_court_2021.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
       "contest_type": "governor",
       "year": 2022,
       "file": "congressional_governor_2022.json",
@@ -299,17 +515,49 @@
     },
     {
       "scope": "congressional",
-      "contest_type": "us_house",
+      "contest_type": "us_senate",
       "year": 2022,
-      "file": "congressional_us_house_2022.json",
+      "file": "congressional_us_senate_2022.json",
       "districts": 17,
       "rows": 17
     },
     {
       "scope": "congressional",
-      "contest_type": "us_senate",
-      "year": 2022,
-      "file": "congressional_us_senate_2022.json",
+      "contest_type": "commonwealth_court",
+      "year": 2023,
+      "file": "congressional_commonwealth_court_2023.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court",
+      "year": 2023,
+      "file": "congressional_superior_court_2023.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court_retention_jack_a_panella",
+      "year": 2023,
+      "file": "congressional_superior_court_retention_jack_a_panella_2023.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court_retention_victor_p_stabile",
+      "year": 2023,
+      "file": "congressional_superior_court_retention_victor_p_stabile_2023.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "supreme_court",
+      "year": 2023,
+      "file": "congressional_supreme_court_2023.json",
       "districts": 17,
       "rows": 17
     },
@@ -347,17 +595,65 @@
     },
     {
       "scope": "congressional",
-      "contest_type": "us_house",
+      "contest_type": "us_senate",
       "year": 2024,
-      "file": "congressional_us_house_2024.json",
+      "file": "congressional_us_senate_2024.json",
       "districts": 17,
       "rows": 17
     },
     {
       "scope": "congressional",
-      "contest_type": "us_senate",
-      "year": 2024,
-      "file": "congressional_us_senate_2024.json",
+      "contest_type": "commonwealth_court",
+      "year": 2025,
+      "file": "congressional_commonwealth_court_2025.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "commonwealth_court_retention_michael_h_wojcik",
+      "year": 2025,
+      "file": "congressional_commonwealth_court_retention_michael_h_wojcik_2025.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court",
+      "year": 2025,
+      "file": "congressional_superior_court_2025.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "superior_court_retention_alice_dubow",
+      "year": 2025,
+      "file": "congressional_superior_court_retention_alice_dubow_2025.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "supreme_court_retention_christine_donohue",
+      "year": 2025,
+      "file": "congressional_supreme_court_retention_christine_donohue_2025.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "supreme_court_retention_david_wecht",
+      "year": 2025,
+      "file": "congressional_supreme_court_retention_david_wecht_2025.json",
+      "districts": 17,
+      "rows": 17
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "supreme_court_retention_kevin_m_dougherty",
+      "year": 2025,
+      "file": "congressional_supreme_court_retention_kevin_m_dougherty_2025.json",
       "districts": 17,
       "rows": 17
     },
@@ -403,9 +699,25 @@
     },
     {
       "scope": "state_house",
+      "contest_type": "supreme_court",
+      "year": 2001,
+      "file": "state_house_supreme_court_2001.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
       "contest_type": "governor",
       "year": 2002,
       "file": "state_house_governor_2002.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "supreme_court",
+      "year": 2003,
+      "file": "state_house_supreme_court_2003.json",
       "districts": 203,
       "rows": 203
     },
@@ -462,6 +774,22 @@
       "contest_type": "us_senate",
       "year": 2006,
       "file": "state_house_us_senate_2006.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court",
+      "year": 2007,
+      "file": "state_house_superior_court_2007.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "supreme_court",
+      "year": 2007,
+      "file": "state_house_supreme_court_2007.json",
       "districts": 203,
       "rows": 203
     },
@@ -563,6 +891,14 @@
     },
     {
       "scope": "state_house",
+      "contest_type": "supreme_court",
+      "year": 2015,
+      "file": "state_house_supreme_court_2015.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
       "contest_type": "attorney_general",
       "year": 2016,
       "file": "state_house_attorney_general_2016.json",
@@ -603,11 +939,59 @@
     },
     {
       "scope": "state_house",
+      "contest_type": "commonwealth_court",
+      "year": 2017,
+      "file": "state_house_commonwealth_court_2017.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court",
+      "year": 2017,
+      "file": "state_house_superior_court_2017.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court_retention_jacqueline_o_shogan",
+      "year": 2017,
+      "file": "state_house_superior_court_retention_jacqueline_o_shogan_2017.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "supreme_court",
+      "year": 2017,
+      "file": "state_house_supreme_court_2017.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "supreme_court_retention_debra_todd",
+      "year": 2017,
+      "file": "state_house_supreme_court_retention_debra_todd_2017.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "supreme_court_retention_thomas_g_saylor",
+      "year": 2017,
+      "file": "state_house_supreme_court_retention_thomas_g_saylor_2017.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
       "contest_type": "governor",
       "year": 2018,
       "file": "state_house_governor_2018.json",
       "districts": 203,
-      "rows": 202
+      "rows": 203
     },
     {
       "scope": "state_house",
@@ -615,7 +999,39 @@
       "year": 2018,
       "file": "state_house_us_senate_2018.json",
       "districts": 203,
-      "rows": 202
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "commonwealth_court_retention_p_kevin_brobson",
+      "year": 2019,
+      "file": "state_house_commonwealth_court_retention_p_kevin_brobson_2019.json",
+      "districts": 203,
+      "rows": 193
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "commonwealth_court_retention_patricia_a_mccullough",
+      "year": 2019,
+      "file": "state_house_commonwealth_court_retention_patricia_a_mccullough_2019.json",
+      "districts": 203,
+      "rows": 193
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court_retention_anne_e_lazarus",
+      "year": 2019,
+      "file": "state_house_superior_court_retention_anne_e_lazarus_2019.json",
+      "districts": 203,
+      "rows": 193
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court_retention_judy_olson",
+      "year": 2019,
+      "file": "state_house_superior_court_retention_judy_olson_2019.json",
+      "districts": 203,
+      "rows": 193
     },
     {
       "scope": "state_house",
@@ -651,6 +1067,54 @@
     },
     {
       "scope": "state_house",
+      "contest_type": "commonwealth_court_retention_anne_covey",
+      "year": 2021,
+      "file": "state_house_commonwealth_court_retention_anne_covey_2021.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "commonwealth_court_retention_renee_cohn_jubelirer",
+      "year": 2021,
+      "file": "state_house_commonwealth_court_retention_renee_cohn_jubelirer_2021.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court",
+      "year": 2021,
+      "file": "state_house_superior_court_2021.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court_retention_john_t_bender",
+      "year": 2021,
+      "file": "state_house_superior_court_retention_john_t_bender_2021.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court_retention_mary_jane_bowes",
+      "year": 2021,
+      "file": "state_house_superior_court_retention_mary_jane_bowes_2021.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "supreme_court",
+      "year": 2021,
+      "file": "state_house_supreme_court_2021.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
       "contest_type": "governor",
       "year": 2022,
       "file": "state_house_governor_2022.json",
@@ -659,17 +1123,49 @@
     },
     {
       "scope": "state_house",
-      "contest_type": "state_house",
+      "contest_type": "us_senate",
       "year": 2022,
-      "file": "state_house_state_house_2022.json",
+      "file": "state_house_us_senate_2022.json",
       "districts": 203,
       "rows": 203
     },
     {
       "scope": "state_house",
-      "contest_type": "us_senate",
-      "year": 2022,
-      "file": "state_house_us_senate_2022.json",
+      "contest_type": "commonwealth_court",
+      "year": 2023,
+      "file": "state_house_commonwealth_court_2023.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court",
+      "year": 2023,
+      "file": "state_house_superior_court_2023.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court_retention_jack_a_panella",
+      "year": 2023,
+      "file": "state_house_superior_court_retention_jack_a_panella_2023.json",
+      "districts": 203,
+      "rows": 192
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court_retention_victor_p_stabile",
+      "year": 2023,
+      "file": "state_house_superior_court_retention_victor_p_stabile_2023.json",
+      "districts": 203,
+      "rows": 192
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "supreme_court",
+      "year": 2023,
+      "file": "state_house_supreme_court_2023.json",
       "districts": 203,
       "rows": 203
     },
@@ -699,14 +1195,6 @@
     },
     {
       "scope": "state_house",
-      "contest_type": "state_house",
-      "year": 2024,
-      "file": "state_house_state_house_2024.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
       "contest_type": "treasurer",
       "year": 2024,
       "file": "state_house_treasurer_2024.json",
@@ -718,6 +1206,62 @@
       "contest_type": "us_senate",
       "year": 2024,
       "file": "state_house_us_senate_2024.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "commonwealth_court",
+      "year": 2025,
+      "file": "state_house_commonwealth_court_2025.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "commonwealth_court_retention_michael_h_wojcik",
+      "year": 2025,
+      "file": "state_house_commonwealth_court_retention_michael_h_wojcik_2025.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court",
+      "year": 2025,
+      "file": "state_house_superior_court_2025.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "superior_court_retention_alice_dubow",
+      "year": 2025,
+      "file": "state_house_superior_court_retention_alice_dubow_2025.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "supreme_court_retention_christine_donohue",
+      "year": 2025,
+      "file": "state_house_supreme_court_retention_christine_donohue_2025.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "supreme_court_retention_david_wecht",
+      "year": 2025,
+      "file": "state_house_supreme_court_retention_david_wecht_2025.json",
+      "districts": 203,
+      "rows": 203
+    },
+    {
+      "scope": "state_house",
+      "contest_type": "supreme_court_retention_kevin_m_dougherty",
+      "year": 2025,
+      "file": "state_house_supreme_court_retention_kevin_m_dougherty_2025.json",
       "districts": 203,
       "rows": 203
     },
@@ -763,9 +1307,25 @@
     },
     {
       "scope": "state_senate",
+      "contest_type": "supreme_court",
+      "year": 2001,
+      "file": "state_senate_supreme_court_2001.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
       "contest_type": "governor",
       "year": 2002,
       "file": "state_senate_governor_2002.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "supreme_court",
+      "year": 2003,
+      "file": "state_senate_supreme_court_2003.json",
       "districts": 50,
       "rows": 50
     },
@@ -822,6 +1382,22 @@
       "contest_type": "us_senate",
       "year": 2006,
       "file": "state_senate_us_senate_2006.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "superior_court",
+      "year": 2007,
+      "file": "state_senate_superior_court_2007.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "supreme_court",
+      "year": 2007,
+      "file": "state_senate_supreme_court_2007.json",
       "districts": 50,
       "rows": 50
     },
@@ -923,6 +1499,14 @@
     },
     {
       "scope": "state_senate",
+      "contest_type": "supreme_court",
+      "year": 2015,
+      "file": "state_senate_supreme_court_2015.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
       "contest_type": "attorney_general",
       "year": 2016,
       "file": "state_senate_attorney_general_2016.json",
@@ -958,694 +1542,6 @@
       "contest_type": "us_senate",
       "year": 2016,
       "file": "state_senate_us_senate_2016.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "governor",
-      "year": 2018,
-      "file": "state_senate_governor_2018.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "us_senate",
-      "year": 2018,
-      "file": "state_senate_us_senate_2018.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "attorney_general",
-      "year": 2020,
-      "file": "state_senate_attorney_general_2020.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "auditor",
-      "year": 2020,
-      "file": "state_senate_auditor_2020.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "president",
-      "year": 2020,
-      "file": "state_senate_president_2020.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "treasurer",
-      "year": 2020,
-      "file": "state_senate_treasurer_2020.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "governor",
-      "year": 2022,
-      "file": "state_senate_governor_2022.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "state_senate",
-      "year": 2022,
-      "file": "state_senate_state_senate_2022.json",
-      "districts": 25,
-      "rows": 25
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "us_senate",
-      "year": 2022,
-      "file": "state_senate_us_senate_2022.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "attorney_general",
-      "year": 2024,
-      "file": "state_senate_attorney_general_2024.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "auditor",
-      "year": 2024,
-      "file": "state_senate_auditor_2024.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "president",
-      "year": 2024,
-      "file": "state_senate_president_2024.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "state_senate",
-      "year": 2024,
-      "file": "state_senate_state_senate_2024.json",
-      "districts": 25,
-      "rows": 25
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "treasurer",
-      "year": 2024,
-      "file": "state_senate_treasurer_2024.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "us_senate",
-      "year": 2024,
-      "file": "state_senate_us_senate_2024.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court",
-      "year": 2001,
-      "file": "congressional_supreme_court_2001.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court",
-      "year": 2003,
-      "file": "congressional_supreme_court_2003.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court",
-      "year": 2007,
-      "file": "congressional_superior_court_2007.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court",
-      "year": 2007,
-      "file": "congressional_supreme_court_2007.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court",
-      "year": 2015,
-      "file": "congressional_supreme_court_2015.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "commonwealth_court",
-      "year": 2017,
-      "file": "congressional_commonwealth_court_2017.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court",
-      "year": 2017,
-      "file": "congressional_superior_court_2017.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court_retention_jacqueline_o_shogan",
-      "year": 2017,
-      "file": "congressional_superior_court_retention_jacqueline_o_shogan_2017.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court",
-      "year": 2017,
-      "file": "congressional_supreme_court_2017.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court_retention_debra_todd",
-      "year": 2017,
-      "file": "congressional_supreme_court_retention_debra_todd_2017.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court_retention_thomas_g_saylor",
-      "year": 2017,
-      "file": "congressional_supreme_court_retention_thomas_g_saylor_2017.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "commonwealth_court_retention_p_kevin_brobson",
-      "year": 2019,
-      "file": "congressional_commonwealth_court_retention_p_kevin_brobson_2019.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "commonwealth_court_retention_patricia_a_mccullough",
-      "year": 2019,
-      "file": "congressional_commonwealth_court_retention_patricia_a_mccullough_2019.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court_retention_anne_e_lazarus",
-      "year": 2019,
-      "file": "congressional_superior_court_retention_anne_e_lazarus_2019.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court_retention_judy_olson",
-      "year": 2019,
-      "file": "congressional_superior_court_retention_judy_olson_2019.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "commonwealth_court_retention_anne_covey",
-      "year": 2021,
-      "file": "congressional_commonwealth_court_retention_anne_covey_2021.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "commonwealth_court_retention_renee_cohn_jubelirer",
-      "year": 2021,
-      "file": "congressional_commonwealth_court_retention_renee_cohn_jubelirer_2021.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court",
-      "year": 2021,
-      "file": "congressional_superior_court_2021.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court_retention_john_t_bender",
-      "year": 2021,
-      "file": "congressional_superior_court_retention_john_t_bender_2021.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court_retention_mary_jane_bowes",
-      "year": 2021,
-      "file": "congressional_superior_court_retention_mary_jane_bowes_2021.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court",
-      "year": 2021,
-      "file": "congressional_supreme_court_2021.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "commonwealth_court",
-      "year": 2023,
-      "file": "congressional_commonwealth_court_2023.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court",
-      "year": 2023,
-      "file": "congressional_superior_court_2023.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court_retention_jack_a_panella",
-      "year": 2023,
-      "file": "congressional_superior_court_retention_jack_a_panella_2023.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court_retention_victor_p_stabile",
-      "year": 2023,
-      "file": "congressional_superior_court_retention_victor_p_stabile_2023.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court",
-      "year": 2023,
-      "file": "congressional_supreme_court_2023.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "commonwealth_court",
-      "year": 2025,
-      "file": "congressional_commonwealth_court_2025.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "commonwealth_court_retention_michael_h_wojcik",
-      "year": 2025,
-      "file": "congressional_commonwealth_court_retention_michael_h_wojcik_2025.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court",
-      "year": 2025,
-      "file": "congressional_superior_court_2025.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "superior_court_retention_alice_dubow",
-      "year": 2025,
-      "file": "congressional_superior_court_retention_alice_dubow_2025.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court_retention_christine_donohue",
-      "year": 2025,
-      "file": "congressional_supreme_court_retention_christine_donohue_2025.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court_retention_david_wecht",
-      "year": 2025,
-      "file": "congressional_supreme_court_retention_david_wecht_2025.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "congressional",
-      "contest_type": "supreme_court_retention_kevin_m_dougherty",
-      "year": 2025,
-      "file": "congressional_supreme_court_retention_kevin_m_dougherty_2025.json",
-      "districts": 17,
-      "rows": 17
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court",
-      "year": 2001,
-      "file": "state_house_supreme_court_2001.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court",
-      "year": 2003,
-      "file": "state_house_supreme_court_2003.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court",
-      "year": 2007,
-      "file": "state_house_superior_court_2007.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court",
-      "year": 2007,
-      "file": "state_house_supreme_court_2007.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court",
-      "year": 2015,
-      "file": "state_house_supreme_court_2015.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "commonwealth_court",
-      "year": 2017,
-      "file": "state_house_commonwealth_court_2017.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court",
-      "year": 2017,
-      "file": "state_house_superior_court_2017.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court_retention_jacqueline_o_shogan",
-      "year": 2017,
-      "file": "state_house_superior_court_retention_jacqueline_o_shogan_2017.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court",
-      "year": 2017,
-      "file": "state_house_supreme_court_2017.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court_retention_debra_todd",
-      "year": 2017,
-      "file": "state_house_supreme_court_retention_debra_todd_2017.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court_retention_thomas_g_saylor",
-      "year": 2017,
-      "file": "state_house_supreme_court_retention_thomas_g_saylor_2017.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "commonwealth_court_retention_p_kevin_brobson",
-      "year": 2019,
-      "file": "state_house_commonwealth_court_retention_p_kevin_brobson_2019.json",
-      "districts": 203,
-      "rows": 193
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "commonwealth_court_retention_patricia_a_mccullough",
-      "year": 2019,
-      "file": "state_house_commonwealth_court_retention_patricia_a_mccullough_2019.json",
-      "districts": 203,
-      "rows": 193
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court_retention_anne_e_lazarus",
-      "year": 2019,
-      "file": "state_house_superior_court_retention_anne_e_lazarus_2019.json",
-      "districts": 203,
-      "rows": 193
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court_retention_judy_olson",
-      "year": 2019,
-      "file": "state_house_superior_court_retention_judy_olson_2019.json",
-      "districts": 203,
-      "rows": 193
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "commonwealth_court_retention_anne_covey",
-      "year": 2021,
-      "file": "state_house_commonwealth_court_retention_anne_covey_2021.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "commonwealth_court_retention_renee_cohn_jubelirer",
-      "year": 2021,
-      "file": "state_house_commonwealth_court_retention_renee_cohn_jubelirer_2021.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court",
-      "year": 2021,
-      "file": "state_house_superior_court_2021.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court_retention_john_t_bender",
-      "year": 2021,
-      "file": "state_house_superior_court_retention_john_t_bender_2021.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court_retention_mary_jane_bowes",
-      "year": 2021,
-      "file": "state_house_superior_court_retention_mary_jane_bowes_2021.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court",
-      "year": 2021,
-      "file": "state_house_supreme_court_2021.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "commonwealth_court",
-      "year": 2023,
-      "file": "state_house_commonwealth_court_2023.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court",
-      "year": 2023,
-      "file": "state_house_superior_court_2023.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court_retention_jack_a_panella",
-      "year": 2023,
-      "file": "state_house_superior_court_retention_jack_a_panella_2023.json",
-      "districts": 203,
-      "rows": 192
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court_retention_victor_p_stabile",
-      "year": 2023,
-      "file": "state_house_superior_court_retention_victor_p_stabile_2023.json",
-      "districts": 203,
-      "rows": 192
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court",
-      "year": 2023,
-      "file": "state_house_supreme_court_2023.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "commonwealth_court",
-      "year": 2025,
-      "file": "state_house_commonwealth_court_2025.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "commonwealth_court_retention_michael_h_wojcik",
-      "year": 2025,
-      "file": "state_house_commonwealth_court_retention_michael_h_wojcik_2025.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court",
-      "year": 2025,
-      "file": "state_house_superior_court_2025.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "superior_court_retention_alice_dubow",
-      "year": 2025,
-      "file": "state_house_superior_court_retention_alice_dubow_2025.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court_retention_christine_donohue",
-      "year": 2025,
-      "file": "state_house_supreme_court_retention_christine_donohue_2025.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court_retention_david_wecht",
-      "year": 2025,
-      "file": "state_house_supreme_court_retention_david_wecht_2025.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_house",
-      "contest_type": "supreme_court_retention_kevin_m_dougherty",
-      "year": 2025,
-      "file": "state_house_supreme_court_retention_kevin_m_dougherty_2025.json",
-      "districts": 203,
-      "rows": 203
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "supreme_court",
-      "year": 2001,
-      "file": "state_senate_supreme_court_2001.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "supreme_court",
-      "year": 2003,
-      "file": "state_senate_supreme_court_2003.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "superior_court",
-      "year": 2007,
-      "file": "state_senate_superior_court_2007.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "supreme_court",
-      "year": 2007,
-      "file": "state_senate_supreme_court_2007.json",
-      "districts": 50,
-      "rows": 50
-    },
-    {
-      "scope": "state_senate",
-      "contest_type": "supreme_court",
-      "year": 2015,
-      "file": "state_senate_supreme_court_2015.json",
       "districts": 50,
       "rows": 50
     },
@@ -1699,6 +1595,22 @@
     },
     {
       "scope": "state_senate",
+      "contest_type": "governor",
+      "year": 2018,
+      "file": "state_senate_governor_2018.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "us_senate",
+      "year": 2018,
+      "file": "state_senate_us_senate_2018.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
       "contest_type": "commonwealth_court_retention_p_kevin_brobson",
       "year": 2019,
       "file": "state_senate_commonwealth_court_retention_p_kevin_brobson_2019.json",
@@ -1728,6 +1640,38 @@
       "file": "state_senate_superior_court_retention_judy_olson_2019.json",
       "districts": 50,
       "rows": 48
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "attorney_general",
+      "year": 2020,
+      "file": "state_senate_attorney_general_2020.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "auditor",
+      "year": 2020,
+      "file": "state_senate_auditor_2020.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "president",
+      "year": 2020,
+      "file": "state_senate_president_2020.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "treasurer",
+      "year": 2020,
+      "file": "state_senate_treasurer_2020.json",
+      "districts": 50,
+      "rows": 50
     },
     {
       "scope": "state_senate",
@@ -1779,6 +1723,22 @@
     },
     {
       "scope": "state_senate",
+      "contest_type": "governor",
+      "year": 2022,
+      "file": "state_senate_governor_2022.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "us_senate",
+      "year": 2022,
+      "file": "state_senate_us_senate_2022.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
       "contest_type": "commonwealth_court",
       "year": 2023,
       "file": "state_senate_commonwealth_court_2023.json",
@@ -1814,6 +1774,46 @@
       "contest_type": "supreme_court",
       "year": 2023,
       "file": "state_senate_supreme_court_2023.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "attorney_general",
+      "year": 2024,
+      "file": "state_senate_attorney_general_2024.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "auditor",
+      "year": 2024,
+      "file": "state_senate_auditor_2024.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "president",
+      "year": 2024,
+      "file": "state_senate_president_2024.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "treasurer",
+      "year": 2024,
+      "file": "state_senate_treasurer_2024.json",
+      "districts": 50,
+      "rows": 50
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "us_senate",
+      "year": 2024,
+      "file": "state_senate_us_senate_2024.json",
       "districts": 50,
       "rows": 50
     },

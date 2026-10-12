@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Copy authoritative county vote totals into whole-county House districts."""
+"""Copy authoritative county totals into whole-county House districts.
+
+This is a legacy repair utility, not a general post-processing step.  Mixing
+county-control totals into only the House output can break statewide
+conservation relative to the congressional and Senate outputs.  The default
+therefore fails closed if any party or total statewide sum would change.
+"""
 
 from __future__ import annotations
 
@@ -41,7 +47,14 @@ def refresh_derived(row):
     row["margin_pct"] = abs(margin) / total * 100 if total else 0.0
 
 
-def enforce_year(year: int):
+def statewide_totals(rows):
+    return {
+        field: sum(int(row.get(field) or 0) for row in rows.values())
+        for field in ("dem_votes", "rep_votes", "other_votes", "total_votes")
+    }
+
+
+def enforce_year(year: int, *, allow_statewide_total_change: bool = False):
     for district_path in sorted((DATA / "district_contests").glob(f"state_house_*_{year}.json")):
         payload = load(district_path)
         contest = payload.get("contest_type")
@@ -58,6 +71,7 @@ def enforce_year(year: int):
             for district, county_names in WHOLE_COUNTY_DISTRICTS.items()
         ):
             continue
+        before = statewide_totals(rows)
         changed = False
         for district, county_names in WHOLE_COUNTY_DISTRICTS.items():
             exact = {
@@ -72,6 +86,14 @@ def enforce_year(year: int):
             changed = True
         if not changed:
             continue
+        after = statewide_totals(rows)
+        if before != after and not allow_statewide_total_change:
+            deltas = {field: after[field] - before[field] for field in before}
+            raise RuntimeError(
+                f"Refusing to write {district_path.relative_to(ROOT)}: "
+                f"coterminous county control changes statewide totals {deltas}. "
+                "Rebuild every district scope from one source lineage instead."
+            )
         source = payload.setdefault("meta", {}).get("source", "")
         marker = "coterminous_county_control"
         if marker not in source:
@@ -83,9 +105,14 @@ def enforce_year(year: int):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--years", nargs="+", type=int, required=True)
+    parser.add_argument(
+        "--allow-statewide-total-change",
+        action="store_true",
+        help="Explicit legacy override; may make House totals disagree with other scopes.",
+    )
     args = parser.parse_args()
     for year in args.years:
-        enforce_year(year)
+        enforce_year(year, allow_statewide_total_change=args.allow_statewide_total_change)
 
 
 if __name__ == "__main__":

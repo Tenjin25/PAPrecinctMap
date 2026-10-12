@@ -1,0 +1,34 @@
+{
+  "generated": "2026-10-11",
+  "status": "promoted_locally_after_explicit_user_approval",
+  "published_modified": true,
+  "committed": false,
+  "pushed": false,
+  "candidate_directory": "data/district_bef_candidate",
+  "mechanical_gates": {
+    "bef_block_join_complete": true,
+    "duplicate_bef_geoids": 0,
+    "missing_bef_blocks": 0,
+    "extra_bef_blocks": 0,
+    "invalid_district_ids": 0,
+    "unmatched_or_unallocated_files": 0,
+    "conservation_failures": 0,
+    "coverage_changes": 0
+  },
+  "legacy_comparison": {
+    "published_statewide_totals_reproduced": false,
+    "changed_files": 227,
+    "contest_year_groups": 76,
+    "reviewed_classes": {
+      "coterminous_house_control": 43,
+      "official_judicial_precinct_recovery": 33
+    }
+  },
+  "promotion": {
+    "contest_files": 267,
+    "manifest_files": 1,
+    "sha256_mismatches_after_copy": 0,
+    "post_promotion_conservation_passed": true
+  },
+  "recommendation": "Retain the candidate snapshot and document the approved source-selection policy; keep future publication fail-closed on matching and conservation."
+}
