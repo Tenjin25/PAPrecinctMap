@@ -6,196 +6,221 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
+    "allocation_audit": {
+      "source_rows": 18277,
+      "source_votes": 3087058,
+      "matched_rows": 18277,
+      "matched_votes": 3087058,
+      "unmatched_rows": 0,
+      "unmatched_votes": 0,
+      "unmatched_precincts": [],
+      "unmatched_precinct_votes": {},
+      "mapping_methods": {
+        "adjusted_vtd_code": 16346,
+        "adjusted_vtd_code+adjusted_vtd_name": 8,
+        "adjusted_vtd_name": 2017,
+        "census_block_population": 8,
+        "corrected_from_2020_block_chain": 4,
+        "current_precinct_or_vtd_name": 80,
+        "live_vtd_chain": 322
+      },
+      "allocated_rows": 18277,
+      "allocated_votes": 3087058,
+      "unallocated_rows": 0,
+      "unallocated_votes": 0,
+      "allocation_vote_delta": 0,
+      "conserved_for_matched_rows": true
+    }
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 128621,
-        "rep_votes": 103836,
+        "dem_votes": 128646,
+        "rep_votes": 103861,
         "other_votes": 0,
-        "total_votes": 232457,
+        "total_votes": 232507,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "D",
         "margin": 24785.0,
-        "margin_pct": 10.66218698511983
+        "margin_pct": 10.659894110714946
       },
       "2": {
-        "dem_votes": 78545,
-        "rep_votes": 28483,
+        "dem_votes": 78335,
+        "rep_votes": 28468,
         "other_votes": 0,
-        "total_votes": 107028,
+        "total_votes": 106803,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "D",
-        "margin": 50062.0,
-        "margin_pct": 46.774675785775685
+        "margin": 49867.0,
+        "margin_pct": 46.6906360308231
       },
       "3": {
-        "dem_votes": 159640,
-        "rep_votes": 14424,
+        "dem_votes": 159873,
+        "rep_votes": 14462,
         "other_votes": 0,
-        "total_votes": 174064,
+        "total_votes": 174335,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "D",
-        "margin": 145216.0,
-        "margin_pct": 83.42678555014248
+        "margin": 145411.0,
+        "margin_pct": 83.40895402529613
       },
       "4": {
-        "dem_votes": 139956,
-        "rep_votes": 80573,
+        "dem_votes": 140494,
+        "rep_votes": 80961,
         "other_votes": 0,
-        "total_votes": 220529,
+        "total_votes": 221455,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "D",
-        "margin": 59383.0,
-        "margin_pct": 26.92752427118429
+        "margin": 59533.0,
+        "margin_pct": 26.882662391908063
       },
       "5": {
-        "dem_votes": 124129,
-        "rep_votes": 66818,
+        "dem_votes": 124177,
+        "rep_votes": 66870,
         "other_votes": 0,
-        "total_votes": 190947,
+        "total_votes": 191047,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "D",
-        "margin": 57311.0,
-        "margin_pct": 30.014087678779976
+        "margin": 57307.0,
+        "margin_pct": 29.99628363701079
       },
       "6": {
-        "dem_votes": 115058,
-        "rep_votes": 81296,
+        "dem_votes": 114683,
+        "rep_votes": 81063,
         "other_votes": 0,
-        "total_votes": 196354,
+        "total_votes": 195746,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "D",
-        "margin": 33762.0,
-        "margin_pct": 17.194454913065176
+        "margin": 33620.0,
+        "margin_pct": 17.175319035893455
       },
       "7": {
-        "dem_votes": 88935,
-        "rep_votes": 72620,
+        "dem_votes": 88974,
+        "rep_votes": 72654,
         "other_votes": 0,
-        "total_votes": 161555,
+        "total_votes": 161628,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "D",
-        "margin": 16315.0,
-        "margin_pct": 10.09872798737272
+        "margin": 16320.0,
+        "margin_pct": 10.097260375677482
       },
       "8": {
-        "dem_votes": 80714,
-        "rep_votes": 76938,
+        "dem_votes": 80829,
+        "rep_votes": 76643,
         "other_votes": 0,
-        "total_votes": 157652,
+        "total_votes": 157472,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "D",
-        "margin": 3776.0,
-        "margin_pct": 2.3951488087686803
+        "margin": 4186.0,
+        "margin_pct": 2.6582503556187764
       },
       "9": {
-        "dem_votes": 57671,
-        "rep_votes": 110103,
+        "dem_votes": 57895,
+        "rep_votes": 110776,
         "other_votes": 0,
-        "total_votes": 167774,
+        "total_votes": 168671,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "R",
-        "margin": 52432.0,
-        "margin_pct": 31.251564604765935
+        "margin": 52881.0,
+        "margin_pct": 31.35156606648446
       },
       "10": {
-        "dem_votes": 83494,
-        "rep_votes": 85925,
+        "dem_votes": 83631,
+        "rep_votes": 86120,
         "other_votes": 0,
-        "total_votes": 169419,
+        "total_votes": 169751,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "R",
-        "margin": 2431.0,
-        "margin_pct": 1.43490399541964
+        "margin": 2489.0,
+        "margin_pct": 1.4662652944607102
       },
       "11": {
-        "dem_votes": 69977,
-        "rep_votes": 94993,
+        "dem_votes": 69910,
+        "rep_votes": 94872,
         "other_votes": 0,
-        "total_votes": 164970,
+        "total_votes": 164782,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "R",
-        "margin": 25016.0,
-        "margin_pct": 15.163969206522399
+        "margin": 24962.0,
+        "margin_pct": 15.14849922928475
       },
       "12": {
-        "dem_votes": 81535,
-        "rep_votes": 46031,
+        "dem_votes": 130114,
+        "rep_votes": 73830,
         "other_votes": 0,
-        "total_votes": 127566,
+        "total_votes": 203944,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "D",
-        "margin": 35504.0,
-        "margin_pct": 27.83186742548955
+        "margin": 56284.0,
+        "margin_pct": 27.597771937394576
       },
       "13": {
-        "dem_votes": 50546,
-        "rep_votes": 113345,
+        "dem_votes": 50657,
+        "rep_votes": 113457,
         "other_votes": 0,
-        "total_votes": 163891,
+        "total_votes": 164114,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "R",
-        "margin": 62799.0,
-        "margin_pct": 38.31754031642982
+        "margin": 62800.0,
+        "margin_pct": 38.26608333231778
       },
       "14": {
-        "dem_votes": 76734,
-        "rep_votes": 110074,
+        "dem_votes": 76810,
+        "rep_votes": 110151,
         "other_votes": 0,
-        "total_votes": 186808,
+        "total_votes": 186961,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "R",
-        "margin": 33340.0,
-        "margin_pct": 17.847201404650765
+        "margin": 33341.0,
+        "margin_pct": 17.833130973839463
       },
       "15": {
-        "dem_votes": 60674,
-        "rep_votes": 115591,
+        "dem_votes": 60765,
+        "rep_votes": 115683,
         "other_votes": 0,
-        "total_votes": 176265,
+        "total_votes": 176448,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "R",
-        "margin": 54917.0,
-        "margin_pct": 31.15592999177375
+        "margin": 54918.0,
+        "margin_pct": 31.124183895538625
       },
       "16": {
-        "dem_votes": 75728,
-        "rep_votes": 102846,
+        "dem_votes": 75821,
+        "rep_votes": 102935,
         "other_votes": 0,
-        "total_votes": 178574,
+        "total_votes": 178756,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "R",
-        "margin": 27118.0,
-        "margin_pct": 15.185861323596942
+        "margin": 27114.0,
+        "margin_pct": 15.168162187562936
       },
       "17": {
-        "dem_votes": 97192,
-        "rep_votes": 76403,
+        "dem_votes": 130499,
+        "rep_votes": 102139,
         "other_votes": 0,
-        "total_votes": 173595,
+        "total_votes": 232638,
         "dem_candidate": "Daniel D. McCaffery",
         "rep_candidate": "Carolyn T. Carluccio",
         "winner": "D",
-        "margin": 20789.0,
-        "margin_pct": 11.975575333390939
+        "margin": 28360.0,
+        "margin_pct": 12.19061374324057
       }
     }
   }

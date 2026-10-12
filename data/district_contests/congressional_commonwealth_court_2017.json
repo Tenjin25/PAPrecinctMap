@@ -6,196 +6,222 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
+    "allocation_audit": {
+      "source_rows": 36255,
+      "source_votes": 3852260,
+      "matched_rows": 36255,
+      "matched_votes": 3852260,
+      "unmatched_rows": 0,
+      "unmatched_votes": 0,
+      "unmatched_precincts": [],
+      "unmatched_precinct_votes": {},
+      "mapping_methods": {
+        "adjacent_modern_parent_block_count": 1020,
+        "adjusted_vtd_code": 970,
+        "adjusted_vtd_name": 72,
+        "current_precinct_or_vtd_name": 92,
+        "live_vtd_chain": 236,
+        "rdh_precinct_blocks": 35337,
+        "vest18_area": 28,
+        "vtd10_nhgis_block_chain": 5211
+      },
+      "allocated_rows": 36255,
+      "allocated_votes": 3852260,
+      "unallocated_rows": 0,
+      "unallocated_votes": 0,
+      "allocation_vote_delta": 0,
+      "conserved_for_matched_rows": true
+    }
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 131472,
-        "rep_votes": 125091,
+        "dem_votes": 139407,
+        "rep_votes": 136304,
         "other_votes": 0,
-        "total_votes": 256563,
+        "total_votes": 275711,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "D",
-        "margin": 6381.0,
-        "margin_pct": 2.4871084295085417
+        "margin": 3103.0,
+        "margin_pct": 1.1254538266518201
       },
       "2": {
-        "dem_votes": 83554,
-        "rep_votes": 38931,
+        "dem_votes": 83419,
+        "rep_votes": 38936,
         "other_votes": 0,
-        "total_votes": 122485,
+        "total_votes": 122355,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "D",
-        "margin": 44623.0,
-        "margin_pct": 36.431399763236314
+        "margin": 44483.0,
+        "margin_pct": 36.35568632258592
       },
       "3": {
-        "dem_votes": 195887,
-        "rep_votes": 20711,
+        "dem_votes": 196148,
+        "rep_votes": 20825,
         "other_votes": 0,
-        "total_votes": 216598,
+        "total_votes": 216973,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "D",
-        "margin": 175176.0,
-        "margin_pct": 80.87609303871689
+        "margin": 175323.0,
+        "margin_pct": 80.80406317836781
       },
       "4": {
-        "dem_votes": 158044,
-        "rep_votes": 116469,
+        "dem_votes": 165085,
+        "rep_votes": 123082,
         "other_votes": 0,
-        "total_votes": 274513,
+        "total_votes": 288167,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "D",
-        "margin": 41575.0,
-        "margin_pct": 15.14500224033106
+        "margin": 42003.0,
+        "margin_pct": 14.575922989100071
       },
       "5": {
-        "dem_votes": 148662,
-        "rep_votes": 124876,
+        "dem_votes": 162294,
+        "rep_votes": 132040,
         "other_votes": 0,
-        "total_votes": 273538,
+        "total_votes": 294334,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "D",
-        "margin": 23786.0,
-        "margin_pct": 8.695683963471254
+        "margin": 30254.0,
+        "margin_pct": 10.278798915517745
       },
       "6": {
-        "dem_votes": 115073,
-        "rep_votes": 105165,
+        "dem_votes": 131902,
+        "rep_votes": 121086,
         "other_votes": 0,
-        "total_votes": 220238,
+        "total_votes": 252988,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "D",
-        "margin": 9908.0,
-        "margin_pct": 4.498769512981411
+        "margin": 10816.0,
+        "margin_pct": 4.275301595332585
       },
       "7": {
-        "dem_votes": 79999,
-        "rep_votes": 67003,
+        "dem_votes": 97586,
+        "rep_votes": 91362,
         "other_votes": 0,
-        "total_votes": 147002,
+        "total_votes": 188948,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "D",
-        "margin": 12996.0,
-        "margin_pct": 8.84069604495177
+        "margin": 6224.0,
+        "margin_pct": 3.294027986535978
       },
       "8": {
-        "dem_votes": 99741,
-        "rep_votes": 100161,
+        "dem_votes": 104587,
+        "rep_votes": 104726,
         "other_votes": 0,
-        "total_votes": 199902,
+        "total_votes": 209313,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "R",
-        "margin": 420.0,
-        "margin_pct": 0.2101029504457184
+        "margin": 139.0,
+        "margin_pct": 0.06640772431717093
       },
       "9": {
-        "dem_votes": 59680,
-        "rep_votes": 114901,
+        "dem_votes": 73761,
+        "rep_votes": 145430,
         "other_votes": 0,
-        "total_votes": 174581,
+        "total_votes": 219191,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "R",
-        "margin": 55221.0,
-        "margin_pct": 31.630589812178872
+        "margin": 71669.0,
+        "margin_pct": 32.69705416737001
       },
       "10": {
-        "dem_votes": 87365,
-        "rep_votes": 120353,
+        "dem_votes": 90085,
+        "rep_votes": 124217,
         "other_votes": 0,
-        "total_votes": 207718,
+        "total_votes": 214302,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "R",
-        "margin": 32988.0,
-        "margin_pct": 15.881146554463262
+        "margin": 34132.0,
+        "margin_pct": 15.927056210394678
       },
       "11": {
-        "dem_votes": 45175,
-        "rep_votes": 70332,
+        "dem_votes": 65194,
+        "rep_votes": 113637,
         "other_votes": 0,
-        "total_votes": 115507,
+        "total_votes": 178831,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "R",
-        "margin": 25157.0,
-        "margin_pct": 21.779632403230973
+        "margin": 48443.0,
+        "margin_pct": 27.088703860069003
       },
       "12": {
-        "dem_votes": 91495,
-        "rep_votes": 46371,
+        "dem_votes": 149430,
+        "rep_votes": 83743,
         "other_votes": 0,
-        "total_votes": 137866,
+        "total_votes": 233173,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "D",
-        "margin": 45124.0,
-        "margin_pct": 32.73033235170383
+        "margin": 65687.0,
+        "margin_pct": 28.17092888113118
       },
       "13": {
-        "dem_votes": 57424,
-        "rep_votes": 124667,
+        "dem_votes": 65380,
+        "rep_votes": 138259,
         "other_votes": 0,
-        "total_votes": 182091,
+        "total_votes": 203639,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "R",
-        "margin": 67243.0,
-        "margin_pct": 36.92823917711474
+        "margin": 72879.0,
+        "margin_pct": 35.78833131178212
       },
       "14": {
-        "dem_votes": 78668,
-        "rep_votes": 97642,
+        "dem_votes": 99740,
+        "rep_votes": 131532,
         "other_votes": 0,
-        "total_votes": 176310,
+        "total_votes": 231272,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "R",
-        "margin": 18974.0,
-        "margin_pct": 10.761726504452385
+        "margin": 31792.0,
+        "margin_pct": 13.746584108755059
       },
       "15": {
-        "dem_votes": 62572,
-        "rep_votes": 118422,
+        "dem_votes": 82760,
+        "rep_votes": 146673,
         "other_votes": 0,
-        "total_votes": 180994,
+        "total_votes": 229433,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "R",
-        "margin": 55850.0,
-        "margin_pct": 30.857376487618378
+        "margin": 63913.0,
+        "margin_pct": 27.85693426839208
       },
       "16": {
-        "dem_votes": 100639,
-        "rep_votes": 135648,
+        "dem_votes": 103941,
+        "rep_votes": 142272,
         "other_votes": 0,
-        "total_votes": 236287,
+        "total_votes": 246213,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "R",
-        "margin": 35009.0,
-        "margin_pct": 14.816303901611178
+        "margin": 38331.0,
+        "margin_pct": 15.568227510326423
       },
       "17": {
-        "dem_votes": 99446,
-        "rep_votes": 81726,
+        "dem_votes": 135960,
+        "rep_votes": 111457,
         "other_votes": 0,
-        "total_votes": 181172,
+        "total_votes": 247417,
         "dem_candidate": "Ellen H. Ceisler / Irene Clark",
         "rep_candidate": "Paul N. Lalley / Christine Fizzano Cannon",
         "winner": "D",
-        "margin": 17720.0,
-        "margin_pct": 9.780760823968384
+        "margin": 24503.0,
+        "margin_pct": 9.903523201720173
       }
     }
   }

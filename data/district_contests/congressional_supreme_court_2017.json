@@ -6,196 +6,222 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
+    "allocation_audit": {
+      "source_rows": 18146,
+      "source_votes": 2086025,
+      "matched_rows": 18146,
+      "matched_votes": 2086025,
+      "unmatched_rows": 0,
+      "unmatched_votes": 0,
+      "unmatched_precincts": [],
+      "unmatched_precinct_votes": {},
+      "mapping_methods": {
+        "adjacent_modern_parent_block_count": 510,
+        "adjusted_vtd_code": 485,
+        "adjusted_vtd_name": 36,
+        "current_precinct_or_vtd_name": 46,
+        "live_vtd_chain": 118,
+        "rdh_precinct_blocks": 17686,
+        "vest18_area": 14,
+        "vtd10_nhgis_block_chain": 2606
+      },
+      "allocated_rows": 18146,
+      "allocated_votes": 2086025,
+      "unallocated_rows": 0,
+      "unallocated_votes": 0,
+      "allocation_vote_delta": 0,
+      "conserved_for_matched_rows": true
+    }
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 67326,
-        "rep_votes": 69852,
+        "dem_votes": 71429,
+        "rep_votes": 76112,
         "other_votes": 0,
-        "total_votes": 137178,
+        "total_votes": 147541,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 2526.0,
-        "margin_pct": 1.8414031404452609
+        "margin": 4683.0,
+        "margin_pct": 3.1740329806630023
       },
       "2": {
-        "dem_votes": 44457,
-        "rep_votes": 24464,
+        "dem_votes": 44382,
+        "rep_votes": 24461,
         "other_votes": 0,
-        "total_votes": 68921,
+        "total_votes": 68843,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "D",
-        "margin": 19993.0,
-        "margin_pct": 29.008575035185213
+        "margin": 19921.0,
+        "margin_pct": 28.93685632526183
       },
       "3": {
-        "dem_votes": 109250,
-        "rep_votes": 12756,
+        "dem_votes": 109393,
+        "rep_votes": 12821,
         "other_votes": 0,
-        "total_votes": 122006,
+        "total_votes": 122214,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "D",
-        "margin": 96494.0,
-        "margin_pct": 79.08955297280461
+        "margin": 96572.0,
+        "margin_pct": 79.01877035364197
       },
       "4": {
-        "dem_votes": 77684,
-        "rep_votes": 64903,
+        "dem_votes": 81152,
+        "rep_votes": 68564,
         "other_votes": 0,
-        "total_votes": 142587,
+        "total_votes": 149716,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "D",
-        "margin": 12781.0,
-        "margin_pct": 8.963650262646665
+        "margin": 12588.0,
+        "margin_pct": 8.40791899329397
       },
       "5": {
-        "dem_votes": 76101,
-        "rep_votes": 66192,
+        "dem_votes": 82921,
+        "rep_votes": 70057,
         "other_votes": 0,
-        "total_votes": 142293,
+        "total_votes": 152978,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "D",
-        "margin": 9909.0,
-        "margin_pct": 6.9638000463831675
+        "margin": 12864.0,
+        "margin_pct": 8.409052282027481
       },
       "6": {
-        "dem_votes": 57649,
-        "rep_votes": 59323,
+        "dem_votes": 66048,
+        "rep_votes": 68334,
         "other_votes": 0,
-        "total_votes": 116972,
+        "total_votes": 134382,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 1674.0,
-        "margin_pct": 1.4311117190438738
+        "margin": 2286.0,
+        "margin_pct": 1.701120685806135
       },
       "7": {
-        "dem_votes": 39436,
-        "rep_votes": 39802,
+        "dem_votes": 48051,
+        "rep_votes": 54281,
         "other_votes": 0,
-        "total_votes": 79238,
+        "total_votes": 102332,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 366.0,
-        "margin_pct": 0.4618995936293193
+        "margin": 6230.0,
+        "margin_pct": 6.088027205566196
       },
       "8": {
-        "dem_votes": 48364,
-        "rep_votes": 63863,
+        "dem_votes": 50766,
+        "rep_votes": 66529,
         "other_votes": 0,
-        "total_votes": 112227,
+        "total_votes": 117295,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 15499.0,
-        "margin_pct": 13.810402131394406
+        "margin": 15763.0,
+        "margin_pct": 13.438765505776034
       },
       "9": {
-        "dem_votes": 28489,
-        "rep_votes": 68407,
+        "dem_votes": 34880,
+        "rep_votes": 86192,
         "other_votes": 0,
-        "total_votes": 96896,
+        "total_votes": 121072,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 39918.0,
-        "margin_pct": 41.19674702774108
+        "margin": 51312.0,
+        "margin_pct": 42.38139289018105
       },
       "10": {
-        "dem_votes": 41060,
-        "rep_votes": 69503,
+        "dem_votes": 42335,
+        "rep_votes": 71701,
         "other_votes": 0,
-        "total_votes": 110563,
+        "total_votes": 114036,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 28443.0,
-        "margin_pct": 25.72560440653745
+        "margin": 29366.0,
+        "margin_pct": 25.75151706478656
       },
       "11": {
-        "dem_votes": 21430,
-        "rep_votes": 40337,
+        "dem_votes": 30746,
+        "rep_votes": 64365,
         "other_votes": 0,
-        "total_votes": 61767,
+        "total_votes": 95111,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 18907.0,
-        "margin_pct": 30.610196383181957
+        "margin": 33619.0,
+        "margin_pct": 35.347120732617675
       },
       "12": {
-        "dem_votes": 49124,
-        "rep_votes": 25316,
+        "dem_votes": 79965,
+        "rep_votes": 45547,
         "other_votes": 0,
-        "total_votes": 74440,
+        "total_votes": 125512,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "D",
-        "margin": 23808.0,
-        "margin_pct": 31.982804943578717
+        "margin": 34418.0,
+        "margin_pct": 27.4220791637453
       },
       "13": {
-        "dem_votes": 27989,
-        "rep_votes": 71433,
+        "dem_votes": 31898,
+        "rep_votes": 79338,
         "other_votes": 0,
-        "total_votes": 99422,
+        "total_votes": 111236,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 43444.0,
-        "margin_pct": 43.696566152360646
+        "margin": 47440.0,
+        "margin_pct": 42.64806357653997
       },
       "14": {
-        "dem_votes": 41920,
-        "rep_votes": 58496,
+        "dem_votes": 53393,
+        "rep_votes": 77305,
         "other_votes": 0,
-        "total_votes": 100416,
+        "total_votes": 130698,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 16576.0,
-        "margin_pct": 16.507329509241554
+        "margin": 23912.0,
+        "margin_pct": 18.295612786729713
       },
       "15": {
-        "dem_votes": 31186,
-        "rep_votes": 68542,
+        "dem_votes": 41432,
+        "rep_votes": 84927,
         "other_votes": 0,
-        "total_votes": 99728,
+        "total_votes": 126359,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 37356.0,
-        "margin_pct": 37.4578854484197
+        "margin": 43495.0,
+        "margin_pct": 34.42176655402464
       },
       "16": {
-        "dem_votes": 51238,
-        "rep_votes": 77100,
+        "dem_votes": 52975,
+        "rep_votes": 80656,
         "other_votes": 0,
-        "total_votes": 128338,
+        "total_votes": 133631,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "R",
-        "margin": 25862.0,
-        "margin_pct": 20.151475011298288
+        "margin": 27681.0,
+        "margin_pct": 20.714504867882454
       },
       "17": {
-        "dem_votes": 54057,
-        "rep_votes": 43526,
+        "dem_votes": 73774,
+        "rep_votes": 59295,
         "other_votes": 0,
-        "total_votes": 97583,
+        "total_votes": 133069,
         "dem_candidate": "Dwayne D. Woodruff",
         "rep_candidate": "Sallie Mundy",
         "winner": "D",
-        "margin": 10531.0,
-        "margin_pct": 10.791838742403902
+        "margin": 14479.0,
+        "margin_pct": 10.880821228084677
       }
     }
   }

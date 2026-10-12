@@ -6,262 +6,287 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
+    "allocation_audit": {
+      "source_rows": 18278,
+      "source_votes": 3054444,
+      "matched_rows": 18278,
+      "matched_votes": 3054444,
+      "unmatched_rows": 0,
+      "unmatched_votes": 0,
+      "unmatched_precincts": [],
+      "unmatched_precinct_votes": {},
+      "mapping_methods": {
+        "adjusted_vtd_code": 16347,
+        "adjusted_vtd_code+adjusted_vtd_name": 8,
+        "adjusted_vtd_name": 2017,
+        "census_block_population": 8,
+        "corrected_from_2020_block_chain": 4,
+        "current_precinct_or_vtd_name": 80,
+        "live_vtd_chain": 322
+      },
+      "allocated_rows": 18278,
+      "allocated_votes": 3054444,
+      "unallocated_rows": 0,
+      "unallocated_votes": 0,
+      "allocation_vote_delta": 0,
+      "conserved_for_matched_rows": true
+    }
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 6825,
-        "rep_votes": 3264,
+        "dem_votes": 6578,
+        "rep_votes": 3144,
         "other_votes": 0,
-        "total_votes": 10089,
+        "total_votes": 9722,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 3561.0,
-        "margin_pct": 35.29586678560809
+        "margin": 3434.0,
+        "margin_pct": 35.321950216004936
       },
       "2": {
-        "dem_votes": 8691,
-        "rep_votes": 6237,
+        "dem_votes": 8747,
+        "rep_votes": 6257,
         "other_votes": 0,
-        "total_votes": 14928,
+        "total_votes": 15004,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2454.0,
-        "margin_pct": 16.438906752411576
+        "margin": 2490.0,
+        "margin_pct": 16.595574513463077
       },
       "3": {
-        "dem_votes": 9191,
-        "rep_votes": 7674,
+        "dem_votes": 9792,
+        "rep_votes": 8093,
         "other_votes": 0,
-        "total_votes": 16865,
+        "total_votes": 17885,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1517.0,
-        "margin_pct": 8.99495997628224
+        "margin": 1699.0,
+        "margin_pct": 9.49958065417948
       },
       "4": {
-        "dem_votes": 6581,
-        "rep_votes": 8867,
+        "dem_votes": 6181,
+        "rep_votes": 8558,
         "other_votes": 0,
-        "total_votes": 15448,
+        "total_votes": 14739,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2286.0,
-        "margin_pct": 14.798032107716208
+        "margin": 2377.0,
+        "margin_pct": 16.12728136237194
       },
       "5": {
-        "dem_votes": 6083,
-        "rep_votes": 8290,
+        "dem_votes": 6250,
+        "rep_votes": 8535,
         "other_votes": 0,
-        "total_votes": 14373,
+        "total_votes": 14785,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2207.0,
-        "margin_pct": 15.355179851109721
+        "margin": 2285.0,
+        "margin_pct": 15.454852891444032
       },
       "6": {
-        "dem_votes": 5554,
-        "rep_votes": 9492,
+        "dem_votes": 5555,
+        "rep_votes": 9493,
         "other_votes": 0,
-        "total_votes": 15046,
+        "total_votes": 15048,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 3938.0,
-        "margin_pct": 26.17306925428685
+        "margin_pct": 26.169590643274855
       },
       "7": {
-        "dem_votes": 6837,
-        "rep_votes": 7294,
+        "dem_votes": 6516,
+        "rep_votes": 7148,
         "other_votes": 0,
-        "total_votes": 14131,
+        "total_votes": 13664,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 457.0,
-        "margin_pct": 3.2340244851744395
+        "margin": 632.0,
+        "margin_pct": 4.625292740046839
       },
       "8": {
-        "dem_votes": 5940,
-        "rep_votes": 12410,
+        "dem_votes": 5968,
+        "rep_votes": 12388,
         "other_votes": 0,
-        "total_votes": 18350,
+        "total_votes": 18356,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 6470.0,
-        "margin_pct": 35.258855585831064
+        "margin": 6420.0,
+        "margin_pct": 34.97494007409021
       },
       "9": {
-        "dem_votes": 6307,
-        "rep_votes": 8832,
+        "dem_votes": 6339,
+        "rep_votes": 8869,
         "other_votes": 0,
-        "total_votes": 15139,
+        "total_votes": 15208,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2525.0,
-        "margin_pct": 16.67877666952903
+        "margin": 2530.0,
+        "margin_pct": 16.63598106259863
       },
       "10": {
-        "dem_votes": 8784,
-        "rep_votes": 636,
+        "dem_votes": 8785,
+        "rep_votes": 637,
         "other_votes": 0,
-        "total_votes": 9420,
+        "total_votes": 9422,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 8148.0,
-        "margin_pct": 86.49681528662421
+        "margin_pct": 86.47845468053492
       },
       "11": {
-        "dem_votes": 5378,
-        "rep_votes": 9963,
+        "dem_votes": 6027,
+        "rep_votes": 10805,
         "other_votes": 0,
-        "total_votes": 15341,
+        "total_votes": 16832,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4585.0,
-        "margin_pct": 29.88723029789453
+        "margin": 4778.0,
+        "margin_pct": 28.386406844106464
       },
       "12": {
-        "dem_votes": 7174,
-        "rep_votes": 9617,
+        "dem_votes": 6522,
+        "rep_votes": 8821,
         "other_votes": 0,
-        "total_votes": 16791,
+        "total_votes": 15343,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2443.0,
-        "margin_pct": 14.549461020784946
+        "margin": 2299.0,
+        "margin_pct": 14.984031806035325
       },
       "13": {
-        "dem_votes": 8293,
-        "rep_votes": 8608,
+        "dem_votes": 8294,
+        "rep_votes": 8610,
         "other_votes": 0,
-        "total_votes": 16901,
+        "total_votes": 16904,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 315.0,
-        "margin_pct": 1.863795041713508
+        "margin": 316.0,
+        "margin_pct": 1.8693800283956459
       },
       "14": {
-        "dem_votes": 7254,
-        "rep_votes": 10155,
+        "dem_votes": 7255,
+        "rep_votes": 10156,
         "other_votes": 0,
-        "total_votes": 17409,
+        "total_votes": 17411,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 2901.0,
-        "margin_pct": 16.663794589005686
+        "margin_pct": 16.66188042042387
       },
       "15": {
-        "dem_votes": 6987,
-        "rep_votes": 10954,
+        "dem_votes": 6990,
+        "rep_votes": 10958,
         "other_votes": 0,
-        "total_votes": 17941,
+        "total_votes": 17948,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 3967.0,
-        "margin_pct": 22.111365029819964
+        "margin": 3968.0,
+        "margin_pct": 22.10831290394473
       },
       "16": {
-        "dem_votes": 8517,
-        "rep_votes": 7131,
+        "dem_votes": 8524,
+        "rep_votes": 7138,
         "other_votes": 0,
-        "total_votes": 15648,
+        "total_votes": 15662,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 1386.0,
-        "margin_pct": 8.857361963190185
+        "margin_pct": 8.849444515387562
       },
       "17": {
-        "dem_votes": 4144,
-        "rep_votes": 10174,
+        "dem_votes": 4480,
+        "rep_votes": 10334,
         "other_votes": 0,
-        "total_votes": 14318,
+        "total_votes": 14814,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 6030.0,
-        "margin_pct": 42.114820505657214
+        "margin": 5854.0,
+        "margin_pct": 39.51667341703794
       },
       "18": {
-        "dem_votes": 7131,
-        "rep_votes": 6832,
+        "dem_votes": 7133,
+        "rep_votes": 6834,
         "other_votes": 0,
-        "total_votes": 13963,
+        "total_votes": 13967,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 299.0,
-        "margin_pct": 2.141373630308673
+        "margin_pct": 2.14076036371447
       },
       "19": {
-        "dem_votes": 1945,
-        "rep_votes": 307,
+        "dem_votes": 9496,
+        "rep_votes": 1829,
         "other_votes": 0,
-        "total_votes": 2252,
+        "total_votes": 11325,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1638.0,
-        "margin_pct": 72.73534635879219
+        "margin": 7667.0,
+        "margin_pct": 67.69977924944813
       },
       "20": {
-        "dem_votes": 2290,
-        "rep_votes": 1078,
+        "dem_votes": 11348,
+        "rep_votes": 7652,
         "other_votes": 0,
-        "total_votes": 3368,
+        "total_votes": 19000,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1212.0,
-        "margin_pct": 35.98574821852731
+        "margin": 3696.0,
+        "margin_pct": 19.45263157894737
       },
       "21": {
-        "dem_votes": 6259,
-        "rep_votes": 1543,
+        "dem_votes": 13458,
+        "rep_votes": 7293,
         "other_votes": 0,
-        "total_votes": 7802,
+        "total_votes": 20751,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 4716.0,
-        "margin_pct": 60.44603947705717
+        "margin": 6165.0,
+        "margin_pct": 29.709411594621947
       },
       "22": {
-        "dem_votes": 2826,
-        "rep_votes": 1485,
+        "dem_votes": 2726,
+        "rep_votes": 1455,
         "other_votes": 0,
-        "total_votes": 4311,
+        "total_votes": 4181,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1341.0,
-        "margin_pct": 31.106471816283925
+        "margin": 1271.0,
+        "margin_pct": 30.399425974647215
       },
       "23": {
-        "dem_votes": 14504,
-        "rep_votes": 2505,
+        "dem_votes": 15097,
+        "rep_votes": 2672,
         "other_votes": 0,
-        "total_votes": 17009,
+        "total_votes": 17769,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 11999.0,
-        "margin_pct": 70.54500558527839
+        "margin": 12425.0,
+        "margin_pct": 69.92515054308065
       },
       "24": {
         "dem_votes": 13746,
@@ -275,48 +300,48 @@
         "margin_pct": 80.88032107375486
       },
       "25": {
-        "dem_votes": 6600,
-        "rep_votes": 4685,
+        "dem_votes": 9397,
+        "rep_votes": 7190,
         "other_votes": 0,
-        "total_votes": 11285,
+        "total_votes": 16587,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1915.0,
-        "margin_pct": 16.96942844483828
+        "margin": 2207.0,
+        "margin_pct": 13.305600771688672
       },
       "26": {
-        "dem_votes": 10962,
-        "rep_votes": 8319,
+        "dem_votes": 11456,
+        "rep_votes": 8579,
         "other_votes": 0,
-        "total_votes": 19281,
+        "total_votes": 20035,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2643.0,
-        "margin_pct": 13.707795238836159
+        "margin": 2877.0,
+        "margin_pct": 14.35987022710257
       },
       "27": {
-        "dem_votes": 2809,
-        "rep_votes": 1774,
+        "dem_votes": 10400,
+        "rep_votes": 6336,
         "other_votes": 0,
-        "total_votes": 4583,
+        "total_votes": 16736,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1035.0,
-        "margin_pct": 22.583460615317478
+        "margin": 4064.0,
+        "margin_pct": 24.282982791587
       },
       "28": {
-        "dem_votes": 6152,
-        "rep_votes": 7250,
+        "dem_votes": 9630,
+        "rep_votes": 11885,
         "other_votes": 0,
-        "total_votes": 13402,
+        "total_votes": 21515,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1098.0,
-        "margin_pct": 8.192807043724818
+        "margin": 2255.0,
+        "margin_pct": 10.481059725772717
       },
       "29": {
         "dem_votes": 16368,
@@ -330,312 +355,312 @@
         "margin_pct": 18.1890389197776
       },
       "30": {
-        "dem_votes": 11898,
-        "rep_votes": 10927,
+        "dem_votes": 11906,
+        "rep_votes": 10935,
         "other_votes": 0,
-        "total_votes": 22825,
+        "total_votes": 22841,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 971.0,
-        "margin_pct": 4.254107338444688
+        "margin_pct": 4.25112735869708
       },
       "31": {
-        "dem_votes": 15333,
-        "rep_votes": 10138,
+        "dem_votes": 15334,
+        "rep_votes": 10139,
         "other_votes": 0,
-        "total_votes": 25471,
+        "total_votes": 25473,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 5195.0,
-        "margin_pct": 20.395744179655296
+        "margin_pct": 20.394142817885605
       },
       "32": {
-        "dem_votes": 9341,
-        "rep_votes": 4121,
+        "dem_votes": 11521,
+        "rep_votes": 6434,
         "other_votes": 0,
-        "total_votes": 13462,
+        "total_votes": 17955,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 5220.0,
-        "margin_pct": 38.775813400683404
+        "margin": 5087.0,
+        "margin_pct": 28.33194096351991
       },
       "33": {
-        "dem_votes": 8823,
-        "rep_votes": 7452,
+        "dem_votes": 10418,
+        "rep_votes": 8750,
         "other_votes": 0,
-        "total_votes": 16275,
+        "total_votes": 19168,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1371.0,
-        "margin_pct": 8.423963133640552
+        "margin": 1668.0,
+        "margin_pct": 8.702003338898164
       },
       "34": {
-        "dem_votes": 8095,
-        "rep_votes": 2025,
+        "dem_votes": 15120,
+        "rep_votes": 3458,
         "other_votes": 0,
-        "total_votes": 10120,
+        "total_votes": 18578,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 6070.0,
-        "margin_pct": 59.980237154150196
+        "margin": 11662.0,
+        "margin_pct": 62.773172569706105
       },
       "35": {
-        "dem_votes": 5701,
-        "rep_votes": 2948,
+        "dem_votes": 8402,
+        "rep_votes": 5350,
         "other_votes": 0,
-        "total_votes": 8649,
+        "total_votes": 13752,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2753.0,
-        "margin_pct": 31.830269395305816
+        "margin": 3052.0,
+        "margin_pct": 22.19313554392088
       },
       "36": {
-        "dem_votes": 1829,
-        "rep_votes": 1103,
+        "dem_votes": 9789,
+        "rep_votes": 4568,
         "other_votes": 0,
-        "total_votes": 2932,
+        "total_votes": 14357,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 726.0,
-        "margin_pct": 24.7612551159618
+        "margin": 5221.0,
+        "margin_pct": 36.365535975482345
       },
       "37": {
-        "dem_votes": 7208,
-        "rep_votes": 11329,
+        "dem_votes": 7308,
+        "rep_votes": 11533,
         "other_votes": 0,
-        "total_votes": 18537,
+        "total_votes": 18841,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4121.0,
-        "margin_pct": 22.23121324917732
+        "margin": 4225.0,
+        "margin_pct": 22.424499761159176
       },
       "38": {
-        "dem_votes": 3584,
-        "rep_votes": 2785,
+        "dem_votes": 9662,
+        "rep_votes": 7587,
         "other_votes": 0,
-        "total_votes": 6369,
+        "total_votes": 17249,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 799.0,
-        "margin_pct": 12.545140524415135
+        "margin": 2075.0,
+        "margin_pct": 12.029682880166966
       },
       "39": {
-        "dem_votes": 5153,
-        "rep_votes": 7015,
+        "dem_votes": 8601,
+        "rep_votes": 10480,
         "other_votes": 0,
-        "total_votes": 12168,
+        "total_votes": 19081,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1862.0,
-        "margin_pct": 15.302432610124919
+        "margin": 1879.0,
+        "margin_pct": 9.84749226979718
       },
       "40": {
-        "dem_votes": 9245,
-        "rep_votes": 11021,
+        "dem_votes": 10855,
+        "rep_votes": 12633,
         "other_votes": 0,
-        "total_votes": 20266,
+        "total_votes": 23488,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1776.0,
-        "margin_pct": 8.763446165992303
+        "margin": 1778.0,
+        "margin_pct": 7.569822888283379
       },
       "41": {
-        "dem_votes": 8071,
-        "rep_votes": 8719,
+        "dem_votes": 8043,
+        "rep_votes": 8548,
         "other_votes": 0,
-        "total_votes": 16790,
+        "total_votes": 16591,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 648.0,
-        "margin_pct": 3.8594401429422276
+        "margin": 505.0,
+        "margin_pct": 3.043818937978422
       },
       "42": {
-        "dem_votes": 12843,
-        "rep_votes": 6230,
+        "dem_votes": 14993,
+        "rep_votes": 8323,
         "other_votes": 0,
-        "total_votes": 19073,
+        "total_votes": 23316,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 6613.0,
-        "margin_pct": 34.672049494049176
+        "margin": 6670.0,
+        "margin_pct": 28.60696517412935
       },
       "43": {
-        "dem_votes": 4020,
-        "rep_votes": 7526,
+        "dem_votes": 3927,
+        "rep_votes": 7329,
         "other_votes": 0,
-        "total_votes": 11546,
+        "total_votes": 11256,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 3506.0,
-        "margin_pct": 30.365494543564868
+        "margin": 3402.0,
+        "margin_pct": 30.223880597014922
       },
       "44": {
-        "dem_votes": 8574,
-        "rep_votes": 9179,
+        "dem_votes": 9639,
+        "rep_votes": 10087,
         "other_votes": 0,
-        "total_votes": 17753,
+        "total_votes": 19726,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 605.0,
-        "margin_pct": 3.407874725398524
+        "margin": 448.0,
+        "margin_pct": 2.2711142654364798
       },
       "45": {
-        "dem_votes": 6720,
-        "rep_votes": 5290,
+        "dem_votes": 9918,
+        "rep_votes": 8049,
         "other_votes": 0,
-        "total_votes": 12010,
+        "total_votes": 17967,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1430.0,
-        "margin_pct": 11.906744379683596
+        "margin": 1869.0,
+        "margin_pct": 10.402404408081482
       },
       "46": {
-        "dem_votes": 5925,
-        "rep_votes": 6919,
+        "dem_votes": 8443,
+        "rep_votes": 9572,
         "other_votes": 0,
-        "total_votes": 12844,
+        "total_votes": 18015,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 994.0,
-        "margin_pct": 7.739022111491748
+        "margin": 1129.0,
+        "margin_pct": 6.266999722453511
       },
       "47": {
-        "dem_votes": 5970,
-        "rep_votes": 7802,
+        "dem_votes": 6003,
+        "rep_votes": 7854,
         "other_votes": 0,
-        "total_votes": 13772,
+        "total_votes": 13857,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1832.0,
-        "margin_pct": 13.3023525994772
+        "margin": 1851.0,
+        "margin_pct": 13.357869668759474
       },
       "48": {
-        "dem_votes": 7080,
-        "rep_votes": 9024,
+        "dem_votes": 7405,
+        "rep_votes": 9471,
         "other_votes": 0,
-        "total_votes": 16104,
+        "total_votes": 16876,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1944.0,
-        "margin_pct": 12.071535022354695
+        "margin": 2066.0,
+        "margin_pct": 12.242237497037213
       },
       "49": {
-        "dem_votes": 5819,
-        "rep_votes": 2801,
+        "dem_votes": 5836,
+        "rep_votes": 2645,
         "other_votes": 0,
-        "total_votes": 8620,
+        "total_votes": 8481,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 3018.0,
-        "margin_pct": 35.011600928074245
+        "margin": 3191.0,
+        "margin_pct": 37.6252800377314
       },
       "50": {
-        "dem_votes": 6204,
-        "rep_votes": 8997,
+        "dem_votes": 5982,
+        "rep_votes": 8716,
         "other_votes": 0,
-        "total_votes": 15201,
+        "total_votes": 14698,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2793.0,
-        "margin_pct": 18.373791197947504
+        "margin": 2734.0,
+        "margin_pct": 18.601170227241802
       },
       "51": {
-        "dem_votes": 6132,
-        "rep_votes": 8001,
+        "dem_votes": 6139,
+        "rep_votes": 8009,
         "other_votes": 0,
-        "total_votes": 14133,
+        "total_votes": 14148,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1869.0,
-        "margin_pct": 13.224368499257059
+        "margin": 1870.0,
+        "margin_pct": 13.217415889171614
       },
       "52": {
-        "dem_votes": 5178,
-        "rep_votes": 8060,
+        "dem_votes": 5199,
+        "rep_votes": 8081,
         "other_votes": 0,
-        "total_votes": 13238,
+        "total_votes": 13280,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 2882.0,
-        "margin_pct": 21.770660220577128
+        "margin_pct": 21.701807228915662
       },
       "53": {
-        "dem_votes": 9217,
-        "rep_votes": 6455,
+        "dem_votes": 9582,
+        "rep_votes": 6844,
         "other_votes": 0,
-        "total_votes": 15672,
+        "total_votes": 16426,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2762.0,
-        "margin_pct": 17.62378764675855
+        "margin": 2738.0,
+        "margin_pct": 16.66869596980397
       },
       "54": {
-        "dem_votes": 7865,
-        "rep_votes": 3096,
+        "dem_votes": 7867,
+        "rep_votes": 3098,
         "other_votes": 0,
-        "total_votes": 10961,
+        "total_votes": 10965,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 4769.0,
-        "margin_pct": 43.508803941246235
+        "margin_pct": 43.49293205654355
       },
       "55": {
-        "dem_votes": 7419,
-        "rep_votes": 9896,
+        "dem_votes": 7435,
+        "rep_votes": 9913,
         "other_votes": 0,
-        "total_votes": 17315,
+        "total_votes": 17348,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2477.0,
-        "margin_pct": 14.30551544903263
+        "margin": 2478.0,
+        "margin_pct": 14.284067327645838
       },
       "56": {
-        "dem_votes": 7211,
-        "rep_votes": 10054,
+        "dem_votes": 7216,
+        "rep_votes": 10059,
         "other_votes": 0,
-        "total_votes": 17265,
+        "total_votes": 17275,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 2843.0,
-        "margin_pct": 16.4668404286128
+        "margin_pct": 16.457308248914618
       },
       "57": {
-        "dem_votes": 7449,
-        "rep_votes": 9340,
+        "dem_votes": 7452,
+        "rep_votes": 9344,
         "other_votes": 0,
-        "total_votes": 16789,
+        "total_votes": 16796,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1891.0,
-        "margin_pct": 11.263327178509739
+        "margin": 1892.0,
+        "margin_pct": 11.264586806382471
       },
       "58": {
         "dem_votes": 6364,
@@ -649,37 +674,37 @@
         "margin_pct": 16.036677881126725
       },
       "59": {
-        "dem_votes": 6542,
-        "rep_votes": 10444,
+        "dem_votes": 6546,
+        "rep_votes": 10448,
         "other_votes": 0,
-        "total_votes": 16986,
+        "total_votes": 16994,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 3902.0,
-        "margin_pct": 22.97185917814671
+        "margin_pct": 22.961045074732258
       },
       "60": {
-        "dem_votes": 5898,
-        "rep_votes": 10568,
+        "dem_votes": 5908,
+        "rep_votes": 10578,
         "other_votes": 0,
-        "total_votes": 16466,
+        "total_votes": 16486,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 4670.0,
-        "margin_pct": 28.361472124377507
+        "margin_pct": 28.327065388814752
       },
       "61": {
-        "dem_votes": 13636,
-        "rep_votes": 8787,
+        "dem_votes": 13637,
+        "rep_votes": 8788,
         "other_votes": 0,
-        "total_votes": 22423,
+        "total_votes": 22425,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 4849.0,
-        "margin_pct": 21.625117067296973
+        "margin_pct": 21.6231884057971
       },
       "62": {
         "dem_votes": 5750,
@@ -693,81 +718,81 @@
         "margin_pct": 22.485845241304933
       },
       "63": {
-        "dem_votes": 3868,
-        "rep_votes": 11468,
+        "dem_votes": 3880,
+        "rep_votes": 11478,
         "other_votes": 0,
-        "total_votes": 15336,
+        "total_votes": 15358,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 7600.0,
-        "margin_pct": 49.556598852373504
+        "margin": 7598.0,
+        "margin_pct": 49.47258757650736
       },
       "64": {
-        "dem_votes": 4481,
-        "rep_votes": 9570,
+        "dem_votes": 4486,
+        "rep_votes": 9575,
         "other_votes": 0,
-        "total_votes": 14051,
+        "total_votes": 14061,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 5089.0,
-        "margin_pct": 36.218062771333
+        "margin_pct": 36.19230495697319
       },
       "65": {
-        "dem_votes": 4246,
-        "rep_votes": 9248,
+        "dem_votes": 4251,
+        "rep_votes": 9250,
         "other_votes": 0,
-        "total_votes": 13494,
+        "total_votes": 13501,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 5002.0,
-        "margin_pct": 37.068326663702386
+        "margin": 4999.0,
+        "margin_pct": 37.02688689726687
       },
       "66": {
-        "dem_votes": 3297,
-        "rep_votes": 10532,
+        "dem_votes": 3314,
+        "rep_votes": 10553,
         "other_votes": 0,
-        "total_votes": 13829,
+        "total_votes": 13867,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 7235.0,
-        "margin_pct": 52.317593463012514
+        "margin": 7239.0,
+        "margin_pct": 52.20307204153747
       },
       "67": {
-        "dem_votes": 3515,
-        "rep_votes": 9741,
+        "dem_votes": 3519,
+        "rep_votes": 9747,
         "other_votes": 0,
-        "total_votes": 13256,
+        "total_votes": 13266,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 6226.0,
-        "margin_pct": 46.96741098370549
+        "margin": 6228.0,
+        "margin_pct": 46.94708276797829
       },
       "68": {
-        "dem_votes": 4001,
-        "rep_votes": 11772,
+        "dem_votes": 4014,
+        "rep_votes": 11785,
         "other_votes": 0,
-        "total_votes": 15773,
+        "total_votes": 15799,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 7771.0,
-        "margin_pct": 49.26773600456476
+        "margin_pct": 49.186657383378694
       },
       "69": {
-        "dem_votes": 3952,
-        "rep_votes": 13845,
+        "dem_votes": 3954,
+        "rep_votes": 13847,
         "other_votes": 0,
-        "total_votes": 17797,
+        "total_votes": 17801,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 9893.0,
-        "margin_pct": 55.588020452885324
+        "margin_pct": 55.575529464636816
       },
       "70": {
         "dem_votes": 12306,
@@ -781,488 +806,488 @@
         "margin_pct": 17.986577181208055
       },
       "71": {
-        "dem_votes": 5231,
-        "rep_votes": 10002,
+        "dem_votes": 5342,
+        "rep_votes": 10055,
         "other_votes": 0,
-        "total_votes": 15233,
+        "total_votes": 15397,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4771.0,
-        "margin_pct": 31.320160178559707
+        "margin": 4713.0,
+        "margin_pct": 30.60985906345392
       },
       "72": {
-        "dem_votes": 6053,
-        "rep_votes": 8654,
+        "dem_votes": 5986,
+        "rep_votes": 8646,
         "other_votes": 0,
-        "total_votes": 14707,
+        "total_votes": 14632,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2601.0,
-        "margin_pct": 17.685455905351194
+        "margin": 2660.0,
+        "margin_pct": 18.17933296883543
       },
       "73": {
-        "dem_votes": 4137,
-        "rep_votes": 9813,
+        "dem_votes": 4147,
+        "rep_votes": 9820,
         "other_votes": 0,
-        "total_votes": 13950,
+        "total_votes": 13967,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 5676.0,
-        "margin_pct": 40.68817204301075
+        "margin": 5673.0,
+        "margin_pct": 40.61716904131166
       },
       "74": {
-        "dem_votes": 7636,
-        "rep_votes": 6119,
+        "dem_votes": 7650,
+        "rep_votes": 6130,
         "other_votes": 0,
-        "total_votes": 13755,
+        "total_votes": 13780,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1517.0,
-        "margin_pct": 11.028716830243548
+        "margin": 1520.0,
+        "margin_pct": 11.030478955007258
       },
       "75": {
-        "dem_votes": 4696,
-        "rep_votes": 10095,
+        "dem_votes": 4703,
+        "rep_votes": 10102,
         "other_votes": 0,
-        "total_votes": 14791,
+        "total_votes": 14805,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 5399.0,
-        "margin_pct": 36.501926847407205
+        "margin_pct": 36.46740965889902
       },
       "76": {
-        "dem_votes": 4906,
-        "rep_votes": 9101,
+        "dem_votes": 4909,
+        "rep_votes": 9104,
         "other_votes": 0,
-        "total_votes": 14007,
+        "total_votes": 14013,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 4195.0,
-        "margin_pct": 29.949311058756333
+        "margin_pct": 29.93648754727753
       },
       "77": {
-        "dem_votes": 8441,
-        "rep_votes": 5776,
+        "dem_votes": 8830,
+        "rep_votes": 5991,
         "other_votes": 0,
-        "total_votes": 14217,
+        "total_votes": 14821,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2665.0,
-        "margin_pct": 18.745164239994374
+        "margin": 2839.0,
+        "margin_pct": 19.155252682005262
       },
       "78": {
-        "dem_votes": 2972,
-        "rep_votes": 11708,
+        "dem_votes": 2974,
+        "rep_votes": 11712,
         "other_votes": 0,
-        "total_votes": 14680,
+        "total_votes": 14686,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 8736.0,
-        "margin_pct": 59.509536784741144
+        "margin": 8738.0,
+        "margin_pct": 59.498842434972076
       },
       "79": {
-        "dem_votes": 4119,
-        "rep_votes": 7031,
+        "dem_votes": 4176,
+        "rep_votes": 7150,
         "other_votes": 0,
-        "total_votes": 11150,
+        "total_votes": 11326,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2912.0,
-        "margin_pct": 26.116591928251122
+        "margin": 2974.0,
+        "margin_pct": 26.258167049267172
       },
       "80": {
-        "dem_votes": 3758,
-        "rep_votes": 11263,
+        "dem_votes": 3723,
+        "rep_votes": 11172,
         "other_votes": 0,
-        "total_votes": 15021,
+        "total_votes": 14895,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 7505.0,
-        "margin_pct": 49.963384594900475
+        "margin": 7449.0,
+        "margin_pct": 50.01007049345419
       },
       "81": {
-        "dem_votes": 3512,
-        "rep_votes": 10241,
+        "dem_votes": 3515,
+        "rep_votes": 10244,
         "other_votes": 0,
-        "total_votes": 13753,
+        "total_votes": 13759,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 6729.0,
-        "margin_pct": 48.92750672580528
+        "margin_pct": 48.90617050657751
       },
       "82": {
-        "dem_votes": 8463,
-        "rep_votes": 7213,
+        "dem_votes": 7755,
+        "rep_votes": 6547,
         "other_votes": 0,
-        "total_votes": 15676,
+        "total_votes": 14302,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1250.0,
-        "margin_pct": 7.973972952283746
+        "margin": 1208.0,
+        "margin_pct": 8.44637113690393
       },
       "83": {
-        "dem_votes": 4133,
-        "rep_votes": 7239,
+        "dem_votes": 4141,
+        "rep_votes": 7249,
         "other_votes": 0,
-        "total_votes": 11372,
+        "total_votes": 11390,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 3106.0,
-        "margin_pct": 27.312697854379174
+        "margin": 3108.0,
+        "margin_pct": 27.287093942054437
       },
       "84": {
-        "dem_votes": 3911,
-        "rep_votes": 12307,
+        "dem_votes": 3912,
+        "rep_votes": 12309,
         "other_votes": 0,
-        "total_votes": 16218,
+        "total_votes": 16221,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 8396.0,
-        "margin_pct": 51.7696386730793
+        "margin": 8397.0,
+        "margin_pct": 51.766228962456076
       },
       "85": {
-        "dem_votes": 4365,
-        "rep_votes": 8955,
+        "dem_votes": 4416,
+        "rep_votes": 9099,
         "other_votes": 0,
-        "total_votes": 13320,
+        "total_votes": 13515,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4590.0,
-        "margin_pct": 34.45945945945946
+        "margin": 4683.0,
+        "margin_pct": 34.6503884572697
       },
       "86": {
-        "dem_votes": 3683,
-        "rep_votes": 11063,
+        "dem_votes": 3689,
+        "rep_votes": 11070,
         "other_votes": 0,
-        "total_votes": 14746,
+        "total_votes": 14759,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 7380.0,
-        "margin_pct": 50.0474705004747
+        "margin": 7381.0,
+        "margin_pct": 50.010163290195806
       },
       "87": {
-        "dem_votes": 8223,
-        "rep_votes": 10073,
+        "dem_votes": 8232,
+        "rep_votes": 10077,
         "other_votes": 0,
-        "total_votes": 18296,
+        "total_votes": 18309,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1850.0,
-        "margin_pct": 10.111499781372977
+        "margin": 1845.0,
+        "margin_pct": 10.077011305915123
       },
       "88": {
-        "dem_votes": 8355,
-        "rep_votes": 8155,
+        "dem_votes": 8550,
+        "rep_votes": 8376,
         "other_votes": 0,
-        "total_votes": 16510,
+        "total_votes": 16926,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 200.0,
-        "margin_pct": 1.2113870381586918
+        "margin": 174.0,
+        "margin_pct": 1.0280042538107055
       },
       "89": {
-        "dem_votes": 4777,
-        "rep_votes": 8663,
+        "dem_votes": 4780,
+        "rep_votes": 8667,
         "other_votes": 0,
-        "total_votes": 13440,
+        "total_votes": 13447,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 3886.0,
-        "margin_pct": 28.913690476190478
+        "margin": 3887.0,
+        "margin_pct": 28.90607570461813
       },
       "90": {
-        "dem_votes": 3257,
-        "rep_votes": 8209,
+        "dem_votes": 3261,
+        "rep_votes": 8213,
         "other_votes": 0,
-        "total_votes": 11466,
+        "total_votes": 11474,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 4952.0,
-        "margin_pct": 43.18855747427176
+        "margin_pct": 43.15844518040788
       },
       "91": {
-        "dem_votes": 6229,
-        "rep_votes": 8672,
+        "dem_votes": 6234,
+        "rep_votes": 8676,
         "other_votes": 0,
-        "total_votes": 14901,
+        "total_votes": 14910,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2443.0,
-        "margin_pct": 16.394872827327024
+        "margin": 2442.0,
+        "margin_pct": 16.378269617706238
       },
       "92": {
-        "dem_votes": 5590,
-        "rep_votes": 10305,
+        "dem_votes": 5613,
+        "rep_votes": 10341,
         "other_votes": 0,
-        "total_votes": 15895,
+        "total_votes": 15954,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4715.0,
-        "margin_pct": 29.66341616860648
+        "margin": 4728.0,
+        "margin_pct": 29.63520120345995
       },
       "93": {
-        "dem_votes": 5363,
-        "rep_votes": 7931,
+        "dem_votes": 5309,
+        "rep_votes": 7821,
         "other_votes": 0,
-        "total_votes": 13294,
+        "total_votes": 13130,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2568.0,
-        "margin_pct": 19.316985106062887
+        "margin": 2512.0,
+        "margin_pct": 19.131759329779133
       },
       "94": {
-        "dem_votes": 4689,
-        "rep_votes": 7805,
+        "dem_votes": 4590,
+        "rep_votes": 7675,
         "other_votes": 0,
-        "total_votes": 12494,
+        "total_votes": 12265,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 3116.0,
-        "margin_pct": 24.93997118616936
+        "margin": 3085.0,
+        "margin_pct": 25.1528740317978
       },
       "95": {
-        "dem_votes": 4288,
-        "rep_votes": 2262,
+        "dem_votes": 4316,
+        "rep_votes": 2305,
         "other_votes": 0,
-        "total_votes": 6550,
+        "total_votes": 6621,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2026.0,
-        "margin_pct": 30.931297709923665
+        "margin": 2011.0,
+        "margin_pct": 30.3730554296934
       },
       "96": {
-        "dem_votes": 10572,
-        "rep_votes": 6341,
+        "dem_votes": 10593,
+        "rep_votes": 6438,
         "other_votes": 0,
-        "total_votes": 16913,
+        "total_votes": 17031,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 4231.0,
-        "margin_pct": 25.0162596819015
+        "margin": 4155.0,
+        "margin_pct": 24.39668839175621
       },
       "97": {
-        "dem_votes": 7634,
-        "rep_votes": 10317,
+        "dem_votes": 7591,
+        "rep_votes": 10412,
         "other_votes": 0,
-        "total_votes": 17951,
+        "total_votes": 18003,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2683.0,
-        "margin_pct": 14.946242549161607
+        "margin": 2821.0,
+        "margin_pct": 15.669610620452145
       },
       "98": {
-        "dem_votes": 6612,
-        "rep_votes": 10587,
+        "dem_votes": 6615,
+        "rep_votes": 10590,
         "other_votes": 0,
-        "total_votes": 17199,
+        "total_votes": 17205,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 3975.0,
-        "margin_pct": 23.111808826094542
+        "margin_pct": 23.103748910200522
       },
       "99": {
-        "dem_votes": 3853,
-        "rep_votes": 8139,
+        "dem_votes": 3934,
+        "rep_votes": 8246,
         "other_votes": 0,
-        "total_votes": 11992,
+        "total_votes": 12180,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4286.0,
-        "margin_pct": 35.74049366244163
+        "margin": 4312.0,
+        "margin_pct": 35.40229885057472
       },
       "100": {
-        "dem_votes": 2763,
-        "rep_votes": 7553,
+        "dem_votes": 2829,
+        "rep_votes": 7717,
         "other_votes": 0,
-        "total_votes": 10316,
+        "total_votes": 10546,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4790.0,
-        "margin_pct": 46.43272586273749
+        "margin": 4888.0,
+        "margin_pct": 46.34932675896074
       },
       "101": {
-        "dem_votes": 4540,
-        "rep_votes": 6971,
+        "dem_votes": 4632,
+        "rep_votes": 7187,
         "other_votes": 0,
-        "total_votes": 11511,
+        "total_votes": 11819,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 2431.0,
-        "margin_pct": 21.118929719398835
+        "margin": 2555.0,
+        "margin_pct": 21.617734156866064
       },
       "102": {
-        "dem_votes": 4396,
-        "rep_votes": 10136,
+        "dem_votes": 4306,
+        "rep_votes": 9922,
         "other_votes": 0,
-        "total_votes": 14532,
+        "total_votes": 14228,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 5740.0,
-        "margin_pct": 39.4990366088632
+        "margin": 5616.0,
+        "margin_pct": 39.47146471745853
       },
       "103": {
-        "dem_votes": 8835,
-        "rep_votes": 4838,
+        "dem_votes": 8838,
+        "rep_votes": 4841,
         "other_votes": 0,
-        "total_votes": 13673,
+        "total_votes": 13679,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 3997.0,
-        "margin_pct": 29.232794558619172
+        "margin_pct": 29.219972220191536
       },
       "104": {
-        "dem_votes": 5870,
-        "rep_votes": 3821,
+        "dem_votes": 5874,
+        "rep_votes": 3825,
         "other_votes": 0,
-        "total_votes": 9691,
+        "total_votes": 9699,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 2049.0,
-        "margin_pct": 21.143328861830565
+        "margin_pct": 21.125889266934735
       },
       "105": {
-        "dem_votes": 9052,
-        "rep_votes": 6036,
+        "dem_votes": 9078,
+        "rep_votes": 5991,
         "other_votes": 0,
-        "total_votes": 15088,
+        "total_votes": 15069,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 3016.0,
-        "margin_pct": 19.989395546129373
+        "margin": 3087.0,
+        "margin_pct": 20.485765478797532
       },
       "106": {
-        "dem_votes": 7537,
-        "rep_votes": 9251,
+        "dem_votes": 7538,
+        "rep_votes": 9253,
         "other_votes": 0,
-        "total_votes": 16788,
+        "total_votes": 16791,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1714.0,
-        "margin_pct": 10.20967357636407
+        "margin": 1715.0,
+        "margin_pct": 10.21380501459115
       },
       "107": {
-        "dem_votes": 4156,
-        "rep_votes": 9275,
+        "dem_votes": 4218,
+        "rep_votes": 9381,
         "other_votes": 0,
-        "total_votes": 13431,
+        "total_votes": 13599,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 5119.0,
-        "margin_pct": 38.11331993150175
+        "margin": 5163.0,
+        "margin_pct": 37.966026913743654
       },
       "108": {
-        "dem_votes": 4857,
-        "rep_votes": 9122,
+        "dem_votes": 4864,
+        "rep_votes": 9130,
         "other_votes": 0,
-        "total_votes": 13979,
+        "total_votes": 13994,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4265.0,
-        "margin_pct": 30.51005079047142
+        "margin": 4266.0,
+        "margin_pct": 30.484493354294695
       },
       "109": {
-        "dem_votes": 4960,
-        "rep_votes": 8738,
+        "dem_votes": 4984,
+        "rep_votes": 8758,
         "other_votes": 0,
-        "total_votes": 13698,
+        "total_votes": 13742,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 3778.0,
-        "margin_pct": 27.580668710760698
+        "margin": 3774.0,
+        "margin_pct": 27.46325134623781
       },
       "110": {
-        "dem_votes": 4543,
-        "rep_votes": 9905,
+        "dem_votes": 4548,
+        "rep_votes": 9910,
         "other_votes": 0,
-        "total_votes": 14448,
+        "total_votes": 14458,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 5362.0,
-        "margin_pct": 37.1124031007752
+        "margin_pct": 37.08673398810347
       },
       "111": {
-        "dem_votes": 5146,
-        "rep_votes": 11064,
+        "dem_votes": 5156,
+        "rep_votes": 11073,
         "other_votes": 0,
-        "total_votes": 16210,
+        "total_votes": 16229,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 5918.0,
-        "margin_pct": 36.50832819247378
+        "margin": 5917.0,
+        "margin_pct": 36.45942448702939
       },
       "112": {
-        "dem_votes": 10236,
-        "rep_votes": 6217,
+        "dem_votes": 10122,
+        "rep_votes": 6115,
         "other_votes": 0,
-        "total_votes": 16453,
+        "total_votes": 16237,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 4019.0,
-        "margin_pct": 24.42715614173707
+        "margin": 4007.0,
+        "margin_pct": 24.67820410174293
       },
       "113": {
-        "dem_votes": 7040,
-        "rep_votes": 4334,
+        "dem_votes": 7054,
+        "rep_votes": 4367,
         "other_votes": 0,
-        "total_votes": 11374,
+        "total_votes": 11421,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2706.0,
-        "margin_pct": 23.791102514506772
+        "margin": 2687.0,
+        "margin_pct": 23.526836529200594
       },
       "114": {
-        "dem_votes": 8886,
-        "rep_votes": 5808,
+        "dem_votes": 9082,
+        "rep_votes": 5982,
         "other_votes": 0,
-        "total_votes": 14694,
+        "total_votes": 15064,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 3078.0,
-        "margin_pct": 20.947325438954675
+        "margin": 3100.0,
+        "margin_pct": 20.57886351566649
       },
       "115": {
         "dem_votes": 6274,
@@ -1276,290 +1301,290 @@
         "margin_pct": 15.29909032435909
       },
       "116": {
-        "dem_votes": 3325,
-        "rep_votes": 6474,
+        "dem_votes": 3128,
+        "rep_votes": 5865,
         "other_votes": 0,
-        "total_votes": 9799,
+        "total_votes": 8993,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 3149.0,
-        "margin_pct": 32.13593223798347
+        "margin": 2737.0,
+        "margin_pct": 30.434782608695656
       },
       "117": {
-        "dem_votes": 4541,
-        "rep_votes": 8759,
+        "dem_votes": 4852,
+        "rep_votes": 9569,
         "other_votes": 0,
-        "total_votes": 13300,
+        "total_votes": 14421,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4218.0,
-        "margin_pct": 31.71428571428571
+        "margin": 4717.0,
+        "margin_pct": 32.70924346439221
       },
       "118": {
-        "dem_votes": 8305,
-        "rep_votes": 6983,
+        "dem_votes": 8340,
+        "rep_votes": 7017,
         "other_votes": 0,
-        "total_votes": 15288,
+        "total_votes": 15357,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1322.0,
-        "margin_pct": 8.647305075876504
+        "margin": 1323.0,
+        "margin_pct": 8.614963860128931
       },
       "119": {
-        "dem_votes": 5637,
-        "rep_votes": 5867,
+        "dem_votes": 5609,
+        "rep_votes": 5646,
         "other_votes": 0,
-        "total_votes": 11504,
+        "total_votes": 11255,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 230.0,
-        "margin_pct": 1.9993045897079276
+        "margin": 37.0,
+        "margin_pct": 0.32874278098622833
       },
       "120": {
-        "dem_votes": 6953,
-        "rep_votes": 7045,
+        "dem_votes": 6958,
+        "rep_votes": 7135,
         "other_votes": 0,
-        "total_votes": 13998,
+        "total_votes": 14093,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 92.0,
-        "margin_pct": 0.6572367481068724
+        "margin": 177.0,
+        "margin_pct": 1.255942666572057
       },
       "121": {
-        "dem_votes": 4659,
-        "rep_votes": 3907,
+        "dem_votes": 4703,
+        "rep_votes": 3946,
         "other_votes": 0,
-        "total_votes": 8566,
+        "total_votes": 8649,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 752.0,
-        "margin_pct": 8.778893299089424
+        "margin": 757.0,
+        "margin_pct": 8.75245693143716
       },
       "122": {
-        "dem_votes": 5444,
-        "rep_votes": 8708,
+        "dem_votes": 5448,
+        "rep_votes": 8712,
         "other_votes": 0,
-        "total_votes": 14152,
+        "total_votes": 14160,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 3264.0,
-        "margin_pct": 23.063877897117017
+        "margin_pct": 23.050847457627118
       },
       "123": {
-        "dem_votes": 5774,
-        "rep_votes": 9373,
+        "dem_votes": 5803,
+        "rep_votes": 9385,
         "other_votes": 0,
-        "total_votes": 15147,
+        "total_votes": 15188,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 3599.0,
-        "margin_pct": 23.76048062322572
+        "margin": 3582.0,
+        "margin_pct": 23.584408743745062
       },
       "124": {
-        "dem_votes": 5374,
-        "rep_votes": 10416,
+        "dem_votes": 5288,
+        "rep_votes": 10275,
         "other_votes": 0,
-        "total_votes": 15790,
+        "total_votes": 15563,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 5042.0,
-        "margin_pct": 31.931602279924004
+        "margin": 4987.0,
+        "margin_pct": 32.043950395168025
       },
       "125": {
-        "dem_votes": 6544,
-        "rep_votes": 11244,
+        "dem_votes": 6524,
+        "rep_votes": 11295,
         "other_votes": 0,
-        "total_votes": 17788,
+        "total_votes": 17819,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4700.0,
-        "margin_pct": 26.42230717337531
+        "margin": 4771.0,
+        "margin_pct": 26.774790953476625
       },
       "126": {
-        "dem_votes": 5438,
-        "rep_votes": 3587,
+        "dem_votes": 5790,
+        "rep_votes": 3854,
         "other_votes": 0,
-        "total_votes": 9025,
+        "total_votes": 9644,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1851.0,
-        "margin_pct": 20.509695290858726
+        "margin": 1936.0,
+        "margin_pct": 20.074657818332643
       },
       "127": {
-        "dem_votes": 3526,
-        "rep_votes": 1746,
+        "dem_votes": 3702,
+        "rep_votes": 1852,
         "other_votes": 0,
-        "total_votes": 5272,
+        "total_votes": 5554,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1780.0,
-        "margin_pct": 33.76327769347496
+        "margin": 1850.0,
+        "margin_pct": 33.309326611451205
       },
       "128": {
-        "dem_votes": 7143,
-        "rep_votes": 8026,
+        "dem_votes": 6976,
+        "rep_votes": 7969,
         "other_votes": 0,
-        "total_votes": 15169,
+        "total_votes": 14945,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 883.0,
-        "margin_pct": 5.821082470828664
+        "margin": 993.0,
+        "margin_pct": 6.644362663098026
       },
       "129": {
-        "dem_votes": 6985,
-        "rep_votes": 4744,
+        "dem_votes": 6503,
+        "rep_votes": 4261,
         "other_votes": 0,
-        "total_votes": 11729,
+        "total_votes": 10764,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2241.0,
-        "margin_pct": 19.106488191661693
+        "margin": 2242.0,
+        "margin_pct": 20.828688219992568
       },
       "130": {
-        "dem_votes": 6669,
-        "rep_votes": 8584,
+        "dem_votes": 6672,
+        "rep_votes": 8587,
         "other_votes": 0,
-        "total_votes": 15253,
+        "total_votes": 15259,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 1915.0,
-        "margin_pct": 12.554907231364322
+        "margin_pct": 12.54997050920768
       },
       "131": {
-        "dem_votes": 11307,
-        "rep_votes": 11382,
+        "dem_votes": 9970,
+        "rep_votes": 10274,
         "other_votes": 0,
-        "total_votes": 22689,
+        "total_votes": 20244,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 75.0,
-        "margin_pct": 0.33055665741108026
+        "margin": 304.0,
+        "margin_pct": 1.5016795099782652
       },
       "132": {
-        "dem_votes": 8929,
-        "rep_votes": 5837,
+        "dem_votes": 8964,
+        "rep_votes": 5872,
         "other_votes": 0,
-        "total_votes": 14766,
+        "total_votes": 14836,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 3092.0,
-        "margin_pct": 20.93999729107409
+        "margin_pct": 20.841197088163927
       },
       "133": {
-        "dem_votes": 7532,
-        "rep_votes": 5090,
+        "dem_votes": 7553,
+        "rep_votes": 5095,
         "other_votes": 0,
-        "total_votes": 12622,
+        "total_votes": 12648,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2442.0,
-        "margin_pct": 19.34717160513389
+        "margin": 2458.0,
+        "margin_pct": 19.433902593295382
       },
       "134": {
-        "dem_votes": 4501,
-        "rep_votes": 2708,
+        "dem_votes": 5314,
+        "rep_votes": 3303,
         "other_votes": 0,
-        "total_votes": 7209,
+        "total_votes": 8617,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1793.0,
-        "margin_pct": 24.87168816756832
+        "margin": 2011.0,
+        "margin_pct": 23.33758848787281
       },
       "135": {
-        "dem_votes": 8613,
-        "rep_votes": 4167,
+        "dem_votes": 8662,
+        "rep_votes": 4248,
         "other_votes": 0,
-        "total_votes": 12780,
+        "total_votes": 12910,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 4446.0,
-        "margin_pct": 34.78873239436619
+        "margin": 4414.0,
+        "margin_pct": 34.190549961270335
       },
       "136": {
-        "dem_votes": 6641,
-        "rep_votes": 3839,
+        "dem_votes": 6759,
+        "rep_votes": 3981,
         "other_votes": 0,
-        "total_votes": 10480,
+        "total_votes": 10740,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2802.0,
-        "margin_pct": 26.736641221374047
+        "margin": 2778.0,
+        "margin_pct": 25.865921787709496
       },
       "137": {
-        "dem_votes": 9445,
-        "rep_votes": 7396,
+        "dem_votes": 9094,
+        "rep_votes": 7112,
         "other_votes": 0,
-        "total_votes": 16841,
+        "total_votes": 16206,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2049.0,
-        "margin_pct": 12.166735942046197
+        "margin": 1982.0,
+        "margin_pct": 12.230038257435517
       },
       "138": {
-        "dem_votes": 7026,
-        "rep_votes": 8361,
+        "dem_votes": 7341,
+        "rep_votes": 8578,
         "other_votes": 0,
-        "total_votes": 15387,
+        "total_votes": 15919,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1335.0,
-        "margin_pct": 8.676155195944629
+        "margin": 1237.0,
+        "margin_pct": 7.770588604811859
       },
       "139": {
-        "dem_votes": 6020,
-        "rep_votes": 8704,
+        "dem_votes": 6021,
+        "rep_votes": 8705,
         "other_votes": 0,
-        "total_votes": 14724,
+        "total_votes": 14726,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 2684.0,
-        "margin_pct": 18.228742189622384
+        "margin_pct": 18.2262664674725
       },
       "140": {
-        "dem_votes": 8474,
-        "rep_votes": 5689,
+        "dem_votes": 8475,
+        "rep_votes": 5690,
         "other_votes": 0,
-        "total_votes": 14163,
+        "total_votes": 14165,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 2785.0,
-        "margin_pct": 19.66391301277978
+        "margin_pct": 19.66113660430639
       },
       "141": {
-        "dem_votes": 7318,
-        "rep_votes": 4644,
+        "dem_votes": 7328,
+        "rep_votes": 4654,
         "other_votes": 0,
-        "total_votes": 11962,
+        "total_votes": 11982,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 2674.0,
-        "margin_pct": 22.35412138438388
+        "margin_pct": 22.31680854615256
       },
       "142": {
         "dem_votes": 9931,
@@ -1573,15 +1598,15 @@
         "margin_pct": 6.378876332280006
       },
       "143": {
-        "dem_votes": 12182,
-        "rep_votes": 12069,
+        "dem_votes": 12183,
+        "rep_votes": 12070,
         "other_votes": 0,
-        "total_votes": 24251,
+        "total_votes": 24253,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 113.0,
-        "margin_pct": 0.4659601665910684
+        "margin_pct": 0.46592174164020944
       },
       "144": {
         "dem_votes": 10792,
@@ -1595,37 +1620,37 @@
         "margin_pct": 2.5806758233924243
       },
       "145": {
-        "dem_votes": 8549,
-        "rep_votes": 9668,
+        "dem_votes": 8551,
+        "rep_votes": 9670,
         "other_votes": 0,
-        "total_votes": 18217,
+        "total_votes": 18221,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 1119.0,
-        "margin_pct": 6.142614041829061
+        "margin_pct": 6.141265572690851
       },
       "146": {
-        "dem_votes": 8376,
-        "rep_votes": 5718,
+        "dem_votes": 8379,
+        "rep_votes": 5720,
         "other_votes": 0,
-        "total_votes": 14094,
+        "total_votes": 14099,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2658.0,
-        "margin_pct": 18.8590889740315
+        "margin": 2659.0,
+        "margin_pct": 18.859493581105045
       },
       "147": {
-        "dem_votes": 9531,
-        "rep_votes": 10400,
+        "dem_votes": 9171,
+        "rep_votes": 10016,
         "other_votes": 0,
-        "total_votes": 19931,
+        "total_votes": 19187,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 869.0,
-        "margin_pct": 4.360042145401636
+        "margin": 845.0,
+        "margin_pct": 4.404023557617136
       },
       "148": {
         "dem_votes": 17877,
@@ -1661,15 +1686,15 @@
         "margin_pct": 21.226993865030675
       },
       "151": {
-        "dem_votes": 12497,
-        "rep_votes": 7665,
+        "dem_votes": 12989,
+        "rep_votes": 7837,
         "other_votes": 0,
-        "total_votes": 20162,
+        "total_votes": 20826,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 4832.0,
-        "margin_pct": 23.96587640115068
+        "margin": 5152.0,
+        "margin_pct": 24.7383078843753
       },
       "152": {
         "dem_votes": 10617,
@@ -1683,15 +1708,15 @@
         "margin_pct": 22.30862277518576
       },
       "153": {
-        "dem_votes": 14483,
-        "rep_votes": 6531,
+        "dem_votes": 13998,
+        "rep_votes": 6365,
         "other_votes": 0,
-        "total_votes": 21014,
+        "total_votes": 20363,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 7952.0,
-        "margin_pct": 37.84143904063957
+        "margin": 7633.0,
+        "margin_pct": 37.48465353828021
       },
       "154": {
         "dem_votes": 17520,
@@ -1705,15 +1730,15 @@
         "margin_pct": 64.19099386158099
       },
       "155": {
-        "dem_votes": 11846,
-        "rep_votes": 8450,
+        "dem_votes": 11848,
+        "rep_votes": 8452,
         "other_votes": 0,
-        "total_votes": 20296,
+        "total_votes": 20300,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 3396.0,
-        "margin_pct": 16.732361056365786
+        "margin_pct": 16.72906403940887
       },
       "156": {
         "dem_votes": 11577,
@@ -1727,15 +1752,15 @@
         "margin_pct": 19.57857769973661
       },
       "157": {
-        "dem_votes": 14091,
-        "rep_votes": 8845,
+        "dem_votes": 13305,
+        "rep_votes": 8386,
         "other_votes": 0,
-        "total_votes": 22936,
+        "total_votes": 21691,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 5246.0,
-        "margin_pct": 22.872340425531913
+        "margin": 4919.0,
+        "margin_pct": 22.677608224609287
       },
       "158": {
         "dem_votes": 11298,
@@ -1749,158 +1774,158 @@
         "margin_pct": 18.316054037071943
       },
       "159": {
-        "dem_votes": 6145,
-        "rep_votes": 3274,
+        "dem_votes": 6182,
+        "rep_votes": 3284,
         "other_votes": 0,
-        "total_votes": 9419,
+        "total_votes": 9466,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2871.0,
-        "margin_pct": 30.48094277524153
+        "margin": 2898.0,
+        "margin_pct": 30.614832030424676
       },
       "160": {
-        "dem_votes": 11125,
-        "rep_votes": 10533,
+        "dem_votes": 11129,
+        "rep_votes": 10538,
         "other_votes": 0,
-        "total_votes": 21658,
+        "total_votes": 21667,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 592.0,
-        "margin_pct": 2.7334010527287838
+        "margin": 591.0,
+        "margin_pct": 2.727650343840864
       },
       "161": {
-        "dem_votes": 10553,
-        "rep_votes": 7716,
+        "dem_votes": 10526,
+        "rep_votes": 7717,
         "other_votes": 0,
-        "total_votes": 18269,
+        "total_votes": 18243,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2837.0,
-        "margin_pct": 15.529038261535936
+        "margin": 2809.0,
+        "margin_pct": 15.397686783971935
       },
       "162": {
-        "dem_votes": 7986,
-        "rep_votes": 6777,
+        "dem_votes": 7987,
+        "rep_votes": 6779,
         "other_votes": 0,
-        "total_votes": 14763,
+        "total_votes": 14766,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1209.0,
-        "margin_pct": 8.189392399918717
+        "margin": 1208.0,
+        "margin_pct": 8.18095625084654
       },
       "163": {
-        "dem_votes": 8969,
-        "rep_votes": 6276,
+        "dem_votes": 8913,
+        "rep_votes": 6239,
         "other_votes": 0,
-        "total_votes": 15245,
+        "total_votes": 15152,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 2693.0,
-        "margin_pct": 17.664808133814365
+        "margin": 2674.0,
+        "margin_pct": 17.647835269271383
       },
       "164": {
-        "dem_votes": 7520,
-        "rep_votes": 2159,
+        "dem_votes": 7522,
+        "rep_votes": 2161,
         "other_votes": 0,
-        "total_votes": 9679,
+        "total_votes": 9683,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 5361.0,
-        "margin_pct": 55.387953300960845
+        "margin_pct": 55.36507280801405
       },
       "165": {
-        "dem_votes": 12943,
-        "rep_votes": 9413,
+        "dem_votes": 13018,
+        "rep_votes": 9529,
         "other_votes": 0,
-        "total_votes": 22356,
+        "total_votes": 22547,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 3530.0,
-        "margin_pct": 15.789944533905887
+        "margin": 3489.0,
+        "margin_pct": 15.47434248458775
       },
       "166": {
-        "dem_votes": 14089,
-        "rep_votes": 8380,
+        "dem_votes": 14029,
+        "rep_votes": 8279,
         "other_votes": 0,
-        "total_votes": 22469,
+        "total_votes": 22308,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 5709.0,
-        "margin_pct": 25.40834038007922
+        "margin": 5750.0,
+        "margin_pct": 25.775506544737315
       },
       "167": {
-        "dem_votes": 11568,
-        "rep_votes": 7469,
+        "dem_votes": 11867,
+        "rep_votes": 7674,
         "other_votes": 0,
-        "total_votes": 19037,
+        "total_votes": 19541,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 4099.0,
-        "margin_pct": 21.5317539528287
+        "margin": 4193.0,
+        "margin_pct": 21.457448441737885
       },
       "168": {
-        "dem_votes": 11403,
-        "rep_votes": 7877,
+        "dem_votes": 11411,
+        "rep_votes": 7886,
         "other_votes": 0,
-        "total_votes": 19280,
+        "total_votes": 19297,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 3526.0,
-        "margin_pct": 18.288381742738586
+        "margin": 3525.0,
+        "margin_pct": 18.267088148416853
       },
       "169": {
-        "dem_votes": 4906,
-        "rep_votes": 8193,
+        "dem_votes": 4948,
+        "rep_votes": 8258,
         "other_votes": 0,
-        "total_votes": 13099,
+        "total_votes": 13206,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 3287.0,
-        "margin_pct": 25.09351858920528
+        "margin": 3310.0,
+        "margin_pct": 25.064364682719976
       },
       "170": {
-        "dem_votes": 5262,
-        "rep_votes": 5769,
+        "dem_votes": 5292,
+        "rep_votes": 5810,
         "other_votes": 0,
-        "total_votes": 11031,
+        "total_votes": 11102,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 507.0,
-        "margin_pct": 4.59613815610552
+        "margin": 518.0,
+        "margin_pct": 4.665825977301387
       },
       "171": {
-        "dem_votes": 5106,
-        "rep_votes": 9991,
+        "dem_votes": 5406,
+        "rep_votes": 10334,
         "other_votes": 0,
-        "total_votes": 15097,
+        "total_votes": 15740,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 4885.0,
-        "margin_pct": 32.35742200437173
+        "margin": 4928.0,
+        "margin_pct": 31.30876747141042
       },
       "172": {
-        "dem_votes": 5852,
-        "rep_votes": 4802,
+        "dem_votes": 5827,
+        "rep_votes": 4766,
         "other_votes": 0,
-        "total_votes": 10654,
+        "total_votes": 10593,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 1050.0,
-        "margin_pct": 9.85545335085414
+        "margin": 1061.0,
+        "margin_pct": 10.016048333805342
       },
       "173": {
         "dem_votes": 4654,
@@ -1925,15 +1950,15 @@
         "margin_pct": 13.833296679129095
       },
       "175": {
-        "dem_votes": 15020,
-        "rep_votes": 2127,
+        "dem_votes": 14579,
+        "rep_votes": 2085,
         "other_votes": 0,
-        "total_votes": 17147,
+        "total_votes": 16664,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 12893.0,
-        "margin_pct": 75.19099550941856
+        "margin": 12494.0,
+        "margin_pct": 74.9759961593855
       },
       "176": {
         "dem_votes": 6206,
@@ -1947,15 +1972,15 @@
         "margin_pct": 9.129511677282377
       },
       "177": {
-        "dem_votes": 5941,
-        "rep_votes": 3070,
+        "dem_votes": 5942,
+        "rep_votes": 3071,
         "other_votes": 0,
-        "total_votes": 9011,
+        "total_votes": 9013,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 2871.0,
-        "margin_pct": 31.86105870602597
+        "margin_pct": 31.853988683013423
       },
       "178": {
         "dem_votes": 10417,
@@ -1991,37 +2016,37 @@
         "margin_pct": 55.51294343240652
       },
       "181": {
-        "dem_votes": 7410,
-        "rep_votes": 540,
+        "dem_votes": 7862,
+        "rep_votes": 591,
         "other_votes": 0,
-        "total_votes": 7950,
+        "total_votes": 8453,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 6870.0,
-        "margin_pct": 86.41509433962264
+        "margin": 7271.0,
+        "margin_pct": 86.01679876966757
       },
       "182": {
-        "dem_votes": 16907,
-        "rep_votes": 1844,
+        "dem_votes": 16909,
+        "rep_votes": 1845,
         "other_votes": 0,
-        "total_votes": 18751,
+        "total_votes": 18754,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 15063.0,
-        "margin_pct": 80.33171564183243
+        "margin": 15064.0,
+        "margin_pct": 80.32419750453236
       },
       "183": {
-        "dem_votes": 7450,
-        "rep_votes": 8549,
+        "dem_votes": 7462,
+        "rep_votes": 8555,
         "other_votes": 0,
-        "total_votes": 15999,
+        "total_votes": 16017,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1099.0,
-        "margin_pct": 6.869179323707732
+        "margin": 1093.0,
+        "margin_pct": 6.823999500530686
       },
       "184": {
         "dem_votes": 9636,
@@ -2035,15 +2060,15 @@
         "margin_pct": 53.46392737697086
       },
       "185": {
-        "dem_votes": 7203,
-        "rep_votes": 3367,
+        "dem_votes": 7204,
+        "rep_votes": 3368,
         "other_votes": 0,
-        "total_votes": 10570,
+        "total_votes": 10572,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 3836.0,
-        "margin_pct": 36.29139072847682
+        "margin_pct": 36.28452516080212
       },
       "186": {
         "dem_votes": 11911,
@@ -2057,59 +2082,59 @@
         "margin_pct": 84.06737753052079
       },
       "187": {
-        "dem_votes": 7880,
-        "rep_votes": 8364,
+        "dem_votes": 8336,
+        "rep_votes": 8735,
         "other_votes": 0,
-        "total_votes": 16244,
+        "total_votes": 17071,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 484.0,
-        "margin_pct": 2.9795616843142083
+        "margin": 399.0,
+        "margin_pct": 2.337297170640267
       },
       "188": {
-        "dem_votes": 11547,
-        "rep_votes": 501,
+        "dem_votes": 11549,
+        "rep_votes": 502,
         "other_votes": 0,
-        "total_votes": 12048,
+        "total_votes": 12051,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 11046.0,
-        "margin_pct": 91.68326693227091
+        "margin": 11047.0,
+        "margin_pct": 91.66874118330429
       },
       "189": {
-        "dem_votes": 6456,
-        "rep_votes": 4768,
+        "dem_votes": 6461,
+        "rep_votes": 4773,
         "other_votes": 0,
-        "total_votes": 11224,
+        "total_votes": 11234,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 1688.0,
-        "margin_pct": 15.039201710620102
+        "margin_pct": 15.02581449172156
       },
       "190": {
-        "dem_votes": 9388,
-        "rep_votes": 458,
+        "dem_votes": 9389,
+        "rep_votes": 459,
         "other_votes": 0,
-        "total_votes": 9846,
+        "total_votes": 9848,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 8930.0,
-        "margin_pct": 90.69672963640056
+        "margin_pct": 90.6783103168156
       },
       "191": {
-        "dem_votes": 8674,
-        "rep_votes": 579,
+        "dem_votes": 8737,
+        "rep_votes": 622,
         "other_votes": 0,
-        "total_votes": 9253,
+        "total_votes": 9359,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
-        "margin": 8095.0,
-        "margin_pct": 87.48513995460931
+        "margin": 8115.0,
+        "margin_pct": 86.70798162196816
       },
       "192": {
         "dem_votes": 10885,
@@ -2123,15 +2148,15 @@
         "margin_pct": 89.05775075987842
       },
       "193": {
-        "dem_votes": 4369,
-        "rep_votes": 8210,
+        "dem_votes": 4375,
+        "rep_votes": 8216,
         "other_votes": 0,
-        "total_votes": 12579,
+        "total_votes": 12591,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
         "margin": 3841.0,
-        "margin_pct": 30.535018681930204
+        "margin_pct": 30.505916924787545
       },
       "194": {
         "dem_votes": 14342,
@@ -2156,48 +2181,48 @@
         "margin_pct": 84.90813648293964
       },
       "196": {
-        "dem_votes": 4741,
-        "rep_votes": 8278,
+        "dem_votes": 4772,
+        "rep_votes": 8327,
         "other_votes": 0,
-        "total_votes": 13019,
+        "total_votes": 13099,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 3537.0,
-        "margin_pct": 27.16798525232353
+        "margin": 3555.0,
+        "margin_pct": 27.13947629590045
       },
       "197": {
-        "dem_votes": 4844,
-        "rep_votes": 549,
+        "dem_votes": 4846,
+        "rep_votes": 551,
         "other_votes": 0,
-        "total_votes": 5393,
+        "total_votes": 5397,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 4295.0,
-        "margin_pct": 79.64027442981643
+        "margin_pct": 79.58124884194923
       },
       "198": {
-        "dem_votes": 9266,
-        "rep_votes": 527,
+        "dem_votes": 9267,
+        "rep_votes": 528,
         "other_votes": 0,
-        "total_votes": 9793,
+        "total_votes": 9795,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "D",
         "margin": 8739.0,
-        "margin_pct": 89.23721025222098
+        "margin_pct": 89.21898928024503
       },
       "199": {
-        "dem_votes": 6924,
-        "rep_votes": 8721,
+        "dem_votes": 6730,
+        "rep_votes": 8506,
         "other_votes": 0,
-        "total_votes": 15645,
+        "total_votes": 15236,
         "dem_candidate": "Matthew S. Wolf",
         "rep_candidate": "Megan Martin",
         "winner": "R",
-        "margin": 1797.0,
-        "margin_pct": 11.486097794822626
+        "margin": 1776.0,
+        "margin_pct": 11.656602782882647
       },
       "200": {
         "dem_votes": 19931,

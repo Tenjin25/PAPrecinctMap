@@ -2,7 +2,7 @@ import csv, json
 from pathlib import Path
 import re
 import zipfile
-from collections import defaultdict
+from collections import Counter, defaultdict
 try:
     import geopandas as gpd
 except Exception:  # pragma: no cover
@@ -333,6 +333,16 @@ OFFICIAL_JUDICIAL_SOURCES = {
     2023: base / 'data' / 'ElectionReturns_2023_Municipal_PrecinctReturns.txt',
     2025: base / 'data' / 'ElectionReturns_2025_Municipal_PrecinctReturns.txt',
 }
+SUPPLEMENTAL_JUDICIAL_SOURCES = {
+    2011: [
+        DATA_ROOT / '2011' / 'supplemental' / 'philadelphia_2011_supreme_retention.csv',
+        DATA_ROOT / '2011' / 'supplemental' / 'philadelphia_2011_other_retention.csv',
+        DATA_ROOT / '2011' / 'supplemental' / 'lackawanna_2011_supreme_retention.csv',
+        DATA_ROOT / '2011' / 'supplemental' / 'lackawanna_2011_other_retention.csv',
+        DATA_ROOT / '2011' / 'supplemental' / 'montour_2011_all_retention.csv',
+        DATA_ROOT / '2011' / 'supplemental' / 'greene_2011_all_retention.csv',
+    ],
+}
 OFFICIAL_2024_DISTRICT_SOURCE = base / 'data' / 'erstat_2024_g_268768_20250129.txt'
 DRA_DISTRICT_STATS_FILENAME = re.compile(
     r'^district-statistics\s+(state house|state senate)\s+(\d{4})\s+(.+?)\.csv$',
@@ -366,6 +376,53 @@ VTD_CURRENT_DISTRICT_BLOCKS = None
 VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = None
 RAW_COUNTY_NAME_BY_FIPS = None
 CURRENT_PRECINCT_TO_VTDS = None
+PRECINCT_ALIAS_VTDS = None
+MAINTAINED_PRECINCT_TARGETS = None
+MAINTAINED_PRECINCT_PARENT_SOURCES = None
+HISTORICAL_VTD10_TARGETS = None
+
+# Reviewed one-to-one legacy labels whose A/B or "Independent" suffix is not
+# represented as a separate Carter VTD. Targets were checked against all three
+# BEF-backed block maps; ambiguous municipality parents are intentionally absent.
+REVIEWED_LEGACY_VTD_EXCEPTIONS = {
+    ('ALLEGHENY', 'ELIZABETH WARD 5 DISTRICT 1'): ('003', '002022'),
+    ('BERKS', 'CUMRU DISTRICT 1 B'): ('011', '000240'),
+    ('BERKS', 'LAURELDALE DISTRICT 1 B'): ('011', '000530'),
+    ('CLARION', 'PINEY P'): ('031', '000340'),
+    ('HUNTINGDON', 'PENN P'): ('061', '000380'),
+    ('HUNTINGDON', 'PENN P B'): ('061', '000380'),
+    ('LACKAWANNA', 'OLYPHANT WARD 3 DISTRICT 2 A'): ('069', '001209'),
+    ('LEBANON', 'NORTH LEBANON DISTRICT EAST B'): ('075', '000350'),
+    ('MONTGOMERY', 'BRYN ATHYN INDEPENDENT'): ('091', '000460'),
+    ('MONTGOMERY', 'PERKIOMEN DISTRICT 1 B'): ('091', '002195'),
+    ('MONTGOMERY', 'PLYMOUTH DISTRICT 2 DISTRICT 3B'): ('091', '002488'),
+    ('MONTGOMERY', 'PLYMOUTH DISTRICT 2 DISTRICT 3C'): ('091', '002488'),
+    # These legacy labels either identify an exact surviving VTD or fall
+    # wholly within a municipality whose candidate VTD20s have the same
+    # CD118/SLDL22/SLDU22 signature.  The representative VTD therefore does
+    # not guess across a 2022 district boundary.
+    ('DELAWARE', 'CONCORD DISTRICT CENTRAL EAST'): ('045', '000816'),
+    ('DELAWARE', 'CONCORD DISTRICT CENTRAL WEST'): ('045', '000816'),
+    ('DELAWARE', 'CONCORD DISTRICT FOXHILL'): ('045', '000816'),
+    ('DELAWARE', 'CONCORD DISTRICT MARIS GROVE'): ('045', '000816'),
+    ('DELAWARE', 'CONCORD DISTRICT SOUTHCENTRAL'): ('045', '000816'),
+    ('DELAWARE', 'CONCORD DISTRICT SOUTHWEST'): ('045', '000816'),
+    ('ERIE', 'GIRARD DISTRICT EAST'): ('049', '000890'),
+    ('ERIE', 'KEAN DISTRICT EAST'): ('049', '001068'),
+    ('ERIE', 'KEAN DISTRICT WEST'): ('049', '001068'),
+    ('MONTGOMERY', 'HATFIELD DISTRICT 5 DISTRICT 2 A'): ('091', '001036'),
+    ('MONTGOMERY', 'HATFIELD DISTRICT 5 DISTRICT 2 B'): ('091', '001036'),
+    # OpenPrecincts PA18G documents Horsham 2-2 A/B as obsolete
+    # congressional fragments recombined to Horsham 2-2; the maintained
+    # Carter/alias target for that precinct is VTD20 001085.
+    ('MONTGOMERY', 'HORSHAM DISTRICT 2 B'): ('091', '001085'),
+    ('MONTGOMERY', 'MARLBOROUGH A'): ('091', '001997'),
+    ('MONTGOMERY', 'UPPER DUBLIN DISTRICT 6 DISTRICT 3B'): ('091', '003141'),
+    ('MONTGOMERY', 'WHITPAIN DISTRICT 1 92'): ('091', '003812'),
+    ('NORTHUMBERLAND', 'RIVERSIDE P'): ('097', '000560'),
+    ('TIOGA', 'SHIPPEN P'): ('117', '000350'),
+    ('TIOGA', 'SHIPPEN P B'): ('117', '000350'),
+}
 
 
 def iter_openelections_csvs():
@@ -394,11 +451,17 @@ def iter_openelections_csvs():
     for y in sorted(OFFICIAL_JUDICIAL_SOURCES):
         year_dir = DATA_ROOT / str(y)
         normalized = sorted(year_dir.glob('*__pa__municipal__precinct.csv'))
-        if normalized:
+        # Prefer the official export: unlike the normalized derivative, it
+        # retains the county-local historical VTD/precinct code needed by the
+        # NHGIS block-chain crosswalk. The normalized file remains a fallback.
+        if OFFICIAL_JUDICIAL_SOURCES[y].exists():
+            yield y, OFFICIAL_JUDICIAL_SOURCES[y]
+        elif normalized:
             for fp in normalized:
                 yield y, fp
-        elif OFFICIAL_JUDICIAL_SOURCES[y].exists():
-            yield y, OFFICIAL_JUDICIAL_SOURCES[y]
+        for supplemental in SUPPLEMENTAL_JUDICIAL_SOURCES.get(y, []):
+            if supplemental.exists():
+                yield y, supplemental
 
 
 def read_csv_rows(path: Path):
@@ -477,6 +540,13 @@ def read_raw_precinct_rows(lines):
         elif len(raw) >= 28 and str(raw[27]).isdigit():
             county_fips = str(raw[27]).zfill(3)
         county = county_lookup.get(county_fips, county_fips)
+        source_vtd = ''
+        source_vtd_raw = raw[30] if len(raw) >= 35 else raw[28] if len(raw) >= 29 else ''
+        source_vtd_raw = str(source_vtd_raw or '').strip().upper()
+        if re.fullmatch(r'[0-9A-Z]+', source_vtd_raw):
+            # Maintained historical crosswalks retain PA's short alpha IDs
+            # (for example Pittsburgh A020) but zero-pad numeric VTD codes.
+            source_vtd = source_vtd_raw.zfill(6) if source_vtd_raw.isdigit() else source_vtd_raw
         name_start = 22 if len(raw) >= 35 else 20
         precinct = ' '.join(part for part in raw[name_start:name_start + 5] if part).strip()
         district = ''
@@ -502,6 +572,7 @@ def read_raw_precinct_rows(lines):
         parsed_row = {
             'county': county,
             'precinct': precinct,
+            'source_vtd': source_vtd,
             'office': office,
             'district': district,
             'congressional_district': precinct_cd,
@@ -642,6 +713,27 @@ def safe_float(value):
         return float((value or 0))
     except Exception:
         return 0.0
+
+
+def round_fractional_vote_components(node):
+    """Round accumulated party components once while preserving their total."""
+    raw = {
+        field: max(float(node.get(field) or 0), 0.0)
+        for field in ('dem_votes', 'rep_votes', 'other_votes')
+    }
+    target_total = int(round(sum(raw.values())))
+    rounded = {field: int(value) for field, value in raw.items()}
+    remainder = target_total - sum(rounded.values())
+    if remainder > 0:
+        priority = {'dem_votes': 3, 'rep_votes': 2, 'other_votes': 1}
+        order = sorted(
+            raw,
+            key=lambda field: (raw[field] - rounded[field], priority[field]),
+            reverse=True,
+        )
+        for field in order[:remainder]:
+            rounded[field] += 1
+    return rounded, target_total
 
 
 def normalized_vote_shares(dem_share, rep_share, other_share):
@@ -1157,11 +1249,63 @@ def load_vtd_bridge_index():
     return VTD_BRIDGE_INDEX
 
 
+def load_vtd_current_district_equivalency_blocks():
+    """Join Carter-adjusted block-to-VTD IDs to current district equivalents."""
+    sources = {
+        'congressional': ('42_PA_CD118.txt', 'CDFP'),
+        'state_house': ('42_PA_SLDL22.txt', 'SLDLST'),
+        'state_senate': ('42_PA_SLDU22.txt', 'SLDUST'),
+    }
+    vtd_source = data_dir / 'crosswalks' / 'pa_block20_to_vtd20.csv'
+    if not vtd_source.exists() or not all((data_dir / filename).exists() for filename, _ in sources.values()):
+        return None
+
+    vtd_by_block = {}
+    with vtd_source.open('r', encoding='utf-8-sig', newline='') as handle:
+        reader = csv.DictReader(handle)
+        if not {'block', 'countyfp_dst', 'dst_vtd'}.issubset(reader.fieldnames or []):
+            raise ValueError(f'Unexpected columns in {vtd_source}')
+        for row in reader:
+            block_id = (row.get('block') or '').strip()
+            countyfp = (row.get('countyfp_dst') or '').strip().zfill(3)
+            vtd = (row.get('dst_vtd') or '').strip()
+            if not re.fullmatch(r'42\d{13}', block_id) or not re.fullmatch(r'\d{3}', countyfp) or not vtd:
+                raise ValueError(f'Invalid Carter-adjusted VTD assignment for {block_id}')
+            if block_id in vtd_by_block:
+                raise ValueError(f'Duplicate Carter-adjusted VTD assignment for {block_id}')
+            vtd_by_block[block_id] = (countyfp, vtd)
+
+    block_ids = set(vtd_by_block)
+    weights = {}
+    for scope, (filename, district_field) in sources.items():
+        scope_weights = defaultdict(lambda: defaultdict(int))
+        seen = set()
+        with (data_dir / filename).open('r', encoding='utf-8-sig', newline='') as handle:
+            reader = csv.DictReader(handle, skipinitialspace=True)
+            if not {'GEOID', district_field}.issubset(reader.fieldnames or []):
+                raise ValueError(f'Unexpected columns in {filename}')
+            for row in reader:
+                block_id = (row.get('GEOID') or '').strip()
+                if block_id in seen or block_id not in block_ids:
+                    raise ValueError(f'Duplicate or unknown block {block_id} in {filename}')
+                district = normalize_district_id(row.get(district_field) or '')
+                if not district or not 1 <= int(district) <= CURRENT_SCOPE_DISTRICT_MAX[scope]:
+                    raise ValueError(f'Invalid district for block {block_id} in {filename}')
+                seen.add(block_id)
+                scope_weights[vtd_by_block[block_id]][district] += 1
+        if seen != block_ids:
+            raise ValueError(f'{filename} is missing {len(block_ids - seen)} block assignments')
+        weights[scope] = scope_weights
+    return weights
+
+
 def load_vtd_current_district_blocks():
     global VTD_CURRENT_DISTRICT_BLOCKS, VTD_CURRENT_SCOPE_BLOCK_WEIGHTS
     if VTD_CURRENT_DISTRICT_BLOCKS is not None:
         return VTD_CURRENT_DISTRICT_BLOCKS
     weights = {scope: defaultdict(lambda: defaultdict(int)) for scope in ('congressional', 'state_house', 'state_senate')}
+    if VTD_CURRENT_SCOPE_BLOCK_WEIGHTS is None:
+        VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = load_vtd_current_district_equivalency_blocks()
     if VTD_CURRENT_SCOPE_BLOCK_WEIGHTS is None and gpd is not None:
         try:
             block_gdf = gpd.read_file(f'zip://{(data_dir / "tl_2022_42_tabblock20.zip").resolve()}')[['GEOID20', 'geometry']].copy()
@@ -1217,6 +1361,150 @@ def load_vtd_current_district_blocks():
     return VTD_CURRENT_DISTRICT_BLOCKS
 
 
+def collapse_repeated_precinct_suffix(value: str):
+    """Collapse export artifacts such as ``HALFMOON P EAST P EAST``."""
+    tokens = re.sub(r'\s+', ' ', str(value or '').upper()).strip().split()
+    for start in range(1, len(tokens)):
+        suffix = tokens[start:]
+        if len(suffix) >= 2 and len(suffix) % 2 == 0:
+            half = len(suffix) // 2
+            if suffix[:half] == suffix[half:]:
+                return ' '.join(tokens[:start] + suffix[:half])
+    return ' '.join(tokens)
+
+
+def load_maintained_precinct_targets():
+    """Load reviewed historical/modern precinct-to-VTD20 crosswalks."""
+    global MAINTAINED_PRECINCT_TARGETS, MAINTAINED_PRECINCT_PARENT_SOURCES
+    if MAINTAINED_PRECINCT_TARGETS is not None:
+        return MAINTAINED_PRECINCT_TARGETS
+    index = defaultdict(list)
+    for filename in ('pa_historical_precinct_to_vtd20.csv', 'pa_modern_precinct_to_vtd20.csv'):
+        path = data_dir / 'crosswalks' / filename
+        if not path.exists():
+            continue
+        with path.open('r', encoding='utf-8-sig', newline='') as handle:
+            for row in csv.DictReader(handle):
+                year = safe_int(row.get('year'))
+                county = str(row.get('countyfp') or '').strip().zfill(3)
+                raw_source = collapse_repeated_precinct_suffix(row.get('source_precinct') or '')
+                source_aliases = {
+                    raw_source,
+                    collapse_repeated_precinct_suffix(normalize_bridge_precinct_name(raw_source)),
+                }
+                dst_county = str(row.get('dst_countyfp') or '').strip().zfill(3)
+                dst_vtd = str(row.get('dst_vtd') or '').strip()
+                try:
+                    weight = float(row.get('weight') or 0)
+                except (TypeError, ValueError):
+                    weight = 0.0
+                if year and county and dst_county and dst_vtd and weight > 0:
+                    for source in source_aliases:
+                        if source:
+                            index[(year, county, source)].append((dst_county, dst_vtd, weight, row.get('method') or filename))
+    parent_sources = defaultdict(set)
+    for target_year, target_county, target_source in index:
+        tokens = target_source.split()
+        for end in range(1, len(tokens)):
+            parent_sources[(target_year, target_county, ' '.join(tokens[:end]))].add(target_source)
+    MAINTAINED_PRECINCT_TARGETS = index
+    MAINTAINED_PRECINCT_PARENT_SOURCES = parent_sources
+    return MAINTAINED_PRECINCT_TARGETS
+
+
+def maintained_targets_for_row(row, year: int, countyfp: str):
+    index = load_maintained_precinct_targets()
+    parent_sources = MAINTAINED_PRECINCT_PARENT_SOURCES or {}
+    source = collapse_repeated_precinct_suffix(normalize_bridge_precinct_name(row.get('precinct') or ''))
+    raw_source = collapse_repeated_precinct_suffix(row.get('precinct') or '')
+    candidate_years = [year]
+    if year % 2:
+        candidate_years.extend([year + 1, year - 1])
+    source_vtd = str(row.get('source_vtd') or '').strip().upper()
+    # Some normalized OpenElections Philadelphia rows concatenate county FIPS
+    # and ward/precinct (for example ``PHILADELPHIA 1014903``).  Recover the
+    # 2010 VTD code so the existing NHGIS block chain can place it; this is an
+    # exact decoding, not a fuzzy name match.
+    if not source_vtd and countyfp == '101':
+        embedded = re.search(r'\b101(\d{4})$', source)
+        if embedded:
+            source_vtd = embedded.group(1).zfill(6)
+    for candidate_year in candidate_years:
+        if source_vtd.isdigit():
+            source_vtd = source_vtd.zfill(6)
+        for candidate_source in (source_vtd, raw_source, source):
+            targets = index.get((candidate_year, countyfp, candidate_source)) or []
+            if targets:
+                total = sum(item[2] for item in targets) or 1.0
+                return [
+                    (
+                        county,
+                        vtd,
+                        weight / total,
+                        f'adjacent_{candidate_year}_{method}'
+                        if candidate_year != year and candidate_source == source_vtd
+                        else method,
+                    )
+                    for county, vtd, weight, method in targets
+                ]
+    # Official odd-year files retain VTD10 codes even when no election-year
+    # row exists in the maintained precinct crosswalk. Resolve those codes
+    # through the local NHGIS-derived 2010->2020 block chain directly.
+    global HISTORICAL_VTD10_TARGETS
+    if year >= 2010 and source_vtd:
+        if HISTORICAL_VTD10_TARGETS is None:
+            HISTORICAL_VTD10_TARGETS = defaultdict(list)
+            chain_path = data_dir / 'crosswalks' / 'pa_vtd10_to_vtd20_block_chain.csv'
+            if chain_path.exists():
+                with chain_path.open('r', encoding='utf-8-sig', newline='') as handle:
+                    for item in csv.DictReader(handle):
+                        src_county = str(item.get('countyfp') or '').strip().zfill(3)
+                        src_vtd = str(item.get('src_vtd') or '').strip()
+                        dst_county = str(item.get('dst_countyfp') or '').strip().zfill(3)
+                        dst_vtd = str(item.get('dst_vtd') or '').strip()
+                        try:
+                            weight = float(item.get('weight') or 0)
+                        except (TypeError, ValueError):
+                            weight = 0.0
+                        if src_county and src_vtd and dst_county and dst_vtd and weight > 0:
+                            HISTORICAL_VTD10_TARGETS[(src_county, src_vtd)].append(
+                                (dst_county, dst_vtd, weight, 'vtd10_nhgis_block_chain')
+                            )
+        targets = HISTORICAL_VTD10_TARGETS.get((countyfp, source_vtd)) or []
+        if targets:
+            total = sum(item[2] for item in targets) or 1.0
+            return [(county, vtd, weight / total, method) for county, vtd, weight, method in targets]
+    # Odd-year judicial exports sometimes report a municipality/ward parent
+    # while the adjacent even-year crosswalk has its child precincts. Expand
+    # only explicit structural parents and let block counts weight the child
+    # VTDs; do not apply this to arbitrary short place names.
+    if year >= 2017 and year % 2:
+        for candidate_year in (year + 1, year - 1):
+            structural_parent = bool(re.search(r'\b(?:DISTRICT|WARD|TOWNSHIP|PRECINCT)$', source))
+            parent_keys = {source}
+            if structural_parent:
+                parent_keys.add(re.sub(r'\s+(?:DISTRICT|WARD|TOWNSHIP|PRECINCT)$', '', source).strip())
+            matching_sources = set().union(*(
+                parent_sources.get((candidate_year, countyfp, parent_key), set())
+                for parent_key in parent_keys if parent_key
+            ))
+            if structural_parent or len(matching_sources) >= 2:
+                targets = {
+                    (dst_county, dst_vtd)
+                    for target_source in matching_sources
+                    for dst_county, dst_vtd, _weight, _method in index[(candidate_year, countyfp, target_source)]
+                }
+            else:
+                targets = set()
+            if targets:
+                weight = 1.0 / len(targets)
+                return [
+                    (dst_county, dst_vtd, weight, 'adjacent_modern_parent_block_count')
+                    for dst_county, dst_vtd in sorted(targets)
+                ]
+    return []
+
+
 def match_row_to_current_vtds(row):
     county = normalize_county_name(row.get('county') or '')
     countyfp = county_fips_by_name().get(county)
@@ -1225,6 +1513,10 @@ def match_row_to_current_vtds(row):
     precinct = row.get('precinct') or ''
     if not precinct:
         return []
+    reviewed_key = (county, normalize_bridge_precinct_name(precinct))
+    reviewed_target = REVIEWED_LEGACY_VTD_EXCEPTIONS.get(reviewed_key)
+    if reviewed_target:
+        return [reviewed_target]
     # Normalized OpenElections outputs already carry the current precinct id
     # (for example ``ADAMS - 001010``). Resolve it back to the source VTD20
     # keys used by the block-to-district allocator instead of name-matching it
@@ -1242,11 +1534,50 @@ def match_row_to_current_vtds(row):
                     source_vtd = str(item.get('vtd20') or '').strip()
                     if current_county and current_vtd and source_county and source_vtd:
                         CURRENT_PRECINCT_TO_VTDS[(current_county, current_vtd)].add((source_county, source_vtd))
-    canonical = re.search(r'\b([0-9]{6,})$', str(precinct).strip())
+    # Current Pennsylvania precinct IDs are not uniformly numeric. Allegheny
+    # uses identifiers such as 003A000; rejecting the letter caused hundreds
+    # of otherwise exact rows to fall through to fragile name matching.
+    canonical = re.search(r'\b([0-9][0-9A-Z]{5,})$', str(precinct).strip().upper())
     if canonical:
         source_keys = CURRENT_PRECINCT_TO_VTDS.get((countyfp, canonical.group(1))) or set()
         if source_keys:
             return sorted(source_keys)
+    # Consult the maintained alias index before the narrower Census VTD-name
+    # bridge. It contains reviewed legacy spellings and split-precinct labels
+    # derived from precinct_friendly_names.json and resolves directly to
+    # VTD20 IDs within the named county.
+    global PRECINCT_ALIAS_VTDS
+    if PRECINCT_ALIAS_VTDS is None:
+        PRECINCT_ALIAS_VTDS = {}
+        alias_path = data_dir / 'precinct_alias_index.json'
+        if alias_path.exists():
+            try:
+                payload = json.loads(alias_path.read_text(encoding='utf-8'))
+                PRECINCT_ALIAS_VTDS = payload.get('counties') or {}
+            except (OSError, json.JSONDecodeError):
+                PRECINCT_ALIAS_VTDS = {}
+    county_aliases = PRECINCT_ALIAS_VTDS.get(county) or {}
+    alias_matches = set()
+    alias_candidates = {
+        str(precinct).strip().upper(),
+        normalize_bridge_precinct_name(precinct),
+    }
+    alias_candidates.update(bridge_precinct_aliases(precinct))
+    # Some official exports use D for both municipality district and its
+    # nested election division (for example RAPHO D ELM TREE D II). Add only
+    # exact maintained-index variants with a later DISTRICT -> DIVISION
+    # substitution; no similarity or prefix matching is involved.
+    for alias in list(alias_candidates):
+        starts = [match.start() for match in re.finditer(r'\bDISTRICT\b', alias)]
+        for start in starts[1:]:
+            alias_candidates.add(alias[:start] + 'DIVISION' + alias[start + len('DISTRICT'):])
+    for alias in alias_candidates:
+        alias_matches.update(county_aliases.get(alias, []))
+        compact = re.sub(r'[^A-Z0-9]', '', alias)
+        if compact:
+            alias_matches.update(county_aliases.get(compact, []))
+    if alias_matches:
+        return [(countyfp, str(vtd).strip()) for vtd in sorted(alias_matches)]
     index = load_vtd_bridge_index().get(countyfp) or {}
     candidate_names = {precinct}
     precise_candidate_names = set()
@@ -1281,6 +1612,12 @@ def match_row_to_current_vtds(row):
         candidate_names.add('TINICUM DISTRICT TINICUM')
     if county == 'LACKAWANNA' and exact_name == 'SPRINGBROOK TOWNSHIP WARD 0 PRECINCT 0':
         candidate_names.add('SPRING BROOK')
+    # The Montour 2011 report uses Roman numerals for these two districts.
+    # Preserve the source label and expand only this county-specific alias.
+    if county == 'MONTOUR' and exact_name in {'MAHONING I', 'MAHONING II'}:
+        candidate_names.add('MAHONING DISTRICT ' + {'MAHONING I': '1', 'MAHONING II': '2'}[exact_name])
+    if county == 'GREENE' and exact_name == 'MORGAN CHART T GARDEN':
+        candidate_names.add('MORGAN DISTRICT CHART T GRDN')
     if county == 'LUZERNE' and exact_name in {'PLYMOUTH', 'PLYMOUTH TOWNSHIP'}:
         candidate_names.add('PLYMOUTH DISTRICT 1')
     if county == 'MONTGOMERY':
@@ -1356,13 +1693,13 @@ def match_row_to_current_vtds(row):
 def allocate_votes_by_block_counts(votes: int, district_counts):
     if votes <= 0 or not district_counts:
         return {}
-    total = sum(int(v or 0) for v in district_counts.values())
+    total = sum(float(v or 0) for v in district_counts.values())
     if total <= 0:
         return {}
     raw = {}
     allocated = {}
     for district, count in district_counts.items():
-        share = votes * (int(count or 0) / total)
+        share = votes * (float(count or 0) / total)
         raw[district] = share
         allocated[district] = int(share)
     remainder = votes - sum(allocated.values())
@@ -1601,7 +1938,12 @@ def aggregate_county_results_from_openelections():
             if ' retention - ' in office.lower():
                 justice = office.split(' - ', 1)[1].strip()
                 candidate = f'{candidate} — {justice}'
-            votes = safe_int(r.get('votes'))
+            # Normalized historical files can contain fractional precinct rows
+            # created by crosswalk disaggregation.  Truncating each row here
+            # systematically loses votes in nearly every county.  Preserve the
+            # fractions until the county/contest node is complete, then round
+            # once with largest remainder below.
+            votes = safe_float(r.get('votes'))
             if votes <= 0:
                 continue
 
@@ -1632,6 +1974,9 @@ def aggregate_county_results_from_openelections():
         for office_key, contests in office_bucket.items():
             for contest_key, contest_obj in contests.items():
                 for cname, v in contest_obj['results'].items():
+                    rounded, target_total = round_fractional_vote_components(v)
+                    v.update(rounded)
+                    v['total_votes'] = target_total
                     finalize_result_node(v)
     return {'results_by_year': results_by_year}
 
@@ -1660,6 +2005,7 @@ def build_district_results_2022_lines(out_path: Path):
 
 
 def build_district_manifests(contest_dir: Path, contest_types=None):
+    contest_dir.mkdir(parents=True, exist_ok=True)
     contest_types = set(contest_types or [])
     target_years = {
         'us_house': {2022, 2024},
@@ -1681,6 +2027,23 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
             files = []
     source_rows = []
     vtd_match_cache = {}
+    allocation_audit = defaultdict(lambda: {
+        'source_rows': 0,
+        'source_votes': 0,
+        'matched_rows': 0,
+        'matched_votes': 0,
+        'unmatched_rows': 0,
+        'unmatched_votes': 0,
+        'unmatched_precincts': set(),
+        'unmatched_precinct_votes': Counter(),
+        'mapping_methods': Counter(),
+        'scopes': defaultdict(lambda: {
+            'allocated_rows': 0,
+            'allocated_votes': 0,
+            'unallocated_rows': 0,
+            'unallocated_votes': 0,
+        }),
+    })
 
     if OFFICIAL_2020_STATEWIDE_SOURCE.exists():
         source_rows.append((2020, OFFICIAL_2020_STATEWIDE_SOURCE, 'official_pa_precinct_export'))
@@ -1739,16 +2102,45 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
                     add_result_votes(node, votes, party, candidate)
 
             if is_statewide_contest_type(office_key):
+                audit_key = (office_key, year)
+                audit = allocation_audit[audit_key]
+                audit['source_rows'] += 1
+                audit['source_votes'] += votes
                 match_key = (
                     normalize_county_name(row.get('county') or ''),
                     normalize_bridge_precinct_name(row.get('precinct') or '')
                 )
-                if match_key not in vtd_match_cache:
-                    vtd_match_cache[match_key] = match_row_to_current_vtds(row)
-                matched_vtds = vtd_match_cache.get(match_key) or []
-                if not matched_vtds:
-                    continue
+                countyfp = county_fips_by_name().get(match_key[0]) or ''
                 block_maps = load_vtd_current_district_blocks()
+                maintained_targets = maintained_targets_for_row(row, year, countyfp) if countyfp else []
+                if maintained_targets:
+                    maintained_targets = [
+                        target for target in maintained_targets
+                        if any(block_maps.get(scope, {}).get((target[0], target[1])) for scope in block_maps)
+                    ]
+                if maintained_targets:
+                    weighted_vtds = [(county, vtd, weight) for county, vtd, weight, _method in maintained_targets]
+                    for _county, _vtd, _weight, method in maintained_targets:
+                        audit['mapping_methods'][method] += 1
+                else:
+                    if match_key not in vtd_match_cache:
+                        vtd_match_cache[match_key] = match_row_to_current_vtds(row)
+                    weighted_vtds = [(*vtd_key, 1.0) for vtd_key in (vtd_match_cache.get(match_key) or [])]
+                    weighted_vtds = [
+                        target for target in weighted_vtds
+                        if any(block_maps.get(scope, {}).get((target[0], target[1])) for scope in block_maps)
+                    ]
+                    if weighted_vtds:
+                        audit['mapping_methods']['current_precinct_or_vtd_name'] += 1
+                if not weighted_vtds:
+                    audit['unmatched_rows'] += 1
+                    audit['unmatched_votes'] += votes
+                    unmatched_key = '|'.join(match_key)
+                    audit['unmatched_precincts'].add(unmatched_key)
+                    audit['unmatched_precinct_votes'][unmatched_key] += votes
+                    continue
+                audit['matched_rows'] += 1
+                audit['matched_votes'] += votes
                 for scope in ('congressional', 'state_house', 'state_senate'):
                     direct_district_id = ''
                     if scope == 'congressional' and year == 2024 and source_label == 'official_pa_precinct_export':
@@ -1757,12 +2149,23 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
                         allocations = {direct_district_id: votes}
                     else:
                         district_counts = defaultdict(int)
-                        for vtd_key in matched_vtds:
+                        for target_county, target_vtd, target_weight in weighted_vtds:
+                            vtd_key = (target_county, target_vtd)
                             for district_id, block_count in (block_maps.get(scope, {}).get(vtd_key) or {}).items():
-                                district_counts[district_id] += int(block_count or 0)
+                                district_counts[district_id] += float(block_count or 0) * float(target_weight or 0)
                         allocations = allocate_votes_by_block_counts(votes, district_counts)
                     if not allocations:
+                        audit['scopes'][scope]['unallocated_rows'] += 1
+                        audit['scopes'][scope]['unallocated_votes'] += votes
                         continue
+                    allocated_votes = sum(int(value or 0) for value in allocations.values())
+                    if allocated_votes != votes:
+                        raise RuntimeError(
+                            f'Vote conservation failed for {year} {office_key} {match_key} '
+                            f'in {scope}: source={votes}, allocated={allocated_votes}'
+                        )
+                    audit['scopes'][scope]['allocated_rows'] += 1
+                    audit['scopes'][scope]['allocated_votes'] += allocated_votes
                     key = (scope, office_key, year)
                     source_by_key.setdefault(key, f'{source_label}_to_current_lines_via_vtd_block_assign')
                     contest = district_nodes.setdefault(key, {})
@@ -1801,6 +2204,10 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
             continue
         fname = f'{scope}_{contest_type}_{year}.json'
         expected = expected_district_count(scope, contest_type, year)
+        audit = allocation_audit.get((contest_type, year)) or {}
+        scope_audit = (audit.get('scopes') or {}).get(scope, {})
+        source_votes = int(audit.get('source_votes') or 0)
+        allocated_votes = int(scope_audit.get('allocated_votes') or 0)
         payload = {
             'scope': scope,
             'contest_type': contest_type,
@@ -1810,6 +2217,28 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
                 'districts_expected': expected,
                 'coverage_percent': round((len(finalized) / max(expected, 1)) * 100, 2),
                 'source': source_by_key.get((scope, contest_type, year), 'openelections_precinct_aggregate'),
+                'allocation_audit': {
+                    'source_rows': int(audit.get('source_rows') or 0),
+                    'source_votes': source_votes,
+                    'matched_rows': int(audit.get('matched_rows') or 0),
+                    'matched_votes': int(audit.get('matched_votes') or 0),
+                    'unmatched_rows': int(audit.get('unmatched_rows') or 0),
+                    'unmatched_votes': int(audit.get('unmatched_votes') or 0),
+                    'unmatched_precincts': sorted(audit.get('unmatched_precincts') or []),
+                    'unmatched_precinct_votes': dict(sorted(
+                        (audit.get('unmatched_precinct_votes') or {}).items()
+                    )),
+                    'mapping_methods': dict(sorted((audit.get('mapping_methods') or {}).items())),
+                    'allocated_rows': int(scope_audit.get('allocated_rows') or 0),
+                    'allocated_votes': allocated_votes,
+                    'unallocated_rows': int(scope_audit.get('unallocated_rows') or 0),
+                    'unallocated_votes': int(scope_audit.get('unallocated_votes') or 0),
+                    'allocation_vote_delta': allocated_votes - source_votes,
+                    'conserved_for_matched_rows': (
+                        allocated_votes == int(audit.get('matched_votes') or 0)
+                        and not int(scope_audit.get('unallocated_votes') or 0)
+                    ),
+                },
             },
             'general': {'results': finalized}
         }

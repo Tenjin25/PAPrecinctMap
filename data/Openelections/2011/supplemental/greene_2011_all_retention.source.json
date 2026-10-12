@@ -1,0 +1,263 @@
+{
+  "status": "matches_official_final_state_county_totals",
+  "index_url": "https://greenecountypa.gov/Elections/Default.aspx?Election=24&PageLayout=PRECINCTS",
+  "index_sha256": "fa1e50a443a2970f2caaf5f183dfffc679dad2083d1eddd08a17e881b273931f",
+  "precinct_count": 44,
+  "row_count": 528,
+  "heading_to_judge": {
+    "Supreme Court - Retention": "J. Michael Eakin",
+    "Superior Court": "John T. Bender",
+    "Superior Court(2) - Retention": "Mary Jane Bowes",
+    "Commonwealth Court(1) - Retention": "Renee Cohn Jubelirer",
+    "Commonwealth(2) - Retention": "Mary Hannah Leavitt",
+    "Commonwealth(3) - Retention": "Robin Simpson"
+  },
+  "totals_by_judge": {
+    "J. Michael Eakin": {
+      "yes": 4376,
+      "no": 1689
+    },
+    "John T. Bender": {
+      "yes": 4256,
+      "no": 1694
+    },
+    "Mary Jane Bowes": {
+      "yes": 4362,
+      "no": 1645
+    },
+    "Renee Cohn Jubelirer": {
+      "yes": 4050,
+      "no": 1781
+    },
+    "Mary Hannah Leavitt": {
+      "yes": 4107,
+      "no": 1719
+    },
+    "Robin Simpson": {
+      "yes": 4266,
+      "no": 1612
+    }
+  },
+  "sources": [
+    {
+      "precinct": "Aleppo",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=1",
+      "sha256": "7b454346829b0ca74be322616eced3785766133f723dea77bd91e4389dd7aba4"
+    },
+    {
+      "precinct": "Carmichaels Borough",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=17",
+      "sha256": "113242179dbb022a98efb96d3ee2b71b8da6178b294d1d66f2eb407d10bc4e34"
+    },
+    {
+      "precinct": "Center",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=29",
+      "sha256": "b14e481b5674cf95388677e79c12c160a83bbfcac299ceb77e60d741fe3e9840"
+    },
+    {
+      "precinct": "Clarksville Borough",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=30",
+      "sha256": "f80e56803c65a92987090085c4252247b7a2287f33d11c570a454ea592a01c44"
+    },
+    {
+      "precinct": "Cumberland #1",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=31",
+      "sha256": "2d70d45655fe39a830f6149f02fa63a5c145adafbb7f20a5faa7da4106924b30"
+    },
+    {
+      "precinct": "Cumberland #2",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=32",
+      "sha256": "0a89a16aff5e0723e7a703c11577aed17789f13f379b3fc9a6f3e1d43ee55fdd"
+    },
+    {
+      "precinct": "Cumberland #4",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=34",
+      "sha256": "7b0212e0c7a7ed8229fbc2fe80c618e18c4ade25532f2911a05737765832dc8c"
+    },
+    {
+      "precinct": "Cumberland Nemacolin",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=33",
+      "sha256": "3a0477e7275e8c0bc7bc847efea95c0aa8e8263c09abdc4f0ab0c2e026665f63"
+    },
+    {
+      "precinct": "Dunkard Bobtown",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=35",
+      "sha256": "8061d27543fd3a3e0021c662d9dfc2b1431e2f15e156a3dafdf26029fe4f6ebb"
+    },
+    {
+      "precinct": "Dunkard Dilliner",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=36",
+      "sha256": "77a6722f19d63c94ef596855b4131aa032840f51d33d66ad4854110cb67fea0c"
+    },
+    {
+      "precinct": "Dunkard Lower",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=37",
+      "sha256": "848ddbe44a964cb732536effd3b72aa3f393b45a03ac663d970d740bc6e0e659"
+    },
+    {
+      "precinct": "Dunkard Upper",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=38",
+      "sha256": "376f78f567756771345324174011d0db33d996238203ab05e1db22463be3bbfd"
+    },
+    {
+      "precinct": "Franklin East",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=39",
+      "sha256": "543bbee6307f72b713204a0a5fc13255ae828c2b6735cfbd2493c6e0d61d34c6"
+    },
+    {
+      "precinct": "Franklin North",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=41",
+      "sha256": "bf8e34de902ab5c2c18e23f4f57bbfc7d712029ccbdfe7aa975605d9614f4998"
+    },
+    {
+      "precinct": "Franklin South",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=42",
+      "sha256": "7fada0381e3f3644c7918e5bff4ba4a1d9de4f696fcc0de4a549885c88d3a147"
+    },
+    {
+      "precinct": "Franklin West",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=40",
+      "sha256": "f1d474aead6b1b65dc10195a78683c72e5864f4e6605c22c12cafc7e9250e9f5"
+    },
+    {
+      "precinct": "Freeport",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=43",
+      "sha256": "80de77c3214ed4808385e9fda42dbb40342e8fc61b5cb368beeb526ff2ad154b"
+    },
+    {
+      "precinct": "Gilmore",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=44",
+      "sha256": "4bcffb07f0a7772f19fc56bda6ed07a6ded046de9cb0ec9652b1914491e6dbe2"
+    },
+    {
+      "precinct": "Gray",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=2",
+      "sha256": "3bb66955faecd5fa9bf7a61660d3d593590138f7e01583ded54d51212f6dd694"
+    },
+    {
+      "precinct": "Greene",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=3",
+      "sha256": "4dece6a0445afab3b9544a020fdca4fdfbeca591614cc70301435fb6a3ffc555"
+    },
+    {
+      "precinct": "Greensboro Borough",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=4",
+      "sha256": "e3e5545e3dc2082dd4d0f80857f2c96b0d2d1c5054a23dc5fae4a65efa552ffb"
+    },
+    {
+      "precinct": "Jackson",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=5",
+      "sha256": "befde1825d781f946d03f003367f53ae603f79b88f99fd506af00766a362036f"
+    },
+    {
+      "precinct": "Jefferson #1",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=7",
+      "sha256": "29f6b5194b8c7efda7794c0014a93b1252a4a01ba17d4bfef4f5656c402aa1b4"
+    },
+    {
+      "precinct": "Jefferson #2",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=8",
+      "sha256": "f25e035aa4be355f65684bc756045349c285cfaa6b76e6f8b93fc90147f7a59c"
+    },
+    {
+      "precinct": "Jefferson #3",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=9",
+      "sha256": "9a8aaf788b425ed367850516254040b4a21172c15db4df16d608b1e002dc8b00"
+    },
+    {
+      "precinct": "Jefferson #4",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=10",
+      "sha256": "1c83372a0c085f9040508f6d0499035000b5ad0129024dba2aec107b6b2148c8"
+    },
+    {
+      "precinct": "Jefferson Borough",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=6",
+      "sha256": "4f52bea60829a01c553ae5d58130c276467a29ea93a5d9bdb47dd02598695c63"
+    },
+    {
+      "precinct": "Monongahela #1",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=11",
+      "sha256": "f1a3bf706e8e2dd7558ae90a9cd009ff417a2b84e80c15b0c0bb1bca88b66e5e"
+    },
+    {
+      "precinct": "Monongahela #2",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=12",
+      "sha256": "5e3632a44ace84a4d7b5db5ae12e8a5329abf840dc015eddbfe9bb2792612892"
+    },
+    {
+      "precinct": "Morgan Chart/t Garden",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=13",
+      "sha256": "bf3e9a45a63b1f46c539c9073e046d724ad071c268f53da02801d03125f66da8"
+    },
+    {
+      "precinct": "Morgan Lippencott",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=14",
+      "sha256": "ae2311bae6a7d00f1534c0a95dbefdac4a58cfced5634462f21f275bf4e09181"
+    },
+    {
+      "precinct": "Morgan Mather",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=15",
+      "sha256": "897f1c48c349060ab302bcd05c76adf7c238334654e349b3ffb39c222b66f3e4"
+    },
+    {
+      "precinct": "Morris",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=16",
+      "sha256": "37d9547f1f8a966c516d2f3d276500ad8acf7bd37491811c2895d42c8c25112d"
+    },
+    {
+      "precinct": "Perry",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=18",
+      "sha256": "00d31b93e01bd8885b98061511b60a198589ab220ee8257a16363e9bbfdf7fb5"
+    },
+    {
+      "precinct": "Rices Landing Borough",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=19",
+      "sha256": "3cca36c4c99d1d274fba9149701395a315d3e269a8010f310b24b85f2bfe1804"
+    },
+    {
+      "precinct": "Richhill",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=20",
+      "sha256": "6fca157a5985e3d748cd1a1b2d24ecf416da2bc148e6d024c4a4dbe52dfeefde"
+    },
+    {
+      "precinct": "Springhill",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=21",
+      "sha256": "53d9f10e1db47a403dd833a3bb86e8bef40e8d548b34b2475a11a87dcb79a7af"
+    },
+    {
+      "precinct": "Washington",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=22",
+      "sha256": "d22049d6636a0520f9029f885ef60ac77dc4a90637f657ea0aba7fecfd57d18d"
+    },
+    {
+      "precinct": "Wayne East",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=23",
+      "sha256": "c49695b5905eefd6043539fc4c7d9ea36fffa1b92acefb4c4d0f6efb44454cdc"
+    },
+    {
+      "precinct": "Wayne West",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=24",
+      "sha256": "1e706d55a65e8757ce4a8edcae6210c485bc5883eb8b1c99a6214c779155de85"
+    },
+    {
+      "precinct": "Waynesburg Borough #1",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=25",
+      "sha256": "de13f546c6cf67158b201a6758e0d7a393c965935d9d9875e0e5e6eaddc59c3f"
+    },
+    {
+      "precinct": "Waynesburg Borough #2",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=26",
+      "sha256": "98e3568bc56876241ba311774991c3288fc15d3eedd010eb78ad6ed4a81354e3"
+    },
+    {
+      "precinct": "Waynesburg Borough #3",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=27",
+      "sha256": "e31a50d25d9057475cad040882f00f8ac17c91079207602cdee8559d43956f3b"
+    },
+    {
+      "precinct": "Whiteley",
+      "url": "https://greenecountypa.gov/Elections/Default.aspx?PageLayout=BYPRECINCT&Election=24&Precinct=28",
+      "sha256": "348f08bf48a835bb5ad7bec64571e83cfbe7e3e5cb9ab29800ff2d2ba57ac9fc"
+    }
+  ]
+}
