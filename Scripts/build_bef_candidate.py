@@ -37,6 +37,39 @@ def totals(payload):
     }
 
 
+def capture_candidate_labels(directory):
+    labels = {}
+    for path in directory.glob("*.json"):
+        if path.name in {"manifest.json", "acceptance_report.json"}:
+            continue
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        for district, row in payload.get("general", {}).get("results", {}).items():
+            labels[(path.name, district)] = {
+                "dem_candidate": row.get("dem_candidate", ""),
+                "rep_candidate": row.get("rep_candidate", ""),
+            }
+    return labels
+
+
+def restore_candidate_labels(directory, labels):
+    """Keep established display labels while replacing vote allocations."""
+    for path in directory.glob("*.json"):
+        if path.name in {"manifest.json", "acceptance_report.json"}:
+            continue
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        changed = False
+        for district, row in payload.get("general", {}).get("results", {}).items():
+            prior = labels.get((path.name, district))
+            if prior is None:
+                continue
+            for field in ("dem_candidate", "rep_candidate"):
+                if row.get(field, "") != prior[field]:
+                    row[field] = prior[field]
+                    changed = True
+        if changed:
+            path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT)
@@ -51,6 +84,7 @@ def main():
         if out.exists():
             shutil.rmtree(out)
         shutil.copytree(PUBLISHED, out)
+        candidate_labels = capture_candidate_labels(out)
         published_manifest = json.loads((PUBLISHED / "manifest.json").read_text(encoding="utf-8"))
         contest_types = {
             str(entry.get("contest_type") or "")
@@ -60,6 +94,7 @@ def main():
         builder.VTD_CURRENT_DISTRICT_BLOCKS = None
         builder.VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = None
         builder.build_district_manifests(out, contest_types=contest_types)
+        restore_candidate_labels(out, candidate_labels)
     elif not (out / "manifest.json").exists():
         raise FileNotFoundError(f"No reusable candidate at {out}")
 
