@@ -1748,6 +1748,14 @@ def normalize_candidate_label(value):
     if not value:
         return ''
 
+    # Keep the public-facing presidential label stable across official files,
+    # which variously use the full middle name, middle initial, or no middle
+    # name for the same candidate.
+    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+        'donald john trump', 'donald j trump', 'donald trump'
+    }:
+        return 'Donald J. Trump'
+
     def format_name(name):
         words = []
         for raw_word in re.split(r'\s+', name.strip()):

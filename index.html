@@ -10551,8 +10551,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-10-06-mobile-contest-ready-v4';
-    const APP_BUILD_ID = '2026-10-06-mobile-contest-ready-v4';
+    const DATA_CACHE_BUSTER = '2026-10-12-bef-county-candidate-v1';
+    const APP_BUILD_ID = '2026-10-12-bef-county-candidate-v1';
 
     function ensurePageCacheBuster() {
       return false;
@@ -20919,6 +20919,13 @@ document.addEventListener('DOMContentLoaded', function() {
       const tokens = new Set(norm.split(' ').filter(Boolean));
       const hasToken = (t) => tokens.has(t);
       if (
+        norm === 'donald john trump' ||
+        norm === 'donald j trump' ||
+        norm === 'donald trump'
+      ) {
+        return 'Donald J. Trump';
+      }
+      if (
         norm === 'robert p casey jr' ||
         norm === 'casey jr robert' ||
         norm === 'robert casey jr' ||
@@ -21692,7 +21699,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayCandidateForContest(name, contestType) {
       const raw = (name || '').toString().trim();
       return /^(supreme|superior|commonwealth)_court$/.test(String(contestType || '').trim().toLowerCase())
-        ? raw : stripRunningMateName(raw);
+        ? raw : normalizeCandidateDisplayName(stripRunningMateName(raw), '');
     }
 
     function stripRunningMateName(name) {
