@@ -326,6 +326,11 @@ OFFICIAL_GENERAL_SOURCES = {
     2022: base / 'data' / 'ElectionReturns_2022_General_PrecinctReturns.txt',
     2024: base / 'data' / 'erstat_2024_g_268768_20250129.txt',
 }
+DISTRICT_DISAGGREGATED_SOURCES = {
+    2008: DATA_ROOT / '2008' / '20081104__pa__general__precinct.csv',
+    2020: DATA_ROOT / '2020' / '20201103__pa__general__precinct.csv',
+    2022: DATA_ROOT / '2022' / '20221108__pa__general__precinct.csv',
+}
 OFFICIAL_JUDICIAL_SOURCES = {
     2001: base / 'data' / 'ElectionReturns_2001_Municipal_PrecinctReturns.txt',
     2003: base / 'data' / 'ElectionReturns_2003_Municipal_PrecinctReturns.txt',
@@ -2104,10 +2109,37 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
         }),
     })
 
+    controlled_disaggregated_years = set()
+    for year, placement_source in sorted(DISTRICT_DISAGGREGATED_SOURCES.items()):
+        official_source = OFFICIAL_GENERAL_SOURCES.get(year)
+        if not placement_source.exists() or not official_source or not official_source.exists():
+            continue
+        official_totals = defaultdict(float)
+        placement_totals = defaultdict(float)
+        for control_row in read_csv_rows(official_source):
+            control_key = office_mapping_for_contest(control_row.get('office') or '')
+            if is_statewide_contest_type(control_key):
+                official_totals[control_key] += safe_float(control_row.get('votes'))
+        for placement_row in read_csv_rows(placement_source):
+            placement_key = office_mapping_for_contest(placement_row.get('office') or '')
+            if is_statewide_contest_type(placement_key):
+                placement_totals[placement_key] += safe_float(placement_row.get('votes'))
+        mismatches = {
+            key: (official_totals.get(key, 0.0), placement_totals.get(key, 0.0))
+            for key in set(official_totals) | set(placement_totals)
+            if abs(official_totals.get(key, 0.0) - placement_totals.get(key, 0.0)) > 0.01
+        }
+        if mismatches:
+            raise RuntimeError(f'{year} disaggregated district source fails official vote controls: {mismatches}')
+        source_rows.append((year, placement_source, 'official_pa_controlled_block_disaggregated_precinct'))
+        controlled_disaggregated_years.add(year)
+
     for year, official_source in sorted(OFFICIAL_GENERAL_SOURCES.items()):
-        if official_source.exists():
+        if year not in controlled_disaggregated_years and official_source.exists():
             source_rows.append((year, official_source, 'official_pa_precinct_export'))
     for year, fp in iter_openelections_csvs():
+        if year in controlled_disaggregated_years:
+            continue
         official_source = OFFICIAL_GENERAL_SOURCES.get(year)
         if official_source and official_source.exists():
             continue
