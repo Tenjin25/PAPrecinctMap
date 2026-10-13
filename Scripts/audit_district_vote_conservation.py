@@ -60,6 +60,21 @@ def main():
         if component_total != result["total_votes"]:
             failures.append(f"{path.name}: components={component_total}, total={result['total_votes']}")
         source_label = str(payload.get("meta", {}).get("source") or "")
+        allocation_audit = payload.get("meta", {}).get("allocation_audit") or {}
+        if allocation_audit:
+            audited_source_total = int(allocation_audit.get("source_votes") or 0)
+            audited_delta = int(allocation_audit.get("allocation_vote_delta") or 0)
+            audited_unallocated = int(allocation_audit.get("unallocated_votes") or 0)
+            if allocation_audit.get("conserved_for_matched_rows"):
+                if result["total_votes"] != audited_source_total:
+                    failures.append(
+                        f"{path.name}: total {result['total_votes']} != audited source {audited_source_total}"
+                    )
+                if audited_delta != 0 or audited_unallocated != 0:
+                    failures.append(
+                        f"{path.name}: conserved audit has delta={audited_delta}, "
+                        f"unallocated={audited_unallocated}"
+                    )
         if payload.get("contest_type") == "president" and "statewide_vote_control/" in source_label:
             control = statewide_control(payload["year"], "president")
             for key, expected in control.items():
@@ -67,7 +82,11 @@ def main():
                     failures.append(
                         f"{path.name}: controlled {key} {result[key]} != statewide {expected}"
                     )
-        elif payload.get("contest_type") == "president" and payload.get("year") in statewide:
+        elif (
+            payload.get("contest_type") == "president"
+            and payload.get("year") in statewide
+            and not allocation_audit.get("conserved_for_matched_rows")
+        ):
             source_total = round(statewide[payload["year"]])
             if result["total_votes"] > source_total:
                 failures.append(

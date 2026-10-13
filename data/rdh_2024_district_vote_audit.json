@@ -1,0 +1,888 @@
+{
+  "source": "data\\pa_2024_gen_prec_csv.zip",
+  "source_sha256": "47902c658648c242c64322ea3f446a1e9bd1038bd371c8642ea4df71ce7447d7",
+  "rows": 9190,
+  "unique_ids": 9190,
+  "controls": {
+    "attorney_general": 6882369,
+    "auditor": 6825662,
+    "president": 7034206,
+    "treasurer": 6824596,
+    "us_senate": 6963137
+  },
+  "mapping_methods": {
+    "congressional": {
+      "current_vtd_name_baf": 2,
+      "maintained_bef_baf_chain": 6,
+      "rdh_embedded_district": 9168,
+      "rdh_vtd_code_baf": 13
+    },
+    "state_house": {
+      "congressional_mail_candidate_vote_share": 19,
+      "current_vtd_name_baf": 3,
+      "maintained_bef_baf_chain": 7,
+      "rdh_embedded_district": 9154,
+      "rdh_vtd_code_baf": 22
+    },
+    "state_senate": {
+      "congressional_mail_candidate_vote_share": 19,
+      "current_vtd_name_baf": 23,
+      "maintained_bef_baf_chain": 227,
+      "rdh_embedded_district": 4889,
+      "rdh_vtd_code_baf": 4047
+    }
+  },
+  "unmapped_source_rows": {
+    "congressional": [
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "5850",
+        "vtd": "2624"
+      }
+    ],
+    "state_house": [
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "2nd Congressional Mail Votes",
+        "vtd": "N/A"
+      },
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "3rd Congressional Mail Votes",
+        "vtd": "N/A"
+      },
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "5850",
+        "vtd": "2624"
+      },
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "5th Congressional Mail Votes",
+        "vtd": "N/A"
+      }
+    ],
+    "state_senate": [
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "2nd Congressional Mail Votes",
+        "vtd": "N/A"
+      },
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "3rd Congressional Mail Votes",
+        "vtd": "N/A"
+      },
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "5850",
+        "vtd": "2624"
+      },
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "5th Congressional Mail Votes",
+        "vtd": "N/A"
+      }
+    ]
+  },
+  "residual_allocations": [
+    {
+      "scope": "state_house",
+      "contest": "president",
+      "column": "G24PREDHAR",
+      "congressional_district": "2",
+      "votes": 516,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "177": 42.26273815468894,
+        "202": 27.048985336178326,
+        "173": 30.745055310906313,
+        "182": 15.854057898639548,
+        "175": 58.483800184621906,
+        "179": 40.151813683206974,
+        "197": 47.78081445498706,
+        "180": 33.12407499886503,
+        "198": 37.181943372527655,
+        "203": 46.90885428489278,
+        "172": 33.95178644390975,
+        "174": 33.20476385042599,
+        "170": 31.08342791422648,
+        "181": 37.5984019612294,
+        "195": 0.6194821506938454
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "president",
+      "column": "G24PREDHAR",
+      "congressional_district": "2",
+      "votes": 516,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "5": 136.6192400236074,
+        "1": 101.09792527352795,
+        "3": 131.86120064768997,
+        "2": 146.4216340551747
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "president",
+      "column": "G24PREGSTE",
+      "congressional_district": "2",
+      "votes": 1,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "177": 0.08380112269446673,
+        "202": 0.06655974338412189,
+        "173": 0.06134723336006415,
+        "182": 0.021251002405773857,
+        "175": 0.11186848436246993,
+        "179": 0.05533279871692061,
+        "197": 0.06054530874097835,
+        "180": 0.038492381716118684,
+        "198": 0.04170008019246191,
+        "203": 0.09061748195669607,
+        "172": 0.132317562149158,
+        "174": 0.08740978348035285,
+        "170": 0.09623095429029671,
+        "181": 0.052125100240577385,
+        "195": 0.00040096230954290296
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "president",
+      "column": "G24PREGSTE",
+      "congressional_district": "2",
+      "votes": 1,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "5": 0.38813151563753007,
+        "1": 0.19607056936647954,
+        "3": 0.13913392141138733,
+        "2": 0.27666399358460303
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "president",
+      "column": "G24PRELOLI",
+      "congressional_district": "2",
+      "votes": 1,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "202": 0.06096361848574238,
+        "177": 0.11307767944936087,
+        "182": 0.02064896755162242,
+        "173": 0.07374631268436578,
+        "175": 0.1248770894788594,
+        "197": 0.0599803343166175,
+        "179": 0.05801376597836775,
+        "180": 0.05014749262536873,
+        "198": 0.0471976401179941,
+        "203": 0.08062930186823992,
+        "172": 0.09242871189773845,
+        "174": 0.08947885939036382,
+        "170": 0.08652900688298919,
+        "181": 0.04228121927236971
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "president",
+      "column": "G24PRELOLI",
+      "congressional_district": "2",
+      "votes": 1,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "5": 0.3579154375614553,
+        "1": 0.19862340216322516,
+        "3": 0.1592920353982301,
+        "2": 0.28416912487708945
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "president",
+      "column": "G24PRERTRU",
+      "congressional_district": "2",
+      "votes": 152,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "177": 16.313319070707504,
+        "202": 9.227818570798886,
+        "173": 17.426147908446843,
+        "182": 1.1716567939193911,
+        "175": 7.35839685218831,
+        "179": 6.278250212326779,
+        "197": 6.119741552619414,
+        "180": 7.472784544760636,
+        "198": 2.230560005160347,
+        "203": 8.471225689927648,
+        "172": 21.68300418203124,
+        "174": 19.56683186944322,
+        "170": 26.260145994818153,
+        "181": 2.395605104443274,
+        "195": 0.02451164840835546
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "president",
+      "column": "G24PRERTRU",
+      "congressional_district": "2",
+      "votes": 152,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "5": 87.3709536966361,
+        "1": 12.755861831708183,
+        "3": 11.914295236354645,
+        "2": 39.95888923530107
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSCSEL",
+      "congressional_district": "2",
+      "votes": 1,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "177": 0.10152284263959391,
+        "202": 0.07106598984771574,
+        "173": 0.11844331641285956,
+        "182": 0.00676818950930626,
+        "179": 0.077834179357022,
+        "197": 0.050761421319796954,
+        "180": 0.07106598984771574,
+        "175": 0.05583756345177665,
+        "198": 0.05922165820642978,
+        "203": 0.06260575296108291,
+        "172": 0.09306260575296109,
+        "174": 0.10829103214890017,
+        "170": 0.08967851099830795,
+        "181": 0.032148900169204735,
+        "195": 0.001692047377326565
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSCSEL",
+      "congressional_district": "2",
+      "votes": 1,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "5": 0.4365482233502538,
+        "1": 0.09306260575296109,
+        "3": 0.17428087986463622,
+        "2": 0.2961082910321489
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSDCAS",
+      "congressional_district": "2",
+      "votes": 485,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "177": 40.443217699040034,
+        "202": 25.481282714191867,
+        "173": 29.70032740681091,
+        "182": 15.06471317468054,
+        "175": 56.19397529085168,
+        "179": 36.64556358473373,
+        "197": 42.47565640297527,
+        "180": 29.01685244442561,
+        "198": 34.818681260463244,
+        "203": 44.22545508487148,
+        "172": 32.83249274195257,
+        "174": 32.303185064315834,
+        "170": 30.56366420140287,
+        "181": 34.67993070418954,
+        "195": 0.5550022250948314
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSDCAS",
+      "congressional_district": "2",
+      "votes": 485,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "5": 132.40657250630443,
+        "1": 96.7708046366738,
+        "3": 121.06756871304754,
+        "2": 134.75505414397423
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSGHAZ",
+      "congressional_district": "2",
+      "votes": 18,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "177": 1.7699443413729128,
+        "202": 1.198051948051948,
+        "173": 1.1437847866419295,
+        "182": 0.5134508348794063,
+        "175": 2.1164192949907235,
+        "179": 1.269016697588126,
+        "197": 1.4025974025974026,
+        "180": 0.9475881261595547,
+        "198": 0.8724489795918368,
+        "203": 1.3608534322820036,
+        "172": 1.573747680890538,
+        "174": 1.239795918367347,
+        "170": 1.1771799628942485,
+        "181": 1.4025974025974026,
+        "195": 0.012523191094619666
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSGHAZ",
+      "congressional_district": "2",
+      "votes": 18,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "5": 5.401669758812616,
+        "1": 3.9322820037105752,
+        "3": 3.443877551020408,
+        "2": 5.2221706864564
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSLTHO",
+      "congressional_district": "2",
+      "votes": 4,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "177": 0.4519921619856303,
+        "202": 0.263879817112998,
+        "173": 0.35401698236446766,
+        "182": 0.04441541476159373,
+        "175": 0.29000653167864143,
+        "179": 0.3043762246897453,
+        "197": 0.28608752449379493,
+        "180": 0.28870019595035923,
+        "198": 0.18941868060091444,
+        "203": 0.2821685173089484,
+        "172": 0.35924232527759636,
+        "174": 0.3814500326583932,
+        "170": 0.33050293925538865,
+        "181": 0.17112998040496408,
+        "195": 0.002612671456564337
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSLTHO",
+      "congressional_district": "2",
+      "votes": 4,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "5": 1.5166557805355976,
+        "1": 0.504245591116917,
+        "3": 0.6962769431743958,
+        "2": 1.2828216851730896
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSRMCC",
+      "congressional_district": "2",
+      "votes": 130,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "177": 13.968787573920938,
+        "202": 7.480430888523545,
+        "173": 15.174588373862047,
+        "182": 1.1707113586729812,
+        "175": 6.899860132996344,
+        "179": 4.997055431501975,
+        "197": 4.61266655215567,
+        "180": 5.5361568473486615,
+        "198": 1.8102961745147597,
+        "203": 6.952494294898535,
+        "172": 19.18913944985645,
+        "174": 16.913110691237456,
+        "170": 23.296199052830467,
+        "181": 1.9777685078399136,
+        "195": 0.02073466984025716
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSRMCC",
+      "congressional_district": "2",
+      "votes": 130,
+      "county": "PHILADELPHIA",
+      "precinct": "2nd Congressional Mail Votes",
+      "district_weights": {
+        "5": 76.65766937403382,
+        "1": 11.719873383554585,
+        "3": 9.368880818590043,
+        "2": 32.253576423821556
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "president",
+      "column": "G24PREDHAR",
+      "congressional_district": "3",
+      "votes": 1646,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "184": 81.57519960845755,
+        "190": 126.09286390714189,
+        "10": 118.38485842786439,
+        "175": 36.66665315188777,
+        "188": 131.89889400841585,
+        "181": 46.54357792187106,
+        "186": 132.61392234601115,
+        "185": 15.14430019026878,
+        "200": 178.45677249703883,
+        "191": 51.858621897996244,
+        "192": 133.1716444493355,
+        "201": 137.18533685103722,
+        "182": 131.53184612845024,
+        "195": 134.12978242171323,
+        "194": 137.92896632213635,
+        "198": 52.816759870373964
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "president",
+      "column": "G24PREDHAR",
+      "congressional_district": "3",
+      "votes": 1646,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "1": 316.76708726589266,
+        "7": 485.8474548292649,
+        "8": 284.3429355837371,
+        "3": 214.72300977987322,
+        "4": 344.31951254123214
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "president",
+      "column": "G24PREGSTE",
+      "congressional_district": "3",
+      "votes": 23,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "184": 1.3891737891737892,
+        "190": 1.2056980056980058,
+        "10": 2.0444444444444443,
+        "175": 0.4717948717948718,
+        "188": 3.5515669515669517,
+        "181": 0.8452991452991453,
+        "186": 1.9658119658119657,
+        "185": 0.3800569800569801,
+        "200": 1.9133903133903134,
+        "191": 0.6421652421652422,
+        "192": 1.4743589743589745,
+        "201": 1.4874643874643874,
+        "182": 1.494017094017094,
+        "195": 1.53988603988604,
+        "194": 2.005128205128205,
+        "198": 0.5897435897435898
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "president",
+      "column": "G24PREGSTE",
+      "congressional_district": "3",
+      "votes": 23,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "1": 4.337891737891738,
+        "7": 7.391452991452992,
+        "8": 5.163532763532763,
+        "3": 2.4703703703703703,
+        "4": 3.6367521367521367
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "president",
+      "column": "G24PRERTRU",
+      "congressional_district": "3",
+      "votes": 115,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "184": 20.273920667266953,
+        "190": 4.330008056490214,
+        "10": 6.068551253495095,
+        "175": 3.218212406994929,
+        "188": 6.008601488081133,
+        "181": 3.09286289749301,
+        "186": 9.886261314629639,
+        "185": 4.970380550684801,
+        "200": 5.109355006871712,
+        "191": 1.3951945405431023,
+        "192": 5.61075304487939,
+        "201": 4.182858632292309,
+        "182": 10.89450736931899,
+        "195": 6.292000379128951,
+        "194": 22.064238661674803,
+        "198": 1.602293730154969
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "president",
+      "column": "G24PRERTRU",
+      "congressional_district": "3",
+      "votes": 115,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "1": 39.96741860575328,
+        "7": 35.561110847827116,
+        "8": 19.143050092412683,
+        "3": 9.210463959054072,
+        "4": 11.117956494952846
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSDCAS",
+      "congressional_district": "3",
+      "votes": 1539,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "184": 78.80806297202426,
+        "190": 115.83368030756607,
+        "10": 108.27981825641649,
+        "175": 34.995663075356724,
+        "188": 122.02176668135608,
+        "181": 43.265154162931,
+        "186": 123.60269880103941,
+        "185": 14.36403118209309,
+        "200": 169.80520613308616,
+        "191": 47.74602094002158,
+        "192": 124.25284544197426,
+        "201": 127.35858191377817,
+        "182": 124.94508790858116,
+        "195": 123.92543346452506,
+        "194": 131.56816448098226,
+        "198": 48.22778427826827
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSDCAS",
+      "congressional_district": "3",
+      "votes": 1539,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "1": 302.1404501040923,
+        "7": 452.151263543392,
+        "8": 263.55728721868496,
+        "3": 197.20958864558483,
+        "4": 323.94141048824594
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSGHAZ",
+      "congressional_district": "3",
+      "votes": 56,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "184": 3.458709229701596,
+        "190": 2.533795975017349,
+        "10": 5.044274809160306,
+        "175": 1.0881332408049966,
+        "188": 8.62734212352533,
+        "181": 2.1529493407356,
+        "186": 5.05204718945177,
+        "185": 0.7927827897293546,
+        "200": 3.99500346981263,
+        "191": 1.430117973629424,
+        "192": 3.070090215128383,
+        "201": 4.0416377515614155,
+        "182": 3.4975711311589173,
+        "195": 4.3913948646773076,
+        "194": 5.215267175572519,
+        "198": 1.608882720333102
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSGHAZ",
+      "congressional_district": "3",
+      "votes": 56,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "1": 10.041915336571826,
+        "7": 17.542262317834837,
+        "8": 13.065371269951422,
+        "3": 6.824149895905621,
+        "4": 8.526301179736294
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSLTHO",
+      "congressional_district": "3",
+      "votes": 3,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "184": 0.20492825951341234,
+        "190": 0.2601372426699938,
+        "10": 0.2283218964441672,
+        "175": 0.04772301933873986,
+        "188": 0.18621334996880848,
+        "181": 0.07205240174672489,
+        "186": 0.24329382407985028,
+        "185": 0.03462258265751716,
+        "200": 0.23019338739862757,
+        "191": 0.10012476606363069,
+        "192": 0.2526512788521522,
+        "201": 0.2657517155333749,
+        "182": 0.15907673112913287,
+        "195": 0.24984404242046163,
+        "194": 0.367747972551466,
+        "198": 0.09731752963194011
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSLTHO",
+      "congressional_district": "3",
+      "votes": 3,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "1": 0.5071740486587648,
+        "7": 1.049906425452277,
+        "8": 0.4903306300686213,
+        "3": 0.40611353711790393,
+        "4": 0.5464753587024329
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSRMCC",
+      "congressional_district": "3",
+      "votes": 111,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "184": 18.133705159082268,
+        "190": 3.945290911395614,
+        "10": 5.819444796552161,
+        "175": 3.354341488148054,
+        "188": 6.022056027379896,
+        "181": 3.01947014830777,
+        "186": 9.45519077196096,
+        "185": 4.629103815439219,
+        "200": 5.056838636075549,
+        "191": 1.210039295221194,
+        "192": 5.034326277094689,
+        "201": 3.7961465331474207,
+        "182": 11.833058689314235,
+        "195": 6.278134110787172,
+        "194": 21.90452528837622,
+        "198": 1.5083280517175814
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSRMCC",
+      "congressional_district": "3",
+      "votes": 111,
+      "county": "PHILADELPHIA",
+      "precinct": "3rd Congressional Mail Votes",
+      "district_weights": {
+        "1": 39.416326530612245,
+        "7": 33.751654202053494,
+        "8": 18.001445050069716,
+        "3": 8.909266066675118,
+        "4": 10.921308150589429
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "president",
+      "column": "G24PREDHAR",
+      "congressional_district": "5",
+      "votes": 15,
+      "county": "PHILADELPHIA",
+      "precinct": "5th Congressional Mail Votes",
+      "district_weights": {
+        "163": 1.2183903304319128,
+        "159": 1.0607123168486148,
+        "168": 1.3320782595977514,
+        "162": 1.1116778110714005,
+        "160": 0.7732016755984414,
+        "166": 1.4676487243625562,
+        "161": 1.234028749189015,
+        "164": 1.1374418247072016,
+        "165": 1.3738182118199445,
+        "185": 0.9230042264983068,
+        "191": 0.813366535283948,
+        "149": 1.3237527704752654,
+        "148": 0.5863844500864426,
+        "54": 0.4793344108966402,
+        "186": 0.05310311980828874,
+        "184": 0.1120565833242703
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "president",
+      "column": "G24PREDHAR",
+      "congressional_district": "5",
+      "votes": 15,
+      "county": "PHILADELPHIA",
+      "precinct": "5th Congressional Mail Votes",
+      "district_weights": {
+        "26": 4.819614402346138,
+        "9": 3.2207829709995464,
+        "8": 2.341600069004054,
+        "17": 4.366381524914589,
+        "1": 0.2516210327356732
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSDCAS",
+      "congressional_district": "5",
+      "votes": 12,
+      "county": "PHILADELPHIA",
+      "precinct": "5th Congressional Mail Votes",
+      "district_weights": {
+        "163": 0.9845740701666891,
+        "159": 0.8416780158440911,
+        "168": 1.0447892889340724,
+        "162": 0.9080160359081579,
+        "160": 0.6122340935683732,
+        "166": 1.1777415456620566,
+        "161": 0.9978785030594824,
+        "164": 0.9211823605010262,
+        "165": 1.1038075691021043,
+        "185": 0.7238716360079028,
+        "191": 0.6403161145531621,
+        "149": 1.0564364222277636,
+        "148": 0.4709493027449025,
+        "54": 0.38315846009245585,
+        "186": 0.04088005677785664,
+        "184": 0.09248652484990313
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSDCAS",
+      "congressional_district": "5",
+      "votes": 12,
+      "county": "PHILADELPHIA",
+      "precinct": "5th Congressional Mail Votes",
+      "district_weights": {
+        "26": 3.896357393589473,
+        "9": 2.5686762703086337,
+        "8": 1.8526768073964668,
+        "17": 3.478303569715919,
+        "1": 0.2039859589895076
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G24USSGHAZ",
+      "congressional_district": "5",
+      "votes": 3,
+      "county": "PHILADELPHIA",
+      "precinct": "5th Congressional Mail Votes",
+      "district_weights": {
+        "163": 0.3109469442578912,
+        "159": 0.23304231027535258,
+        "168": 0.19341840161182,
+        "162": 0.27266621893888515,
+        "160": 0.11282740094022835,
+        "166": 0.21893888515782403,
+        "161": 0.23237071860308933,
+        "164": 0.4110141034251175,
+        "165": 0.23572867696440564,
+        "185": 0.16319677635997312,
+        "191": 0.10946944257891202,
+        "149": 0.2807253190060443,
+        "148": 0.08059100067159167,
+        "54": 0.10342511752854265,
+        "186": 0.008730691739422432,
+        "184": 0.03290799194089993
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G24USSGHAZ",
+      "congressional_district": "5",
+      "votes": 3,
+      "county": "PHILADELPHIA",
+      "precinct": "5th Congressional Mail Votes",
+      "district_weights": {
+        "26": 1.167897918065816,
+        "9": 0.5936870382807253,
+        "8": 0.42243116185359303,
+        "17": 0.7588985896574882,
+        "1": 0.05708529214237743
+      }
+    }
+  ]
+}
