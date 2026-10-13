@@ -6,196 +6,221 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign"
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
+    "allocation_audit": {
+      "source_rows": 18146,
+      "source_votes": 2756578,
+      "matched_rows": 18146,
+      "matched_votes": 2756578,
+      "unmatched_rows": 0,
+      "unmatched_votes": 0,
+      "unmatched_precincts": [],
+      "unmatched_precinct_votes": {},
+      "mapping_methods": {
+        "adjusted_vtd_code": 16216,
+        "adjusted_vtd_code+adjusted_vtd_name": 8,
+        "adjusted_vtd_name": 2014,
+        "census_block_population": 8,
+        "corrected_from_2020_block_chain": 4,
+        "current_precinct_or_vtd_name": 84,
+        "live_vtd_chain": 302
+      },
+      "allocated_rows": 18146,
+      "allocated_votes": 2756578,
+      "unallocated_rows": 0,
+      "unallocated_votes": 0,
+      "allocation_vote_delta": 0,
+      "conserved_for_matched_rows": true
+    }
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 103399,
-        "rep_votes": 116959,
+        "dem_votes": 103424,
+        "rep_votes": 116985,
         "other_votes": 0,
-        "total_votes": 220358,
+        "total_votes": 220409,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "R",
-        "margin": 13560.0,
-        "margin_pct": 6.153622741175723
+        "margin": 13561.0,
+        "margin_pct": 6.152652568633767
       },
       "2": {
-        "dem_votes": 49492,
-        "rep_votes": 29317,
+        "dem_votes": 49374,
+        "rep_votes": 29307,
         "other_votes": 0,
-        "total_votes": 78809,
+        "total_votes": 78681,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "D",
-        "margin": 20175.0,
-        "margin_pct": 25.599868035376673
+        "margin": 20067.0,
+        "margin_pct": 25.504251344034774
       },
       "3": {
-        "dem_votes": 117330,
-        "rep_votes": 11824,
+        "dem_votes": 117471,
+        "rep_votes": 11858,
         "other_votes": 0,
-        "total_votes": 129154,
+        "total_votes": 129329,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "D",
-        "margin": 105506.0,
-        "margin_pct": 81.69007541384704
+        "margin": 105613.0,
+        "margin_pct": 81.66227218953213
       },
       "4": {
-        "dem_votes": 108161,
-        "rep_votes": 86526,
+        "dem_votes": 108489,
+        "rep_votes": 86891,
         "other_votes": 0,
-        "total_votes": 194687,
+        "total_votes": 195380,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "D",
-        "margin": 21635.0,
-        "margin_pct": 11.11270911771202
+        "margin": 21598.0,
+        "margin_pct": 11.05435561469956
       },
       "5": {
-        "dem_votes": 100188,
-        "rep_votes": 77322,
+        "dem_votes": 100240,
+        "rep_votes": 77372,
         "other_votes": 0,
-        "total_votes": 177510,
+        "total_votes": 177612,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "D",
-        "margin": 22866.0,
-        "margin_pct": 12.881527801250634
+        "margin": 22868.0,
+        "margin_pct": 12.875256176384479
       },
       "6": {
-        "dem_votes": 87960,
-        "rep_votes": 86238,
+        "dem_votes": 87713,
+        "rep_votes": 85957,
         "other_votes": 0,
-        "total_votes": 174198,
+        "total_votes": 173670,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "D",
-        "margin": 1722.0,
-        "margin_pct": 0.9885302931147316
+        "margin": 1756.0,
+        "margin_pct": 1.011113030460068
       },
       "7": {
-        "dem_votes": 72919,
-        "rep_votes": 82360,
+        "dem_votes": 72956,
+        "rep_votes": 82396,
         "other_votes": 0,
-        "total_votes": 155279,
+        "total_votes": 155352,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "R",
-        "margin": 9441.0,
-        "margin_pct": 6.0800236992767855
+        "margin": 9440.0,
+        "margin_pct": 6.076522992945054
       },
       "8": {
-        "dem_votes": 68164,
-        "rep_votes": 78259,
+        "dem_votes": 68357,
+        "rep_votes": 77952,
         "other_votes": 0,
-        "total_votes": 146423,
+        "total_votes": 146309,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "R",
-        "margin": 10095.0,
-        "margin_pct": 6.894408665305314
+        "margin": 9595.0,
+        "margin_pct": 6.5580381247906825
       },
       "9": {
-        "dem_votes": 43811,
-        "rep_votes": 108739,
+        "dem_votes": 44062,
+        "rep_votes": 109490,
         "other_votes": 0,
-        "total_votes": 152550,
+        "total_votes": 153552,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "R",
-        "margin": 64928.0,
-        "margin_pct": 42.56178302196002
+        "margin": 65428.0,
+        "margin_pct": 42.609669688444306
       },
       "10": {
-        "dem_votes": 65707,
-        "rep_votes": 90670,
+        "dem_votes": 65809,
+        "rep_votes": 90869,
         "other_votes": 0,
-        "total_votes": 156377,
+        "total_votes": 156678,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "R",
-        "margin": 24963.0,
-        "margin_pct": 15.963344993189535
+        "margin": 25060.0,
+        "margin_pct": 15.994587625576024
       },
       "11": {
-        "dem_votes": 51331,
-        "rep_votes": 97361,
+        "dem_votes": 51310,
+        "rep_votes": 97242,
         "other_votes": 0,
-        "total_votes": 148692,
+        "total_votes": 148552,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "R",
-        "margin": 46030.0,
-        "margin_pct": 30.95660829096387
+        "margin": 45932.0,
+        "margin_pct": 30.919812590877267
       },
       "12": {
-        "dem_votes": 63174,
-        "rep_votes": 44194,
+        "dem_votes": 100877,
+        "rep_votes": 70796,
         "other_votes": 0,
-        "total_votes": 107368,
+        "total_votes": 171673,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "D",
-        "margin": 18980.0,
-        "margin_pct": 17.67752030400119
+        "margin": 30081.0,
+        "margin_pct": 17.52226616882096
       },
       "13": {
-        "dem_votes": 39340,
-        "rep_votes": 115730,
+        "dem_votes": 39452,
+        "rep_votes": 115850,
         "other_votes": 0,
-        "total_votes": 155070,
+        "total_votes": 155302,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "R",
-        "margin": 76390.0,
-        "margin_pct": 49.26162378280776
+        "margin": 76398.0,
+        "margin_pct": 49.19318489137294
       },
       "14": {
-        "dem_votes": 60220,
-        "rep_votes": 113257,
+        "dem_votes": 60297,
+        "rep_votes": 113333,
         "other_votes": 0,
-        "total_votes": 173477,
+        "total_votes": 173630,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "R",
-        "margin": 53037.0,
-        "margin_pct": 30.57292897617552
+        "margin": 53036.0,
+        "margin_pct": 30.545412659102688
       },
       "15": {
-        "dem_votes": 48718,
-        "rep_votes": 114017,
+        "dem_votes": 48810,
+        "rep_votes": 114108,
         "other_votes": 0,
-        "total_votes": 162735,
+        "total_votes": 162918,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "R",
-        "margin": 65299.0,
-        "margin_pct": 40.12597167173626
+        "margin": 65298.0,
+        "margin_pct": 40.0802857879424
       },
       "16": {
-        "dem_votes": 63869,
-        "rep_votes": 106801,
+        "dem_votes": 63948,
+        "rep_votes": 106879,
         "other_votes": 0,
-        "total_votes": 170670,
+        "total_votes": 170827,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "R",
-        "margin": 42932.0,
-        "margin_pct": 25.15497744184684
+        "margin": 42931.0,
+        "margin_pct": 25.131273159395178
       },
       "17": {
-        "dem_votes": 71946,
-        "rep_votes": 68945,
+        "dem_votes": 96015,
+        "rep_votes": 90689,
         "other_votes": 0,
-        "total_votes": 140891,
+        "total_votes": 186704,
         "dem_candidate": "Timika Lane",
         "rep_candidate": "Megan Sullivan",
         "winner": "D",
-        "margin": 3001.0,
-        "margin_pct": 2.130015401977415
+        "margin": 5326.0,
+        "margin_pct": 2.8526437569628933
       }
     }
   }

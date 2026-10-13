@@ -6,23 +6,43 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
-    "unmatched_source_vtds": 0,
-    "unmatched_source_votes": 0.0,
-    "unmatched_source_keys": []
+    "source": "official_pa_precinct_export_to_current_lines_via_vtd_block_assign",
+    "allocation_audit": {
+      "source_rows": 36275,
+      "source_votes": 6755579,
+      "matched_rows": 36275,
+      "matched_votes": 6755579,
+      "unmatched_rows": 0,
+      "unmatched_votes": 0,
+      "unmatched_precincts": [],
+      "unmatched_precinct_votes": {},
+      "mapping_methods": {
+        "adjusted_vtd_code": 1285,
+        "adjusted_vtd_name": 79,
+        "current_precinct_or_vtd_name": 64,
+        "live_vtd_chain": 468,
+        "rdh_precinct_blocks": 39528
+      },
+      "allocated_rows": 36275,
+      "allocated_votes": 6755579,
+      "unallocated_rows": 0,
+      "unallocated_votes": 0,
+      "allocation_vote_delta": 0,
+      "conserved_for_matched_rows": true
+    }
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 223820,
-        "rep_votes": 218252,
-        "other_votes": 13629,
-        "total_votes": 455701,
+        "dem_votes": 225139,
+        "rep_votes": 219715,
+        "other_votes": 13715,
+        "total_votes": 458569,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 5568.0,
-        "margin_pct": 1.2218538032613488
+        "margin": 5424.0,
+        "margin_pct": 1.1828100024205737
       },
       "2": {
         "dem_votes": 205887,
@@ -47,158 +67,158 @@
         "margin_pct": 76.88422025430116
       },
       "4": {
-        "dem_votes": 250468,
-        "rep_votes": 183678,
-        "other_votes": 14825,
-        "total_votes": 448971,
+        "dem_votes": 250789,
+        "rep_votes": 184104,
+        "other_votes": 14846,
+        "total_votes": 449739,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 66790.0,
-        "margin_pct": 14.87623922257785
+        "margin": 66685.0,
+        "margin_pct": 14.827488832411687
       },
       "5": {
-        "dem_votes": 253519,
-        "rep_votes": 145555,
-        "other_votes": 10526,
-        "total_votes": 409600,
+        "dem_votes": 254785,
+        "rep_votes": 145988,
+        "other_votes": 10557,
+        "total_votes": 411330,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 107964.0,
-        "margin_pct": 26.358398437500004
+        "margin": 108797.0,
+        "margin_pct": 26.45005226946734
       },
       "6": {
-        "dem_votes": 212745,
-        "rep_votes": 181195,
-        "other_votes": 13298,
-        "total_votes": 407238,
+        "dem_votes": 212831,
+        "rep_votes": 181319,
+        "other_votes": 13307,
+        "total_votes": 407457,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 31550.0,
-        "margin_pct": 7.747312382439753
+        "margin": 31512.0,
+        "margin_pct": 7.733822219277125
       },
       "7": {
-        "dem_votes": 183867,
-        "rep_votes": 186517,
-        "other_votes": 13807,
-        "total_votes": 384191,
+        "dem_votes": 183709,
+        "rep_votes": 186264,
+        "other_votes": 13792,
+        "total_votes": 383765,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 2650.0,
-        "margin_pct": 0.6897610823782963
+        "margin": 2555.0,
+        "margin_pct": 0.6657720219405105
       },
       "8": {
-        "dem_votes": 177940,
-        "rep_votes": 177429,
-        "other_votes": 12691,
-        "total_votes": 368060,
+        "dem_votes": 178482,
+        "rep_votes": 178409,
+        "other_votes": 12739,
+        "total_votes": 369630,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 511.0,
-        "margin_pct": 0.13883605933815138
+        "margin": 73.0,
+        "margin_pct": 0.01974947920893867
       },
       "9": {
-        "dem_votes": 114490,
-        "rep_votes": 251276,
-        "other_votes": 13818,
-        "total_votes": 379584,
+        "dem_votes": 114595,
+        "rep_votes": 251418,
+        "other_votes": 13835,
+        "total_votes": 379848,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 136786.0,
-        "margin_pct": 36.035765469566684
+        "margin": 136823.0,
+        "margin_pct": 36.02046081590531
       },
       "10": {
-        "dem_votes": 171467,
-        "rep_votes": 206869,
-        "other_votes": 15521,
-        "total_votes": 393857,
+        "dem_votes": 171415,
+        "rep_votes": 206767,
+        "other_votes": 15517,
+        "total_votes": 393699,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 35402.0,
-        "margin_pct": 8.988541526493119
+        "margin": 35352.0,
+        "margin_pct": 8.9794487666974
       },
       "11": {
-        "dem_votes": 133769,
-        "rep_votes": 237781,
-        "other_votes": 14067,
-        "total_votes": 385617,
+        "dem_votes": 134416,
+        "rep_votes": 239159,
+        "other_votes": 14127,
+        "total_votes": 387702,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 104012.0,
-        "margin_pct": 26.97287723310954
+        "margin": 104743.0,
+        "margin_pct": 27.016368241587614
       },
       "12": {
-        "dem_votes": 242454,
-        "rep_votes": 159470,
-        "other_votes": 16634,
-        "total_votes": 418558,
+        "dem_votes": 242492,
+        "rep_votes": 159441,
+        "other_votes": 16635,
+        "total_votes": 418568,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 82984.0,
-        "margin_pct": 19.82616507150741
+        "margin": 83051.0,
+        "margin_pct": 19.841698362034364
       },
       "13": {
-        "dem_votes": 102687,
-        "rep_votes": 277879,
-        "other_votes": 12389,
-        "total_votes": 392955,
+        "dem_votes": 102793,
+        "rep_votes": 278305,
+        "other_votes": 12397,
+        "total_votes": 393495,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 175192.0,
-        "margin_pct": 44.58322199742973
+        "margin": 175512.0,
+        "margin_pct": 44.60336217741013
       },
       "14": {
-        "dem_votes": 140738,
-        "rep_votes": 251704,
-        "other_votes": 12638,
-        "total_votes": 405080,
+        "dem_votes": 140743,
+        "rep_votes": 251701,
+        "other_votes": 12639,
+        "total_votes": 405083,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 110966.0,
-        "margin_pct": 27.393601263947865
+        "margin": 110958.0,
+        "margin_pct": 27.391423486051007
       },
       "15": {
-        "dem_votes": 113538,
-        "rep_votes": 255369,
-        "other_votes": 13349,
-        "total_votes": 382256,
+        "dem_votes": 113431,
+        "rep_votes": 255235,
+        "other_votes": 13334,
+        "total_votes": 382000,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 141831.0,
-        "margin_pct": 37.10366874555272
+        "margin": 141804.0,
+        "margin_pct": 37.121465968586385
       },
       "16": {
-        "dem_votes": 149346,
-        "rep_votes": 227826,
-        "other_votes": 15626,
-        "total_votes": 392798,
+        "dem_votes": 150046,
+        "rep_votes": 230087,
+        "other_votes": 15719,
+        "total_votes": 395852,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "R",
-        "margin": 78480.0,
-        "margin_pct": 19.97973513103427
+        "margin": 80041.0,
+        "margin_pct": 20.219930681163667
       },
       "17": {
-        "dem_votes": 224111,
-        "rep_votes": 205240,
-        "other_votes": 16638,
-        "total_votes": 445989,
+        "dem_votes": 224060,
+        "rep_votes": 205227,
+        "other_votes": 16634,
+        "total_votes": 445921,
         "dem_candidate": "Joe Torsella",
         "rep_candidate": "Stacy L. Garrity",
         "winner": "D",
-        "margin": 18871.0,
-        "margin_pct": 4.231270277966497
+        "margin": 18833.0,
+        "margin_pct": 4.223393829848785
       }
     }
   }

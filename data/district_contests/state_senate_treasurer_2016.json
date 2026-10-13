@@ -6,638 +6,579 @@
     "districts_observed": 50,
     "districts_expected": 50,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts",
-    "unmatched_source_vtds": 15,
-    "unmatched_source_votes": 7820.0,
-    "unmatched_source_keys": [
-      [
-        "007",
-        "000000",
-        "BEAVER WARD 3-1"
-      ],
-      [
-        "021",
-        "000000",
-        "BARR A (SOUTH CONG 9)"
-      ],
-      [
-        "021",
-        "000000",
-        "BARR B (SOUTH CONG 12)"
-      ],
-      [
-        "021",
-        "000000",
-        "NORTHERN CAMBRIA WARD 3 A"
-      ],
-      [
-        "021",
-        "000000",
-        "NORTHERN CAMBRIA WARD 3 B"
-      ],
-      [
-        "025",
-        "000000",
-        "BANKS DISTRICT 4"
-      ],
-      [
-        "027",
-        "000000",
-        "FERGUSON NORTHEAST 1A"
-      ],
-      [
-        "027",
-        "000000",
-        "FERGUSON NORTHEAST 1B"
-      ],
-      [
-        "027",
-        "000000",
-        "FERGUSON NORTH CENTRAL 2"
-      ],
-      [
-        "045",
-        "000000",
-        "SPRINGFIELD WARD 3-02(161)"
-      ],
-      [
-        "045",
-        "000000",
-        "SPRINGFIELD WARD 3-02(165)"
-      ],
-      [
-        "071",
-        "000000",
-        "MANOR MANOR,NEW"
-      ],
-      [
-        "091",
-        "000000",
-        "PLYMOUTH 2 3A"
-      ],
-      [
-        "091",
-        "000000",
-        "PLYMOUTH 2 3B"
-      ],
-      [
-        "095",
-        "000000",
-        "LOWER MOUNT BETHEL DISTRICT INDEPENDENT"
-      ]
-    ]
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
+    "allocation_audit": {
+      "source_rows": 46466,
+      "source_votes": 5897049,
+      "matched_rows": 46466,
+      "matched_votes": 5897049,
+      "unmatched_rows": 0,
+      "unmatched_votes": 0,
+      "unmatched_precincts": [],
+      "unmatched_precinct_votes": {},
+      "mapping_methods": {
+        "current_precinct_or_vtd_name": 40617,
+        "vtd10_nhgis_block_chain": 7202
+      },
+      "allocated_rows": 46466,
+      "allocated_votes": 5897049,
+      "unallocated_rows": 0,
+      "unallocated_votes": 0,
+      "allocation_vote_delta": 0,
+      "conserved_for_matched_rows": true
+    }
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 77673,
-        "rep_votes": 18066,
-        "other_votes": 3842,
-        "total_votes": 99581,
+        "dem_votes": 78176,
+        "rep_votes": 18085,
+        "other_votes": 3810,
+        "total_votes": 100071,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 59607.0,
-        "margin_pct": 59.85780419959631
+        "margin": 60091.0,
+        "margin_pct": 60.04836566038113
       },
       "2": {
-        "dem_votes": 69382,
-        "rep_votes": 13203,
-        "other_votes": 1667,
-        "total_votes": 84252,
+        "dem_votes": 69405,
+        "rep_votes": 13180,
+        "other_votes": 1663,
+        "total_votes": 84248,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 56179.0,
-        "margin_pct": 66.67972273655225
+        "margin": 56225.0,
+        "margin_pct": 66.73748931725382
       },
       "3": {
-        "dem_votes": 105085,
-        "rep_votes": 5887,
-        "other_votes": 2024,
-        "total_votes": 112996,
+        "dem_votes": 105113,
+        "rep_votes": 5909,
+        "other_votes": 2021,
+        "total_votes": 113043,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 99198.0,
-        "margin_pct": 87.78894828135509
+        "margin": 99204.0,
+        "margin_pct": 87.75775589819803
       },
       "4": {
-        "dem_votes": 122042,
-        "rep_votes": 21487,
-        "other_votes": 2847,
-        "total_votes": 146376,
+        "dem_votes": 121627,
+        "rep_votes": 21285,
+        "other_votes": 2828,
+        "total_votes": 145740,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 100555.0,
-        "margin_pct": 68.69637098977974
+        "margin": 100342.0,
+        "margin_pct": 68.85000686153424
       },
       "5": {
-        "dem_votes": 63132,
-        "rep_votes": 36016,
-        "other_votes": 2342,
-        "total_votes": 101490,
+        "dem_votes": 63081,
+        "rep_votes": 36001,
+        "other_votes": 2321,
+        "total_votes": 101403,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 27116.0,
-        "margin_pct": 26.717903241698686
+        "margin": 27080.0,
+        "margin_pct": 26.705324300070014
       },
       "6": {
-        "dem_votes": 66169,
-        "rep_votes": 67070,
-        "other_votes": 3467,
-        "total_votes": 136706,
+        "dem_votes": 66161,
+        "rep_votes": 67058,
+        "other_votes": 3436,
+        "total_votes": 136655,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 901.0,
-        "margin_pct": 0.6590786066449169
+        "margin": 897.0,
+        "margin_pct": 0.6563974973473345
       },
       "7": {
-        "dem_votes": 103526,
-        "rep_votes": 16353,
-        "other_votes": 3329,
-        "total_votes": 123208,
+        "dem_votes": 103505,
+        "rep_votes": 16336,
+        "other_votes": 3303,
+        "total_votes": 123144,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 87173.0,
-        "margin_pct": 70.75271086293098
+        "margin": 87169.0,
+        "margin_pct": 70.78623400246865
       },
       "8": {
-        "dem_votes": 97294,
-        "rep_votes": 13601,
-        "other_votes": 2786,
-        "total_votes": 113681,
+        "dem_votes": 96852,
+        "rep_votes": 13543,
+        "other_votes": 2723,
+        "total_votes": 113118,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 83693.0,
-        "margin_pct": 73.62092170195548
+        "margin": 83309.0,
+        "margin_pct": 73.64787213352429
       },
       "9": {
-        "dem_votes": 65538,
-        "rep_votes": 56742,
-        "other_votes": 4492,
-        "total_votes": 126772,
+        "dem_votes": 65521,
+        "rep_votes": 56730,
+        "other_votes": 4429,
+        "total_votes": 126680,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 8796.0,
-        "margin_pct": 6.938440665131101
+        "margin": 8791.0,
+        "margin_pct": 6.939532680770445
       },
       "10": {
-        "dem_votes": 74632,
-        "rep_votes": 62107,
-        "other_votes": 4327,
-        "total_votes": 141066,
+        "dem_votes": 74580,
+        "rep_votes": 62060,
+        "other_votes": 4256,
+        "total_votes": 140896,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 12525.0,
-        "margin_pct": 8.878822678746118
+        "margin": 12520.0,
+        "margin_pct": 8.885986827163297
       },
       "11": {
-        "dem_votes": 51672,
-        "rep_votes": 41666,
-        "other_votes": 4521,
-        "total_votes": 97859,
+        "dem_votes": 51338,
+        "rep_votes": 41100,
+        "other_votes": 4402,
+        "total_votes": 96840,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 10006.0,
-        "margin_pct": 10.224915439561002
+        "margin": 10238.0,
+        "margin_pct": 10.57207765386204
       },
       "12": {
-        "dem_votes": 71540,
-        "rep_votes": 59492,
-        "other_votes": 2762,
-        "total_votes": 133794,
+        "dem_votes": 72306,
+        "rep_votes": 60040,
+        "other_votes": 2749,
+        "total_votes": 135095,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 12048.0,
-        "margin_pct": 9.00488811157451
+        "margin": 12266.0,
+        "margin_pct": 9.079536622376846
       },
       "13": {
-        "dem_votes": 42186,
-        "rep_votes": 53986,
-        "other_votes": 6930,
-        "total_votes": 103102,
+        "dem_votes": 41939,
+        "rep_votes": 54428,
+        "other_votes": 6820,
+        "total_votes": 103187,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 11800.0,
-        "margin_pct": 11.444976819072375
+        "margin": 12489.0,
+        "margin_pct": 12.103268822623004
       },
       "14": {
-        "dem_votes": 56724,
-        "rep_votes": 41539,
-        "other_votes": 5391,
-        "total_votes": 103654,
+        "dem_votes": 55609,
+        "rep_votes": 40366,
+        "other_votes": 5183,
+        "total_votes": 101158,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 15185.0,
-        "margin_pct": 14.649699963339572
+        "margin": 15243.0,
+        "margin_pct": 15.068506692500842
       },
       "15": {
-        "dem_votes": 60408,
-        "rep_votes": 50040,
-        "other_votes": 3585,
-        "total_votes": 114033,
+        "dem_votes": 60374,
+        "rep_votes": 50012,
+        "other_votes": 3507,
+        "total_votes": 113893,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 10368.0,
-        "margin_pct": 9.09210491699771
+        "margin": 10362.0,
+        "margin_pct": 9.098013047333902
       },
       "16": {
-        "dem_votes": 53428,
-        "rep_votes": 69476,
-        "other_votes": 6384,
-        "total_votes": 129288,
+        "dem_votes": 54463,
+        "rep_votes": 70572,
+        "other_votes": 6472,
+        "total_votes": 131507,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 16048.0,
-        "margin_pct": 12.41259823030753
+        "margin": 16109.0,
+        "margin_pct": 12.249538047404322
       },
       "17": {
-        "dem_votes": 80743,
-        "rep_votes": 42909,
-        "other_votes": 2881,
-        "total_votes": 126533,
+        "dem_votes": 80731,
+        "rep_votes": 42900,
+        "other_votes": 2834,
+        "total_votes": 126465,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 37834.0,
-        "margin_pct": 29.900500264753067
+        "margin": 37831.0,
+        "margin_pct": 29.914205511406315
       },
       "18": {
-        "dem_votes": 58053,
-        "rep_votes": 47932,
-        "other_votes": 4142,
-        "total_votes": 110127,
+        "dem_votes": 58086,
+        "rep_votes": 48003,
+        "other_votes": 4027,
+        "total_votes": 110116,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 10121.0,
-        "margin_pct": 9.190298473580501
+        "margin": 10083.0,
+        "margin_pct": 9.15670747212031
       },
       "19": {
-        "dem_votes": 64226,
-        "rep_votes": 56175,
-        "other_votes": 7551,
-        "total_votes": 127952,
+        "dem_votes": 64187,
+        "rep_votes": 56129,
+        "other_votes": 7511,
+        "total_votes": 127827,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 8051.0,
-        "margin_pct": 6.292203326247344
+        "margin": 8058.0,
+        "margin_pct": 6.303832523645239
       },
       "20": {
-        "dem_votes": 48608,
-        "rep_votes": 63101,
-        "other_votes": 8695,
-        "total_votes": 120404,
+        "dem_votes": 48431,
+        "rep_votes": 62867,
+        "other_votes": 8461,
+        "total_votes": 119759,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 14493.0,
-        "margin_pct": 12.036975515763595
+        "margin": 14436.0,
+        "margin_pct": 12.054208869479538
       },
       "21": {
-        "dem_votes": 40464,
-        "rep_votes": 70481,
-        "other_votes": 8930,
-        "total_votes": 119875,
+        "dem_votes": 40401,
+        "rep_votes": 70419,
+        "other_votes": 8816,
+        "total_votes": 119636,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 30017.0,
-        "margin_pct": 25.040250260688218
+        "margin": 30018.0,
+        "margin_pct": 25.091109699421576
       },
       "22": {
-        "dem_votes": 62906,
-        "rep_votes": 33548,
-        "other_votes": 7159,
-        "total_votes": 103613,
+        "dem_votes": 62434,
+        "rep_votes": 33138,
+        "other_votes": 6738,
+        "total_votes": 102310,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 29358.0,
-        "margin_pct": 28.33428237769392
+        "margin": 29296.0,
+        "margin_pct": 28.634542077998244
       },
       "23": {
-        "dem_votes": 34644,
-        "rep_votes": 70245,
-        "other_votes": 8073,
-        "total_votes": 112962,
+        "dem_votes": 34597,
+        "rep_votes": 70199,
+        "other_votes": 7993,
+        "total_votes": 112789,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 35601.0,
-        "margin_pct": 31.51590800446168
+        "margin": 35602.0,
+        "margin_pct": 31.56513489790671
       },
       "24": {
-        "dem_votes": 56117,
-        "rep_votes": 62792,
-        "other_votes": 3632,
-        "total_votes": 122541,
+        "dem_votes": 56383,
+        "rep_votes": 63281,
+        "other_votes": 3630,
+        "total_votes": 123294,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 6675.0,
-        "margin_pct": 5.447156461918868
+        "margin": 6898.0,
+        "margin_pct": 5.59475724690577
       },
       "25": {
-        "dem_votes": 45105,
-        "rep_votes": 63263,
-        "other_votes": 9036,
-        "total_votes": 117404,
+        "dem_votes": 45593,
+        "rep_votes": 63509,
+        "other_votes": 8959,
+        "total_votes": 118061,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 18158.0,
-        "margin_pct": 15.466253279274984
+        "margin": 17916.0,
+        "margin_pct": 15.175206037556856
       },
       "26": {
-        "dem_votes": 70685,
-        "rep_votes": 53415,
-        "other_votes": 3184,
-        "total_votes": 127284,
+        "dem_votes": 70958,
+        "rep_votes": 53627,
+        "other_votes": 3133,
+        "total_votes": 127718,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 17270.0,
-        "margin_pct": 13.56808396970554
+        "margin": 17331.0,
+        "margin_pct": 13.569739582517734
       },
       "27": {
-        "dem_votes": 41032,
-        "rep_votes": 58413,
-        "other_votes": 8542,
-        "total_votes": 107987,
+        "dem_votes": 40595,
+        "rep_votes": 57661,
+        "other_votes": 8261,
+        "total_votes": 106517,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 17381.0,
-        "margin_pct": 16.095455934510635
+        "margin": 17066.0,
+        "margin_pct": 16.021855666231684
       },
       "28": {
-        "dem_votes": 39132,
-        "rep_votes": 74888,
-        "other_votes": 8726,
-        "total_votes": 122746,
+        "dem_votes": 39076,
+        "rep_votes": 74834,
+        "other_votes": 8645,
+        "total_votes": 122555,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 35756.0,
-        "margin_pct": 29.13007348508302
+        "margin": 35758.0,
+        "margin_pct": 29.177104157317125
       },
       "29": {
-        "dem_votes": 42594,
-        "rep_votes": 54600,
-        "other_votes": 7707,
-        "total_votes": 104901,
+        "dem_votes": 43091,
+        "rep_votes": 55437,
+        "other_votes": 7541,
+        "total_votes": 106069,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 12006.0,
-        "margin_pct": 11.445076786684588
+        "margin": 12346.0,
+        "margin_pct": 11.639593095060762
       },
       "30": {
-        "dem_votes": 30512,
-        "rep_votes": 70174,
-        "other_votes": 6984,
-        "total_votes": 107670,
+        "dem_votes": 30412,
+        "rep_votes": 70066,
+        "other_votes": 6814,
+        "total_votes": 107292,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 39662.0,
-        "margin_pct": 36.83663044487787
+        "margin": 39654.0,
+        "margin_pct": 36.95895313723297
       },
       "31": {
-        "dem_votes": 42608,
-        "rep_votes": 59663,
-        "other_votes": 7712,
-        "total_votes": 109983,
+        "dem_votes": 42801,
+        "rep_votes": 60050,
+        "other_votes": 7695,
+        "total_votes": 110546,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 17055.0,
-        "margin_pct": 15.506941981942665
+        "margin": 17249.0,
+        "margin_pct": 15.603459193457928
       },
       "32": {
-        "dem_votes": 40901,
-        "rep_votes": 63893,
-        "other_votes": 6607,
-        "total_votes": 111401,
+        "dem_votes": 40833,
+        "rep_votes": 63825,
+        "other_votes": 6490,
+        "total_votes": 111148,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
         "margin": 22992.0,
-        "margin_pct": 20.638952971696842
+        "margin_pct": 20.685932270486198
       },
       "33": {
-        "dem_votes": 32959,
-        "rep_votes": 73129,
-        "other_votes": 8737,
-        "total_votes": 114825,
+        "dem_votes": 32895,
+        "rep_votes": 73064,
+        "other_votes": 8618,
+        "total_votes": 114577,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 40170.0,
-        "margin_pct": 34.98367080339647
+        "margin": 40169.0,
+        "margin_pct": 35.05851959817415
       },
       "34": {
-        "dem_votes": 42225,
-        "rep_votes": 71857,
-        "other_votes": 7792,
-        "total_votes": 121874,
+        "dem_votes": 41978,
+        "rep_votes": 71410,
+        "other_votes": 7684,
+        "total_votes": 121072,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 29632.0,
-        "margin_pct": 24.31363539393144
+        "margin": 29432.0,
+        "margin_pct": 24.309501784062377
       },
       "35": {
-        "dem_votes": 48841,
-        "rep_votes": 57351,
-        "other_votes": 7955,
-        "total_votes": 114147,
+        "dem_votes": 49804,
+        "rep_votes": 58419,
+        "other_votes": 7883,
+        "total_votes": 116106,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 8510.0,
-        "margin_pct": 7.4552988690022515
+        "margin": 8615.0,
+        "margin_pct": 7.419943844418032
       },
       "36": {
-        "dem_votes": 43129,
-        "rep_votes": 73833,
-        "other_votes": 8736,
-        "total_votes": 125698,
+        "dem_votes": 43686,
+        "rep_votes": 74455,
+        "other_votes": 8710,
+        "total_votes": 126851,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 30704.0,
-        "margin_pct": 24.42680074464192
+        "margin": 30769.0,
+        "margin_pct": 24.25601690171934
       },
       "37": {
-        "dem_votes": 57674,
-        "rep_votes": 60648,
-        "other_votes": 6273,
-        "total_votes": 124595,
+        "dem_votes": 57728,
+        "rep_votes": 60663,
+        "other_votes": 6197,
+        "total_votes": 124588,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 2974.0,
-        "margin_pct": 2.3869336650748427
+        "margin": 2935.0,
+        "margin_pct": 2.355764600122002
       },
       "38": {
-        "dem_votes": 70869,
-        "rep_votes": 55246,
-        "other_votes": 7815,
-        "total_votes": 133930,
+        "dem_votes": 70819,
+        "rep_votes": 55202,
+        "other_votes": 7729,
+        "total_votes": 133750,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 15623.0,
-        "margin_pct": 11.665048906145001
+        "margin": 15617.0,
+        "margin_pct": 11.67626168224299
       },
       "39": {
-        "dem_votes": 53719,
-        "rep_votes": 70790,
-        "other_votes": 7079,
-        "total_votes": 131588,
+        "dem_votes": 53630,
+        "rep_votes": 70701,
+        "other_votes": 6911,
+        "total_votes": 131242,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
         "margin": 17071.0,
-        "margin_pct": 12.973067452959237
+        "margin_pct": 13.007269014492312
       },
       "40": {
-        "dem_votes": 55233,
-        "rep_votes": 45152,
-        "other_votes": 5648,
-        "total_votes": 106033,
+        "dem_votes": 55364,
+        "rep_votes": 45243,
+        "other_votes": 5530,
+        "total_votes": 106137,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 10081.0,
-        "margin_pct": 9.507417502098402
+        "margin": 10121.0,
+        "margin_pct": 9.535788650517727
       },
       "41": {
-        "dem_votes": 46106,
-        "rep_votes": 62227,
-        "other_votes": 8017,
-        "total_votes": 116350,
+        "dem_votes": 46014,
+        "rep_votes": 62132,
+        "other_votes": 7847,
+        "total_votes": 115993,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 16121.0,
-        "margin_pct": 13.855608079071766
+        "margin": 16118.0,
+        "margin_pct": 13.895666117782971
       },
       "42": {
-        "dem_votes": 80031,
-        "rep_votes": 34800,
-        "other_votes": 8232,
-        "total_votes": 123063,
+        "dem_votes": 79890,
+        "rep_votes": 34687,
+        "other_votes": 8141,
+        "total_votes": 122718,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 45231.0,
-        "margin_pct": 36.75434533531606
+        "margin": 45203.0,
+        "margin_pct": 36.83485715217002
       },
       "43": {
-        "dem_votes": 96262,
-        "rep_votes": 25689,
-        "other_votes": 7949,
-        "total_votes": 129900,
+        "dem_votes": 96229,
+        "rep_votes": 25666,
+        "other_votes": 7905,
+        "total_votes": 129800,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 70573.0,
-        "margin_pct": 54.32871439568899
+        "margin": 70563.0,
+        "margin_pct": 54.3628659476117
       },
       "44": {
-        "dem_votes": 59078,
-        "rep_votes": 60494,
-        "other_votes": 7239,
-        "total_votes": 126811,
+        "dem_votes": 59063,
+        "rep_votes": 60481,
+        "other_votes": 7197,
+        "total_votes": 126741,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 1416.0,
-        "margin_pct": 1.1166223750305573
+        "margin": 1418.0,
+        "margin_pct": 1.1188171152192266
       },
       "45": {
-        "dem_votes": 70828,
-        "rep_votes": 41815,
-        "other_votes": 6669,
-        "total_votes": 119312,
+        "dem_votes": 70962,
+        "rep_votes": 41947,
+        "other_votes": 6581,
+        "total_votes": 119490,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 29013.0,
-        "margin_pct": 24.316916990746947
+        "margin": 29015.0,
+        "margin_pct": 24.282366725248973
       },
       "46": {
-        "dem_votes": 52150,
-        "rep_votes": 58195,
-        "other_votes": 6669,
-        "total_votes": 117014,
+        "dem_votes": 51962,
+        "rep_votes": 57996,
+        "other_votes": 6342,
+        "total_votes": 116300,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 6045.0,
-        "margin_pct": 5.166048507016254
+        "margin": 6034.0,
+        "margin_pct": 5.188306104901118
       },
       "47": {
-        "dem_votes": 54428,
-        "rep_votes": 61940,
-        "other_votes": 7772,
-        "total_votes": 124140,
+        "dem_votes": 54724,
+        "rep_votes": 62334,
+        "other_votes": 7730,
+        "total_votes": 124788,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 7512.0,
-        "margin_pct": 6.051232479458676
+        "margin": 7610.0,
+        "margin_pct": 6.098342789370773
       },
       "48": {
-        "dem_votes": 37273,
-        "rep_votes": 70767,
-        "other_votes": 6985,
-        "total_votes": 115025,
+        "dem_votes": 37119,
+        "rep_votes": 70372,
+        "other_votes": 6877,
+        "total_votes": 114368,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 33494.0,
-        "margin_pct": 29.11888719843512
+        "margin": 33253.0,
+        "margin_pct": 29.075440682708447
       },
       "49": {
-        "dem_votes": 61676,
-        "rep_votes": 45730,
-        "other_votes": 7716,
-        "total_votes": 115122,
+        "dem_votes": 61648,
+        "rep_votes": 45703,
+        "other_votes": 7661,
+        "total_votes": 115012,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "D",
-        "margin": 15946.0,
-        "margin_pct": 13.851392435850663
+        "margin": 15945.0,
+        "margin_pct": 13.863770736966577
       },
       "50": {
-        "dem_votes": 46655,
-        "rep_votes": 65080,
-        "other_votes": 7400,
-        "total_votes": 119135,
+        "dem_votes": 46548,
+        "rep_votes": 64979,
+        "other_votes": 7209,
+        "total_votes": 118736,
         "dem_candidate": "Joseph M. Torsella",
         "rep_candidate": "Otto W. Voit,, Iii.",
         "winner": "R",
-        "margin": 18425.0,
-        "margin_pct": 15.46564821421077
+        "margin": 18431.0,
+        "margin_pct": 15.522672146610969
       }
     }
   }
