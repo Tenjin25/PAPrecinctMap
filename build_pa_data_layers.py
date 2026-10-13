@@ -320,7 +320,12 @@ EXPECTED_DISTRICT_COUNT = {
     'state_senate': 50,
 }
 OFFICIAL_2024_STATEWIDE_OE_SOURCE = DATA_ROOT / '2024' / '20241105__pa__general__precinct_official.csv'
-OFFICIAL_2020_STATEWIDE_SOURCE = base / 'data' / 'ElectionReturns_2020_General_PrecinctReturns.txt'
+OFFICIAL_GENERAL_SOURCES = {
+    2008: base / 'data' / 'ElectionReturns_2008_General_PrecinctReturns.txt',
+    2020: base / 'data' / 'ElectionReturns_2020_General_PrecinctReturns.txt',
+    2022: base / 'data' / 'ElectionReturns_2022_General_PrecinctReturns.txt',
+    2024: base / 'data' / 'erstat_2024_g_268768_20250129.txt',
+}
 OFFICIAL_JUDICIAL_SOURCES = {
     2001: base / 'data' / 'ElectionReturns_2001_Municipal_PrecinctReturns.txt',
     2003: base / 'data' / 'ElectionReturns_2003_Municipal_PrecinctReturns.txt',
@@ -343,7 +348,6 @@ SUPPLEMENTAL_JUDICIAL_SOURCES = {
         DATA_ROOT / '2011' / 'supplemental' / 'greene_2011_all_retention.csv',
     ],
 }
-OFFICIAL_2024_DISTRICT_SOURCE = base / 'data' / 'erstat_2024_g_268768_20250129.txt'
 DRA_DISTRICT_STATS_FILENAME = re.compile(
     r'^district-statistics\s+(state house|state senate)\s+(\d{4})\s+(.+?)\.csv$',
     flags=re.I
@@ -429,8 +433,9 @@ def iter_openelections_csvs():
     years = sorted([int(p.name) for p in DATA_ROOT.iterdir() if p.is_dir() and p.name.isdigit() and 2000 <= int(p.name) <= 2024])
     for y in years:
         year_dir = DATA_ROOT / str(y)
-        if y == 2020 and OFFICIAL_2020_STATEWIDE_SOURCE.exists():
-            yield y, OFFICIAL_2020_STATEWIDE_SOURCE
+        official_source = OFFICIAL_GENERAL_SOURCES.get(y)
+        if official_source and official_source.exists():
+            yield y, official_source
             continue
         if y == 2024 and OFFICIAL_2024_STATEWIDE_OE_SOURCE.exists():
             files = [OFFICIAL_2024_STATEWIDE_OE_SOURCE]
@@ -699,6 +704,17 @@ def is_statewide_contest_type(contest_type):
     return contest_type in STATEWIDE_CONTEST_TYPES or bool(re.match(
         r'^(supreme|superior|commonwealth)_court_retention_[a-z0-9_]+$', contest_type or ''
     ))
+
+
+def candidate_label_for_contest(contest_type, candidate):
+    label = (candidate or '').strip()
+    # Pennsylvania's gubernatorial returns can label the Governor/Lieutenant
+    # Governor ticket as "Governor / Lieutenant Governor".  The atlas contest
+    # is Governor, so keep the gubernatorial candidate instead of presenting
+    # the running mate as a second candidate for the same office.
+    if contest_type == 'governor' and '/' in label:
+        return label.split('/', 1)[0].strip()
+    return label
 
 
 def safe_int(value):
@@ -1690,13 +1706,19 @@ def match_row_to_current_vtds(row):
     return []
 
 
-def allocate_votes_by_block_counts(votes: int, district_counts):
+def allocate_votes_by_block_counts(votes, district_counts, preserve_fractional=False):
     if votes <= 0 or not district_counts:
         return {}
     total = sum(float(v or 0) for v in district_counts.values())
     if total <= 0:
         return {}
     raw = {}
+    if preserve_fractional:
+        for district, count in district_counts.items():
+            share = float(votes) * (float(count or 0) / total)
+            if share > 0:
+                raw[district] = share
+        return raw
     allocated = {}
     for district, count in district_counts.items():
         share = votes * (float(count or 0) / total)
@@ -1710,7 +1732,7 @@ def allocate_votes_by_block_counts(votes: int, district_counts):
     return {district: amount for district, amount in allocated.items() if amount > 0}
 
 
-def add_result_votes(node, votes: int, party: str, candidate: str):
+def add_result_votes(node, votes, party: str, candidate: str):
     if votes <= 0:
         return
     if party in PARTY_DEM or party == 'YES':
@@ -1722,6 +1744,28 @@ def add_result_votes(node, votes: int, party: str, candidate: str):
     else:
         node['other_votes'] += votes
     node['total_votes'] += votes
+
+
+def round_district_vote_components(results):
+    """Round once across a district contest while preserving component totals."""
+    district_ids = sorted(results, key=lambda value: int(value))
+    for field in ('dem_votes', 'rep_votes', 'other_votes'):
+        raw = {district_id: float(results[district_id].get(field) or 0) for district_id in district_ids}
+        rounded = {district_id: int(value) for district_id, value in raw.items()}
+        target = int(round(sum(raw.values())))
+        remainder = target - sum(rounded.values())
+        if remainder > 0:
+            order = sorted(
+                district_ids,
+                key=lambda district_id: (raw[district_id] - rounded[district_id], -int(district_id)),
+                reverse=True,
+            )
+            for district_id in order[:remainder]:
+                rounded[district_id] += 1
+        for district_id, value in rounded.items():
+            results[district_id][field] = value
+    for node in results.values():
+        node['total_votes'] = sum(int(node.get(field) or 0) for field in ('dem_votes', 'rep_votes', 'other_votes'))
 
 
 def merge_candidate_label(existing, candidate):
@@ -1949,7 +1993,7 @@ def aggregate_county_results_from_openelections():
                 continue
 
             party = (r.get('party') or '').strip().upper()
-            candidate = (r.get('candidate') or '').strip()
+            candidate = candidate_label_for_contest(office_key, r.get('candidate'))
             if ' retention - ' in office.lower():
                 justice = office.split(' - ', 1)[1].strip()
                 candidate = f'{candidate} — {justice}'
@@ -2060,14 +2104,12 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
         }),
     })
 
-    if OFFICIAL_2020_STATEWIDE_SOURCE.exists():
-        source_rows.append((2020, OFFICIAL_2020_STATEWIDE_SOURCE, 'official_pa_precinct_export'))
-    if OFFICIAL_2024_DISTRICT_SOURCE.exists():
-        source_rows.append((2024, OFFICIAL_2024_DISTRICT_SOURCE, 'official_pa_precinct_export'))
+    for year, official_source in sorted(OFFICIAL_GENERAL_SOURCES.items()):
+        if official_source.exists():
+            source_rows.append((year, official_source, 'official_pa_precinct_export'))
     for year, fp in iter_openelections_csvs():
-        if year == 2020 and OFFICIAL_2020_STATEWIDE_SOURCE.exists():
-            continue
-        if year == 2024 and OFFICIAL_2024_DISTRICT_SOURCE.exists():
+        official_source = OFFICIAL_GENERAL_SOURCES.get(year)
+        if official_source and official_source.exists():
             continue
         source_rows.append((year, fp, 'openelections_precinct_aggregate'))
 
@@ -2089,11 +2131,14 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
                 continue
             if ' retention - ' in (row.get('office') or '').lower() and office_key in partisan_courts:
                 continue
-            votes = safe_int(row.get('votes'))
+            # Crosswalk/RDH derivatives can contain fractional rows. Preserve
+            # them through district allocation and round once per completed
+            # contest instead of truncating every row here.
+            votes = safe_float(row.get('votes'))
             if votes <= 0:
                 continue
             party = (row.get('party') or '').strip().upper()
-            candidate = (row.get('candidate') or '').strip()
+            candidate = candidate_label_for_contest(office_key, row.get('candidate'))
             office = (row.get('office') or '').strip()
             if ' retention - ' in office.lower():
                 justice = office.split(' - ', 1)[1].strip()
@@ -2168,13 +2213,17 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
                             vtd_key = (target_county, target_vtd)
                             for district_id, block_count in (block_maps.get(scope, {}).get(vtd_key) or {}).items():
                                 district_counts[district_id] += float(block_count or 0) * float(target_weight or 0)
-                        allocations = allocate_votes_by_block_counts(votes, district_counts)
+                        allocations = allocate_votes_by_block_counts(
+                            votes,
+                            district_counts,
+                            preserve_fractional=True,
+                        )
                     if not allocations:
                         audit['scopes'][scope]['unallocated_rows'] += 1
                         audit['scopes'][scope]['unallocated_votes'] += votes
                         continue
-                    allocated_votes = sum(int(value or 0) for value in allocations.values())
-                    if allocated_votes != votes:
+                    allocated_votes = sum(float(value or 0) for value in allocations.values())
+                    if abs(allocated_votes - votes) > 1e-7:
                         raise RuntimeError(
                             f'Vote conservation failed for {year} {office_key} {match_key} '
                             f'in {scope}: source={votes}, allocated={allocated_votes}'
@@ -2194,6 +2243,12 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
                             'rep_candidate': '',
                         })
                         add_result_votes(node, district_votes, party, candidate)
+    # Lock in conserved integer district totals before optional DRA share
+    # calibration.  Calibrating from int(fractional_total) here used to lose
+    # as much as one vote per district even after the source allocation itself
+    # had conserved every matched vote.
+    for results in district_nodes.values():
+        round_district_vote_components(results)
 
     apply_dra_share_calibration(district_nodes, source_by_key)
 
@@ -2211,6 +2266,7 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
     for (scope, contest_type, year), results in sorted(district_nodes.items(), key=lambda item: (item[0][0], item[0][2], item[0][1])):
         if allowed_incremental_contests is not None and (contest_type, int(year)) not in allowed_incremental_contests:
             continue
+        round_district_vote_components(results)
         finalized = {}
         for district_id, node in sorted(results.items(), key=lambda item: int(item[0])):
             finalize_result_node(node)
@@ -2221,8 +2277,8 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
         expected = expected_district_count(scope, contest_type, year)
         audit = allocation_audit.get((contest_type, year)) or {}
         scope_audit = (audit.get('scopes') or {}).get(scope, {})
-        source_votes = int(audit.get('source_votes') or 0)
-        allocated_votes = int(scope_audit.get('allocated_votes') or 0)
+        source_votes = int(round(float(audit.get('source_votes') or 0)))
+        allocated_votes = int(round(float(scope_audit.get('allocated_votes') or 0)))
         payload = {
             'scope': scope,
             'contest_type': contest_type,
@@ -2236,9 +2292,9 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
                     'source_rows': int(audit.get('source_rows') or 0),
                     'source_votes': source_votes,
                     'matched_rows': int(audit.get('matched_rows') or 0),
-                    'matched_votes': int(audit.get('matched_votes') or 0),
+                    'matched_votes': int(round(float(audit.get('matched_votes') or 0))),
                     'unmatched_rows': int(audit.get('unmatched_rows') or 0),
-                    'unmatched_votes': int(audit.get('unmatched_votes') or 0),
+                    'unmatched_votes': int(round(float(audit.get('unmatched_votes') or 0))),
                     'unmatched_precincts': sorted(audit.get('unmatched_precincts') or []),
                     'unmatched_precinct_votes': dict(sorted(
                         (audit.get('unmatched_precinct_votes') or {}).items()
@@ -2247,11 +2303,14 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
                     'allocated_rows': int(scope_audit.get('allocated_rows') or 0),
                     'allocated_votes': allocated_votes,
                     'unallocated_rows': int(scope_audit.get('unallocated_rows') or 0),
-                    'unallocated_votes': int(scope_audit.get('unallocated_votes') or 0),
+                    'unallocated_votes': int(round(float(scope_audit.get('unallocated_votes') or 0))),
                     'allocation_vote_delta': allocated_votes - source_votes,
                     'conserved_for_matched_rows': (
-                        allocated_votes == int(audit.get('matched_votes') or 0)
-                        and not int(scope_audit.get('unallocated_votes') or 0)
+                        abs(
+                            float(scope_audit.get('allocated_votes') or 0)
+                            - float(audit.get('matched_votes') or 0)
+                        ) <= 1e-6
+                        and float(scope_audit.get('unallocated_votes') or 0) <= 1e-7
                     ),
                 },
             },
