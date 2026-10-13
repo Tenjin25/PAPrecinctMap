@@ -6,7 +6,7 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "official_pa_precinct_export_to_current_lines_via_vtd_block_assign",
+    "source": "RDH 2024 precinct matrix with embedded districts and BEF/BAF fallback",
     "allocation_audit": {
       "source_rows": 42801,
       "source_votes": 6825662,
@@ -17,13 +17,10 @@
       "unmatched_precincts": [],
       "unmatched_precinct_votes": {},
       "mapping_methods": {
-        "adjusted_vtd_code": 38181,
-        "adjusted_vtd_code+adjusted_vtd_name": 20,
-        "adjusted_vtd_name": 4813,
-        "census_block_population": 20,
-        "corrected_from_2020_block_chain": 9,
-        "current_precinct_or_vtd_name": 193,
-        "live_vtd_chain": 805
+        "current_vtd_name_baf": 2,
+        "maintained_bef_baf_chain": 6,
+        "rdh_embedded_district": 9168,
+        "rdh_vtd_code_baf": 13
       },
       "allocated_rows": 42801,
       "allocated_votes": 6825662,
@@ -41,7 +38,7 @@
         "other_votes": 12116,
         "total_votes": 463740,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "R",
         "margin": 24506.0,
         "margin_pct": 5.284426618363739
@@ -52,7 +49,7 @@
         "other_votes": 5999,
         "total_votes": 270824,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "D",
         "margin": 101289.0,
         "margin_pct": 37.400304256639
@@ -63,7 +60,7 @@
         "other_votes": 5958,
         "total_votes": 373417,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "D",
         "margin": 286445.0,
         "margin_pct": 76.70914821767622
@@ -74,7 +71,7 @@
         "other_votes": 12055,
         "total_votes": 457857,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "D",
         "margin": 48560.0,
         "margin_pct": 10.605931546312496
@@ -85,21 +82,21 @@
         "other_votes": 9112,
         "total_votes": 407741,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "D",
         "margin": 93571.0,
         "margin_pct": 22.948636511903388
       },
       "6": {
-        "dem_votes": 209965,
-        "rep_votes": 191545,
-        "other_votes": 11249,
-        "total_votes": 412759,
+        "dem_votes": 210502,
+        "rep_votes": 191980,
+        "other_votes": 11268,
+        "total_votes": 413750,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "D",
-        "margin": 18420.0,
-        "margin_pct": 4.462652540586638
+        "margin": 18522.0,
+        "margin_pct": 4.476616314199395
       },
       "7": {
         "dem_votes": 181553,
@@ -107,7 +104,7 @@
         "other_votes": 11840,
         "total_votes": 396291,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "R",
         "margin": 21345.0,
         "margin_pct": 5.386193479034346
@@ -118,7 +115,7 @@
         "other_votes": 12806,
         "total_votes": 377832,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "R",
         "margin": 30420.0,
         "margin_pct": 8.05119735755574
@@ -129,43 +126,43 @@
         "other_votes": 14346,
         "total_votes": 388934,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "R",
         "margin": 157138.0,
         "margin_pct": 40.402227627309514
       },
       "10": {
-        "dem_votes": 170208,
-        "rep_votes": 221541,
-        "other_votes": 13223,
-        "total_votes": 404972,
+        "dem_votes": 169902,
+        "rep_votes": 221063,
+        "other_votes": 13197,
+        "total_votes": 404162,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "R",
-        "margin": 51333.0,
-        "margin_pct": 12.675691158894937
+        "margin": 51161.0,
+        "margin_pct": 12.658537913015078
       },
       "11": {
-        "dem_votes": 141640,
-        "rep_votes": 249009,
-        "other_votes": 12982,
-        "total_votes": 403631,
+        "dem_votes": 141946,
+        "rep_votes": 249487,
+        "other_votes": 13008,
+        "total_votes": 404441,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "R",
-        "margin": 107369.0,
-        "margin_pct": 26.600781406779955
+        "margin": 107541.0,
+        "margin_pct": 26.590034145895196
       },
       "12": {
-        "dem_votes": 236041,
-        "rep_votes": 165359,
-        "other_votes": 12379,
-        "total_votes": 413779,
+        "dem_votes": 236061,
+        "rep_votes": 165384,
+        "other_votes": 12378,
+        "total_votes": 413823,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "D",
-        "margin": 70682.0,
-        "margin_pct": 17.082065547067398
+        "margin": 70677.0,
+        "margin_pct": 17.079041039284913
       },
       "13": {
         "dem_votes": 99608,
@@ -173,21 +170,21 @@
         "other_votes": 13146,
         "total_votes": 404217,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "R",
         "margin": 191855.0,
         "margin_pct": 47.46336744867237
       },
       "14": {
-        "dem_votes": 130089,
-        "rep_votes": 265200,
+        "dem_votes": 130077,
+        "rep_votes": 265181,
         "other_votes": 12437,
-        "total_votes": 407726,
+        "total_votes": 407695,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "R",
-        "margin": 135111.0,
-        "margin_pct": 33.137695413096054
+        "margin": 135104.0,
+        "margin_pct": 33.1384981419934
       },
       "15": {
         "dem_votes": 109867,
@@ -195,32 +192,32 @@
         "other_votes": 12624,
         "total_votes": 388899,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "R",
         "margin": 156541.0,
         "margin_pct": 40.25235343881059
       },
       "16": {
-        "dem_votes": 144501,
-        "rep_votes": 249282,
-        "other_votes": 14373,
-        "total_votes": 408156,
+        "dem_votes": 143964,
+        "rep_votes": 248847,
+        "other_votes": 14354,
+        "total_votes": 407165,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "R",
-        "margin": 104781.0,
-        "margin_pct": 25.67180195807485
+        "margin": 104883.0,
+        "margin_pct": 25.759335895767073
       },
       "17": {
-        "dem_votes": 219063,
-        "rep_votes": 211871,
-        "other_votes": 13953,
-        "total_votes": 444887,
+        "dem_votes": 219055,
+        "rep_votes": 211865,
+        "other_votes": 13954,
+        "total_votes": 444874,
         "dem_candidate": "Malcolm Kenyatta",
-        "rep_candidate": "Tim DeFoor",
+        "rep_candidate": "Tim Defoor",
         "winner": "D",
-        "margin": 7192.0,
-        "margin_pct": 1.6165902802284624
+        "margin": 7190.0,
+        "margin_pct": 1.6161879543421285
       }
     }
   }
