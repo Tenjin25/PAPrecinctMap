@@ -17,10 +17,10 @@
       "unmatched_precincts": [],
       "unmatched_precinct_votes": {},
       "mapping_methods": {
-        "current_vtd_name_baf": 7,
-        "maintained_bef_baf_chain": 6,
-        "rdh_embedded_district": 9161,
-        "rdh_vtd_code_baf": 15
+        "current_vtd_name_baf": 36,
+        "maintained_bef_baf_chain": 167,
+        "rdh_embedded_district": 4432,
+        "rdh_vtd_code_baf": 4554
       },
       "allocated_rows": 40657,
       "allocated_votes": 5366179,
@@ -33,191 +33,191 @@
   "general": {
     "results": {
       "1": {
-        "dem_votes": 218566,
-        "rep_votes": 145148,
-        "other_votes": 6657,
-        "total_votes": 370371,
+        "dem_votes": 218329,
+        "rep_votes": 145003,
+        "other_votes": 6653,
+        "total_votes": 369985,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 73418.0,
-        "margin_pct": 19.82282630119529
+        "margin": 73326.0,
+        "margin_pct": 19.81864129626877
       },
       "2": {
-        "dem_votes": 147201,
-        "rep_votes": 42546,
-        "other_votes": 2780,
-        "total_votes": 192527,
+        "dem_votes": 147143,
+        "rep_votes": 42540,
+        "other_votes": 2779,
+        "total_votes": 192462,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 104655.0,
-        "margin_pct": 54.35860944179258
+        "margin": 104603.0,
+        "margin_pct": 54.3499496004406
       },
       "3": {
-        "dem_votes": 263203,
-        "rep_votes": 18387,
-        "other_votes": 3089,
-        "total_votes": 284679,
+        "dem_votes": 263261,
+        "rep_votes": 18393,
+        "other_votes": 3090,
+        "total_votes": 284744,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 244816.0,
-        "margin_pct": 85.99721089367323
+        "margin": 244868.0,
+        "margin_pct": 85.99584187902116
       },
       "4": {
-        "dem_votes": 244339,
-        "rep_votes": 120173,
-        "other_votes": 5887,
-        "total_votes": 370399,
+        "dem_votes": 244013,
+        "rep_votes": 120093,
+        "other_votes": 5888,
+        "total_votes": 369994,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 124166.0,
-        "margin_pct": 33.52222873171904
+        "margin": 123920.0,
+        "margin_pct": 33.49243501245966
       },
       "5": {
-        "dem_votes": 223126,
-        "rep_votes": 89569,
-        "other_votes": 4641,
-        "total_votes": 317336,
+        "dem_votes": 223667,
+        "rep_votes": 89663,
+        "other_votes": 4644,
+        "total_votes": 317974,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 133557.0,
-        "margin_pct": 42.08693624423324
+        "margin": 134004.0,
+        "margin_pct": 42.143068301181856
       },
       "6": {
-        "dem_votes": 201975,
-        "rep_votes": 121160,
-        "other_votes": 6465,
-        "total_votes": 329600,
+        "dem_votes": 201863,
+        "rep_votes": 121034,
+        "other_votes": 6458,
+        "total_votes": 329355,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 80815.0,
-        "margin_pct": 24.519114077669904
+        "margin": 80829.0,
+        "margin_pct": 24.541604044268343
       },
       "7": {
-        "dem_votes": 165527,
-        "rep_votes": 127245,
-        "other_votes": 6321,
-        "total_votes": 299093,
+        "dem_votes": 165017,
+        "rep_votes": 126529,
+        "other_votes": 6289,
+        "total_votes": 297835,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 38282.0,
-        "margin_pct": 12.799363408705652
+        "margin": 38488.0,
+        "margin_pct": 12.922591367703596
       },
       "8": {
-        "dem_votes": 153854,
-        "rep_votes": 127542,
-        "other_votes": 5386,
-        "total_votes": 286782,
+        "dem_votes": 154161,
+        "rep_votes": 127828,
+        "other_votes": 5407,
+        "total_votes": 287396,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 26312.0,
-        "margin_pct": 9.174913348815476
+        "margin": 26333.0,
+        "margin_pct": 9.162618825592563
       },
       "9": {
-        "dem_votes": 115634,
-        "rep_votes": 179957,
-        "other_votes": 7758,
-        "total_votes": 303349,
+        "dem_votes": 115967,
+        "rep_votes": 180675,
+        "other_votes": 7777,
+        "total_votes": 304419,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "R",
-        "margin": 64323.0,
-        "margin_pct": 21.20428944878671
+        "margin": 64708.0,
+        "margin_pct": 21.25622907899967
       },
       "10": {
-        "dem_votes": 172630,
-        "rep_votes": 135417,
-        "other_votes": 6518,
-        "total_votes": 314565,
+        "dem_votes": 172939,
+        "rep_votes": 135766,
+        "other_votes": 6532,
+        "total_votes": 315237,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 37213.0,
-        "margin_pct": 11.82998744297681
+        "margin": 37173.0,
+        "margin_pct": 11.792080244387556
       },
       "11": {
-        "dem_votes": 146055,
-        "rep_votes": 166171,
-        "other_votes": 6169,
-        "total_votes": 318395,
+        "dem_votes": 145615,
+        "rep_votes": 165450,
+        "other_votes": 6147,
+        "total_votes": 317212,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "R",
-        "margin": 20116.0,
-        "margin_pct": 6.317938409836837
+        "margin": 19835.0,
+        "margin_pct": 6.252916030919385
       },
       "12": {
-        "dem_votes": 229981,
-        "rep_votes": 102147,
-        "other_votes": 5471,
-        "total_votes": 337599,
+        "dem_votes": 229702,
+        "rep_votes": 102017,
+        "other_votes": 5465,
+        "total_votes": 337184,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 127834.0,
-        "margin_pct": 37.86563348825086
+        "margin": 127685.0,
+        "margin_pct": 37.868048305969445
       },
       "13": {
-        "dem_votes": 110639,
-        "rep_votes": 205316,
-        "other_votes": 5259,
-        "total_votes": 321214,
+        "dem_votes": 110769,
+        "rep_votes": 205687,
+        "other_votes": 5267,
+        "total_votes": 321723,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "R",
-        "margin": 94677.0,
-        "margin_pct": 29.474742694901217
+        "margin": 94918.0,
+        "margin_pct": 29.50301967841901
       },
       "14": {
-        "dem_votes": 142355,
-        "rep_votes": 177989,
-        "other_votes": 5466,
-        "total_votes": 325810,
+        "dem_votes": 142407,
+        "rep_votes": 178076,
+        "other_votes": 5468,
+        "total_votes": 325951,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "R",
-        "margin": 35634.0,
-        "margin_pct": 10.937049200454252
+        "margin": 35669.0,
+        "margin_pct": 10.9430558580891
       },
       "15": {
-        "dem_votes": 116126,
-        "rep_votes": 185270,
-        "other_votes": 5884,
-        "total_votes": 307280,
+        "dem_votes": 116111,
+        "rep_votes": 185191,
+        "other_votes": 5880,
+        "total_votes": 307182,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "R",
-        "margin": 69144.0,
-        "margin_pct": 22.50195261650612
+        "margin": 69080.0,
+        "margin_pct": 22.488296840309655
       },
       "16": {
-        "dem_votes": 153070,
-        "rep_votes": 162241,
-        "other_votes": 6231,
-        "total_votes": 321542,
+        "dem_votes": 153097,
+        "rep_votes": 162313,
+        "other_votes": 6235,
+        "total_votes": 321645,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "R",
-        "margin": 9171.0,
-        "margin_pct": 2.8521934926074977
+        "margin": 9216.0,
+        "margin_pct": 2.8652707177167374
       },
       "17": {
-        "dem_votes": 226856,
-        "rep_votes": 132199,
-        "other_votes": 6583,
-        "total_votes": 365638,
+        "dem_votes": 227076,
+        "rep_votes": 132219,
+        "other_votes": 6586,
+        "total_votes": 365881,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "Doug Mastriano",
         "winner": "D",
-        "margin": 94657.0,
-        "margin_pct": 25.888173548701175
+        "margin": 94857.0,
+        "margin_pct": 25.92564249031789
       }
     }
   }

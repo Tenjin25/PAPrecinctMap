@@ -100,6 +100,18 @@ def direct_districts(row, columns, prefix):
     return districts
 
 
+def embedded_congressional_district(row, columns):
+    """Read the source row's CD without invoking an allocation override."""
+    districts = {
+        str(int(match.group(1)))
+        for column in columns
+        if value(row, column) > 0
+        for match in [re.match(r"^GCON(\d+)", column)]
+        if match
+    }
+    return next(iter(districts), "") if len(districts) == 1 else ""
+
+
 def geometry_allocations(row, block_maps, year):
     countyfp = str(row.get("COUNTYFP") or "").strip().zfill(3)
     source_vtd = str(row.get("VTD code") or "").strip().upper().zfill(6)
@@ -224,9 +236,7 @@ def main():
     source_rows = Counter()
 
     for row, row_allocations in prepared:
-        cd = next(iter(direct_districts(
-            row, district_columns["congressional"], PREFIXES["congressional"]
-        )), "")
+        cd = embedded_congressional_district(row, district_columns["congressional"])
         for column, info in statewide.items():
             votes = value(row, column)
             if votes <= 0:
@@ -359,8 +369,12 @@ def main():
     (args.output / "manifest.json").write_text(
         json.dumps({"scope": "multi", "files": files}, indent=2) + "\n", encoding="utf-8"
     )
+    try:
+        source_label = str(source.relative_to(ROOT))
+    except ValueError:
+        source_label = str(source.resolve())
     audit = {
-        "source": str(source.relative_to(ROOT)),
+        "source": source_label,
         "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
         "rows": len(rows),
         "unique_ids": len(unique_ids),

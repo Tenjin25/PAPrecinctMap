@@ -194,6 +194,8 @@ The early-year result is therefore best understood as a layered evidence product
 
 `Scripts/build_pa_precinct_returns.py` converts Pennsylvania Department of State fixed-column exports and standardized OpenElections files into a common browser-ready table. The generated rows retain county, precinct, office, district, party, candidate, vote, Election Day, mail, and provisional fields.
 
+Current-line district aggregation uses a county-component rule derived from the Carter-plan BAF/BEF block assignments. A county with at least 99.9% of its 2020 block VAP in one district is carried intact with its canonical county totals; only materially split counties are allocated through precinct/VTD block-VAP weights. Shares of 0.1% or less are treated as assignment slivers. Largest-remainder rounding and localized mail-row handling preserve exact party totals in the congressional, State House, and State Senate layers without distributing residual votes statewide.
+
 The return builder uses historical or modern precinct-to-2020-VTD crosswalks first, then applies `data/crosswalks/pa_vtd20_to_current_precinct.csv` to align those VTD targets with the current precinct polygons used by the frontend. One-to-one VTD identities are retained directly; split or changed VTDs are disaggregated with 2020 census-block assignments. The bridge build fails if a source VTD's weights do not sum to one, preventing duplicated votes. Polygon-area overlap is reserved for cases without usable block assignments.
 
 Precinct candidate labels are normalized from the matching county contest slices during the build, so precinct cards, county results, and district/statewide displays use the same canonical spelling.

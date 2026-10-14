@@ -1764,6 +1764,16 @@ def normalize_candidate_label(value):
         'douglas v mastriano', 'doug mastriano'
     }:
         return 'Doug Mastriano'
+    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+        'robert p casey jr', 'bob casey jr', 'jr bob casey'
+    }:
+        return 'Bob Casey, Jr.'
+    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+        'david h mccormick', 'dave mccormick'
+    }:
+        return 'David H. McCormick'
+    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() == 'eugene depasquale':
+        return 'Eugene DePasquale'
 
     def format_name(name):
         words = []

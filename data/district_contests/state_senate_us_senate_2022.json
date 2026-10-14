@@ -18,10 +18,10 @@
       "unmatched_precinct_votes": {},
       "mapping_methods": {
         "congressional_mail_candidate_vote_share": 7,
-        "current_vtd_name_baf": 44,
-        "maintained_bef_baf_chain": 266,
-        "rdh_embedded_district": 4267,
-        "rdh_vtd_code_baf": 4609
+        "current_vtd_name_baf": 52,
+        "maintained_bef_baf_chain": 292,
+        "rdh_embedded_district": 2291,
+        "rdh_vtd_code_baf": 6551
       },
       "allocated_rows": 41747,
       "allocated_votes": 5368020,
@@ -58,13 +58,13 @@
       "3": {
         "dem_votes": 64426,
         "rep_votes": 4024,
-        "other_votes": 924,
-        "total_votes": 69374,
+        "other_votes": 923,
+        "total_votes": 69373,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "D",
         "margin": 60402.0,
-        "margin_pct": 87.0672009686626
+        "margin_pct": 87.06845602756115
       },
       "4": {
         "dem_votes": 103107,
@@ -177,15 +177,15 @@
         "margin_pct": 9.988321477863892
       },
       "14": {
-        "dem_votes": 46850,
-        "rep_votes": 38046,
-        "other_votes": 2620,
-        "total_votes": 87516,
+        "dem_votes": 46740,
+        "rep_votes": 38018,
+        "other_votes": 2613,
+        "total_votes": 87371,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "D",
-        "margin": 8804.0,
-        "margin_pct": 10.059874765757119
+        "margin": 8722.0,
+        "margin_pct": 9.982717377619576
       },
       "15": {
         "dem_votes": 58639,
@@ -199,15 +199,15 @@
         "margin_pct": 15.854461639776094
       },
       "16": {
-        "dem_votes": 59934,
-        "rep_votes": 63521,
-        "other_votes": 3710,
-        "total_votes": 127165,
+        "dem_votes": 60024,
+        "rep_votes": 63544,
+        "other_votes": 3716,
+        "total_votes": 127284,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
-        "margin": 3587.0,
-        "margin_pct": 2.820744701765423
+        "margin": 3520.0,
+        "margin_pct": 2.7654693441438045
       },
       "17": {
         "dem_votes": 86183,
@@ -221,26 +221,26 @@
         "margin_pct": 42.991105796792844
       },
       "18": {
-        "dem_votes": 57222,
-        "rep_votes": 44906,
-        "other_votes": 2851,
-        "total_votes": 104979,
+        "dem_votes": 57241,
+        "rep_votes": 44911,
+        "other_votes": 2852,
+        "total_votes": 105004,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "D",
-        "margin": 12316.0,
-        "margin_pct": 11.731870183560522
+        "margin": 12330.0,
+        "margin_pct": 11.742409812959506
       },
       "19": {
-        "dem_votes": 70206,
-        "rep_votes": 46837,
+        "dem_votes": 70202,
+        "rep_votes": 46835,
         "other_votes": 2871,
-        "total_votes": 119914,
+        "total_votes": 119908,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "D",
-        "margin": 23369.0,
-        "margin_pct": 19.488133162099505
+        "margin": 23367.0,
+        "margin_pct": 19.487440370951063
       },
       "20": {
         "dem_votes": 45049,
@@ -254,15 +254,15 @@
         "margin_pct": 18.869584149793166
       },
       "21": {
-        "dem_votes": 37344,
-        "rep_votes": 72957,
-        "other_votes": 3229,
-        "total_votes": 113530,
+        "dem_votes": 37114,
+        "rep_votes": 72643,
+        "other_votes": 3219,
+        "total_votes": 112976,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
-        "margin": 35613.0,
-        "margin_pct": 31.368801197921254
+        "margin": 35529.0,
+        "margin_pct": 31.448272199405185
       },
       "22": {
         "dem_votes": 52712,
@@ -298,15 +298,15 @@
         "margin_pct": 4.212740088395249
       },
       "25": {
-        "dem_votes": 38397,
-        "rep_votes": 62119,
+        "dem_votes": 38400,
+        "rep_votes": 62131,
         "other_votes": 3055,
-        "total_votes": 103571,
+        "total_votes": 103586,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
-        "margin": 23722.0,
-        "margin_pct": 22.904094775564587
+        "margin": 23731.0,
+        "margin_pct": 22.90946653022609
       },
       "26": {
         "dem_votes": 68107,
@@ -343,14 +343,14 @@
       },
       "29": {
         "dem_votes": 32991,
-        "rep_votes": 59356,
+        "rep_votes": 59355,
         "other_votes": 3380,
-        "total_votes": 95727,
+        "total_votes": 95726,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
-        "margin": 26365.0,
-        "margin_pct": 27.541863841967263
+        "margin": 26364.0,
+        "margin_pct": 27.541106909303636
       },
       "30": {
         "dem_votes": 26458,
@@ -408,15 +408,15 @@
         "margin_pct": 17.47998199865839
       },
       "35": {
-        "dem_votes": 39114,
-        "rep_votes": 66504,
+        "dem_votes": 39111,
+        "rep_votes": 66493,
         "other_votes": 3053,
-        "total_votes": 108671,
+        "total_votes": 108657,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
-        "margin": 27390.0,
-        "margin_pct": 25.204516384315962
+        "margin": 27382.0,
+        "margin_pct": 25.20040126268901
       },
       "36": {
         "dem_votes": 51779,
@@ -452,15 +452,15 @@
         "margin_pct": 17.672548163850614
       },
       "39": {
-        "dem_votes": 49720,
-        "rep_votes": 74757,
+        "dem_votes": 49723,
+        "rep_votes": 74761,
         "other_votes": 2591,
-        "total_votes": 127068,
+        "total_votes": 127075,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
-        "margin": 25037.0,
-        "margin_pct": 19.70362325683886
+        "margin": 25038.0,
+        "margin_pct": 19.703324808184146
       },
       "40": {
         "dem_votes": 48541,
@@ -474,15 +474,15 @@
         "margin_pct": 1.8209083119108824
       },
       "41": {
-        "dem_votes": 36577,
-        "rep_votes": 67732,
+        "dem_votes": 36574,
+        "rep_votes": 67727,
         "other_votes": 2621,
-        "total_votes": 106930,
+        "total_votes": 106922,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
-        "margin": 31155.0,
-        "margin_pct": 29.135883288132426
+        "margin": 31153.0,
+        "margin_pct": 29.136192738631898
       },
       "42": {
         "dem_votes": 77225,
@@ -507,26 +507,26 @@
         "margin_pct": 62.62728368728554
       },
       "44": {
-        "dem_votes": 71694,
-        "rep_votes": 52659,
-        "other_votes": 3373,
-        "total_votes": 127726,
+        "dem_votes": 71699,
+        "rep_votes": 52661,
+        "other_votes": 3374,
+        "total_votes": 127734,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "D",
-        "margin": 19035.0,
-        "margin_pct": 14.902995474688005
+        "margin": 19038.0,
+        "margin_pct": 14.904410728545258
       },
       "45": {
         "dem_votes": 61082,
-        "rep_votes": 41483,
+        "rep_votes": 41484,
         "other_votes": 1779,
-        "total_votes": 104344,
+        "total_votes": 104345,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "D",
-        "margin": 19599.0,
-        "margin_pct": 18.78306371233612
+        "margin": 19598.0,
+        "margin_pct": 18.781925343811395
       },
       "46": {
         "dem_votes": 44880,
@@ -540,15 +540,15 @@
         "margin_pct": 16.104028742864436
       },
       "47": {
-        "dem_votes": 49411,
-        "rep_votes": 62890,
-        "other_votes": 2862,
-        "total_votes": 115163,
+        "dem_votes": 49641,
+        "rep_votes": 63204,
+        "other_votes": 2872,
+        "total_votes": 115717,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
-        "margin": 13479.0,
-        "margin_pct": 11.704280020492693
+        "margin": 13563.0,
+        "margin_pct": 11.720836177916814
       },
       "48": {
         "dem_votes": 37465,
