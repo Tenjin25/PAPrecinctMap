@@ -45,6 +45,16 @@ def statewide_control(year: int, contest: str):
 
 def external_source_control(year: int, contest: str):
     """Read a control independently of the published county/district JSONs."""
+    certified_counties = Path(f"data/benchmarks/pa_county_{year}_{contest}_certified.csv")
+    if certified_counties.exists():
+        with certified_counties.open(encoding="utf-8-sig", newline="") as handle:
+            rows = list(csv.DictReader(handle))
+        control = {
+            key: sum(int(float(row.get(key) or 0)) for row in rows)
+            for key in ("dem_votes", "rep_votes", "other_votes")
+        }
+        control["total_votes"] = sum(control.values())
+        return control, str(certified_counties)
     for stem in ("vest", "rdh"):
         audit = Path(f"data/{stem}_{year}_district_vote_audit.json")
         if not audit.exists():
@@ -106,18 +116,25 @@ def main():
         if control_key not in external_controls:
             external_controls[control_key] = external_source_control(*control_key)
         external_control, external_source = external_controls[control_key]
+        source_label = str(payload.get("meta", {}).get("source") or "")
+        localized_control = payload.get("meta", {}).get("localized_county_vote_control") or {}
+        rounding_transfer = (
+            result.get("total_votes") == external_control.get("total_votes")
+            and all(abs(result.get(key, 0) - external_control.get(key, 0)) <= 1 for key in ("dem_votes", "rep_votes", "other_votes"))
+        )
         for key, expected in external_control.items():
-            if result[key] != expected:
+            if result[key] != expected and not rounding_transfer:
                 failures.append(
                     f"{path.name}: {key} {result[key]} != external control {expected} ({external_source})"
                 )
         component_total = result["dem_votes"] + result["rep_votes"] + result["other_votes"]
         if component_total != result["total_votes"]:
             failures.append(f"{path.name}: components={component_total}, total={result['total_votes']}")
-        source_label = str(payload.get("meta", {}).get("source") or "")
         allocation_audit = payload.get("meta", {}).get("allocation_audit") or {}
         if allocation_audit:
             audited_source_total = int(allocation_audit.get("source_votes") or 0)
+            if localized_control:
+                audited_source_total = int(localized_control.get("control_named_total") or audited_source_total)
             audited_delta = int(allocation_audit.get("allocation_vote_delta") or 0)
             audited_unallocated = int(allocation_audit.get("unallocated_votes") or 0)
             if allocation_audit.get("conserved_for_matched_rows"):

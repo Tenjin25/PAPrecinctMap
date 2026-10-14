@@ -6,7 +6,7 @@
     "districts_observed": 203,
     "districts_expected": 203,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign+dra_share_calibration/district-statistics state house 2018 Senate.csv+statewide_vote_control/contests/us_senate_2018.json",
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign+dra_share_calibration/district-statistics state house 2018 Senate.csv+statewide_vote_control/contests/us_senate_2018.json+localized_county_vote_control/benchmarks/pa_county_2018_us_senate_certified.csv",
     "allocation_audit": {
       "source_rows": 42970,
       "source_votes": 5009890,
@@ -26,6 +26,14 @@
       "unallocated_votes": 0,
       "allocation_vote_delta": 0,
       "conserved_for_matched_rows": true
+    },
+    "localized_county_vote_control": {
+      "countyfp": "129",
+      "county": "Westmoreland",
+      "write_ins_excluded": 1568,
+      "source_named_total": 5009890,
+      "control_named_total": 5009400,
+      "allocation": "benchmarks/pa_county_2018_us_senate_district_deltas.csv"
     }
   },
   "general": {
@@ -625,70 +633,70 @@
         "margin_pct": 49.045037742540146
       },
       "55": {
-        "dem_votes": 12537,
-        "rep_votes": 15073,
-        "other_votes": 448,
-        "total_votes": 28058,
+        "dem_votes": 12502,
+        "rep_votes": 15016,
+        "other_votes": 446,
+        "total_votes": 27964,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 2536.0,
-        "margin_pct": 9.038420414854944
+        "margin": 2514.0,
+        "margin_pct": 8.990130167358032
       },
       "56": {
-        "dem_votes": 11898,
-        "rep_votes": 15506,
-        "other_votes": 449,
-        "total_votes": 27853,
+        "dem_votes": 11865,
+        "rep_votes": 15447,
+        "other_votes": 447,
+        "total_votes": 27759,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 3608.0,
-        "margin_pct": 12.95372132265824
+        "margin": 3582.0,
+        "margin_pct": 12.90392305198314
       },
       "57": {
-        "dem_votes": 12341,
-        "rep_votes": 14790,
-        "other_votes": 531,
-        "total_votes": 27662,
+        "dem_votes": 12307,
+        "rep_votes": 14734,
+        "other_votes": 529,
+        "total_votes": 27570,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 2449.0,
-        "margin_pct": 8.85330055672041
+        "margin": 2427.0,
+        "margin_pct": 8.80304678998912
       },
       "58": {
-        "dem_votes": 11290,
-        "rep_votes": 13261,
-        "other_votes": 376,
-        "total_votes": 24927,
+        "dem_votes": 11258,
+        "rep_votes": 13211,
+        "other_votes": 374,
+        "total_votes": 24843,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 1971.0,
-        "margin_pct": 7.907088699001083
+        "margin": 1953.0,
+        "margin_pct": 7.861369399830938
       },
       "59": {
-        "dem_votes": 11297,
-        "rep_votes": 15579,
-        "other_votes": 436,
-        "total_votes": 27312,
+        "dem_votes": 11266,
+        "rep_votes": 15520,
+        "other_votes": 434,
+        "total_votes": 27220,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 4282.0,
-        "margin_pct": 15.678090216754539
+        "margin": 4254.0,
+        "margin_pct": 15.62821454812638
       },
       "60": {
-        "dem_votes": 10195,
-        "rep_votes": 13740,
-        "other_votes": 469,
-        "total_votes": 24404,
+        "dem_votes": 10182,
+        "rep_votes": 13720,
+        "other_votes": 468,
+        "total_votes": 24370,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 3545.0,
-        "margin_pct": 14.526307162760203
+        "margin": 3538.0,
+        "margin_pct": 14.517849815346736
       },
       "61": {
         "dem_votes": 20004,

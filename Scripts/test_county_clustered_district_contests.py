@@ -111,7 +111,9 @@ class PublishedDataTests(unittest.TestCase):
         self.assertEqual(row["rep_candidate"], "Lou Barletta")
 
     def test_2018_us_senate_matches_official_statewide_control(self):
-        expected = (2792615, 2135149, 82126, 5009890)
+        # PA's official API percentage denominator is the four named
+        # candidates; its separate 1,568 write-ins are not party votes.
+        expected = (2792437, 2134848, 82115, 5009400)
         for scope in ("congressional", "state_house", "state_senate"):
             path = self.directory / f"{scope}_us_senate_2018.json"
             payload = json.loads(path.read_text(encoding="utf-8"))

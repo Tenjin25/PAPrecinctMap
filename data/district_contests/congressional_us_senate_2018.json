@@ -6,13 +6,21 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_area_districts+dra_share_calibration/district-statistics congressional 2018 Senate.csv+statewide_vote_control/ElectionReturns_2018_General_PrecinctReturns.txt",
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+dra_share_calibration/district-statistics congressional 2018 Senate.csv+statewide_vote_control/ElectionReturns_2018_General_PrecinctReturns.txt+localized_county_vote_control/benchmarks/pa_county_2018_us_senate_certified.csv",
     "unmatched_source_vtds": 0,
     "unmatched_source_votes": 0.0,
     "unmatched_source_keys": [],
     "historical_aggregate_groups": [],
     "district_membership_gap_votes": 0.0,
-    "district_membership_gap_keys": []
+    "district_membership_gap_keys": [],
+    "localized_county_vote_control": {
+      "countyfp": "129",
+      "county": "Westmoreland",
+      "write_ins_excluded": 1568,
+      "source_named_total": 5009890,
+      "control_named_total": 5009400,
+      "allocation": "benchmarks/pa_county_2018_us_senate_district_deltas.csv"
+    }
   },
   "general": {
     "results": {
@@ -138,15 +146,15 @@
         "margin_pct": 13.28934566874812
       },
       "12": {
-        "dem_votes": 211233,
-        "rep_votes": 102588,
-        "other_votes": 5510,
-        "total_votes": 319331,
+        "dem_votes": 211175,
+        "rep_votes": 102484,
+        "other_votes": 5507,
+        "total_votes": 319166,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "D",
-        "margin": 108645.0,
-        "margin_pct": 34.022691188766515
+        "margin": 108691.0,
+        "margin_pct": 34.05469254243873
       },
       "13": {
         "dem_votes": 93775,
@@ -160,15 +168,15 @@
         "margin_pct": 30.01216040078351
       },
       "14": {
-        "dem_votes": 128850,
-        "rep_votes": 153832,
-        "other_votes": 4680,
-        "total_votes": 287362,
+        "dem_votes": 128730,
+        "rep_votes": 153635,
+        "other_votes": 4672,
+        "total_votes": 287037,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Lou Barletta",
         "winner": "R",
-        "margin": 24982.0,
-        "margin_pct": 8.693564215171108
+        "margin": 24905.0,
+        "margin_pct": 8.676581764720227
       },
       "15": {
         "dem_votes": 108218,
