@@ -204,17 +204,17 @@
     {
       "year": 2016,
       "status": "built",
-      "source": "data/Openelections/2016/20161108__pa__general__precinct.csv.source",
-      "source_type": "preserved_standardized_source",
+      "source": "data/ElectionReturns_2016_General_PrecinctReturns.txt",
+      "source_type": "official_pa_precinct_export",
       "output": "data/Openelections/2016/20161108__pa__general__precinct.csv",
-      "rows": 294859,
+      "rows": 254899,
       "counties": 67,
-      "precincts": 9307,
+      "precincts": 9387,
       "crosswalk": "data/crosswalks/pa_historical_precinct_to_vtd20.csv",
       "current_crosswalk": "data/crosswalks/pa_vtd20_to_current_precinct.csv",
-      "matched_rows": 204013,
-      "unmatched_rows": 0,
-      "joined_rows": 294859
+      "matched_rows": 203989,
+      "unmatched_rows": 24,
+      "joined_rows": 254899
     },
     {
       "year": 2017,

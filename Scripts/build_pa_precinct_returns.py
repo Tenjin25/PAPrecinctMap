@@ -56,6 +56,7 @@ OFFICIAL_SOURCES = {
     2018: DATA / "pa_official_2018_general_returns.txt",
     2011: DATA / "ElectionReturns_2011_General_PrecinctReturns.txt",
     2015: DATA / "ElectionReturns_2015_Municipal_Precinct.txt",
+    2016: DATA / "ElectionReturns_2016_General_PrecinctReturns.txt",
     2017: DATA / "ElectionReturns_2017_Municipal_PrecinctReturns.txt",
     2019: DATA / "ElectionReturns_2019_General_PrecinctReturns.txt",
     2020: DATA / "ElectionReturns_2020_General_PrecinctReturns.txt",

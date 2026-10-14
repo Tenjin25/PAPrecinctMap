@@ -4,6 +4,16 @@ import sys
 from pathlib import Path
 
 
+OFFICE_CODES = {
+    "president": "USP",
+    "us_senate": "USS",
+    "governor": "GOV",
+    "attorney_general": "ATT",
+    "auditor": "AUD",
+    "treasurer": "TRE",
+}
+
+
 def totals(path: Path):
     payload = json.loads(path.read_text(encoding="utf-8"))
     rows = payload.get("general", {}).get("results", {}).values()
@@ -32,10 +42,42 @@ def statewide_control(year: int, contest: str):
     }
 
 
+def external_source_control(year: int, contest: str):
+    """Read a control independently of the published county/district JSONs."""
+    for stem in ("vest", "rdh"):
+        audit = Path(f"data/{stem}_{year}_district_vote_audit.json")
+        if not audit.exists():
+            continue
+        payload = json.loads(audit.read_text(encoding="utf-8"))
+        value = (payload.get("controls") or {}).get(contest)
+        if isinstance(value, dict):
+            return {key: int(value[key]) for key in ("dem_votes", "rep_votes", "other_votes", "total_votes")}, str(audit)
+        if value is not None:
+            return {"total_votes": int(value)}, str(audit)
+
+    office_code = OFFICE_CODES.get(contest)
+    source = Path(f"data/ElectionReturns_{year}_General_PrecinctReturns.txt")
+    if not office_code or not source.exists():
+        return {}, ""
+    # Reuse the production raw-export parser, but compare its result directly
+    # with the published files rather than with a derived county JSON.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import regenerate_pa_district_jsons_from_crosswalks as builder
+
+    rows, _candidates = builder.parse_precinct_returns(source, year, office_code)
+    control = {
+        f"{bucket}_votes": round(sum(float(values.get(bucket) or 0) for values in rows.values()))
+        for bucket in ("dem", "rep", "other")
+    }
+    control["total_votes"] = sum(control.values())
+    return control, str(source)
+
+
 def main():
     contest_dir = Path(sys.argv[1] if len(sys.argv) > 1 else "data/district_contests")
     selected_year = int(sys.argv[2]) if len(sys.argv) > 2 else None
     failures = []
+    external_controls = {}
     presidential_totals = {}
     statewide = {}
     for source in Path("data/Openelections").glob("*/*__pa__general__precinct.csv"):
@@ -56,6 +98,15 @@ def main():
         if selected_year is not None and payload.get("year") != selected_year:
             continue
         result = totals(path)
+        control_key = (int(payload.get("year") or 0), str(payload.get("contest_type") or ""))
+        if control_key not in external_controls:
+            external_controls[control_key] = external_source_control(*control_key)
+        external_control, external_source = external_controls[control_key]
+        for key, expected in external_control.items():
+            if result[key] != expected:
+                failures.append(
+                    f"{path.name}: {key} {result[key]} != external control {expected} ({external_source})"
+                )
         component_total = result["dem_votes"] + result["rep_votes"] + result["other_votes"]
         if component_total != result["total_votes"]:
             failures.append(f"{path.name}: components={component_total}, total={result['total_votes']}")
@@ -75,7 +126,11 @@ def main():
                         f"{path.name}: conserved audit has delta={audited_delta}, "
                         f"unallocated={audited_unallocated}"
                     )
-        if payload.get("contest_type") == "president" and "statewide_vote_control/" in source_label:
+        if (
+            payload.get("contest_type") == "president"
+            and "statewide_vote_control/" in source_label
+            and not external_control
+        ):
             control = statewide_control(payload["year"], "president")
             for key, expected in control.items():
                 if result[key] != expected:
@@ -85,6 +140,7 @@ def main():
         elif (
             payload.get("contest_type") == "president"
             and payload.get("year") in statewide
+            and not external_control
             and not allocation_audit.get("conserved_for_matched_rows")
         ):
             source_total = round(statewide[payload["year"]])
