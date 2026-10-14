@@ -104,8 +104,11 @@ class PublishedDataTests(unittest.TestCase):
         row = payload["general"]["results"]["10"]
         self.assertEqual(
             (row["dem_votes"], row["rep_votes"], row["other_votes"], row["total_votes"]),
-            (144682, 143315, 5926, 293923),
+            (144963, 143119, 5933, 294015),
         )
+        self.assertAlmostEqual(row["margin_pct"], 0.627179, places=6)
+        self.assertEqual(row["dem_candidate"], "Bob Casey, Jr.")
+        self.assertEqual(row["rep_candidate"], "Lou Barletta")
 
     def test_2018_us_senate_matches_official_statewide_control(self):
         expected = (2792615, 2135149, 82126, 5009890)

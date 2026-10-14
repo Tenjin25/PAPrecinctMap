@@ -1117,6 +1117,8 @@ def district_result_rows(votes, candidates):
     # public district files aligned with the county-result labels.
     canonical_names = {
         "Bob Casey Jr.": "Bob Casey, Jr.",
+        "Casey Robert P., Jr": "Bob Casey, Jr.",
+        "Barletta Louis J.": "Lou Barletta",
         "Jack Wagner": "Jack E. Wagner",
         "Robert McCord": "Bob McCord",
     }
@@ -1149,12 +1151,21 @@ def district_result_rows(votes, candidates):
     return results
 
 
-def apply_dra_presidential_shares(scope, contest, year, results):
-    """Apply checked DRA presidential shares while retaining rebuilt turnout."""
-    if contest != "president" or scope not in {"state_house", "state_senate"}:
+def apply_dra_district_shares(scope, contest, year, results):
+    """Apply checked DRA/RDH district shares while retaining rebuilt turnout."""
+    supported = {
+        ("congressional", "us_senate", 2018): ("congressional", "Senate"),
+    }
+    if contest == "president" and scope in {"state_house", "state_senate"}:
+        supported[(scope, contest, year)] = (
+            "state house" if scope == "state_house" else "state senate",
+            "Pres",
+        )
+    source = supported.get((scope, contest, year))
+    if not source:
         return ""
-    label = "state house" if scope == "state_house" else "state senate"
-    path = DATA / f"district-statistics {label} {year} Pres.csv"
+    label, contest_label = source
+    path = DATA / f"district-statistics {label} {year} {contest_label}.csv"
     if not path.exists():
         return ""
     with path.open(newline="", encoding="utf-8-sig") as handle:
@@ -1610,7 +1621,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
             )
         expected = expected_districts(scope)
         results = district_result_rows(votes, candidates)
-        calibration_source = apply_dra_presidential_shares(scope, contest, year, results)
+        calibration_source = apply_dra_district_shares(scope, contest, year, results)
         exact_benchmark_source = apply_exact_district_benchmarks(scope, contest, year, results)
         statewide_control_source = apply_statewide_vote_control(
             contest,
