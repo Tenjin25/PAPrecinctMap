@@ -1,6 +1,7 @@
 import json
 import csv
 import sys
+from collections import Counter, defaultdict
 from pathlib import Path
 
 
@@ -79,7 +80,7 @@ def main():
     failures = []
     external_controls = {}
     presidential_totals = {}
-    statewide = {}
+    statewide = defaultdict(lambda: Counter())
     for source in Path("data/Openelections").glob("*/*__pa__general__precinct.csv"):
         try:
             year = int(source.parent.name)
@@ -90,7 +91,10 @@ def main():
                 office = (row.get("office") or "").strip().lower()
                 if office != "president":
                     continue
-                statewide[year] = statewide.get(year, 0.0) + float(row.get("votes") or 0)
+                party = (row.get("party") or "").strip().upper()
+                bucket = "dem_votes" if party == "DEM" else "rep_votes" if party == "REP" else "other_votes"
+                statewide[year][bucket] += float(row.get("votes") or 0)
+                statewide[year]["total_votes"] += float(row.get("votes") or 0)
     for path in sorted(contest_dir.glob("*.json")):
         if path.name == "manifest.json":
             continue
@@ -141,13 +145,15 @@ def main():
             payload.get("contest_type") == "president"
             and payload.get("year") in statewide
             and not external_control
-            and not allocation_audit.get("conserved_for_matched_rows")
         ):
-            source_total = round(statewide[payload["year"]])
-            if result["total_votes"] > source_total:
-                failures.append(
-                    f"{path.name}: district total {result['total_votes']} exceeds source total {source_total}"
-                )
+            source_control = {
+                key: round(value) for key, value in statewide[payload["year"]].items()
+            }
+            for key, expected in source_control.items():
+                if result[key] != expected:
+                    failures.append(
+                        f"{path.name}: {key} {result[key]} != OpenElections source {expected}"
+                    )
             presidential_totals.setdefault(payload["year"], {})[payload.get("scope") or path.name] = {
                 "total": result["total_votes"],
                 "source": source_label,

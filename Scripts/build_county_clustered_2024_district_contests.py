@@ -18,6 +18,7 @@ import re
 import sys
 import zipfile
 from collections import defaultdict
+from decimal import Decimal, ROUND_FLOOR, ROUND_HALF_UP
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,6 +36,101 @@ SCOPES = {
 }
 WHOLE_COUNTY_THRESHOLD = 0.999
 MATERIAL_PARTIAL_THRESHOLD = 0.001
+
+
+def classify_county_weights(weights: dict[str, float]) -> set[str]:
+    """Return the material districts for a county under the 99.9% rule."""
+    total = sum(weights.values())
+    if total <= 0:
+        return set()
+    top_district, top_weight = max(weights.items(), key=lambda item: item[1])
+    if top_weight / total >= WHOLE_COUNTY_THRESHOLD:
+        return {top_district}
+    return {
+        district for district, weight in weights.items()
+        if weight / total > MATERIAL_PARTIAL_THRESHOLD
+    }
+
+
+def congressional_mail_district(precinct: str) -> str:
+    """Extract an explicitly localized congressional-mail district label."""
+    match = re.fullmatch(r"(\d+)(?:ST|ND|RD|TH) CD", precinct.strip(), re.IGNORECASE)
+    return str(int(match.group(1))) if match else ""
+
+
+def integerize_fractional_rows(rows: list[dict]) -> list[dict]:
+    """Integerize crosswalk rows locally, then reconcile explained roundoff."""
+    groups = defaultdict(list)
+    original_values = {}
+    for index, row in enumerate(rows):
+        try:
+            value = Decimal(str(row.get("votes") or "0"))
+        except Exception:
+            value = Decimal(0)
+        if value < 0:
+            continue
+        key = (
+            layers.normalize_county_name(row.get("county") or ""),
+            layers.office_mapping_for_contest(row.get("office") or ""),
+            (row.get("party") or "").strip().upper(),
+        )
+        groups[key].append((index, value))
+        original_values[index] = value
+    result = [dict(row) for row in rows]
+    for values in groups.values():
+        floors = {
+            index: int(value.to_integral_value(rounding=ROUND_FLOOR))
+            for index, value in values
+        }
+        target = int(
+            sum((value for _index, value in values), Decimal(0)).to_integral_value(
+                rounding=ROUND_HALF_UP
+            )
+        )
+        remaining = target - sum(floors.values())
+        ranked = sorted(
+            values,
+            key=lambda item: (
+                -(item[1] - item[1].to_integral_value(rounding=ROUND_FLOOR)),
+                item[0],
+            ),
+        )
+        for index, _value in ranked[:remaining]:
+            floors[index] += 1
+        for index, _value in values:
+            result[index]["votes"] = str(floors[index])
+
+    # County-level rounding can differ from the statewide rounded source by a
+    # handful of votes. Reconcile only that explicit arithmetic difference,
+    # using the rows with the greatest signed fractional deficit. This is not
+    # an unexplained vote residual and does not use district outcomes.
+    statewide_groups = defaultdict(list)
+    for index, row in enumerate(rows):
+        if index not in original_values:
+            continue
+        key = (
+            layers.office_mapping_for_contest(row.get("office") or ""),
+            (row.get("party") or "").strip().upper(),
+        )
+        statewide_groups[key].append(index)
+    for indices in statewide_groups.values():
+        target = int(
+            sum((original_values[index] for index in indices), Decimal(0)).to_integral_value(
+                rounding=ROUND_HALF_UP
+            )
+        )
+        current = sum(int(result[index]["votes"]) for index in indices)
+        delta = target - current
+        if not delta:
+            continue
+        ranked = sorted(
+            indices,
+            key=lambda index: original_values[index] - Decimal(result[index]["votes"]),
+            reverse=delta > 0,
+        )
+        for index in ranked[:abs(delta)]:
+            result[index]["votes"] = str(int(result[index]["votes"]) + (1 if delta > 0 else -1))
+    return result
 
 
 def load_block_vap(path: Path) -> dict[str, float]:
@@ -106,8 +202,8 @@ def build_vap_maps(pl_zip: Path, baf_zip: Path):
             if total <= 0:
                 continue
             top_district, top_weight = max(weights.items(), key=lambda item: item[1])
-            if top_weight / total >= WHOLE_COUNTY_THRESHOLD:
-                county_districts[scope][county] = {top_district}
+            county_districts[scope][county] = classify_county_weights(weights)
+            if len(county_districts[scope][county]) == 1 and top_weight / total >= WHOLE_COUNTY_THRESHOLD:
                 # Clamp BAF/BEF slivers so the general all-year builder also
                 # carries the canonical county total wholly into this district.
                 for (vtd_county, _vtd), district_weights in maps[scope].items():
@@ -115,11 +211,6 @@ def build_vap_maps(pl_zip: Path, baf_zip: Path):
                         vtd_total = sum(district_weights.values())
                         district_weights.clear()
                         district_weights[top_district] = vtd_total
-            else:
-                county_districts[scope][county] = {
-                    district for district, weight in weights.items()
-                    if weight / total > MATERIAL_PARTIAL_THRESHOLD
-                }
     return maps, county_districts, len(vap), len(vtds)
 
 
@@ -181,9 +272,9 @@ def main() -> int:
         # local assignment; legislative residuals remain localized within it.
         precinct = str(row.get("Precinct") or "")
         if scope == "congressional":
-            mail_cd = re.fullmatch(r"(\d+)(?:ST|ND|RD|TH) CD", precinct.strip(), re.IGNORECASE)
+            mail_cd = congressional_mail_district(precinct)
             if mail_cd:
-                return {str(int(mail_cd.group(1)))}
+                return {mail_cd}
             if "Congressional Mail Votes" in precinct:
                 return direct
         # Only split counties need modeled block allocation. A whole county is
@@ -209,7 +300,23 @@ def main() -> int:
             # VTD map. Replacing that map with Carter block-VAP weights makes
             # whole counties exact automatically and models only split ones.
             original_embedded = layers.embedded_congressional_district_from_precinct_label
+            original_dra_calibration = layers.apply_dra_share_calibration
+            original_read_csv_rows = layers.read_csv_rows
+            integerized_rows_cache = {}
             layers.embedded_congressional_district_from_precinct_label = lambda _value: ""
+            # DRA district shares are useful as a comparison, but replacing
+            # party buckets independently by scope violates statewide party
+            # conservation.  The block/VAP allocation is the production rule.
+            layers.apply_dra_share_calibration = lambda _nodes, _sources: None
+            def read_integerized_rows(path):
+                cache_key = str(Path(path).resolve())
+                if cache_key not in integerized_rows_cache:
+                    integerized_rows_cache[cache_key] = integerize_fractional_rows(
+                        original_read_csv_rows(path)
+                    )
+                return integerized_rows_cache[cache_key]
+
+            layers.read_csv_rows = read_integerized_rows
             try:
                 contest_types = {
                     value.strip() for value in args.contests.split(",") if value.strip()
@@ -220,6 +327,8 @@ def main() -> int:
                 )
             finally:
                 layers.embedded_congressional_district_from_precinct_label = original_embedded
+                layers.apply_dra_share_calibration = original_dra_calibration
+                layers.read_csv_rows = original_read_csv_rows
             preserve_candidate_names(args.all_years_output, ROOT / "data" / "district_contests")
     finally:
         sys.argv = old_argv
