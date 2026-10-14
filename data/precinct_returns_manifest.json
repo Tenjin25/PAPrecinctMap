@@ -117,14 +117,14 @@
       "source": "data/ElectionReturns_2008_General_PrecinctReturns.txt",
       "source_type": "official_pa_precinct_export",
       "output": "data/Openelections/2008/20081104__pa__general__precinct.csv",
-      "rows": 328360,
+      "rows": 309892,
       "counties": 67,
-      "precincts": 9403,
+      "precincts": 9394,
       "crosswalk": "data/crosswalks/pa_historical_precinct_to_vtd20.csv",
       "current_crosswalk": "data/crosswalks/pa_vtd20_to_current_precinct.csv",
       "matched_rows": 226035,
       "unmatched_rows": 270,
-      "joined_rows": 328360
+      "joined_rows": 309892
     },
     {
       "year": 2010,
