@@ -1760,6 +1760,10 @@ def normalize_candidate_label(value):
         'joseph biden jr', 'joe biden'
     }:
         return 'Joe Biden'
+    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+        'douglas v mastriano', 'doug mastriano'
+    }:
+        return 'Doug Mastriano'
 
     def format_name(name):
         words = []
