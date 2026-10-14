@@ -222,24 +222,24 @@ def read_area_weighted_district_memberships(scope, weight_mode="area", block_vtd
     block_vtd["countyfp_dst"] = block_vtd["countyfp_dst"].map(lambda v: norm(v, 3))
     block_vtd["dst_vtd"] = block_vtd["dst_vtd"].map(lambda v: norm(v, 6))
 
-    # Use actual 2020 block area, rather than block counts, when a VTD crosses
-    # a legislative boundary.  The block crosswalk itself supplies the stable
-    # identifiers; geometry supplies the area weight.
-    blocks = gpd.read_file(
-        f"zip://{(DATA / 'tl_2022_42_tabblock20.zip').resolve().as_posix()}",
-        columns=["GEOID20", "geometry"],
-    )
-    blocks = blocks[["GEOID20", "geometry"]].rename(columns={"GEOID20": "block"})
-    blocks["block"] = blocks["block"].map(lambda v: norm(v, 15))
-    blocks["area"] = blocks.to_crs(CRS).geometry.area
-    blocks = blocks[["block", "area"]]
-
-    merged = block_vtd.merge(block_district, on="block", how="inner").merge(blocks, on="block", how="left")
-    merged["area"] = pd.to_numeric(merged["area"], errors="coerce").fillna(1.0)
+    merged = block_vtd.merge(block_district, on="block", how="inner")
     measure = "area" if weight_mode == "area" else "block_count"
     if measure == "block_count":
         merged[measure] = 1.0
     else:
+        # Use actual 2020 block area, rather than block counts, when a VTD
+        # crosses a legislative boundary. The geometry archive is unnecessary
+        # for block-count weighting and can be omitted from reproducible builds.
+        blocks = gpd.read_file(
+            f"zip://{(DATA / 'tl_2022_42_tabblock20.zip').resolve().as_posix()}",
+            columns=["GEOID20", "geometry"],
+        )
+        blocks = blocks[["GEOID20", "geometry"]].rename(columns={"GEOID20": "block"})
+        blocks["block"] = blocks["block"].map(lambda v: norm(v, 15))
+        blocks["area"] = blocks.to_crs(CRS).geometry.area
+        blocks = blocks[["block", "area"]]
+        merged = merged.merge(blocks, on="block", how="left")
+        merged["area"] = pd.to_numeric(merged["area"], errors="coerce").fillna(1.0)
         merged[measure] = merged["area"]
     grouped = merged.groupby(["countyfp_dst", "dst_vtd", "district"], as_index=False)[measure].sum()
     totals = grouped.groupby(["countyfp_dst", "dst_vtd"], as_index=False)[measure].sum().rename(columns={measure: "total_measure"})
@@ -1055,6 +1055,7 @@ def parse_historical_vtd_returns(path, year, office_code="USP"):
         (2016, "ATT"): (("G16ATGDSHA",), ("G16ATGRRAF",), ()),
         (2016, "AUD"): (("G16AUDDDEP",), ("G16AUDRBRO",), ("G16AUDLMIN", "G16AUDGSWE")),
         (2016, "TRE"): (("G16TREDTOR",), ("G16TRERVOI",), ("G16TRELBAB", "G16TREGCOM")),
+        (2020, "USP"): (("G20PREDBID",), ("G20PRERTRU",), ("G20PRELJOR",)),
     }
     vest_vote_fields = vest_fields.get((year, office_code.upper()))
     if vest_vote_fields:
@@ -1071,6 +1072,8 @@ def parse_historical_vtd_returns(path, year, office_code="USP"):
             "ATT": {"dem": "Josh Shapiro", "rep": "John Rafferty"},
             "AUD": {"dem": "Eugene DePasquale", "rep": "John Brown"},
             "TRE": {"dem": "Joe Torsella", "rep": "Otto Voit"},
+        }[office_code.upper()] if year == 2016 else {
+            "USP": {"dem": "Joe Biden", "rep": "Donald J. Trump"},
         }[office_code.upper()]
         totals = {}
         for index, row in enumerate(frame.itertuples(index=False), start=1):
@@ -1488,7 +1491,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
             # syntactically valid target. Retry by precinct name when that VTD
             # has no membership on the modern geometry.
             targets = []
-        if year >= 2020 and source_vtd != "000000" and (not source_vtd_source or not target_has_membership):
+        if year >= 2020 and source_vtd != "000000" and not source_vtd.startswith("VP") and (not source_vtd_source or not target_has_membership):
             live_vtds = {source_vtd}
             live_vtds.update(resolve_current_alias_vtds(county, precinct_name, live_aliases))
             live_vtds.update(modern_exceptions.get((year, county, source_vtd, precinct_name), set()))
@@ -1547,7 +1550,12 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
                     for row in proxy_chain.itertuples(index=False)
                     if row.countyfp == county and row.src_vtd == proxy_vtd
                 )
-        if not targets and geometry_targets:
+        if source_vtd.startswith("VP") and geometry_targets:
+            # VEST polygon row IDs are synthetic identifiers, not Census VTD
+            # codes. Always use their polygon intersections rather than
+            # treating a coincidentally formatted ID as a modern VTD.
+            targets = geometry_targets.get(source_key, [])
+        elif not targets and geometry_targets:
             targets = geometry_targets.get(source_key, [])
         if not targets and year == 2006:
             alias_vtd = PA_2006_GEOMETRY_CODE_ALIASES.get((county, source_vtd))

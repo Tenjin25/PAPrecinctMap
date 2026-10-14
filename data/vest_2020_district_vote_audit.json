@@ -1,0 +1,13 @@
+{
+  "year": 2020,
+  "source": "data/historical_sources/vest_pa_2020.zip",
+  "method": "VEST precinct geometry intersected with VTD20; VTD20 assigned to current districts by block count; party totals reconciled to Pennsylvania's certified presidential result",
+  "controls": {
+    "president": {
+      "dem_votes": 3458229,
+      "rep_votes": 3377674,
+      "other_votes": 79380,
+      "total_votes": 6915283
+    }
+  }
+}
