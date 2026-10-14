@@ -1,0 +1,361 @@
+{
+  "source": "data\\pa_2022_gen_prec_csv.zip",
+  "source_sha256": "6985775de9a8910d549a115186c412e0171c09bc79d9de128b055e962429d8a6",
+  "rows": 9189,
+  "unique_ids": 9189,
+  "controls": {
+    "governor": 5366179,
+    "us_senate": 5368020
+  },
+  "mapping_methods": {
+    "congressional": {
+      "current_vtd_name_baf": 7,
+      "maintained_bef_baf_chain": 6,
+      "rdh_embedded_district": 9161,
+      "rdh_vtd_code_baf": 15
+    },
+    "state_house": {
+      "congressional_mail_candidate_vote_share": 7,
+      "current_vtd_name_baf": 8,
+      "maintained_bef_baf_chain": 7,
+      "rdh_embedded_district": 9145,
+      "rdh_vtd_code_baf": 26
+    },
+    "state_senate": {
+      "congressional_mail_candidate_vote_share": 7,
+      "current_vtd_name_baf": 44,
+      "maintained_bef_baf_chain": 266,
+      "rdh_embedded_district": 4267,
+      "rdh_vtd_code_baf": 4609
+    }
+  },
+  "unmapped_source_rows": {
+    "congressional": [],
+    "state_house": [
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "2ND CD",
+        "vtd": "N/A"
+      },
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "3RD CD",
+        "vtd": "N/A"
+      },
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "5TH CD",
+        "vtd": "N/A"
+      }
+    ],
+    "state_senate": [
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "2ND CD",
+        "vtd": "N/A"
+      },
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "3RD CD",
+        "vtd": "N/A"
+      },
+      {
+        "county": "PHILADELPHIA",
+        "precinct": "5TH CD",
+        "vtd": "N/A"
+      }
+    ]
+  },
+  "residual_allocations": [
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G22USSDFET",
+      "congressional_district": "2",
+      "votes": 114,
+      "county": "PHILADELPHIA",
+      "precinct": "2ND CD",
+      "district_weights": {
+        "175": 14.42749311017248,
+        "182": 3.8144099933080526,
+        "197": 9.24235642894663,
+        "180": 5.687982557763019,
+        "181": 7.438509638562886,
+        "195": 0.10089729659718075,
+        "179": 7.806825786303815,
+        "177": 9.495009822051765,
+        "203": 10.206212717578234,
+        "202": 5.891417757406115,
+        "173": 7.194879580925791,
+        "198": 8.383498953034042,
+        "172": 8.531973836644529,
+        "174": 8.032409173004828,
+        "170": 7.746123347700633
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G22USSDFET",
+      "congressional_district": "2",
+      "votes": 114,
+      "county": "PHILADELPHIA",
+      "precinct": "2ND CD",
+      "district_weights": {
+        "1": 24.223554215567052,
+        "2": 29.420175141934045,
+        "3": 27.29230857792521,
+        "5": 33.063962064573694
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G22USSGWEI",
+      "congressional_district": "2",
+      "votes": 1,
+      "county": "PHILADELPHIA",
+      "precinct": "2ND CD",
+      "district_weights": {
+        "175": 0.05939716312056738,
+        "182": 0.014184397163120567,
+        "180": 0.040780141843971635,
+        "181": 0.0398936170212766,
+        "197": 0.04521276595744681,
+        "179": 0.054078014184397165,
+        "177": 0.12322695035460993,
+        "203": 0.08333333333333333,
+        "202": 0.05851063829787234,
+        "173": 0.09219858156028368,
+        "198": 0.04609929078014184,
+        "172": 0.1099290780141844,
+        "174": 0.11436170212765957,
+        "170": 0.11879432624113476
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G22USSGWEI",
+      "congressional_district": "2",
+      "votes": 1,
+      "county": "PHILADELPHIA",
+      "precinct": "2ND CD",
+      "district_weights": {
+        "1": 0.11524822695035461,
+        "2": 0.2854609929078014,
+        "3": 0.1427304964539007,
+        "5": 0.45656028368794327
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G22USSKWAS",
+      "congressional_district": "2",
+      "votes": 2,
+      "county": "PHILADELPHIA",
+      "precinct": "2ND CD",
+      "district_weights": {
+        "175": 0.10650887573964497,
+        "182": 0.04260355029585799,
+        "197": 0.11597633136094675,
+        "180": 0.10650887573964497,
+        "181": 0.08520710059171598,
+        "179": 0.11597633136094675,
+        "177": 0.2579881656804734,
+        "203": 0.11597633136094675,
+        "173": 0.21775147928994082,
+        "198": 0.06863905325443787,
+        "202": 0.13727810650887573,
+        "172": 0.1514792899408284,
+        "174": 0.21301775147928995,
+        "170": 0.2650887573964497
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G22USSKWAS",
+      "congressional_district": "2",
+      "votes": 2,
+      "county": "PHILADELPHIA",
+      "precinct": "2ND CD",
+      "district_weights": {
+        "1": 0.2106508875739645,
+        "2": 0.6153846153846154,
+        "3": 0.3005917159763314,
+        "5": 0.8733727810650888
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G22USSROZ",
+      "congressional_district": "2",
+      "votes": 9,
+      "county": "PHILADELPHIA",
+      "precinct": "2ND CD",
+      "district_weights": {
+        "175": 0.4790676307274398,
+        "182": 0.06848959373626813,
+        "197": 0.1828186793432669,
+        "180": 0.2380058323013622,
+        "181": 0.08215155994087804,
+        "179": 0.25634162904965446,
+        "177": 0.9304518036192226,
+        "203": 0.4362841049814245,
+        "202": 0.4900331562337714,
+        "173": 1.177985059721168,
+        "198": 0.09868972955698478,
+        "172": 1.4968841129708785,
+        "174": 1.246115128030999,
+        "170": 1.8166819797866816
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G22USSROZ",
+      "congressional_district": "2",
+      "votes": 9,
+      "county": "PHILADELPHIA",
+      "precinct": "2ND CD",
+      "district_weights": {
+        "1": 0.7735189549794271,
+        "2": 1.9470099468701314,
+        "3": 0.4267566811808413,
+        "5": 5.8527144169696
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G22USSDFET",
+      "congressional_district": "3",
+      "votes": 476,
+      "county": "PHILADELPHIA",
+      "precinct": "3RD CD",
+      "district_weights": {
+        "184": 26.3568552379695,
+        "175": 11.986269720773649,
+        "182": 42.18020991484586,
+        "191": 13.90111558518714,
+        "10": 30.89075186480956,
+        "192": 36.93656346953594,
+        "190": 33.92936827513367,
+        "195": 36.797940458116045,
+        "181": 12.392897220938675,
+        "200": 55.53977160208595,
+        "194": 43.7734503927652,
+        "198": 13.762492573767245,
+        "201": 37.78123968578784,
+        "185": 4.609677206416265,
+        "188": 36.59093009439567,
+        "186": 38.57046669747178
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G22USSDFET",
+      "congressional_district": "3",
+      "votes": 476,
+      "county": "PHILADELPHIA",
+      "precinct": "3RD CD",
+      "district_weights": {
+        "1": 100.53495280216517,
+        "8": 80.12964552115652,
+        "7": 136.04647171430457,
+        "4": 101.8620370981583,
+        "3": 57.42689286421546
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G22USSROZ",
+      "congressional_district": "3",
+      "votes": 13,
+      "county": "PHILADELPHIA",
+      "precinct": "3RD CD",
+      "district_weights": {
+        "184": 2.385479651786097,
+        "175": 0.5095415755392598,
+        "182": 1.5308546678674042,
+        "191": 0.10090484154552082,
+        "10": 0.553582915219349,
+        "192": 0.4671726917963892,
+        "190": 0.35734808525236933,
+        "195": 0.7297482739397059,
+        "181": 0.28877739182640766,
+        "200": 0.5875895192761268,
+        "194": 3.0561344826107466,
+        "198": 0.11651443029289421,
+        "201": 0.3311462755692783,
+        "185": 0.5630601655302543,
+        "188": 0.4632702946095459,
+        "186": 0.9588747373386509
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G22USSROZ",
+      "congressional_district": "3",
+      "votes": 13,
+      "county": "PHILADELPHIA",
+      "precinct": "3RD CD",
+      "district_weights": {
+        "1": 5.1572966250696854,
+        "8": 1.7755907200137226,
+        "7": 3.949783438397873,
+        "4": 1.1980359363609074,
+        "3": 0.9192932801578112
+      }
+    },
+    {
+      "scope": "state_house",
+      "contest": "us_senate",
+      "column": "G22USSDFET",
+      "congressional_district": "5",
+      "votes": 5,
+      "county": "PHILADELPHIA",
+      "precinct": "5TH CD",
+      "district_weights": {
+        "163": 0.3938760369596007,
+        "159": 0.30294636233126826,
+        "168": 0.44732582450934105,
+        "162": 0.3695237452909268,
+        "160": 0.27110291071308135,
+        "166": 0.5341847401940475,
+        "161": 0.42926032623881144,
+        "164": 0.3569501584946382,
+        "165": 0.5015464066519574,
+        "185": 0.2770043068147877,
+        "191": 0.2401025156808525,
+        "149": 0.45727389222364606,
+        "148": 0.22201293007929548,
+        "54": 0.14543930474327724,
+        "184": 0.037046315120099434,
+        "186": 0.01440422395436896
+      }
+    },
+    {
+      "scope": "state_senate",
+      "contest": "us_senate",
+      "column": "G22USSDFET",
+      "congressional_district": "5",
+      "votes": 5,
+      "county": "PHILADELPHIA",
+      "precinct": "5TH CD",
+      "district_weights": {
+        "26": 1.6404676796192275,
+        "9": 1.0558440682538612,
+        "8": 0.7004836736070297,
+        "17": 1.523234639509004,
+        "1": 0.07996993901087784
+      }
+    }
+  ]
+}

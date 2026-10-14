@@ -1,4 +1,4 @@
-"""Build audited 2024 statewide-contest results by current PA districts from RDH.
+"""Build audited modern statewide-contest results by current PA districts from RDH.
 
 RDH supplies explicit congressional and state-House contest columns for almost
 every precinct row.  State-Senate districts and rows without a district contest
@@ -28,8 +28,6 @@ sys.path.insert(0, str(ROOT))
 import build_pa_data_layers as layers
 
 
-SOURCE = ROOT / "data" / "pa_2024_gen_prec_csv.zip"
-DEFAULT_OUTPUT = ROOT / "data" / "district_contests_rdh_2024_verified"
 SCOPES = ("congressional", "state_house", "state_senate")
 PREFIXES = {"congressional": "GCON", "state_house": "GSL", "state_senate": "GSU"}
 EXPECTED = {"congressional": 17, "state_house": 203, "state_senate": 50}
@@ -43,6 +41,7 @@ CONTEST_BY_CODE = {
     "PRE": "president",
     "TRE": "treasurer",
     "USS": "us_senate",
+    "GOV": "governor",
 }
 
 
@@ -53,27 +52,28 @@ def value(row, column):
         return 0
 
 
-def read_source():
-    with zipfile.ZipFile(SOURCE) as archive:
+def read_source(source, year):
+    year_code = str(year)[-2:]
+    with zipfile.ZipFile(source) as archive:
         readme = archive.read("README.txt").decode("utf-8", errors="replace")
         descriptions = {}
         for line in readme.splitlines():
             match = re.match(r"^(G\S+)\s+(.+?)\s*$", line)
             if match:
                 descriptions[match.group(1)] = match.group(2).strip()
-        with archive.open("pa_2024_gen_prec.csv") as raw:
+        with archive.open(f"pa_{year}_gen_prec.csv") as raw:
             reader = csv.DictReader(io.TextIOWrapper(raw, encoding="utf-8-sig", newline=""))
             rows = list(reader)
             columns = reader.fieldnames or []
     statewide = {}
     for column in columns:
-        if not re.match(r"^G24(?:ATG|AUD|PRE|TRE|USS)", column):
+        if not re.match(rf"^G{year_code}(?:ATG|AUD|GOV|PRE|TRE|USS)", column):
             continue
         parts = descriptions.get(column, "").split("-:-")
         if len(parts) != 4:
             raise ValueError(f"Missing RDH field description for {column}")
         office, _scope, party_name, candidate = (part.strip() for part in parts)
-        code_match = re.match(r"^G24([A-Z]{3})", column)
+        code_match = re.match(rf"^G{year_code}([A-Z]{{3}})", column)
         contest = CONTEST_BY_CODE.get(code_match.group(1) if code_match else "")
         if not contest:
             raise ValueError(f"Unknown statewide office for {column}: {office}")
@@ -100,7 +100,7 @@ def direct_districts(row, columns, prefix):
     return districts
 
 
-def geometry_allocations(row, block_maps):
+def geometry_allocations(row, block_maps, year):
     countyfp = str(row.get("COUNTYFP") or "").strip().zfill(3)
     source_vtd = str(row.get("VTD code") or "").strip().upper().zfill(6)
     direct_vtd = (countyfp, source_vtd)
@@ -113,12 +113,12 @@ def geometry_allocations(row, block_maps):
     bridge_row = {
         "county": row.get("County") or "",
         # RDH's ``Precinct`` is a county-local numeric ID.  ``Muni_Name`` is
-        # the election-geography label used by the maintained 2024 BEF.
+        # the election-geography label used by the maintained modern BEF.
         "precinct": row.get("Muni_Name") or row.get("Precinct") or "",
         "source_vtd": row.get("VTD code") or "",
     }
     if not weighted_vtds:
-        targets = layers.maintained_targets_for_row(bridge_row, 2024, countyfp)
+        targets = layers.maintained_targets_for_row(bridge_row, year, countyfp)
         targets = [
             target for target in targets
             if any(block_maps.get(scope, {}).get((target[0], target[1])) for scope in SCOPES)
@@ -174,11 +174,15 @@ def round_district_vote_components(results):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--year", type=int, choices=(2022, 2024), default=2024)
+    parser.add_argument("--source", type=Path)
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
+    source = args.source or ROOT / "data" / f"pa_{args.year}_gen_prec_csv.zip"
+    args.output = args.output or ROOT / "data" / f"district_contests_rdh_{args.year}_verified"
     args.output.mkdir(parents=True, exist_ok=True)
 
-    rows, statewide, district_columns = read_source()
+    rows, statewide, district_columns = read_source(source, args.year)
     unique_ids = [str(row.get("UNIQUE_ID") or "").strip() for row in rows]
     if not all(unique_ids) or len(unique_ids) != len(set(unique_ids)):
         raise RuntimeError("RDH UNIQUE_ID values are blank or duplicated")
@@ -188,7 +192,7 @@ def main():
     row_failures = {scope: [] for scope in SCOPES}
 
     for row in rows:
-        geometry, geometry_method = geometry_allocations(row, block_maps)
+        geometry, geometry_method = geometry_allocations(row, block_maps, args.year)
         direct = {
             scope: direct_districts(row, district_columns[scope], PREFIXES[scope])
             for scope in SCOPES
@@ -251,13 +255,17 @@ def main():
 
     residual_audit = []
     for scope, contest, column, info, cd, votes, row in residuals:
-        is_philadelphia_mail = (
+        precinct_label = str(row.get("Precinct") or "")
+        is_philadelphia_congressional_residual = (
             row.get("County") == "PHILADELPHIA"
-            and "Congressional Mail Votes" in str(row.get("Precinct") or "")
+            and (
+                "Congressional Mail Votes" in precinct_label
+                or re.fullmatch(r"\d+(?:ST|ND|RD|TH) CD", precinct_label, re.IGNORECASE)
+            )
             and scope in {"state_house", "state_senate"}
             and cd
         )
-        if not is_philadelphia_mail:
+        if not is_philadelphia_congressional_residual:
             raise RuntimeError(
                 f"Refusing estimated allocation outside Philadelphia mail residuals: "
                 f"{scope} {contest} {row.get('County')} {row.get('Precinct')}"
@@ -305,16 +313,16 @@ def main():
             raise RuntimeError(f"{scope} {contest}: {total} != RDH control {controls[contest]}")
         if len(finalized) != EXPECTED[scope]:
             raise RuntimeError(f"{scope} {contest}: observed {len(finalized)} districts")
-        filename = f"{scope}_{contest}_2024.json"
+        filename = f"{scope}_{contest}_{args.year}.json"
         payload = {
             "scope": scope,
             "contest_type": contest,
-            "year": 2024,
+            "year": args.year,
             "meta": {
                 "districts_observed": len(finalized),
                 "districts_expected": EXPECTED[scope],
                 "coverage_percent": 100.0,
-                "source": "RDH 2024 precinct matrix with embedded districts and BEF/BAF fallback",
+                "source": f"RDH {args.year} precinct matrix with embedded districts and BEF/BAF fallback",
                 "allocation_audit": {
                     "source_rows": source_rows[contest],
                     "source_votes": controls[contest],
@@ -339,7 +347,7 @@ def main():
         files.append({
             "scope": scope,
             "contest_type": contest,
-            "year": 2024,
+            "year": args.year,
             "file": filename,
             "districts": EXPECTED[scope],
             "rows": len(finalized),
@@ -349,8 +357,8 @@ def main():
         json.dumps({"scope": "multi", "files": files}, indent=2) + "\n", encoding="utf-8"
     )
     audit = {
-        "source": str(SOURCE.relative_to(ROOT)),
-        "source_sha256": hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
+        "source": str(source.relative_to(ROOT)),
+        "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
         "rows": len(rows),
         "unique_ids": len(unique_ids),
         "controls": dict(sorted(controls.items())),
