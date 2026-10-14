@@ -1155,6 +1155,11 @@ def apply_dra_district_shares(scope, contest, year, results):
     """Apply checked DRA/RDH district shares while retaining rebuilt turnout."""
     supported = {
         ("congressional", "us_senate", 2018): ("congressional", "Senate"),
+        ("state_house", "us_senate", 2018): ("state house", "Senate"),
+        ("state_senate", "us_senate", 2018): ("state senate", "Senate"),
+        ("congressional", "governor", 2018): ("congressional", "Governor"),
+        ("state_house", "governor", 2018): ("state house", "Governor"),
+        ("state_senate", "governor", 2018): ("state senate", "Governor"),
     }
     if contest == "president" and scope in {"state_house", "state_senate"}:
         supported[(scope, contest, year)] = (

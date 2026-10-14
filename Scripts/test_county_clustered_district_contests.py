@@ -118,6 +118,16 @@ class PublishedDataTests(unittest.TestCase):
             with self.subTest(scope=scope):
                 self.assertEqual(self.totals(payload), expected)
 
+    def test_calibrated_layers_conserve_by_party(self):
+        for contest, year in (("president", 2008), ("president", 2012),
+                              ("governor", 2018), ("us_senate", 2018)):
+            totals = {}
+            for scope in ("congressional", "state_house", "state_senate"):
+                path = self.directory / f"{scope}_{contest}_{year}.json"
+                totals[scope] = self.totals(json.loads(path.read_text(encoding="utf-8")))
+            with self.subTest(contest=contest, year=year):
+                self.assertEqual(len(set(totals.values())), 1, totals)
+
 
 if __name__ == "__main__":
     unittest.main()
