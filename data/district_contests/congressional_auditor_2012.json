@@ -6,217 +6,470 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
-    "allocation_audit": {
-      "source_rows": 35025,
-      "source_votes": 5473873,
-      "matched_rows": 35025,
-      "matched_votes": 5473873,
-      "unmatched_rows": 0,
-      "unmatched_votes": 0,
-      "unmatched_precincts": [],
-      "unmatched_precinct_votes": {},
-      "mapping_methods": {
-        "current_precinct_or_vtd_name": 30664,
-        "historical_vtd_block_chain": 5255,
-        "vtd10_nhgis_block_chain": 148
-      },
-      "allocated_rows": 35025,
-      "allocated_votes": 5473873,
-      "unallocated_rows": 0,
-      "unallocated_votes": 0,
-      "allocation_vote_delta": 0,
-      "conserved_for_matched_rows": true
-    }
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+statewide_vote_control/ElectionReturns_2012_General_PrecinctReturns.txt",
+    "unmatched_source_vtds": 54,
+    "unmatched_source_votes": 37405.0,
+    "unmatched_source_keys": [
+      [
+        "007",
+        "000095",
+        "ALIQUIPPA X 9"
+      ],
+      [
+        "011",
+        "000192",
+        "CAERNARVON P 2"
+      ],
+      [
+        "021",
+        "000000",
+        "NORTHERN CAMBRIA W 3 B (CONG 12)"
+      ],
+      [
+        "029",
+        "000338",
+        "EAST MARLBOROUGH X SOUTH"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 3"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 4"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 5"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 6"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 7"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 8"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 9"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 4"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 5"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 6"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 7"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 8"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 9"
+      ],
+      [
+        "045",
+        "000000",
+        "BETHEL P 5"
+      ],
+      [
+        "045",
+        "000000",
+        "BETHEL P 6"
+      ],
+      [
+        "045",
+        "000835",
+        "CONCORD D SOUTHCENTRAL"
+      ],
+      [
+        "045",
+        "000855",
+        "CONCORD D FOXHILL"
+      ],
+      [
+        "045",
+        "000832",
+        "CONCORD D MARIS GROVE"
+      ],
+      [
+        "045",
+        "001005",
+        "EDGMONT P 1"
+      ],
+      [
+        "045",
+        "001015",
+        "EDGMONT P 2"
+      ],
+      [
+        "045",
+        "002912",
+        "THORNBURY P 1"
+      ],
+      [
+        "045",
+        "002916",
+        "THORNBURY P 2"
+      ],
+      [
+        "045",
+        "002921",
+        "THORNBURY P 3"
+      ],
+      [
+        "045",
+        "002924",
+        "THORNBURY P 4"
+      ],
+      [
+        "045",
+        "002928",
+        "THORNBURY P 5"
+      ],
+      [
+        "055",
+        "000546",
+        "SOUTHAMPTON X EAST"
+      ],
+      [
+        "071",
+        "000262",
+        "EAST COCALICO X SWARTZVILLE"
+      ],
+      [
+        "071",
+        "001402",
+        "MANOR X MANOR,NEW"
+      ],
+      [
+        "091",
+        "000919",
+        "FRANCONIA P 3"
+      ],
+      [
+        "091",
+        "000924",
+        "FRANCONIA P 4"
+      ],
+      [
+        "091",
+        "000931",
+        "FRANCONIA P 6"
+      ],
+      [
+        "091",
+        "000933",
+        "FRANCONIA P 7"
+      ],
+      [
+        "091",
+        "002488",
+        "PLYMOUTH X 2 X 3A"
+      ],
+      [
+        "091",
+        "002492",
+        "PLYMOUTH X 2 X 3B"
+      ],
+      [
+        "091",
+        "002495",
+        "PLYMOUTH X 2 X 3C"
+      ],
+      [
+        "091",
+        "003078",
+        "UPPER DUBLIN X 3 X 1A"
+      ],
+      [
+        "091",
+        "003082",
+        "UPPER DUBLIN X 3 X 1B"
+      ],
+      [
+        "091",
+        "002815",
+        "UPPER DUBLIN X 5 X 3"
+      ],
+      [
+        "091",
+        "002873",
+        "UPPER DUBLIN X 6 X 3A"
+      ],
+      [
+        "091",
+        "002877",
+        "UPPER DUBLIN X 6 X 3B"
+      ],
+      [
+        "095",
+        "000755",
+        "LOWER MT. BETHEL D INDEPENDENT"
+      ],
+      [
+        "107",
+        "000796",
+        "NORTH MANHEIM P 2"
+      ],
+      [
+        "107",
+        "000802",
+        "NORTH MANHEIM P 3"
+      ],
+      [
+        "107",
+        "001235",
+        "RUSH D ELIXIR"
+      ],
+      [
+        "107",
+        "001385",
+        "SHENANDOAH P 6"
+      ],
+      [
+        "107",
+        "001505",
+        "TAMAQUA P 1"
+      ],
+      [
+        "107",
+        "001515",
+        "TAMAQUA P 2"
+      ],
+      [
+        "107",
+        "001525",
+        "TAMAQUA P 3"
+      ],
+      [
+        "107",
+        "001535",
+        "TAMAQUA P 4"
+      ],
+      [
+        "125",
+        "000695",
+        "DONEGAL X 3"
+      ]
+    ]
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 166672,
-        "rep_votes": 183088,
-        "other_votes": 8143,
-        "total_votes": 357903,
+        "dem_votes": 166568,
+        "rep_votes": 182434,
+        "other_votes": 8187,
+        "total_votes": 357189,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 16416.0,
-        "margin_pct": 4.586717630195891
+        "margin": 15866.0,
+        "margin_pct": 4.44190610573114
       },
       "2": {
-        "dem_votes": 196666,
-        "rep_votes": 59656,
-        "other_votes": 3134,
-        "total_votes": 259456,
+        "dem_votes": 197721,
+        "rep_votes": 60241,
+        "other_votes": 3200,
+        "total_votes": 261162,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 137010.0,
-        "margin_pct": 52.80664158855451
+        "margin": 137480.0,
+        "margin_pct": 52.64165537099578
       },
       "3": {
-        "dem_votes": 313235,
-        "rep_votes": 31647,
-        "other_votes": 4384,
-        "total_votes": 349266,
+        "dem_votes": 314870,
+        "rep_votes": 31926,
+        "other_votes": 4431,
+        "total_votes": 351227,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 281588.0,
-        "margin_pct": 80.62279179765565
+        "margin": 282944.0,
+        "margin_pct": 80.55872697714014
       },
       "4": {
-        "dem_votes": 178381,
-        "rep_votes": 166432,
-        "other_votes": 6777,
-        "total_votes": 351590,
+        "dem_votes": 178032,
+        "rep_votes": 167434,
+        "other_votes": 6890,
+        "total_votes": 352356,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 11949.0,
-        "margin_pct": 3.3985608236866804
+        "margin": 10598.0,
+        "margin_pct": 3.0077535220061526
       },
       "5": {
-        "dem_votes": 201997,
-        "rep_votes": 135901,
-        "other_votes": 5868,
-        "total_votes": 343766,
+        "dem_votes": 199036,
+        "rep_votes": 130926,
+        "other_votes": 5807,
+        "total_votes": 335769,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 66096.0,
-        "margin_pct": 19.227032341767362
+        "margin": 68110.0,
+        "margin_pct": 20.28477911897763
       },
       "6": {
-        "dem_votes": 144725,
-        "rep_votes": 165763,
-        "other_votes": 14262,
-        "total_votes": 324750,
+        "dem_votes": 143605,
+        "rep_votes": 164623,
+        "other_votes": 14157,
+        "total_votes": 322385,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 21038.0,
-        "margin_pct": 6.478214010777521
+        "margin": 21018.0,
+        "margin_pct": 6.519534097430091
       },
       "7": {
-        "dem_votes": 141956,
-        "rep_votes": 138317,
-        "other_votes": 10903,
-        "total_votes": 291176,
+        "dem_votes": 142899,
+        "rep_votes": 139784,
+        "other_votes": 11042,
+        "total_votes": 293725,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 3639.0,
-        "margin_pct": 1.2497595955710636
+        "margin": 3115.0,
+        "margin_pct": 1.0605157885777512
       },
       "8": {
-        "dem_votes": 154330,
-        "rep_votes": 118641,
-        "other_votes": 15317,
-        "total_votes": 288288,
+        "dem_votes": 154691,
+        "rep_votes": 118653,
+        "other_votes": 15684,
+        "total_votes": 289028,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 35689.0,
-        "margin_pct": 12.379634254634254
+        "margin": 36038.0,
+        "margin_pct": 12.468688154780851
       },
       "9": {
-        "dem_votes": 105626,
-        "rep_votes": 172558,
-        "other_votes": 17674,
-        "total_votes": 295858,
+        "dem_votes": 105949,
+        "rep_votes": 173865,
+        "other_votes": 17907,
+        "total_votes": 297721,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 66932.0,
-        "margin_pct": 22.623015095079396
+        "margin": 67916.0,
+        "margin_pct": 22.811961534456756
       },
       "10": {
-        "dem_votes": 136951,
-        "rep_votes": 164733,
-        "other_votes": 11419,
-        "total_votes": 313103,
+        "dem_votes": 134421,
+        "rep_votes": 159508,
+        "other_votes": 11108,
+        "total_votes": 305037,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 27782.0,
-        "margin_pct": 8.873118430676168
+        "margin": 25087.0,
+        "margin_pct": 8.224248205955345
       },
       "11": {
-        "dem_votes": 106588,
-        "rep_votes": 183626,
-        "other_votes": 14802,
-        "total_votes": 305016,
+        "dem_votes": 106552,
+        "rep_votes": 183778,
+        "other_votes": 14919,
+        "total_votes": 305249,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 77038.0,
-        "margin_pct": 25.25703569648805
+        "margin": 77226.0,
+        "margin_pct": 25.299345780002557
       },
       "12": {
-        "dem_votes": 213954,
-        "rep_votes": 134887,
-        "other_votes": 14729,
-        "total_votes": 363570,
+        "dem_votes": 214853,
+        "rep_votes": 135749,
+        "other_votes": 14818,
+        "total_votes": 365420,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 79067.0,
-        "margin_pct": 21.747393899386637
+        "margin": 79104.0,
+        "margin_pct": 21.64741940780472
       },
       "13": {
-        "dem_votes": 93438,
-        "rep_votes": 188293,
-        "other_votes": 16803,
-        "total_votes": 298534,
+        "dem_votes": 93741,
+        "rep_votes": 189473,
+        "other_votes": 17045,
+        "total_votes": 300259,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 94855.0,
-        "margin_pct": 31.773600326930936
+        "margin": 95732.0,
+        "margin_pct": 31.88314088836638
       },
       "14": {
-        "dem_votes": 140144,
-        "rep_votes": 171379,
-        "other_votes": 14308,
-        "total_votes": 325831,
+        "dem_votes": 141159,
+        "rep_votes": 173160,
+        "other_votes": 14594,
+        "total_votes": 328913,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 31235.0,
-        "margin_pct": 9.586257906706237
+        "margin": 32001.0,
+        "margin_pct": 9.729320519407867
       },
       "15": {
-        "dem_votes": 107256,
-        "rep_votes": 181062,
-        "other_votes": 19206,
-        "total_votes": 307524,
+        "dem_votes": 108068,
+        "rep_votes": 182917,
+        "other_votes": 19453,
+        "total_votes": 310438,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 73806.0,
-        "margin_pct": 24.000078042689353
+        "margin": 74849.0,
+        "margin_pct": 24.11077252140524
       },
       "16": {
-        "dem_votes": 139657,
-        "rep_votes": 174152,
-        "other_votes": 16078,
-        "total_votes": 329887,
+        "dem_votes": 140525,
+        "rep_votes": 175793,
+        "other_votes": 16331,
+        "total_votes": 332649,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 34495.0,
-        "margin_pct": 10.456610900096093
+        "margin": 35268.0,
+        "margin_pct": 10.60216624730572
       },
       "17": {
-        "dem_votes": 180784,
-        "rep_votes": 172543,
-        "other_votes": 15028,
-        "total_votes": 368355,
+        "dem_votes": 181725,
+        "rep_votes": 174449,
+        "other_votes": 15187,
+        "total_votes": 371361,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 8241.0,
-        "margin_pct": 2.2372439630247993
+        "margin": 7276.0,
+        "margin_pct": 1.9592795150810127
       }
     }
   }

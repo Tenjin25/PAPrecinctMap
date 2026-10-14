@@ -55,6 +55,7 @@ OFFICIAL_SOURCES = {
     2008: DATA / "ElectionReturns_2008_General_PrecinctReturns.txt",
     2018: DATA / "pa_official_2018_general_returns.txt",
     2011: DATA / "ElectionReturns_2011_General_PrecinctReturns.txt",
+    2012: DATA / "ElectionReturns_2012_General_PrecinctReturns.txt",
     2015: DATA / "ElectionReturns_2015_Municipal_Precinct.txt",
     2016: DATA / "ElectionReturns_2016_General_PrecinctReturns.txt",
     2017: DATA / "ElectionReturns_2017_Municipal_PrecinctReturns.txt",

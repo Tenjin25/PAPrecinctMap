@@ -220,6 +220,7 @@ def main():
     party_pools = defaultdict(lambda: defaultdict(float))
     residuals = []
     controls = Counter()
+    party_controls = defaultdict(Counter)
     source_rows = Counter()
 
     for row, row_allocations in prepared:
@@ -232,6 +233,8 @@ def main():
                 continue
             contest = info["contest"]
             controls[contest] += votes
+            bucket = "dem_votes" if info["party"] == "DEM" else "rep_votes" if info["party"] == "REP" else "other_votes"
+            party_controls[contest][bucket] += votes
             source_rows[contest] += 1
             for scope in SCOPES:
                 weights = row_allocations[scope]
@@ -361,7 +364,15 @@ def main():
         "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
         "rows": len(rows),
         "unique_ids": len(unique_ids),
-        "controls": dict(sorted(controls.items())),
+        "controls": {
+            contest: {
+                "dem_votes": party_controls[contest]["dem_votes"],
+                "rep_votes": party_controls[contest]["rep_votes"],
+                "other_votes": party_controls[contest]["other_votes"],
+                "total_votes": total,
+            }
+            for contest, total in sorted(controls.items())
+        },
         "mapping_methods": {scope: dict(sorted(counts.items())) for scope, counts in method_counts.items()},
         "unmapped_source_rows": {scope: failures for scope, failures in row_failures.items()},
         "residual_allocations": residual_audit,

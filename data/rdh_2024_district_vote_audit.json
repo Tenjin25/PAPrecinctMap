@@ -4,11 +4,11 @@
   "rows": 9190,
   "unique_ids": 9190,
   "controls": {
-    "attorney_general": 6882369,
-    "auditor": 6825662,
-    "president": 7034206,
-    "treasurer": 6824596,
-    "us_senate": 6963137
+    "attorney_general": {"dem_votes": 3179376, "rep_votes": 3496679, "other_votes": 206314, "total_votes": 6882369},
+    "auditor": {"dem_votes": 3135412, "rep_votes": 3489652, "other_votes": 200598, "total_votes": 6825662},
+    "president": {"dem_votes": 3423042, "rep_votes": 3543308, "other_votes": 67856, "total_votes": 7034206},
+    "treasurer": {"dem_votes": 3115393, "rep_votes": 3542336, "other_votes": 166867, "total_votes": 6824596},
+    "us_senate": {"dem_votes": 3384180, "rep_votes": 3399295, "other_votes": 179662, "total_votes": 6963137}
   },
   "mapping_methods": {
     "congressional": {

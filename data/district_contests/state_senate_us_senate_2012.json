@@ -6,580 +6,833 @@
     "districts_observed": 50,
     "districts_expected": 50,
     "coverage_percent": 100.0,
-    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
-    "allocation_audit": {
-      "source_rows": 34249,
-      "source_votes": 5613143,
-      "matched_rows": 34249,
-      "matched_votes": 5613143,
-      "unmatched_rows": 0,
-      "unmatched_votes": 0,
-      "unmatched_precincts": [],
-      "unmatched_precinct_votes": {},
-      "mapping_methods": {
-        "current_precinct_or_vtd_name": 30079,
-        "historical_vtd_block_chain": 5022,
-        "vtd10_nhgis_block_chain": 148
-      },
-      "allocated_rows": 34249,
-      "allocated_votes": 5613143,
-      "unallocated_rows": 0,
-      "unallocated_votes": 0,
-      "allocation_vote_delta": 0,
-      "conserved_for_matched_rows": true
-    }
+    "source": "precinct_returns_to_vtd_block_chain_area_districts+statewide_vote_control/ElectionReturns_2012_General_PrecinctReturns.txt",
+    "unmatched_source_vtds": 54,
+    "unmatched_source_votes": 38206.0,
+    "unmatched_source_keys": [
+      [
+        "007",
+        "000095",
+        "ALIQUIPPA X 9"
+      ],
+      [
+        "011",
+        "000192",
+        "CAERNARVON P 2"
+      ],
+      [
+        "021",
+        "000000",
+        "NORTHERN CAMBRIA W 3 B (CONG 12)"
+      ],
+      [
+        "029",
+        "000338",
+        "EAST MARLBOROUGH X SOUTH"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 3"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 4"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 5"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 6"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 7"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 8"
+      ],
+      [
+        "041",
+        "000000",
+        "SILVER SPRING P 9"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 4"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 5"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 6"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 7"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 8"
+      ],
+      [
+        "041",
+        "000000",
+        "SOUTH MIDDLETON P 9"
+      ],
+      [
+        "045",
+        "000000",
+        "BETHEL P 5"
+      ],
+      [
+        "045",
+        "000000",
+        "BETHEL P 6"
+      ],
+      [
+        "045",
+        "000835",
+        "CONCORD D SOUTHCENTRAL"
+      ],
+      [
+        "045",
+        "000855",
+        "CONCORD D FOXHILL"
+      ],
+      [
+        "045",
+        "000832",
+        "CONCORD D MARIS GROVE"
+      ],
+      [
+        "045",
+        "001005",
+        "EDGMONT P 1"
+      ],
+      [
+        "045",
+        "001015",
+        "EDGMONT P 2"
+      ],
+      [
+        "045",
+        "002912",
+        "THORNBURY P 1"
+      ],
+      [
+        "045",
+        "002916",
+        "THORNBURY P 2"
+      ],
+      [
+        "045",
+        "002921",
+        "THORNBURY P 3"
+      ],
+      [
+        "045",
+        "002924",
+        "THORNBURY P 4"
+      ],
+      [
+        "045",
+        "002928",
+        "THORNBURY P 5"
+      ],
+      [
+        "055",
+        "000546",
+        "SOUTHAMPTON X EAST"
+      ],
+      [
+        "071",
+        "000262",
+        "EAST COCALICO X SWARTZVILLE"
+      ],
+      [
+        "071",
+        "001402",
+        "MANOR X MANOR,NEW"
+      ],
+      [
+        "091",
+        "000919",
+        "FRANCONIA P 3"
+      ],
+      [
+        "091",
+        "000924",
+        "FRANCONIA P 4"
+      ],
+      [
+        "091",
+        "000931",
+        "FRANCONIA P 6"
+      ],
+      [
+        "091",
+        "000933",
+        "FRANCONIA P 7"
+      ],
+      [
+        "091",
+        "002488",
+        "PLYMOUTH X 2 X 3A"
+      ],
+      [
+        "091",
+        "002492",
+        "PLYMOUTH X 2 X 3B"
+      ],
+      [
+        "091",
+        "002495",
+        "PLYMOUTH X 2 X 3C"
+      ],
+      [
+        "091",
+        "003078",
+        "UPPER DUBLIN X 3 X 1A"
+      ],
+      [
+        "091",
+        "003082",
+        "UPPER DUBLIN X 3 X 1B"
+      ],
+      [
+        "091",
+        "002815",
+        "UPPER DUBLIN X 5 X 3"
+      ],
+      [
+        "091",
+        "002873",
+        "UPPER DUBLIN X 6 X 3A"
+      ],
+      [
+        "091",
+        "002877",
+        "UPPER DUBLIN X 6 X 3B"
+      ],
+      [
+        "095",
+        "000755",
+        "LOWER MT. BETHEL D INDEPENDENT"
+      ],
+      [
+        "107",
+        "000796",
+        "NORTH MANHEIM P 2"
+      ],
+      [
+        "107",
+        "000802",
+        "NORTH MANHEIM P 3"
+      ],
+      [
+        "107",
+        "001235",
+        "RUSH D ELIXIR"
+      ],
+      [
+        "107",
+        "001385",
+        "SHENANDOAH P 6"
+      ],
+      [
+        "107",
+        "001505",
+        "TAMAQUA P 1"
+      ],
+      [
+        "107",
+        "001515",
+        "TAMAQUA P 2"
+      ],
+      [
+        "107",
+        "001525",
+        "TAMAQUA P 3"
+      ],
+      [
+        "107",
+        "001535",
+        "TAMAQUA P 4"
+      ],
+      [
+        "125",
+        "000695",
+        "DONEGAL X 3"
+      ]
+    ]
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 76947,
-        "rep_votes": 16394,
-        "other_votes": 1184,
-        "total_votes": 94525,
+        "dem_votes": 77562,
+        "rep_votes": 16681,
+        "other_votes": 1247,
+        "total_votes": 95490,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 60553.0,
-        "margin_pct": 64.06030150753769
+        "margin": 60881.0,
+        "margin_pct": 63.756414284218245
       },
       "2": {
-        "dem_votes": 68257,
-        "rep_votes": 12511,
-        "other_votes": 418,
-        "total_votes": 81186,
+        "dem_votes": 68799,
+        "rep_votes": 12667,
+        "other_votes": 430,
+        "total_votes": 81896,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 55746.0,
-        "margin_pct": 68.66454807479123
+        "margin": 56132.0,
+        "margin_pct": 68.54058806290905
       },
       "3": {
-        "dem_votes": 106507,
-        "rep_votes": 4919,
-        "other_votes": 541,
-        "total_votes": 111967,
+        "dem_votes": 106724,
+        "rep_votes": 4888,
+        "other_votes": 535,
+        "total_votes": 112147,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 101588.0,
-        "margin_pct": 90.73030446470835
+        "margin": 101836.0,
+        "margin_pct": 90.80581736470882
       },
       "4": {
-        "dem_votes": 124169,
-        "rep_votes": 21229,
-        "other_votes": 864,
-        "total_votes": 146262,
+        "dem_votes": 125326,
+        "rep_votes": 21626,
+        "other_votes": 882,
+        "total_votes": 147834,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 102940.0,
-        "margin_pct": 70.38054997196811
+        "margin": 103700.0,
+        "margin_pct": 70.1462451127616
       },
       "5": {
-        "dem_votes": 61275,
-        "rep_votes": 33286,
-        "other_votes": 730,
-        "total_votes": 95291,
+        "dem_votes": 61774,
+        "rep_votes": 33622,
+        "other_votes": 747,
+        "total_votes": 96143,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 27989.0,
-        "margin_pct": 29.372133779685385
+        "margin": 28152.0,
+        "margin_pct": 29.28138293999563
       },
       "6": {
-        "dem_votes": 66573,
-        "rep_votes": 61527,
-        "other_votes": 1609,
-        "total_votes": 129709,
+        "dem_votes": 66897,
+        "rep_votes": 62022,
+        "other_votes": 1620,
+        "total_votes": 130539,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 5046.0,
-        "margin_pct": 3.890246628992591
+        "margin": 4875.0,
+        "margin_pct": 3.7345161216188263
       },
       "7": {
-        "dem_votes": 106748,
-        "rep_votes": 15106,
-        "other_votes": 916,
-        "total_votes": 122770,
+        "dem_votes": 106964,
+        "rep_votes": 15096,
+        "other_votes": 895,
+        "total_votes": 122955,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 91642.0,
-        "margin_pct": 74.64527164616763
+        "margin": 91868.0,
+        "margin_pct": 74.71676629661258
       },
       "8": {
-        "dem_votes": 98989,
-        "rep_votes": 11442,
-        "other_votes": 692,
-        "total_votes": 111123,
+        "dem_votes": 99727,
+        "rep_votes": 11554,
+        "other_votes": 711,
+        "total_votes": 111992,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 87547.0,
-        "margin_pct": 78.78387012589653
+        "margin": 88173.0,
+        "margin_pct": 78.7315165368955
       },
       "9": {
-        "dem_votes": 68146,
-        "rep_votes": 52494,
-        "other_votes": 1406,
-        "total_votes": 122046,
+        "dem_votes": 62922,
+        "rep_votes": 46338,
+        "other_votes": 1313,
+        "total_votes": 110573,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 15652.0,
-        "margin_pct": 12.824672664405224
+        "margin": 16584.0,
+        "margin_pct": 14.998236459171768
       },
       "10": {
-        "dem_votes": 73623,
-        "rep_votes": 58844,
-        "other_votes": 1868,
-        "total_votes": 134335,
+        "dem_votes": 74091,
+        "rep_votes": 59384,
+        "other_votes": 1896,
+        "total_votes": 135371,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 14779.0,
-        "margin_pct": 11.001600476420888
+        "margin": 14707.0,
+        "margin_pct": 10.864217594610368
       },
       "11": {
-        "dem_votes": 53857,
-        "rep_votes": 37893,
-        "other_votes": 1547,
-        "total_votes": 93297,
+        "dem_votes": 54172,
+        "rep_votes": 38455,
+        "other_votes": 1588,
+        "total_votes": 94215,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 15964.0,
-        "margin_pct": 17.11094676141784
+        "margin": 15717.0,
+        "margin_pct": 16.682056997293422
       },
       "12": {
-        "dem_votes": 69075,
-        "rep_votes": 57222,
-        "other_votes": 1653,
-        "total_votes": 127950,
+        "dem_votes": 65634,
+        "rep_votes": 54063,
+        "other_votes": 1629,
+        "total_votes": 121326,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 11853.0,
-        "margin_pct": 9.263774912075029
+        "margin": 11571.0,
+        "margin_pct": 9.537114880569705
       },
       "13": {
-        "dem_votes": 42755,
-        "rep_votes": 51911,
-        "other_votes": 1958,
-        "total_votes": 96624,
+        "dem_votes": 42763,
+        "rep_votes": 51276,
+        "other_votes": 2005,
+        "total_votes": 96044,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 9156.0,
-        "margin_pct": 9.475906607054148
+        "margin": 8513.0,
+        "margin_pct": 8.863645828995043
       },
       "14": {
-        "dem_votes": 56050,
-        "rep_votes": 37518,
-        "other_votes": 1617,
-        "total_votes": 95185,
+        "dem_votes": 57562,
+        "rep_votes": 38998,
+        "other_votes": 1684,
+        "total_votes": 98244,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 18532.0,
-        "margin_pct": 19.469454220728053
+        "margin": 18564.0,
+        "margin_pct": 18.89581043117137
       },
       "15": {
-        "dem_votes": 61517,
-        "rep_votes": 46885,
-        "other_votes": 1571,
-        "total_votes": 109973,
+        "dem_votes": 61885,
+        "rep_votes": 47304,
+        "other_votes": 1604,
+        "total_votes": 110793,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 14632.0,
-        "margin_pct": 13.305083975157538
+        "margin": 14581.0,
+        "margin_pct": 13.160578736923814
       },
       "16": {
-        "dem_votes": 54734,
-        "rep_votes": 64571,
-        "other_votes": 2087,
-        "total_votes": 121392,
+        "dem_votes": 53891,
+        "rep_votes": 64012,
+        "other_votes": 2072,
+        "total_votes": 119975,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 9837.0,
-        "margin_pct": 8.10349940688019
+        "margin": 10121.0,
+        "margin_pct": 8.435924150864764
       },
       "17": {
-        "dem_votes": 78847,
-        "rep_votes": 42046,
-        "other_votes": 1148,
-        "total_votes": 122041,
+        "dem_votes": 79248,
+        "rep_votes": 42399,
+        "other_votes": 1167,
+        "total_votes": 122814,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 36801.0,
-        "margin_pct": 30.15462016863185
+        "margin": 36849.0,
+        "margin_pct": 30.003908349211
       },
       "18": {
-        "dem_votes": 57751,
-        "rep_votes": 47285,
-        "other_votes": 1566,
-        "total_votes": 106602,
+        "dem_votes": 58086,
+        "rep_votes": 47698,
+        "other_votes": 1597,
+        "total_votes": 107381,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 10466.0,
-        "margin_pct": 9.817827057653702
+        "margin": 10388.0,
+        "margin_pct": 9.673964667864892
       },
       "19": {
-        "dem_votes": 63686,
-        "rep_votes": 55108,
-        "other_votes": 2104,
-        "total_votes": 120898,
+        "dem_votes": 64069,
+        "rep_votes": 55616,
+        "other_votes": 2124,
+        "total_votes": 121809,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 8578.0,
-        "margin_pct": 7.095237307482341
+        "margin": 8453.0,
+        "margin_pct": 6.939552906599676
       },
       "20": {
-        "dem_votes": 53873,
-        "rep_votes": 57384,
-        "other_votes": 2474,
-        "total_votes": 113731,
+        "dem_votes": 54389,
+        "rep_votes": 58132,
+        "other_votes": 2606,
+        "total_votes": 115127,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 3511.0,
-        "margin_pct": 3.087109055578514
+        "margin": 3743.0,
+        "margin_pct": 3.2511921616996884
       },
       "21": {
-        "dem_votes": 40687,
-        "rep_votes": 70745,
-        "other_votes": 2982,
-        "total_votes": 114414,
+        "dem_votes": 40954,
+        "rep_votes": 71384,
+        "other_votes": 3039,
+        "total_votes": 115377,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 30058.0,
-        "margin_pct": 26.271260510077436
+        "margin": 30430.0,
+        "margin_pct": 26.37440737755358
       },
       "22": {
-        "dem_votes": 68644,
-        "rep_votes": 32213,
-        "other_votes": 1686,
-        "total_votes": 102543,
+        "dem_votes": 69465,
+        "rep_votes": 32890,
+        "other_votes": 1862,
+        "total_votes": 104217,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 36431.0,
-        "margin_pct": 35.5275347902831
+        "margin": 36575.0,
+        "margin_pct": 35.095042075669035
       },
       "23": {
-        "dem_votes": 36787,
-        "rep_votes": 65977,
-        "other_votes": 2358,
-        "total_votes": 105122,
+        "dem_votes": 37035,
+        "rep_votes": 66584,
+        "other_votes": 2415,
+        "total_votes": 106034,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 29190.0,
-        "margin_pct": 27.76773653469302
+        "margin": 29549.0,
+        "margin_pct": 27.86747646981157
       },
       "24": {
-        "dem_votes": 55896,
-        "rep_votes": 58050,
-        "other_votes": 1412,
-        "total_votes": 115358,
+        "dem_votes": 55807,
+        "rep_votes": 58027,
+        "other_votes": 1421,
+        "total_votes": 115255,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 2154.0,
-        "margin_pct": 1.8672307078832848
+        "margin": 2220.0,
+        "margin_pct": 1.9261637239165328
       },
       "25": {
-        "dem_votes": 46374,
-        "rep_votes": 60149,
-        "other_votes": 3127,
-        "total_votes": 109650,
+        "dem_votes": 46295,
+        "rep_votes": 60461,
+        "other_votes": 3163,
+        "total_votes": 109919,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 13775.0,
-        "margin_pct": 12.562699498404012
+        "margin": 14166.0,
+        "margin_pct": 12.88767183107561
       },
       "26": {
-        "dem_votes": 72746,
-        "rep_votes": 48078,
-        "other_votes": 1204,
-        "total_votes": 122028,
+        "dem_votes": 73171,
+        "rep_votes": 48512,
+        "other_votes": 1229,
+        "total_votes": 122912,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 24668.0,
-        "margin_pct": 20.215032615465304
+        "margin": 24659.0,
+        "margin_pct": 20.062321010153607
       },
       "27": {
-        "dem_votes": 40114,
-        "rep_votes": 57668,
-        "other_votes": 2187,
-        "total_votes": 99969,
+        "dem_votes": 40780,
+        "rep_votes": 58824,
+        "other_votes": 2326,
+        "total_votes": 101930,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 17554.0,
-        "margin_pct": 17.55944342746251
+        "margin": 18044.0,
+        "margin_pct": 17.702344746394587
       },
       "28": {
-        "dem_votes": 41480,
-        "rep_votes": 67276,
-        "other_votes": 3166,
-        "total_votes": 111922,
+        "dem_votes": 41458,
+        "rep_votes": 67826,
+        "other_votes": 3191,
+        "total_votes": 112475,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 25796.0,
-        "margin_pct": 23.048194278158
+        "margin": 26368.0,
+        "margin_pct": 23.443431873749724
       },
       "29": {
-        "dem_votes": 44943,
-        "rep_votes": 52715,
-        "other_votes": 2038,
-        "total_votes": 99696,
+        "dem_votes": 43339,
+        "rep_votes": 50753,
+        "other_votes": 2048,
+        "total_votes": 96140,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 7772.0,
-        "margin_pct": 7.795698924731183
+        "margin": 7414.0,
+        "margin_pct": 7.7116704805491985
       },
       "30": {
-        "dem_votes": 32716,
-        "rep_votes": 64728,
-        "other_votes": 2109,
-        "total_votes": 99553,
+        "dem_votes": 32969,
+        "rep_votes": 65324,
+        "other_votes": 2187,
+        "total_votes": 100480,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 32012.0,
-        "margin_pct": 32.15573614054825
+        "margin": 32355.0,
+        "margin_pct": 32.20043789808918
       },
       "31": {
-        "dem_votes": 45495,
-        "rep_votes": 56446,
-        "other_votes": 2591,
-        "total_votes": 104532,
+        "dem_votes": 45825,
+        "rep_votes": 56635,
+        "other_votes": 2606,
+        "total_votes": 105066,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 10951.0,
-        "margin_pct": 10.476217808900623
+        "margin": 10810.0,
+        "margin_pct": 10.288770867835456
       },
       "32": {
-        "dem_votes": 41417,
-        "rep_votes": 61730,
-        "other_votes": 1945,
-        "total_votes": 105092,
+        "dem_votes": 41801,
+        "rep_votes": 62392,
+        "other_votes": 2037,
+        "total_votes": 106230,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 20313.0,
-        "margin_pct": 19.328778593993835
+        "margin": 20591.0,
+        "margin_pct": 19.383413348394992
       },
       "33": {
-        "dem_votes": 35456,
-        "rep_votes": 67132,
-        "other_votes": 2292,
-        "total_votes": 104880,
+        "dem_votes": 35283,
+        "rep_votes": 67015,
+        "other_votes": 2317,
+        "total_votes": 104615,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 31676.0,
-        "margin_pct": 30.202135774218153
+        "margin": 31732.0,
+        "margin_pct": 30.33217033886154
       },
       "34": {
-        "dem_votes": 43804,
-        "rep_votes": 64695,
-        "other_votes": 2383,
-        "total_votes": 110882,
+        "dem_votes": 40161,
+        "rep_votes": 59081,
+        "other_votes": 2254,
+        "total_votes": 101496,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 20891.0,
-        "margin_pct": 18.84074962572825
+        "margin": 18920.0,
+        "margin_pct": 18.641128714432096
       },
       "35": {
-        "dem_votes": 45162,
-        "rep_votes": 54996,
-        "other_votes": 2384,
-        "total_votes": 102542,
+        "dem_votes": 45861,
+        "rep_votes": 55801,
+        "other_votes": 2487,
+        "total_votes": 104149,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 9834.0,
-        "margin_pct": 9.59021669169706
+        "margin": 9940.0,
+        "margin_pct": 9.54401866556568
       },
       "36": {
-        "dem_votes": 44387,
-        "rep_votes": 69560,
-        "other_votes": 2335,
-        "total_votes": 116282,
+        "dem_votes": 44093,
+        "rep_votes": 69552,
+        "other_votes": 2362,
+        "total_votes": 116007,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 25173.0,
-        "margin_pct": 21.648234464491495
+        "margin": 25459.0,
+        "margin_pct": 21.946089460118788
       },
       "37": {
-        "dem_votes": 53527,
-        "rep_votes": 62123,
-        "other_votes": 1882,
-        "total_votes": 117532,
+        "dem_votes": 53953,
+        "rep_votes": 62984,
+        "other_votes": 1926,
+        "total_votes": 118863,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 8596.0,
-        "margin_pct": 7.313752850287582
+        "margin": 9031.0,
+        "margin_pct": 7.597822703448507
       },
       "38": {
-        "dem_votes": 67656,
-        "rep_votes": 59749,
-        "other_votes": 2295,
-        "total_votes": 129700,
+        "dem_votes": 68024,
+        "rep_votes": 60263,
+        "other_votes": 2322,
+        "total_votes": 130609,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 7907.0,
-        "margin_pct": 6.096376252891288
+        "margin": 7761.0,
+        "margin_pct": 5.942163250618258
       },
       "39": {
-        "dem_votes": 50876,
-        "rep_votes": 72690,
-        "other_votes": 2258,
-        "total_votes": 125824,
+        "dem_votes": 51121,
+        "rep_votes": 73269,
+        "other_votes": 2281,
+        "total_votes": 126671,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 21814.0,
-        "margin_pct": 17.33691505595117
+        "margin": 22148.0,
+        "margin_pct": 17.48466499830269
       },
       "40": {
-        "dem_votes": 56803,
-        "rep_votes": 41745,
-        "other_votes": 1547,
-        "total_votes": 100095,
+        "dem_votes": 56950,
+        "rep_votes": 41961,
+        "other_votes": 1590,
+        "total_votes": 100501,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 15058.0,
-        "margin_pct": 15.043708476946902
+        "margin": 14989.0,
+        "margin_pct": 14.914279459905872
       },
       "41": {
-        "dem_votes": 43940,
-        "rep_votes": 66013,
-        "other_votes": 2298,
-        "total_votes": 112251,
+        "dem_votes": 44342,
+        "rep_votes": 66781,
+        "other_votes": 2357,
+        "total_votes": 113480,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 22073.0,
-        "margin_pct": 19.6639673588654
+        "margin": 22439.0,
+        "margin_pct": 19.773528375044062
       },
       "42": {
-        "dem_votes": 76556,
-        "rep_votes": 38739,
-        "other_votes": 2637,
-        "total_votes": 117932,
+        "dem_votes": 77132,
+        "rep_votes": 39129,
+        "other_votes": 2660,
+        "total_votes": 118921,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 37817.0,
-        "margin_pct": 32.066784248550015
+        "margin": 38003.0,
+        "margin_pct": 31.956508942911682
       },
       "43": {
-        "dem_votes": 95870,
-        "rep_votes": 29085,
-        "other_votes": 2995,
-        "total_votes": 127950,
+        "dem_votes": 96235,
+        "rep_votes": 29258,
+        "other_votes": 3006,
+        "total_votes": 128499,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 66785.0,
-        "margin_pct": 52.196170379054315
+        "margin": 66977.0,
+        "margin_pct": 52.1225846115534
       },
       "44": {
-        "dem_votes": 57406,
-        "rep_votes": 57580,
-        "other_votes": 2167,
-        "total_votes": 117153,
+        "dem_votes": 57775,
+        "rep_votes": 58112,
+        "other_votes": 2188,
+        "total_votes": 118075,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 174.0,
-        "margin_pct": 0.14852372538475328
+        "margin": 337.0,
+        "margin_pct": 0.2854118145246665
       },
       "45": {
-        "dem_votes": 68014,
-        "rep_votes": 46266,
-        "other_votes": 2211,
-        "total_votes": 116491,
+        "dem_votes": 68328,
+        "rep_votes": 46384,
+        "other_votes": 2229,
+        "total_votes": 116941,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 21748.0,
-        "margin_pct": 18.66925341871904
+        "margin": 21944.0,
+        "margin_pct": 18.765018257069805
       },
       "46": {
-        "dem_votes": 51406,
-        "rep_votes": 56938,
-        "other_votes": 2106,
-        "total_votes": 110450,
+        "dem_votes": 51761,
+        "rep_votes": 57466,
+        "other_votes": 2195,
+        "total_votes": 111422,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 5532.0,
-        "margin_pct": 5.008601177003169
+        "margin": 5705.0,
+        "margin_pct": 5.120173753836765
       },
       "47": {
-        "dem_votes": 54141,
-        "rep_votes": 62864,
-        "other_votes": 2320,
-        "total_votes": 119325,
+        "dem_votes": 54204,
+        "rep_votes": 63417,
+        "other_votes": 2352,
+        "total_votes": 119973,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 8723.0,
-        "margin_pct": 7.310287031217263
+        "margin": 9213.0,
+        "margin_pct": 7.6792278262609095
       },
       "48": {
-        "dem_votes": 40336,
-        "rep_votes": 64770,
-        "other_votes": 2018,
-        "total_votes": 107124,
+        "dem_votes": 40747,
+        "rep_votes": 65453,
+        "other_votes": 2060,
+        "total_votes": 108260,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 24434.0,
-        "margin_pct": 22.809081064934094
+        "margin": 24706.0,
+        "margin_pct": 22.8209865139479
       },
       "49": {
-        "dem_votes": 63892,
-        "rep_votes": 46808,
-        "other_votes": 2732,
-        "total_votes": 113432,
+        "dem_votes": 64263,
+        "rep_votes": 47220,
+        "other_votes": 2763,
+        "total_votes": 114246,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "D",
-        "margin": 17084.0,
-        "margin_pct": 15.061005712673673
+        "margin": 17043.0,
+        "margin_pct": 14.917808938606166
       },
       "50": {
-        "dem_votes": 52367,
-        "rep_votes": 61608,
-        "other_votes": 2537,
-        "total_votes": 116512,
+        "dem_votes": 52740,
+        "rep_votes": 62185,
+        "other_votes": 2634,
+        "total_votes": 117559,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Tom Smith",
         "winner": "R",
-        "margin": 9241.0,
-        "margin_pct": 7.931371875858281
+        "margin": 9445.0,
+        "margin_pct": 8.034263646339285
       }
     }
   }
