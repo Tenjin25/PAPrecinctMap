@@ -98,6 +98,23 @@ class PublishedDataTests(unittest.TestCase):
         self.assertEqual(row["dem_candidate"], "Bob Casey, Jr.")
         self.assertEqual(row["rep_candidate"], "David H. McCormick")
 
+    def test_pa10_2018_us_senate_is_fixed(self):
+        path = self.directory / "congressional_us_senate_2018.json"
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        row = payload["general"]["results"]["10"]
+        self.assertEqual(
+            (row["dem_votes"], row["rep_votes"], row["other_votes"], row["total_votes"]),
+            (144682, 143315, 5926, 293923),
+        )
+
+    def test_2018_us_senate_matches_official_statewide_control(self):
+        expected = (2792615, 2135149, 82126, 5009890)
+        for scope in ("congressional", "state_house", "state_senate"):
+            path = self.directory / f"{scope}_us_senate_2018.json"
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            with self.subTest(scope=scope):
+                self.assertEqual(self.totals(payload), expected)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,30 @@
+{
+  "year": 2016,
+  "vest_raw": {
+    "dem": 2926156,
+    "rep": 2971303,
+    "other": 218232
+  },
+  "generic": {
+    "dem": 2925727,
+    "rep": 2970346,
+    "other": 217926
+  },
+  "production_control": {
+    "dem": 2926156,
+    "rep": 2971303,
+    "other": 218232
+  },
+  "generic_minus_production_control": {
+    "dem": -429,
+    "rep": -957,
+    "other": -306
+  },
+  "vest_raw_minus_production_control": {
+    "dem": 0,
+    "rep": 0,
+    "other": 0
+  },
+  "precinct_report": "data\\district_bef_audit\\vest_generic_president_2016_precinct.csv",
+  "county_report": "data\\district_bef_audit\\vest_generic_president_2016_county.csv"
+}

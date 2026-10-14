@@ -1,0 +1,30 @@
+{
+  "year": 2020,
+  "vest_raw": {
+    "dem": 3460475,
+    "rep": 3378442,
+    "other": 79432
+  },
+  "generic": {
+    "dem": 3457343,
+    "rep": 3379320,
+    "other": 79381
+  },
+  "production_control": {
+    "dem": 3458229,
+    "rep": 3377674,
+    "other": 79380
+  },
+  "generic_minus_production_control": {
+    "dem": -886,
+    "rep": 1646,
+    "other": 1
+  },
+  "vest_raw_minus_production_control": {
+    "dem": 2246,
+    "rep": 768,
+    "other": 52
+  },
+  "precinct_report": "data\\district_bef_audit\\vest_generic_president_2020_precinct.csv",
+  "county_report": "data\\district_bef_audit\\vest_generic_president_2020_county.csv"
+}

@@ -1,0 +1,30 @@
+{
+  "year": 2018,
+  "contest": "us_senate",
+  "scope": "congressional",
+  "district": "10",
+  "source": "data\\Openelections\\2018\\20181106__pa__general__precinct.csv",
+  "totals": {
+    "dem": 144682,
+    "rep": 143315,
+    "other": 5926
+  },
+  "county_totals": {
+    "CUMBERLAND": {
+      "dem": 45015,
+      "rep": 49847,
+      "other": 1994
+    },
+    "DAUPHIN": {
+      "dem": 59533,
+      "rep": 47152,
+      "other": 2023
+    },
+    "YORK": {
+      "dem": 40134,
+      "rep": 46316,
+      "other": 1909
+    }
+  },
+  "detail": "data\\district_bef_audit\\pa10_us_senate_2018_precinct_attribution.csv"
+}

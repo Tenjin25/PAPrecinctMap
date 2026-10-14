@@ -198,6 +198,8 @@ Current-line district aggregation uses a county-component rule derived from the 
 
 Historical fractional rows produced by the NHGIS 2000→2010→2020 block chain are integerized by largest remainder within county, contest, and party before district allocation. Any difference between the sum of locally rounded components and the rounded source total is explicitly reconciled from the rows' signed fractional deficits; district outcomes never influence that arithmetic reconciliation.
 
+The retained Pennsylvania Department of State 2018 precinct export is the external control for the 2018 governor and U.S. Senate layers. Detailed PA-10 Senate attribution is recorded in `data/district_bef_audit/pa10_us_senate_2018_precinct_attribution.csv`; the two materially split source VTDs are allocated by Carter-plan block VAP rather than omitted or assigned wholesale.
+
 The return builder uses historical or modern precinct-to-2020-VTD crosswalks first, then applies `data/crosswalks/pa_vtd20_to_current_precinct.csv` to align those VTD targets with the current precinct polygons used by the frontend. One-to-one VTD identities are retained directly; split or changed VTDs are disaggregated with 2020 census-block assignments. The bridge build fails if a source VTD's weights do not sum to one, preventing duplicated votes. Polygon-area overlap is reserved for cases without usable block assignments.
 
 Precinct candidate labels are normalized from the matching county contest slices during the build, so precinct cards, county results, and district/statewide displays use the same canonical spelling.
