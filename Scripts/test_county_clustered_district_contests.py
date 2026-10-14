@@ -120,6 +120,18 @@ class PublishedDataTests(unittest.TestCase):
             with self.subTest(scope=scope):
                 self.assertEqual(self.totals(payload), expected)
 
+    def test_2018_us_senate_counties_match_official_control(self):
+        payload = json.loads((ROOT / "data" / "contests" / "us_senate_2018.json").read_text(encoding="utf-8"))
+        rows = payload["rows"]
+        totals = tuple(sum(int(row[field]) for row in rows) for field in ("dem_votes", "rep_votes", "other_votes", "total_votes"))
+        self.assertEqual(totals, (2792437, 2134848, 82115, 5009400))
+        westmoreland = next(row for row in rows if row["county"] == "WESTMORELAND")
+        self.assertEqual(
+            (westmoreland["dem_votes"], westmoreland["rep_votes"], westmoreland["other_votes"], westmoreland["total_votes"]),
+            (63778, 79078, 2402, 145258),
+        )
+        self.assertTrue(all(row["dem_candidate"] == "Bob Casey, Jr." for row in rows))
+
     def test_calibrated_layers_conserve_by_party(self):
         for contest, year in (("president", 2008), ("president", 2012),
                               ("governor", 2018), ("us_senate", 2018)):

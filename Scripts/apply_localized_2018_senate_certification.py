@@ -67,6 +67,42 @@ def main() -> int:
         }
         path.write_text(json.dumps(document, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"{scope}: {'already controlled at' if already_controlled else str(before) + ' ->'} {after}")
+
+    county_path = DATA / "contests" / "us_senate_2018.json"
+    county_document = json.loads(county_path.read_text(encoding="utf-8"))
+    county_rows = county_document["rows"]
+    county_before = {
+        bucket: sum(int(row[f"{bucket}_votes"]) for row in county_rows)
+        for bucket in BASE_TOTALS
+    }
+    if county_before not in (BASE_TOTALS, FINAL_TOTALS):
+        raise RuntimeError(f"county layer: unexpected baseline {county_before}")
+    westmoreland = next(row for row in county_rows if str(row.get("county") or "").upper() == "WESTMORELAND")
+    westmoreland.update({"dem_votes": 63_778, "rep_votes": 79_078, "other_votes": 2_402})
+    for row in county_rows:
+        if row.get("dem_candidate") in {"Bob Casey Jr.", "Bob Casey Jr", "Robert P. Casey Jr."}:
+            row["dem_candidate"] = "Bob Casey, Jr."
+        dem, rep, other = (int(row[f"{bucket}_votes"]) for bucket in ("dem", "rep", "other"))
+        total, margin = dem + rep + other, dem - rep
+        row.update({
+            "total_votes": total,
+            "winner": "D" if margin > 0 else "R" if margin < 0 else "T",
+            "margin": float(abs(margin)),
+            "margin_pct": abs(margin) / total * 100 if total else 0.0,
+        })
+    county_after = {
+        bucket: sum(int(row[f"{bucket}_votes"]) for row in county_rows)
+        for bucket in FINAL_TOTALS
+    }
+    if county_after != FINAL_TOTALS:
+        raise RuntimeError(f"county layer: controlled totals {county_after} != {FINAL_TOTALS}")
+    county_document["meta"] = {
+        "source": "Pennsylvania official county returns API",
+        "county_control": "benchmarks/pa_county_2018_us_senate_certified.csv",
+        "write_ins_excluded": 1568,
+    }
+    county_path.write_text(json.dumps(county_document, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"county: {county_before} -> {county_after}")
     return 0
 
 
