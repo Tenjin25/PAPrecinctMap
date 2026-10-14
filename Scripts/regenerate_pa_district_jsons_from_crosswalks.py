@@ -872,8 +872,12 @@ def prepare_2008_harvard_aggregate_groups(source_votes, source_path):
     """Collapse documented 2008 return groups and read their VAP weights."""
     if not source_path:
         return source_votes, {}
+    # A directory of Census VTD archives is a geometry fallback, not the
+    # Harvard aggregate file with FRACTION/VAP fields handled here.
+    if Path(source_path).is_dir():
+        return source_votes, {}
     frame = gpd.read_file(source_path, ignore_geometry=True)
-    required = {"COUNTYFP10", "VTDST10", "FRACTION", "VAP"}
+    required = {"COUNTYFP10", "VTDST10", "VAP"}
     if not required.issubset(frame.columns):
         return source_votes, {}
 
@@ -889,7 +893,11 @@ def prepare_2008_harvard_aggregate_groups(source_votes, source_path):
         if len(matching_keys) < 2:
             continue
         rows = frame[(frame["countyfp"] == county) & (frame["vtd"].isin(historical_vtds))].copy()
-        rows["weight"] = pd.to_numeric(rows[weight_column], errors="coerce").fillna(0.0)
+        # Some MGGG releases contain VAP but omit the derived FRACTION field.
+        # FRACTION is simply the within-group normalized VAP used below, so VAP
+        # is the equivalent allocation basis when that convenience field is absent.
+        available_weight_column = weight_column if weight_column in rows.columns else "VAP"
+        rows["weight"] = pd.to_numeric(rows[available_weight_column], errors="coerce").fillna(0.0)
         total_weight = float(rows["weight"].sum())
         if len(rows) != len(historical_vtds) or total_weight <= 0:
             continue
@@ -1184,9 +1192,12 @@ def read_statewide_vote_control(contest, year):
     return totals, path.relative_to(DATA).as_posix()
 
 
-def apply_statewide_vote_control(contest, year, results):
+def apply_statewide_vote_control(contest, year, results, controls_override=None, source_override=""):
     """Rake district party totals to statewide controls with exact rounding."""
-    controls, source = read_statewide_vote_control(contest, year)
+    if controls_override:
+        controls, source = controls_override, source_override
+    else:
+        controls, source = read_statewide_vote_control(contest, year)
     if not controls or not results:
         return ""
     districts = sorted(results, key=lambda value: int(value) if value.isdigit() else value)
@@ -1258,6 +1269,14 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
             source_votes,
             historical_geometry_source,
         )
+    official_source_controls = None
+    official_source_label = ""
+    if source_file.name.startswith("ElectionReturns_"):
+        official_source_controls = {
+            f"{bucket}_votes": round(sum(float(values.get(bucket, 0.0) or 0.0) for values in source_votes.values()))
+            for bucket in ("dem", "rep", "other")
+        }
+        official_source_label = source_file.name
     source_total = sum(
         float(value or 0)
         for row in source_votes.values()
@@ -1536,7 +1555,13 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
         results = district_result_rows(votes, candidates)
         calibration_source = apply_dra_presidential_shares(scope, contest, year, results)
         exact_benchmark_source = apply_exact_district_benchmarks(scope, contest, year, results)
-        statewide_control_source = apply_statewide_vote_control(contest, year, results)
+        statewide_control_source = apply_statewide_vote_control(
+            contest,
+            year,
+            results,
+            official_source_controls,
+            official_source_label,
+        )
         output = {
             "scope": scope,
             "contest_type": contest,
