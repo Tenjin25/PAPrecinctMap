@@ -150,6 +150,28 @@ def allocate(total, weights):
     return {district: total * weight / weight_total for district, weight in weights.items()}
 
 
+def round_district_vote_components(results):
+    """Round once per party across districts while preserving source totals."""
+    district_ids = sorted(results, key=int)
+    for field in ("dem_votes", "rep_votes", "other_votes"):
+        raw = {district: float(results[district].get(field) or 0) for district in district_ids}
+        rounded = {district: int(amount) for district, amount in raw.items()}
+        remainder = int(round(sum(raw.values()))) - sum(rounded.values())
+        order = sorted(
+            district_ids,
+            key=lambda district: (raw[district] - rounded[district], -int(district)),
+            reverse=True,
+        )
+        for district in order[:remainder]:
+            rounded[district] += 1
+        for district, amount in rounded.items():
+            results[district][field] = amount
+    for node in results.values():
+        node["total_votes"] = sum(
+            int(node.get(field) or 0) for field in ("dem_votes", "rep_votes", "other_votes")
+        )
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
@@ -273,7 +295,7 @@ def main():
 
     files = []
     for (scope, contest), results in sorted(nodes.items()):
-        layers.round_district_vote_components(results)
+        round_district_vote_components(results)
         finalized = {}
         for district, node in sorted(results.items(), key=lambda item: int(item[0])):
             layers.finalize_result_node(node)
