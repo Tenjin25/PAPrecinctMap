@@ -1,0 +1,37 @@
+{
+  "year": 2016,
+  "source": "data/historical_sources/vest_pa_2016.zip",
+  "method": "VEST precinct geometry intersected with VTD20; VTD20 assigned to current districts by block count",
+  "controls": {
+    "president": {
+      "dem_votes": 2926156,
+      "rep_votes": 2971303,
+      "other_votes": 218232,
+      "total_votes": 6115691
+    },
+    "us_senate": {
+      "dem_votes": 2865024,
+      "rep_votes": 2952206,
+      "other_votes": 235143,
+      "total_votes": 6052373
+    },
+    "attorney_general": {
+      "dem_votes": 3057014,
+      "rep_votes": 2891526,
+      "other_votes": 0,
+      "total_votes": 5948540
+    },
+    "auditor": {
+      "dem_votes": 2958821,
+      "rep_votes": 2667319,
+      "other_votes": 290796,
+      "total_votes": 5916936
+    },
+    "treasurer": {
+      "dem_votes": 2991408,
+      "rep_votes": 2610812,
+      "other_votes": 305347,
+      "total_votes": 5907567
+    }
+  }
+}

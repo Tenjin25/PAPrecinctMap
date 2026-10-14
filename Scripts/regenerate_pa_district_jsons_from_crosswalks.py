@@ -703,7 +703,7 @@ def read_historical_geometry_targets(year, source_keys, source_path=None):
     the block-chain crosswalk.  This is intentionally a fallback: existing
     Census VTD chains and name matches remain authoritative when available.
     """
-    if year not in {2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2018, 2020, 2022, 2024}:
+    if year not in {2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016, 2018, 2020, 2022, 2024}:
         return {}
     source_path = source_path or DATA / "pa_election_geodata_2011_boundaries" / "2011 Voting District Boundary Shapefiles" / "VTDS.shp"
     cache_key = (year, str(Path(source_path).resolve()))
@@ -745,6 +745,13 @@ def read_historical_geometry_targets(year, source_keys, source_path=None):
         historical["countyfp"] = historical["FIPS"].map(lambda v: norm(v, 3))
         historical["src_vtd"] = historical["VTD"].map(lambda v: norm(v, 6))
         name_columns = [column for column in ("NAME",) if column in columns]
+    elif {"COUNTYFP", "PRECINCT", "NAME"}.issubset(columns):
+        # VEST's 2016 Pennsylvania precinct file has no Census VTD code.
+        # Give each polygon a stable row key so its vote fields and geometry
+        # can travel together through the normal VTD20 intersection path.
+        historical["countyfp"] = historical["COUNTYFP"].map(lambda v: norm(v, 3))
+        historical["src_vtd"] = [f"VP{index + 1:05d}" for index in range(len(historical))]
+        name_columns = ["NAME", "PRECINCT"]
     else:
         raise ValueError(f"Unsupported historical geometry fields in {source_path}")
     direct_vtd_source = {"COUNTYFP20", "VTDST20"}.issubset(columns) or {"FIPS", "VTD"}.issubset(columns)
@@ -769,7 +776,10 @@ def read_historical_geometry_targets(year, source_keys, source_path=None):
         historical["source_area"] = 1.0
     else:
         historical = read_source(source_path)
-        if {"COUNTYFP00", "VTDST00"}.issubset(historical.columns):
+        if {"COUNTYFP", "PRECINCT", "NAME"}.issubset(historical.columns):
+            historical["countyfp"] = historical["COUNTYFP"].map(lambda v: norm(v, 3))
+            historical["src_vtd"] = [f"VP{index + 1:05d}" for index in range(len(historical))]
+        elif {"COUNTYFP00", "VTDST00"}.issubset(historical.columns):
             historical["countyfp"] = historical["COUNTYFP00"].map(lambda v: norm(v, 3))
             historical["src_vtd"] = historical["VTDST00"].map(lambda v: norm(v, 6))
         else:
@@ -1039,6 +1049,39 @@ def parse_historical_vtd_returns(path, year, office_code="USP"):
         (2006, "USS"): ("USSDV2006", "USSRV2006"),
         (2016, "USP"): ("T16PRESD", "T16PRESR", "T16PRESOTH"),
     }
+    vest_fields = {
+        (2016, "USP"): (("G16PREDCLI",), ("G16PRERTRU",), ("G16PRELJOH", "G16PREGSTE", "G16PRECCAS")),
+        (2016, "USS"): (("G16USSDMCG",), ("G16USSRTOO",), ("G16USSLCLI",)),
+        (2016, "ATT"): (("G16ATGDSHA",), ("G16ATGRRAF",), ()),
+        (2016, "AUD"): (("G16AUDDDEP",), ("G16AUDRBRO",), ("G16AUDLMIN", "G16AUDGSWE")),
+        (2016, "TRE"): (("G16TREDTOR",), ("G16TRERVOI",), ("G16TRELBAB", "G16TREGCOM")),
+    }
+    vest_vote_fields = vest_fields.get((year, office_code.upper()))
+    if vest_vote_fields:
+        columns = ["COUNTYFP", "PRECINCT", "NAME", *sum(vest_vote_fields, ())]
+        frame = gpd.read_file(
+            f"zip://{Path(path).resolve().as_posix()}" if str(path).lower().endswith(".zip")
+            else str(Path(path).resolve()),
+            columns=columns,
+            ignore_geometry=True,
+        )
+        candidates = {
+            "USP": {"dem": "Hillary Clinton", "rep": "Donald J. Trump"},
+            "USS": {"dem": "Katie McGinty", "rep": "Pat Toomey"},
+            "ATT": {"dem": "Josh Shapiro", "rep": "John Rafferty"},
+            "AUD": {"dem": "Eugene DePasquale", "rep": "John Brown"},
+            "TRE": {"dem": "Joe Torsella", "rep": "Otto Voit"},
+        }[office_code.upper()]
+        totals = {}
+        for index, row in enumerate(frame.itertuples(index=False), start=1):
+            values = row._asdict()
+            totals[(norm(values["COUNTYFP"], 3), f"VP{index:05d}", norm(values["NAME"]))] = {
+                "dem": sum(float(values.get(field) or 0) for field in vest_vote_fields[0]),
+                "rep": sum(float(values.get(field) or 0) for field in vest_vote_fields[1]),
+                "other": sum(float(values.get(field) or 0) for field in vest_vote_fields[2]),
+            }
+        return totals, candidates
+
     vote_fields = fields.get((year, office_code.upper()))
     if not vote_fields:
         raise ValueError(f"Unsupported historical VTD contest: {year} {office_code}")
@@ -1271,7 +1314,13 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
         )
     official_source_controls = None
     official_source_label = ""
-    if source_file.name.startswith("ElectionReturns_"):
+    if historical_vtd_source:
+        official_source_controls = {
+            f"{bucket}_votes": round(sum(float(values.get(bucket, 0.0) or 0.0) for values in source_votes.values()))
+            for bucket in ("dem", "rep", "other")
+        }
+        official_source_label = Path(historical_vtd_source).name
+    elif source_file.name.startswith("ElectionReturns_"):
         official_source_controls = {
             f"{bucket}_votes": round(sum(float(values.get(bucket, 0.0) or 0.0) for values in source_votes.values()))
             for bucket in ("dem", "rep", "other")
@@ -1572,7 +1621,7 @@ def build_one(year, source_file, contest, office_code, out_dir, weight_mode, sco
                 "coverage_percent": (len(set(results) & expected) / len(expected) * 100) if expected else 0.0,
                 "source": (
                     f"precinct_returns_to_vtd_block_chain_{weight_mode}_districts"
-                    + ("+harvard_pa_2011_vtd10_votes" if historical_vtd_source else "")
+                    + (f"+historical_geometry_votes/{Path(historical_vtd_source).name}" if historical_vtd_source else "")
                     + ("+harvard_pa_2011_aggregate_geometry" if harvard_aggregate_groups else "")
                     + (f"+dra_share_calibration/{calibration_source}" if calibration_source else "")
                     + (f"+exact_district_benchmark/{exact_benchmark_source}" if exact_benchmark_source else "")
