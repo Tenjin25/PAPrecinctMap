@@ -615,7 +615,7 @@
   </script>
   <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
   <script>
-    window.__SDE_BUILD_ID = '2026-10-15-certified-history-v10';
+    window.__SDE_BUILD_ID = '2026-10-15-tooltip-placement-v11';
     // Reduce noisy console errors when ad blockers block Mapbox telemetry (events.mapbox.com).
     try {
       if (window.mapboxgl && typeof window.mapboxgl.setTelemetryEnabled === 'function') {
@@ -10551,8 +10551,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-10-15-certified-history-v10';
-    const APP_BUILD_ID = '2026-10-15-certified-history-v10';
+    const DATA_CACHE_BUSTER = '2026-10-15-tooltip-placement-v11';
+    const APP_BUILD_ID = '2026-10-15-tooltip-placement-v11';
 
     function ensurePageCacheBuster() {
       return false;
@@ -32040,12 +32040,13 @@ document.addEventListener('DOMContentLoaded', function() {
       try { document.body.classList.toggle('hover-preview-active', !pinned); } catch (_) {}
       try { wireDesktopTooltipExpandOnClick(); } catch (_) {}
 
-      // Do not force layout here. Measuring the freshly written tooltip with
-      // getBoundingClientRect() on every feature transition was the biggest
-      // source of hover delay. Use stable estimates for edge-flipping instead.
-      const estimated = getHoverTooltipEstimatedSize(context);
-      hoverTooltipMeasuredWidth = estimated.width;
-      hoverTooltipMeasuredHeight = estimated.height;
+      // Match NC's placement behavior by flipping against the tooltip's actual
+      // rendered size. Cache the measurement so ordinary pointer movement does
+      // not trigger another layout read until the tooltip content changes.
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const fallbackSize = getHoverTooltipEstimatedSize(context);
+      hoverTooltipMeasuredWidth = tooltipRect.width || fallbackSize.width;
+      hoverTooltipMeasuredHeight = tooltipRect.height || fallbackSize.height;
       const padding = 15;
 
       let left = x + padding;
