@@ -1774,6 +1774,10 @@ def normalize_candidate_label(value):
         return 'David H. McCormick'
     if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() == 'eugene depasquale':
         return 'Eugene DePasquale'
+    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+        'timothy l defoor', 'timothy lionel defoor', 'timothy defoor', 'tim defoor'
+    }:
+        return 'Tim DeFoor'
 
     def format_name(name):
         words = []

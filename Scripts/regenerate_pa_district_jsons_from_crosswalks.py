@@ -537,6 +537,10 @@ def display_candidate_name(value):
     result = re.sub(r"\s+(Jr|Sr)\.?$", r", \1", result)
     result = re.sub(r"\bMccain\b", "McCain", result)
     result = re.sub(r"\bMccord\b", "McCord", result)
+    if re.sub(r"[^a-z0-9]+", " ", result.lower()).strip() in {
+        "timothy l defoor", "timothy lionel defoor", "timothy defoor", "tim defoor"
+    }:
+        result = "Tim DeFoor"
     if result in {"Thomas W. Corbett, Jr", "Thomas Corbett, Jr"}:
         result = "Tom Corbett"
     return result

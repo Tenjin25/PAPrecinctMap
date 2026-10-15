@@ -132,6 +132,14 @@ class PublishedDataTests(unittest.TestCase):
         )
         self.assertTrue(all(row["dem_candidate"] == "Bob Casey, Jr." for row in rows))
 
+    def test_defoor_name_is_normalized(self):
+        for year in (2020, 2024):
+            county = json.loads((ROOT / "data" / "contests" / f"auditor_{year}.json").read_text(encoding="utf-8"))
+            self.assertTrue(all(row["rep_candidate"] == "Tim DeFoor" for row in county["rows"]))
+            for scope in ("congressional", "state_house", "state_senate"):
+                district = json.loads((self.directory / f"{scope}_auditor_{year}.json").read_text(encoding="utf-8"))
+                self.assertTrue(all(row["rep_candidate"] == "Tim DeFoor" for row in district["general"]["results"].values()))
+
     def test_calibrated_layers_conserve_by_party(self):
         for contest, year in (("president", 2008), ("president", 2012),
                               ("governor", 2018), ("us_senate", 2018)):
