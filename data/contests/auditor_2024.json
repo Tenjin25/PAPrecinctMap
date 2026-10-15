@@ -17,14 +17,14 @@
     },
     {
       "county": "ALLEGHENY",
-      "dem_votes": 396468,
-      "rep_votes": 278484,
+      "dem_votes": 396467,
+      "rep_votes": 278483,
       "other_votes": 21192,
-      "total_votes": 696144,
+      "total_votes": 696142,
       "dem_candidate": "Malcolm Kenyatta",
       "rep_candidate": "Tim DeFoor",
       "margin": 117984.0,
-      "margin_pct": 16.948217610149623,
+      "margin_pct": 16.94826630199011,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -174,13 +174,13 @@
     {
       "county": "CENTRE",
       "dem_votes": 37309,
-      "rep_votes": 39317,
+      "rep_votes": 39318,
       "other_votes": 2224,
-      "total_votes": 78850,
+      "total_votes": 78851,
       "dem_candidate": "Malcolm Kenyatta",
       "rep_candidate": "Tim DeFoor",
-      "margin": 2008.0,
-      "margin_pct": 2.5466074825618263,
+      "margin": 2009.0,
+      "margin_pct": 2.547843400844631,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -395,13 +395,13 @@
     {
       "county": "HUNTINGDON",
       "dem_votes": 4805,
-      "rep_votes": 17234,
+      "rep_votes": 17233,
       "other_votes": 713,
-      "total_votes": 22752,
+      "total_votes": 22751,
       "dem_candidate": "Malcolm Kenyatta",
       "rep_candidate": "Tim DeFoor",
-      "margin": 12429.0,
-      "margin_pct": 54.62816455696202,
+      "margin": 12428.0,
+      "margin_pct": 54.62617027822952,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -836,14 +836,14 @@
     },
     {
       "county": "WESTMORELAND",
-      "dem_votes": 68758,
-      "rep_votes": 129420,
+      "dem_votes": 68759,
+      "rep_votes": 129421,
       "other_votes": 6022,
-      "total_votes": 204200,
+      "total_votes": 204202,
       "dem_candidate": "Malcolm Kenyatta",
       "rep_candidate": "Tim DeFoor",
       "margin": 60662.0,
-      "margin_pct": 29.707149853085212,
+      "margin_pct": 29.70685889462395,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2024_auditor_certified.csv",
+    "write_ins_excluded": true
+  }
 }

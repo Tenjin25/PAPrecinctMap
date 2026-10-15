@@ -17,14 +17,14 @@
     },
     {
       "county": "ALLEGHENY",
-      "dem_votes": 414667,
-      "rep_votes": 269180,
+      "dem_votes": 414666,
+      "rep_votes": 269179,
       "other_votes": 21863,
-      "total_votes": 705710,
+      "total_votes": 705708,
       "dem_candidate": "Eugenio Depasquale",
       "rep_candidate": "Dave Sunday",
       "margin": 145487.0,
-      "margin_pct": 20.61569199812954,
+      "margin_pct": 20.615750423687984,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -174,13 +174,13 @@
     {
       "county": "CENTRE",
       "dem_votes": 37544,
-      "rep_votes": 39651,
+      "rep_votes": 39652,
       "other_votes": 2219,
-      "total_votes": 79414,
+      "total_votes": 79415,
       "dem_candidate": "Eugenio Depasquale",
       "rep_candidate": "Dave Sunday",
-      "margin": 2107.0,
-      "margin_pct": 2.6531845770267206,
+      "margin": 2108.0,
+      "margin_pct": 2.6544103758735753,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -395,13 +395,13 @@
     {
       "county": "HUNTINGDON",
       "dem_votes": 4790,
-      "rep_votes": 17449,
+      "rep_votes": 17448,
       "other_votes": 626,
-      "total_votes": 22865,
+      "total_votes": 22864,
       "dem_candidate": "Eugenio Depasquale",
       "rep_candidate": "Dave Sunday",
-      "margin": 12659.0,
-      "margin_pct": 55.364093592827466,
+      "margin": 12658.0,
+      "margin_pct": 55.36214135759272,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -836,14 +836,14 @@
     },
     {
       "county": "WESTMORELAND",
-      "dem_votes": 72702,
-      "rep_votes": 128069,
+      "dem_votes": 72703,
+      "rep_votes": 128070,
       "other_votes": 5912,
-      "total_votes": 206683,
+      "total_votes": 206685,
       "dem_candidate": "Eugenio Depasquale",
       "rep_candidate": "Dave Sunday",
       "margin": 55367.0,
-      "margin_pct": 26.78836672585554,
+      "margin_pct": 26.78810750659216,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2024_attorney_general_certified.csv",
+    "write_ins_excluded": true
+  }
 }

@@ -17,14 +17,14 @@
     },
     {
       "county": "ALLEGHENY",
-      "dem_votes": 363874,
-      "rep_votes": 200633,
+      "dem_votes": 363873,
+      "rep_votes": 200632,
       "other_votes": 9204,
-      "total_votes": 573711,
+      "total_votes": 573709,
       "dem_candidate": "John K. Fetterman",
       "rep_candidate": "Mehmet C. Oz",
       "margin": 163241.0,
-      "margin_pct": 28.453524509727025,
+      "margin_pct": 28.453623701214383,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -174,13 +174,13 @@
     {
       "county": "CENTRE",
       "dem_votes": 32597,
-      "rep_votes": 27901,
+      "rep_votes": 27902,
       "other_votes": 1562,
-      "total_votes": 62060,
+      "total_votes": 62061,
       "dem_candidate": "John K. Fetterman",
       "rep_candidate": "Mehmet C. Oz",
-      "margin": 4696.0,
-      "margin_pct": 7.566870770222366,
+      "margin": 4695.0,
+      "margin_pct": 7.565137525982502,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -395,13 +395,13 @@
     {
       "county": "HUNTINGDON",
       "dem_votes": 4665,
-      "rep_votes": 13036,
+      "rep_votes": 13035,
       "other_votes": 564,
-      "total_votes": 18265,
+      "total_votes": 18264,
       "dem_candidate": "John K. Fetterman",
       "rep_candidate": "Mehmet C. Oz",
-      "margin": 8371.0,
-      "margin_pct": 45.83082398029018,
+      "margin": 8370.0,
+      "margin_pct": 45.827858081471746,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -422,12 +422,12 @@
       "county": "JEFFERSON",
       "dem_votes": 4135,
       "rep_votes": 13139,
-      "other_votes": 0,
-      "total_votes": 17274,
+      "other_votes": 512,
+      "total_votes": 17786,
       "dem_candidate": "John K. Fetterman",
       "rep_candidate": "Mehmet C. Oz",
       "margin": 9004.0,
-      "margin_pct": 52.124580294083586,
+      "margin_pct": 50.62408636005847,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -472,14 +472,14 @@
     },
     {
       "county": "LAWRENCE",
-      "dem_votes": 13658,
-      "rep_votes": 21384,
-      "other_votes": 913,
-      "total_votes": 35955,
+      "dem_votes": 13758,
+      "rep_votes": 21531,
+      "other_votes": 917,
+      "total_votes": 36206,
       "dem_candidate": "John K. Fetterman",
       "rep_candidate": "Mehmet C. Oz",
-      "margin": 7726.0,
-      "margin_pct": 21.487971074954803,
+      "margin": 7773.0,
+      "margin_pct": 21.46881732309562,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -654,14 +654,14 @@
     },
     {
       "county": "PHILADELPHIA",
-      "dem_votes": 412246,
-      "rep_votes": 78386,
-      "other_votes": 7899,
-      "total_votes": 498531,
+      "dem_votes": 412841,
+      "rep_votes": 78408,
+      "other_votes": 7902,
+      "total_votes": 499151,
       "dem_candidate": "John K. Fetterman / John Fetterman",
       "rep_candidate": "Mehmet C. Oz",
-      "margin": 333860.0,
-      "margin_pct": 66.96875419983913,
+      "margin": 334433.0,
+      "margin_pct": 67.00036662252504,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -836,14 +836,14 @@
     },
     {
       "county": "WESTMORELAND",
-      "dem_votes": 66239,
-      "rep_votes": 98237,
+      "dem_votes": 66240,
+      "rep_votes": 98238,
       "other_votes": 3531,
-      "total_votes": 168007,
+      "total_votes": 168009,
       "dem_candidate": "John K. Fetterman",
       "rep_candidate": "Mehmet C. Oz",
       "margin": 31998.0,
-      "margin_pct": 19.045635003303435,
+      "margin_pct": 19.045408281699196,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2022_us_senate_certified.csv",
+    "write_ins_excluded": true
+  }
 }

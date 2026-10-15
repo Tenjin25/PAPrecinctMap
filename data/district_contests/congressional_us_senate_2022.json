@@ -6,12 +6,22 @@
     "districts_observed": 17,
     "districts_expected": 17,
     "coverage_percent": 100.0,
-    "source": "RDH 2022 precinct matrix with embedded districts and BEF/BAF fallback",
+    "source": "RDH 2022 precinct matrix with embedded districts and BEF/BAF fallback+official_county_party_controls",
+    "county_control_audit": [
+      {
+        "contest": "us_senate",
+        "county": "JEFFERSON",
+        "bucket": "other_votes",
+        "source_votes": 511,
+        "control_votes": 512,
+        "delta": 1
+      }
+    ],
     "allocation_audit": {
       "source_rows": 41747,
-      "source_votes": 5368020,
+      "source_votes": 5368021,
       "matched_rows": 41747,
-      "matched_votes": 5368020,
+      "matched_votes": 5368021,
       "unmatched_rows": 0,
       "unmatched_votes": 0,
       "unmatched_precincts": [],
@@ -23,7 +33,7 @@
         "rdh_vtd_code_baf": 4554
       },
       "allocated_rows": 41747,
-      "allocated_votes": 5368020,
+      "allocated_votes": 5368021,
       "unallocated_rows": 0,
       "unallocated_votes": 0,
       "allocation_vote_delta": 0,
@@ -189,13 +199,13 @@
       "15": {
         "dem_votes": 102436,
         "rep_votes": 195545,
-        "other_votes": 8827,
-        "total_votes": 306808,
+        "other_votes": 8828,
+        "total_votes": 306809,
         "dem_candidate": "John Fetterman",
         "rep_candidate": "Mehmet Oz",
         "winner": "R",
         "margin": 93109.0,
-        "margin_pct": 30.347644129227398
+        "margin_pct": 30.347545215427186
       },
       "16": {
         "dem_votes": 134903,

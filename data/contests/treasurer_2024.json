@@ -17,14 +17,14 @@
     },
     {
       "county": "ALLEGHENY",
-      "dem_votes": 395887,
-      "rep_votes": 284447,
+      "dem_votes": 395886,
+      "rep_votes": 284446,
       "other_votes": 19151,
-      "total_votes": 699485,
+      "total_votes": 699483,
       "dem_candidate": "Erin R. McClelland",
       "rep_candidate": "Stacy L. Garrity",
       "margin": 111440.0,
-      "margin_pct": 15.931721194879088,
+      "margin_pct": 15.931766747726536,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -174,13 +174,13 @@
     {
       "county": "CENTRE",
       "dem_votes": 37125,
-      "rep_votes": 39818,
+      "rep_votes": 39819,
       "other_votes": 1887,
-      "total_votes": 78830,
+      "total_votes": 78831,
       "dem_candidate": "Erin R. McClelland",
       "rep_candidate": "Stacy L. Garrity",
-      "margin": 2693.0,
-      "margin_pct": 3.4162121019916274,
+      "margin": 2694.0,
+      "margin_pct": 3.417437302584009,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -395,13 +395,13 @@
     {
       "county": "HUNTINGDON",
       "dem_votes": 4853,
-      "rep_votes": 17366,
+      "rep_votes": 17365,
       "other_votes": 564,
-      "total_votes": 22783,
+      "total_votes": 22782,
       "dem_candidate": "Erin R. McClelland",
       "rep_candidate": "Stacy L. Garrity",
-      "margin": 12513.0,
-      "margin_pct": 54.92252995654655,
+      "margin": 12512.0,
+      "margin_pct": 54.92055131243965,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -836,14 +836,14 @@
     },
     {
       "county": "WESTMORELAND",
-      "dem_votes": 68257,
-      "rep_votes": 131022,
+      "dem_votes": 68258,
+      "rep_votes": 131023,
       "other_votes": 5355,
-      "total_votes": 204634,
+      "total_votes": 204636,
       "dem_candidate": "Erin R. McClelland",
       "rep_candidate": "Stacy L. Garrity",
       "margin": 62765.0,
-      "margin_pct": 30.671833615137267,
+      "margin_pct": 30.671533845462186,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2024_treasurer_certified.csv",
+    "write_ins_excluded": true
+  }
 }

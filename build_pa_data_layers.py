@@ -89,6 +89,64 @@ def normalize_county_name(name: str) -> str:
     return re.sub(r'\s+COUNTY$', '', (name or '').upper().strip())
 
 
+def apply_official_county_party_controls(rows, year: int, controls_dir=None, contest_types=None):
+    """Reconcile precinct rows to certified county party buckets in place.
+
+    Each county/contest/party residual stays inside the source rows that created
+    that bucket. Largest remainder makes the adjusted rows integral and exact;
+    no residual is spread statewide or moved between counties.
+    """
+    controls_dir = Path(controls_dir or (data_dir / 'benchmarks'))
+    controls = {}
+    contest_types = set(contest_types or [])
+    for path in sorted(controls_dir.glob(f'pa_county_{int(year)}_*_certified.csv')):
+        contest = path.stem[len(f'pa_county_{int(year)}_'):-len('_certified')]
+        if contest_types and contest not in contest_types:
+            continue
+        with path.open('r', encoding='utf-8-sig', newline='') as handle:
+            for control in csv.DictReader(handle):
+                county = normalize_county_name(control.get('county') or '')
+                if not county:
+                    continue
+                controls[(contest, county, 'dem')] = safe_int(control.get('dem_votes'))
+                controls[(contest, county, 'rep')] = safe_int(control.get('rep_votes'))
+                controls[(contest, county, 'other')] = safe_int(control.get('other_votes'))
+    if not controls:
+        return rows
+
+    grouped = defaultdict(list)
+    for index, row in enumerate(rows):
+        contest = office_mapping_for_contest(row.get('office') or '')
+        county = normalize_county_name(row.get('county') or '')
+        party = (row.get('party') or '').strip().upper()
+        bucket = 'dem' if party in PARTY_DEM or party == 'YES' else 'rep' if party in PARTY_REP or party == 'NO' else 'other'
+        if (contest, county, bucket) in controls:
+            grouped[(contest, county, bucket)].append(index)
+
+    missing = sorted(key for key, target in controls.items() if target and key not in grouped)
+    if missing:
+        raise RuntimeError(f'Certified county controls have no source rows: {missing[:10]}')
+
+    for key, indices in grouped.items():
+        target = int(controls[key])
+        weights = [max(safe_float(rows[index].get('votes')), 0.0) for index in indices]
+        source_total = sum(weights)
+        if source_total <= 0:
+            if target:
+                raise RuntimeError(f'Cannot allocate nonzero certified county control {key}: {target}')
+            allocations = [0] * len(indices)
+        else:
+            raw = [target * weight / source_total for weight in weights]
+            allocations = [int(value) for value in raw]
+            remainder = target - sum(allocations)
+            order = sorted(range(len(indices)), key=lambda pos: (raw[pos] - allocations[pos], -pos), reverse=True)
+            for pos in order[:remainder]:
+                allocations[pos] += 1
+        for index, votes in zip(indices, allocations):
+            rows[index]['votes'] = votes
+    return rows
+
+
 def load_county_features(path: Path):
     with path.open('r', encoding='utf-8') as f:
         data = json.load(f)
@@ -1952,7 +2010,6 @@ def aggregate_county_results_from_openelections():
             rows = read_csv_rows(fp)
         except Exception:
             continue
-
         partisan_courts = {
             office_mapping_for_contest(r.get('office') or '')
             for r in rows
@@ -2099,6 +2156,7 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
             rows = read_csv_rows(fp)
         except Exception:
             continue
+        rows = apply_official_county_party_controls(rows, year, contest_types=contest_types)
 
         partisan_courts = {
             office_mapping_for_contest(r.get('office') or '')

@@ -17,14 +17,14 @@
     },
     {
       "county": "ALLEGHENY",
-      "dem_votes": 425281,
-      "rep_votes": 272862,
+      "dem_votes": 425280,
+      "rep_votes": 272861,
       "other_votes": 17781,
-      "total_votes": 715924,
+      "total_votes": 715922,
       "dem_candidate": "Robert P. Casey Jr.",
       "rep_candidate": "David H. McCormick",
       "margin": 152419.0,
-      "margin_pct": 21.28982964672228,
+      "margin_pct": 21.289889121999327,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -174,13 +174,13 @@
     {
       "county": "CENTRE",
       "dem_votes": 40382,
-      "rep_votes": 38053,
+      "rep_votes": 38054,
       "other_votes": 1979,
-      "total_votes": 80414,
+      "total_votes": 80415,
       "dem_candidate": "Robert P. Casey Jr.",
       "rep_candidate": "David H. McCormick",
-      "margin": 2329.0,
-      "margin_pct": 2.8962618449523716,
+      "margin": 2328.0,
+      "margin_pct": 2.8949822794254803,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -395,13 +395,13 @@
     {
       "county": "HUNTINGDON",
       "dem_votes": 5582,
-      "rep_votes": 16911,
+      "rep_votes": 16910,
       "other_votes": 536,
-      "total_votes": 23029,
+      "total_votes": 23028,
       "dem_candidate": "Robert P. Casey Jr.",
       "rep_candidate": "David H. McCormick",
-      "margin": 11329.0,
-      "margin_pct": 49.19449389899692,
+      "margin": 11328.0,
+      "margin_pct": 49.192287649817615,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -654,14 +654,14 @@
     },
     {
       "county": "PHILADELPHIA",
-      "dem_votes": 539531,
-      "rep_votes": 128857,
-      "other_votes": 19566,
-      "total_votes": 687954,
+      "dem_votes": 541567,
+      "rep_votes": 129098,
+      "other_votes": 19651,
+      "total_votes": 690316,
       "dem_candidate": "Robert P. Casey Jr. / Bob Casey, Jr.",
       "rep_candidate": "David H. McCormick",
-      "margin": 410674.0,
-      "margin_pct": 59.6949796061946,
+      "margin": 412469.0,
+      "margin_pct": 59.75075182959688,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -836,14 +836,14 @@
     },
     {
       "county": "WESTMORELAND",
-      "dem_votes": 76003,
-      "rep_votes": 128039,
+      "dem_votes": 76004,
+      "rep_votes": 128040,
       "other_votes": 4893,
-      "total_votes": 208935,
+      "total_votes": 208937,
       "dem_candidate": "Robert P. Casey Jr.",
       "rep_candidate": "David H. McCormick",
       "margin": 52036.0,
-      "margin_pct": 24.905353339555365,
+      "margin_pct": 24.90511493895289,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2024_us_senate_certified.csv",
+    "write_ins_excluded": true
+  }
 }

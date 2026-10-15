@@ -17,14 +17,14 @@
     },
     {
       "county": "ALLEGHENY",
-      "dem_votes": 429917,
-      "rep_votes": 283596,
+      "dem_votes": 429916,
+      "rep_votes": 283595,
       "other_votes": 6993,
-      "total_votes": 720506,
+      "total_votes": 720504,
       "dem_candidate": "Kamala D. Harris",
       "rep_candidate": "Donald J. Trump",
       "margin": 146321.0,
-      "margin_pct": 20.308089037426473,
+      "margin_pct": 20.308145409324585,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -174,13 +174,13 @@
     {
       "county": "CENTRE",
       "dem_votes": 41119,
-      "rep_votes": 38828,
+      "rep_votes": 38829,
       "other_votes": 844,
-      "total_votes": 80791,
+      "total_votes": 80792,
       "dem_candidate": "Kamala D. Harris",
       "rep_candidate": "Donald J. Trump",
-      "margin": 2291.0,
-      "margin_pct": 2.8357118986025673,
+      "margin": 2290.0,
+      "margin_pct": 2.834439053371621,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -395,13 +395,13 @@
     {
       "county": "HUNTINGDON",
       "dem_votes": 5368,
-      "rep_votes": 17628,
+      "rep_votes": 17627,
       "other_votes": 161,
-      "total_votes": 23157,
+      "total_votes": 23156,
       "dem_candidate": "Kamala D. Harris",
       "rep_candidate": "Donald J. Trump",
-      "margin": 12260.0,
-      "margin_pct": 52.942954614155546,
+      "margin": 12259.0,
+      "margin_pct": 52.940922439108654,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -654,14 +654,14 @@
     },
     {
       "county": "PHILADELPHIA",
-      "dem_votes": 566394,
-      "rep_votes": 144044,
-      "other_votes": 8534,
-      "total_votes": 718972,
+      "dem_votes": 568571,
+      "rep_votes": 144311,
+      "other_votes": 8559,
+      "total_votes": 721441,
       "dem_candidate": "Kamala D. Harris",
       "rep_candidate": "Donald J. Trump",
-      "margin": 422350.0,
-      "margin_pct": 58.743595021781104,
+      "margin": 424260.0,
+      "margin_pct": 58.80730371575776,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -836,14 +836,14 @@
     },
     {
       "county": "WESTMORELAND",
-      "dem_votes": 74903,
-      "rep_votes": 135007,
+      "dem_votes": 74904,
+      "rep_votes": 135008,
       "other_votes": 1538,
-      "total_votes": 211448,
+      "total_votes": 211450,
       "dem_candidate": "Kamala D. Harris",
       "rep_candidate": "Donald J. Trump",
       "margin": 60104.0,
-      "margin_pct": 28.42495554462563,
+      "margin_pct": 28.424686687160083,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2024_president_certified.csv",
+    "write_ins_excluded": true
+  }
 }

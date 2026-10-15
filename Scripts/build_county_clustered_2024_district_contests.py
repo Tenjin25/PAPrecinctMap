@@ -292,6 +292,7 @@ def main() -> int:
                 "--year", str(args.year),
                 "--source", str(args.source),
                 "--output", str(args.output),
+                "--county-controls-dir", str(ROOT / "data" / "benchmarks"),
             ]
             rdh.main()
             preserve_candidate_names(args.output, ROOT / "data" / "district_contests")

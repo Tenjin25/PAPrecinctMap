@@ -89,6 +89,82 @@ def read_source(source, year):
     return rows, statewide, district_columns
 
 
+def apply_county_controls(rows, statewide, year, controls_dir):
+    """Scale source cells within county/party to the published county control.
+
+    The adjustment is deliberately county-local.  Largest-remainder rounding
+    preserves each county/party target exactly and never sends a residual to
+    an unrelated county or district.
+    """
+    controls = {}
+    for contest in sorted({info["contest"] for info in statewide.values()}):
+        certified = controls_dir / f"pa_county_{year}_{contest}_certified.csv"
+        published = controls_dir / f"{contest}_{year}.json"
+        if certified.exists():
+            with certified.open(newline="", encoding="utf-8-sig") as handle:
+                source_rows = list(csv.DictReader(handle))
+        elif published.exists():
+            source_rows = json.loads(published.read_text(encoding="utf-8")).get("rows") or []
+        else:
+            continue
+        controls[contest] = {
+            layers.normalize_county_name(row.get("county") or ""): {
+                "dem_votes": int(row.get("dem_votes") or 0),
+                "rep_votes": int(row.get("rep_votes") or 0),
+                "other_votes": int(row.get("other_votes") or 0),
+            }
+            for row in source_rows
+        }
+
+    groups = defaultdict(list)
+    for row_index, row in enumerate(rows):
+        county = layers.normalize_county_name(row.get("County") or "")
+        for column, info in statewide.items():
+            contest = info["contest"]
+            if contest not in controls:
+                continue
+            bucket = "dem_votes" if info["party"] == "DEM" else "rep_votes" if info["party"] == "REP" else "other_votes"
+            groups[(contest, county, bucket)].append((row_index, column, value(row, column)))
+
+    audit = []
+    for (contest, county, bucket), cells in sorted(groups.items()):
+        if county not in controls[contest]:
+            raise RuntimeError(f"missing county control: {year} {contest} {county}")
+        target = controls[contest][county][bucket]
+        observed = sum(cell_value for _row, _column, cell_value in cells)
+        if observed == target:
+            continue
+        if observed <= 0 and target:
+            raise RuntimeError(f"cannot allocate positive county control from zero source: {year} {contest} {county} {bucket}")
+        raw = [cell_value * target / observed for _row, _column, cell_value in cells] if observed else [0.0] * len(cells)
+        allocated = [int(amount) for amount in raw]
+        remainder = target - sum(allocated)
+        order = sorted(range(len(cells)), key=lambda index: (raw[index] - allocated[index], -index), reverse=True)
+        for index in order[:remainder]:
+            allocated[index] += 1
+        for (row_index, column, _old), amount in zip(cells, allocated):
+            rows[row_index][column] = str(amount)
+        audit.append({
+            "contest": contest, "county": county, "bucket": bucket,
+            "source_votes": observed, "control_votes": target, "delta": target - observed,
+        })
+
+    for contest, county_controls in controls.items():
+        for county, buckets in county_controls.items():
+            for bucket, target in buckets.items():
+                actual = sum(
+                    value(row, column)
+                    for row in rows
+                    if layers.normalize_county_name(row.get("County") or "") == county
+                    for column, info in statewide.items()
+                    if info["contest"] == contest
+                    and ("dem_votes" if info["party"] == "DEM" else "rep_votes" if info["party"] == "REP" else "other_votes") == bucket
+                )
+                if actual != target:
+                    raise RuntimeError(f"county control failed: {year} {contest} {county} {bucket}: {actual} != {target}")
+    return audit
+
+
 def direct_districts(row, columns, prefix):
     districts = {
         str(int(match.group(1)))
@@ -189,12 +265,16 @@ def main():
     parser.add_argument("--year", type=int, choices=(2022, 2024), default=2024)
     parser.add_argument("--source", type=Path)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--county-controls-dir", type=Path)
     args = parser.parse_args()
     source = args.source or ROOT / "data" / f"pa_{args.year}_gen_prec_csv.zip"
     args.output = args.output or ROOT / "data" / f"district_contests_rdh_{args.year}_verified"
     args.output.mkdir(parents=True, exist_ok=True)
 
     rows, statewide, district_columns = read_source(source, args.year)
+    county_control_audit = apply_county_controls(
+        rows, statewide, args.year, args.county_controls_dir
+    ) if args.county_controls_dir else []
     unique_ids = [str(row.get("UNIQUE_ID") or "").strip() for row in rows]
     if not all(unique_ids) or len(unique_ids) != len(set(unique_ids)):
         raise RuntimeError("RDH UNIQUE_ID values are blank or duplicated")
@@ -335,7 +415,13 @@ def main():
                 "districts_observed": len(finalized),
                 "districts_expected": EXPECTED[scope],
                 "coverage_percent": 100.0,
-                "source": f"RDH {args.year} precinct matrix with embedded districts and BEF/BAF fallback",
+                "source": (
+                    f"RDH {args.year} precinct matrix with embedded districts and BEF/BAF fallback"
+                    + ("+official_county_party_controls" if county_control_audit else "")
+                ),
+                "county_control_audit": [
+                    row for row in county_control_audit if row["contest"] == contest
+                ],
                 "allocation_audit": {
                     "source_rows": source_rows[contest],
                     "source_votes": controls[contest],
