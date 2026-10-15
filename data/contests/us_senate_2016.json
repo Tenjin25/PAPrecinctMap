@@ -629,13 +629,13 @@
     {
       "county": "NORTHUMBERLAND",
       "dem_votes": 11117,
-      "rep_votes": 22326,
+      "rep_votes": 21826,
       "other_votes": 2592,
-      "total_votes": 36035,
+      "total_votes": 35535,
       "dem_candidate": "Katie McGinty",
       "rep_candidate": "Pat Toomey",
-      "margin": 11209.0,
-      "margin_pct": 31.105869293742195,
+      "margin": 10709.0,
+      "margin_pct": 30.136485155480514,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -667,14 +667,14 @@
     },
     {
       "county": "PIKE",
-      "dem_votes": 9341,
-      "rep_votes": 15196,
-      "other_votes": 1114,
-      "total_votes": 25651,
+      "dem_votes": 9329,
+      "rep_votes": 15192,
+      "other_votes": 1113,
+      "total_votes": 25634,
       "dem_candidate": "Katie McGinty",
       "rep_candidate": "Pat Toomey",
-      "margin": 5855.0,
-      "margin_pct": 22.82562083349577,
+      "margin": 5863.0,
+      "margin_pct": 22.871966918935787,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2016_us_senate_certified.csv",
+    "write_ins_excluded": true
+  }
 }

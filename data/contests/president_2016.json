@@ -408,13 +408,13 @@
     {
       "county": "INDIANA",
       "dem_votes": 11528,
-      "rep_votes": 24988,
+      "rep_votes": 24888,
       "other_votes": 1354,
-      "total_votes": 37870,
+      "total_votes": 37770,
       "dem_candidate": "Hillary Clinton",
       "rep_candidate": "Donald J. Trump",
-      "margin": 13460.0,
-      "margin_pct": 35.54264589384737,
+      "margin": 13360.0,
+      "margin_pct": 35.37198835054276,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -563,14 +563,14 @@
     },
     {
       "county": "MIFFLIN",
-      "dem_votes": 3577,
+      "dem_votes": 3877,
       "rep_votes": 14094,
       "other_votes": 630,
-      "total_votes": 18301,
+      "total_votes": 18601,
       "dem_candidate": "Hillary Clinton",
       "rep_candidate": "Donald J. Trump",
-      "margin": 10517.0,
-      "margin_pct": 57.46680509261789,
+      "margin": 10217.0,
+      "margin_pct": 54.92715445406161,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -615,14 +615,14 @@
     },
     {
       "county": "NORTHAMPTON",
-      "dem_votes": 66275,
+      "dem_votes": 66272,
       "rep_votes": 71736,
       "other_votes": 5511,
-      "total_votes": 143522,
+      "total_votes": 143519,
       "dem_candidate": "Hillary Clinton",
       "rep_candidate": "Donald J. Trump",
-      "margin": 5461.0,
-      "margin_pct": 3.804991569236772,
+      "margin": 5464.0,
+      "margin_pct": 3.8071614211358775,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -667,14 +667,14 @@
     },
     {
       "county": "PIKE",
-      "dem_votes": 9268,
-      "rep_votes": 16061,
-      "other_votes": 791,
-      "total_votes": 26120,
+      "dem_votes": 9256,
+      "rep_votes": 16056,
+      "other_votes": 789,
+      "total_votes": 26101,
       "dem_candidate": "Hillary Clinton",
       "rep_candidate": "Donald J. Trump",
-      "margin": 6793.0,
-      "margin_pct": 26.00689127105666,
+      "margin": 6800.0,
+      "margin_pct": 26.052641661239033,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -746,13 +746,13 @@
     {
       "county": "SUSQUEHANNA",
       "dem_votes": 5123,
-      "rep_votes": 13356,
-      "other_votes": 851,
-      "total_votes": 19330,
+      "rep_votes": 12891,
+      "other_votes": 849,
+      "total_votes": 18863,
       "dem_candidate": "Hillary Clinton",
       "rep_candidate": "Donald J. Trump",
-      "margin": 8233.0,
-      "margin_pct": 42.59182617692706,
+      "margin": 7768.0,
+      "margin_pct": 41.181148279701,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2016_president_certified.csv",
+    "write_ins_excluded": true
+  }
 }

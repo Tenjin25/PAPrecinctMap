@@ -1,4 +1,4 @@
-"""Fetch official named-candidate county controls for modern PA elections."""
+"""Fetch official named-candidate county controls from the PA returns archive."""
 from __future__ import annotations
 
 import argparse
@@ -13,7 +13,13 @@ from urllib.request import urlopen
 ROOT = Path(__file__).resolve().parents[1]
 API = "https://www.electionreturns.pa.gov/api/ElectionReturn/GetCountyData"
 SUMMARY_API = "https://www.electionreturns.pa.gov/api/ElectionReturn/GET"
-ELECTIONS = {2020: 83, 2022: 94, 2024: 105}
+ELECTIONS = {
+    2000: 9, 2001: 10, 2002: 11, 2003: 12, 2004: 13,
+    2005: 14, 2006: 15, 2007: 16, 2008: 17, 2009: 18,
+    2010: 19, 2011: 20, 2012: 27, 2013: 36, 2014: 41,
+    2015: 43, 2016: 54, 2017: 59, 2018: 63,
+    2020: 83, 2022: 94, 2024: 105,
+}
 OFFICES = {
     "President of the United States": "president",
     "President": "president",

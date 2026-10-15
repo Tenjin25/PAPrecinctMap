@@ -8,20 +8,20 @@
     "coverage_percent": 100.0,
     "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
     "allocation_audit": {
-      "source_rows": 29878,
-      "source_votes": 4078948,
-      "matched_rows": 29878,
-      "matched_votes": 4078948,
+      "source_rows": 28166,
+      "source_votes": 4077762,
+      "matched_rows": 28166,
+      "matched_votes": 4077762,
       "unmatched_rows": 0,
       "unmatched_votes": 0,
       "unmatched_precincts": [],
       "unmatched_precinct_votes": {},
       "mapping_methods": {
-        "current_precinct_or_vtd_name": 26647,
-        "historical_vtd_block_chain": 4182
+        "current_precinct_or_vtd_name": 25116,
+        "historical_vtd_block_chain": 3943
       },
-      "allocated_rows": 29878,
-      "allocated_votes": 4078948,
+      "allocated_rows": 28166,
+      "allocated_votes": 4077762,
       "unallocated_rows": 0,
       "unallocated_votes": 0,
       "allocation_vote_delta": 0,
@@ -42,180 +42,180 @@
         "margin_pct": 38.72907333176138
       },
       "2": {
-        "dem_votes": 13426,
+        "dem_votes": 13428,
         "rep_votes": 7275,
         "other_votes": 0,
-        "total_votes": 20701,
+        "total_votes": 20703,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 6151.0,
-        "margin_pct": 29.71354040867591
+        "margin": 6153.0,
+        "margin_pct": 29.72033038690045
       },
       "3": {
         "dem_votes": 13001,
-        "rep_votes": 10864,
+        "rep_votes": 10866,
         "other_votes": 0,
-        "total_votes": 23865,
+        "total_votes": 23867,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2137.0,
-        "margin_pct": 8.954535931280118
+        "margin": 2135.0,
+        "margin_pct": 8.94540579042192
       },
       "4": {
-        "dem_votes": 11068,
-        "rep_votes": 10054,
+        "dem_votes": 11069,
+        "rep_votes": 10056,
         "other_votes": 0,
-        "total_votes": 21122,
+        "total_votes": 21125,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 1014.0,
-        "margin_pct": 4.8006817536218165
+        "margin": 1013.0,
+        "margin_pct": 4.795266272189349
       },
       "5": {
-        "dem_votes": 9389,
-        "rep_votes": 9755,
+        "dem_votes": 9385,
+        "rep_votes": 9754,
         "other_votes": 0,
-        "total_votes": 19144,
+        "total_votes": 19139,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 366.0,
-        "margin_pct": 1.9118261596322608
+        "margin": 369.0,
+        "margin_pct": 1.9280004179946706
       },
       "6": {
         "dem_votes": 10909,
         "rep_votes": 10450,
-        "other_votes": 14,
-        "total_votes": 21373,
+        "other_votes": 0,
+        "total_votes": 21359,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 459.0,
-        "margin_pct": 2.1475693632152715
+        "margin_pct": 2.1489770120323985
       },
       "7": {
         "dem_votes": 14851,
         "rep_votes": 8022,
-        "other_votes": 15,
-        "total_votes": 22888,
+        "other_votes": 0,
+        "total_votes": 22873,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 6829.0,
-        "margin_pct": 29.836595595945475
+        "margin_pct": 29.856162287413106
       },
       "8": {
-        "dem_votes": 11490,
+        "dem_votes": 11492,
         "rep_votes": 12810,
-        "other_votes": 79,
-        "total_votes": 24379,
+        "other_votes": 0,
+        "total_votes": 24302,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 1320.0,
-        "margin_pct": 5.414496082694122
+        "margin": 1318.0,
+        "margin_pct": 5.423421940581022
       },
       "9": {
-        "dem_votes": 13652,
-        "rep_votes": 9506,
-        "other_votes": 23,
-        "total_votes": 23181,
+        "dem_votes": 13660,
+        "rep_votes": 9518,
+        "other_votes": 0,
+        "total_votes": 23178,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 4146.0,
-        "margin_pct": 17.885337129545746
+        "margin": 4142.0,
+        "margin_pct": 17.870394339459832
       },
       "10": {
         "dem_votes": 13338,
         "rep_votes": 722,
-        "other_votes": 10,
-        "total_votes": 14070,
+        "other_votes": 0,
+        "total_votes": 14060,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 12616.0,
-        "margin_pct": 89.66595593461265
+        "margin_pct": 89.72972972972974
       },
       "11": {
-        "dem_votes": 10779,
-        "rep_votes": 10949,
-        "other_votes": 41,
-        "total_votes": 21769,
+        "dem_votes": 10775,
+        "rep_votes": 10947,
+        "other_votes": 0,
+        "total_votes": 21722,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 170.0,
-        "margin_pct": 0.7809270062933529
+        "margin": 172.0,
+        "margin_pct": 0.7918239572783352
       },
       "12": {
-        "dem_votes": 7444,
-        "rep_votes": 11576,
-        "other_votes": 25,
-        "total_votes": 19045,
+        "dem_votes": 7443,
+        "rep_votes": 11572,
+        "other_votes": 0,
+        "total_votes": 19015,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 4132.0,
-        "margin_pct": 21.695983197689685
+        "margin": 4129.0,
+        "margin_pct": 21.714435971601368
       },
       "13": {
-        "dem_votes": 9032,
-        "rep_votes": 8687,
-        "other_votes": 29,
-        "total_votes": 17748,
+        "dem_votes": 9090,
+        "rep_votes": 8736,
+        "other_votes": 0,
+        "total_votes": 17826,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 345.0,
-        "margin_pct": 1.9438810006761325
+        "margin": 354.0,
+        "margin_pct": 1.985863345674857
       },
       "14": {
-        "dem_votes": 14600,
-        "rep_votes": 10537,
-        "other_votes": 62,
-        "total_votes": 25199,
+        "dem_votes": 14599,
+        "rep_votes": 10536,
+        "other_votes": 0,
+        "total_votes": 25135,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 4063.0,
-        "margin_pct": 16.12365570062304
+        "margin_pct": 16.164710562960018
       },
       "15": {
-        "dem_votes": 14925,
+        "dem_votes": 14930,
         "rep_votes": 10558,
-        "other_votes": 38,
-        "total_votes": 25521,
+        "other_votes": 0,
+        "total_votes": 25488,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 4367.0,
-        "margin_pct": 17.111398456173347
+        "margin": 4372.0,
+        "margin_pct": 17.153170119271817
       },
       "16": {
-        "dem_votes": 17052,
+        "dem_votes": 17051,
         "rep_votes": 7396,
-        "other_votes": 65,
-        "total_votes": 24513,
+        "other_votes": 0,
+        "total_votes": 24447,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 9656.0,
-        "margin_pct": 39.39134336882471
+        "margin": 9655.0,
+        "margin_pct": 39.49359839653127
       },
       "17": {
-        "dem_votes": 9674,
+        "dem_votes": 9673,
         "rep_votes": 11026,
-        "other_votes": 25,
-        "total_votes": 20725,
+        "other_votes": 0,
+        "total_votes": 20699,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 1352.0,
-        "margin_pct": 6.523522316043426
+        "margin": 1353.0,
+        "margin_pct": 6.536547659307212
       },
       "18": {
         "dem_votes": 11902,
@@ -262,26 +262,26 @@
         "margin_pct": 31.630791681867933
       },
       "22": {
-        "dem_votes": 5790,
+        "dem_votes": 5789,
         "rep_votes": 2507,
         "other_votes": 0,
-        "total_votes": 8297,
+        "total_votes": 8296,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 3283.0,
-        "margin_pct": 39.56851874171387
+        "margin": 3282.0,
+        "margin_pct": 39.56123432979749
       },
       "23": {
-        "dem_votes": 17616,
+        "dem_votes": 17615,
         "rep_votes": 3839,
         "other_votes": 0,
-        "total_votes": 21455,
+        "total_votes": 21454,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 13777.0,
-        "margin_pct": 64.21347005360056
+        "margin": 13776.0,
+        "margin_pct": 64.21180199496598
       },
       "24": {
         "dem_votes": 17591,
@@ -306,15 +306,15 @@
         "margin_pct": 23.280227244658516
       },
       "26": {
-        "dem_votes": 10633,
-        "rep_votes": 8801,
-        "other_votes": 38,
-        "total_votes": 19472,
+        "dem_votes": 10708,
+        "rep_votes": 8855,
+        "other_votes": 0,
+        "total_votes": 19563,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 1832.0,
-        "margin_pct": 9.408381265406737
+        "margin": 1853.0,
+        "margin_pct": 9.471962377958391
       },
       "27": {
         "dem_votes": 15211,
@@ -329,14 +329,14 @@
       },
       "28": {
         "dem_votes": 9487,
-        "rep_votes": 11189,
+        "rep_votes": 11188,
         "other_votes": 0,
-        "total_votes": 20676,
+        "total_votes": 20675,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 1702.0,
-        "margin_pct": 8.231766299090733
+        "margin": 1701.0,
+        "margin_pct": 8.2273276904474
       },
       "29": {
         "dem_votes": 15955,
@@ -351,14 +351,14 @@
       },
       "30": {
         "dem_votes": 12508,
-        "rep_votes": 13229,
+        "rep_votes": 13228,
         "other_votes": 0,
-        "total_votes": 25737,
+        "total_votes": 25736,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 721.0,
-        "margin_pct": 2.8014143062517
+        "margin": 720.0,
+        "margin_pct": 2.7976375505129
       },
       "31": {
         "dem_votes": 16450,
@@ -429,13 +429,13 @@
       "37": {
         "dem_votes": 6816,
         "rep_votes": 12588,
-        "other_votes": 30,
-        "total_votes": 19434,
+        "other_votes": 0,
+        "total_votes": 19404,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 5772.0,
-        "margin_pct": 29.700524853349798
+        "margin_pct": 29.74644403215832
       },
       "38": {
         "dem_votes": 16650,
@@ -449,37 +449,37 @@
         "margin_pct": 34.06336809050284
       },
       "39": {
-        "dem_votes": 14860,
+        "dem_votes": 14865,
         "rep_votes": 10459,
         "other_votes": 0,
-        "total_votes": 25319,
+        "total_votes": 25324,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 4401.0,
-        "margin_pct": 17.382203088589595
+        "margin": 4406.0,
+        "margin_pct": 17.398515242457748
       },
       "40": {
-        "dem_votes": 13586,
-        "rep_votes": 14475,
+        "dem_votes": 13591,
+        "rep_votes": 14478,
         "other_votes": 0,
-        "total_votes": 28061,
+        "total_votes": 28069,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 889.0,
-        "margin_pct": 3.1680980720573038
+        "margin": 887.0,
+        "margin_pct": 3.160069827924044
       },
       "41": {
         "dem_votes": 10159,
         "rep_votes": 11220,
-        "other_votes": 42,
-        "total_votes": 21421,
+        "other_votes": 0,
+        "total_votes": 21379,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 1061.0,
-        "margin_pct": 4.953083422809393
+        "margin_pct": 4.962813976331915
       },
       "42": {
         "dem_votes": 17263,
@@ -495,24 +495,24 @@
       "43": {
         "dem_votes": 5331,
         "rep_votes": 10670,
-        "other_votes": 19,
-        "total_votes": 16020,
+        "other_votes": 0,
+        "total_votes": 16001,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 5339.0,
-        "margin_pct": 33.3270911360799
+        "margin_pct": 33.36666458346353
       },
       "44": {
         "dem_votes": 11748,
-        "rep_votes": 9958,
+        "rep_votes": 9957,
         "other_votes": 0,
-        "total_votes": 21706,
+        "total_votes": 21705,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 1790.0,
-        "margin_pct": 8.246567769280382
+        "margin": 1791.0,
+        "margin_pct": 8.251554941257774
       },
       "45": {
         "dem_votes": 14397,
@@ -526,334 +526,334 @@
         "margin_pct": 31.144106394607395
       },
       "46": {
-        "dem_votes": 11606,
-        "rep_votes": 8264,
+        "dem_votes": 11615,
+        "rep_votes": 8265,
         "other_votes": 0,
-        "total_votes": 19870,
+        "total_votes": 19880,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 3342.0,
-        "margin_pct": 16.819325616507296
+        "margin": 3350.0,
+        "margin_pct": 16.851106639839035
       },
       "47": {
         "dem_votes": 8074,
         "rep_votes": 9857,
-        "other_votes": 36,
-        "total_votes": 17967,
+        "other_votes": 0,
+        "total_votes": 17931,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 1783.0,
-        "margin_pct": 9.923749095564089
+        "margin_pct": 9.943672968601863
       },
       "48": {
-        "dem_votes": 12621,
-        "rep_votes": 8924,
+        "dem_votes": 12636,
+        "rep_votes": 8925,
         "other_votes": 0,
-        "total_votes": 21545,
+        "total_votes": 21561,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 3697.0,
-        "margin_pct": 17.159433743327916
+        "margin": 3711.0,
+        "margin_pct": 17.211632113538332
       },
       "49": {
         "dem_votes": 7587,
         "rep_votes": 4656,
-        "other_votes": 29,
-        "total_votes": 12272,
+        "other_votes": 0,
+        "total_votes": 12243,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 2931.0,
-        "margin_pct": 23.883637548891787
+        "margin_pct": 23.940210732663562
       },
       "50": {
-        "dem_votes": 16191,
+        "dem_votes": 16195,
         "rep_votes": 7871,
         "other_votes": 0,
-        "total_votes": 24062,
+        "total_votes": 24066,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 8320.0,
-        "margin_pct": 34.57734186684399
+        "margin": 8324.0,
+        "margin_pct": 34.5882157400482
       },
       "51": {
-        "dem_votes": 12027,
-        "rep_votes": 6194,
-        "other_votes": 3,
-        "total_votes": 18224,
+        "dem_votes": 12032,
+        "rep_votes": 6198,
+        "other_votes": 0,
+        "total_votes": 18230,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 5833.0,
-        "margin_pct": 32.007243195785776
+        "margin": 5834.0,
+        "margin_pct": 32.00219418540867
       },
       "52": {
-        "dem_votes": 12461,
-        "rep_votes": 7284,
-        "other_votes": 3,
-        "total_votes": 19748,
+        "dem_votes": 12463,
+        "rep_votes": 7286,
+        "other_votes": 0,
+        "total_votes": 19749,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 5177.0,
-        "margin_pct": 26.215312943082843
+        "margin_pct": 26.21398551825409
       },
       "53": {
-        "dem_votes": 10187,
-        "rep_votes": 7836,
+        "dem_votes": 10204,
+        "rep_votes": 7844,
         "other_votes": 0,
-        "total_votes": 18023,
+        "total_votes": 18048,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2351.0,
-        "margin_pct": 13.044443211452034
+        "margin": 2360.0,
+        "margin_pct": 13.076241134751774
       },
       "54": {
-        "dem_votes": 10584,
+        "dem_votes": 10603,
         "rep_votes": 4442,
         "other_votes": 0,
-        "total_votes": 15026,
+        "total_votes": 15045,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 6142.0,
-        "margin_pct": 40.875815253560496
+        "margin": 6161.0,
+        "margin_pct": 40.95048188767032
       },
       "55": {
-        "dem_votes": 13096,
-        "rep_votes": 12089,
-        "other_votes": 26,
-        "total_votes": 25211,
+        "dem_votes": 12838,
+        "rep_votes": 12106,
+        "other_votes": 0,
+        "total_votes": 24944,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 1007.0,
-        "margin_pct": 3.99428820752846
+        "margin": 732.0,
+        "margin_pct": 2.9345734445157152
       },
       "56": {
-        "dem_votes": 12457,
-        "rep_votes": 11903,
-        "other_votes": 35,
-        "total_votes": 24395,
+        "dem_votes": 12208,
+        "rep_votes": 11923,
+        "other_votes": 0,
+        "total_votes": 24131,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 554.0,
-        "margin_pct": 2.2709571633531462
+        "margin": 285.0,
+        "margin_pct": 1.1810534167668145
       },
       "57": {
-        "dem_votes": 12092,
-        "rep_votes": 12022,
-        "other_votes": 43,
-        "total_votes": 24157,
+        "dem_votes": 11853,
+        "rep_votes": 12038,
+        "other_votes": 0,
+        "total_votes": 23891,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
-        "winner": "D",
-        "margin": 70.0,
-        "margin_pct": 0.28977108084613157
+        "winner": "R",
+        "margin": 185.0,
+        "margin_pct": 0.7743501737055795
       },
       "58": {
-        "dem_votes": 14303,
-        "rep_votes": 9199,
-        "other_votes": 21,
-        "total_votes": 23523,
+        "dem_votes": 14018,
+        "rep_votes": 9210,
+        "other_votes": 0,
+        "total_votes": 23228,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 5104.0,
-        "margin_pct": 21.69791268120563
+        "margin": 4808.0,
+        "margin_pct": 20.699156190804203
       },
       "59": {
-        "dem_votes": 13425,
-        "rep_votes": 11496,
-        "other_votes": 28,
-        "total_votes": 24949,
+        "dem_votes": 13161,
+        "rep_votes": 11510,
+        "other_votes": 0,
+        "total_votes": 24671,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 1929.0,
-        "margin_pct": 7.731772816545754
+        "margin": 1651.0,
+        "margin_pct": 6.692067609744234
       },
       "60": {
-        "dem_votes": 13035,
-        "rep_votes": 10176,
-        "other_votes": 7,
-        "total_votes": 23218,
+        "dem_votes": 12926,
+        "rep_votes": 10181,
+        "other_votes": 0,
+        "total_votes": 23107,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2859.0,
-        "margin_pct": 12.313722112154363
+        "margin": 2745.0,
+        "margin_pct": 11.879517029471588
       },
       "61": {
-        "dem_votes": 14133,
-        "rep_votes": 10931,
+        "dem_votes": 14161,
+        "rep_votes": 10940,
         "other_votes": 0,
-        "total_votes": 25064,
+        "total_votes": 25101,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 3202.0,
-        "margin_pct": 12.775295244174911
+        "margin": 3221.0,
+        "margin_pct": 12.832158081351341
       },
       "62": {
-        "dem_votes": 11551,
-        "rep_votes": 9525,
+        "dem_votes": 11546,
+        "rep_votes": 9523,
         "other_votes": 0,
-        "total_votes": 21076,
+        "total_votes": 21069,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2026.0,
-        "margin_pct": 9.612829758967546
+        "margin": 2023.0,
+        "margin_pct": 9.60178461246381
       },
       "63": {
         "dem_votes": 10234,
-        "rep_votes": 11799,
-        "other_votes": 1,
+        "rep_votes": 11800,
+        "other_votes": 0,
         "total_votes": 22034,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 1565.0,
-        "margin_pct": 7.102659526186803
+        "margin": 1566.0,
+        "margin_pct": 7.107197966778616
       },
       "64": {
         "dem_votes": 9977,
         "rep_votes": 11003,
-        "other_votes": 28,
-        "total_votes": 21008,
+        "other_votes": 0,
+        "total_votes": 20980,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 1026.0,
-        "margin_pct": 4.883853769992384
+        "margin_pct": 4.890371782650143
       },
       "65": {
-        "dem_votes": 10397,
-        "rep_votes": 10479,
-        "other_votes": 35,
-        "total_votes": 20911,
+        "dem_votes": 10394,
+        "rep_votes": 10475,
+        "other_votes": 0,
+        "total_votes": 20869,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 82.0,
-        "margin_pct": 0.3921381091291665
+        "margin": 81.0,
+        "margin_pct": 0.3881355120034501
       },
       "66": {
-        "dem_votes": 8970,
+        "dem_votes": 8969,
         "rep_votes": 10550,
         "other_votes": 0,
-        "total_votes": 19520,
+        "total_votes": 19519,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 1580.0,
-        "margin_pct": 8.094262295081968
+        "margin": 1581.0,
+        "margin_pct": 8.099800194682105
       },
       "67": {
         "dem_votes": 7875,
-        "rep_votes": 10365,
-        "other_votes": 14,
-        "total_votes": 18254,
+        "rep_votes": 10415,
+        "other_votes": 0,
+        "total_votes": 18290,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 2490.0,
-        "margin_pct": 13.640845842007232
+        "margin": 2540.0,
+        "margin_pct": 13.88737014762165
       },
       "68": {
         "dem_votes": 7634,
         "rep_votes": 12056,
-        "other_votes": 22,
-        "total_votes": 19712,
+        "other_votes": 0,
+        "total_votes": 19690,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 4422.0,
-        "margin_pct": 22.433035714285715
+        "margin_pct": 22.45810055865922
       },
       "69": {
-        "dem_votes": 11827,
-        "rep_votes": 12169,
-        "other_votes": 38,
-        "total_votes": 24034,
+        "dem_votes": 11824,
+        "rep_votes": 12168,
+        "other_votes": 0,
+        "total_votes": 23992,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 342.0,
-        "margin_pct": 1.4229841058500459
+        "margin": 344.0,
+        "margin_pct": 1.4338112704234744
       },
       "70": {
-        "dem_votes": 12770,
-        "rep_votes": 9922,
+        "dem_votes": 12795,
+        "rep_votes": 9933,
         "other_votes": 0,
-        "total_votes": 22692,
+        "total_votes": 22728,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2848.0,
-        "margin_pct": 12.550678653269875
+        "margin": 2862.0,
+        "margin_pct": 12.592397043294614
       },
       "71": {
-        "dem_votes": 14578,
-        "rep_votes": 9120,
-        "other_votes": 8,
-        "total_votes": 23706,
+        "dem_votes": 14587,
+        "rep_votes": 9128,
+        "other_votes": 0,
+        "total_votes": 23715,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 5458.0,
-        "margin_pct": 23.02370707837678
+        "margin": 5459.0,
+        "margin_pct": 23.019186169091295
       },
       "72": {
-        "dem_votes": 16937,
-        "rep_votes": 9052,
-        "other_votes": 2,
-        "total_votes": 25991,
+        "dem_votes": 16952,
+        "rep_votes": 9061,
+        "other_votes": 0,
+        "total_votes": 26013,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 7885.0,
-        "margin_pct": 30.337424493093764
+        "margin": 7891.0,
+        "margin_pct": 30.334832583708142
       },
       "73": {
-        "dem_votes": 12562,
-        "rep_votes": 8155,
-        "other_votes": 23,
-        "total_votes": 20740,
+        "dem_votes": 12565,
+        "rep_votes": 8156,
+        "other_votes": 0,
+        "total_votes": 20721,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 4407.0,
-        "margin_pct": 21.248794599807137
+        "margin": 4409.0,
+        "margin_pct": 21.277930601804933
       },
       "74": {
-        "dem_votes": 8220,
-        "rep_votes": 5940,
-        "other_votes": 30,
-        "total_votes": 14190,
+        "dem_votes": 8275,
+        "rep_votes": 5973,
+        "other_votes": 0,
+        "total_votes": 14248,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2280.0,
-        "margin_pct": 16.0676532769556
+        "margin": 2302.0,
+        "margin_pct": 16.15665356541269
       },
       "75": {
-        "dem_votes": 12653,
-        "rep_votes": 9481,
-        "other_votes": 29,
-        "total_votes": 22163,
+        "dem_votes": 12650,
+        "rep_votes": 9478,
+        "other_votes": 0,
+        "total_votes": 22128,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 3172.0,
-        "margin_pct": 14.312141858051708
+        "margin_pct": 14.334779464931307
       },
       "76": {
         "dem_votes": 8059,
@@ -869,13 +869,13 @@
       "77": {
         "dem_votes": 10063,
         "rep_votes": 7387,
-        "other_votes": 53,
-        "total_votes": 17503,
+        "other_votes": 0,
+        "total_votes": 17450,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 2676.0,
-        "margin_pct": 15.288807632977203
+        "margin_pct": 15.335243553008596
       },
       "78": {
         "dem_votes": 8594,
@@ -889,279 +889,279 @@
         "margin_pct": 18.035288507391513
       },
       "79": {
-        "dem_votes": 9330,
-        "rep_votes": 9442,
-        "other_votes": 23,
-        "total_votes": 18795,
+        "dem_votes": 9320,
+        "rep_votes": 9437,
+        "other_votes": 0,
+        "total_votes": 18757,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 112.0,
-        "margin_pct": 0.5959031657355679
+        "margin": 117.0,
+        "margin_pct": 0.623767126939276
       },
       "80": {
-        "dem_votes": 8149,
-        "rep_votes": 12640,
-        "other_votes": 20,
-        "total_votes": 20809,
+        "dem_votes": 8144,
+        "rep_votes": 12633,
+        "other_votes": 0,
+        "total_votes": 20777,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 4491.0,
-        "margin_pct": 21.582007785092987
+        "margin": 4489.0,
+        "margin_pct": 21.605621600808586
       },
       "81": {
-        "dem_votes": 8640,
-        "rep_votes": 10909,
-        "other_votes": 1,
-        "total_votes": 19550,
+        "dem_votes": 8637,
+        "rep_votes": 10908,
+        "other_votes": 0,
+        "total_votes": 19545,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 2269.0,
-        "margin_pct": 11.60613810741688
+        "margin": 2271.0,
+        "margin_pct": 11.619339984650805
       },
       "82": {
         "dem_votes": 9860,
         "rep_votes": 6909,
-        "other_votes": 54,
-        "total_votes": 16823,
+        "other_votes": 0,
+        "total_votes": 16769,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 2951.0,
-        "margin_pct": 17.541461094929563
+        "margin_pct": 17.597948595622874
       },
       "83": {
         "dem_votes": 7412,
         "rep_votes": 9780,
-        "other_votes": 16,
-        "total_votes": 17208,
+        "other_votes": 0,
+        "total_votes": 17192,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 2368.0,
-        "margin_pct": 13.761041376104139
+        "margin_pct": 13.7738483015356
       },
       "84": {
         "dem_votes": 8499,
-        "rep_votes": 14311,
-        "other_votes": 27,
-        "total_votes": 22837,
+        "rep_votes": 14313,
+        "other_votes": 0,
+        "total_votes": 22812,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 5812.0,
-        "margin_pct": 25.449927748828653
+        "margin": 5814.0,
+        "margin_pct": 25.486586007364544
       },
       "85": {
-        "dem_votes": 7735,
-        "rep_votes": 11873,
-        "other_votes": 6,
-        "total_votes": 19614,
+        "dem_votes": 7736,
+        "rep_votes": 11874,
+        "other_votes": 0,
+        "total_votes": 19610,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 4138.0,
-        "margin_pct": 21.097175486897115
+        "margin_pct": 21.101478837327896
       },
       "86": {
-        "dem_votes": 8380,
-        "rep_votes": 12034,
-        "other_votes": 10,
-        "total_votes": 20424,
+        "dem_votes": 8382,
+        "rep_votes": 12035,
+        "other_votes": 0,
+        "total_votes": 20417,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 3654.0,
-        "margin_pct": 17.89071680376028
+        "margin": 3653.0,
+        "margin_pct": 17.891952784444335
       },
       "87": {
-        "dem_votes": 8426,
-        "rep_votes": 11091,
-        "other_votes": 57,
-        "total_votes": 19574,
+        "dem_votes": 8436,
+        "rep_votes": 11118,
+        "other_votes": 0,
+        "total_votes": 19554,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 2665.0,
-        "margin_pct": 13.614999489118219
+        "margin": 2682.0,
+        "margin_pct": 13.715863761890152
       },
       "88": {
-        "dem_votes": 10529,
-        "rep_votes": 11327,
-        "other_votes": 78,
-        "total_votes": 21934,
+        "dem_votes": 10551,
+        "rep_votes": 11356,
+        "other_votes": 0,
+        "total_votes": 21907,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 798.0,
-        "margin_pct": 3.6381872891401477
+        "margin": 805.0,
+        "margin_pct": 3.674624549230839
       },
       "89": {
-        "dem_votes": 7541,
-        "rep_votes": 11092,
+        "dem_votes": 7544,
+        "rep_votes": 11095,
         "other_votes": 0,
-        "total_votes": 18633,
+        "total_votes": 18639,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 3551.0,
-        "margin_pct": 19.05758600332743
+        "margin_pct": 19.051451258114703
       },
       "90": {
-        "dem_votes": 6558,
-        "rep_votes": 11233,
+        "dem_votes": 6559,
+        "rep_votes": 11234,
         "other_votes": 0,
-        "total_votes": 17791,
+        "total_votes": 17793,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 4675.0,
-        "margin_pct": 26.277331234894046
+        "margin_pct": 26.274377564210642
       },
       "91": {
         "dem_votes": 9163,
         "rep_votes": 10172,
-        "other_votes": 3,
-        "total_votes": 19338,
+        "other_votes": 0,
+        "total_votes": 19335,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 1009.0,
-        "margin_pct": 5.217706070948392
+        "margin_pct": 5.218515645203
       },
       "92": {
-        "dem_votes": 8437,
-        "rep_votes": 12449,
-        "other_votes": 43,
-        "total_votes": 20929,
+        "dem_votes": 8436,
+        "rep_votes": 12447,
+        "other_votes": 0,
+        "total_votes": 20883,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 4012.0,
-        "margin_pct": 19.169573319317692
+        "margin": 4011.0,
+        "margin_pct": 19.207010486998993
       },
       "93": {
         "dem_votes": 8592,
         "rep_votes": 11697,
-        "other_votes": 37,
-        "total_votes": 20326,
+        "other_votes": 0,
+        "total_votes": 20289,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 3105.0,
-        "margin_pct": 15.276001180753715
+        "margin_pct": 15.30385923406772
       },
       "94": {
         "dem_votes": 8125,
         "rep_votes": 10583,
-        "other_votes": 27,
-        "total_votes": 18735,
+        "other_votes": 0,
+        "total_votes": 18708,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 2458.0,
-        "margin_pct": 13.119829196690686
+        "margin_pct": 13.138764165063074
       },
       "95": {
         "dem_votes": 7394,
         "rep_votes": 4804,
-        "other_votes": 30,
-        "total_votes": 12228,
+        "other_votes": 0,
+        "total_votes": 12198,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 2590.0,
-        "margin_pct": 21.18089630356559
+        "margin_pct": 21.232989014592558
       },
       "96": {
         "dem_votes": 10564,
         "rep_votes": 8901,
-        "other_votes": 44,
-        "total_votes": 19509,
+        "other_votes": 0,
+        "total_votes": 19465,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 1663.0,
-        "margin_pct": 8.52427084935158
+        "margin_pct": 8.543539686617004
       },
       "97": {
         "dem_votes": 7781,
         "rep_votes": 12106,
-        "other_votes": 24,
-        "total_votes": 19911,
+        "other_votes": 0,
+        "total_votes": 19887,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 4325.0,
-        "margin_pct": 21.72166139319974
+        "margin_pct": 21.747875496555537
       },
       "98": {
         "dem_votes": 7249,
-        "rep_votes": 12118,
-        "other_votes": 26,
-        "total_votes": 19393,
+        "rep_votes": 12119,
+        "other_votes": 0,
+        "total_votes": 19368,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 4869.0,
-        "margin_pct": 25.10699737018512
+        "margin": 4870.0,
+        "margin_pct": 25.14456836018174
       },
       "99": {
-        "dem_votes": 6438,
+        "dem_votes": 6437,
         "rep_votes": 10886,
-        "other_votes": 15,
-        "total_votes": 17339,
+        "other_votes": 0,
+        "total_votes": 17323,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 4448.0,
-        "margin_pct": 25.65315185420151
+        "margin": 4449.0,
+        "margin_pct": 25.682618484096288
       },
       "100": {
         "dem_votes": 4875,
         "rep_votes": 9152,
-        "other_votes": 34,
-        "total_votes": 14061,
+        "other_votes": 0,
+        "total_votes": 14027,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 4277.0,
-        "margin_pct": 30.417466752009105
+        "margin_pct": 30.49119555143652
       },
       "101": {
-        "dem_votes": 8078,
+        "dem_votes": 8079,
         "rep_votes": 7898,
-        "other_votes": 24,
-        "total_votes": 16000,
+        "other_votes": 0,
+        "total_votes": 15977,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 180.0,
-        "margin_pct": 1.125
+        "margin": 181.0,
+        "margin_pct": 1.1328785128622394
       },
       "102": {
         "dem_votes": 8188,
-        "rep_votes": 11723,
-        "other_votes": 26,
-        "total_votes": 19937,
+        "rep_votes": 11724,
+        "other_votes": 0,
+        "total_votes": 19912,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 3535.0,
-        "margin_pct": 17.7308521843808
+        "margin": 3536.0,
+        "margin_pct": 17.758135797509038
       },
       "103": {
-        "dem_votes": 11522,
-        "rep_votes": 7519,
-        "other_votes": 40,
-        "total_votes": 19081,
+        "dem_votes": 11532,
+        "rep_votes": 7535,
+        "other_votes": 0,
+        "total_votes": 19067,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 4003.0,
-        "margin_pct": 20.97898432996174
+        "margin": 3997.0,
+        "margin_pct": 20.962920228667333
       },
       "104": {
         "dem_votes": 9153,
@@ -1197,202 +1197,202 @@
         "margin_pct": 10.92225642804492
       },
       "107": {
-        "dem_votes": 10935,
+        "dem_votes": 10939,
         "rep_votes": 9314,
-        "other_votes": 9,
-        "total_votes": 20258,
+        "other_votes": 0,
+        "total_votes": 20253,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 1621.0,
-        "margin_pct": 8.00177707572317
+        "margin": 1625.0,
+        "margin_pct": 8.023502690959363
       },
       "108": {
-        "dem_votes": 7977,
-        "rep_votes": 10685,
-        "other_votes": 10,
-        "total_votes": 18672,
+        "dem_votes": 7980,
+        "rep_votes": 10687,
+        "other_votes": 0,
+        "total_votes": 18667,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 2708.0,
-        "margin_pct": 14.502999143101972
+        "margin": 2707.0,
+        "margin_pct": 14.501526758450742
       },
       "109": {
-        "dem_votes": 9335,
-        "rep_votes": 8974,
-        "other_votes": 14,
-        "total_votes": 18323,
+        "dem_votes": 9327,
+        "rep_votes": 8970,
+        "other_votes": 0,
+        "total_votes": 18297,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 361.0,
-        "margin_pct": 1.9702013862358783
+        "margin": 357.0,
+        "margin_pct": 1.9511395310706674
       },
       "110": {
         "dem_votes": 10084,
         "rep_votes": 12033,
-        "other_votes": 58,
-        "total_votes": 22175,
+        "other_votes": 0,
+        "total_votes": 22117,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 1949.0,
-        "margin_pct": 8.789177001127396
+        "margin_pct": 8.812225889587195
       },
       "111": {
         "dem_votes": 11224,
         "rep_votes": 12183,
-        "other_votes": 22,
-        "total_votes": 23429,
+        "other_votes": 0,
+        "total_votes": 23407,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 959.0,
-        "margin_pct": 4.093217806991335
+        "margin_pct": 4.09706498056137
       },
       "112": {
-        "dem_votes": 18426,
-        "rep_votes": 6691,
-        "other_votes": 5,
-        "total_votes": 25122,
+        "dem_votes": 18697,
+        "rep_votes": 6813,
+        "other_votes": 0,
+        "total_votes": 25510,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 11735.0,
-        "margin_pct": 46.712045219329674
+        "margin": 11884.0,
+        "margin_pct": 46.585652685221476
       },
       "113": {
-        "dem_votes": 12957,
-        "rep_votes": 5688,
+        "dem_votes": 13144,
+        "rep_votes": 5790,
         "other_votes": 0,
-        "total_votes": 18645,
+        "total_votes": 18934,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 7269.0,
-        "margin_pct": 38.98632341110217
+        "margin": 7354.0,
+        "margin_pct": 38.84018168374353
       },
       "114": {
-        "dem_votes": 15456,
-        "rep_votes": 7576,
-        "other_votes": 2,
-        "total_votes": 23034,
+        "dem_votes": 15685,
+        "rep_votes": 7718,
+        "other_votes": 0,
+        "total_votes": 23403,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 7880.0,
-        "margin_pct": 34.21029782061301
+        "margin": 7967.0,
+        "margin_pct": 34.04264410545657
       },
       "115": {
         "dem_votes": 7125,
         "rep_votes": 5359,
-        "other_votes": 12,
-        "total_votes": 12496,
+        "other_votes": 0,
+        "total_votes": 12484,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 1766.0,
-        "margin_pct": 14.132522407170296
+        "margin_pct": 14.146107016981738
       },
       "116": {
-        "dem_votes": 8746,
-        "rep_votes": 6795,
-        "other_votes": 13,
-        "total_votes": 15554,
+        "dem_votes": 8764,
+        "rep_votes": 6786,
+        "other_votes": 0,
+        "total_votes": 15550,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 1951.0,
-        "margin_pct": 12.543397196862543
+        "margin": 1978.0,
+        "margin_pct": 12.720257234726686
       },
       "117": {
-        "dem_votes": 8575,
-        "rep_votes": 9195,
-        "other_votes": 14,
-        "total_votes": 17784,
+        "dem_votes": 8603,
+        "rep_votes": 9168,
+        "other_votes": 0,
+        "total_votes": 17771,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 620.0,
-        "margin_pct": 3.486279802069276
+        "margin": 565.0,
+        "margin_pct": 3.1793371222778686
       },
       "118": {
-        "dem_votes": 15599,
-        "rep_votes": 7231,
-        "other_votes": 11,
-        "total_votes": 22841,
+        "dem_votes": 15725,
+        "rep_votes": 7283,
+        "other_votes": 0,
+        "total_votes": 23008,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 8368.0,
-        "margin_pct": 36.63587408607329
+        "margin": 8442.0,
+        "margin_pct": 36.691585535465926
       },
       "119": {
-        "dem_votes": 11937,
-        "rep_votes": 6489,
-        "other_votes": 20,
-        "total_votes": 18446,
+        "dem_votes": 11969,
+        "rep_votes": 6479,
+        "other_votes": 0,
+        "total_votes": 18448,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 5448.0,
-        "margin_pct": 29.53485850590914
+        "margin": 5490.0,
+        "margin_pct": 29.759323503902863
       },
       "120": {
-        "dem_votes": 12715,
-        "rep_votes": 8832,
-        "other_votes": 24,
-        "total_votes": 21571,
+        "dem_votes": 12770,
+        "rep_votes": 8797,
+        "other_votes": 0,
+        "total_votes": 21567,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 3883.0,
-        "margin_pct": 18.00101988781234
+        "margin": 3973.0,
+        "margin_pct": 18.421662725460195
       },
       "121": {
-        "dem_votes": 10321,
-        "rep_votes": 5176,
-        "other_votes": 35,
-        "total_votes": 15532,
+        "dem_votes": 10360,
+        "rep_votes": 5169,
+        "other_votes": 0,
+        "total_votes": 15529,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 5145.0,
-        "margin_pct": 33.12516095802215
+        "margin": 5191.0,
+        "margin_pct": 33.427780282052936
       },
       "122": {
-        "dem_votes": 9984,
-        "rep_votes": 7431,
+        "dem_votes": 9997,
+        "rep_votes": 7439,
         "other_votes": 0,
-        "total_votes": 17415,
+        "total_votes": 17436,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2553.0,
-        "margin_pct": 14.659776055124892
+        "margin": 2558.0,
+        "margin_pct": 14.670796054140858
       },
       "123": {
-        "dem_votes": 13312,
-        "rep_votes": 9186,
+        "dem_votes": 13305,
+        "rep_votes": 9185,
         "other_votes": 0,
-        "total_votes": 22498,
+        "total_votes": 22490,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 4126.0,
-        "margin_pct": 18.339407947373097
+        "margin": 4120.0,
+        "margin_pct": 18.319253001333927
       },
       "124": {
-        "dem_votes": 9971,
-        "rep_votes": 10929,
+        "dem_votes": 9967,
+        "rep_votes": 10926,
         "other_votes": 0,
-        "total_votes": 20900,
+        "total_votes": 20893,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 958.0,
-        "margin_pct": 4.583732057416268
+        "margin": 959.0,
+        "margin_pct": 4.590054085100273
       },
       "125": {
         "dem_votes": 10459,
@@ -1406,92 +1406,92 @@
         "margin_pct": 10.242437245226347
       },
       "126": {
-        "dem_votes": 9823,
-        "rep_votes": 5678,
+        "dem_votes": 9819,
+        "rep_votes": 5677,
         "other_votes": 0,
-        "total_votes": 15501,
+        "total_votes": 15496,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 4145.0,
-        "margin_pct": 26.740210309012326
+        "margin": 4142.0,
+        "margin_pct": 26.72947857511616
       },
       "127": {
-        "dem_votes": 6635,
+        "dem_votes": 6634,
         "rep_votes": 3106,
         "other_votes": 0,
-        "total_votes": 9741,
+        "total_votes": 9740,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 3529.0,
-        "margin_pct": 36.22831331485474
+        "margin": 3528.0,
+        "margin_pct": 36.2217659137577
       },
       "128": {
-        "dem_votes": 10395,
+        "dem_votes": 10391,
         "rep_votes": 10154,
         "other_votes": 0,
-        "total_votes": 20549,
+        "total_votes": 20545,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 241.0,
-        "margin_pct": 1.1728064626015864
+        "margin": 237.0,
+        "margin_pct": 1.1535653443660259
       },
       "129": {
-        "dem_votes": 10119,
+        "dem_votes": 10117,
         "rep_votes": 7304,
         "other_votes": 0,
-        "total_votes": 17423,
+        "total_votes": 17421,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2815.0,
-        "margin_pct": 16.15680422430121
+        "margin": 2813.0,
+        "margin_pct": 16.14717869238276
       },
       "130": {
-        "dem_votes": 10505,
+        "dem_votes": 10503,
         "rep_votes": 9513,
         "other_votes": 0,
-        "total_votes": 20018,
+        "total_votes": 20016,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 992.0,
-        "margin_pct": 4.955540013987411
+        "margin": 990.0,
+        "margin_pct": 4.946043165467626
       },
       "131": {
-        "dem_votes": 11796,
-        "rep_votes": 10910,
+        "dem_votes": 11798,
+        "rep_votes": 10911,
         "other_votes": 0,
-        "total_votes": 22706,
+        "total_votes": 22709,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 886.0,
-        "margin_pct": 3.9020523209724303
+        "margin": 887.0,
+        "margin_pct": 3.9059403760623543
       },
       "132": {
-        "dem_votes": 10711,
-        "rep_votes": 7624,
+        "dem_votes": 10703,
+        "rep_votes": 7623,
         "other_votes": 0,
-        "total_votes": 18335,
+        "total_votes": 18326,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 3087.0,
-        "margin_pct": 16.836651213526043
+        "margin": 3080.0,
+        "margin_pct": 16.80672268907563
       },
       "133": {
-        "dem_votes": 11343,
+        "dem_votes": 11342,
         "rep_votes": 6205,
         "other_votes": 0,
-        "total_votes": 17548,
+        "total_votes": 17547,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 5138.0,
-        "margin_pct": 29.27968999316161
+        "margin": 5137.0,
+        "margin_pct": 29.27565965692141
       },
       "134": {
         "dem_votes": 7394,
@@ -1505,59 +1505,59 @@
         "margin_pct": 24.919749957763134
       },
       "135": {
-        "dem_votes": 10520,
+        "dem_votes": 10525,
         "rep_votes": 5841,
         "other_votes": 0,
-        "total_votes": 16361,
+        "total_votes": 16366,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 4679.0,
-        "margin_pct": 28.598496424423935
+        "margin": 4684.0,
+        "margin_pct": 28.620310399608943
       },
       "136": {
-        "dem_votes": 8712,
+        "dem_votes": 8715,
         "rep_votes": 4995,
         "other_votes": 0,
-        "total_votes": 13707,
+        "total_votes": 13710,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 3717.0,
-        "margin_pct": 27.11753118844386
+        "margin": 3720.0,
+        "margin_pct": 27.13347921225383
       },
       "137": {
-        "dem_votes": 10783,
-        "rep_votes": 8346,
+        "dem_votes": 10787,
+        "rep_votes": 8348,
         "other_votes": 0,
-        "total_votes": 19129,
+        "total_votes": 19135,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2437.0,
-        "margin_pct": 12.739819122797847
+        "margin": 2439.0,
+        "margin_pct": 12.746276456754638
       },
       "138": {
-        "dem_votes": 9524,
-        "rep_votes": 8371,
+        "dem_votes": 9530,
+        "rep_votes": 8375,
         "other_votes": 0,
-        "total_votes": 17895,
+        "total_votes": 17905,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 1153.0,
-        "margin_pct": 6.443140542050853
+        "margin": 1155.0,
+        "margin_pct": 6.450712091594527
       },
       "139": {
         "dem_votes": 8408,
         "rep_votes": 9542,
-        "other_votes": 11,
-        "total_votes": 17961,
+        "other_votes": 0,
+        "total_votes": 17950,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 1134.0,
-        "margin_pct": 6.313679639218305
+        "margin_pct": 6.317548746518106
       },
       "140": {
         "dem_votes": 13747,
@@ -1626,356 +1626,356 @@
         "margin_pct": 5.517639142555033
       },
       "146": {
-        "dem_votes": 9681,
-        "rep_votes": 7264,
+        "dem_votes": 9697,
+        "rep_votes": 7272,
         "other_votes": 0,
-        "total_votes": 16945,
+        "total_votes": 16969,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2417.0,
-        "margin_pct": 14.263794629684273
+        "margin": 2425.0,
+        "margin_pct": 14.290765513583596
       },
       "147": {
-        "dem_votes": 9889,
-        "rep_votes": 10842,
+        "dem_votes": 9907,
+        "rep_votes": 10857,
         "other_votes": 0,
-        "total_votes": 20731,
+        "total_votes": 20764,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 953.0,
-        "margin_pct": 4.5969803675654815
+        "margin": 950.0,
+        "margin_pct": 4.575226353303795
       },
       "148": {
-        "dem_votes": 20217,
-        "rep_votes": 7786,
+        "dem_votes": 20253,
+        "rep_votes": 7787,
         "other_votes": 0,
-        "total_votes": 28003,
+        "total_votes": 28040,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 12431.0,
-        "margin_pct": 44.391672320822764
+        "margin": 12466.0,
+        "margin_pct": 44.457917261055634
       },
       "149": {
-        "dem_votes": 14674,
-        "rep_votes": 7645,
+        "dem_votes": 14701,
+        "rep_votes": 7650,
         "other_votes": 0,
-        "total_votes": 22319,
+        "total_votes": 22351,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 7029.0,
-        "margin_pct": 31.4933464760966
+        "margin": 7051.0,
+        "margin_pct": 31.546686949129793
       },
       "150": {
-        "dem_votes": 10658,
-        "rep_votes": 8337,
+        "dem_votes": 10676,
+        "rep_votes": 8348,
         "other_votes": 0,
-        "total_votes": 18995,
+        "total_votes": 19024,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2321.0,
-        "margin_pct": 12.219005001316136
+        "margin": 2328.0,
+        "margin_pct": 12.23717409587889
       },
       "151": {
-        "dem_votes": 13864,
-        "rep_votes": 9332,
+        "dem_votes": 13888,
+        "rep_votes": 9336,
         "other_votes": 0,
-        "total_votes": 23196,
+        "total_votes": 23224,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 4532.0,
-        "margin_pct": 19.53785135368167
+        "margin": 4552.0,
+        "margin_pct": 19.60041336548398
       },
       "152": {
-        "dem_votes": 13358,
-        "rep_votes": 8557,
+        "dem_votes": 13385,
+        "rep_votes": 8562,
         "other_votes": 0,
-        "total_votes": 21915,
+        "total_votes": 21947,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 4801.0,
-        "margin_pct": 21.90736938170203
+        "margin": 4823.0,
+        "margin_pct": 21.97566865630838
       },
       "153": {
-        "dem_votes": 17104,
-        "rep_votes": 8860,
+        "dem_votes": 17136,
+        "rep_votes": 8861,
         "other_votes": 0,
-        "total_votes": 25964,
+        "total_votes": 25997,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 8244.0,
-        "margin_pct": 31.751656139269755
+        "margin": 8275.0,
+        "margin_pct": 31.830595837981306
       },
       "154": {
-        "dem_votes": 20375,
+        "dem_votes": 20417,
         "rep_votes": 6514,
         "other_votes": 0,
-        "total_votes": 26889,
+        "total_votes": 26931,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 13861.0,
-        "margin_pct": 51.548960541485364
+        "margin": 13903.0,
+        "margin_pct": 51.62452192640452
       },
       "155": {
-        "dem_votes": 11219,
-        "rep_votes": 9477,
-        "other_votes": 44,
-        "total_votes": 20740,
+        "dem_votes": 11295,
+        "rep_votes": 9531,
+        "other_votes": 0,
+        "total_votes": 20826,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 1742.0,
-        "margin_pct": 8.399228543876568
+        "margin": 1764.0,
+        "margin_pct": 8.47018150388937
       },
       "156": {
-        "dem_votes": 12955,
-        "rep_votes": 9555,
-        "other_votes": 54,
-        "total_votes": 22564,
+        "dem_votes": 13044,
+        "rep_votes": 9607,
+        "other_votes": 0,
+        "total_votes": 22651,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 3400.0,
-        "margin_pct": 15.068250310228684
+        "margin": 3437.0,
+        "margin_pct": 15.17372301443645
       },
       "157": {
-        "dem_votes": 15388,
-        "rep_votes": 12589,
-        "other_votes": 85,
-        "total_votes": 28062,
+        "dem_votes": 15495,
+        "rep_votes": 12660,
+        "other_votes": 0,
+        "total_votes": 28155,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2799.0,
-        "margin_pct": 9.974342527261065
+        "margin": 2835.0,
+        "margin_pct": 10.06925945657965
       },
       "158": {
-        "dem_votes": 10711,
-        "rep_votes": 8644,
-        "other_votes": 32,
-        "total_votes": 19387,
+        "dem_votes": 10784,
+        "rep_votes": 8694,
+        "other_votes": 0,
+        "total_votes": 19478,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2067.0,
-        "margin_pct": 10.661783669469232
+        "margin": 2090.0,
+        "margin_pct": 10.730054420371701
       },
       "159": {
         "dem_votes": 10789,
         "rep_votes": 5103,
-        "other_votes": 15,
-        "total_votes": 15907,
+        "other_votes": 0,
+        "total_votes": 15892,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 5686.0,
-        "margin_pct": 35.74526937826114
+        "margin_pct": 35.77900830606595
       },
       "160": {
-        "dem_votes": 12275,
-        "rep_votes": 11571,
-        "other_votes": 30,
-        "total_votes": 23876,
+        "dem_votes": 12309,
+        "rep_votes": 11595,
+        "other_votes": 0,
+        "total_votes": 23904,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 704.0,
-        "margin_pct": 2.9485675992628577
+        "margin": 714.0,
+        "margin_pct": 2.9869477911646585
       },
       "161": {
         "dem_votes": 15978,
         "rep_votes": 10449,
-        "other_votes": 23,
-        "total_votes": 26450,
+        "other_votes": 0,
+        "total_votes": 26427,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 5529.0,
-        "margin_pct": 20.90359168241966
+        "margin_pct": 20.92178453854013
       },
       "162": {
         "dem_votes": 14855,
         "rep_votes": 8596,
-        "other_votes": 22,
-        "total_votes": 23473,
+        "other_votes": 0,
+        "total_votes": 23451,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 6259.0,
-        "margin_pct": 26.66467856686406
+        "margin_pct": 26.689693403266386
       },
       "163": {
         "dem_votes": 14329,
         "rep_votes": 9781,
-        "other_votes": 19,
-        "total_votes": 24129,
+        "other_votes": 0,
+        "total_votes": 24110,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 4548.0,
-        "margin_pct": 18.848688300385426
+        "margin_pct": 18.863542098714227
       },
       "164": {
         "dem_votes": 11419,
         "rep_votes": 4831,
-        "other_votes": 24,
-        "total_votes": 16274,
+        "other_votes": 0,
+        "total_votes": 16250,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 6588.0,
-        "margin_pct": 40.48175003072386
+        "margin_pct": 40.541538461538465
       },
       "165": {
         "dem_votes": 17248,
         "rep_votes": 11249,
-        "other_votes": 35,
-        "total_votes": 28532,
+        "other_votes": 0,
+        "total_votes": 28497,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 5999.0,
-        "margin_pct": 21.02551521099117
+        "margin_pct": 21.051338737410955
       },
       "166": {
         "dem_votes": 17780,
         "rep_votes": 10840,
-        "other_votes": 28,
-        "total_votes": 28648,
+        "other_votes": 0,
+        "total_votes": 28620,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 6940.0,
-        "margin_pct": 24.225076794191565
+        "margin_pct": 24.24877707896576
       },
       "167": {
-        "dem_votes": 11498,
-        "rep_votes": 9260,
-        "other_votes": 51,
-        "total_votes": 20809,
+        "dem_votes": 11578,
+        "rep_votes": 9313,
+        "other_votes": 0,
+        "total_votes": 20891,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 2238.0,
-        "margin_pct": 10.754961795377001
+        "margin": 2265.0,
+        "margin_pct": 10.841989373414389
       },
       "168": {
         "dem_votes": 12344,
         "rep_votes": 10292,
-        "other_votes": 23,
-        "total_votes": 22659,
+        "other_votes": 0,
+        "total_votes": 22636,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 2052.0,
-        "margin_pct": 9.056004236727128
+        "margin_pct": 9.06520586676091
       },
       "169": {
         "dem_votes": 7491,
         "rep_votes": 9552,
-        "other_votes": 30,
-        "total_votes": 17073,
+        "other_votes": 0,
+        "total_votes": 17043,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 2061.0,
-        "margin_pct": 12.071692145492884
+        "margin_pct": 12.092941383559234
       },
       "170": {
         "dem_votes": 12542,
         "rep_votes": 7132,
-        "other_votes": 4,
-        "total_votes": 19678,
+        "other_votes": 0,
+        "total_votes": 19674,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 5410.0,
-        "margin_pct": 27.492631364976116
+        "margin_pct": 27.498221002338113
       },
       "171": {
         "dem_votes": 8409,
         "rep_votes": 9569,
-        "other_votes": 10,
-        "total_votes": 17988,
+        "other_votes": 0,
+        "total_votes": 17978,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
         "margin": 1160.0,
-        "margin_pct": 6.44874360684901
+        "margin_pct": 6.45233062632106
       },
       "172": {
         "dem_votes": 12415,
         "rep_votes": 6866,
-        "other_votes": 9,
-        "total_votes": 19290,
+        "other_votes": 0,
+        "total_votes": 19281,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 5549.0,
-        "margin_pct": 28.76620010368066
+        "margin_pct": 28.77962761267569
       },
       "173": {
         "dem_votes": 12355,
         "rep_votes": 6068,
-        "other_votes": 5,
-        "total_votes": 18428,
+        "other_votes": 0,
+        "total_votes": 18423,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 6287.0,
-        "margin_pct": 34.11656175385283
+        "margin_pct": 34.125820984638764
       },
       "174": {
         "dem_votes": 11720,
         "rep_votes": 5522,
-        "other_votes": 8,
-        "total_votes": 17250,
+        "other_votes": 0,
+        "total_votes": 17242,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 6198.0,
-        "margin_pct": 35.93043478260869
+        "margin_pct": 35.947105904187445
       },
       "175": {
         "dem_votes": 12738,
         "rep_votes": 2291,
-        "other_votes": 33,
-        "total_votes": 15062,
+        "other_votes": 0,
+        "total_votes": 15029,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 10447.0,
-        "margin_pct": 69.35997875448147
+        "margin_pct": 69.51227626588596
       },
       "176": {
-        "dem_votes": 7498,
-        "rep_votes": 6777,
-        "other_votes": 6,
-        "total_votes": 14281,
+        "dem_votes": 7496,
+        "rep_votes": 6776,
+        "other_votes": 0,
+        "total_votes": 14272,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 721.0,
-        "margin_pct": 5.048666059799734
+        "margin": 720.0,
+        "margin_pct": 5.044843049327354
       },
       "177": {
         "dem_votes": 11115,
         "rep_votes": 4292,
-        "other_votes": 14,
-        "total_votes": 15421,
+        "other_votes": 0,
+        "total_votes": 15407,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 6823.0,
-        "margin_pct": 44.24486090396213
+        "margin_pct": 44.28506523009022
       },
       "178": {
         "dem_votes": 14891,
@@ -1991,277 +1991,277 @@
       "179": {
         "dem_votes": 9208,
         "rep_votes": 1675,
-        "other_votes": 8,
-        "total_votes": 10891,
+        "other_votes": 0,
+        "total_votes": 10883,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 7533.0,
-        "margin_pct": 69.16720227710954
+        "margin_pct": 69.21804649453276
       },
       "180": {
         "dem_votes": 8174,
         "rep_votes": 1543,
-        "other_votes": 4,
-        "total_votes": 9721,
+        "other_votes": 0,
+        "total_votes": 9717,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 6631.0,
-        "margin_pct": 68.21314679559715
+        "margin_pct": 68.24122671606463
       },
       "181": {
         "dem_votes": 10288,
         "rep_votes": 540,
-        "other_votes": 7,
-        "total_votes": 10835,
+        "other_votes": 0,
+        "total_votes": 10828,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 9748.0,
-        "margin_pct": 89.96769727734195
+        "margin_pct": 90.02585888437385
       },
       "182": {
         "dem_votes": 17094,
         "rep_votes": 2113,
-        "other_votes": 49,
-        "total_votes": 19256,
+        "other_votes": 0,
+        "total_votes": 19207,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 14981.0,
-        "margin_pct": 77.7991275446614
+        "margin_pct": 77.99760503982924
       },
       "183": {
-        "dem_votes": 10225,
-        "rep_votes": 8821,
+        "dem_votes": 10227,
+        "rep_votes": 8820,
         "other_votes": 0,
-        "total_votes": 19046,
+        "total_votes": 19047,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
-        "margin": 1404.0,
-        "margin_pct": 7.3716265882600025
+        "margin": 1407.0,
+        "margin_pct": 7.386990077177508
       },
       "184": {
         "dem_votes": 12697,
         "rep_votes": 3669,
-        "other_votes": 11,
-        "total_votes": 16377,
+        "other_votes": 0,
+        "total_votes": 16366,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 9028.0,
-        "margin_pct": 55.12609146974415
+        "margin_pct": 55.163143101552
       },
       "185": {
         "dem_votes": 11902,
         "rep_votes": 3904,
-        "other_votes": 8,
-        "total_votes": 15814,
+        "other_votes": 0,
+        "total_votes": 15806,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 7998.0,
-        "margin_pct": 50.575439484001514
+        "margin_pct": 50.601037580665576
       },
       "186": {
         "dem_votes": 13036,
         "rep_votes": 1196,
-        "other_votes": 8,
-        "total_votes": 14240,
+        "other_votes": 0,
+        "total_votes": 14232,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 11840.0,
-        "margin_pct": 83.14606741573034
+        "margin_pct": 83.19280494659921
       },
       "187": {
-        "dem_votes": 8921,
-        "rep_votes": 9199,
+        "dem_votes": 8915,
+        "rep_votes": 9197,
         "other_votes": 0,
-        "total_votes": 18120,
+        "total_votes": 18112,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 278.0,
-        "margin_pct": 1.534216335540839
+        "margin": 282.0,
+        "margin_pct": 1.5569787985865724
       },
       "188": {
         "dem_votes": 14103,
         "rep_votes": 900,
-        "other_votes": 37,
-        "total_votes": 15040,
+        "other_votes": 0,
+        "total_votes": 15003,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 13203.0,
-        "margin_pct": 87.78590425531915
+        "margin_pct": 88.00239952009599
       },
       "189": {
         "dem_votes": 6939,
         "rep_votes": 5090,
-        "other_votes": 2,
-        "total_votes": 12031,
+        "other_votes": 0,
+        "total_votes": 12029,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 1849.0,
-        "margin_pct": 15.36863103648907
+        "margin_pct": 15.371186299775541
       },
       "190": {
         "dem_votes": 18477,
         "rep_votes": 786,
-        "other_votes": 10,
-        "total_votes": 19273,
+        "other_votes": 0,
+        "total_votes": 19263,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 17691.0,
-        "margin_pct": 91.7916255902039
+        "margin_pct": 91.83927737112599
       },
       "191": {
         "dem_votes": 15110,
         "rep_votes": 1062,
-        "other_votes": 4,
-        "total_votes": 16176,
+        "other_votes": 0,
+        "total_votes": 16172,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 14048.0,
-        "margin_pct": 86.84470820969338
+        "margin_pct": 86.86618847390551
       },
       "192": {
         "dem_votes": 18155,
         "rep_votes": 1099,
-        "other_votes": 6,
-        "total_votes": 19260,
+        "other_votes": 0,
+        "total_votes": 19254,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 17056.0,
-        "margin_pct": 88.55659397715473
+        "margin_pct": 88.58419029811986
       },
       "193": {
-        "dem_votes": 7307,
-        "rep_votes": 10092,
-        "other_votes": 19,
-        "total_votes": 17418,
+        "dem_votes": 7310,
+        "rep_votes": 10103,
+        "other_votes": 0,
+        "total_votes": 17413,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 2785.0,
-        "margin_pct": 15.989206567918245
+        "margin": 2793.0,
+        "margin_pct": 16.039740423821282
       },
       "194": {
         "dem_votes": 15582,
         "rep_votes": 5176,
-        "other_votes": 19,
-        "total_votes": 20777,
+        "other_votes": 0,
+        "total_votes": 20758,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 10406.0,
-        "margin_pct": 50.084227751840984
+        "margin_pct": 50.130070334328934
       },
       "195": {
         "dem_votes": 17634,
         "rep_votes": 1148,
-        "other_votes": 9,
-        "total_votes": 18791,
+        "other_votes": 0,
+        "total_votes": 18782,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 16486.0,
-        "margin_pct": 87.73348943643234
+        "margin_pct": 87.7755297625386
       },
       "196": {
-        "dem_votes": 8359,
+        "dem_votes": 8358,
         "rep_votes": 10331,
-        "other_votes": 25,
-        "total_votes": 18715,
+        "other_votes": 0,
+        "total_votes": 18689,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 1972.0,
-        "margin_pct": 10.537002404488378
+        "margin": 1973.0,
+        "margin_pct": 10.557012146182245
       },
       "197": {
         "dem_votes": 12010,
         "rep_votes": 841,
-        "other_votes": 5,
-        "total_votes": 12856,
+        "other_votes": 0,
+        "total_votes": 12851,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 11169.0,
-        "margin_pct": 86.87772246421905
+        "margin_pct": 86.91152439498872
       },
       "198": {
         "dem_votes": 16593,
         "rep_votes": 1092,
-        "other_votes": 5,
-        "total_votes": 17690,
+        "other_votes": 0,
+        "total_votes": 17685,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 15501.0,
-        "margin_pct": 87.62577727529678
+        "margin_pct": 87.65055131467345
       },
       "199": {
-        "dem_votes": 8292,
-        "rep_votes": 9911,
-        "other_votes": 49,
-        "total_votes": 18252,
+        "dem_votes": 8307,
+        "rep_votes": 9936,
+        "other_votes": 0,
+        "total_votes": 18243,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "R",
-        "margin": 1619.0,
-        "margin_pct": 8.870260793337717
+        "margin": 1629.0,
+        "margin_pct": 8.92945239269857
       },
       "200": {
         "dem_votes": 26427,
         "rep_votes": 1403,
-        "other_votes": 27,
-        "total_votes": 27857,
+        "other_votes": 0,
+        "total_votes": 27830,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 25024.0,
-        "margin_pct": 89.83020425745774
+        "margin_pct": 89.91735537190083
       },
       "201": {
         "dem_votes": 19620,
         "rep_votes": 786,
-        "other_votes": 32,
-        "total_votes": 20438,
+        "other_votes": 0,
+        "total_votes": 20406,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 18834.0,
-        "margin_pct": 92.15187396027008
+        "margin_pct": 92.29638341664217
       },
       "202": {
         "dem_votes": 10095,
         "rep_votes": 4072,
-        "other_votes": 11,
-        "total_votes": 14178,
+        "other_votes": 0,
+        "total_votes": 14167,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 6023.0,
-        "margin_pct": 42.48130907039074
+        "margin_pct": 42.51429378132279
       },
       "203": {
         "dem_votes": 10654,
         "rep_votes": 2931,
-        "other_votes": 3,
-        "total_votes": 13588,
+        "other_votes": 0,
+        "total_votes": 13585,
         "dem_candidate": "Bob Casey, Jr.",
         "rep_candidate": "Rick Santorum",
         "winner": "D",
         "margin": 7723.0,
-        "margin_pct": 56.836914924933765
+        "margin_pct": 56.84946632315053
       }
     }
   }

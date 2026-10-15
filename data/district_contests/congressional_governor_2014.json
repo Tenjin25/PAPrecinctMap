@@ -8,21 +8,21 @@
     "coverage_percent": 100.0,
     "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
     "allocation_audit": {
-      "source_rows": 23557,
-      "source_votes": 3490122,
-      "matched_rows": 23557,
-      "matched_votes": 3490122,
+      "source_rows": 23805,
+      "source_votes": 3495866,
+      "matched_rows": 23805,
+      "matched_votes": 3495866,
       "unmatched_rows": 0,
       "unmatched_votes": 0,
       "unmatched_precincts": [],
       "unmatched_precinct_votes": {},
       "mapping_methods": {
-        "current_precinct_or_vtd_name": 20534,
-        "historical_vtd_block_chain": 3627,
-        "vtd10_nhgis_block_chain": 105
+        "current_precinct_or_vtd_name": 20776,
+        "historical_vtd_block_chain": 3644,
+        "vtd10_nhgis_block_chain": 108
       },
-      "allocated_rows": 23557,
-      "allocated_votes": 3490122,
+      "allocated_rows": 23805,
+      "allocated_votes": 3495866,
       "unallocated_rows": 0,
       "unallocated_votes": 0,
       "allocation_vote_delta": 0,
@@ -32,191 +32,191 @@
   "general": {
     "results": {
       "1": {
-        "dem_votes": 120433,
-        "rep_votes": 111322,
+        "dem_votes": 120469,
+        "rep_votes": 111354,
         "other_votes": 0,
-        "total_votes": 231755,
+        "total_votes": 231823,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 9111.0,
-        "margin_pct": 3.9313067679230222
+        "margin": 9115.0,
+        "margin_pct": 3.931879062905751
       },
       "2": {
-        "dem_votes": 116142,
-        "rep_votes": 28665,
+        "dem_votes": 116175,
+        "rep_votes": 28700,
         "other_votes": 0,
-        "total_votes": 144807,
+        "total_votes": 144875,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 87477.0,
-        "margin_pct": 60.40937247508753
+        "margin": 87475.0,
+        "margin_pct": 60.379637618636764
       },
       "3": {
-        "dem_votes": 202681,
-        "rep_votes": 14437,
+        "dem_votes": 202715,
+        "rep_votes": 14475,
         "other_votes": 0,
-        "total_votes": 217118,
+        "total_votes": 217190,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 188244.0,
-        "margin_pct": 86.70124079993367
+        "margin": 188240.0,
+        "margin_pct": 86.6706570284083
       },
       "4": {
-        "dem_votes": 136897,
-        "rep_votes": 98142,
+        "dem_votes": 136942,
+        "rep_votes": 98186,
         "other_votes": 0,
-        "total_votes": 235039,
+        "total_votes": 235128,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 38755.0,
-        "margin_pct": 16.488752930364747
+        "margin": 38756.0,
+        "margin_pct": 16.482936953489162
       },
       "5": {
-        "dem_votes": 146286,
-        "rep_votes": 81692,
+        "dem_votes": 146385,
+        "rep_votes": 81777,
         "other_votes": 0,
-        "total_votes": 227978,
+        "total_votes": 228162,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 64594.0,
-        "margin_pct": 28.333435682390405
+        "margin": 64608.0,
+        "margin_pct": 28.31672232887159
       },
       "6": {
-        "dem_votes": 107414,
-        "rep_votes": 96826,
+        "dem_votes": 107461,
+        "rep_votes": 96879,
         "other_votes": 0,
-        "total_votes": 204240,
+        "total_votes": 204340,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 10588.0,
-        "margin_pct": 5.18409714061888
+        "margin": 10582.0,
+        "margin_pct": 5.178623862190467
       },
       "7": {
-        "dem_votes": 95981,
-        "rep_votes": 79560,
+        "dem_votes": 96052,
+        "rep_votes": 79625,
         "other_votes": 0,
-        "total_votes": 175541,
+        "total_votes": 175677,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 16421.0,
-        "margin_pct": 9.354509772645708
+        "margin": 16427.0,
+        "margin_pct": 9.350683356387005
       },
       "8": {
-        "dem_votes": 107785,
-        "rep_votes": 72844,
+        "dem_votes": 108218,
+        "rep_votes": 73260,
         "other_votes": 0,
-        "total_votes": 180629,
+        "total_votes": 181478,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 34941.0,
-        "margin_pct": 19.344069889109722
+        "margin": 34958.0,
+        "margin_pct": 19.262940962540913
       },
       "9": {
-        "dem_votes": 86047,
-        "rep_votes": 112711,
+        "dem_votes": 86271,
+        "rep_votes": 112933,
         "other_votes": 0,
-        "total_votes": 198758,
+        "total_votes": 199204,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 26664.0,
-        "margin_pct": 13.41530906932048
+        "margin": 26662.0,
+        "margin_pct": 13.384269392180881
       },
       "10": {
-        "dem_votes": 99195,
-        "rep_votes": 113029,
+        "dem_votes": 99272,
+        "rep_votes": 113113,
         "other_votes": 0,
-        "total_votes": 212224,
+        "total_votes": 212385,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 13834.0,
-        "margin_pct": 6.518584137515078
+        "margin": 13841.0,
+        "margin_pct": 6.516938578524849
       },
       "11": {
-        "dem_votes": 80203,
-        "rep_votes": 119149,
+        "dem_votes": 80306,
+        "rep_votes": 119250,
         "other_votes": 0,
-        "total_votes": 199352,
+        "total_votes": 199556,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 38946.0,
-        "margin_pct": 19.536297604237728
+        "margin": 38944.0,
+        "margin_pct": 19.515324019322897
       },
       "12": {
-        "dem_votes": 128507,
-        "rep_votes": 83188,
+        "dem_votes": 128526,
+        "rep_votes": 83201,
         "other_votes": 0,
-        "total_votes": 211695,
+        "total_votes": 211727,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 45319.0,
-        "margin_pct": 21.40768558539408
+        "margin": 45325.0,
+        "margin_pct": 21.407283908051404
       },
       "13": {
-        "dem_votes": 81943,
-        "rep_votes": 121358,
+        "dem_votes": 82171,
+        "rep_votes": 121586,
         "other_votes": 0,
-        "total_votes": 203301,
+        "total_votes": 203757,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
         "margin": 39415.0,
-        "margin_pct": 19.38750916129286
+        "margin_pct": 19.344120692786014
       },
       "14": {
-        "dem_votes": 101877,
-        "rep_votes": 110704,
+        "dem_votes": 102882,
+        "rep_votes": 111568,
         "other_votes": 0,
-        "total_votes": 212581,
+        "total_votes": 214450,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 8827.0,
-        "margin_pct": 4.152299594037096
+        "margin": 8686.0,
+        "margin_pct": 4.0503613896013055
       },
       "15": {
-        "dem_votes": 88260,
-        "rep_votes": 110803,
+        "dem_votes": 88480,
+        "rep_votes": 111179,
         "other_votes": 0,
-        "total_votes": 199063,
+        "total_votes": 199659,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 22543.0,
-        "margin_pct": 11.324555542717633
+        "margin": 22699.0,
+        "margin_pct": 11.368883947129858
       },
       "16": {
-        "dem_votes": 101075,
-        "rep_votes": 108841,
+        "dem_votes": 101228,
+        "rep_votes": 108983,
         "other_votes": 0,
-        "total_votes": 209916,
+        "total_votes": 210211,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "R",
-        "margin": 7766.0,
-        "margin_pct": 3.699575068122487
+        "margin": 7755.0,
+        "margin_pct": 3.6891504250491174
       },
       "17": {
-        "dem_votes": 116743,
-        "rep_votes": 109382,
+        "dem_votes": 116802,
+        "rep_votes": 109442,
         "other_votes": 0,
-        "total_votes": 226125,
+        "total_votes": 226244,
         "dem_candidate": "Thomas W. Wolf",
         "rep_candidate": "Tom Corbett",
         "winner": "D",
-        "margin": 7361.0,
-        "margin_pct": 3.2552791597567716
+        "margin": 7360.0,
+        "margin_pct": 3.253124944749916
       }
     }
   }

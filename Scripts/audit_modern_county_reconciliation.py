@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import subprocess
 from pathlib import Path
 
 
@@ -17,6 +18,8 @@ def main() -> int:
     parser.add_argument("--candidate", type=Path, action="append", required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--year", type=int, action="append")
+    parser.add_argument("--exclude", action="append", default=[], help="Exclude contest:year")
+    parser.add_argument("--ref", help="Compare with data/district_contests at this Git ref")
     args = parser.parse_args()
     rows = []
     for directory in args.candidate:
@@ -24,8 +27,17 @@ def main() -> int:
             if path.name == "manifest.json" or not (PUBLISHED / path.name).exists():
                 continue
             new = json.loads(path.read_text(encoding="utf-8"))
-            old = json.loads((PUBLISHED / path.name).read_text(encoding="utf-8"))
+            if args.ref:
+                raw = subprocess.check_output(
+                    ["git", "show", f"{args.ref}:data/district_contests/{path.name}"],
+                    cwd=ROOT,
+                )
+                old = json.loads(raw)
+            else:
+                old = json.loads((PUBLISHED / path.name).read_text(encoding="utf-8"))
             if args.year and int(new.get("year") or 0) not in set(args.year):
+                continue
+            if f'{new.get("contest_type")}:{new.get("year")}' in set(args.exclude):
                 continue
             for district, new_row in new["general"]["results"].items():
                 old_row = old["general"]["results"][district]

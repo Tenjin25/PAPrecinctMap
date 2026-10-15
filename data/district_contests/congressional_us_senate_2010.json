@@ -8,21 +8,21 @@
     "coverage_percent": 100.0,
     "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
     "allocation_audit": {
-      "source_rows": 25969,
-      "source_votes": 3980353,
-      "matched_rows": 25969,
-      "matched_votes": 3980353,
+      "source_rows": 24436,
+      "source_votes": 3977661,
+      "matched_rows": 24436,
+      "matched_votes": 3977661,
       "unmatched_rows": 0,
       "unmatched_votes": 0,
       "unmatched_precincts": [],
       "unmatched_precinct_votes": {},
       "mapping_methods": {
-        "current_precinct_or_vtd_name": 22818,
-        "historical_vtd_block_chain": 3788,
-        "vtd10_nhgis_block_chain": 115
+        "current_precinct_or_vtd_name": 21417,
+        "historical_vtd_block_chain": 3626,
+        "vtd10_nhgis_block_chain": 112
       },
-      "allocated_rows": 25969,
-      "allocated_votes": 3980353,
+      "allocated_rows": 24436,
+      "allocated_votes": 3977661,
       "unallocated_rows": 0,
       "unallocated_votes": 0,
       "allocation_vote_delta": 0,
@@ -45,24 +45,24 @@
       "2": {
         "dem_votes": 119480,
         "rep_votes": 44947,
-        "other_votes": 65,
-        "total_votes": 164492,
+        "other_votes": 0,
+        "total_votes": 164427,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
         "margin": 74533.0,
-        "margin_pct": 45.31101816501714
+        "margin_pct": 45.32893016353762
       },
       "3": {
         "dem_votes": 223159,
         "rep_votes": 19868,
-        "other_votes": 116,
-        "total_votes": 243143,
+        "other_votes": 0,
+        "total_votes": 243027,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
         "margin": 203291.0,
-        "margin_pct": 83.6096453527348
+        "margin_pct": 83.64955334180976
       },
       "4": {
         "dem_votes": 133510,
@@ -78,145 +78,145 @@
       "5": {
         "dem_votes": 152172,
         "rep_votes": 103558,
-        "other_votes": 133,
-        "total_votes": 255863,
+        "other_votes": 0,
+        "total_votes": 255730,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
         "margin": 48614.0,
-        "margin_pct": 19.00001172502472
+        "margin_pct": 19.00989324678372
       },
       "6": {
         "dem_votes": 108018,
         "rep_votes": 120695,
-        "other_votes": 329,
-        "total_votes": 229042,
+        "other_votes": 0,
+        "total_votes": 228713,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
         "margin": 12677.0,
-        "margin_pct": 5.534792745435335
+        "margin_pct": 5.542754456458531
       },
       "7": {
-        "dem_votes": 95584,
-        "rep_votes": 106924,
-        "other_votes": 87,
-        "total_votes": 202595,
+        "dem_votes": 95629,
+        "rep_votes": 106834,
+        "other_votes": 0,
+        "total_votes": 202463,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 11340.0,
-        "margin_pct": 5.597374071423283
+        "margin": 11205.0,
+        "margin_pct": 5.534344546904866
       },
       "8": {
         "dem_votes": 111550,
         "rep_votes": 103011,
-        "other_votes": 212,
-        "total_votes": 214773,
+        "other_votes": 0,
+        "total_votes": 214561,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
         "margin": 8539.0,
-        "margin_pct": 3.9758256391632094
+        "margin_pct": 3.9797540093493224
       },
       "9": {
-        "dem_votes": 80932,
-        "rep_votes": 147602,
-        "other_votes": 202,
-        "total_votes": 228736,
+        "dem_votes": 80737,
+        "rep_votes": 147620,
+        "other_votes": 0,
+        "total_votes": 228357,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 66670.0,
-        "margin_pct": 29.147139059876885
+        "margin": 66883.0,
+        "margin_pct": 29.28878904522305
       },
       "10": {
-        "dem_votes": 88097,
-        "rep_votes": 140938,
-        "other_votes": 180,
-        "total_votes": 229215,
+        "dem_votes": 88123,
+        "rep_votes": 140960,
+        "other_votes": 0,
+        "total_votes": 229083,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 52841.0,
-        "margin_pct": 23.05302881574068
+        "margin": 52837.0,
+        "margin_pct": 23.06456611795725
       },
       "11": {
         "dem_votes": 66401,
         "rep_votes": 147410,
-        "other_votes": 260,
-        "total_votes": 214071,
+        "other_votes": 0,
+        "total_votes": 213811,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
         "margin": 81009.0,
-        "margin_pct": 37.84211780203764
+        "margin_pct": 37.88813484806675
       },
       "12": {
-        "dem_votes": 144786,
-        "rep_votes": 109232,
+        "dem_votes": 144780,
+        "rep_votes": 109225,
         "other_votes": 0,
-        "total_votes": 254018,
+        "total_votes": 254005,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 35554.0,
-        "margin_pct": 13.996645906982968
+        "margin": 35555.0,
+        "margin_pct": 13.99775594968603
       },
       "13": {
-        "dem_votes": 75248,
-        "rep_votes": 157570,
-        "other_votes": 205,
-        "total_votes": 233023,
+        "dem_votes": 75261,
+        "rep_votes": 157584,
+        "other_votes": 0,
+        "total_votes": 232845,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 82322.0,
-        "margin_pct": 35.32784317427893
+        "margin": 82323.0,
+        "margin_pct": 35.355279263029054
       },
       "14": {
-        "dem_votes": 105027,
-        "rep_votes": 140204,
-        "other_votes": 44,
-        "total_votes": 245275,
+        "dem_votes": 105032,
+        "rep_votes": 140203,
+        "other_votes": 0,
+        "total_votes": 245235,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 35177.0,
-        "margin_pct": 14.341861176230761
+        "margin": 35171.0,
+        "margin_pct": 14.341753827960934
       },
       "15": {
-        "dem_votes": 83866,
-        "rep_votes": 143850,
-        "other_votes": 247,
-        "total_votes": 227963,
+        "dem_votes": 83810,
+        "rep_votes": 143800,
+        "other_votes": 0,
+        "total_votes": 227610,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 59984.0,
-        "margin_pct": 26.313042028750278
+        "margin": 59990.0,
+        "margin_pct": 26.356486973331577
       },
       "16": {
         "dem_votes": 107843,
-        "rep_votes": 138713,
-        "other_votes": 191,
-        "total_votes": 246747,
+        "rep_votes": 138683,
+        "other_votes": 0,
+        "total_votes": 246526,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 30870.0,
-        "margin_pct": 12.510790404746563
+        "margin": 30840.0,
+        "margin_pct": 12.50983669065332
       },
       "17": {
         "dem_votes": 130410,
         "rep_votes": 139702,
-        "other_votes": 129,
-        "total_votes": 270241,
+        "other_votes": 0,
+        "total_votes": 270112,
         "dem_candidate": "Joe Sestak",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
         "margin": 9292.0,
-        "margin_pct": 3.43841238006076
+        "margin_pct": 3.4400544959128068
       }
     }
   }

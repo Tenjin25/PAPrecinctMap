@@ -245,6 +245,10 @@ def main() -> int:
         default="us_senate",
         help="Comma-separated contest families for --all-years-output (default: us_senate)",
     )
+    parser.add_argument(
+        "--years",
+        help="Optional comma-separated election years for --all-years-output",
+    )
     args = parser.parse_args()
 
     vap_maps, county_districts, vap_blocks, carter_blocks = build_vap_maps(
@@ -325,6 +329,7 @@ def main() -> int:
                 layers.build_district_manifests(
                     args.all_years_output,
                     contest_types=contest_types,
+                    years={int(value) for value in args.years.split(",")} if args.years else None,
                 )
             finally:
                 layers.embedded_congressional_district_from_precinct_label = original_embedded

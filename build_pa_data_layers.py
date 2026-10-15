@@ -2099,9 +2099,10 @@ def build_district_results_2022_lines(out_path: Path):
         json.dump(payload, f, indent=2)
 
 
-def build_district_manifests(contest_dir: Path, contest_types=None):
+def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
     contest_dir.mkdir(parents=True, exist_ok=True)
     contest_types = set(contest_types or [])
+    years = {int(year) for year in (years or [])}
     target_years = {
         'us_house': {2022, 2024},
         'state_house': {2022, 2024},
@@ -2152,6 +2153,8 @@ def build_district_manifests(contest_dir: Path, contest_types=None):
         source_rows.append((year, fp, 'openelections_precinct_aggregate'))
 
     for year, fp, source_label in source_rows:
+        if years and year not in years:
+            continue
         try:
             rows = read_csv_rows(fp)
         except Exception:

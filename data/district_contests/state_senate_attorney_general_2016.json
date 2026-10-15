@@ -6,169 +6,183 @@
     "districts_observed": 50,
     "districts_expected": 50,
     "coverage_percent": 100.0,
-    "source": "precinct_returns_to_vtd_block_chain_block_count_districts+historical_geometry_votes/vest_pa_2016.zip+statewide_vote_control/vest_pa_2016.zip",
-    "unmatched_source_vtds": 0,
-    "unmatched_source_votes": 0.0,
-    "unmatched_source_keys": [],
-    "historical_aggregate_groups": [],
-    "district_membership_gap_votes": 0.0,
-    "district_membership_gap_keys": []
+    "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
+    "allocation_audit": {
+      "source_rows": 22549,
+      "source_votes": 5948335,
+      "matched_rows": 22549,
+      "matched_votes": 5948335,
+      "unmatched_rows": 0,
+      "unmatched_votes": 0,
+      "unmatched_precincts": [],
+      "unmatched_precinct_votes": {},
+      "mapping_methods": {
+        "current_precinct_or_vtd_name": 19520,
+        "vtd10_nhgis_block_chain": 3719
+      },
+      "allocated_rows": 22549,
+      "allocated_votes": 5948335,
+      "unallocated_rows": 0,
+      "unallocated_votes": 0,
+      "allocation_vote_delta": 0,
+      "conserved_for_matched_rows": true
+    }
   },
   "general": {
     "results": {
       "1": {
-        "dem_votes": 89893,
-        "rep_votes": 21999,
+        "dem_votes": 88804,
+        "rep_votes": 21859,
         "other_votes": 0,
-        "total_votes": 111892,
+        "total_votes": 110663,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 67894.0,
-        "margin_pct": 60.67815393415079
+        "margin": 66945.0,
+        "margin_pct": 60.49447421450711
       },
       "2": {
-        "dem_votes": 69785,
-        "rep_votes": 15111,
+        "dem_votes": 69813,
+        "rep_votes": 15123,
         "other_votes": 0,
-        "total_votes": 84896,
+        "total_votes": 84936,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 54674.0,
-        "margin_pct": 64.40114964191481
+        "margin": 54690.0,
+        "margin_pct": 64.3896580955072
       },
       "3": {
-        "dem_votes": 103968,
-        "rep_votes": 5966,
+        "dem_votes": 103990,
+        "rep_votes": 5967,
         "other_votes": 0,
-        "total_votes": 109934,
+        "total_votes": 109957,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 98002.0,
-        "margin_pct": 89.14621500172831
+        "margin": 98023.0,
+        "margin_pct": 89.14666642414763
       },
       "4": {
-        "dem_votes": 125994,
-        "rep_votes": 19751,
+        "dem_votes": 125687,
+        "rep_votes": 19603,
         "other_votes": 0,
-        "total_votes": 145745,
+        "total_votes": 145290,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 106243.0,
-        "margin_pct": 72.8964973069402
+        "margin": 106084.0,
+        "margin_pct": 73.01534861311859
       },
       "5": {
-        "dem_votes": 61159,
-        "rep_votes": 39423,
+        "dem_votes": 61154,
+        "rep_votes": 39422,
         "other_votes": 0,
-        "total_votes": 100582,
+        "total_votes": 100576,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 21736.0,
-        "margin_pct": 21.610228470302836
+        "margin": 21732.0,
+        "margin_pct": 21.607540566337892
       },
       "6": {
-        "dem_votes": 68914,
-        "rep_votes": 68940,
+        "dem_votes": 68942,
+        "rep_votes": 68963,
         "other_votes": 0,
-        "total_votes": 137854,
+        "total_votes": 137905,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 26.0,
-        "margin_pct": 0.018860533608020078
+        "margin": 21.0,
+        "margin_pct": 0.015227874261266813
       },
       "7": {
-        "dem_votes": 106745,
-        "rep_votes": 16665,
+        "dem_votes": 107491,
+        "rep_votes": 16761,
         "other_votes": 0,
-        "total_votes": 123410,
+        "total_votes": 124252,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 90080.0,
-        "margin_pct": 72.99246414391054
+        "margin": 90730.0,
+        "margin_pct": 73.02095740913627
       },
       "8": {
-        "dem_votes": 98600,
-        "rep_votes": 14539,
+        "dem_votes": 98896,
+        "rep_votes": 14559,
         "other_votes": 0,
-        "total_votes": 113139,
+        "total_votes": 113455,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 84061.0,
-        "margin_pct": 74.29887129990543
+        "margin": 84337.0,
+        "margin_pct": 74.3351989775682
       },
       "9": {
-        "dem_votes": 67418,
-        "rep_votes": 59416,
+        "dem_votes": 67785,
+        "rep_votes": 59682,
         "other_votes": 0,
-        "total_votes": 126834,
+        "total_votes": 127467,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 8002.0,
-        "margin_pct": 6.309033855275399
+        "margin": 8103.0,
+        "margin_pct": 6.356939443149992
       },
       "10": {
-        "dem_votes": 77909,
-        "rep_votes": 64370,
+        "dem_votes": 77881,
+        "rep_votes": 64347,
         "other_votes": 0,
-        "total_votes": 142279,
+        "total_votes": 142228,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 13539.0,
-        "margin_pct": 9.51581048503293
+        "margin": 13534.0,
+        "margin_pct": 9.51570717439604
       },
       "11": {
-        "dem_votes": 54146,
-        "rep_votes": 44470,
+        "dem_votes": 53743,
+        "rep_votes": 43792,
         "other_votes": 0,
-        "total_votes": 98616,
+        "total_votes": 97535,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 9676.0,
-        "margin_pct": 9.811795246207513
+        "margin": 9951.0,
+        "margin_pct": 10.202491413338802
       },
       "12": {
-        "dem_votes": 76616,
-        "rep_votes": 59650,
+        "dem_votes": 76928,
+        "rep_votes": 59832,
         "other_votes": 0,
-        "total_votes": 136266,
+        "total_votes": 136760,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 16966.0,
-        "margin_pct": 12.450647997299399
+        "margin": 17096.0,
+        "margin_pct": 12.500731207955543
       },
       "13": {
-        "dem_votes": 44928,
-        "rep_votes": 59657,
+        "dem_votes": 44616,
+        "rep_votes": 59377,
         "other_votes": 0,
-        "total_votes": 104585,
+        "total_votes": 103993,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 14729.0,
-        "margin_pct": 14.08328154133002
+        "margin": 14761.0,
+        "margin_pct": 14.194224611271913
       },
       "14": {
-        "dem_votes": 59125,
-        "rep_votes": 45179,
+        "dem_votes": 57884,
+        "rep_votes": 43968,
         "other_votes": 0,
-        "total_votes": 104304,
+        "total_votes": 101852,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 13946.0,
-        "margin_pct": 13.370532290228562
+        "margin": 13916.0,
+        "margin_pct": 13.662961944782626
       },
       "15": {
         "dem_votes": 60557,
@@ -182,59 +196,59 @@
         "margin_pct": 5.691496788606535
       },
       "16": {
-        "dem_votes": 56551,
-        "rep_votes": 73648,
+        "dem_votes": 57791,
+        "rep_votes": 74958,
         "other_votes": 0,
-        "total_votes": 130199,
+        "total_votes": 132749,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 17097.0,
-        "margin_pct": 13.1314372614229
+        "margin": 17167.0,
+        "margin_pct": 12.931924157620772
       },
       "17": {
-        "dem_votes": 83476,
-        "rep_votes": 44465,
+        "dem_votes": 83475,
+        "rep_votes": 44464,
         "other_votes": 0,
-        "total_votes": 127941,
+        "total_votes": 127939,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
         "margin": 39011.0,
-        "margin_pct": 30.491398378940293
+        "margin_pct": 30.491875034195985
       },
       "18": {
-        "dem_votes": 59803,
-        "rep_votes": 51344,
+        "dem_votes": 59804,
+        "rep_votes": 51245,
         "other_votes": 0,
-        "total_votes": 111147,
+        "total_votes": 111049,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 8459.0,
-        "margin_pct": 7.610641762710644
+        "margin": 8559.0,
+        "margin_pct": 7.707408441318697
       },
       "19": {
-        "dem_votes": 68102,
-        "rep_votes": 61013,
+        "dem_votes": 67726,
+        "rep_votes": 60746,
         "other_votes": 0,
-        "total_votes": 129115,
+        "total_votes": 128472,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 7089.0,
-        "margin_pct": 5.490454246214615
+        "margin": 6980.0,
+        "margin_pct": 5.4330904788592065
       },
       "20": {
-        "dem_votes": 49779,
-        "rep_votes": 71130,
+        "dem_votes": 49727,
+        "rep_votes": 71034,
         "other_votes": 0,
-        "total_votes": 120909,
+        "total_votes": 120761,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 21351.0,
-        "margin_pct": 17.6587350817557
+        "margin": 21307.0,
+        "margin_pct": 17.643941338677223
       },
       "21": {
         "dem_votes": 40449,
@@ -248,15 +262,15 @@
         "margin_pct": 32.902594386570236
       },
       "22": {
-        "dem_votes": 64476,
-        "rep_votes": 40395,
+        "dem_votes": 64219,
+        "rep_votes": 40133,
         "other_votes": 0,
-        "total_votes": 104871,
+        "total_votes": 104352,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 24081.0,
-        "margin_pct": 22.96249678176045
+        "margin": 24086.0,
+        "margin_pct": 23.081493406930388
       },
       "23": {
         "dem_votes": 34990,
@@ -270,70 +284,70 @@
         "margin_pct": 38.24186103977478
       },
       "24": {
-        "dem_votes": 56340,
-        "rep_votes": 67265,
+        "dem_votes": 56758,
+        "rep_votes": 67926,
         "other_votes": 0,
-        "total_votes": 123605,
+        "total_votes": 124684,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 10925.0,
-        "margin_pct": 8.838639213624045
+        "margin": 11168.0,
+        "margin_pct": 8.957043405729685
       },
       "25": {
-        "dem_votes": 47563,
-        "rep_votes": 70913,
+        "dem_votes": 47885,
+        "rep_votes": 71128,
         "other_votes": 0,
-        "total_votes": 118476,
+        "total_votes": 119013,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 23350.0,
-        "margin_pct": 19.708632972078732
+        "margin": 23243.0,
+        "margin_pct": 19.529799265626444
       },
       "26": {
-        "dem_votes": 72042,
-        "rep_votes": 56654,
+        "dem_votes": 72058,
+        "rep_votes": 56667,
         "other_votes": 0,
-        "total_votes": 128696,
+        "total_votes": 128725,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 15388.0,
-        "margin_pct": 11.9568595760552
+        "margin": 15391.0,
+        "margin_pct": 11.956496407069334
       },
       "27": {
-        "dem_votes": 40260,
-        "rep_votes": 68443,
+        "dem_votes": 40032,
+        "rep_votes": 67852,
         "other_votes": 0,
-        "total_votes": 108703,
+        "total_votes": 107884,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 28183.0,
-        "margin_pct": 25.926607361342374
+        "margin": 27820.0,
+        "margin_pct": 25.78695636053539
       },
       "28": {
-        "dem_votes": 40871,
-        "rep_votes": 80747,
+        "dem_votes": 40654,
+        "rep_votes": 81338,
         "other_votes": 0,
-        "total_votes": 121618,
+        "total_votes": 121992,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 39876.0,
-        "margin_pct": 32.78790968442171
+        "margin": 40684.0,
+        "margin_pct": 33.34972785100662
       },
       "29": {
-        "dem_votes": 42288,
-        "rep_votes": 63763,
+        "dem_votes": 42570,
+        "rep_votes": 64364,
         "other_votes": 0,
-        "total_votes": 106051,
+        "total_votes": 106934,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 21475.0,
-        "margin_pct": 20.249691186316017
+        "margin": 21794.0,
+        "margin_pct": 20.380795630949933
       },
       "30": {
         "dem_votes": 31810,
@@ -347,15 +361,15 @@
         "margin_pct": 41.31645943253515
       },
       "31": {
-        "dem_votes": 45351,
-        "rep_votes": 66960,
+        "dem_votes": 45788,
+        "rep_votes": 66827,
         "other_votes": 0,
-        "total_votes": 112311,
+        "total_votes": 112615,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 21609.0,
-        "margin_pct": 19.240323743889736
+        "margin": 21039.0,
+        "margin_pct": 18.682235936598143
       },
       "32": {
         "dem_votes": 40568,
@@ -370,69 +384,69 @@
       },
       "33": {
         "dem_votes": 34699,
-        "rep_votes": 80649,
+        "rep_votes": 80650,
         "other_votes": 0,
-        "total_votes": 115348,
+        "total_votes": 115349,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 45950.0,
-        "margin_pct": 39.83597461594479
+        "margin": 45951.0,
+        "margin_pct": 39.83649619849327
       },
       "34": {
-        "dem_votes": 43161,
-        "rep_votes": 79098,
+        "dem_votes": 42941,
+        "rep_votes": 78640,
         "other_votes": 0,
-        "total_votes": 122259,
+        "total_votes": 121581,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 35937.0,
-        "margin_pct": 29.394155031531422
+        "margin": 35699.0,
+        "margin_pct": 29.362318125364983
       },
       "35": {
-        "dem_votes": 50182,
-        "rep_votes": 68356,
+        "dem_votes": 49860,
+        "rep_votes": 68141,
         "other_votes": 0,
-        "total_votes": 118538,
+        "total_votes": 118001,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 18174.0,
-        "margin_pct": 15.331792336634667
+        "margin": 18281.0,
+        "margin_pct": 15.492241591172956
       },
       "36": {
-        "dem_votes": 45891,
-        "rep_votes": 80428,
+        "dem_votes": 46372,
+        "rep_votes": 81210,
         "other_votes": 0,
-        "total_votes": 126319,
+        "total_votes": 127582,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 34537.0,
-        "margin_pct": 27.341096747124343
+        "margin": 34838.0,
+        "margin_pct": 27.306359831324166
       },
       "37": {
-        "dem_votes": 56887,
-        "rep_votes": 68731,
+        "dem_votes": 56644,
+        "rep_votes": 68252,
         "other_votes": 0,
-        "total_votes": 125618,
+        "total_votes": 124896,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 11844.0,
-        "margin_pct": 9.428585075387286
+        "margin": 11608.0,
+        "margin_pct": 9.294132718421727
       },
       "38": {
-        "dem_votes": 70948,
-        "rep_votes": 63799,
+        "dem_votes": 70970,
+        "rep_votes": 63808,
         "other_votes": 0,
-        "total_votes": 134747,
+        "total_votes": 134778,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 7149.0,
-        "margin_pct": 5.305498452655718
+        "margin": 7162.0,
+        "margin_pct": 5.313923637388891
       },
       "39": {
         "dem_votes": 52779,
@@ -446,70 +460,70 @@
         "margin_pct": 20.515349803844792
       },
       "40": {
-        "dem_votes": 55980,
-        "rep_votes": 50775,
+        "dem_votes": 56232,
+        "rep_votes": 51021,
         "other_votes": 0,
-        "total_votes": 106755,
+        "total_votes": 107253,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 5205.0,
-        "margin_pct": 4.875649852465927
+        "margin": 5211.0,
+        "margin_pct": 4.8586053536964
       },
       "41": {
         "dem_votes": 45042,
-        "rep_votes": 72092,
+        "rep_votes": 71992,
         "other_votes": 0,
-        "total_votes": 117134,
+        "total_votes": 117034,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 27050.0,
-        "margin_pct": 23.093209486570938
+        "margin": 26950.0,
+        "margin_pct": 23.0274962831314
       },
       "42": {
-        "dem_votes": 81223,
-        "rep_votes": 42285,
+        "dem_votes": 81099,
+        "rep_votes": 42193,
         "other_votes": 0,
-        "total_votes": 123508,
+        "total_votes": 123292,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 38938.0,
-        "margin_pct": 31.526702723710205
+        "margin": 38906.0,
+        "margin_pct": 31.55598092333647
       },
       "43": {
-        "dem_votes": 99970,
-        "rep_votes": 30602,
+        "dem_votes": 100039,
+        "rep_votes": 30662,
         "other_votes": 0,
-        "total_votes": 130572,
+        "total_votes": 130701,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 69368.0,
-        "margin_pct": 53.12624452409399
+        "margin": 69377.0,
+        "margin_pct": 53.080695633545275
       },
       "44": {
-        "dem_votes": 60013,
-        "rep_votes": 67838,
+        "dem_votes": 59959,
+        "rep_votes": 67781,
         "other_votes": 0,
-        "total_votes": 127851,
+        "total_votes": 127740,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 7825.0,
-        "margin_pct": 6.120405784858937
+        "margin": 7822.0,
+        "margin_pct": 6.123375606701112
       },
       "45": {
-        "dem_votes": 69585,
-        "rep_votes": 50780,
+        "dem_votes": 69861,
+        "rep_votes": 51281,
         "other_votes": 0,
-        "total_votes": 120365,
+        "total_votes": 121142,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "D",
-        "margin": 18805.0,
-        "margin_pct": 15.62331242470818
+        "margin": 18580.0,
+        "margin_pct": 15.337372670089646
       },
       "46": {
         "dem_votes": 50890,
@@ -523,26 +537,26 @@
         "margin_pct": 13.433978311715927
       },
       "47": {
-        "dem_votes": 53694,
-        "rep_votes": 71859,
+        "dem_votes": 53691,
+        "rep_votes": 71853,
         "other_votes": 0,
-        "total_votes": 125553,
+        "total_votes": 125544,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 18165.0,
-        "margin_pct": 14.467993596329837
+        "margin": 18162.0,
+        "margin_pct": 14.466641177595104
       },
       "48": {
-        "dem_votes": 38598,
-        "rep_votes": 77090,
+        "dem_votes": 38458,
+        "rep_votes": 76630,
         "other_votes": 0,
-        "total_votes": 115688,
+        "total_votes": 115088,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 38492.0,
-        "margin_pct": 33.27224949865155
+        "margin": 38172.0,
+        "margin_pct": 33.167663005699985
       },
       "49": {
         "dem_votes": 59705,
@@ -556,15 +570,15 @@
         "margin_pct": 3.6473161586000975
       },
       "50": {
-        "dem_votes": 47291,
-        "rep_votes": 72191,
+        "dem_votes": 47294,
+        "rep_votes": 72197,
         "other_votes": 0,
-        "total_votes": 119482,
+        "total_votes": 119491,
         "dem_candidate": "Josh Shapiro",
         "rep_candidate": "John Rafferty",
         "winner": "R",
-        "margin": 24900.0,
-        "margin_pct": 20.839959157027838
+        "margin": 24903.0,
+        "margin_pct": 20.840900151475843
       }
     }
   }

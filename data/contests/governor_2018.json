@@ -836,14 +836,14 @@
     },
     {
       "county": "WESTMORELAND",
-      "dem_votes": 68146,
-      "rep_votes": 76413,
-      "other_votes": 2227,
-      "total_votes": 146786,
+      "dem_votes": 67950,
+      "rep_votes": 76126,
+      "other_votes": 2219,
+      "total_votes": 146295,
       "dem_candidate": "Tom Wolf",
       "rep_candidate": "Scott R. Wagner",
-      "margin": 8267.0,
-      "margin_pct": 5.632008502173232,
+      "margin": 8176.0,
+      "margin_pct": 5.588707748043338,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2018_governor_certified.csv",
+    "write_ins_excluded": true
+  }
 }

@@ -667,14 +667,14 @@
     },
     {
       "county": "PIKE",
-      "dem_votes": 8815,
-      "rep_votes": 14675,
+      "dem_votes": 8812,
+      "rep_votes": 14674,
       "other_votes": 1659,
-      "total_votes": 25149,
+      "total_votes": 25145,
       "dem_candidate": "Eugene DePasquale",
       "rep_candidate": "John Brown",
-      "margin": 5860.0,
-      "margin_pct": 23.301125293252216,
+      "margin": 5862.0,
+      "margin_pct": 23.31278584211573,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -747,12 +747,12 @@
       "county": "SUSQUEHANNA",
       "dem_votes": 5623,
       "rep_votes": 11739,
-      "other_votes": 1517,
-      "total_votes": 18879,
+      "other_votes": 1516,
+      "total_votes": 18878,
       "dem_candidate": "Eugene DePasquale",
       "rep_candidate": "John Brown",
       "margin": 6116.0,
-      "margin_pct": 32.39578367498279,
+      "margin_pct": 32.39749973514143,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2016_auditor_certified.csv",
+    "write_ins_excluded": true
+  }
 }

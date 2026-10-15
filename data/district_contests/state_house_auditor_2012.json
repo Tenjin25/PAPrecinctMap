@@ -9,9 +9,9 @@
     "source": "openelections_precinct_aggregate_to_current_lines_via_vtd_block_assign",
     "allocation_audit": {
       "source_rows": 35799,
-      "source_votes": 5479888,
+      "source_votes": 5489208,
       "matched_rows": 35799,
-      "matched_votes": 5479888,
+      "matched_votes": 5489208,
       "unmatched_rows": 0,
       "unmatched_votes": 0,
       "unmatched_precincts": [],
@@ -22,7 +22,7 @@
         "vtd10_nhgis_block_chain": 154
       },
       "allocated_rows": 35799,
-      "allocated_votes": 5479888,
+      "allocated_votes": 5489208,
       "unallocated_rows": 0,
       "unallocated_votes": 0,
       "allocation_vote_delta": 0,
@@ -100,35 +100,35 @@
       "7": {
         "dem_votes": 16349,
         "rep_votes": 12174,
-        "other_votes": 1384,
-        "total_votes": 29907,
+        "other_votes": 1377,
+        "total_votes": 29900,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
         "margin": 4175.0,
-        "margin_pct": 13.959942488380648
+        "margin_pct": 13.963210702341136
       },
       "8": {
         "dem_votes": 10345,
-        "rep_votes": 19543,
+        "rep_votes": 19541,
         "other_votes": 1497,
-        "total_votes": 31385,
+        "total_votes": 31383,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 9198.0,
-        "margin_pct": 29.306993786840845
+        "margin": 9196.0,
+        "margin_pct": 29.302488608482296
       },
       "9": {
-        "dem_votes": 13092,
-        "rep_votes": 13144,
-        "other_votes": 1188,
-        "total_votes": 27424,
+        "dem_votes": 13101,
+        "rep_votes": 13163,
+        "other_votes": 1189,
+        "total_votes": 27453,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 52.0,
-        "margin_pct": 0.1896149358226371
+        "margin": 62.0,
+        "margin_pct": 0.22584052744690927
       },
       "10": {
         "dem_votes": 22386,
@@ -142,26 +142,26 @@
         "margin_pct": 85.41580982150202
       },
       "11": {
-        "dem_votes": 9719,
-        "rep_votes": 17524,
+        "dem_votes": 9717,
+        "rep_votes": 17518,
         "other_votes": 1427,
-        "total_votes": 28670,
+        "total_votes": 28662,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 7805.0,
-        "margin_pct": 27.223578653644925
+        "margin": 7801.0,
+        "margin_pct": 27.21722140813621
       },
       "12": {
-        "dem_votes": 8548,
-        "rep_votes": 19403,
+        "dem_votes": 8543,
+        "rep_votes": 19393,
         "other_votes": 1183,
-        "total_votes": 29134,
+        "total_votes": 29119,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 10855.0,
-        "margin_pct": 37.25887279467289
+        "margin": 10850.0,
+        "margin_pct": 37.26089494831553
       },
       "13": {
         "dem_votes": 10074,
@@ -208,15 +208,15 @@
         "margin_pct": 19.602511162587707
       },
       "17": {
-        "dem_votes": 8826,
-        "rep_votes": 17437,
-        "other_votes": 1507,
-        "total_votes": 27770,
+        "dem_votes": 8824,
+        "rep_votes": 17436,
+        "other_votes": 1496,
+        "total_votes": 27756,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 8611.0,
-        "margin_pct": 31.008282319049336
+        "margin": 8612.0,
+        "margin_pct": 31.027525580054764
       },
       "18": {
         "dem_votes": 13526,
@@ -230,37 +230,37 @@
         "margin_pct": 10.935928890318948
       },
       "19": {
-        "dem_votes": 21201,
-        "rep_votes": 3889,
-        "other_votes": 922,
-        "total_votes": 26012,
+        "dem_votes": 21255,
+        "rep_votes": 3891,
+        "other_votes": 924,
+        "total_votes": 26070,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 17312.0,
-        "margin_pct": 66.55389820083039
+        "margin": 17364.0,
+        "margin_pct": 66.60529344073647
       },
       "20": {
-        "dem_votes": 15354,
-        "rep_votes": 13442,
-        "other_votes": 1333,
-        "total_votes": 30129,
+        "dem_votes": 15386,
+        "rep_votes": 13478,
+        "other_votes": 1337,
+        "total_votes": 30201,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 1912.0,
-        "margin_pct": 6.346045338378306
+        "margin": 1908.0,
+        "margin_pct": 6.317671600278136
       },
       "21": {
-        "dem_votes": 17588,
-        "rep_votes": 12025,
+        "dem_votes": 17618,
+        "rep_votes": 12049,
         "other_votes": 1400,
-        "total_votes": 31013,
+        "total_votes": 31067,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 5563.0,
-        "margin_pct": 17.93763905459001
+        "margin": 5569.0,
+        "margin_pct": 17.925773328612355
       },
       "22": {
         "dem_votes": 11319,
@@ -274,37 +274,37 @@
         "margin_pct": 49.65383371077321
       },
       "23": {
-        "dem_votes": 20704,
-        "rep_votes": 7528,
-        "other_votes": 1619,
-        "total_votes": 29851,
+        "dem_votes": 20761,
+        "rep_votes": 7532,
+        "other_votes": 1624,
+        "total_votes": 29917,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 13176.0,
-        "margin_pct": 44.139224816589056
+        "margin": 13229.0,
+        "margin_pct": 44.21900591636862
       },
       "24": {
-        "dem_votes": 26579,
-        "rep_votes": 3695,
-        "other_votes": 1148,
-        "total_votes": 31422,
+        "dem_votes": 26651,
+        "rep_votes": 3696,
+        "other_votes": 1151,
+        "total_votes": 31498,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 22884.0,
-        "margin_pct": 72.82795493603209
+        "margin": 22955.0,
+        "margin_pct": 72.87764302495397
       },
       "25": {
-        "dem_votes": 16025,
-        "rep_votes": 12975,
-        "other_votes": 1263,
-        "total_votes": 30263,
+        "dem_votes": 16056,
+        "rep_votes": 13007,
+        "other_votes": 1265,
+        "total_votes": 30328,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 3050.0,
-        "margin_pct": 10.078313452070185
+        "margin": 3049.0,
+        "margin_pct": 10.053415985228172
       },
       "26": {
         "dem_votes": 11502,
@@ -318,26 +318,26 @@
         "margin_pct": 10.022263586262273
       },
       "27": {
-        "dem_votes": 16538,
-        "rep_votes": 10766,
+        "dem_votes": 16580,
+        "rep_votes": 10783,
         "other_votes": 1181,
-        "total_votes": 28485,
+        "total_votes": 28544,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 5772.0,
-        "margin_pct": 20.263296471827278
+        "margin": 5797.0,
+        "margin_pct": 20.3089966367713
       },
       "28": {
-        "dem_votes": 9929,
-        "rep_votes": 17863,
-        "other_votes": 980,
-        "total_votes": 28772,
+        "dem_votes": 9945,
+        "rep_votes": 17906,
+        "other_votes": 983,
+        "total_votes": 28834,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 7934.0,
-        "margin_pct": 27.575420547754764
+        "margin": 7961.0,
+        "margin_pct": 27.609766248179234
       },
       "29": {
         "dem_votes": 15979,
@@ -351,15 +351,15 @@
         "margin_pct": 9.024809901759449
       },
       "30": {
-        "dem_votes": 12140,
-        "rep_votes": 18876,
-        "other_votes": 1212,
-        "total_votes": 32228,
+        "dem_votes": 12166,
+        "rep_votes": 18923,
+        "other_votes": 1217,
+        "total_votes": 32306,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 6736.0,
-        "margin_pct": 20.901079806379546
+        "margin": 6757.0,
+        "margin_pct": 20.91561938958707
       },
       "31": {
         "dem_votes": 16816,
@@ -373,180 +373,180 @@
         "margin_pct": 8.133003221254958
       },
       "32": {
-        "dem_votes": 19990,
-        "rep_votes": 11505,
-        "other_votes": 1058,
-        "total_votes": 32553,
+        "dem_votes": 20039,
+        "rep_votes": 11522,
+        "other_votes": 1060,
+        "total_votes": 32621,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 8485.0,
-        "margin_pct": 26.06518600436212
+        "margin": 8517.0,
+        "margin_pct": 26.108948223536988
       },
       "33": {
-        "dem_votes": 13986,
-        "rep_votes": 13981,
-        "other_votes": 1296,
-        "total_votes": 29263,
+        "dem_votes": 14011,
+        "rep_votes": 14017,
+        "other_votes": 1298,
+        "total_votes": 29326,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
-        "winner": "D",
-        "margin": 5.0,
-        "margin_pct": 0.017086423128182347
+        "winner": "R",
+        "margin": 6.0,
+        "margin_pct": 0.020459660369637863
       },
       "34": {
-        "dem_votes": 26122,
-        "rep_votes": 7561,
-        "other_votes": 1315,
-        "total_votes": 34998,
+        "dem_votes": 26187,
+        "rep_votes": 7572,
+        "other_votes": 1319,
+        "total_votes": 35078,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 18561.0,
-        "margin_pct": 53.03445911194925
+        "margin": 18615.0,
+        "margin_pct": 53.06744968356235
       },
       "35": {
-        "dem_votes": 19172,
-        "rep_votes": 8518,
+        "dem_votes": 19201,
+        "rep_votes": 8531,
         "other_votes": 1065,
-        "total_votes": 28755,
+        "total_votes": 28797,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 10654.0,
-        "margin_pct": 37.050947661276304
+        "margin": 10670.0,
+        "margin_pct": 37.05247074348023
       },
       "36": {
-        "dem_votes": 17133,
-        "rep_votes": 8231,
-        "other_votes": 1350,
-        "total_votes": 26714,
+        "dem_votes": 17160,
+        "rep_votes": 8236,
+        "other_votes": 1351,
+        "total_votes": 26747,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 8902.0,
-        "margin_pct": 33.32335105188291
+        "margin": 8924.0,
+        "margin_pct": 33.36448947545519
       },
       "37": {
         "dem_votes": 7408,
         "rep_votes": 18920,
-        "other_votes": 1325,
-        "total_votes": 27653,
+        "other_votes": 1304,
+        "total_votes": 27632,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 11512.0,
-        "margin_pct": 41.630202871297875
+        "margin_pct": 41.66184134337001
       },
       "38": {
-        "dem_votes": 16728,
-        "rep_votes": 12250,
-        "other_votes": 1200,
-        "total_votes": 30178,
+        "dem_votes": 16765,
+        "rep_votes": 12280,
+        "other_votes": 1201,
+        "total_votes": 30246,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 4478.0,
-        "margin_pct": 14.838624163297768
+        "margin": 4485.0,
+        "margin_pct": 14.828407062090854
       },
       "39": {
-        "dem_votes": 14228,
-        "rep_votes": 15566,
-        "other_votes": 1195,
-        "total_votes": 30989,
+        "dem_votes": 14247,
+        "rep_votes": 15603,
+        "other_votes": 1198,
+        "total_votes": 31048,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 1338.0,
-        "margin_pct": 4.317661105553584
+        "margin": 1356.0,
+        "margin_pct": 4.367431074465344
       },
       "40": {
-        "dem_votes": 11936,
-        "rep_votes": 23581,
+        "dem_votes": 11952,
+        "rep_votes": 23618,
         "other_votes": 1122,
-        "total_votes": 36639,
+        "total_votes": 36692,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 11645.0,
-        "margin_pct": 31.78307268211469
+        "margin": 11666.0,
+        "margin_pct": 31.794396598713615
       },
       "41": {
         "dem_votes": 11277,
         "rep_votes": 15667,
-        "other_votes": 1444,
-        "total_votes": 28388,
+        "other_votes": 1430,
+        "total_votes": 28374,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 4390.0,
-        "margin_pct": 15.464280681978302
+        "margin_pct": 15.471910904349052
       },
       "42": {
-        "dem_votes": 16609,
-        "rep_votes": 17038,
-        "other_votes": 1453,
-        "total_votes": 35100,
+        "dem_votes": 16641,
+        "rep_votes": 17084,
+        "other_votes": 1455,
+        "total_votes": 35180,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 429.0,
-        "margin_pct": 1.2222222222222223
+        "margin": 443.0,
+        "margin_pct": 1.2592382035247298
       },
       "43": {
         "dem_votes": 5838,
-        "rep_votes": 15552,
-        "other_votes": 1089,
-        "total_votes": 22479,
+        "rep_votes": 15553,
+        "other_votes": 1075,
+        "total_votes": 22466,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 9714.0,
-        "margin_pct": 43.21366608834913
+        "margin": 9715.0,
+        "margin_pct": 43.243122941333574
       },
       "44": {
-        "dem_votes": 11967,
-        "rep_votes": 15592,
-        "other_votes": 1157,
-        "total_votes": 28716,
+        "dem_votes": 11992,
+        "rep_votes": 15633,
+        "other_votes": 1168,
+        "total_votes": 28793,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 3625.0,
-        "margin_pct": 12.62362446023123
+        "margin": 3641.0,
+        "margin_pct": 12.645434654256244
       },
       "45": {
-        "dem_votes": 15464,
-        "rep_votes": 12273,
-        "other_votes": 1071,
-        "total_votes": 28808,
+        "dem_votes": 15493,
+        "rep_votes": 12296,
+        "other_votes": 1072,
+        "total_votes": 28861,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 3191.0,
-        "margin_pct": 11.07678422660372
+        "margin": 3197.0,
+        "margin_pct": 11.077232251134749
       },
       "46": {
-        "dem_votes": 12209,
-        "rep_votes": 13801,
+        "dem_votes": 12216,
+        "rep_votes": 13810,
         "other_votes": 1067,
-        "total_votes": 27077,
+        "total_votes": 27093,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 1592.0,
-        "margin_pct": 5.879528751338774
+        "margin": 1594.0,
+        "margin_pct": 5.8834385265566755
       },
       "47": {
         "dem_votes": 11404,
         "rep_votes": 14182,
-        "other_votes": 1059,
-        "total_votes": 26645,
+        "other_votes": 1050,
+        "total_votes": 26636,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 2778.0,
-        "margin_pct": 10.425971101519984
+        "margin_pct": 10.429493918005708
       },
       "48": {
         "dem_votes": 12206,
@@ -562,13 +562,13 @@
       "49": {
         "dem_votes": 12979,
         "rep_votes": 6881,
-        "other_votes": 975,
-        "total_votes": 20835,
+        "other_votes": 966,
+        "total_votes": 20826,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
         "margin": 6098.0,
-        "margin_pct": 29.268058555315573
+        "margin_pct": 29.280706808796698
       },
       "50": {
         "dem_votes": 13745,
@@ -582,191 +582,191 @@
         "margin_pct": 6.5596857280509955
       },
       "51": {
-        "dem_votes": 12065,
-        "rep_votes": 9944,
-        "other_votes": 880,
-        "total_votes": 22889,
+        "dem_votes": 12077,
+        "rep_votes": 9954,
+        "other_votes": 869,
+        "total_votes": 22900,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 2121.0,
-        "margin_pct": 9.266459871554021
+        "margin": 2123.0,
+        "margin_pct": 9.270742358078603
       },
       "52": {
-        "dem_votes": 11795,
-        "rep_votes": 11118,
-        "other_votes": 981,
-        "total_votes": 23894,
+        "dem_votes": 11800,
+        "rep_votes": 11124,
+        "other_votes": 973,
+        "total_votes": 23897,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 677.0,
-        "margin_pct": 2.8333472838369467
+        "margin": 676.0,
+        "margin_pct": 2.82880696321714
       },
       "53": {
-        "dem_votes": 12478,
-        "rep_votes": 12549,
-        "other_votes": 476,
-        "total_votes": 25503,
+        "dem_votes": 12463,
+        "rep_votes": 12538,
+        "other_votes": 475,
+        "total_votes": 25476,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 71.0,
-        "margin_pct": 0.27839861977022307
+        "margin": 75.0,
+        "margin_pct": 0.2943947244465379
       },
       "54": {
-        "dem_votes": 14900,
-        "rep_votes": 7320,
+        "dem_votes": 14881,
+        "rep_votes": 7318,
         "other_votes": 337,
-        "total_votes": 22557,
+        "total_votes": 22536,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 7580.0,
-        "margin_pct": 33.60375936516381
+        "margin": 7563.0,
+        "margin_pct": 33.559637912673054
       },
       "55": {
-        "dem_votes": 12553,
-        "rep_votes": 18181,
+        "dem_votes": 12550,
+        "rep_votes": 18174,
         "other_votes": 1233,
-        "total_votes": 31967,
+        "total_votes": 31957,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 5628.0,
-        "margin_pct": 17.605655832577348
+        "margin": 5624.0,
+        "margin_pct": 17.598648183496575
       },
       "56": {
-        "dem_votes": 12066,
-        "rep_votes": 17941,
+        "dem_votes": 12063,
+        "rep_votes": 17939,
         "other_votes": 1185,
-        "total_votes": 31192,
+        "total_votes": 31187,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 5875.0,
-        "margin_pct": 18.834957681456785
+        "margin": 5876.0,
+        "margin_pct": 18.841183826594417
       },
       "57": {
-        "dem_votes": 12289,
-        "rep_votes": 17353,
+        "dem_votes": 12286,
+        "rep_votes": 17350,
         "other_votes": 1274,
-        "total_votes": 30916,
+        "total_votes": 30910,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 5064.0,
-        "margin_pct": 16.37986802949929
+        "margin_pct": 16.38304755742478
       },
       "58": {
-        "dem_votes": 13174,
-        "rep_votes": 13912,
+        "dem_votes": 13170,
+        "rep_votes": 13911,
         "other_votes": 1137,
-        "total_votes": 28223,
+        "total_votes": 28218,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 738.0,
-        "margin_pct": 2.61488856606314
+        "margin": 741.0,
+        "margin_pct": 2.6259834148415906
       },
       "59": {
-        "dem_votes": 11589,
-        "rep_votes": 17271,
-        "other_votes": 1224,
-        "total_votes": 30084,
+        "dem_votes": 11587,
+        "rep_votes": 17269,
+        "other_votes": 1223,
+        "total_votes": 30079,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 5682.0,
-        "margin_pct": 18.88711607499003
+        "margin_pct": 18.890255660095082
       },
       "60": {
-        "dem_votes": 11386,
-        "rep_votes": 16056,
-        "other_votes": 1343,
-        "total_votes": 28785,
+        "dem_votes": 11383,
+        "rep_votes": 16055,
+        "other_votes": 1335,
+        "total_votes": 28773,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 4670.0,
-        "margin_pct": 16.223727635921488
+        "margin": 4672.0,
+        "margin_pct": 16.237444826747296
       },
       "61": {
-        "dem_votes": 15815,
-        "rep_votes": 17710,
-        "other_votes": 474,
-        "total_votes": 33999,
+        "dem_votes": 15794,
+        "rep_votes": 17690,
+        "other_votes": 473,
+        "total_votes": 33957,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 1895.0,
-        "margin_pct": 5.57369334392188
+        "margin": 1896.0,
+        "margin_pct": 5.58353211414436
       },
       "62": {
         "dem_votes": 12066,
         "rep_votes": 14893,
-        "other_votes": 1833,
-        "total_votes": 28792,
+        "other_votes": 1814,
+        "total_votes": 28773,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 2827.0,
-        "margin_pct": 9.818699638788553
+        "margin_pct": 9.825183331595593
       },
       "63": {
         "dem_votes": 8190,
-        "rep_votes": 17528,
-        "other_votes": 1667,
-        "total_votes": 27385,
+        "rep_votes": 17527,
+        "other_votes": 1662,
+        "total_votes": 27379,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 9338.0,
-        "margin_pct": 34.098959284279715
+        "margin": 9337.0,
+        "margin_pct": 34.102779502538446
       },
       "64": {
         "dem_votes": 8334,
         "rep_votes": 15735,
-        "other_votes": 1597,
-        "total_votes": 25666,
+        "other_votes": 1584,
+        "total_votes": 25653,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 7401.0,
-        "margin_pct": 28.8358139172446
+        "margin_pct": 28.850426850660742
       },
       "65": {
         "dem_votes": 8923,
         "rep_votes": 15047,
-        "other_votes": 1764,
-        "total_votes": 25734,
+        "other_votes": 1752,
+        "total_votes": 25722,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 6124.0,
-        "margin_pct": 23.79731095049351
+        "margin_pct": 23.80841303164606
       },
       "66": {
         "dem_votes": 6969,
         "rep_votes": 15994,
-        "other_votes": 1448,
-        "total_votes": 24411,
+        "other_votes": 1446,
+        "total_votes": 24409,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 9025.0,
-        "margin_pct": 36.971037646962436
+        "margin_pct": 36.9740669425212
       },
       "67": {
         "dem_votes": 6698,
         "rep_votes": 15486,
-        "other_votes": 1269,
-        "total_votes": 23453,
+        "other_votes": 1268,
+        "total_votes": 23452,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 8788.0,
-        "margin_pct": 37.47068605295698
+        "margin_pct": 37.472283813747225
       },
       "68": {
         "dem_votes": 6519,
@@ -780,59 +780,59 @@
         "margin_pct": 41.53284085434398
       },
       "69": {
-        "dem_votes": 8368,
-        "rep_votes": 19079,
-        "other_votes": 1624,
-        "total_votes": 29071,
+        "dem_votes": 8367,
+        "rep_votes": 19078,
+        "other_votes": 1620,
+        "total_votes": 29065,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 10711.0,
-        "margin_pct": 36.844277802621164
+        "margin_pct": 36.85188370892826
       },
       "70": {
-        "dem_votes": 14482,
-        "rep_votes": 16206,
-        "other_votes": 465,
-        "total_votes": 31153,
+        "dem_votes": 14463,
+        "rep_votes": 16193,
+        "other_votes": 463,
+        "total_votes": 31119,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 1724.0,
-        "margin_pct": 5.533977466054633
+        "margin": 1730.0,
+        "margin_pct": 5.559304604903756
       },
       "71": {
-        "dem_votes": 10300,
-        "rep_votes": 12627,
-        "other_votes": 1460,
-        "total_votes": 24387,
+        "dem_votes": 12090,
+        "rep_votes": 14698,
+        "other_votes": 1661,
+        "total_votes": 28449,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 2327.0,
-        "margin_pct": 9.541969081887892
+        "margin": 2608.0,
+        "margin_pct": 9.167281802523815
       },
       "72": {
-        "dem_votes": 11108,
-        "rep_votes": 9790,
-        "other_votes": 1373,
-        "total_votes": 22271,
+        "dem_votes": 13420,
+        "rep_votes": 11679,
+        "other_votes": 1590,
+        "total_votes": 26689,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 1318.0,
-        "margin_pct": 5.918009968119977
+        "margin": 1741.0,
+        "margin_pct": 6.523286747349095
       },
       "73": {
-        "dem_votes": 9381,
-        "rep_votes": 12855,
-        "other_votes": 1687,
-        "total_votes": 23923,
+        "dem_votes": 9977,
+        "rep_votes": 13427,
+        "other_votes": 1751,
+        "total_votes": 25155,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 3474.0,
-        "margin_pct": 14.52159010157589
+        "margin": 3450.0,
+        "margin_pct": 13.714967203339295
       },
       "74": {
         "dem_votes": 12351,
@@ -846,15 +846,15 @@
         "margin_pct": 8.32598564050888
       },
       "75": {
-        "dem_votes": 9631,
-        "rep_votes": 15008,
-        "other_votes": 1771,
-        "total_votes": 26410,
+        "dem_votes": 9629,
+        "rep_votes": 15004,
+        "other_votes": 1764,
+        "total_votes": 26397,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 5377.0,
-        "margin_pct": 20.359712230215827
+        "margin": 5375.0,
+        "margin_pct": 20.36216236693564
       },
       "76": {
         "dem_votes": 8412,
@@ -881,46 +881,46 @@
       "78": {
         "dem_votes": 6040,
         "rep_votes": 19494,
-        "other_votes": 1489,
-        "total_votes": 27023,
+        "other_votes": 1493,
+        "total_votes": 27027,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 13454.0,
-        "margin_pct": 49.78721829552603
+        "margin_pct": 49.779849779849776
       },
       "79": {
-        "dem_votes": 8942,
-        "rep_votes": 13451,
-        "other_votes": 1336,
-        "total_votes": 23729,
+        "dem_votes": 8937,
+        "rep_votes": 13447,
+        "other_votes": 1329,
+        "total_votes": 23713,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 4509.0,
-        "margin_pct": 19.002064983775128
+        "margin": 4510.0,
+        "margin_pct": 19.01910344536752
       },
       "80": {
-        "dem_votes": 6838,
-        "rep_votes": 18906,
-        "other_votes": 1311,
-        "total_votes": 27055,
+        "dem_votes": 6837,
+        "rep_votes": 18898,
+        "other_votes": 1304,
+        "total_votes": 27039,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 12068.0,
-        "margin_pct": 44.605433376455366
+        "margin": 12061.0,
+        "margin_pct": 44.605939568771035
       },
       "81": {
         "dem_votes": 6900,
         "rep_votes": 16797,
-        "other_votes": 1584,
-        "total_votes": 25281,
+        "other_votes": 1578,
+        "total_votes": 25275,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 9897.0,
-        "margin_pct": 39.14797674142637
+        "margin_pct": 39.15727002967359
       },
       "82": {
         "dem_votes": 12983,
@@ -936,46 +936,46 @@
       "83": {
         "dem_votes": 8576,
         "rep_votes": 12308,
-        "other_votes": 1300,
-        "total_votes": 22184,
+        "other_votes": 1288,
+        "total_votes": 22172,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 3732.0,
-        "margin_pct": 16.82293544897223
+        "margin_pct": 16.832040411329604
       },
       "84": {
         "dem_votes": 8028,
         "rep_votes": 18303,
-        "other_votes": 1500,
-        "total_votes": 27831,
+        "other_votes": 1486,
+        "total_votes": 27817,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 10275.0,
-        "margin_pct": 36.91926269268082
+        "margin_pct": 36.93784376460438
       },
       "85": {
         "dem_votes": 7089,
         "rep_votes": 16458,
-        "other_votes": 1424,
-        "total_votes": 24971,
+        "other_votes": 1422,
+        "total_votes": 24969,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 9369.0,
-        "margin_pct": 37.51952264626967
+        "margin_pct": 37.52252793463895
       },
       "86": {
         "dem_votes": 7082,
         "rep_votes": 17171,
-        "other_votes": 1513,
-        "total_votes": 25766,
+        "other_votes": 1507,
+        "total_votes": 25760,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 10089.0,
-        "margin_pct": 39.15625242567725
+        "margin_pct": 39.16537267080745
       },
       "87": {
         "dem_votes": 8882,
@@ -1024,112 +1024,112 @@
       "91": {
         "dem_votes": 8916,
         "rep_votes": 16041,
-        "other_votes": 1572,
-        "total_votes": 26529,
+        "other_votes": 1551,
+        "total_votes": 26508,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 7125.0,
-        "margin_pct": 26.85740133438878
+        "margin_pct": 26.87867813490267
       },
       "92": {
         "dem_votes": 9106,
         "rep_votes": 19048,
-        "other_votes": 1307,
-        "total_votes": 29461,
+        "other_votes": 1296,
+        "total_votes": 29450,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 9942.0,
-        "margin_pct": 33.7463086792709
+        "margin_pct": 33.758913412563665
       },
       "93": {
         "dem_votes": 10419,
         "rep_votes": 17080,
-        "other_votes": 1451,
-        "total_votes": 28950,
+        "other_votes": 1443,
+        "total_votes": 28942,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 6661.0,
-        "margin_pct": 23.008635578583764
+        "margin_pct": 23.014995508257897
       },
       "94": {
         "dem_votes": 10148,
         "rep_votes": 15409,
-        "other_votes": 1366,
-        "total_votes": 26923,
+        "other_votes": 1356,
+        "total_votes": 26913,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 5261.0,
-        "margin_pct": 19.54091297403707
+        "margin_pct": 19.548173745030283
       },
       "95": {
         "dem_votes": 14005,
         "rep_votes": 5548,
-        "other_votes": 739,
-        "total_votes": 20292,
+        "other_votes": 737,
+        "total_votes": 20290,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
         "margin": 8457.0,
-        "margin_pct": 41.67652276759314
+        "margin_pct": 41.68063085263677
       },
       "96": {
         "dem_votes": 13743,
         "rep_votes": 13129,
-        "other_votes": 1418,
-        "total_votes": 28290,
+        "other_votes": 1408,
+        "total_votes": 28280,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
         "margin": 614.0,
-        "margin_pct": 2.1703782255213855
+        "margin_pct": 2.171145685997171
       },
       "97": {
         "dem_votes": 9501,
         "rep_votes": 18855,
-        "other_votes": 1245,
-        "total_votes": 29601,
+        "other_votes": 1232,
+        "total_votes": 29588,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 9354.0,
-        "margin_pct": 31.600283774196818
+        "margin_pct": 31.614167905907802
       },
       "98": {
         "dem_votes": 8023,
         "rep_votes": 18022,
-        "other_votes": 1357,
-        "total_votes": 27402,
+        "other_votes": 1339,
+        "total_votes": 27384,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 9999.0,
-        "margin_pct": 36.49003722356032
+        "margin_pct": 36.51402278702892
       },
       "99": {
         "dem_votes": 6180,
         "rep_votes": 16176,
-        "other_votes": 1066,
-        "total_votes": 23422,
+        "other_votes": 1055,
+        "total_votes": 23411,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 9996.0,
-        "margin_pct": 42.67782426778243
+        "margin_pct": 42.69787706633634
       },
       "100": {
         "dem_votes": 4813,
         "rep_votes": 14031,
-        "other_votes": 939,
-        "total_votes": 19783,
+        "other_votes": 926,
+        "total_votes": 19770,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 9218.0,
-        "margin_pct": 46.59556184602942
+        "margin_pct": 46.62620131512393
       },
       "101": {
         "dem_votes": 8584,
@@ -1198,37 +1198,37 @@
         "margin_pct": 25.233644859813083
       },
       "107": {
-        "dem_votes": 8527,
-        "rep_votes": 13019,
-        "other_votes": 1749,
-        "total_votes": 23295,
+        "dem_votes": 8530,
+        "rep_votes": 13021,
+        "other_votes": 1746,
+        "total_votes": 23297,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 4492.0,
-        "margin_pct": 19.28310796308221
+        "margin": 4491.0,
+        "margin_pct": 19.277160149375455
       },
       "108": {
-        "dem_votes": 7898,
-        "rep_votes": 14427,
-        "other_votes": 1722,
-        "total_votes": 24047,
+        "dem_votes": 7902,
+        "rep_votes": 14429,
+        "other_votes": 1713,
+        "total_votes": 24044,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 6529.0,
-        "margin_pct": 27.150995966232795
+        "margin": 6527.0,
+        "margin_pct": 27.14606554649809
       },
       "109": {
-        "dem_votes": 10436,
-        "rep_votes": 12916,
-        "other_votes": 1432,
-        "total_votes": 24784,
+        "dem_votes": 10429,
+        "rep_votes": 12912,
+        "other_votes": 1431,
+        "total_votes": 24772,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 2480.0,
-        "margin_pct": 10.00645577792124
+        "margin": 2483.0,
+        "margin_pct": 10.023413531406426
       },
       "110": {
         "dem_votes": 8656,
@@ -1244,13 +1244,13 @@
       "111": {
         "dem_votes": 9631,
         "rep_votes": 16878,
-        "other_votes": 1814,
-        "total_votes": 28323,
+        "other_votes": 1804,
+        "total_votes": 28313,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 7247.0,
-        "margin_pct": 25.586978780496416
+        "margin_pct": 25.596015964397978
       },
       "112": {
         "dem_votes": 19643,
@@ -1462,15 +1462,15 @@
         "margin_pct": 21.902048866001973
       },
       "131": {
-        "dem_votes": 12498,
-        "rep_votes": 18257,
-        "other_votes": 1176,
-        "total_votes": 31931,
+        "dem_votes": 12493,
+        "rep_votes": 18215,
+        "other_votes": 1175,
+        "total_votes": 31883,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 5759.0,
-        "margin_pct": 18.03576461745639
+        "margin": 5722.0,
+        "margin_pct": 17.946868236991502
       },
       "132": {
         "dem_votes": 12871,
@@ -1507,47 +1507,47 @@
       },
       "135": {
         "dem_votes": 14946,
-        "rep_votes": 9456,
+        "rep_votes": 9322,
         "other_votes": 621,
-        "total_votes": 25023,
+        "total_votes": 24889,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 5490.0,
-        "margin_pct": 21.93981536985973
+        "margin": 5624.0,
+        "margin_pct": 22.596327694965648
       },
       "136": {
         "dem_votes": 11904,
-        "rep_votes": 8976,
+        "rep_votes": 8850,
         "other_votes": 615,
-        "total_votes": 21495,
+        "total_votes": 21369,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 2928.0,
-        "margin_pct": 13.621772505233775
+        "margin": 3054.0,
+        "margin_pct": 14.291731012213955
       },
       "137": {
         "dem_votes": 12659,
-        "rep_votes": 14412,
+        "rep_votes": 14213,
         "other_votes": 604,
-        "total_votes": 27675,
+        "total_votes": 27476,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 1753.0,
-        "margin_pct": 6.33423667570009
+        "margin": 1554.0,
+        "margin_pct": 5.655845101179211
       },
       "138": {
         "dem_votes": 10553,
-        "rep_votes": 14922,
+        "rep_votes": 14711,
         "other_votes": 596,
-        "total_votes": 26071,
+        "total_votes": 25860,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 4369.0,
-        "margin_pct": 16.758083694526483
+        "margin": 4158.0,
+        "margin_pct": 16.07888631090487
       },
       "139": {
         "dem_votes": 9727,
@@ -1596,13 +1596,13 @@
       "143": {
         "dem_votes": 12169,
         "rep_votes": 18086,
-        "other_votes": 868,
-        "total_votes": 31123,
+        "other_votes": 867,
+        "total_votes": 31122,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 5917.0,
-        "margin_pct": 19.011663400057834
+        "margin_pct": 19.01227427543217
       },
       "144": {
         "dem_votes": 13385,
@@ -1627,103 +1627,103 @@
         "margin_pct": 18.25979089136984
       },
       "146": {
-        "dem_votes": 13010,
-        "rep_votes": 11855,
-        "other_votes": 481,
-        "total_votes": 25346,
+        "dem_votes": 12993,
+        "rep_votes": 11843,
+        "other_votes": 478,
+        "total_votes": 25314,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 1155.0,
-        "margin_pct": 4.556932060285647
+        "margin": 1150.0,
+        "margin_pct": 4.5429406652445286
       },
       "147": {
-        "dem_votes": 11119,
-        "rep_votes": 18028,
-        "other_votes": 514,
-        "total_votes": 29661,
+        "dem_votes": 11106,
+        "rep_votes": 18009,
+        "other_votes": 511,
+        "total_votes": 29626,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 6909.0,
-        "margin_pct": 23.293213310407605
+        "margin": 6903.0,
+        "margin_pct": 23.300479308715317
       },
       "148": {
-        "dem_votes": 21243,
-        "rep_votes": 12376,
+        "dem_votes": 21213,
+        "rep_votes": 12370,
         "other_votes": 386,
-        "total_votes": 34005,
+        "total_votes": 33969,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 8867.0,
-        "margin_pct": 26.075577121011616
+        "margin": 8843.0,
+        "margin_pct": 26.03255909800112
       },
       "149": {
-        "dem_votes": 16182,
-        "rep_votes": 11554,
+        "dem_votes": 16164,
+        "rep_votes": 11547,
         "other_votes": 422,
-        "total_votes": 28158,
+        "total_votes": 28133,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 4628.0,
-        "margin_pct": 16.43582640812558
+        "margin": 4617.0,
+        "margin_pct": 16.411331887818577
       },
       "150": {
-        "dem_votes": 12573,
-        "rep_votes": 14452,
-        "other_votes": 475,
-        "total_votes": 27500,
+        "dem_votes": 12558,
+        "rep_votes": 14438,
+        "other_votes": 472,
+        "total_votes": 27468,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 1879.0,
-        "margin_pct": 6.832727272727272
+        "margin": 1880.0,
+        "margin_pct": 6.844327945245377
       },
       "151": {
-        "dem_votes": 15717,
-        "rep_votes": 15333,
+        "dem_votes": 15705,
+        "rep_votes": 15324,
         "other_votes": 431,
-        "total_votes": 31481,
+        "total_votes": 31460,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 384.0,
-        "margin_pct": 1.219783361392586
+        "margin": 381.0,
+        "margin_pct": 1.2110616656071203
       },
       "152": {
-        "dem_votes": 15096,
-        "rep_votes": 12939,
-        "other_votes": 431,
-        "total_votes": 28466,
+        "dem_votes": 15078,
+        "rep_votes": 12931,
+        "other_votes": 429,
+        "total_votes": 28438,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 2157.0,
-        "margin_pct": 7.577460830464414
+        "margin": 2147.0,
+        "margin_pct": 7.54975736690344
       },
       "153": {
-        "dem_votes": 18438,
-        "rep_votes": 13348,
-        "other_votes": 465,
-        "total_votes": 32251,
+        "dem_votes": 18417,
+        "rep_votes": 13345,
+        "other_votes": 462,
+        "total_votes": 32224,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 5090.0,
-        "margin_pct": 15.78245635794239
+        "margin": 5072.0,
+        "margin_pct": 15.739821251241311
       },
       "154": {
-        "dem_votes": 24279,
-        "rep_votes": 9210,
+        "dem_votes": 24243,
+        "rep_votes": 9209,
         "other_votes": 436,
-        "total_votes": 33925,
+        "total_votes": 33888,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "D",
-        "margin": 15069.0,
-        "margin_pct": 44.418570375829034
+        "margin": 15034.0,
+        "margin_pct": 44.3637865911237
       },
       "155": {
         "dem_votes": 12306,
@@ -1836,15 +1836,15 @@
         "margin_pct": 52.15126619801812
       },
       "165": {
-        "dem_votes": 16357,
+        "dem_votes": 16358,
         "rep_votes": 16949,
         "other_votes": 698,
-        "total_votes": 34004,
+        "total_votes": 34005,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 592.0,
-        "margin_pct": 1.7409716503940715
+        "margin": 591.0,
+        "margin_pct": 1.7379797088663433
       },
       "166": {
         "dem_votes": 17614,
@@ -1882,13 +1882,13 @@
       "169": {
         "dem_votes": 8450,
         "rep_votes": 16114,
-        "other_votes": 1382,
-        "total_votes": 25946,
+        "other_votes": 1368,
+        "total_votes": 25932,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 7664.0,
-        "margin_pct": 29.538271795267097
+        "margin_pct": 29.5542187258985
       },
       "170": {
         "dem_votes": 12349,
@@ -2035,14 +2035,14 @@
       },
       "183": {
         "dem_votes": 11129,
-        "rep_votes": 15193,
+        "rep_votes": 15058,
         "other_votes": 918,
-        "total_votes": 27240,
+        "total_votes": 27105,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
-        "margin": 4064.0,
-        "margin_pct": 14.919236417033774
+        "margin": 3929.0,
+        "margin_pct": 14.495480538646005
       },
       "184": {
         "dem_votes": 16490,
@@ -2146,13 +2146,13 @@
       "193": {
         "dem_votes": 7957,
         "rep_votes": 15566,
-        "other_votes": 1278,
-        "total_votes": 24801,
+        "other_votes": 1271,
+        "total_votes": 24794,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 7609.0,
-        "margin_pct": 30.680214507479537
+        "margin_pct": 30.688876341050253
       },
       "194": {
         "dem_votes": 17675,
@@ -2179,13 +2179,13 @@
       "196": {
         "dem_votes": 10817,
         "rep_votes": 15484,
-        "other_votes": 1118,
-        "total_votes": 27419,
+        "other_votes": 1107,
+        "total_votes": 27408,
         "dem_candidate": "Eugene DePasquale",
         "rep_candidate": "John Maher",
         "winner": "R",
         "margin": 4667.0,
-        "margin_pct": 17.021043801743314
+        "margin_pct": 17.027875072971398
       },
       "197": {
         "dem_votes": 22739,

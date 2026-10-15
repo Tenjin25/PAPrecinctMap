@@ -409,12 +409,12 @@
       "county": "INDIANA",
       "dem_votes": 14884,
       "rep_votes": 19112,
-      "other_votes": 2918,
-      "total_votes": 36914,
+      "other_votes": 2978,
+      "total_votes": 36974,
       "dem_candidate": "Joe Torsella",
       "rep_candidate": "Otto Voit",
       "margin": 4228.0,
-      "margin_pct": 11.453649022051254,
+      "margin_pct": 11.435062476334721,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -617,12 +617,12 @@
       "county": "NORTHAMPTON",
       "dem_votes": 66441,
       "rep_votes": 62937,
-      "other_votes": 4660,
-      "total_votes": 134038,
+      "other_votes": 2182,
+      "total_votes": 131560,
       "dem_candidate": "Joe Torsella",
       "rep_candidate": "Otto Voit",
       "margin": 3504.0,
-      "margin_pct": 2.614184037362539,
+      "margin_pct": 2.6634235329887503,
       "winner": "D",
       "color": "#2563eb"
     },
@@ -667,14 +667,14 @@
     },
     {
       "county": "PIKE",
-      "dem_votes": 9158,
-      "rep_votes": 14318,
+      "dem_votes": 9154,
+      "rep_votes": 14317,
       "other_votes": 1654,
-      "total_votes": 25130,
+      "total_votes": 25125,
       "dem_candidate": "Joe Torsella",
       "rep_candidate": "Otto Voit",
-      "margin": 5160.0,
-      "margin_pct": 20.53322721846399,
+      "margin": 5163.0,
+      "margin_pct": 20.549253731343285,
       "winner": "R",
       "color": "#dc2626"
     },
@@ -873,5 +873,10 @@
       "winner": "R",
       "color": "#dc2626"
     }
-  ]
+  ],
+  "meta": {
+    "source": "Pennsylvania official county returns API",
+    "county_control": "benchmarks/pa_county_2016_treasurer_certified.csv",
+    "write_ins_excluded": true
+  }
 }
