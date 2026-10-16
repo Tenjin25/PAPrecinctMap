@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import json
+import csv
 import sys
+import tempfile
 import unittest
 from collections import defaultdict
 from pathlib import Path
@@ -51,6 +53,32 @@ class CountyRuleTests(unittest.TestCase):
         self.assertEqual([int(row["votes"]) for row in result], [4, 6, 3, 2])
         self.assertEqual(sum(int(row["votes"]) for row in result[:2]), 10)
         self.assertEqual(sum(int(row["votes"]) for row in result[2:]), 5)
+
+    def test_zero_minor_party_placeholders_use_county_local_turnout(self):
+        rows = [
+            {"county": "Jefferson", "precinct": "A", "office": "U.S. Senate", "party": "DEM", "votes": 40},
+            {"county": "Jefferson", "precinct": "A", "office": "U.S. Senate", "party": "REP", "votes": 60},
+            {"county": "Jefferson", "precinct": "B", "office": "U.S. Senate", "party": "DEM", "votes": 120},
+            {"county": "Jefferson", "precinct": "B", "office": "U.S. Senate", "party": "REP", "votes": 180},
+            {"county": "Jefferson", "precinct": "A", "office": "U.S. Senate", "party": "LIB", "votes": 0},
+            {"county": "Jefferson", "precinct": "A", "office": "U.S. Senate", "party": "GRN", "votes": 0},
+            {"county": "Jefferson", "precinct": "B", "office": "U.S. Senate", "party": "LIB", "votes": 0},
+            {"county": "Jefferson", "precinct": "B", "office": "U.S. Senate", "party": "GRN", "votes": 0},
+        ]
+        with tempfile.TemporaryDirectory(dir=ROOT) as directory:
+            path = Path(directory) / "pa_county_2022_us_senate_certified.csv"
+            with path.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.DictWriter(handle, fieldnames=("county", "dem_votes", "rep_votes", "other_votes", "total_votes"))
+                writer.writeheader()
+                writer.writerow({"county": "Jefferson", "dem_votes": 40, "rep_votes": 60, "other_votes": 40, "total_votes": 140})
+            result = clustered.layers.apply_official_county_party_controls(
+                rows, 2022, controls_dir=Path(directory), contest_types={"us_senate"}
+            )
+        other = [row for row in result if row["party"] in {"LIB", "GRN"}]
+        self.assertEqual(sum(int(row["votes"]) for row in other), 40)
+        self.assertEqual(sum(int(row["votes"]) for row in other if row["precinct"] == "A"), 10)
+        self.assertEqual(sum(int(row["votes"]) for row in other if row["precinct"] == "B"), 30)
+        self.assertTrue(all(row.get("_county_control_method") == "county_local_precinct_turnout_fallback" for row in other))
 
 
 class PublishedDataTests(unittest.TestCase):

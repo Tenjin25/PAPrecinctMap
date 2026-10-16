@@ -131,6 +131,24 @@ def main():
         if component_total != result["total_votes"]:
             failures.append(f"{path.name}: components={component_total}, total={result['total_votes']}")
         allocation_audit = payload.get("meta", {}).get("allocation_audit") or {}
+        county_audit = payload.get("meta", {}).get("county_conservation_audit") or {}
+        if county_audit:
+            if not county_audit.get("all_counties_conserved"):
+                failures.append(
+                    f"{path.name}: county conservation failures: "
+                    + ", ".join(county_audit.get("failures") or [])
+                )
+            for county, county_row in (county_audit.get("counties") or {}).items():
+                source = county_row.get("source") or {}
+                allocated = county_row.get("allocated") or {}
+                delta = county_row.get("delta") or {}
+                for field in ("dem_votes", "rep_votes", "other_votes", "total_votes"):
+                    expected_delta = int(allocated.get(field) or 0) - int(source.get(field) or 0)
+                    if int(delta.get(field) or 0) != expected_delta:
+                        failures.append(
+                            f"{path.name}: {county} {field} recorded delta "
+                            f"{delta.get(field)} != {expected_delta}"
+                        )
         if allocation_audit:
             audited_source_total = int(allocation_audit.get("source_votes") or 0)
             if localized_control:

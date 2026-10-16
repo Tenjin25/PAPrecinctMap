@@ -115,13 +115,18 @@ def apply_official_county_party_controls(rows, year: int, controls_dir=None, con
         return rows
 
     grouped = defaultdict(list)
+    precinct_turnout = Counter()
+    controlled_counties = {(contest, county) for contest, county, _bucket in controls}
     for index, row in enumerate(rows):
         contest = office_mapping_for_contest(row.get('office') or '')
         county = normalize_county_name(row.get('county') or '')
+        precinct = normalize_bridge_precinct_name(row.get('precinct') or '')
         party = (row.get('party') or '').strip().upper()
         bucket = 'dem' if party in PARTY_DEM or party == 'YES' else 'rep' if party in PARTY_REP or party == 'NO' else 'other'
         if (contest, county, bucket) in controls:
             grouped[(contest, county, bucket)].append(index)
+        if (contest, county) in controlled_counties:
+            precinct_turnout[(contest, county, precinct)] += max(safe_float(row.get('votes')), 0.0)
 
     missing = sorted(key for key, target in controls.items() if target and key not in grouped)
     if missing:
@@ -133,9 +138,30 @@ def apply_official_county_party_controls(rows, year: int, controls_dir=None, con
         source_total = sum(weights)
         if source_total <= 0:
             if target:
-                raise RuntimeError(f'Cannot allocate nonzero certified county control {key}: {target}')
-            allocations = [0] * len(indices)
-        else:
+                # Some official precinct extracts retain zero-valued minor-party
+                # placeholders even though the certified county file reports a
+                # combined Other total. Keep that residual inside its county and
+                # distribute it by precinct turnout; dividing by the number of
+                # placeholder rows prevents duplicate candidate rows from
+                # multiplying a precinct's weight.
+                per_precinct_rows = Counter(
+                    normalize_bridge_precinct_name(rows[index].get('precinct') or '')
+                    for index in indices
+                )
+                weights = []
+                for index in indices:
+                    precinct = normalize_bridge_precinct_name(rows[index].get('precinct') or '')
+                    turnout = precinct_turnout.get((key[0], key[1], precinct), 0.0)
+                    weights.append(turnout / max(per_precinct_rows[precinct], 1))
+                    rows[index]['_county_control_method'] = 'county_local_precinct_turnout_fallback'
+                source_total = sum(weights)
+                if source_total <= 0:
+                    raise RuntimeError(
+                        f'Cannot allocate nonzero certified county control for {year} {key}: {target}'
+                    )
+            else:
+                allocations = [0] * len(indices)
+        if source_total > 0:
             raw = [target * weight / source_total for weight in weights]
             allocations = [int(value) for value in raw]
             remainder = target - sum(allocations)
@@ -2111,10 +2137,16 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
     district_nodes = {}
     source_by_key = {}
     files = []
+    allowed_existing_outputs = None
     manifest_path = contest_dir / 'manifest.json'
     if contest_types and manifest_path.exists():
         try:
             existing_manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+            allowed_existing_outputs = {
+                (entry.get('scope'), entry.get('contest_type'), int(entry.get('year')))
+                for entry in (existing_manifest.get('files') or [])
+                if entry.get('year') is not None
+            }
             files = [
                 entry for entry in (existing_manifest.get('files') or [])
                 if entry.get('contest_type') not in contest_types
@@ -2133,6 +2165,11 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
         'unmatched_precincts': set(),
         'unmatched_precinct_votes': Counter(),
         'mapping_methods': Counter(),
+        'county_source': defaultdict(Counter),
+        'county_scopes': defaultdict(lambda: defaultdict(lambda: {
+            'districts': defaultdict(Counter),
+            'quality_votes': Counter(),
+        })),
         'scopes': defaultdict(lambda: {
             'allocated_rows': 0,
             'allocated_votes': 0,
@@ -2209,9 +2246,17 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
                     normalize_county_name(row.get('county') or ''),
                     normalize_bridge_precinct_name(row.get('precinct') or '')
                 )
+                party_bucket = (
+                    'dem_votes' if party in PARTY_DEM
+                    else 'rep_votes' if party in PARTY_REP
+                    else 'other_votes'
+                )
+                audit['county_source'][match_key[0]][party_bucket] += votes
+                audit['county_source'][match_key[0]]['total_votes'] += votes
                 countyfp = county_fips_by_name().get(match_key[0]) or ''
                 block_maps = load_vtd_current_district_blocks()
                 maintained_targets = maintained_targets_for_row(row, year, countyfp) if countyfp else []
+                row_methods = []
                 if maintained_targets:
                     maintained_targets = [
                         target for target in maintained_targets
@@ -2221,6 +2266,7 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
                     weighted_vtds = [(county, vtd, weight) for county, vtd, weight, _method in maintained_targets]
                     for _county, _vtd, _weight, method in maintained_targets:
                         audit['mapping_methods'][method] += 1
+                        row_methods.append(method)
                 else:
                     if match_key not in vtd_match_cache:
                         vtd_match_cache[match_key] = match_row_to_current_vtds(row)
@@ -2231,6 +2277,7 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
                     ]
                     if weighted_vtds:
                         audit['mapping_methods']['current_precinct_or_vtd_name'] += 1
+                        row_methods.append('current_precinct_or_vtd_name')
                 if not weighted_vtds:
                     audit['unmatched_rows'] += 1
                     audit['unmatched_votes'] += votes
@@ -2246,6 +2293,7 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
                         direct_district_id = embedded_congressional_district_from_precinct_label(row.get('precinct') or '')
                     if direct_district_id:
                         allocations = {direct_district_id: votes}
+                        quality_method = 'exact_embedded_district'
                     else:
                         district_counts = defaultdict(int)
                         for target_county, target_vtd, target_weight in weighted_vtds:
@@ -2253,6 +2301,14 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
                             for district_id, block_count in (block_maps.get(scope, {}).get(vtd_key) or {}).items():
                                 district_counts[district_id] += float(block_count or 0) * float(target_weight or 0)
                         allocations = allocate_votes_by_block_counts(votes, district_counts)
+                        if any('historical' in method or 'nhgis' in method for method in row_methods):
+                            quality_method = 'nhgis_historical_block_chain'
+                        elif 'current_precinct_or_vtd_name' in row_methods:
+                            quality_method = 'exact_current_precinct_vtd'
+                        else:
+                            quality_method = 'maintained_baf_bef_block_chain'
+                    if row.get('_county_control_method'):
+                        quality_method = str(row['_county_control_method'])
                     if not allocations:
                         audit['scopes'][scope]['unallocated_rows'] += 1
                         audit['scopes'][scope]['unallocated_votes'] += votes
@@ -2265,6 +2321,11 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
                         )
                     audit['scopes'][scope]['allocated_rows'] += 1
                     audit['scopes'][scope]['allocated_votes'] += allocated_votes
+                    county_scope = audit['county_scopes'][scope][match_key[0]]
+                    county_scope['quality_votes'][quality_method] += allocated_votes
+                    for district_id, district_votes in allocations.items():
+                        county_scope['districts'][district_id][party_bucket] += district_votes
+                        county_scope['districts'][district_id]['total_votes'] += district_votes
                     key = (scope, office_key, year)
                     source_by_key.setdefault(key, f'{source_label}_to_current_lines_via_vtd_block_assign')
                     contest = district_nodes.setdefault(key, {})
@@ -2279,7 +2340,9 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
                         })
                         add_result_votes(node, district_votes, party, candidate)
 
-    apply_dra_share_calibration(district_nodes, source_by_key)
+    # DRA shares remain a diagnostic comparison only. Applying them after
+    # certified county controls changes party buckets independently by scope
+    # and breaks exact county/statewide party conservation.
 
     allowed_incremental_contests = None
     if contest_types:
@@ -2293,6 +2356,8 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
             allowed_incremental_contests = None
 
     for (scope, contest_type, year), results in sorted(district_nodes.items(), key=lambda item: (item[0][0], item[0][2], item[0][1])):
+        if allowed_existing_outputs is not None and (scope, contest_type, int(year)) not in allowed_existing_outputs:
+            continue
         if allowed_incremental_contests is not None and (contest_type, int(year)) not in allowed_incremental_contests:
             continue
         finalized = {}
@@ -2307,6 +2372,35 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
         scope_audit = (audit.get('scopes') or {}).get(scope, {})
         source_votes = int(audit.get('source_votes') or 0)
         allocated_votes = int(scope_audit.get('allocated_votes') or 0)
+        county_rows = {}
+        quality_votes = Counter()
+        for county, source_counter in sorted((audit.get('county_source') or {}).items()):
+            county_scope = ((audit.get('county_scopes') or {}).get(scope) or {}).get(county) or {}
+            districts = county_scope.get('districts') or {}
+            allocated_counter = Counter()
+            for district_counter in districts.values():
+                allocated_counter.update(district_counter)
+            delta = {
+                field: int(allocated_counter.get(field, 0)) - int(source_counter.get(field, 0))
+                for field in ('dem_votes', 'rep_votes', 'other_votes', 'total_votes')
+            }
+            county_quality = Counter(county_scope.get('quality_votes') or {})
+            quality_votes.update(county_quality)
+            county_rows[county] = {
+                'source': {field: int(source_counter.get(field, 0)) for field in ('dem_votes', 'rep_votes', 'other_votes', 'total_votes')},
+                'allocated': {field: int(allocated_counter.get(field, 0)) for field in ('dem_votes', 'rep_votes', 'other_votes', 'total_votes')},
+                'delta': delta,
+                'conserved': not any(delta.values()),
+                'allocation_quality_votes': dict(sorted(county_quality.items())),
+                'district_allocations': {
+                    str(district): {
+                        field: int(counter.get(field, 0))
+                        for field in ('dem_votes', 'rep_votes', 'other_votes', 'total_votes')
+                    }
+                    for district, counter in sorted(districts.items(), key=lambda item: int(item[0]))
+                },
+            }
+        county_failures = [county for county, row in county_rows.items() if not row['conserved']]
         payload = {
             'scope': scope,
             'contest_type': contest_type,
@@ -2316,6 +2410,14 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
                 'districts_expected': expected,
                 'coverage_percent': round((len(finalized) / max(expected, 1)) * 100, 2),
                 'source': source_by_key.get((scope, contest_type, year), 'openelections_precinct_aggregate'),
+                'county_conservation_audit': {
+                    'all_counties_conserved': not county_failures,
+                    'county_count': len(county_rows),
+                    'failure_count': len(county_failures),
+                    'failures': county_failures,
+                    'allocation_quality_votes': dict(sorted(quality_votes.items())),
+                    'counties': county_rows,
+                },
                 'allocation_audit': {
                     'source_rows': int(audit.get('source_rows') or 0),
                     'source_votes': source_votes,

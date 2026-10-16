@@ -290,22 +290,30 @@ def main():
             for scope in SCOPES
         }
         allocations = {}
+        allocation_methods = {}
         for scope in SCOPES:
             districts = direct.get(scope) or set()
             if len(districts) == 1:
                 allocations[scope] = {next(iter(districts)): 1.0}
                 method_counts[scope]["rdh_embedded_district"] += 1
+                allocation_methods[scope] = "exact_embedded_district"
             elif geometry.get(scope):
                 allocations[scope] = geometry[scope]
                 method_counts[scope][geometry_method] += 1
+                allocation_methods[scope] = (
+                    "exact_current_precinct_vtd"
+                    if geometry_method in {"rdh_vtd_code_baf", "current_vtd_name_baf"}
+                    else "maintained_baf_bef_block_chain"
+                )
             else:
                 allocations[scope] = {}
+                allocation_methods[scope] = "unallocated"
                 row_failures[scope].append({
                     "county": row.get("County"),
                     "precinct": row.get("Precinct"),
                     "vtd": row.get("VTD code"),
                 })
-        prepared.append((row, allocations))
+        prepared.append((row, allocations, allocation_methods))
 
     nodes = defaultdict(dict)
     regular_pools = defaultdict(lambda: defaultdict(float))
@@ -314,8 +322,11 @@ def main():
     controls = Counter()
     party_controls = defaultdict(Counter)
     source_rows = Counter()
+    county_source = defaultdict(lambda: defaultdict(Counter))
+    county_allocations = defaultdict(lambda: defaultdict(lambda: defaultdict(Counter)))
+    county_quality_votes = defaultdict(lambda: defaultdict(Counter))
 
-    for row, row_allocations in prepared:
+    for row, row_allocations, allocation_methods in prepared:
         cd = embedded_congressional_district(row, district_columns["congressional"])
         for column, info in statewide.items():
             votes = value(row, column)
@@ -324,6 +335,9 @@ def main():
             contest = info["contest"]
             controls[contest] += votes
             bucket = "dem_votes" if info["party"] == "DEM" else "rep_votes" if info["party"] == "REP" else "other_votes"
+            county = layers.normalize_county_name(row.get("County") or "")
+            county_source[contest][county][bucket] += votes
+            county_source[contest][county]["total_votes"] += votes
             party_controls[contest][bucket] += votes
             source_rows[contest] += 1
             for scope in SCOPES:
@@ -332,7 +346,11 @@ def main():
                     residuals.append((scope, contest, column, info, cd, votes, row))
                     continue
                 allocated = allocate(votes, weights)
+                quality_method = allocation_methods[scope]
+                county_quality_votes[(scope, contest)][county][quality_method] += votes
                 for district, district_votes in allocated.items():
+                    county_allocations[(scope, contest)][county][district][bucket] += district_votes
+                    county_allocations[(scope, contest)][county][district]["total_votes"] += district_votes
                     node = nodes[(scope, contest)].setdefault(district, {
                         "dem_votes": 0.0,
                         "rep_votes": 0.0,
@@ -372,7 +390,12 @@ def main():
                 f"{row.get('County')} {row.get('Precinct')}"
             )
         allocated = allocate(votes, weights)
+        county = layers.normalize_county_name(row.get("County") or "")
+        bucket = "dem_votes" if info["party"] == "DEM" else "rep_votes" if info["party"] == "REP" else "other_votes"
+        county_quality_votes[(scope, contest)][county]["localized_mail_vote_pool"] += votes
         for district, district_votes in allocated.items():
+            county_allocations[(scope, contest)][county][district][bucket] += district_votes
+            county_allocations[(scope, contest)][county][district]["total_votes"] += district_votes
             node = nodes[(scope, contest)].setdefault(district, {
                 "dem_votes": 0.0,
                 "rep_votes": 0.0,
@@ -407,6 +430,34 @@ def main():
         if len(finalized) != EXPECTED[scope]:
             raise RuntimeError(f"{scope} {contest}: observed {len(finalized)} districts")
         filename = f"{scope}_{contest}_{args.year}.json"
+        county_rows = {}
+        total_quality = Counter()
+        for county, source_counter in sorted(county_source[contest].items()):
+            districts = county_allocations[(scope, contest)].get(county, {})
+            allocated_counter = Counter()
+            for district_counter in districts.values():
+                allocated_counter.update(district_counter)
+            delta = {
+                field: int(allocated_counter.get(field, 0)) - int(source_counter.get(field, 0))
+                for field in ("dem_votes", "rep_votes", "other_votes", "total_votes")
+            }
+            quality = Counter(county_quality_votes[(scope, contest)].get(county, {}))
+            total_quality.update(quality)
+            county_rows[county] = {
+                "source": {field: int(source_counter.get(field, 0)) for field in ("dem_votes", "rep_votes", "other_votes", "total_votes")},
+                "allocated": {field: int(allocated_counter.get(field, 0)) for field in ("dem_votes", "rep_votes", "other_votes", "total_votes")},
+                "delta": delta,
+                "conserved": not any(delta.values()),
+                "allocation_quality_votes": dict(sorted(quality.items())),
+                "district_allocations": {
+                    str(district): {
+                        field: int(counter.get(field, 0))
+                        for field in ("dem_votes", "rep_votes", "other_votes", "total_votes")
+                    }
+                    for district, counter in sorted(districts.items(), key=lambda item: int(item[0]))
+                },
+            }
+        county_failures = [county for county, row in county_rows.items() if not row["conserved"]]
         payload = {
             "scope": scope,
             "contest_type": contest,
@@ -422,6 +473,14 @@ def main():
                 "county_control_audit": [
                     row for row in county_control_audit if row["contest"] == contest
                 ],
+                "county_conservation_audit": {
+                    "all_counties_conserved": not county_failures,
+                    "county_count": len(county_rows),
+                    "failure_count": len(county_failures),
+                    "failures": county_failures,
+                    "allocation_quality_votes": dict(sorted(total_quality.items())),
+                    "counties": county_rows,
+                },
                 "allocation_audit": {
                     "source_rows": source_rows[contest],
                     "source_votes": controls[contest],
