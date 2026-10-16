@@ -2170,11 +2170,14 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
             files = [
                 entry for entry in (existing_manifest.get('files') or [])
                 if entry.get('contest_type') not in contest_types
+                or (years and int(entry.get('year')) not in years)
             ]
         except (OSError, json.JSONDecodeError):
             files = []
     source_rows = []
     vtd_match_cache = {}
+    maintained_match_cache = {}
+    district_weight_cache = {}
     allocation_audit = defaultdict(lambda: {
         'source_rows': 0,
         'source_votes': 0,
@@ -2267,15 +2270,18 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
                     normalize_bridge_precinct_name(row.get('precinct') or '')
                 )
                 party_bucket = (
-                    'dem_votes' if party in PARTY_DEM
-                    else 'rep_votes' if party in PARTY_REP
+                    'dem_votes' if party in PARTY_DEM or party == 'YES'
+                    else 'rep_votes' if party in PARTY_REP or party == 'NO'
                     else 'other_votes'
                 )
                 audit['county_source'][match_key[0]][party_bucket] += votes
                 audit['county_source'][match_key[0]]['total_votes'] += votes
                 countyfp = county_fips_by_name().get(match_key[0]) or ''
                 block_maps = load_vtd_current_district_blocks()
-                maintained_targets = maintained_targets_for_row(row, year, countyfp) if countyfp else []
+                geography_key = (year, countyfp, row.get('precinct') or '', str(row.get('source_vtd') or ''))
+                if geography_key not in maintained_match_cache:
+                    maintained_match_cache[geography_key] = maintained_targets_for_row(row, year, countyfp) if countyfp else []
+                maintained_targets = maintained_match_cache[geography_key]
                 row_methods = []
                 if maintained_targets:
                     maintained_targets = [
@@ -2315,11 +2321,15 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
                         allocations = {direct_district_id: votes}
                         quality_method = 'exact_embedded_district'
                     else:
-                        district_counts = defaultdict(int)
-                        for target_county, target_vtd, target_weight in weighted_vtds:
-                            vtd_key = (target_county, target_vtd)
-                            for district_id, block_count in (block_maps.get(scope, {}).get(vtd_key) or {}).items():
-                                district_counts[district_id] += float(block_count or 0) * float(target_weight or 0)
+                        weights_key = (scope, tuple(weighted_vtds))
+                        if weights_key not in district_weight_cache:
+                            district_counts = defaultdict(int)
+                            for target_county, target_vtd, target_weight in weighted_vtds:
+                                vtd_key = (target_county, target_vtd)
+                                for district_id, block_count in (block_maps.get(scope, {}).get(vtd_key) or {}).items():
+                                    district_counts[district_id] += float(block_count or 0) * float(target_weight or 0)
+                            district_weight_cache[weights_key] = district_counts
+                        district_counts = district_weight_cache[weights_key]
                         allocations = allocate_votes_by_block_counts(votes, district_counts)
                         if any('historical' in method or 'nhgis' in method for method in row_methods):
                             quality_method = 'nhgis_historical_block_chain'

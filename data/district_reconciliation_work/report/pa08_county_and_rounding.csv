@@ -1,0 +1,7 @@
+county,basis,published_dem_votes,published_rep_votes,published_other_votes,published_total_votes,candidate_dem_votes,candidate_rep_votes,candidate_other_votes,candidate_total_votes,delta_dem_votes,delta_rep_votes,delta_other_votes,delta_total_votes
+LACKAWANNA,truncated county metadata before district rounding,61653,51944,2289,115886,61653,51944,2289,115886,0,0,0,0
+LUZERNE,truncated county metadata before district rounding,57486,70108,2966,130561,57754,71270,2980,132004,268,1162,14,1443
+MONROE,truncated county metadata before district rounding,39309,35968,2270,77548,39310,35969,2270,77549,1,1,0,1
+PIKE,truncated county metadata before district rounding,12909,20869,831,34609,12909,20869,831,34609,0,0,0,0
+WAYNE,truncated county metadata before district rounding,9385,19331,619,29335,9385,19331,619,29335,0,0,0,0
+DISTRICT ROUNDING,final district value less sum of truncated county metadata,1,1,1,1,0,0,0,0,-1,-1,-1,-1

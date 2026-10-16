@@ -1,0 +1,33 @@
+{
+  "pa08": {
+    "year": 2024,
+    "district": "8",
+    "source": "data\\Openelections\\2024\\20241105__pa__general__precinct_official.csv",
+    "totals": {
+      "dem_votes": 181011,
+      "rep_votes": 199383,
+      "other_votes": 8989
+    },
+    "rows": 3877,
+    "blocks": 24105,
+    "mail_label_rows": 0
+  },
+  "pa10": {
+    "year": 2018,
+    "district": "10",
+    "source": "data\\Openelections\\2018\\20181106__pa__general__precinct.csv",
+    "totals": {
+      "dem_votes": 144682,
+      "rep_votes": 143315,
+      "other_votes": 5926
+    },
+    "rows": 1629,
+    "blocks": 17791,
+    "mail_label_rows": 0
+  },
+  "published_pa08_fractional_totals": {
+    "dem_votes": 180743.49005195312,
+    "rep_votes": 198220.77917181567,
+    "other_votes": 8976.075470276242
+  }
+}

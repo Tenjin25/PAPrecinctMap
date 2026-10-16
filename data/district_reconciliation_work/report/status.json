@@ -1,0 +1,39 @@
+{
+  "baseline_commit": "0577735",
+  "acceptance": {
+    "bef_block_join_complete": true,
+    "matched_precinct_votes_conserved": true,
+    "every_county_party_total_conserved": true,
+    "no_unmatched_or_unallocated_source_rows": true,
+    "published_statewide_totals_unchanged": true,
+    "published_district_votes_unchanged": false,
+    "published_file_coverage_unchanged": true
+  },
+  "counts": {
+    "statewide_total_changes": 0,
+    "district_vote_changes": 5409,
+    "conservation_failures": 0,
+    "county_conservation_failures": 0,
+    "files_with_unmatched_or_unallocated_rows": 0,
+    "coverage_changes": 0
+  },
+  "scope_counts": {
+    "congressional": 637,
+    "state_house": 3762,
+    "state_senate": 1010
+  },
+  "decision": "Retain production pending full causal attribution",
+  "proposed_production_changes": [],
+  "independently_recomputed_county_evidence_failure_files": 54,
+  "limitations": [
+    "Lineage labels identify documented method differences, not quantified causal decompositions.",
+    "Published historical rows lack county attribution; assigning their district residual to candidate counties would fabricate evidence.",
+    "2018 DRA share agreement is not independent proof: published PA-10 was calibrated to that source.",
+    "The Wikipedia 2018 district table must be checked for district vintage: Pennsylvania had 18 districts then, versus 17 current districts.",
+    "Candidate uses original BAF ZIP, while source ledger labels the 17-block-adjusted CSV as its Carter input.",
+    "RDH county metadata truncates fractional allocations before statewide district rounding; separate rounding attribution is required.",
+    "The original acceptance --reuse accepted unsigned copied publication directories. The revised code requires a completed input/output receipt.",
+    "54 baseline candidate retention files put YES/NO into Other in their county metadata, despite displaying YES/NO in the two main columns. Their old county PASS flags are insufficient. The builder bookkeeping is corrected, and a new cold rebuild is required.",
+    "Year-selective reuse and its manifest preservation are implemented and regression tested; a new signed cold run and warm-run integration check remain pending."
+  ]
+}

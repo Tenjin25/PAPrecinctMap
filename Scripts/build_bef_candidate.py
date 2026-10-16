@@ -8,8 +8,10 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import importlib.util
 import json
+import re
 import shutil
 import sys
 from collections import Counter
@@ -20,9 +22,73 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 PUBLISHED = DATA / "district_contests"
 DEFAULT_OUT = DATA / "district_bef_candidate"
+RECEIPT = "build_receipt.json"
 sys.path.insert(0, str(ROOT / "Scripts"))
 
 import build_county_clustered_2024_district_contests as clustered  # noqa: E402
+
+
+def digest(path):
+    result = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            result.update(chunk)
+    return result.hexdigest()
+
+
+def input_fingerprints(block_vap, baf_zip):
+    """Conservative content fingerprints, including optional-source presence.
+
+    All retained top-level source archives are included deliberately: absence
+    or addition can change fallback selection even without a code change.
+    """
+    paths = {Path(block_vap).resolve(), Path(baf_zip).resolve(), ROOT / "build_pa_data_layers.py"}
+    paths.update((ROOT / "Scripts").glob("*.py"))
+    for folder in ("crosswalks", "Openelections", "benchmarks", "contests", "district_contests"):
+        paths.update(path for path in (DATA / folder).rglob("*") if path.is_file())
+    paths.update(path for path in DATA.iterdir() if path.is_file())
+    return {str(path.resolve()): digest(path) for path in sorted(paths) if path.is_file()}
+
+
+def candidate_fingerprints(directory):
+    return {path.name: digest(path) for path in sorted(directory.glob("*.json"))
+            if path.name not in {RECEIPT, "acceptance_report.json"}}
+
+
+def validate_reuse(directory, fingerprints):
+    path = directory / RECEIPT
+    if not path.exists():
+        raise ValueError("Unsigned candidate: a completed rebuild receipt is required for --reuse")
+    receipt = json.loads(path.read_text(encoding="utf-8"))
+    if receipt.get("version") != 1 or receipt.get("inputs") != fingerprints:
+        raise ValueError("Candidate inputs changed; rebuild required")
+    if receipt.get("outputs") != candidate_fingerprints(directory):
+        raise ValueError("Candidate outputs changed or are incomplete; rebuild required")
+
+
+def changed_source_years(before, after):
+    """Return affected years, or None when a shared dependency changed.
+
+    Only independently year-scoped return files and county controls qualify.
+    Geographic/code/publication changes invalidate the entire candidate.
+    Added and removed inputs participate in the same comparison.
+    """
+    years = set()
+    for filename in set(before) | set(after):
+        if before.get(filename) == after.get(filename):
+            continue
+        path = Path(filename)
+        try:
+            relative = path.resolve().relative_to(DATA.resolve()).as_posix()
+        except ValueError:
+            return None
+        match = (re.match(r"Openelections/(\d{4})/", relative)
+                 or re.match(r"ElectionReturns_(\d{4})_General_PrecinctReturns\.", relative)
+                 or re.match(r"benchmarks/pa_county_(\d{4})_.*_certified\.csv$", relative))
+        if not match:
+            return None
+        years.add(int(match.group(1)))
+    return years
 
 
 def import_builder():
@@ -41,10 +107,61 @@ def totals(payload):
     }
 
 
+def verify_county_evidence(payload):
+    """Recompute county/district party sums instead of trusting PASS flags."""
+    county_audit = payload.get("meta", {}).get("county_conservation_audit") or {}
+    counties = county_audit.get("counties") or {}
+    if not counties:
+        return ["missing county allocation evidence"]
+    failures, by_district = [], {}
+    for county, audit in counties.items():
+        allocated = {field: 0 for field in ("dem_votes", "rep_votes", "other_votes", "total_votes")}
+        for district, row in (audit.get("district_allocations") or {}).items():
+            target = by_district.setdefault(district, {field: 0 for field in allocated})
+            if sum(int(row.get(field, 0)) for field in ("dem_votes", "rep_votes", "other_votes")) != int(row.get("total_votes", 0)):
+                failures.append(f"{county}/{district}: party components do not sum to total")
+            for field in allocated:
+                amount = int(row.get(field, 0))
+                allocated[field] += amount
+                target[field] += amount
+        if allocated != audit.get("source") or allocated != audit.get("allocated"):
+            failures.append(f"{county}: allocated county party totals disagree with source evidence")
+    results = payload.get("general", {}).get("results", {})
+    for district in set(results) | set(by_district):
+        for field in ("dem_votes", "rep_votes", "other_votes", "total_votes"):
+            if int(results.get(district, {}).get(field, 0)) != int(by_district.get(district, {}).get(field, 0)):
+                failures.append(f"district {district}/{field}: county contributions disagree with output")
+    return failures
+
+
+def verify_geographic_bounds(payload, fixture=None):
+    """Reject conserved but geographically impossible county allocations.
+
+    These bounds do not prescribe an outcome or a rounding method. Each party
+    can place at most its entire pooled precinct vote in either district.
+    """
+    if fixture is None:
+        fixture = json.loads((DATA / "benchmarks/luzerne_2024_senate_precinct_bounds.json").read_text(encoding="utf-8"))
+    if any(payload.get(key) != fixture[key] for key in ("year", "contest_type", "scope")):
+        return []
+    allocations = (payload.get("meta", {}).get("county_conservation_audit", {})
+                   .get("counties", {}).get(fixture["county"], {}).get("district_allocations", {}))
+    failures = []
+    for district, fixed in fixture["fixed_votes"].items():
+        for field, lower in fixed.items():
+            upper = lower + fixture["pooled_votes"][field]
+            actual = allocations.get(district, {}).get(field)
+            if actual is None or not lower <= actual <= upper:
+                failures.append({"county": fixture["county"], "district": district,
+                                 "field": field, "minimum": lower, "maximum": upper,
+                                 "candidate": actual, "source": fixture["source"]})
+    return failures
+
+
 def capture_candidate_labels(directory):
     labels = {}
     for path in directory.glob("*.json"):
-        if path.name in {"manifest.json", "acceptance_report.json"}:
+        if path.name in {"manifest.json", "acceptance_report.json", RECEIPT}:
             continue
         payload = json.loads(path.read_text(encoding="utf-8"))
         for district, row in payload.get("general", {}).get("results", {}).items():
@@ -58,7 +175,7 @@ def capture_candidate_labels(directory):
 def restore_candidate_labels(directory, labels):
     """Keep established display labels while replacing vote allocations."""
     for path in directory.glob("*.json"):
-        if path.name in {"manifest.json", "acceptance_report.json"}:
+        if path.name in {"manifest.json", "acceptance_report.json", RECEIPT}:
             continue
         payload = json.loads(path.read_text(encoding="utf-8"))
         changed = False
@@ -84,17 +201,34 @@ def main():
     )
     parser.add_argument("--baf-zip", type=Path, default=DATA / "BlockAssign_ST42_PA.zip")
     parser.add_argument("--reuse", action="store_true", help="Re-gate an existing candidate without rebuilding it")
+    parser.add_argument("--incremental", action="store_true", help="Reuse signed unchanged years; rebuild changed source years")
     parser.add_argument("--quiet", action="store_true", help="Print only the gate status instead of the full report")
     args = parser.parse_args()
     out = args.out_dir.resolve()
-    if out == PUBLISHED.resolve() or PUBLISHED.resolve() in out.parents:
+    if out == PUBLISHED.resolve() or PUBLISHED.resolve() in out.parents or out in PUBLISHED.resolve().parents:
         raise ValueError("Candidate output must not be data/district_contests or a child of it")
     builder = import_builder()
+    fingerprints = input_fingerprints(args.block_vap, args.baf_zip)
+    rebuild_years = None
+    if args.reuse and args.incremental:
+        parser.error("choose --reuse or --incremental")
+    if args.incremental and (out / RECEIPT).exists():
+        prior = json.loads((out / RECEIPT).read_text(encoding="utf-8"))
+        # Validate the previous output before considering any selective reuse.
+        validate_reuse(out, prior.get("inputs"))
+        rebuild_years = changed_source_years(prior["inputs"], fingerprints)
+        if rebuild_years == set():
+            args.reuse = True
+    if args.reuse:
+        validate_reuse(out, fingerprints)
     if not args.reuse:
-        if out.exists():
+        if out.exists() and rebuild_years is None:
             shutil.rmtree(out)
-        shutil.copytree(PUBLISHED, out)
-        candidate_labels = capture_candidate_labels(out)
+        if rebuild_years is None:
+            shutil.copytree(PUBLISHED, out)
+        # A failed/interrupted incremental build must be left unsigned.
+        (out / RECEIPT).unlink(missing_ok=True)
+        candidate_labels = capture_candidate_labels(PUBLISHED)
         published_manifest = json.loads((PUBLISHED / "manifest.json").read_text(encoding="utf-8"))
         contest_types = {
             str(entry.get("contest_type") or "")
@@ -123,12 +257,18 @@ def main():
         builder.apply_dra_share_calibration = lambda _nodes, _sources: None
         builder.read_csv_rows = read_integerized_rows
         try:
-            builder.build_district_manifests(out, contest_types=contest_types)
+            print(f"Rebuilding source years: {sorted(rebuild_years) if rebuild_years else 'all'}", flush=True)
+            builder.build_district_manifests(out, contest_types=contest_types, years=rebuild_years)
         finally:
             builder.embedded_congressional_district_from_precinct_label = original_embedded
             builder.apply_dra_share_calibration = original_dra_calibration
             builder.read_csv_rows = original_read_csv_rows
         restore_candidate_labels(out, candidate_labels)
+        if input_fingerprints(args.block_vap, args.baf_zip) != fingerprints:
+            raise RuntimeError("Source inputs changed during rebuild; candidate is unsigned")
+        (out / RECEIPT).write_text(json.dumps({
+            "version": 1, "inputs": fingerprints, "outputs": candidate_fingerprints(out),
+        }, indent=2) + "\n", encoding="utf-8")
     elif not (out / "manifest.json").exists():
         raise FileNotFoundError(f"No reusable candidate at {out}")
 
@@ -138,10 +278,12 @@ def main():
     unmatched = []
     missing_or_added = []
     district_vote_changes = []
+    candidate_name_changes = []
+    geographic_bounds_failures = []
     contest_year_audit = {}
     names = sorted({p.name for p in PUBLISHED.glob("*.json")} | {p.name for p in out.glob("*.json")})
     for name in names:
-        if name in {"manifest.json", "acceptance_report.json"}:
+        if name in {"manifest.json", "acceptance_report.json", RECEIPT}:
             continue
         old_path, new_path = PUBLISHED / name, out / name
         if not old_path.exists() or not new_path.exists():
@@ -167,12 +309,19 @@ def main():
             continue
         old = json.loads(old_path.read_text(encoding="utf-8"))
         new = json.loads(new_path.read_text(encoding="utf-8"))
+        geographic_bounds_failures.extend({"file": name, **failure}
+                                          for failure in verify_geographic_bounds(new))
         old_totals, new_totals = totals(old), totals(new)
         old_results = old.get("general", {}).get("results", {})
         new_results = new.get("general", {}).get("results", {})
         for district in sorted(set(old_results) | set(new_results), key=lambda value: (len(str(value)), str(value))):
             before = old_results.get(district) or {}
             after = new_results.get(district) or {}
+            for field in ("dem_candidate", "rep_candidate"):
+                if before.get(field, "") != after.get(field, ""):
+                    candidate_name_changes.append({"file": name, "district": district,
+                                                   "field": field, "published": before.get(field, ""),
+                                                   "candidate": after.get(field, "")})
             fields = ("dem_votes", "rep_votes", "other_votes", "total_votes")
             deltas = {
                 field: int(after.get(field) or 0) - int(before.get(field) or 0)
@@ -203,6 +352,12 @@ def main():
             })
         audit = new.get("meta", {}).get("allocation_audit")
         county_audit = new.get("meta", {}).get("county_conservation_audit") or {}
+        if builder.is_statewide_contest_type(str(new.get("contest_type") or "")):
+            evidence_errors = verify_county_evidence(new)
+            if evidence_errors:
+                county_conservation_failures.append({"file": name, "failures": evidence_errors})
+            if not audit:
+                conservation_failures.append({"file": name, "error": "missing allocation audit"})
         if audit:
             contest_type = str(new.get("contest_type") or "")
             year = int(new.get("year") or 0)
@@ -246,6 +401,8 @@ def main():
         "published_statewide_totals_unchanged": not changes,
         "published_district_votes_unchanged": not district_vote_changes,
         "published_file_coverage_unchanged": not missing_or_added,
+        "reviewed_candidate_names_preserved": not candidate_name_changes,
+        "official_precinct_geographic_bounds_satisfied": not geographic_bounds_failures,
     }
     summary = {
         "status": "PASS" if all(acceptance.values()) else "BLOCKED",
@@ -259,12 +416,16 @@ def main():
             "county_conservation_failures": len(county_conservation_failures),
             "files_with_unmatched_or_unallocated_rows": len(unmatched),
             "coverage_changes": len(missing_or_added),
+            "candidate_name_changes": len(candidate_name_changes),
+            "geographic_bounds_failures": len(geographic_bounds_failures),
         },
         "largest_statewide_changes": changes[:25],
         "district_vote_changes": district_vote_changes[:100],
         "largest_unmatched": unmatched[:25],
         "county_conservation_failures": county_conservation_failures[:25],
         "coverage_changes": missing_or_added,
+        "candidate_name_changes": candidate_name_changes,
+        "geographic_bounds_failures": geographic_bounds_failures,
         "changed_scopes": dict(Counter(
             "state_house" if row["file"].startswith("state_house_")
             else "state_senate" if row["file"].startswith("state_senate_")

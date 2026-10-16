@@ -1,0 +1,18 @@
+{
+  "year": 2024,
+  "contest_type": "us_senate",
+  "scope": "congressional",
+  "county": "LUZERNE",
+  "source": "https://results.enr.clarityelections.com/PA/Luzerne/122840/355923/json/details.json",
+  "source_note": "Senate K=2; congressional K=6 and K=7 precinct membership. Named candidates only; do not double-count Write-in and SCATTER.",
+  "pooled_precinct": "Butler Township Dist 05",
+  "pooled_votes": {"dem_votes": 289, "rep_votes": 856, "other_votes": 17},
+  "county_votes": {"dem_votes": 64546, "rep_votes": 87096, "other_votes": 3448},
+  "fixed_votes": {
+    "8": {"dem_votes": 57403, "rep_votes": 69860, "other_votes": 2962},
+    "9": {"dem_votes": 6854, "rep_votes": 16380, "other_votes": 469}
+  },
+  "pooled_vtd": ["079", "000152"],
+  "pooled_block_vap": {"8": 403, "9": 987},
+  "decision": "Retain published allocation; reject normalized-source candidates outside official precinct bounds. VAP split is modeled, not observed fragment Senate votes."
+}

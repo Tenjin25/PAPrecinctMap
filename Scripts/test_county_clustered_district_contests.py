@@ -8,6 +8,7 @@ import csv
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from collections import defaultdict
 from pathlib import Path
 
@@ -18,6 +19,37 @@ import build_county_clustered_2024_district_contests as clustered
 
 
 class CountyRuleTests(unittest.TestCase):
+    def test_whole_county_uses_vap_despite_opposite_block_count_majority(self):
+        # Nine zero-VAP blocks in district 7 must not defeat the one inhabited
+        # district-8 block. Exercise the map builder, not just its classifier.
+        vtds = {str(index): ("001", "000001") for index in range(10)}
+        vap = {str(index): (1000 if index == 0 else 0) for index in range(10)}
+        assignments = {scope: {str(index): ("8" if index == 0 else "7")
+                              for index in range(10)} for scope in clustered.SCOPES}
+        with patch.object(clustered, "load_block_vap", return_value=vap), \
+             patch.object(clustered, "load_carter_vtds", return_value=vtds), \
+             patch.object(clustered, "load_district_assignments", return_value=assignments):
+            maps, counties, _, _ = clustered.build_vap_maps(Path("vap"), Path("baf"))
+        for scope in clustered.SCOPES:
+            self.assertEqual(counties[scope]["001"], {"8"})
+            self.assertEqual(dict(maps[scope][("001", "000001")]), {"8": 1000})
+            self.assertEqual(clustered.layers.allocate_votes_by_block_counts(
+                12345, maps[scope][("001", "000001")]), {"8": 12345})
+
+    def test_block_count_whole_county_does_not_override_material_vap_split(self):
+        # 999 of 1000 blocks belong to district 8, but VAP is split evenly.
+        vtds = {str(index): ("001", "000001") for index in range(1000)}
+        vap = {str(index): (999 if index == 999 else 1) for index in range(1000)}
+        assignments = {scope: {str(index): ("7" if index == 999 else "8")
+                              for index in range(1000)} for scope in clustered.SCOPES}
+        with patch.object(clustered, "load_block_vap", return_value=vap), \
+             patch.object(clustered, "load_carter_vtds", return_value=vtds), \
+             patch.object(clustered, "load_district_assignments", return_value=assignments):
+            maps, counties, _, _ = clustered.build_vap_maps(Path("vap"), Path("baf"))
+        for scope in clustered.SCOPES:
+            self.assertEqual(counties[scope]["001"], {"7", "8"})
+            self.assertEqual(dict(maps[scope][("001", "000001")]), {"7": 999, "8": 999})
+
     def test_999_percent_is_whole_county(self):
         self.assertEqual(clustered.classify_county_weights({"8": 999, "7": 1}), {"8"})
 
@@ -137,6 +169,25 @@ class PublishedDataTests(unittest.TestCase):
         )
         self.assertEqual(row["dem_candidate"], "Bob Casey, Jr.")
         self.assertEqual(row["rep_candidate"], "David H. McCormick")
+
+    def test_permanent_reconciliation_benchmarks_and_split_counties(self):
+        fixture = json.loads((ROOT / "data/benchmarks/current_plan_reconciliation.json").read_text(encoding="utf-8"))
+        maps, counties, _, _ = clustered.build_vap_maps(
+            ROOT / "data/crosswalks/pa_block20_vap.csv.gz", ROOT / "data/BlockAssign_ST42_PA.zip")
+        for benchmark in fixture["benchmarks"]:
+            path = self.directory / f'congressional_us_senate_{benchmark["year"]}.json'
+            current = json.loads(path.read_text(encoding="utf-8"))["general"]["results"][benchmark["district"]]
+            self.assertEqual(current, benchmark["published"])
+            for variant in ("published", "candidate"):
+                row = benchmark[variant]
+                self.assertEqual(row["total_votes"], sum(row[field] for field in ("dem_votes", "rep_votes", "other_votes")))
+        for example in fixture["split_counties"]:
+            scope, county = example["scope"], example["county_fips"]
+            self.assertEqual(sorted(counties[scope][county], key=int), example["material_districts"])
+            self.assertEqual({vtd: dict(weights) for (fp, vtd), weights in maps[scope].items() if fp == county}, example["vtd_weights"])
+            audit = example["candidate_county_audit"]
+            for field in ("dem_votes", "rep_votes", "other_votes", "total_votes"):
+                self.assertEqual(sum(row[field] for row in audit["district_allocations"].values()), audit["source"][field])
 
     def test_pa10_2018_us_senate_is_fixed(self):
         path = self.directory / "congressional_us_senate_2018.json"
