@@ -24,12 +24,17 @@ def main():
     parser.add_argument("--contest", required=True)
     parser.add_argument("--scope", choices=tuple(clustered.SCOPES), default="congressional")
     parser.add_argument("--district", required=True)
-    parser.add_argument("--pl-zip", type=Path, required=True)
+    parser.add_argument("--pl-zip", type=Path)
+    parser.add_argument(
+        "--block-vap",
+        type=Path,
+        default=ROOT / "data" / "crosswalks" / "pa_block20_vap.csv.gz",
+    )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
 
     maps, _county_districts, _vap_blocks, _carter_blocks = clustered.build_vap_maps(
-        args.pl_zip, ROOT / "data" / "BlockAssign_ST42_PA.zip"
+        args.pl_zip or args.block_vap, ROOT / "data" / "BlockAssign_ST42_PA.zip"
     )
     layers.VTD_CURRENT_DISTRICT_BLOCKS = maps
     layers.VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = maps

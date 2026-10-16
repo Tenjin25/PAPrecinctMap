@@ -11,6 +11,7 @@ import csv
 import importlib.util
 import json
 import shutil
+import sys
 from collections import Counter
 from pathlib import Path
 
@@ -19,6 +20,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 PUBLISHED = DATA / "district_contests"
 DEFAULT_OUT = DATA / "district_bef_candidate"
+sys.path.insert(0, str(ROOT / "Scripts"))
+
+import build_county_clustered_2024_district_contests as clustered  # noqa: E402
 
 
 def import_builder():
@@ -73,6 +77,12 @@ def restore_candidate_labels(directory, labels):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT)
+    parser.add_argument(
+        "--block-vap",
+        type=Path,
+        default=DATA / "crosswalks" / "pa_block20_vap.csv.gz",
+    )
+    parser.add_argument("--baf-zip", type=Path, default=DATA / "BlockAssign_ST42_PA.zip")
     parser.add_argument("--reuse", action="store_true", help="Re-gate an existing candidate without rebuilding it")
     parser.add_argument("--quiet", action="store_true", help="Print only the gate status instead of the full report")
     args = parser.parse_args()
@@ -91,9 +101,33 @@ def main():
             for entry in published_manifest.get("files", [])
             if builder.is_statewide_contest_type(str(entry.get("contest_type") or ""))
         }
-        builder.VTD_CURRENT_DISTRICT_BLOCKS = None
-        builder.VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = None
-        builder.build_district_manifests(out, contest_types=contest_types)
+        vap_maps, _county_districts, _vap_blocks, _carter_blocks = clustered.build_vap_maps(
+            args.block_vap, args.baf_zip
+        )
+        builder.VTD_CURRENT_DISTRICT_BLOCKS = vap_maps
+        builder.VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = vap_maps
+        original_embedded = builder.embedded_congressional_district_from_precinct_label
+        original_dra_calibration = builder.apply_dra_share_calibration
+        original_read_csv_rows = builder.read_csv_rows
+        integerized_rows_cache = {}
+
+        def read_integerized_rows(path):
+            cache_key = str(Path(path).resolve())
+            if cache_key not in integerized_rows_cache:
+                integerized_rows_cache[cache_key] = clustered.integerize_fractional_rows(
+                    original_read_csv_rows(path)
+                )
+            return integerized_rows_cache[cache_key]
+
+        builder.embedded_congressional_district_from_precinct_label = lambda _value: ""
+        builder.apply_dra_share_calibration = lambda _nodes, _sources: None
+        builder.read_csv_rows = read_integerized_rows
+        try:
+            builder.build_district_manifests(out, contest_types=contest_types)
+        finally:
+            builder.embedded_congressional_district_from_precinct_label = original_embedded
+            builder.apply_dra_share_calibration = original_dra_calibration
+            builder.read_csv_rows = original_read_csv_rows
         restore_candidate_labels(out, candidate_labels)
     elif not (out / "manifest.json").exists():
         raise FileNotFoundError(f"No reusable candidate at {out}")

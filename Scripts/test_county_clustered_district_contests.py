@@ -80,6 +80,18 @@ class CountyRuleTests(unittest.TestCase):
         self.assertEqual(sum(int(row["votes"]) for row in other if row["precinct"] == "B"), 30)
         self.assertTrue(all(row.get("_county_control_method") == "county_local_precinct_turnout_fallback" for row in other))
 
+    def test_retained_block_vap_reproduces_carter_universe(self):
+        vap_path = ROOT / "data" / "crosswalks" / "pa_block20_vap.csv.gz"
+        maps, counties, vap_blocks, carter_blocks = clustered.build_vap_maps(
+            vap_path, ROOT / "data" / "BlockAssign_ST42_PA.zip"
+        )
+        self.assertEqual(vap_blocks, 336985)
+        self.assertEqual(carter_blocks, 336985)
+        self.assertEqual(sum(clustered.load_block_vap(vap_path).values()), 10353548)
+        self.assertGreater(len(counties["congressional"]["079"]), 1)  # Luzerne
+        self.assertGreater(len(counties["congressional"]["089"]), 1)  # Monroe
+        self.assertTrue(maps["congressional"])
+
 
 class PublishedDataTests(unittest.TestCase):
     @classmethod

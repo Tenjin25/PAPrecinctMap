@@ -1,0 +1,314 @@
+{
+  "generated": "2026-10-15",
+  "policy": {
+    "whole_county_threshold": 0.999,
+    "residual_scope": "county only",
+    "rounding": "largest remainder within county/party",
+    "dra_shares": "diagnostic only"
+  },
+  "sources": [
+    {
+      "path": "data/crosswalks/pa_block20_vap.csv.gz",
+      "role": "2020 Census block voting-age population (P0030001)",
+      "bytes": 1180778,
+      "sha256": "5d71214e06f7e30e64a8a0df0e2f747d14529081320141877b486c8fa63d1ec3",
+      "upstream_url": "https://www2.census.gov/programs-surveys/decennial/2020/data/01-Redistricting_File--PL_94-171/Pennsylvania/pa2020.pl.zip",
+      "upstream_sha256": "2d33a7dab29c8dd5692bbde203d253e06eebbc44fcbaa96b1caa958d454026ae",
+      "acquired": "2026-10-15"
+    },
+    {
+      "path": "data/crosswalks/pa_block20_to_vtd20.csv",
+      "role": "Carter-adjusted block-to-VTD BAF",
+      "bytes": 9435608,
+      "sha256": "5999f2eb0fdaac5e92a61949f25db312bdd77a4bbf2f6199a1360fbaecbfd031"
+    },
+    {
+      "path": "data/42_PA_CD118.txt",
+      "role": "Carter congressional BEF",
+      "bytes": 6739713,
+      "sha256": "386db7038824baf0c92d42d41a397869c0d358712514197170308646c0739bc4"
+    },
+    {
+      "path": "data/42_PA_SLDL22.txt",
+      "role": "Carter State House BEF",
+      "bytes": 7076699,
+      "sha256": "a29b52d6b7d5da2c27a0eb9bee1f84f53b98ff71f84b7dd2f7261e7b2c29d831"
+    },
+    {
+      "path": "data/42_PA_SLDU22.txt",
+      "role": "Carter State Senate BEF",
+      "bytes": 7076699,
+      "sha256": "105f425f725482b1565ee256fa521ce788eba5ffe9d86a77d2db5a6649ecc7ea"
+    },
+    {
+      "path": "data/crosswalks/pa_historical_precinct_to_vtd20.csv",
+      "role": "NHGIS historical precinct lineage",
+      "bytes": 10744081,
+      "sha256": "97b7dd8eef5fc639f2e632fc4d3ba27355179ddef5d5a135e873c1aa57bf5de1"
+    },
+    {
+      "path": "data/crosswalks/pa_modern_precinct_to_vtd20.csv",
+      "role": "modern precinct lineage",
+      "bytes": 3012941,
+      "sha256": "92020b6426db16986cab014d1b5914c7be0b8e0a2d64241197111730f847c0d1"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2000_attorney_general_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2078,
+      "sha256": "c3ae3d827d06631b258b5c4c3dd9dc5580df02db4caed9404c76d1e01ff845e3"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2000_auditor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2079,
+      "sha256": "f0ea5bfa80d34a313695d3a2705027370a67b982df280cf55f885c1023ee1224"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2000_president_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2082,
+      "sha256": "8e3b38e7fcedede909ee9d2b9a49720e0c3a0b99dff9270b4f63756778c586e7"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2000_treasurer_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2083,
+      "sha256": "7a9388ddd491e61ac8cb26b1c2e9347b2d069d75ca10e197063bee29c83330d6"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2000_us_senate_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2073,
+      "sha256": "8c66ae485217f0e29e24abc503793a42cb47e25f5998f0c8e82054736a301c6a"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2002_governor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2035,
+      "sha256": "53a5534d10b148c5ccccae2a2e7830a37d31d1a91592b87043a658ae208ed008"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2004_attorney_general_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2082,
+      "sha256": "96a47e0481db10e1ea2b234d8a916816c768c77f2aea8f7040f25fa9e2fcb4bc"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2004_auditor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2092,
+      "sha256": "cebc10ba5812b0f042469c06112aece3dde76c1b9497243dceb50815acfc9d6d"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2004_president_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2064,
+      "sha256": "5fcaea767d1ca5169dc0efaa8641eb52ceb4e1115b7edf87eac7f9a955982420"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2004_treasurer_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2088,
+      "sha256": "48d3141da16eba25ade76651462caf0f24e53aeff7d1d858862682d32795c9cc"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2004_us_senate_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2115,
+      "sha256": "8b71f72fb0ff60a6c69970b4ace16a186b83df93e16b1b70fbd6becc44dd27f4"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2006_governor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 1897,
+      "sha256": "e234afb42b7527cba42b5c0e3253a31d5ae2ec9cecf158cf971e57196a08f2a3"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2006_us_senate_certified.csv",
+      "role": "certified county party control",
+      "bytes": 1896,
+      "sha256": "34242164b76f3ab756e45236940a5d7d31252aadd78d77a20674bd2c5211d150"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2008_attorney_general_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2094,
+      "sha256": "a9e3d1c186391dcc6120df7f7e5bb17a47887c69275fa82849eaf7c5bb9b9be6"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2008_auditor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2105,
+      "sha256": "f362a02119b57733648a48aaf8dccfde4a17938f231185d7a2c47b1221a64a23"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2008_president_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2079,
+      "sha256": "4814e8efec72d35212851ba06e3f87357804b16d4af309327249ada5d0704663"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2008_treasurer_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2092,
+      "sha256": "81cfda9d42dc77cc30a4d4f78732c26c4d90e284476af4ccd4cb74de6c5d7512"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2010_governor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 1893,
+      "sha256": "6b201fad38e4a72d3645245b2f018df40cd4717e20c6eb5daa893b2e9a2102bc"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2010_us_senate_certified.csv",
+      "role": "certified county party control",
+      "bytes": 1896,
+      "sha256": "464658ef66c578a1376484a001b11765da01bd88869d132c99a9a0bf4b4f51a3"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2012_attorney_general_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2090,
+      "sha256": "09f76f6377eb130028366066741b9a364df61a16e77316206a85e84934f2f32f"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2012_auditor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2110,
+      "sha256": "95e8d746f62920e0d3d8d23e109341dd2870ee222537b3f92549df982eb2fabc"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2012_president_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2079,
+      "sha256": "8320978f28cb5442f8b916dd9f7598ad81e694bbdb20f2619c408d03d14d7a23"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2012_treasurer_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2102,
+      "sha256": "dbdeea131db47d518e46aa8c37a9dc98c9f0b3572ce344a9eea829511eade5e7"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2012_us_senate_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2086,
+      "sha256": "c2c22bda0c30ca9a6148467eb0428a22f4f05cb0d1acddfb29f58c2f40b45da3"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2014_governor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 1884,
+      "sha256": "10c65250fb0d919d695246fb887369228e9bc4813e7a2c082dc1b525966b4884"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2016_attorney_general_certified.csv",
+      "role": "certified county party control",
+      "bytes": 1931,
+      "sha256": "3f3d1e40c87754447cc7ad5906f67c5aa59a2cd4c31e3c0d6e4b947e38eb6fa3"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2016_auditor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2127,
+      "sha256": "de15e7600ef07d3693d8e32b36fcb9dcca0f4dc4f705528278a9a5f9958f10a6"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2016_president_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2107,
+      "sha256": "ecb28762cff4bb2e7933c508747c6ee59142b0d2d638df2e65a2cd71960e7aae"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2016_treasurer_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2123,
+      "sha256": "9cb86df73c88387fc741943a1df4c6f8d02a174cb4dcec51624b93b0913dbcfe"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2016_us_senate_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2119,
+      "sha256": "97b7690ae9a9adac93e5efeb378eeea1138372a382a49b20aa87a4f8b6fc69c1"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2018_governor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2065,
+      "sha256": "9597bfed23c241d1ef4812d10eec60fce6ed2bbef5ac863e8fd5e69afc57d5f9"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2018_us_senate_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2064,
+      "sha256": "e2a283d79e4c22763fd46661a45034ffa828689e4480ecbebef07d8d3454c03c"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2020_attorney_general_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2112,
+      "sha256": "bedd59c3800e0158fad0fd360c397d346eebbb8473c737f21ecf7da9145b0e76"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2020_auditor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2124,
+      "sha256": "344da9b0006e117da092e74a32c327c7a76a915a3e26618ed278cfff5484f796"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2020_president_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2090,
+      "sha256": "ef82cb7198fdef3576603b01f00caf80e0a5241e589f6c1f700279e7f45b0ec8"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2020_treasurer_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2116,
+      "sha256": "f07384bd864ec3d247689ef6806e43207536b566d3b82d88470183e998fa3d38"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2022_governor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2081,
+      "sha256": "f5ebe262751d9bba59c941fd2ec7b3c3e28421c72867dadd5cc100394ca31e1f"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2022_us_senate_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2083,
+      "sha256": "e8d1988435430f6a3ffe6f4ea44559a6a0f9d0f73620bd04aa095c951aa58dd7"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2024_attorney_general_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2115,
+      "sha256": "8bf950c7acebd67367eccbac345c3d265b409acd3a48ced501e5305f293ed6d6"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2024_auditor_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2116,
+      "sha256": "a6ad67433b26ce75e84a85b25b24983b39c5c1fbbbd8789c63847bb2c097c84f"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2024_president_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2083,
+      "sha256": "6517b6155c9281555c43c755196be791b17b4c723928bc6d987e618db365955c"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2024_treasurer_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2108,
+      "sha256": "1f355278460c2435eb3b73fa8b182c73e4c64c783c2aa3a93891eca2f07542a3"
+    },
+    {
+      "path": "data/benchmarks/pa_county_2024_us_senate_certified.csv",
+      "role": "certified county party control",
+      "bytes": 2112,
+      "sha256": "6ecd1ff1d3280ac495aabac496a37f32e0f5f3585e526040db479b4d004b26f6"
+    }
+  ]
+}

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import gzip
 import io
 import json
 import re
@@ -134,6 +135,12 @@ def integerize_fractional_rows(rows: list[dict]) -> list[dict]:
 
 
 def load_block_vap(path: Path) -> dict[str, float]:
+    if path.name.endswith(".csv.gz"):
+        with gzip.open(path, "rt", encoding="utf-8", newline="") as handle:
+            return {
+                str(row["block"]).zfill(15): float(row["vap"] or 0)
+                for row in csv.DictReader(handle)
+            }
     logrec_to_block: dict[str, str] = {}
     with zipfile.ZipFile(path) as archive:
         with io.TextIOWrapper(archive.open("pageo2020.pl"), encoding="latin-1") as handle:
@@ -236,7 +243,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path)
     parser.add_argument("--year", type=int, choices=(2022, 2024), default=2024)
-    parser.add_argument("--pl-zip", type=Path, required=True)
+    parser.add_argument("--pl-zip", type=Path)
+    parser.add_argument(
+        "--block-vap",
+        type=Path,
+        default=ROOT / "data" / "crosswalks" / "pa_block20_vap.csv.gz",
+        help="Retained block/VAP CSV.gz; overridden by --pl-zip when supplied",
+    )
     parser.add_argument("--baf-zip", type=Path, default=ROOT / "data" / "BlockAssign_ST42_PA.zip")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--all-years-output", type=Path)
@@ -251,8 +264,11 @@ def main() -> int:
     )
     args = parser.parse_args()
 
+    vap_source = args.pl_zip or args.block_vap
+    if not vap_source.exists():
+        parser.error(f"block VAP source not found: {vap_source}")
     vap_maps, county_districts, vap_blocks, carter_blocks = build_vap_maps(
-        args.pl_zip, args.baf_zip
+        vap_source, args.baf_zip
     )
     if not args.output and not args.all_years_output:
         parser.error("provide --output, --all-years-output, or both")

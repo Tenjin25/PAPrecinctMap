@@ -1,0 +1,25 @@
+name: Aggregation audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regression tests
+        run: python Scripts/test_county_clustered_district_contests.py
+      - name: Vote conservation
+        run: python Scripts/audit_district_vote_conservation.py data/district_contests
+      - name: Candidate display names
+        run: python Scripts/candidate_name_normalizer.py --check data/contests data/district_contests data/pa_elections_aggregated.json
+      - name: Source ledger freshness
+        run: |
+          python Scripts/build_source_ledger.py
+          git diff --exit-code -- data/source_ledger.json

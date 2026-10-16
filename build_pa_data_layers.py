@@ -1832,33 +1832,51 @@ def normalize_candidate_label(value):
     if not value:
         return ''
 
+    identity_key = re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip()
+
+    # Keep reviewed capitalization and initials stable where title-casing
+    # cannot infer the intended spelling from an all-caps official export.
+    reviewed_labels = {
+        'benjamin v sanchez': 'Benjamin V. Sanchez',
+        'dominic d difrancesco ii': 'Dominic D. DiFrancesco, II',
+        'francis x o donnell': "Francis X. O'Donnell",
+        'james v gregory': 'James V. Gregory',
+        'jennifer o mara': "Jennifer O'Mara",
+        'justin v behrens': 'Justin V. Behrens',
+        'timothy jon o neal': "Timothy Jon O'Neal",
+        'v milou mackenzie': 'V. Milou Mackenzie',
+        'vito v malacari': 'Vito V. Malacari',
+    }
+    if identity_key in reviewed_labels:
+        return reviewed_labels[identity_key]
+
     # Keep the public-facing presidential label stable across official files,
     # which variously use the full middle name, middle initial, or no middle
     # name for the same candidate.
-    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+    if identity_key in {
         'donald john trump', 'donald j trump', 'donald trump'
     }:
         return 'Donald J. Trump'
-    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+    if identity_key in {
         'joseph robinette biden jr', 'joseph r biden jr',
         'joseph biden jr', 'joe biden'
     }:
         return 'Joe Biden'
-    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+    if identity_key in {
         'douglas v mastriano', 'doug mastriano'
     }:
         return 'Doug Mastriano'
-    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+    if identity_key in {
         'robert p casey jr', 'bob casey jr', 'jr bob casey'
     }:
         return 'Bob Casey, Jr.'
-    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+    if identity_key in {
         'david h mccormick', 'dave mccormick'
     }:
         return 'David H. McCormick'
-    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() == 'eugene depasquale':
+    if identity_key == 'eugene depasquale':
         return 'Eugene DePasquale'
-    if re.sub(r'[^a-z0-9]+', ' ', value.lower()).strip() in {
+    if identity_key in {
         'timothy l defoor', 'timothy lionel defoor', 'timothy defoor', 'tim defoor'
     }:
         return 'Tim DeFoor'
@@ -1870,7 +1888,9 @@ def normalize_candidate_label(value):
             upper = bare.upper()
             if not bare:
                 continue
-            if upper in {'JR', 'SR'}:
+            if re.fullmatch(r'(?:[A-Za-z]\.){2,}', raw_word):
+                words.append(raw_word.upper())
+            elif upper in {'JR', 'SR'}:
                 words.append(f'{upper.title()}.')
             elif upper in {'II', 'III', 'IV', 'V', 'VI'}:
                 words.append(upper)

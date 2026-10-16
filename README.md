@@ -196,9 +196,18 @@ The early-year result is therefore best understood as a layered evidence product
 
 Current-line district aggregation uses a county-component rule derived from the Carter-plan BAF/BEF block assignments. A county with at least 99.9% of its 2020 block VAP in one district is carried intact with its canonical county totals; only materially split counties are allocated through precinct/VTD block-VAP weights. Shares of 0.1% or less are treated as assignment slivers. Largest-remainder rounding and localized mail-row handling preserve exact party totals in the congressional, State House, and State Senate layers without distributing residual votes statewide.
 
+The retained block-VAP input is `data/crosswalks/pa_block20_vap.csv.gz` (336,985 blocks; P0030001 total 10,353,548). It is derived from the official Census `pa2020.pl.zip`; its upstream URL and SHA-256, the Carter BAF/BEFs, NHGIS crosswalks, and every certified county control are recorded in `data/source_ledger.json`. Rebuild the derived artifact and ledger with:
+
+```powershell
+python Scripts/build_pa_block_vap.py path/to/pa2020.pl.zip
+python Scripts/build_source_ledger.py
+```
+
+The all-year county-cluster builder consumes the retained CSV.gz by default. `--pl-zip` remains available for a direct source-archive verification build.
+
 Historical fractional rows produced by the NHGIS 2000→2010→2020 block chain are integerized by largest remainder within county, contest, and party before district allocation. Any difference between the sum of locally rounded components and the rounded source total is explicitly reconciled from the rows' signed fractional deficits; district outcomes never influence that arithmetic reconciliation.
 
-The retained Pennsylvania Department of State 2018 precinct export is the external control for the 2018 governor and U.S. Senate layers. Reviewed RDH/DRA block-disaggregated district shares are applied to the Carter-plan BAF/VAP turnout reconstruction and then raked by party to the exact official statewide control. This preserves election-informed split-precinct patterns while avoiding RDH block-rounding leakage. The same reviewed-share rule is used for the available 2008 and 2012 DRA presidential legislative tables; 2016 and 2020 were already calibrated, while direct RDH matrices remain authoritative for 2022 and 2024. Detailed before/after tables are retained as `data/district_bef_audit/dra_*_changes.csv`.
+The retained Pennsylvania Department of State 2018 precinct export is the external control for the 2018 governor and U.S. Senate layers. RDH/DRA block-disaggregated district shares are retained as diagnostics, but they are not used as an outcome-based post-control calibration: production statewide-contest allocations follow the Carter BAF/BEF block-VAP rule and exact official county/party controls. Detailed comparison tables are retained as `data/district_bef_audit/dra_*_changes.csv`.
 
 The return builder uses historical or modern precinct-to-2020-VTD crosswalks first, then applies `data/crosswalks/pa_vtd20_to_current_precinct.csv` to align those VTD targets with the current precinct polygons used by the frontend. One-to-one VTD identities are retained directly; split or changed VTDs are disaggregated with 2020 census-block assignments. The bridge build fails if a source VTD's weights do not sum to one, preventing duplicated votes. Polygon-area overlap is reserved for cases without usable block assignments.
 
