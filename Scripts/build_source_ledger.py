@@ -12,20 +12,29 @@ DATA = ROOT / "data"
 OUTPUT = DATA / "source_ledger.json"
 
 
+def ledger_bytes(path: Path) -> bytes:
+    """Canonicalize checkout line endings only for known text source formats.
+
+    Keep every other byte significant, including lone CRs and all archive
+    bytes. Sizes and hashes must describe the same canonical representation.
+    """
+    content = path.read_bytes()
+    if path.suffix.lower() in {".csv", ".txt"}:
+        content = content.replace(b"\r\n", b"\n")
+    return content
+
+
 def sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as handle:
-        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+    return hashlib.sha256(ledger_bytes(path)).hexdigest()
 
 
 def entry(path: Path, role: str, **extra):
+    content = ledger_bytes(path)
     return {
         "path": path.relative_to(ROOT).as_posix(),
         "role": role,
-        "bytes": path.stat().st_size,
-        "sha256": sha256(path),
+        "bytes": len(content),
+        "sha256": hashlib.sha256(content).hexdigest(),
         **extra,
     }
 
@@ -54,6 +63,7 @@ def main() -> int:
     payload = {
         "generated": "2026-10-15",
         "policy": {
+            "checksum_representation": "CSV/TXT: CRLF normalized to LF; all other bytes unchanged. Binary sources: exact raw bytes. Sizes use the same representation as hashes.",
             "whole_county_threshold": 0.999,
             "residual_scope": "county only",
             "rounding": "largest remainder within county/party",
@@ -61,7 +71,7 @@ def main() -> int:
         },
         "sources": sources,
     }
-    OUTPUT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    OUTPUT.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8", newline="\n")
     print({"sources": len(sources), "output": str(OUTPUT)})
     return 0
 

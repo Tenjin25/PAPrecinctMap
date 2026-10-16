@@ -14,7 +14,10 @@ jobs:
         with:
           python-version: "3.12"
       - name: Regression tests
-        run: python Scripts/test_county_clustered_district_contests.py
+        run: |
+          python Scripts/test_county_clustered_district_contests.py
+          python Scripts/test_bef_candidate_reuse.py
+          python Scripts/test_source_ledger.py
       - name: Vote conservation
         run: python Scripts/audit_district_vote_conservation.py data/district_contests
       - name: Candidate display names

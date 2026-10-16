@@ -1,6 +1,7 @@
 {
   "generated": "2026-10-15",
   "policy": {
+    "checksum_representation": "CSV/TXT: CRLF normalized to LF; all other bytes unchanged. Binary sources: exact raw bytes. Sizes use the same representation as hashes.",
     "whole_county_threshold": 0.999,
     "residual_scope": "county only",
     "rounding": "largest remainder within county/party",
@@ -19,38 +20,38 @@
     {
       "path": "data/crosswalks/pa_block20_to_vtd20.csv",
       "role": "Carter-adjusted block-to-VTD BAF",
-      "bytes": 9435608,
-      "sha256": "5999f2eb0fdaac5e92a61949f25db312bdd77a4bbf2f6199a1360fbaecbfd031"
+      "bytes": 9098622,
+      "sha256": "04dc7ab53cd5f1a3ca0a93c7d2bd776512cea8d26e2a88ff21d70bf099ee40e7"
     },
     {
       "path": "data/42_PA_CD118.txt",
       "role": "Carter congressional BEF",
-      "bytes": 6739713,
-      "sha256": "386db7038824baf0c92d42d41a397869c0d358712514197170308646c0739bc4"
+      "bytes": 6402727,
+      "sha256": "0db88e60a8f9d8638075b651d4595cb3c1f5daff1543bca06a81527901ad7221"
     },
     {
       "path": "data/42_PA_SLDL22.txt",
       "role": "Carter State House BEF",
-      "bytes": 7076699,
-      "sha256": "a29b52d6b7d5da2c27a0eb9bee1f84f53b98ff71f84b7dd2f7261e7b2c29d831"
+      "bytes": 6739713,
+      "sha256": "eafd26c4bb5f0974bab1e22ad61f8a5b949d1117c0bc35f49d774063416981ad"
     },
     {
       "path": "data/42_PA_SLDU22.txt",
       "role": "Carter State Senate BEF",
-      "bytes": 7076699,
-      "sha256": "105f425f725482b1565ee256fa521ce788eba5ffe9d86a77d2db5a6649ecc7ea"
+      "bytes": 6739713,
+      "sha256": "6be1d7202ac6cd48686a015be64f5a1b41c9bf21d5986296869157179b51f37e"
     },
     {
       "path": "data/crosswalks/pa_historical_precinct_to_vtd20.csv",
       "role": "NHGIS historical precinct lineage",
-      "bytes": 10744081,
-      "sha256": "97b7dd8eef5fc639f2e632fc4d3ba27355179ddef5d5a135e873c1aa57bf5de1"
+      "bytes": 10590819,
+      "sha256": "db394856128c6f81e7da502431af63daae9781bb8e1594583df2b67dd026265f"
     },
     {
       "path": "data/crosswalks/pa_modern_precinct_to_vtd20.csv",
       "role": "modern precinct lineage",
-      "bytes": 3012941,
-      "sha256": "92020b6426db16986cab014d1b5914c7be0b8e0a2d64241197111730f847c0d1"
+      "bytes": 2973390,
+      "sha256": "3305fbad809c166c5d9385ecceede731f85334cdc920403e01b89e48bb22e3b5"
     },
     {
       "path": "data/benchmarks/pa_county_2000_attorney_general_certified.csv",
