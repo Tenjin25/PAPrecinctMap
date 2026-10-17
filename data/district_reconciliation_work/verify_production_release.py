@@ -18,6 +18,7 @@ def main():
         ['Scripts/test_source_ledger.py'],
         ['Scripts/test_reviewed_precinct_corrections.py'],
         ['data/district_reconciliation_work/test_reconciliation_diagnostics.py'],
+        ['data/district_reconciliation_work/test_reverse_crosswalk_candidate.py'],
         ['data/district_reconciliation_work/test_acceptance_lifecycle.py'],
         ['Scripts/audit_district_vote_conservation.py', 'data/district_contests'],
         ['Scripts/audit_reviewed_precinct_corrections.py'],

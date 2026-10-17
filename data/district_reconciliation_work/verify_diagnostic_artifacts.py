@@ -12,7 +12,9 @@ WORK = Path(__file__).resolve().parent
 FOLDERS = ('original_block_years', 'pa10_original_blocks', 'pa10_raw_returns',
            'benchmark_counties_all_scopes_2018', 'priority_counties_raw_years',
            'lehigh_2016', 'hd134_legal_membership', 'hybrid_review',
-           'reverse_crosswalk_exposure', 'emmaus_review', 'certification_stages_2018', 'report')
+           'reverse_crosswalk_exposure', 'reverse_crosswalk_candidate',
+           'stage_lineage', 'judicial_evidence', 'emmaus_review',
+           'certification_stages_2018', 'report')
 
 
 def checksum(path):
@@ -25,7 +27,7 @@ def checksum(path):
 
 
 def release_files():
-    paths = list(WORK.glob('*.py')) + [WORK / 'ALLOCATION_DECISION.md']
+    paths = list(WORK.glob('*.py')) + [WORK / 'ALLOCATION_DECISION.md', WORK / 'BATCH_PLAN.md']
     for folder in FOLDERS:
         paths.extend(p for p in (WORK / folder).iterdir() if p.is_file()
                      and p.name != 'official_download.txt'

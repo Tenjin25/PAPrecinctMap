@@ -1,0 +1,31 @@
+{
+  "years": [
+    2001,
+    2003,
+    2011,
+    2015,
+    2019,
+    2021,
+    2025
+  ],
+  "requested_files": 33,
+  "recovered_files": 27,
+  "blocked_files": [
+    "congressional_commonwealth_court_2019.json",
+    "congressional_supreme_court_2025.json",
+    "state_house_commonwealth_court_2019.json",
+    "state_house_supreme_court_2025.json",
+    "state_senate_commonwealth_court_2019.json",
+    "state_senate_supreme_court_2025.json"
+  ],
+  "county_conservation_failures": 0,
+  "unmatched_rows": 0,
+  "unallocated_rows": 0,
+  "changed_district_rows_against_prior_candidate": 2014,
+  "county_district_allocation_rows": 3626,
+  "candidate_name_changes_against_prior_candidate": 144,
+  "vap_blocks": 336985,
+  "carter_blocks": 336985,
+  "source_policy": "retained official precinct sources only; never published district totals",
+  "production_changes": []
+}

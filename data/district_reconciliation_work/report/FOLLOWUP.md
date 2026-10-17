@@ -5,6 +5,27 @@ layers (ten district rows). See [RELEASE.md](RELEASE.md). The broader
 comparisons below are retained pre-release diagnostic snapshots, not additional
 approved changes. All other production vote values remain unchanged.
 
+## Typed all-year decision ledger and actual fallback replay
+
+`all_year_decision_ledger.csv` is the reproducible grouped decision ledger. It
+keeps the original 5,409-row difference universe separate from candidate-only
+mechanism findings, approved Emmaus corrections, judicial evidence gates, and
+permanent benchmarks. It preserves the `6b293db` checkpoint of 269 explained
+rows (258 DRA and 11 DRA plus Westmoreland ordering). The new all-ledger replay
+finds 12 additional exact county-clustered stage paths, raising current exact
+numerical lineage to 281 and reducing the unresolved count to 5,128. These 12
+paths are not independent geographic validation or production-change approval.
+
+The first share-preserving reverse-fallback batch covers 2016. It finds 32,989
+positive-vote source rows that actually invoke a share-sensitive fallback after
+maintained mappings have precedence. Of those, 3,170 unique source rows change
+at least one scope allocation, yielding 3,929 source-row/scope records and 505
+unique generic-candidate district rows. All county-party and statewide-party
+transfers conserve exactly. No production changes are proposed: scalar forward
+shares repair the numerical defect but do not independently establish fragment
+geography. Existing Emmaus corrections supersede the generic candidate and are
+not applied twice. See `../reverse_crosswalk_candidate/README.md`.
+
 ## Full acceptance rebuild and reuse: completed
 
 `acceptance_integration.json` records the completed fresh build at source
@@ -14,9 +35,14 @@ candidate name with the original cold baseline: zero arithmetic/name changes.
 The 54 retention county-metadata defects are repaired; 228 statewide-contest
 files independently pass county/district-party arithmetic checks.
 
-Thirty-three legacy judicial slices still lack allocation and county evidence.
-These are missing-evidence failures, **not** 33 demonstrated vote-sum errors.
-No actual county-arithmetic mismatches remain among evidence-bearing files.
+The historical acceptance run identified 33 legacy judicial slices without
+allocation and county evidence. A retained-official-source rebuild now recovers
+complete evidence for 27, with zero unmatched/unallocated rows and zero county
+conservation failures. Six remain blocked because the retained 2019 and 2025
+exports contain no rows for the named contests. These are evidence failures,
+not demonstrated vote-sum errors, and no totals were synthesized from
+publication. The recovered candidate changes 2,014 district rows and 144 label
+strings, so it remains diagnostic pending identity and coverage review.
 The gate correctly stays BLOCKED: 5,409 published district differences, zero
 statewide-party differences, zero unmatched/unallocated rows, zero coverage
 changes, zero candidate-name changes, and six official Luzerne bound failures.

@@ -1,0 +1,23 @@
+{
+  "baseline_difference_rows": 5409,
+  "retained_stage_ledgers": 17,
+  "retained_stage_rows": 18759,
+  "exact_directed_stage_paths": 270,
+  "exact_replayed_dra_and_certification_order": 11,
+  "current_numerical_lineage_explained": 281,
+  "unresolved_no_exact_stage_evidence": 5128,
+  "historical_checkpoint_at_6b293db": {
+    "dra": 258,
+    "westmoreland_ordering": 11,
+    "total": 269
+  },
+  "new_exact_county_clustered_paths": 12,
+  "path_counts": {
+    "county_clustered_district_changes": 12,
+    "dra_2018_us_senate_congressional_changes": 15,
+    "dra_state_house_us_senate_2018_changes": 196,
+    "dra_state_senate_us_senate_2018_changes": 47,
+    "legacy DRA calibration -> localized Westmoreland certification allocation order": 11
+  },
+  "classification": "numerical lineage only; no independent geography or production approval"
+}

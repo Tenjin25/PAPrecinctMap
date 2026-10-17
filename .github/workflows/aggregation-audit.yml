@@ -20,6 +20,7 @@ jobs:
           python Scripts/test_source_ledger.py
           python Scripts/test_reviewed_precinct_corrections.py
           python data/district_reconciliation_work/test_reconciliation_diagnostics.py
+          python data/district_reconciliation_work/test_reverse_crosswalk_candidate.py
           python data/district_reconciliation_work/test_acceptance_lifecycle.py
       - name: Vote conservation
         run: python Scripts/audit_district_vote_conservation.py data/district_contests

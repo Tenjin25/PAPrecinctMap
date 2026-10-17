@@ -460,6 +460,7 @@ VTD_CURRENT_DISTRICT_BLOCKS = None
 VTD_CURRENT_SCOPE_BLOCK_WEIGHTS = None
 RAW_COUNTY_NAME_BY_FIPS = None
 CURRENT_PRECINCT_TO_VTDS = None
+CURRENT_PRECINCT_TO_WEIGHTED_VTDS = None
 PRECINCT_ALIAS_VTDS = None
 MAINTAINED_PRECINCT_TARGETS = None
 MAINTAINED_PRECINCT_PARENT_SOURCES = None
@@ -1589,6 +1590,87 @@ def maintained_targets_for_row(row, year: int, countyfp: str):
     return []
 
 
+def _load_current_precinct_vtd_targets():
+    """Load both legacy unweighted and forward-share-preserving reverse indexes.
+
+    The crosswalk is directed from a source VTD20 to a current precinct.  A
+    current precinct may therefore contain a fraction of one source VTD plus
+    one or more whole VTDs.  The legacy set index remains available for
+    compatibility, while the weighted index retains those directed shares for
+    isolated candidate replays.
+    """
+    global CURRENT_PRECINCT_TO_VTDS, CURRENT_PRECINCT_TO_WEIGHTED_VTDS
+    if CURRENT_PRECINCT_TO_VTDS is not None and CURRENT_PRECINCT_TO_WEIGHTED_VTDS is not None:
+        return
+    unweighted = defaultdict(set)
+    weighted = defaultdict(dict)
+    crosswalk_path = data_dir / 'crosswalks' / 'pa_vtd20_to_current_precinct.csv'
+    if crosswalk_path.exists():
+        with crosswalk_path.open('r', encoding='utf-8-sig', newline='') as handle:
+            for item in csv.DictReader(handle):
+                current_county = str(item.get('current_countyfp') or '').zfill(3)
+                current_vtd = str(item.get('current_vtd') or '').strip()
+                source_county = str(item.get('countyfp') or '').zfill(3)
+                source_vtd = str(item.get('vtd20') or '').strip()
+                try:
+                    forward_share = float(item.get('weight') or 0)
+                except (TypeError, ValueError):
+                    forward_share = 0.0
+                if not (current_county and current_vtd and source_county and source_vtd):
+                    continue
+                if forward_share <= 0:
+                    raise ValueError(
+                        f'Invalid forward precinct share for {source_county}/{source_vtd} '
+                        f'-> {current_county}/{current_vtd}: {forward_share}'
+                    )
+                key = (current_county, current_vtd)
+                source_key = (source_county, source_vtd)
+                if source_key in weighted[key]:
+                    raise ValueError(
+                        f'Duplicate forward precinct share for {source_county}/{source_vtd} '
+                        f'-> {current_county}/{current_vtd}'
+                    )
+                unweighted[key].add(source_key)
+                weighted[key][source_key] = (
+                    forward_share,
+                    str(item.get('method') or 'current_precinct_forward_share'),
+                )
+    CURRENT_PRECINCT_TO_VTDS = unweighted
+    CURRENT_PRECINCT_TO_WEIGHTED_VTDS = weighted
+
+
+def match_row_to_current_vtd_targets(row):
+    """Return source VTD targets with retained forward shares and provenance.
+
+    This is the safe candidate form of the current-precinct reverse lookup.
+    Callers must multiply each share by the source VTD's VAP before normalizing
+    district weights.  Non-canonical name matches have no directed split share
+    and remain explicit unit-weight fallbacks.
+    """
+    county = normalize_county_name(row.get('county') or '')
+    countyfp = county_fips_by_name().get(county)
+    precinct = row.get('precinct') or ''
+    if not countyfp or not precinct:
+        return []
+    reviewed_key = (county, normalize_bridge_precinct_name(precinct))
+    reviewed_target = REVIEWED_LEGACY_VTD_EXCEPTIONS.get(reviewed_key)
+    if reviewed_target:
+        return [(*reviewed_target, 1.0, 'reviewed_legacy_vtd_exception')]
+    _load_current_precinct_vtd_targets()
+    canonical = re.search(r'\b([0-9][0-9A-Z]{5,})$', str(precinct).strip().upper())
+    if canonical:
+        targets = (CURRENT_PRECINCT_TO_WEIGHTED_VTDS or {}).get((countyfp, canonical.group(1))) or {}
+        if targets:
+            return [
+                (source_county, source_vtd, share, f'current_precinct_forward_share:{method}')
+                for (source_county, source_vtd), (share, method) in sorted(targets.items())
+            ]
+    return [
+        (source_county, source_vtd, 1.0, 'current_precinct_or_vtd_name')
+        for source_county, source_vtd in match_row_to_current_vtds(row)
+    ]
+
+
 def match_row_to_current_vtds(row):
     county = normalize_county_name(row.get('county') or '')
     countyfp = county_fips_by_name().get(county)
@@ -1605,19 +1687,7 @@ def match_row_to_current_vtds(row):
     # (for example ``ADAMS - 001010``). Resolve it back to the source VTD20
     # keys used by the block-to-district allocator instead of name-matching it
     # against historical VTD labels.
-    global CURRENT_PRECINCT_TO_VTDS
-    if CURRENT_PRECINCT_TO_VTDS is None:
-        CURRENT_PRECINCT_TO_VTDS = defaultdict(set)
-        crosswalk_path = data_dir / 'crosswalks' / 'pa_vtd20_to_current_precinct.csv'
-        if crosswalk_path.exists():
-            with crosswalk_path.open('r', encoding='utf-8-sig', newline='') as handle:
-                for item in csv.DictReader(handle):
-                    current_county = str(item.get('current_countyfp') or '').zfill(3)
-                    current_vtd = str(item.get('current_vtd') or '').strip()
-                    source_county = str(item.get('countyfp') or '').zfill(3)
-                    source_vtd = str(item.get('vtd20') or '').strip()
-                    if current_county and current_vtd and source_county and source_vtd:
-                        CURRENT_PRECINCT_TO_VTDS[(current_county, current_vtd)].add((source_county, source_vtd))
+    _load_current_precinct_vtd_targets()
     # Current Pennsylvania precinct IDs are not uniformly numeric. Allegheny
     # uses identifiers such as 003A000; rejecting the letter caused hundreds
     # of otherwise exact rows to fall through to fragile name matching.
@@ -2145,7 +2215,12 @@ def build_district_results_2022_lines(out_path: Path):
         json.dump(payload, f, indent=2)
 
 
-def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
+def build_district_manifests(
+    contest_dir: Path,
+    contest_types=None,
+    years=None,
+    require_county_manifest=True,
+):
     contest_dir.mkdir(parents=True, exist_ok=True)
     contest_types = set(contest_types or [])
     years = {int(year) for year in (years or [])}
@@ -2375,7 +2450,7 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
     # and breaks exact county/statewide party conservation.
 
     allowed_incremental_contests = None
-    if contest_types:
+    if contest_types and require_county_manifest:
         try:
             county_manifest = json.loads((data_dir / 'contests' / 'manifest.json').read_text(encoding='utf-8'))
             allowed_incremental_contests = {

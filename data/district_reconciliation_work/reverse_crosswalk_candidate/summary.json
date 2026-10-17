@@ -1,0 +1,26 @@
+{
+  "status": "DIAGNOSTIC_ONLY",
+  "normalized_source_files_scanned": [
+    "data/Openelections/2016/20161108__pa__general__precinct.csv"
+  ],
+  "selected_years": [
+    2016
+  ],
+  "actual_forward_share_fallback_rows": 32989,
+  "affected_source_row_scope_pairs": 3929,
+  "affected_unique_source_rows": 3170,
+  "affected_district_rows": 505,
+  "decision_groups": 180,
+  "county_party_conservation_failures": 0,
+  "whole_county_threshold": 0.999,
+  "whole_county_rule_uses": "Census VAP, never block counts",
+  "allocation_rounding": "deterministic largest remainder",
+  "candidate_names": "source labels retained; no name mutation in this replay",
+  "emmaus_disposition": "existing reviewed correction supersedes candidate fallback; never layer both",
+  "calibrated_publication_disposition": "no pre-calibration candidate delta applied to publication",
+  "production_changes": [],
+  "block_vap_records": 336985,
+  "carter_block_records": 336985,
+  "preempted_by_maintained_mapping_rows": 592,
+  "share_sensitive_current_precinct_keys": 797
+}
