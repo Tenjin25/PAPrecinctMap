@@ -30,8 +30,9 @@ unexplained vote is introduced or distributed statewide.
   publication values.
 - `county_party_conservation.csv`: exact old-versus-corrected controls.
 - `decision_ledger.csv`: grouped decision class and disposition.
-- `input_fingerprints.json`: source, crosswalk, VAP, BEF, candidate and
-  publication fingerprints.
+- `input_fingerprints.json`: retained source, crosswalk, VAP, BEF and
+  publication fingerprints. The generic candidate is rebuilt in a temporary
+  directory and is never promoted or required from an untracked workspace.
 
 ## Production decision
 

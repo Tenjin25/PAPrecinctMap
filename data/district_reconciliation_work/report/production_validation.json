@@ -7,43 +7,43 @@
       "command": "python Scripts/test_county_clustered_district_contests.py",
       "exit_code": 0,
       "stdout": "",
-      "stderr": "..................\n----------------------------------------------------------------------\nRan 18 tests in 17.710s\n\nOK"
+      "stderr": "..................\n----------------------------------------------------------------------\nRan 18 tests in 13.035s\n\nOK"
     },
     {
       "command": "python Scripts/test_bef_candidate_reuse.py",
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.264s\n\nOK"
+      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.135s\n\nOK"
     },
     {
       "command": "python Scripts/test_source_ledger.py",
       "exit_code": 0,
       "stdout": "",
-      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.079s\n\nOK"
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.041s\n\nOK"
     },
     {
       "command": "python Scripts/test_reviewed_precinct_corrections.py",
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 5.602s\n\nOK"
+      "stderr": ".......\n----------------------------------------------------------------------\nRan 7 tests in 5.025s\n\nOK"
     },
     {
       "command": "python data/district_reconciliation_work/test_reconciliation_diagnostics.py",
       "exit_code": 0,
       "stdout": "",
-      "stderr": "..............\n----------------------------------------------------------------------\nRan 14 tests in 2.571s\n\nOK"
+      "stderr": "..............\n----------------------------------------------------------------------\nRan 14 tests in 2.200s\n\nOK"
     },
     {
       "command": "python data/district_reconciliation_work/test_reverse_crosswalk_candidate.py",
       "exit_code": 0,
       "stdout": "",
-      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 1.801s\n\nOK"
+      "stderr": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.792s\n\nOK"
     },
     {
       "command": "python data/district_reconciliation_work/test_acceptance_lifecycle.py",
       "exit_code": 0,
       "stdout": "",
-      "stderr": "Reading source: ElectionReturns_2020_General_PrecinctReturns.txt\nReading source: returns.csv\nReading source: returns.csv\nReading source: returns.csv\n.\n----------------------------------------------------------------------\nRan 1 test in 12.725s\n\nOK"
+      "stderr": "Reading source: ElectionReturns_2020_General_PrecinctReturns.txt\nReading source: returns.csv\nReading source: returns.csv\nReading source: returns.csv\n.\n----------------------------------------------------------------------\nRan 1 test in 10.730s\n\nOK"
     },
     {
       "command": "python Scripts/audit_district_vote_conservation.py data/district_contests",

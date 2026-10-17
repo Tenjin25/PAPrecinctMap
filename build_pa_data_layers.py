@@ -2220,6 +2220,7 @@ def build_district_manifests(
     contest_types=None,
     years=None,
     require_county_manifest=True,
+    apply_reviewed_corrections=True,
 ):
     contest_dir.mkdir(parents=True, exist_ok=True)
     contest_types = set(contest_types or [])
@@ -2550,8 +2551,9 @@ def build_district_manifests(
         }
         # Source-bound, individually reviewed corrections are applied only when
         # their complete baseline and county evidence still reproduce exactly.
-        from Scripts.reviewed_precinct_corrections import apply_local_reviews
-        apply_local_reviews(payload, data_dir)
+        if apply_reviewed_corrections:
+            from Scripts.reviewed_precinct_corrections import apply_local_reviews
+            apply_local_reviews(payload, data_dir)
         with (contest_dir / fname).open('w', encoding='utf-8') as f:
             json.dump(payload, f, indent=2)
         files.append({'scope': scope, 'contest_type': contest_type, 'year': year, 'file': fname, 'districts': expected, 'rows': len(finalized)})

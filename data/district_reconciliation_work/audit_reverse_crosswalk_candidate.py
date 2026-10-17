@@ -13,6 +13,7 @@ import hashlib
 import json
 import re
 import sys
+import tempfile
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -78,6 +79,17 @@ def read_normalized_rows(path: Path):
 
 def main():
     OUT.mkdir(exist_ok=True)
+    selected_years = {int(value) for value in sys.argv[1:]} if len(sys.argv) > 1 else set()
+    candidate_temp = tempfile.TemporaryDirectory(
+        prefix='_generated_candidate_',
+        dir=OUT,
+    )
+    candidate_dir = Path(candidate_temp.name)
+    layers.build_district_manifests(
+        candidate_dir,
+        years=selected_years or None,
+        apply_reviewed_corrections=False,
+    )
     maps, county_districts, block_vap_count, carter_block_count = clustered.build_vap_maps(
         ROOT / 'data/crosswalks/pa_block20_vap.csv.gz',
         ROOT / 'data/BlockAssign_ST42_PA.zip',
@@ -106,7 +118,6 @@ def main():
     fingerprints = {}
     scanned_files = []
 
-    selected_years = {int(value) for value in sys.argv[1:]} if len(sys.argv) > 1 else set()
     for year, filename in sorted(precinct.TARGETS.items()):
         if selected_years and year not in selected_years:
             continue
@@ -221,11 +232,10 @@ def main():
         files[(year, contest, scope)].add(district)
     for (year, contest, scope), districts in sorted(files.items()):
         filename = f'{scope}_{contest}_{year}.json'
-        for directory in ('district_bef_candidate', 'district_contests'):
-            input_path = ROOT / 'data' / directory / filename
-            if input_path.exists():
-                fingerprints[input_path.relative_to(ROOT).as_posix()] = stable_hash(input_path)
-        generic = load_layer(ROOT / 'data/district_bef_candidate', filename)
+        input_path = ROOT / 'data/district_contests' / filename
+        if input_path.exists():
+            fingerprints[input_path.relative_to(ROOT).as_posix()] = stable_hash(input_path)
+        generic = load_layer(candidate_dir, filename)
         published = load_layer(ROOT / 'data/district_contests', filename)
         calibrated = 'dra_share_calibration' in str(
             json.loads((ROOT / 'data/district_contests' / filename).read_text(encoding='utf-8')).get('meta', {}).get('source', '')
@@ -339,6 +349,7 @@ def main():
     }
     (OUT / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
     (OUT / 'input_fingerprints.json').write_text(json.dumps(fingerprints, indent=2, sort_keys=True) + '\n', encoding='utf-8')
+    candidate_temp.cleanup()
     print(json.dumps(summary, indent=2))
 
 
