@@ -12,7 +12,7 @@ WORK = Path(__file__).resolve().parent
 FOLDERS = ('original_block_years', 'pa10_original_blocks', 'pa10_raw_returns',
            'benchmark_counties_all_scopes_2018', 'priority_counties_raw_years',
            'lehigh_2016', 'hd134_legal_membership', 'hybrid_review',
-           'reverse_crosswalk_exposure', 'emmaus_review', 'report')
+           'reverse_crosswalk_exposure', 'emmaus_review', 'certification_stages_2018', 'report')
 
 
 def checksum(path):

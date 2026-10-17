@@ -1,0 +1,73 @@
+{
+  "district_rows": 270,
+  "published_stage_reproduction_failures": 0,
+  "non_dra_difference_district_rows": 11,
+  "non_dra_difference_party_rows": 27,
+  "scope_party_controls": [
+    {
+      "scope": "congressional",
+      "party_bucket": "dem",
+      "generic_minus_pre_dra": -178,
+      "localized_certification_delta": -178,
+      "non_dra_stage_difference": 0
+    },
+    {
+      "scope": "congressional",
+      "party_bucket": "rep",
+      "generic_minus_pre_dra": -301,
+      "localized_certification_delta": -301,
+      "non_dra_stage_difference": 0
+    },
+    {
+      "scope": "congressional",
+      "party_bucket": "other",
+      "generic_minus_pre_dra": -11,
+      "localized_certification_delta": -11,
+      "non_dra_stage_difference": 0
+    },
+    {
+      "scope": "state_house",
+      "party_bucket": "dem",
+      "generic_minus_pre_dra": -178,
+      "localized_certification_delta": -178,
+      "non_dra_stage_difference": 0
+    },
+    {
+      "scope": "state_house",
+      "party_bucket": "rep",
+      "generic_minus_pre_dra": -301,
+      "localized_certification_delta": -301,
+      "non_dra_stage_difference": 0
+    },
+    {
+      "scope": "state_house",
+      "party_bucket": "other",
+      "generic_minus_pre_dra": -11,
+      "localized_certification_delta": -11,
+      "non_dra_stage_difference": 0
+    },
+    {
+      "scope": "state_senate",
+      "party_bucket": "dem",
+      "generic_minus_pre_dra": -178,
+      "localized_certification_delta": -178,
+      "non_dra_stage_difference": 0
+    },
+    {
+      "scope": "state_senate",
+      "party_bucket": "rep",
+      "generic_minus_pre_dra": -301,
+      "localized_certification_delta": -301,
+      "non_dra_stage_difference": 0
+    },
+    {
+      "scope": "state_senate",
+      "party_bucket": "other",
+      "generic_minus_pre_dra": -11,
+      "localized_certification_delta": -11,
+      "non_dra_stage_difference": 0
+    }
+  ],
+  "next_gate": "Independently replay pre-certification allocation; a numeric stage identity alone does not prove the residual cause.",
+  "production_changes": []
+}

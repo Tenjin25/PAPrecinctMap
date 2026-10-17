@@ -32,8 +32,13 @@ two-year manifest retention, and rejection of changed vote results.
 
 `verified_calibration_causes.csv` enumerates all 5,409 differences and verifies
 258 complete before/after calibration explanations: 2018 Senate Congress 15,
-House 196, Senate 47. Eleven additional rows have a calibration stage but
-unresolved additional differences. The remaining 5,140 have no exact stage
+House 196, Senate 47. Eleven additional rows are now exactly explained by
+DRA plus the Westmoreland localized certification allocation order. Independent
+source-row replay reproduces both the pre-certification and controlled candidate
+totals, with zero unmatched rows and exact county-party conservation. See
+`../certification_stages_2018/README.md`. This establishes numerical lineage,
+not independently validated DRA geography or grounds for production changes.
+The remaining 5,140 have no exact stage
 evidence in those calibration ledgers. County components are not fabricated
 for district-level calibration operations. `verified_cause_groups.csv` groups
 the status by year, contest, scope and cause, explicitly marking missing

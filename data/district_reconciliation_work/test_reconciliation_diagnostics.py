@@ -12,6 +12,53 @@ FIELDS = ('dem_votes', 'rep_votes', 'other_votes')
 
 
 class EvidenceTests(unittest.TestCase):
+    def test_westmoreland_certification_stage_replay(self):
+        directory = WORK / 'certification_stages_2018'
+        summary = json.loads((directory / 'westmoreland_replay_summary.json').read_text())
+        self.assertEqual(summary['unmatched_rows'], 0)
+        self.assertEqual(summary['production_changes'], [])
+        exact = [r for r in summary['variant_results'] if r['model'] in
+                 ('controlled_integerized_rows', 'uncontrolled_integerized_rows')]
+        self.assertEqual(len(exact), 6)
+        self.assertTrue(all(r['absolute_vote_mismatch'] == 0 for r in exact))
+        # A different integerization stage is not silently accepted as equivalent.
+        alternative = [r for r in summary['variant_results'] if r['model'] == 'uncontrolled_fractional_county_integerized']
+        self.assertEqual([r['absolute_vote_mismatch'] for r in alternative], [2, 16, 14])
+        with (directory / 'westmoreland_variant_comparison.csv').open(newline='') as handle:
+            for row in csv.DictReader(handle):
+                self.assertEqual(int(row['reconstructed_district_votes']), int(row['replayed_westmoreland_votes']) + int(row['unchanged_other_counties_votes']))
+                if row['model'] != 'uncontrolled_fractional_county_integerized':
+                    self.assertEqual(int(row['delta']), 0)
+                    self.assertEqual(row['reconstructed_district_votes'], row['target_district_votes'])
+        allocated, source_votes = defaultdict(int), {}
+        with (directory / 'westmoreland_source_row_allocations.csv').open(newline='') as handle:
+            for row in csv.DictReader(handle):
+                key = row['model'], row['source_csv_row'], row['scope']
+                allocated[key] += int(row['allocated_votes'])
+                if key in source_votes:
+                    self.assertEqual(source_votes[key], int(row['source_votes']))
+                source_votes[key] = int(row['source_votes'])
+        self.assertEqual(dict(allocated), source_votes)
+        with (directory / 'westmoreland_variant_conservation.csv').open(newline='') as handle:
+            for row in csv.DictReader(handle):
+                self.assertEqual(int(row['allocated_votes']), int(row['source_or_control_votes']))
+        with (directory / 'district_party_stage_ledger.csv').open(newline='') as handle:
+            rows = list(csv.DictReader(handle))
+        self.assertEqual(len(rows), 810)
+        for row in rows:
+            self.assertEqual(int(row['published']), int(row['retained_post_dra']) + int(row['localized_certification_delta']))
+            self.assertEqual(int(row['candidate_minus_published']), -int(row['dra_delta']) + int(row['non_dra_stage_difference']))
+        residuals = [r for r in rows if int(r['non_dra_stage_difference'])]
+        self.assertEqual(len(residuals), 27)
+        self.assertEqual(len({(r['scope'], r['district']) for r in residuals}), 11)
+        with (WORK / 'report/verified_calibration_causes.csv').open(newline='') as handle:
+            explained = [r for r in csv.DictReader(handle) if r['status'] == 'fully_explained_calibration_and_certification_order']
+        self.assertEqual(len(explained), 11)
+        for row in explained:
+            for field in (*FIELDS, 'total_votes'):
+                self.assertEqual(int(row[f'observed_{field}_delta']), int(row[f'calibration_{field}_delta']) + int(row[f'certification_order_{field}_delta']))
+                self.assertEqual(int(row[f'unresolved_{field}_delta']), 0)
+
     def test_priority_official_source_benchmarks_and_incomplete_slice_guard(self):
         directory = WORK / 'priority_counties_raw_years'
         with (directory / 'priority_district_source_completeness.csv').open(newline='') as handle:

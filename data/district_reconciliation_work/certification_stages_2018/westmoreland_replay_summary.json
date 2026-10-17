@@ -1,0 +1,72 @@
+{
+  "normalized_precinct_identities": 306,
+  "unmatched_rows": 0,
+  "source_party_totals": {
+    "fractional_source/dem_votes": 63956.000000000204,
+    "fractional_source/rep_votes": 79379.0000000002,
+    "fractional_source/other_votes": 2413.0000000000127,
+    "uncontrolled_integerized_rows/dem_votes": 63956.0,
+    "uncontrolled_integerized_rows/rep_votes": 79379.0,
+    "uncontrolled_integerized_rows/other_votes": 2413.0,
+    "controlled_integerized_rows/dem_votes": 63778.0,
+    "controlled_integerized_rows/rep_votes": 79078.0,
+    "controlled_integerized_rows/other_votes": 2402.0
+  },
+  "variant_results": [
+    {
+      "model": "controlled_integerized_rows",
+      "scope": "congressional",
+      "district_party_mismatches": 0,
+      "absolute_vote_mismatch": 0
+    },
+    {
+      "model": "uncontrolled_integerized_rows",
+      "scope": "congressional",
+      "district_party_mismatches": 0,
+      "absolute_vote_mismatch": 0
+    },
+    {
+      "model": "uncontrolled_fractional_county_integerized",
+      "scope": "congressional",
+      "district_party_mismatches": 2,
+      "absolute_vote_mismatch": 2
+    },
+    {
+      "model": "controlled_integerized_rows",
+      "scope": "state_house",
+      "district_party_mismatches": 0,
+      "absolute_vote_mismatch": 0
+    },
+    {
+      "model": "uncontrolled_integerized_rows",
+      "scope": "state_house",
+      "district_party_mismatches": 0,
+      "absolute_vote_mismatch": 0
+    },
+    {
+      "model": "uncontrolled_fractional_county_integerized",
+      "scope": "state_house",
+      "district_party_mismatches": 11,
+      "absolute_vote_mismatch": 16
+    },
+    {
+      "model": "controlled_integerized_rows",
+      "scope": "state_senate",
+      "district_party_mismatches": 0,
+      "absolute_vote_mismatch": 0
+    },
+    {
+      "model": "uncontrolled_integerized_rows",
+      "scope": "state_senate",
+      "district_party_mismatches": 0,
+      "absolute_vote_mismatch": 0
+    },
+    {
+      "model": "uncontrolled_fractional_county_integerized",
+      "scope": "state_senate",
+      "district_party_mismatches": 6,
+      "absolute_vote_mismatch": 14
+    }
+  ],
+  "production_changes": []
+}
