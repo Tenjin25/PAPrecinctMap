@@ -589,7 +589,7 @@ def raw_county_name_lookup():
     if RAW_COUNTY_NAME_BY_FIPS is not None:
         return RAW_COUNTY_NAME_BY_FIPS
     lookup = {}
-    path = base / 'Data' / 'pa_counties.geojson'
+    path = data_dir / 'pa_counties.geojson'
     try:
         with path.open('r', encoding='utf-8') as f:
             data = json.load(f)
@@ -2473,6 +2473,10 @@ def build_district_manifests(contest_dir: Path, contest_types=None, years=None):
             },
             'general': {'results': finalized}
         }
+        # Source-bound, individually reviewed corrections are applied only when
+        # their complete baseline and county evidence still reproduce exactly.
+        from Scripts.reviewed_precinct_corrections import apply_local_reviews
+        apply_local_reviews(payload, data_dir)
         with (contest_dir / fname).open('w', encoding='utf-8') as f:
             json.dump(payload, f, indent=2)
         files.append({'scope': scope, 'contest_type': contest_type, 'year': year, 'file': fname, 'districts': expected, 'rows': len(finalized)})

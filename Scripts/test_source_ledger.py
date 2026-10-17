@@ -36,6 +36,16 @@ class SourceLedgerTests(unittest.TestCase):
             self.assertEqual(entry["bytes"], len(content))
             self.assertEqual(entry["sha256"], hashlib.sha256(content).hexdigest())
 
+    def test_json_review_hash_ignores_checkout_formatting_not_semantics(self):
+        with tempfile.TemporaryDirectory(dir=ledger.ROOT) as temporary:
+            path = Path(temporary) / 'review.json'
+            path.write_bytes(b'{"a":1,"b":2}\n')
+            first = ledger.ledger_bytes(path)
+            path.write_bytes(b'{\r\n  "b": 2, "a": 1\r\n}\r\n')
+            self.assertEqual(ledger.ledger_bytes(path), first)
+            path.write_bytes(b'{"a":1,"b":3}')
+            self.assertNotEqual(ledger.ledger_bytes(path), first)
+
     def test_text_preserves_lone_cr_and_whitespace(self):
         with tempfile.TemporaryDirectory(dir=ledger.ROOT) as temporary:
             path = Path(temporary) / "source.csv"

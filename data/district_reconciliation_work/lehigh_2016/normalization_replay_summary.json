@@ -1,0 +1,92 @@
+{
+  "source_candidate_rows": 2844,
+  "replayed_rows": 3366,
+  "stored_rows": 3366,
+  "exact_stored_row_multiset_reproduced": false,
+  "stored_vote_geography_multiset_reproduced": true,
+  "stored_only_rows": 935,
+  "replay_only_rows": 935,
+  "crosswalk_metadata": {
+    "crosswalk": "data/crosswalks/pa_historical_precinct_to_vtd20.csv",
+    "current_crosswalk": "data/crosswalks/pa_vtd20_to_current_precinct.csv",
+    "matched_rows": 2844,
+    "unmatched_rows": 0,
+    "joined_rows": 3366
+  },
+  "party_totals": {
+    "('President', 'DEM')": [
+      81323.99999999808,
+      81323.99999999808
+    ],
+    "('President', 'REP')": [
+      73689.99999999728,
+      73689.99999999728
+    ],
+    "('President', 'CON')": [
+      549.99999999998,
+      549.99999999998
+    ],
+    "('President', 'GRN')": [
+      1401.9999999999661,
+      1401.9999999999661
+    ],
+    "('President', 'LIB')": [
+      4026.9999999998886,
+      4026.9999999998886
+    ],
+    "('U.S. Senate', 'DEM')": [
+      77231.9999999983,
+      77231.9999999983
+    ],
+    "('U.S. Senate', 'REP')": [
+      76215.99999999709,
+      76215.99999999709
+    ],
+    "('U.S. Senate', 'LIB')": [
+      6626.999999999832,
+      6626.999999999832
+    ],
+    "('Attorney General', 'DEM')": [
+      84420.9999999981,
+      84420.9999999981
+    ],
+    "('Attorney General', 'REP')": [
+      71739.99999999725,
+      71739.99999999725
+    ],
+    "('Auditor General', 'DEM')": [
+      75609.99999999836,
+      75609.99999999836
+    ],
+    "('Auditor General', 'REP')": [
+      70137.9999999973,
+      70137.9999999973
+    ],
+    "('Auditor General', 'GRN')": [
+      4890.999999999872,
+      4890.999999999872
+    ],
+    "('Auditor General', 'LIB')": [
+      4429.999999999884,
+      4429.999999999884
+    ],
+    "('State Treasurer', 'DEM')": [
+      80180.99999999818,
+      80180.99999999818
+    ],
+    "('State Treasurer', 'REP')": [
+      65610.99999999742,
+      65610.99999999742
+    ],
+    "('State Treasurer', 'GRN')": [
+      4884.99999999989,
+      4884.99999999989
+    ],
+    "('State Treasurer', 'LIB')": [
+      4400.999999999871,
+      4400.999999999871
+    ]
+  },
+  "production_changes": [],
+  "baseline_county_district_party_mismatches": 0
+}

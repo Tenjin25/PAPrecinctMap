@@ -1,0 +1,38 @@
+[
+  {
+    "year": 2016,
+    "source_candidate_rows": 48870,
+    "resolved_scope_rows": 146340,
+    "unmatched_scope_rows": 270,
+    "unmatched_scope_votes": 32596,
+    "unmatched_reasons": {
+      "no_exact_structural_or_municipality_match": 270
+    },
+    "normalized_rdh_collisions": [],
+    "status": "DIAGNOSTIC_ONLY; unmatched slices must not be promoted"
+  },
+  {
+    "year": 2018,
+    "source_candidate_rows": 21768,
+    "resolved_scope_rows": 65264,
+    "unmatched_scope_rows": 40,
+    "unmatched_scope_votes": 4346,
+    "unmatched_reasons": {
+      "no_exact_structural_or_municipality_match": 40
+    },
+    "normalized_rdh_collisions": [],
+    "status": "DIAGNOSTIC_ONLY; unmatched slices must not be promoted"
+  },
+  {
+    "year": 2020,
+    "source_candidate_rows": 41010,
+    "resolved_scope_rows": 122955,
+    "unmatched_scope_rows": 75,
+    "unmatched_scope_votes": 10516,
+    "unmatched_reasons": {
+      "no_exact_structural_or_municipality_match": 75
+    },
+    "normalized_rdh_collisions": [],
+    "status": "DIAGNOSTIC_ONLY; unmatched slices must not be promoted"
+  }
+]

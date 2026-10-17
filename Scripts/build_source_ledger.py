@@ -13,7 +13,7 @@ OUTPUT = DATA / "source_ledger.json"
 
 
 def ledger_bytes(path: Path) -> bytes:
-    """Canonicalize checkout line endings only for known text source formats.
+    """Canonicalize checkout line endings and structural JSON review fixtures.
 
     Keep every other byte significant, including lone CRs and all archive
     bytes. Sizes and hashes must describe the same canonical representation.
@@ -21,6 +21,8 @@ def ledger_bytes(path: Path) -> bytes:
     content = path.read_bytes()
     if path.suffix.lower() in {".csv", ".txt"}:
         content = content.replace(b"\r\n", b"\n")
+    elif path.suffix.lower() == '.json':
+        content = json.dumps(json.loads(content.decode('utf-8-sig')), sort_keys=True, separators=(',', ':')).encode()
     return content
 
 
@@ -56,14 +58,18 @@ def main() -> int:
         (DATA / "42_PA_SLDU22.txt", "Carter State Senate BEF"),
         (DATA / "crosswalks" / "pa_historical_precinct_to_vtd20.csv", "NHGIS historical precinct lineage"),
         (DATA / "crosswalks" / "pa_modern_precinct_to_vtd20.csv", "modern precinct lineage"),
+        (DATA / "ElectionReturns_2016_General_PrecinctReturns.txt", "original official 2016 precinct returns for reviewed Emmaus correction"),
+        (DATA / "benchmarks" / "reviewed_emmaus_2016.json", "source-bound Emmaus correction and full county evidence (canonical JSON)"),
+        (DATA / "district_reconciliation_work" / "emmaus_review" / "official_candidate_rows.csv", "original Emmaus official candidate-row witness"),
+        (DATA / "district_reconciliation_work" / "emmaus_review" / "original_precinct_block_witness.csv", "401 original 2016 Emmaus precinct blocks independently assigned House 134"),
     ):
         sources.append(entry(path, role))
     for path in sorted((DATA / "benchmarks").glob("pa_county_*_certified.csv")):
         sources.append(entry(path, "certified county party control"))
     payload = {
-        "generated": "2026-10-15",
+        "generated": "2026-10-16",
         "policy": {
-            "checksum_representation": "CSV/TXT: CRLF normalized to LF; all other bytes unchanged. Binary sources: exact raw bytes. Sizes use the same representation as hashes.",
+            "checksum_representation": "CSV/TXT: CRLF normalized to LF. JSON: sorted-key compact UTF-8 serialization. Binary sources: exact raw bytes. Sizes use the same representation as hashes.",
             "whole_county_threshold": 0.999,
             "residual_scope": "county only",
             "rounding": "largest remainder within county/party",

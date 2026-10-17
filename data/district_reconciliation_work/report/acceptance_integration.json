@@ -1,0 +1,293 @@
+{
+  "source_commit": "26d3baa281e493399a965858571cc3cddf812d94",
+  "status": "BLOCKED",
+  "acceptance": {
+    "bef_block_join_complete": true,
+    "matched_precinct_votes_conserved": false,
+    "every_county_party_total_conserved": false,
+    "no_unmatched_or_unallocated_source_rows": true,
+    "published_statewide_totals_unchanged": true,
+    "published_district_votes_unchanged": false,
+    "published_file_coverage_unchanged": true,
+    "reviewed_candidate_names_preserved": true,
+    "official_precinct_geographic_bounds_satisfied": false
+  },
+  "counts": {
+    "statewide_total_changes": 0,
+    "district_vote_changes": 5409,
+    "conservation_failures": 33,
+    "county_conservation_failures": 33,
+    "files_with_unmatched_or_unallocated_rows": 0,
+    "coverage_changes": 0,
+    "candidate_name_changes": 0,
+    "geographic_bounds_failures": 6
+  },
+  "build_receipt_sha256": "824844cd1ac9c8beb475920f9890b3088df701faddc8cc5476c0eb180658005c",
+  "source_content_fingerprints": 602,
+  "output_content_fingerprints": 268,
+  "independently_verified_statewide_contest_files": 228,
+  "missing_county_evidence_files": [
+    {
+      "file": "congressional_commonwealth_court_2001.json",
+      "year": 2001,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "congressional_commonwealth_court_2011.json",
+      "year": 2011,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "congressional_commonwealth_court_2015.json",
+      "year": 2015,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "congressional_commonwealth_court_2019.json",
+      "year": 2019,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "congressional_commonwealth_court_2021.json",
+      "year": 2021,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "congressional_superior_court_2001.json",
+      "year": 2001,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "congressional_superior_court_2003.json",
+      "year": 2003,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "congressional_superior_court_2011.json",
+      "year": 2011,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "congressional_superior_court_2015.json",
+      "year": 2015,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "congressional_superior_court_2019.json",
+      "year": 2019,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "congressional_supreme_court_2025.json",
+      "year": 2025,
+      "contest": "supreme_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_commonwealth_court_2001.json",
+      "year": 2001,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_commonwealth_court_2011.json",
+      "year": 2011,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_commonwealth_court_2015.json",
+      "year": 2015,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_commonwealth_court_2019.json",
+      "year": 2019,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_commonwealth_court_2021.json",
+      "year": 2021,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_superior_court_2001.json",
+      "year": 2001,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_superior_court_2003.json",
+      "year": 2003,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_superior_court_2011.json",
+      "year": 2011,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_superior_court_2015.json",
+      "year": 2015,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_superior_court_2019.json",
+      "year": 2019,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_house_supreme_court_2025.json",
+      "year": 2025,
+      "contest": "supreme_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_commonwealth_court_2001.json",
+      "year": 2001,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_commonwealth_court_2011.json",
+      "year": 2011,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_commonwealth_court_2015.json",
+      "year": 2015,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_commonwealth_court_2019.json",
+      "year": 2019,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_commonwealth_court_2021.json",
+      "year": 2021,
+      "contest": "commonwealth_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_superior_court_2001.json",
+      "year": 2001,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_superior_court_2003.json",
+      "year": 2003,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_superior_court_2011.json",
+      "year": 2011,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_superior_court_2015.json",
+      "year": 2015,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_superior_court_2019.json",
+      "year": 2019,
+      "contest": "superior_court",
+      "reason": "missing county allocation evidence"
+    },
+    {
+      "file": "state_senate_supreme_court_2025.json",
+      "year": 2025,
+      "contest": "supreme_court",
+      "reason": "missing county allocation evidence"
+    }
+  ],
+  "actual_county_arithmetic_failures": [],
+  "repaired_county_metadata_files": [
+    "congressional_commonwealth_court_retention_anne_covey_2021.json",
+    "congressional_commonwealth_court_retention_michael_h_wojcik_2025.json",
+    "congressional_commonwealth_court_retention_p_kevin_brobson_2019.json",
+    "congressional_commonwealth_court_retention_patricia_a_mccullough_2019.json",
+    "congressional_commonwealth_court_retention_renee_cohn_jubelirer_2021.json",
+    "congressional_superior_court_retention_alice_dubow_2025.json",
+    "congressional_superior_court_retention_anne_e_lazarus_2019.json",
+    "congressional_superior_court_retention_jack_a_panella_2023.json",
+    "congressional_superior_court_retention_jacqueline_o_shogan_2017.json",
+    "congressional_superior_court_retention_john_t_bender_2021.json",
+    "congressional_superior_court_retention_judy_olson_2019.json",
+    "congressional_superior_court_retention_mary_jane_bowes_2021.json",
+    "congressional_superior_court_retention_victor_p_stabile_2023.json",
+    "congressional_supreme_court_retention_christine_donohue_2025.json",
+    "congressional_supreme_court_retention_david_wecht_2025.json",
+    "congressional_supreme_court_retention_debra_todd_2017.json",
+    "congressional_supreme_court_retention_kevin_m_dougherty_2025.json",
+    "congressional_supreme_court_retention_thomas_g_saylor_2017.json",
+    "state_house_commonwealth_court_retention_anne_covey_2021.json",
+    "state_house_commonwealth_court_retention_michael_h_wojcik_2025.json",
+    "state_house_commonwealth_court_retention_p_kevin_brobson_2019.json",
+    "state_house_commonwealth_court_retention_patricia_a_mccullough_2019.json",
+    "state_house_commonwealth_court_retention_renee_cohn_jubelirer_2021.json",
+    "state_house_superior_court_retention_alice_dubow_2025.json",
+    "state_house_superior_court_retention_anne_e_lazarus_2019.json",
+    "state_house_superior_court_retention_jack_a_panella_2023.json",
+    "state_house_superior_court_retention_jacqueline_o_shogan_2017.json",
+    "state_house_superior_court_retention_john_t_bender_2021.json",
+    "state_house_superior_court_retention_judy_olson_2019.json",
+    "state_house_superior_court_retention_mary_jane_bowes_2021.json",
+    "state_house_superior_court_retention_victor_p_stabile_2023.json",
+    "state_house_supreme_court_retention_christine_donohue_2025.json",
+    "state_house_supreme_court_retention_david_wecht_2025.json",
+    "state_house_supreme_court_retention_debra_todd_2017.json",
+    "state_house_supreme_court_retention_kevin_m_dougherty_2025.json",
+    "state_house_supreme_court_retention_thomas_g_saylor_2017.json",
+    "state_senate_commonwealth_court_retention_anne_covey_2021.json",
+    "state_senate_commonwealth_court_retention_michael_h_wojcik_2025.json",
+    "state_senate_commonwealth_court_retention_p_kevin_brobson_2019.json",
+    "state_senate_commonwealth_court_retention_patricia_a_mccullough_2019.json",
+    "state_senate_commonwealth_court_retention_renee_cohn_jubelirer_2021.json",
+    "state_senate_superior_court_retention_alice_dubow_2025.json",
+    "state_senate_superior_court_retention_anne_e_lazarus_2019.json",
+    "state_senate_superior_court_retention_jack_a_panella_2023.json",
+    "state_senate_superior_court_retention_jacqueline_o_shogan_2017.json",
+    "state_senate_superior_court_retention_john_t_bender_2021.json",
+    "state_senate_superior_court_retention_judy_olson_2019.json",
+    "state_senate_superior_court_retention_mary_jane_bowes_2021.json",
+    "state_senate_superior_court_retention_victor_p_stabile_2023.json",
+    "state_senate_supreme_court_retention_christine_donohue_2025.json",
+    "state_senate_supreme_court_retention_david_wecht_2025.json",
+    "state_senate_supreme_court_retention_debra_todd_2017.json",
+    "state_senate_supreme_court_retention_kevin_m_dougherty_2025.json",
+    "state_senate_supreme_court_retention_thomas_g_saylor_2017.json"
+  ],
+  "vote_changes_from_original_cold_baseline": [],
+  "candidate_name_changes_from_original_cold_baseline": [],
+  "warm_reuse_seconds": 5.6989978000056,
+  "warm_unchanged_incremental_seconds": 5.721871300003841,
+  "warm_behavior": "Both commands retain BLOCKED, the same 5409 district differences, 33 missing-evidence files, and 6 geographic-bound failures; no rebuild and no acceptance bypass.",
+  "selective_changed_year_integration": "Passed real-builder controlled-source lifecycle test; untouched-year JSON hashes and both-year manifest preserved.",
+  "production_changes": []
+}

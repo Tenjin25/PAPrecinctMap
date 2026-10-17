@@ -1,0 +1,205 @@
+[
+  {
+    "year": 2016,
+    "archive_name": "pa_2016_gen_2020_blocks.zip",
+    "archive_sha256": "a2e1d84659de48e574e083d3a91c05a86383377748c44c04b528ec8fe60e219b",
+    "block_universe": 336985,
+    "source_precincts": 9166,
+    "contest_columns": {
+      "G16PRERTRU": [
+        "president",
+        "rep_votes"
+      ],
+      "G16PREDCLI": [
+        "president",
+        "dem_votes"
+      ],
+      "G16PRELJOH": [
+        "president",
+        "other_votes"
+      ],
+      "G16PREGSTE": [
+        "president",
+        "other_votes"
+      ],
+      "G16PRECCAS": [
+        "president",
+        "other_votes"
+      ],
+      "G16USSRTOO": [
+        "us_senate",
+        "rep_votes"
+      ],
+      "G16USSDMCG": [
+        "us_senate",
+        "dem_votes"
+      ],
+      "G16USSLCLI": [
+        "us_senate",
+        "other_votes"
+      ],
+      "G16ATGRRAF": [
+        "attorney_general",
+        "rep_votes"
+      ],
+      "G16ATGDSHA": [
+        "attorney_general",
+        "dem_votes"
+      ],
+      "G16AUDRBRO": [
+        "auditor",
+        "rep_votes"
+      ],
+      "G16AUDDDEP": [
+        "auditor",
+        "dem_votes"
+      ],
+      "G16AUDLMIN": [
+        "auditor",
+        "other_votes"
+      ],
+      "G16AUDGSWE": [
+        "auditor",
+        "other_votes"
+      ],
+      "G16TRERVOI": [
+        "treasurer",
+        "rep_votes"
+      ],
+      "G16TREDTOR": [
+        "treasurer",
+        "dem_votes"
+      ],
+      "G16TRELBAB": [
+        "treasurer",
+        "other_votes"
+      ],
+      "G16TREGCOM": [
+        "treasurer",
+        "other_votes"
+      ]
+    },
+    "unallocated_entries": 0,
+    "county_conservation_failure_rows": 0,
+    "district_comparison_rows": 4050,
+    "status": "DIAGNOSTIC_ONLY_NOT_A_PRODUCTION_CANDIDATE"
+  },
+  {
+    "year": 2018,
+    "archive_name": "pa_2018_gen_2020_blocks.zip",
+    "archive_sha256": "f88c1dc9d7f638efdf069ac8a6adc8b3e55df636360ad81171cf2e11f9687316",
+    "block_universe": 336985,
+    "source_precincts": 9160,
+    "contest_columns": {
+      "G18USSRBAR": [
+        "us_senate",
+        "rep_votes"
+      ],
+      "G18USSDCAS": [
+        "us_senate",
+        "dem_votes"
+      ],
+      "G18USSLKER": [
+        "us_senate",
+        "other_votes"
+      ],
+      "G18USSGGAL": [
+        "us_senate",
+        "other_votes"
+      ],
+      "G18GOVRWAG": [
+        "governor",
+        "rep_votes"
+      ],
+      "G18GOVDWOL": [
+        "governor",
+        "dem_votes"
+      ],
+      "G18GOVLKRA": [
+        "governor",
+        "other_votes"
+      ],
+      "G18GOVGGLO": [
+        "governor",
+        "other_votes"
+      ]
+    },
+    "unallocated_entries": 0,
+    "county_conservation_failure_rows": 0,
+    "district_comparison_rows": 1620,
+    "status": "DIAGNOSTIC_ONLY_NOT_A_PRODUCTION_CANDIDATE"
+  },
+  {
+    "year": 2020,
+    "archive_name": "pa_2020_gen_2020_blocks.zip",
+    "archive_sha256": "cb10bce2407bcbaf0fad6db952e88f0599a2798ab8e556fa30d41390caa47d7c",
+    "block_universe": 336985,
+    "source_precincts": 9157,
+    "contest_columns": {
+      "G20PREDBID": [
+        "president",
+        "dem_votes"
+      ],
+      "G20PRERTRU": [
+        "president",
+        "rep_votes"
+      ],
+      "G20PRELJOR": [
+        "president",
+        "other_votes"
+      ],
+      "G20ATGDSHA": [
+        "attorney_general",
+        "dem_votes"
+      ],
+      "G20ATGRHEI": [
+        "attorney_general",
+        "rep_votes"
+      ],
+      "G20ATGLWAS": [
+        "attorney_general",
+        "other_votes"
+      ],
+      "G20ATGGWEI": [
+        "attorney_general",
+        "other_votes"
+      ],
+      "G20AUDDAHM": [
+        "auditor",
+        "dem_votes"
+      ],
+      "G20AUDRDEF": [
+        "auditor",
+        "rep_votes"
+      ],
+      "G20AUDLMOO": [
+        "auditor",
+        "other_votes"
+      ],
+      "G20AUDGFAI": [
+        "auditor",
+        "other_votes"
+      ],
+      "G20TREDTOR": [
+        "treasurer",
+        "dem_votes"
+      ],
+      "G20TRERGAR": [
+        "treasurer",
+        "rep_votes"
+      ],
+      "G20TRELSOL": [
+        "treasurer",
+        "other_votes"
+      ],
+      "G20TREGRUN": [
+        "treasurer",
+        "other_votes"
+      ]
+    },
+    "unallocated_entries": 0,
+    "county_conservation_failure_rows": 0,
+    "district_comparison_rows": 3240,
+    "status": "DIAGNOSTIC_ONLY_NOT_A_PRODUCTION_CANDIDATE"
+  }
+]

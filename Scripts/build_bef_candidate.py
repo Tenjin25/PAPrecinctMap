@@ -46,6 +46,15 @@ def input_fingerprints(block_vap, baf_zip):
     paths.update((ROOT / "Scripts").glob("*.py"))
     for folder in ("crosswalks", "Openelections", "benchmarks", "contests", "district_contests"):
         paths.update(path for path in (DATA / folder).rglob("*") if path.is_file())
+    # Reviewed corrections can depend on retained evidence outside those input
+    # folders. A cached review must not survive edits/removal of its witnesses.
+    for review_path in sorted((DATA / "benchmarks").glob("reviewed_*.json")):
+        review = json.loads(review_path.read_text(encoding="utf-8"))
+        for relative in review.get("input_hashes", {}):
+            dependency = (ROOT / relative).resolve()
+            if not dependency.is_relative_to(ROOT.resolve()):
+                raise ValueError(f"Reviewed dependency escapes workspace: {relative}")
+            paths.add(dependency)
     paths.update(path for path in DATA.iterdir() if path.is_file())
     return {str(path.resolve()): digest(path) for path in sorted(paths) if path.is_file()}
 
@@ -248,6 +257,7 @@ def main():
         def read_integerized_rows(path):
             cache_key = str(Path(path).resolve())
             if cache_key not in integerized_rows_cache:
+                print(f"Reading source: {Path(path).name}", file=sys.stderr, flush=True)
                 integerized_rows_cache[cache_key] = clustered.integerize_fractional_rows(
                     original_read_csv_rows(path)
                 )

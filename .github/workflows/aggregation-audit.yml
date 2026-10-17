@@ -18,8 +18,15 @@ jobs:
           python Scripts/test_county_clustered_district_contests.py
           python Scripts/test_bef_candidate_reuse.py
           python Scripts/test_source_ledger.py
+          python Scripts/test_reviewed_precinct_corrections.py
+          python data/district_reconciliation_work/test_reconciliation_diagnostics.py
+          python data/district_reconciliation_work/test_acceptance_lifecycle.py
       - name: Vote conservation
         run: python Scripts/audit_district_vote_conservation.py data/district_contests
+      - name: Reviewed original-precinct corrections
+        run: python Scripts/audit_reviewed_precinct_corrections.py
+      - name: Diagnostic evidence integrity
+        run: python data/district_reconciliation_work/verify_diagnostic_artifacts.py
       - name: Candidate display names
         run: python Scripts/candidate_name_normalizer.py --check data/contests data/district_contests data/pa_elections_aggregated.json
       - name: Source ledger freshness

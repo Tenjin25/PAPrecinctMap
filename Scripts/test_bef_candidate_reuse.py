@@ -11,6 +11,41 @@ import build_bef_candidate as candidate
 
 
 class ReuseTests(unittest.TestCase):
+    def test_raw_county_lookup_uses_configured_case_correct_data_root(self):
+        builder = candidate.import_builder()
+        with tempfile.TemporaryDirectory(dir=candidate.ROOT) as temporary:
+            data = Path(temporary) / 'data'
+            data.mkdir()
+            (data / 'pa_counties.geojson').write_text(json.dumps({'features': [
+                {'properties': {'COUNTYFP20': '077', 'NAME20': 'Lehigh'}}]}))
+            with patch.object(builder, 'data_dir', data), patch.object(builder, 'RAW_COUNTY_NAME_BY_FIPS', None):
+                self.assertEqual(builder.raw_county_name_lookup(), {'077': 'Lehigh'})
+
+    def test_reviewed_transitive_witnesses_invalidate_reuse_and_cannot_escape(self):
+        with tempfile.TemporaryDirectory(dir=candidate.ROOT) as temporary:
+            root = Path(temporary)
+            data = root / 'data'
+            (data / 'benchmarks').mkdir(parents=True)
+            witness = data / 'district_reconciliation_work/witness.csv'
+            witness.parent.mkdir()
+            witness.write_text('precinct,district\nEmmaus,134\n')
+            review = data / 'benchmarks/reviewed_fixture.json'
+            review.write_text(json.dumps({'input_hashes': {'data/district_reconciliation_work/witness.csv': 'fixture'}}))
+            vap, baf = data / 'vap.gz', data / 'baf.zip'
+            vap.write_bytes(b'vap')
+            baf.write_bytes(b'baf')
+            with patch.object(candidate, 'ROOT', root), patch.object(candidate, 'DATA', data):
+                before = candidate.input_fingerprints(vap, baf)
+                self.assertIn(str(witness.resolve()), before)
+                witness.write_text('precinct,district\nEmmaus,131\n')
+                after = candidate.input_fingerprints(vap, baf)
+                self.assertNotEqual(before[str(witness.resolve())], after[str(witness.resolve())])
+                witness.unlink()
+                self.assertNotIn(str(witness.resolve()), candidate.input_fingerprints(vap, baf))
+                review.write_text(json.dumps({'input_hashes': {'../outside.csv': 'fixture'}}))
+                with self.assertRaisesRegex(ValueError, 'escapes workspace'):
+                    candidate.input_fingerprints(vap, baf)
+
     def test_official_luzerne_bounds_reject_impossible_conserved_candidate(self):
         fixture = json.loads((candidate.DATA / "benchmarks/luzerne_2024_senate_precinct_bounds.json").read_text())
         county = {"8": {"dem_votes": 57754, "rep_votes": 71270, "other_votes": 2980}}

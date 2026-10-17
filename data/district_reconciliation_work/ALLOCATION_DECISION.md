@@ -1,8 +1,10 @@
 # Recommended handling of current-plan allocation differences
 
-Production decision at this checkpoint: retain all published district rows.
-There are no proposed production vote changes yet. This is not a completed
-causal classification of the 5,409-row ledger.
+Production decision: promote only the reviewed 2016 Emmaus whole-borough
+correction (HD-131 and HD-134, five contests). Retain every other published
+vote value. See [report/RELEASE.md](report/RELEASE.md) and the source-bound
+`data/benchmarks/reviewed_emmaus_2016.json` fixture. This is not a completed
+causal classification of the 5,409-row ledger; the broad candidate is blocked.
 
 ## Source and allocation hierarchy
 
@@ -70,6 +72,29 @@ not block-fragment populations. It does not settle this exception.
   candidate precedes that calibration. The matching DRA result is not an
   independent check; Wikipedia's 2018 district table also requires a vintage
   check before comparison with the 17-district 2022 plan.
+  The original precinct replay and a fresh official-source checksum check
+  are now retained in `pa10_raw_returns/`. All 439 precincts / 1,756 named
+  candidate rows match with exact three-county controls and zero unmatched
+  votes. The replay gives Casey +0.464727%, but still uses a VAP_MOD-derived
+  precinct bridge. Its difference from the normalized candidate is localized
+  to +6 D, +7 R, and net zero Other; it does not explain the DRA margin.
+  Current and 2018 Jackson precinct boundaries must not be assumed identical.
+  No production change is justified yet.
+  Follow-up after the user supplied the original 2018 block archive:
+  `pa10_original_blocks/EVIDENCE.md` supersedes the VTD-bridge interpretation.
+  Direct original election-precinct block assignments give Casey +0.632418%
+  under both Census VAP and VAP_MOD, with zero unmatched rows and exact
+  county-party conservation. Five York precincts explain the direct-versus-VTD
+  bridge shift, including a city/township identity problem. Thus VAP_MOD itself
+  is not this benchmark's cause. The calibrated publication still cannot be
+  changed by shifting a district residual into another district; reconcile
+  the whole layer's county attribution first.
+
+`audit_calibration_causes.py` now verifies complete before/after numeric
+evidence for 258 of the 5,409 district differences. Eleven more have a
+documented calibration stage but unresolved additional differences; 5,140
+have no exact calibration-stage evidence. These classifications do not impute
+county components for district-level calibration deltas.
 
 ## Acceptance and release
 
@@ -83,6 +108,23 @@ interrupted, changed, or stale candidates cannot be reused. Unchanged signed
 years are reused when only another year's returns/control change; shared
 geography, code, and publication changes invalidate all years. Every reused
 output still runs through the acceptance checks.
+
+`test_acceptance_lifecycle.py` passes a real-builder, controlled-input lifecycle
+test: cold completion, unchanged `--reuse`, unchanged `--incremental`, and
+changed-year-only rebuild. Unchanged-year files remain byte-identical, manifests
+retain both years, changed district votes remain blocked, and county-party
+conservation / zero unmatched checks still run. This is not a substitute for
+the full-data cold/warm integration run.
+
+The full-data run has now completed: `report/acceptance_integration.json`
+records zero vote/name changes from the original cold baseline, all 54
+retention metadata repairs, 228 independently verified statewide-contest
+files, and 33 legacy judicial files missing county/allocation evidence.
+There are no actual arithmetic failures among evidence-bearing files. Warm
+reuse and unchanged incremental runs take about six seconds and retain every
+output hash and all blocking checks. The new original-block comparisons and
+official-source completeness checks are in `report/FOLLOWUP.md`; production
+remains unchanged and no failed source controls are distributed statewide.
 
 Before promotion, provide individual proposed district rows, source hashes,
 the full vote-allocation path, exact county/statewide conservation, zero

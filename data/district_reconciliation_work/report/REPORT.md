@@ -1,6 +1,12 @@
 # Remaining district differences: verified baseline
 
-Production recommendation: retain current values. No district changes proposed yet.
+Historical baseline snapshot. See [FOLLOWUP.md](FOLLOWUP.md) for the completed
+fresh-build/reuse checks and the newer original-block evidence; its findings
+supersede the pending-work statements below.
+
+Current release decision: only the independently reviewed 2016 Emmaus correction
+is promoted; see [RELEASE.md](RELEASE.md). Retain all other district values.
+The original 5,409-row baseline below remains a historical snapshot.
 
 Completed baseline cold rebuild: 5,409 district rows differ; statewide party totals are unchanged and its audit reports zero unmatched/unallocated rows. Independent county-evidence checks fail in 54 retention files; do not treat the old county PASS flags as verification.
 

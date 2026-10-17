@@ -26,7 +26,3298 @@
       "unallocated_votes": 0,
       "allocation_vote_delta": 0,
       "conserved_for_matched_rows": true
-    }
+    },
+    "county_conservation_audit": {
+      "all_counties_conserved": true,
+      "county_count": 67,
+      "failure_count": 0,
+      "failures": [],
+      "allocation_quality_votes": {
+        "exact_current_precinct_vtd": 5468228,
+        "nhgis_historical_block_chain": 583628
+      },
+      "counties": {
+        "ADAMS": {
+          "source": {
+            "dem_votes": 14593,
+            "rep_votes": 30492,
+            "other_votes": 2418,
+            "total_votes": 47503
+          },
+          "allocated": {
+            "dem_votes": 14593,
+            "rep_votes": 30492,
+            "other_votes": 2418,
+            "total_votes": 47503
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 47503
+          },
+          "district_allocations": {
+            "91": {
+              "dem_votes": 10004,
+              "rep_votes": 18996,
+              "other_votes": 1521,
+              "total_votes": 30521
+            },
+            "193": {
+              "dem_votes": 4589,
+              "rep_votes": 11496,
+              "other_votes": 897,
+              "total_votes": 16982
+            }
+          }
+        },
+        "ALLEGHENY": {
+          "source": {
+            "dem_votes": 357450,
+            "rep_votes": 261316,
+            "other_votes": 28260,
+            "total_votes": 647026
+          },
+          "allocated": {
+            "dem_votes": 357450,
+            "rep_votes": 261316,
+            "other_votes": 28260,
+            "total_votes": 647026
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 647026
+          },
+          "district_allocations": {
+            "19": {
+              "dem_votes": 21646,
+              "rep_votes": 4710,
+              "other_votes": 1001,
+              "total_votes": 27357
+            },
+            "20": {
+              "dem_votes": 16634,
+              "rep_votes": 14079,
+              "other_votes": 1687,
+              "total_votes": 32400
+            },
+            "21": {
+              "dem_votes": 19021,
+              "rep_votes": 13428,
+              "other_votes": 1777,
+              "total_votes": 34226
+            },
+            "23": {
+              "dem_votes": 24757,
+              "rep_votes": 7415,
+              "other_votes": 865,
+              "total_votes": 33037
+            },
+            "24": {
+              "dem_votes": 28350,
+              "rep_votes": 3869,
+              "other_votes": 927,
+              "total_votes": 33146
+            },
+            "25": {
+              "dem_votes": 16397,
+              "rep_votes": 14913,
+              "other_votes": 1607,
+              "total_votes": 32917
+            },
+            "27": {
+              "dem_votes": 17036,
+              "rep_votes": 12355,
+              "other_votes": 1556,
+              "total_votes": 30947
+            },
+            "28": {
+              "dem_votes": 11508,
+              "rep_votes": 19288,
+              "other_votes": 1197,
+              "total_votes": 31993
+            },
+            "30": {
+              "dem_votes": 14513,
+              "rep_votes": 19402,
+              "other_votes": 1231,
+              "total_votes": 35146
+            },
+            "32": {
+              "dem_votes": 20092,
+              "rep_votes": 12675,
+              "other_votes": 1554,
+              "total_votes": 34321
+            },
+            "33": {
+              "dem_votes": 14784,
+              "rep_votes": 15205,
+              "other_votes": 1588,
+              "total_votes": 31577
+            },
+            "34": {
+              "dem_votes": 27095,
+              "rep_votes": 7190,
+              "other_votes": 1229,
+              "total_votes": 35514
+            },
+            "35": {
+              "dem_votes": 17907,
+              "rep_votes": 10036,
+              "other_votes": 1765,
+              "total_votes": 29708
+            },
+            "36": {
+              "dem_votes": 17317,
+              "rep_votes": 9936,
+              "other_votes": 1689,
+              "total_votes": 28942
+            },
+            "38": {
+              "dem_votes": 16335,
+              "rep_votes": 14753,
+              "other_votes": 1767,
+              "total_votes": 32855
+            },
+            "39": {
+              "dem_votes": 11188,
+              "rep_votes": 15391,
+              "other_votes": 1329,
+              "total_votes": 27908
+            },
+            "40": {
+              "dem_votes": 10330,
+              "rep_votes": 13503,
+              "other_votes": 950,
+              "total_votes": 24783
+            },
+            "42": {
+              "dem_votes": 19830,
+              "rep_votes": 15969,
+              "other_votes": 1262,
+              "total_votes": 37061
+            },
+            "44": {
+              "dem_votes": 13079,
+              "rep_votes": 17581,
+              "other_votes": 1336,
+              "total_votes": 31996
+            },
+            "45": {
+              "dem_votes": 15803,
+              "rep_votes": 14713,
+              "other_votes": 1579,
+              "total_votes": 32095
+            },
+            "46": {
+              "dem_votes": 3828,
+              "rep_votes": 4905,
+              "other_votes": 364,
+              "total_votes": 9097
+            }
+          }
+        },
+        "ARMSTRONG": {
+          "source": {
+            "dem_votes": 8387,
+            "rep_votes": 20793,
+            "other_votes": 2220,
+            "total_votes": 31400
+          },
+          "allocated": {
+            "dem_votes": 8387,
+            "rep_votes": 20793,
+            "other_votes": 2220,
+            "total_votes": 31400
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 31400
+          },
+          "district_allocations": {
+            "60": {
+              "dem_votes": 5475,
+              "rep_votes": 11765,
+              "other_votes": 1335,
+              "total_votes": 18575
+            },
+            "63": {
+              "dem_votes": 2912,
+              "rep_votes": 9028,
+              "other_votes": 885,
+              "total_votes": 12825
+            }
+          }
+        },
+        "BEAVER": {
+          "source": {
+            "dem_votes": 34263,
+            "rep_votes": 44000,
+            "other_votes": 5058,
+            "total_votes": 83321
+          },
+          "allocated": {
+            "dem_votes": 34263,
+            "rep_votes": 44000,
+            "other_votes": 5058,
+            "total_votes": 83321
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 83321
+          },
+          "district_allocations": {
+            "14": {
+              "dem_votes": 12327,
+              "rep_votes": 18332,
+              "other_votes": 2000,
+              "total_votes": 32659
+            },
+            "15": {
+              "dem_votes": 6854,
+              "rep_votes": 11501,
+              "other_votes": 1127,
+              "total_votes": 19482
+            },
+            "16": {
+              "dem_votes": 15082,
+              "rep_votes": 14167,
+              "other_votes": 1931,
+              "total_votes": 31180
+            }
+          }
+        },
+        "BEDFORD": {
+          "source": {
+            "dem_votes": 4356,
+            "rep_votes": 17739,
+            "other_votes": 1344,
+            "total_votes": 23439
+          },
+          "allocated": {
+            "dem_votes": 4356,
+            "rep_votes": 17739,
+            "other_votes": 1344,
+            "total_votes": 23439
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 23439
+          },
+          "district_allocations": {
+            "78": {
+              "dem_votes": 4356,
+              "rep_votes": 17739,
+              "other_votes": 1344,
+              "total_votes": 23439
+            }
+          }
+        },
+        "BERKS": {
+          "source": {
+            "dem_votes": 77028,
+            "rep_votes": 95466,
+            "other_votes": 6919,
+            "total_votes": 179413
+          },
+          "allocated": {
+            "dem_votes": 77028,
+            "rep_votes": 95466,
+            "other_votes": 6919,
+            "total_votes": 179413
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 179413
+          },
+          "district_allocations": {
+            "5": {
+              "dem_votes": 9686,
+              "rep_votes": 18630,
+              "other_votes": 1242,
+              "total_votes": 29558
+            },
+            "99": {
+              "dem_votes": 2665,
+              "rep_votes": 4545,
+              "other_votes": 354,
+              "total_votes": 7564
+            },
+            "124": {
+              "dem_votes": 4832,
+              "rep_votes": 8440,
+              "other_votes": 626,
+              "total_votes": 13898
+            },
+            "126": {
+              "dem_votes": 12500,
+              "rep_votes": 9611,
+              "other_votes": 940,
+              "total_votes": 23051
+            },
+            "127": {
+              "dem_votes": 10922,
+              "rep_votes": 4719,
+              "other_votes": 530,
+              "total_votes": 16171
+            },
+            "128": {
+              "dem_votes": 11656,
+              "rep_votes": 18692,
+              "other_votes": 1156,
+              "total_votes": 31504
+            },
+            "129": {
+              "dem_votes": 14249,
+              "rep_votes": 11602,
+              "other_votes": 854,
+              "total_votes": 26705
+            },
+            "130": {
+              "dem_votes": 10518,
+              "rep_votes": 19227,
+              "other_votes": 1217,
+              "total_votes": 30962
+            }
+          }
+        },
+        "BLAIR": {
+          "source": {
+            "dem_votes": 15107,
+            "rep_votes": 36533,
+            "other_votes": 3150,
+            "total_votes": 54790
+          },
+          "allocated": {
+            "dem_votes": 15107,
+            "rep_votes": 36533,
+            "other_votes": 3150,
+            "total_votes": 54790
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 54790
+          },
+          "district_allocations": {
+            "79": {
+              "dem_votes": 8454,
+              "rep_votes": 15775,
+              "other_votes": 1642,
+              "total_votes": 25871
+            },
+            "80": {
+              "dem_votes": 6653,
+              "rep_votes": 20758,
+              "other_votes": 1508,
+              "total_votes": 28919
+            }
+          }
+        },
+        "BRADFORD": {
+          "source": {
+            "dem_votes": 6985,
+            "rep_votes": 16574,
+            "other_votes": 2000,
+            "total_votes": 25559
+          },
+          "allocated": {
+            "dem_votes": 6985,
+            "rep_votes": 16574,
+            "other_votes": 2000,
+            "total_votes": 25559
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 25559
+          },
+          "district_allocations": {
+            "68": {
+              "dem_votes": 2330,
+              "rep_votes": 6660,
+              "other_votes": 740,
+              "total_votes": 9730
+            },
+            "110": {
+              "dem_votes": 4655,
+              "rep_votes": 9914,
+              "other_votes": 1260,
+              "total_votes": 15829
+            }
+          }
+        },
+        "BUCKS": {
+          "source": {
+            "dem_votes": 157709,
+            "rep_votes": 175898,
+            "other_votes": 5845,
+            "total_votes": 339452
+          },
+          "allocated": {
+            "dem_votes": 157709,
+            "rep_votes": 175898,
+            "other_votes": 5845,
+            "total_votes": 339452
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 339452
+          },
+          "district_allocations": {
+            "18": {
+              "dem_votes": 14367,
+              "rep_votes": 12993,
+              "other_votes": 477,
+              "total_votes": 27837
+            },
+            "29": {
+              "dem_votes": 18885,
+              "rep_votes": 19701,
+              "other_votes": 585,
+              "total_votes": 39171
+            },
+            "31": {
+              "dem_votes": 20111,
+              "rep_votes": 20556,
+              "other_votes": 579,
+              "total_votes": 41246
+            },
+            "140": {
+              "dem_votes": 15437,
+              "rep_votes": 12766,
+              "other_votes": 639,
+              "total_votes": 28842
+            },
+            "141": {
+              "dem_votes": 15805,
+              "rep_votes": 11870,
+              "other_votes": 676,
+              "total_votes": 28351
+            },
+            "142": {
+              "dem_votes": 16333,
+              "rep_votes": 17891,
+              "other_votes": 539,
+              "total_votes": 34763
+            },
+            "143": {
+              "dem_votes": 14195,
+              "rep_votes": 20275,
+              "other_votes": 712,
+              "total_votes": 35182
+            },
+            "144": {
+              "dem_votes": 14956,
+              "rep_votes": 18032,
+              "other_votes": 525,
+              "total_votes": 33513
+            },
+            "145": {
+              "dem_votes": 12193,
+              "rep_votes": 19072,
+              "other_votes": 628,
+              "total_votes": 31893
+            },
+            "178": {
+              "dem_votes": 15427,
+              "rep_votes": 22742,
+              "other_votes": 485,
+              "total_votes": 38654
+            }
+          }
+        },
+        "BUTLER": {
+          "source": {
+            "dem_votes": 28715,
+            "rep_votes": 62425,
+            "other_votes": 5465,
+            "total_votes": 96605
+          },
+          "allocated": {
+            "dem_votes": 28715,
+            "rep_votes": 62425,
+            "other_votes": 5465,
+            "total_votes": 96605
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 96605
+          },
+          "district_allocations": {
+            "8": {
+              "dem_votes": 6123,
+              "rep_votes": 15614,
+              "other_votes": 1414,
+              "total_votes": 23151
+            },
+            "11": {
+              "dem_votes": 9374,
+              "rep_votes": 19439,
+              "other_votes": 2047,
+              "total_votes": 30860
+            },
+            "12": {
+              "dem_votes": 10234,
+              "rep_votes": 21491,
+              "other_votes": 1266,
+              "total_votes": 32991
+            },
+            "17": {
+              "dem_votes": 2984,
+              "rep_votes": 5881,
+              "other_votes": 738,
+              "total_votes": 9603
+            }
+          }
+        },
+        "CAMBRIA": {
+          "source": {
+            "dem_votes": 21894,
+            "rep_votes": 36948,
+            "other_votes": 3886,
+            "total_votes": 62728
+          },
+          "allocated": {
+            "dem_votes": 21894,
+            "rep_votes": 36948,
+            "other_votes": 3886,
+            "total_votes": 62728
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 62728
+          },
+          "district_allocations": {
+            "71": {
+              "dem_votes": 8173,
+              "rep_votes": 16217,
+              "other_votes": 1631,
+              "total_votes": 26021
+            },
+            "72": {
+              "dem_votes": 11487,
+              "rep_votes": 16323,
+              "other_votes": 1748,
+              "total_votes": 29558
+            },
+            "73": {
+              "dem_votes": 2234,
+              "rep_votes": 4408,
+              "other_votes": 507,
+              "total_votes": 7149
+            }
+          }
+        },
+        "CAMERON": {
+          "source": {
+            "dem_votes": 593,
+            "rep_votes": 1390,
+            "other_votes": 171,
+            "total_votes": 2154
+          },
+          "allocated": {
+            "dem_votes": 593,
+            "rep_votes": 1390,
+            "other_votes": 171,
+            "total_votes": 2154
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 2154
+          },
+          "district_allocations": {
+            "67": {
+              "dem_votes": 593,
+              "rep_votes": 1390,
+              "other_votes": 171,
+              "total_votes": 2154
+            }
+          }
+        },
+        "CARBON": {
+          "source": {
+            "dem_votes": 10086,
+            "rep_votes": 16360,
+            "other_votes": 1770,
+            "total_votes": 28216
+          },
+          "allocated": {
+            "dem_votes": 10086,
+            "rep_votes": 16360,
+            "other_votes": 1770,
+            "total_votes": 28216
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 28216
+          },
+          "district_allocations": {
+            "122": {
+              "dem_votes": 10086,
+              "rep_votes": 16360,
+              "other_votes": 1770,
+              "total_votes": 28216
+            }
+          }
+        },
+        "CENTRE": {
+          "source": {
+            "dem_votes": 35487,
+            "rep_votes": 36527,
+            "other_votes": 4378,
+            "total_votes": 76392
+          },
+          "allocated": {
+            "dem_votes": 35487,
+            "rep_votes": 36527,
+            "other_votes": 4378,
+            "total_votes": 76392
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 76392
+          },
+          "district_allocations": {
+            "77": {
+              "dem_votes": 15084,
+              "rep_votes": 13186,
+              "other_votes": 1585,
+              "total_votes": 29855
+            },
+            "82": {
+              "dem_votes": 15567,
+              "rep_votes": 15350,
+              "other_votes": 1769,
+              "total_votes": 32686
+            },
+            "171": {
+              "dem_votes": 4836,
+              "rep_votes": 7991,
+              "other_votes": 1024,
+              "total_votes": 13851
+            }
+          }
+        },
+        "CHESTER": {
+          "source": {
+            "dem_votes": 127552,
+            "rep_votes": 133662,
+            "other_votes": 9588,
+            "total_votes": 270802
+          },
+          "allocated": {
+            "dem_votes": 127552,
+            "rep_votes": 133662,
+            "other_votes": 9588,
+            "total_votes": 270802
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 270802
+          },
+          "district_allocations": {
+            "13": {
+              "dem_votes": 12143,
+              "rep_votes": 16325,
+              "other_votes": 1283,
+              "total_votes": 29751
+            },
+            "26": {
+              "dem_votes": 13921,
+              "rep_votes": 15383,
+              "other_votes": 1437,
+              "total_votes": 30741
+            },
+            "74": {
+              "dem_votes": 13544,
+              "rep_votes": 11864,
+              "other_votes": 1150,
+              "total_votes": 26558
+            },
+            "155": {
+              "dem_votes": 15486,
+              "rep_votes": 17015,
+              "other_votes": 1244,
+              "total_votes": 33745
+            },
+            "156": {
+              "dem_votes": 17935,
+              "rep_votes": 16536,
+              "other_votes": 1150,
+              "total_votes": 35621
+            },
+            "157": {
+              "dem_votes": 18577,
+              "rep_votes": 18578,
+              "other_votes": 900,
+              "total_votes": 38055
+            },
+            "158": {
+              "dem_votes": 15070,
+              "rep_votes": 15588,
+              "other_votes": 1084,
+              "total_votes": 31742
+            },
+            "160": {
+              "dem_votes": 5863,
+              "rep_votes": 7183,
+              "other_votes": 375,
+              "total_votes": 13421
+            },
+            "167": {
+              "dem_votes": 15013,
+              "rep_votes": 15190,
+              "other_votes": 965,
+              "total_votes": 31168
+            }
+          }
+        },
+        "CLARION": {
+          "source": {
+            "dem_votes": 4931,
+            "rep_votes": 11310,
+            "other_votes": 1204,
+            "total_votes": 17445
+          },
+          "allocated": {
+            "dem_votes": 4931,
+            "rep_votes": 11310,
+            "other_votes": 1204,
+            "total_votes": 17445
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 17445
+          },
+          "district_allocations": {
+            "63": {
+              "dem_votes": 4931,
+              "rep_votes": 11310,
+              "other_votes": 1204,
+              "total_votes": 17445
+            }
+          }
+        },
+        "CLEARFIELD": {
+          "source": {
+            "dem_votes": 9454,
+            "rep_votes": 22128,
+            "other_votes": 2429,
+            "total_votes": 34011
+          },
+          "allocated": {
+            "dem_votes": 9454,
+            "rep_votes": 22128,
+            "other_votes": 2429,
+            "total_votes": 34011
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 34011
+          },
+          "district_allocations": {
+            "73": {
+              "dem_votes": 5528,
+              "rep_votes": 12483,
+              "other_votes": 1483,
+              "total_votes": 19494
+            },
+            "75": {
+              "dem_votes": 3926,
+              "rep_votes": 9645,
+              "other_votes": 946,
+              "total_votes": 14517
+            }
+          }
+        },
+        "CLINTON": {
+          "source": {
+            "dem_votes": 5511,
+            "rep_votes": 8702,
+            "other_votes": 952,
+            "total_votes": 15165
+          },
+          "allocated": {
+            "dem_votes": 5511,
+            "rep_votes": 8702,
+            "other_votes": 952,
+            "total_votes": 15165
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 15165
+          },
+          "district_allocations": {
+            "76": {
+              "dem_votes": 5511,
+              "rep_votes": 8702,
+              "other_votes": 952,
+              "total_votes": 15165
+            }
+          }
+        },
+        "COLUMBIA": {
+          "source": {
+            "dem_votes": 9819,
+            "rep_votes": 16292,
+            "other_votes": 1991,
+            "total_votes": 28102
+          },
+          "allocated": {
+            "dem_votes": 9819,
+            "rep_votes": 16292,
+            "other_votes": 1991,
+            "total_votes": 28102
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 28102
+          },
+          "district_allocations": {
+            "109": {
+              "dem_votes": 9819,
+              "rep_votes": 16292,
+              "other_votes": 1991,
+              "total_votes": 28102
+            }
+          }
+        },
+        "CRAWFORD": {
+          "source": {
+            "dem_votes": 11047,
+            "rep_votes": 24472,
+            "other_votes": 1740,
+            "total_votes": 37259
+          },
+          "allocated": {
+            "dem_votes": 11047,
+            "rep_votes": 24472,
+            "other_votes": 1740,
+            "total_votes": 37259
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 37259
+          },
+          "district_allocations": {
+            "6": {
+              "dem_votes": 7748,
+              "rep_votes": 16134,
+              "other_votes": 1109,
+              "total_votes": 24991
+            },
+            "64": {
+              "dem_votes": 1197,
+              "rep_votes": 3091,
+              "other_votes": 235,
+              "total_votes": 4523
+            },
+            "65": {
+              "dem_votes": 2102,
+              "rep_votes": 5247,
+              "other_votes": 396,
+              "total_votes": 7745
+            }
+          }
+        },
+        "CUMBERLAND": {
+          "source": {
+            "dem_votes": 44796,
+            "rep_votes": 71638,
+            "other_votes": 5509,
+            "total_votes": 121943
+          },
+          "allocated": {
+            "dem_votes": 44796,
+            "rep_votes": 71638,
+            "other_votes": 5509,
+            "total_votes": 121943
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 121943
+          },
+          "district_allocations": {
+            "87": {
+              "dem_votes": 10893,
+              "rep_votes": 20116,
+              "other_votes": 1330,
+              "total_votes": 32339
+            },
+            "88": {
+              "dem_votes": 12159,
+              "rep_votes": 17721,
+              "other_votes": 1451,
+              "total_votes": 31331
+            },
+            "103": {
+              "dem_votes": 7699,
+              "rep_votes": 9752,
+              "other_votes": 897,
+              "total_votes": 18348
+            },
+            "193": {
+              "dem_votes": 3726,
+              "rep_votes": 6878,
+              "other_votes": 531,
+              "total_votes": 11135
+            },
+            "199": {
+              "dem_votes": 10319,
+              "rep_votes": 17171,
+              "other_votes": 1300,
+              "total_votes": 28790
+            }
+          }
+        },
+        "DAUPHIN": {
+          "source": {
+            "dem_votes": 62551,
+            "rep_votes": 63740,
+            "other_votes": 2383,
+            "total_votes": 128674
+          },
+          "allocated": {
+            "dem_votes": 62551,
+            "rep_votes": 63740,
+            "other_votes": 2383,
+            "total_votes": 128674
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 128674
+          },
+          "district_allocations": {
+            "103": {
+              "dem_votes": 8917,
+              "rep_votes": 1673,
+              "other_votes": 135,
+              "total_votes": 10725
+            },
+            "104": {
+              "dem_votes": 14717,
+              "rep_votes": 8490,
+              "other_votes": 464,
+              "total_votes": 23671
+            },
+            "105": {
+              "dem_votes": 16022,
+              "rep_votes": 12210,
+              "other_votes": 475,
+              "total_votes": 28707
+            },
+            "106": {
+              "dem_votes": 12140,
+              "rep_votes": 19894,
+              "other_votes": 678,
+              "total_votes": 32712
+            },
+            "125": {
+              "dem_votes": 10755,
+              "rep_votes": 21473,
+              "other_votes": 631,
+              "total_votes": 32859
+            }
+          }
+        },
+        "DELAWARE": {
+          "source": {
+            "dem_votes": 163377,
+            "rep_votes": 126300,
+            "other_votes": 3948,
+            "total_votes": 293625
+          },
+          "allocated": {
+            "dem_votes": 163377,
+            "rep_votes": 126300,
+            "other_votes": 3948,
+            "total_votes": 293625
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 293625
+          },
+          "district_allocations": {
+            "159": {
+              "dem_votes": 18481,
+              "rep_votes": 7793,
+              "other_votes": 362,
+              "total_votes": 26636
+            },
+            "160": {
+              "dem_votes": 9448,
+              "rep_votes": 13533,
+              "other_votes": 309,
+              "total_votes": 23290
+            },
+            "161": {
+              "dem_votes": 17337,
+              "rep_votes": 16696,
+              "other_votes": 529,
+              "total_votes": 34562
+            },
+            "162": {
+              "dem_votes": 16594,
+              "rep_votes": 14940,
+              "other_votes": 546,
+              "total_votes": 32080
+            },
+            "163": {
+              "dem_votes": 16716,
+              "rep_votes": 14022,
+              "other_votes": 456,
+              "total_votes": 31194
+            },
+            "164": {
+              "dem_votes": 19669,
+              "rep_votes": 6063,
+              "other_votes": 314,
+              "total_votes": 26046
+            },
+            "165": {
+              "dem_votes": 18820,
+              "rep_votes": 17965,
+              "other_votes": 433,
+              "total_votes": 37218
+            },
+            "166": {
+              "dem_votes": 19810,
+              "rep_votes": 17147,
+              "other_votes": 519,
+              "total_votes": 37476
+            },
+            "168": {
+              "dem_votes": 15629,
+              "rep_votes": 16204,
+              "other_votes": 378,
+              "total_votes": 32211
+            },
+            "185": {
+              "dem_votes": 1584,
+              "rep_votes": 1326,
+              "other_votes": 54,
+              "total_votes": 2964
+            },
+            "191": {
+              "dem_votes": 9289,
+              "rep_votes": 611,
+              "other_votes": 48,
+              "total_votes": 9948
+            }
+          }
+        },
+        "ELK": {
+          "source": {
+            "dem_votes": 4509,
+            "rep_votes": 8703,
+            "other_votes": 1111,
+            "total_votes": 14323
+          },
+          "allocated": {
+            "dem_votes": 4509,
+            "rep_votes": 8703,
+            "other_votes": 1111,
+            "total_votes": 14323
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 14323
+          },
+          "district_allocations": {
+            "75": {
+              "dem_votes": 4509,
+              "rep_votes": 8703,
+              "other_votes": 1111,
+              "total_votes": 14323
+            }
+          }
+        },
+        "ERIE": {
+          "source": {
+            "dem_votes": 56846,
+            "rep_votes": 60948,
+            "other_votes": 4930,
+            "total_votes": 122724
+          },
+          "allocated": {
+            "dem_votes": 56846,
+            "rep_votes": 60948,
+            "other_votes": 4930,
+            "total_votes": 122724
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 122724
+          },
+          "district_allocations": {
+            "1": {
+              "dem_votes": 14522,
+              "rep_votes": 8730,
+              "other_votes": 1002,
+              "total_votes": 24254
+            },
+            "2": {
+              "dem_votes": 15288,
+              "rep_votes": 13524,
+              "other_votes": 1156,
+              "total_votes": 29968
+            },
+            "3": {
+              "dem_votes": 14590,
+              "rep_votes": 17952,
+              "other_votes": 1129,
+              "total_votes": 33671
+            },
+            "4": {
+              "dem_votes": 11066,
+              "rep_votes": 18360,
+              "other_votes": 1411,
+              "total_votes": 30837
+            },
+            "6": {
+              "dem_votes": 1380,
+              "rep_votes": 2382,
+              "other_votes": 232,
+              "total_votes": 3994
+            }
+          }
+        },
+        "FAYETTE": {
+          "source": {
+            "dem_votes": 20547,
+            "rep_votes": 29699,
+            "other_votes": 2958,
+            "total_votes": 53204
+          },
+          "allocated": {
+            "dem_votes": 20547,
+            "rep_votes": 29699,
+            "other_votes": 2958,
+            "total_votes": 53204
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 53204
+          },
+          "district_allocations": {
+            "51": {
+              "dem_votes": 10901,
+              "rep_votes": 14286,
+              "other_votes": 1409,
+              "total_votes": 26596
+            },
+            "52": {
+              "dem_votes": 9646,
+              "rep_votes": 15413,
+              "other_votes": 1549,
+              "total_votes": 26608
+            }
+          }
+        },
+        "FOREST": {
+          "source": {
+            "dem_votes": 708,
+            "rep_votes": 1502,
+            "other_votes": 164,
+            "total_votes": 2374
+          },
+          "allocated": {
+            "dem_votes": 708,
+            "rep_votes": 1502,
+            "other_votes": 164,
+            "total_votes": 2374
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 2374
+          },
+          "district_allocations": {
+            "65": {
+              "dem_votes": 708,
+              "rep_votes": 1502,
+              "other_votes": 164,
+              "total_votes": 2374
+            }
+          }
+        },
+        "FRANKLIN": {
+          "source": {
+            "dem_votes": 17827,
+            "rep_votes": 48658,
+            "other_votes": 3309,
+            "total_votes": 69794
+          },
+          "allocated": {
+            "dem_votes": 17827,
+            "rep_votes": 48658,
+            "other_votes": 3309,
+            "total_votes": 69794
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 69794
+          },
+          "district_allocations": {
+            "81": {
+              "dem_votes": 2405,
+              "rep_votes": 7754,
+              "other_votes": 525,
+              "total_votes": 10684
+            },
+            "89": {
+              "dem_votes": 8763,
+              "rep_votes": 19632,
+              "other_votes": 1409,
+              "total_votes": 29804
+            },
+            "90": {
+              "dem_votes": 6659,
+              "rep_votes": 21272,
+              "other_votes": 1375,
+              "total_votes": 29306
+            }
+          }
+        },
+        "FULTON": {
+          "source": {
+            "dem_votes": 1025,
+            "rep_votes": 5456,
+            "other_votes": 250,
+            "total_votes": 6731
+          },
+          "allocated": {
+            "dem_votes": 1025,
+            "rep_votes": 5456,
+            "other_votes": 250,
+            "total_votes": 6731
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 6731
+          },
+          "district_allocations": {
+            "78": {
+              "dem_votes": 1025,
+              "rep_votes": 5456,
+              "other_votes": 250,
+              "total_votes": 6731
+            }
+          }
+        },
+        "GREENE": {
+          "source": {
+            "dem_votes": 5692,
+            "rep_votes": 8826,
+            "other_votes": 896,
+            "total_votes": 15414
+          },
+          "allocated": {
+            "dem_votes": 5692,
+            "rep_votes": 8826,
+            "other_votes": 896,
+            "total_votes": 15414
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 15414
+          },
+          "district_allocations": {
+            "50": {
+              "dem_votes": 5692,
+              "rep_votes": 8826,
+              "other_votes": 896,
+              "total_votes": 15414
+            }
+          }
+        },
+        "HUNTINGDON": {
+          "source": {
+            "dem_votes": 5105,
+            "rep_votes": 13078,
+            "other_votes": 1406,
+            "total_votes": 19589
+          },
+          "allocated": {
+            "dem_votes": 5105,
+            "rep_votes": 13078,
+            "other_votes": 1406,
+            "total_votes": 19589
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 19589
+          },
+          "district_allocations": {
+            "80": {
+              "dem_votes": 245,
+              "rep_votes": 956,
+              "other_votes": 76,
+              "total_votes": 1277
+            },
+            "81": {
+              "dem_votes": 4860,
+              "rep_votes": 12122,
+              "other_votes": 1330,
+              "total_votes": 18312
+            }
+          }
+        },
+        "INDIANA": {
+          "source": {
+            "dem_votes": 12592,
+            "rep_votes": 22245,
+            "other_votes": 2955,
+            "total_votes": 37792
+          },
+          "allocated": {
+            "dem_votes": 12592,
+            "rep_votes": 22245,
+            "other_votes": 2955,
+            "total_votes": 37792
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 37792
+          },
+          "district_allocations": {
+            "62": {
+              "dem_votes": 10963,
+              "rep_votes": 17159,
+              "other_votes": 2329,
+              "total_votes": 30451
+            },
+            "66": {
+              "dem_votes": 1629,
+              "rep_votes": 5086,
+              "other_votes": 626,
+              "total_votes": 7341
+            }
+          }
+        },
+        "JEFFERSON": {
+          "source": {
+            "dem_votes": 4160,
+            "rep_votes": 13706,
+            "other_votes": 1451,
+            "total_votes": 19317
+          },
+          "allocated": {
+            "dem_votes": 4160,
+            "rep_votes": 13706,
+            "other_votes": 1451,
+            "total_votes": 19317
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 19317
+          },
+          "district_allocations": {
+            "66": {
+              "dem_votes": 4160,
+              "rep_votes": 13706,
+              "other_votes": 1451,
+              "total_votes": 19317
+            }
+          }
+        },
+        "JUNIATA": {
+          "source": {
+            "dem_votes": 2153,
+            "rep_votes": 7657,
+            "other_votes": 612,
+            "total_votes": 10422
+          },
+          "allocated": {
+            "dem_votes": 2153,
+            "rep_votes": 7657,
+            "other_votes": 612,
+            "total_votes": 10422
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 10422
+          },
+          "district_allocations": {
+            "85": {
+              "dem_votes": 403,
+              "rep_votes": 1946,
+              "other_votes": 113,
+              "total_votes": 2462
+            },
+            "86": {
+              "dem_votes": 1750,
+              "rep_votes": 5711,
+              "other_votes": 499,
+              "total_votes": 7960
+            }
+          }
+        },
+        "LACKAWANNA": {
+          "source": {
+            "dem_votes": 53936,
+            "rep_votes": 40519,
+            "other_votes": 7455,
+            "total_votes": 101910
+          },
+          "allocated": {
+            "dem_votes": 53936,
+            "rep_votes": 40519,
+            "other_votes": 7455,
+            "total_votes": 101910
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 101910
+          },
+          "district_allocations": {
+            "112": {
+              "dem_votes": 17458,
+              "rep_votes": 12438,
+              "other_votes": 2561,
+              "total_votes": 32457
+            },
+            "113": {
+              "dem_votes": 13931,
+              "rep_votes": 9447,
+              "other_votes": 1795,
+              "total_votes": 25173
+            },
+            "114": {
+              "dem_votes": 15530,
+              "rep_votes": 12114,
+              "other_votes": 2046,
+              "total_votes": 29690
+            },
+            "118": {
+              "dem_votes": 7017,
+              "rep_votes": 6520,
+              "other_votes": 1053,
+              "total_votes": 14590
+            }
+          }
+        },
+        "LANCASTER": {
+          "source": {
+            "dem_votes": 89922,
+            "rep_votes": 142774,
+            "other_votes": 9909,
+            "total_votes": 242605
+          },
+          "allocated": {
+            "dem_votes": 89922,
+            "rep_votes": 142774,
+            "other_votes": 9909,
+            "total_votes": 242605
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 242605
+          },
+          "district_allocations": {
+            "37": {
+              "dem_votes": 9361,
+              "rep_votes": 21173,
+              "other_votes": 1217,
+              "total_votes": 31751
+            },
+            "41": {
+              "dem_votes": 12932,
+              "rep_votes": 17071,
+              "other_votes": 1394,
+              "total_votes": 31397
+            },
+            "43": {
+              "dem_votes": 7059,
+              "rep_votes": 17127,
+              "other_votes": 1099,
+              "total_votes": 25285
+            },
+            "49": {
+              "dem_votes": 14645,
+              "rep_votes": 7027,
+              "other_votes": 887,
+              "total_votes": 22559
+            },
+            "96": {
+              "dem_votes": 17097,
+              "rep_votes": 13830,
+              "other_votes": 1224,
+              "total_votes": 32151
+            },
+            "97": {
+              "dem_votes": 11560,
+              "rep_votes": 20501,
+              "other_votes": 1158,
+              "total_votes": 33219
+            },
+            "98": {
+              "dem_votes": 7920,
+              "rep_votes": 16809,
+              "other_votes": 1269,
+              "total_votes": 25998
+            },
+            "99": {
+              "dem_votes": 4058,
+              "rep_votes": 13587,
+              "other_votes": 758,
+              "total_votes": 18403
+            },
+            "100": {
+              "dem_votes": 5290,
+              "rep_votes": 15649,
+              "other_votes": 903,
+              "total_votes": 21842
+            }
+          }
+        },
+        "LAWRENCE": {
+          "source": {
+            "dem_votes": 15289,
+            "rep_votes": 22674,
+            "other_votes": 2317,
+            "total_votes": 40280
+          },
+          "allocated": {
+            "dem_votes": 15289,
+            "rep_votes": 22674,
+            "other_votes": 2317,
+            "total_votes": 40280
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 40280
+          },
+          "district_allocations": {
+            "8": {
+              "dem_votes": 3761,
+              "rep_votes": 6813,
+              "other_votes": 741,
+              "total_votes": 11315
+            },
+            "9": {
+              "dem_votes": 11528,
+              "rep_votes": 15861,
+              "other_votes": 1576,
+              "total_votes": 28965
+            }
+          }
+        },
+        "LEBANON": {
+          "source": {
+            "dem_votes": 19079,
+            "rep_votes": 39386,
+            "other_votes": 3060,
+            "total_votes": 61525
+          },
+          "allocated": {
+            "dem_votes": 19079,
+            "rep_votes": 39386,
+            "other_votes": 3060,
+            "total_votes": 61525
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 61525
+          },
+          "district_allocations": {
+            "98": {
+              "dem_votes": 1634,
+              "rep_votes": 3771,
+              "other_votes": 237,
+              "total_votes": 5642
+            },
+            "101": {
+              "dem_votes": 9612,
+              "rep_votes": 14516,
+              "other_votes": 1243,
+              "total_votes": 25371
+            },
+            "102": {
+              "dem_votes": 7833,
+              "rep_votes": 21099,
+              "other_votes": 1580,
+              "total_votes": 30512
+            }
+          }
+        },
+        "LEHIGH": {
+          "source": {
+            "dem_votes": 77232,
+            "rep_votes": 76216,
+            "other_votes": 6627,
+            "total_votes": 160075
+          },
+          "allocated": {
+            "dem_votes": 77232,
+            "rep_votes": 76216,
+            "other_votes": 6627,
+            "total_votes": 160075
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 160075
+          },
+          "district_allocations": {
+            "22": {
+              "dem_votes": 11923,
+              "rep_votes": 4703,
+              "other_votes": 706,
+              "total_votes": 17332
+            },
+            "131": {
+              "dem_votes": 6985,
+              "rep_votes": 11282,
+              "other_votes": 708,
+              "total_votes": 18975
+            },
+            "132": {
+              "dem_votes": 14818,
+              "rep_votes": 14047,
+              "other_votes": 1023,
+              "total_votes": 29888
+            },
+            "133": {
+              "dem_votes": 14458,
+              "rep_votes": 12137,
+              "other_votes": 1440,
+              "total_votes": 28035
+            },
+            "134": {
+              "dem_votes": 13091,
+              "rep_votes": 8318,
+              "other_votes": 939,
+              "total_votes": 22348
+            },
+            "183": {
+              "dem_votes": 3827,
+              "rep_votes": 6886,
+              "other_votes": 491,
+              "total_votes": 11204
+            },
+            "187": {
+              "dem_votes": 12130,
+              "rep_votes": 18843,
+              "other_votes": 1320,
+              "total_votes": 32293
+            }
+          }
+        },
+        "LUZERNE": {
+          "source": {
+            "dem_votes": 56477,
+            "rep_votes": 66551,
+            "other_votes": 8650,
+            "total_votes": 131678
+          },
+          "allocated": {
+            "dem_votes": 56477,
+            "rep_votes": 66551,
+            "other_votes": 8650,
+            "total_votes": 131678
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 131678
+          },
+          "district_allocations": {
+            "116": {
+              "dem_votes": 5871,
+              "rep_votes": 7010,
+              "other_votes": 706,
+              "total_votes": 13587
+            },
+            "117": {
+              "dem_votes": 8157,
+              "rep_votes": 17086,
+              "other_votes": 1823,
+              "total_votes": 27066
+            },
+            "118": {
+              "dem_votes": 8004,
+              "rep_votes": 7030,
+              "other_votes": 1097,
+              "total_votes": 16131
+            },
+            "119": {
+              "dem_votes": 11098,
+              "rep_votes": 12255,
+              "other_votes": 1879,
+              "total_votes": 25232
+            },
+            "120": {
+              "dem_votes": 12645,
+              "rep_votes": 14608,
+              "other_votes": 1729,
+              "total_votes": 28982
+            },
+            "121": {
+              "dem_votes": 10702,
+              "rep_votes": 8562,
+              "other_votes": 1416,
+              "total_votes": 20680
+            }
+          }
+        },
+        "LYCOMING": {
+          "source": {
+            "dem_votes": 14187,
+            "rep_votes": 33015,
+            "other_votes": 3365,
+            "total_votes": 50567
+          },
+          "allocated": {
+            "dem_votes": 14187,
+            "rep_votes": 33015,
+            "other_votes": 3365,
+            "total_votes": 50567
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 50567
+          },
+          "district_allocations": {
+            "83": {
+              "dem_votes": 7921,
+              "rep_votes": 12775,
+              "other_votes": 1561,
+              "total_votes": 22257
+            },
+            "84": {
+              "dem_votes": 6266,
+              "rep_votes": 20240,
+              "other_votes": 1804,
+              "total_votes": 28310
+            }
+          }
+        },
+        "MCKEAN": {
+          "source": {
+            "dem_votes": 3987,
+            "rep_votes": 11530,
+            "other_votes": 605,
+            "total_votes": 16122
+          },
+          "allocated": {
+            "dem_votes": 3987,
+            "rep_votes": 11530,
+            "other_votes": 605,
+            "total_votes": 16122
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 16122
+          },
+          "district_allocations": {
+            "67": {
+              "dem_votes": 3987,
+              "rep_votes": 11530,
+              "other_votes": 605,
+              "total_votes": 16122
+            }
+          }
+        },
+        "MERCER": {
+          "source": {
+            "dem_votes": 19193,
+            "rep_votes": 30567,
+            "other_votes": 2046,
+            "total_votes": 51806
+          },
+          "allocated": {
+            "dem_votes": 19193,
+            "rep_votes": 30567,
+            "other_votes": 2046,
+            "total_votes": 51806
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 51806
+          },
+          "district_allocations": {
+            "7": {
+              "dem_votes": 14002,
+              "rep_votes": 16082,
+              "other_votes": 1041,
+              "total_votes": 31125
+            },
+            "17": {
+              "dem_votes": 5191,
+              "rep_votes": 14485,
+              "other_votes": 1005,
+              "total_votes": 20681
+            }
+          }
+        },
+        "MIFFLIN": {
+          "source": {
+            "dem_votes": 4031,
+            "rep_votes": 13089,
+            "other_votes": 1093,
+            "total_votes": 18213
+          },
+          "allocated": {
+            "dem_votes": 4031,
+            "rep_votes": 13089,
+            "other_votes": 1093,
+            "total_votes": 18213
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 18213
+          },
+          "district_allocations": {
+            "85": {
+              "dem_votes": 1117,
+              "rep_votes": 3438,
+              "other_votes": 323,
+              "total_votes": 4878
+            },
+            "171": {
+              "dem_votes": 2914,
+              "rep_votes": 9651,
+              "other_votes": 770,
+              "total_votes": 13335
+            }
+          }
+        },
+        "MONROE": {
+          "source": {
+            "dem_votes": 34280,
+            "rep_votes": 30743,
+            "other_votes": 1768,
+            "total_votes": 66791
+          },
+          "allocated": {
+            "dem_votes": 34280,
+            "rep_votes": 30743,
+            "other_votes": 1768,
+            "total_votes": 66791
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 66791
+          },
+          "district_allocations": {
+            "115": {
+              "dem_votes": 13078,
+              "rep_votes": 10115,
+              "other_votes": 624,
+              "total_votes": 23817
+            },
+            "176": {
+              "dem_votes": 11396,
+              "rep_votes": 14304,
+              "other_votes": 791,
+              "total_votes": 26491
+            },
+            "189": {
+              "dem_votes": 9806,
+              "rep_votes": 6324,
+              "other_votes": 353,
+              "total_votes": 16483
+            }
+          }
+        },
+        "MONTGOMERY": {
+          "source": {
+            "dem_votes": 237353,
+            "rep_votes": 189574,
+            "other_votes": 5431,
+            "total_votes": 432358
+          },
+          "allocated": {
+            "dem_votes": 237353,
+            "rep_votes": 189574,
+            "other_votes": 5431,
+            "total_votes": 432358
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 432358
+          },
+          "district_allocations": {
+            "53": {
+              "dem_votes": 14347,
+              "rep_votes": 13739,
+              "other_votes": 480,
+              "total_votes": 28566
+            },
+            "54": {
+              "dem_votes": 16367,
+              "rep_votes": 8256,
+              "other_votes": 351,
+              "total_votes": 24974
+            },
+            "61": {
+              "dem_votes": 18397,
+              "rep_votes": 17535,
+              "other_votes": 373,
+              "total_votes": 36305
+            },
+            "70": {
+              "dem_votes": 16783,
+              "rep_votes": 17329,
+              "other_votes": 462,
+              "total_votes": 34574
+            },
+            "131": {
+              "dem_votes": 4256,
+              "rep_votes": 6886,
+              "other_votes": 210,
+              "total_votes": 11352
+            },
+            "146": {
+              "dem_votes": 13817,
+              "rep_votes": 13629,
+              "other_votes": 518,
+              "total_votes": 27964
+            },
+            "147": {
+              "dem_votes": 12637,
+              "rep_votes": 20240,
+              "other_votes": 519,
+              "total_votes": 33396
+            },
+            "148": {
+              "dem_votes": 24360,
+              "rep_votes": 12145,
+              "other_votes": 231,
+              "total_votes": 36736
+            },
+            "149": {
+              "dem_votes": 18811,
+              "rep_votes": 11509,
+              "other_votes": 333,
+              "total_votes": 30653
+            },
+            "150": {
+              "dem_votes": 14901,
+              "rep_votes": 15594,
+              "other_votes": 418,
+              "total_votes": 30913
+            },
+            "151": {
+              "dem_votes": 18506,
+              "rep_votes": 16221,
+              "other_votes": 366,
+              "total_votes": 35093
+            },
+            "152": {
+              "dem_votes": 16916,
+              "rep_votes": 13909,
+              "other_votes": 468,
+              "total_votes": 31293
+            },
+            "153": {
+              "dem_votes": 20727,
+              "rep_votes": 13667,
+              "other_votes": 348,
+              "total_votes": 34742
+            },
+            "154": {
+              "dem_votes": 26528,
+              "rep_votes": 8915,
+              "other_votes": 354,
+              "total_votes": 35797
+            }
+          }
+        },
+        "MONTOUR": {
+          "source": {
+            "dem_votes": 2898,
+            "rep_votes": 5066,
+            "other_votes": 586,
+            "total_votes": 8550
+          },
+          "allocated": {
+            "dem_votes": 2898,
+            "rep_votes": 5066,
+            "other_votes": 586,
+            "total_votes": 8550
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 8550
+          },
+          "district_allocations": {
+            "108": {
+              "dem_votes": 2898,
+              "rep_votes": 5066,
+              "other_votes": 586,
+              "total_votes": 8550
+            }
+          }
+        },
+        "NORTHAMPTON": {
+          "source": {
+            "dem_votes": 64151,
+            "rep_votes": 72172,
+            "other_votes": 3566,
+            "total_votes": 139889
+          },
+          "allocated": {
+            "dem_votes": 64151,
+            "rep_votes": 72172,
+            "other_votes": 3566,
+            "total_votes": 139889
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 139889
+          },
+          "district_allocations": {
+            "131": {
+              "dem_votes": 2032,
+              "rep_votes": 2888,
+              "other_votes": 110,
+              "total_votes": 5030
+            },
+            "135": {
+              "dem_votes": 16656,
+              "rep_votes": 10997,
+              "other_votes": 662,
+              "total_votes": 28315
+            },
+            "136": {
+              "dem_votes": 13527,
+              "rep_votes": 10531,
+              "other_votes": 711,
+              "total_votes": 24769
+            },
+            "137": {
+              "dem_votes": 13161,
+              "rep_votes": 16490,
+              "other_votes": 646,
+              "total_votes": 30297
+            },
+            "138": {
+              "dem_votes": 11235,
+              "rep_votes": 18884,
+              "other_votes": 798,
+              "total_votes": 30917
+            },
+            "183": {
+              "dem_votes": 7540,
+              "rep_votes": 12382,
+              "other_votes": 639,
+              "total_votes": 20561
+            }
+          }
+        },
+        "NORTHUMBERLAND": {
+          "source": {
+            "dem_votes": 11117,
+            "rep_votes": 21826,
+            "other_votes": 2592,
+            "total_votes": 35535
+          },
+          "allocated": {
+            "dem_votes": 11117,
+            "rep_votes": 21826,
+            "other_votes": 2592,
+            "total_votes": 35535
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 35535
+          },
+          "district_allocations": {
+            "107": {
+              "dem_votes": 5438,
+              "rep_votes": 10281,
+              "other_votes": 1320,
+              "total_votes": 17039
+            },
+            "108": {
+              "dem_votes": 5679,
+              "rep_votes": 11545,
+              "other_votes": 1272,
+              "total_votes": 18496
+            }
+          }
+        },
+        "PERRY": {
+          "source": {
+            "dem_votes": 4962,
+            "rep_votes": 14898,
+            "other_votes": 1231,
+            "total_votes": 21091
+          },
+          "allocated": {
+            "dem_votes": 4962,
+            "rep_votes": 14898,
+            "other_votes": 1231,
+            "total_votes": 21091
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 21091
+          },
+          "district_allocations": {
+            "86": {
+              "dem_votes": 4962,
+              "rep_votes": 14898,
+              "other_votes": 1231,
+              "total_votes": 21091
+            }
+          }
+        },
+        "PHILADELPHIA": {
+          "source": {
+            "dem_votes": 560421,
+            "rep_votes": 116714,
+            "other_votes": 8030,
+            "total_votes": 685165
+          },
+          "allocated": {
+            "dem_votes": 560421,
+            "rep_votes": 116714,
+            "other_votes": 8030,
+            "total_votes": 685165
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 101537,
+            "nhgis_historical_block_chain": 583628
+          },
+          "district_allocations": {
+            "10": {
+              "dem_votes": 23280,
+              "rep_votes": 1715,
+              "other_votes": 272,
+              "total_votes": 25267
+            },
+            "170": {
+              "dem_votes": 12135,
+              "rep_votes": 13306,
+              "other_votes": 376,
+              "total_votes": 25817
+            },
+            "172": {
+              "dem_votes": 13668,
+              "rep_votes": 11552,
+              "other_votes": 353,
+              "total_votes": 25573
+            },
+            "173": {
+              "dem_votes": 12583,
+              "rep_votes": 9788,
+              "other_votes": 405,
+              "total_votes": 22776
+            },
+            "174": {
+              "dem_votes": 13581,
+              "rep_votes": 10005,
+              "other_votes": 371,
+              "total_votes": 23957
+            },
+            "175": {
+              "dem_votes": 22668,
+              "rep_votes": 5664,
+              "other_votes": 460,
+              "total_votes": 28792
+            },
+            "177": {
+              "dem_votes": 15115,
+              "rep_votes": 7327,
+              "other_votes": 478,
+              "total_votes": 22920
+            },
+            "179": {
+              "dem_votes": 18433,
+              "rep_votes": 1993,
+              "other_votes": 235,
+              "total_votes": 20661
+            },
+            "180": {
+              "dem_votes": 17244,
+              "rep_votes": 2034,
+              "other_votes": 167,
+              "total_votes": 19445
+            },
+            "181": {
+              "dem_votes": 21020,
+              "rep_votes": 1862,
+              "other_votes": 273,
+              "total_votes": 23155
+            },
+            "182": {
+              "dem_votes": 28103,
+              "rep_votes": 5858,
+              "other_votes": 374,
+              "total_votes": 34335
+            },
+            "184": {
+              "dem_votes": 18040,
+              "rep_votes": 7552,
+              "other_votes": 423,
+              "total_votes": 26015
+            },
+            "185": {
+              "dem_votes": 17581,
+              "rep_votes": 5321,
+              "other_votes": 209,
+              "total_votes": 23111
+            },
+            "186": {
+              "dem_votes": 25574,
+              "rep_votes": 2476,
+              "other_votes": 344,
+              "total_votes": 28394
+            },
+            "188": {
+              "dem_votes": 26337,
+              "rep_votes": 1904,
+              "other_votes": 271,
+              "total_votes": 28512
+            },
+            "190": {
+              "dem_votes": 29162,
+              "rep_votes": 931,
+              "other_votes": 209,
+              "total_votes": 30302
+            },
+            "191": {
+              "dem_votes": 17246,
+              "rep_votes": 415,
+              "other_votes": 90,
+              "total_votes": 17751
+            },
+            "192": {
+              "dem_votes": 28854,
+              "rep_votes": 1429,
+              "other_votes": 246,
+              "total_votes": 30529
+            },
+            "194": {
+              "dem_votes": 21108,
+              "rep_votes": 8938,
+              "other_votes": 639,
+              "total_votes": 30685
+            },
+            "195": {
+              "dem_votes": 27349,
+              "rep_votes": 2571,
+              "other_votes": 279,
+              "total_votes": 30199
+            },
+            "197": {
+              "dem_votes": 23428,
+              "rep_votes": 1265,
+              "other_votes": 178,
+              "total_votes": 24871
+            },
+            "198": {
+              "dem_votes": 27487,
+              "rep_votes": 1172,
+              "other_votes": 229,
+              "total_votes": 28888
+            },
+            "200": {
+              "dem_votes": 37013,
+              "rep_votes": 1581,
+              "other_votes": 320,
+              "total_votes": 38914
+            },
+            "201": {
+              "dem_votes": 30746,
+              "rep_votes": 1002,
+              "other_votes": 234,
+              "total_votes": 31982
+            },
+            "202": {
+              "dem_votes": 13143,
+              "rep_votes": 5512,
+              "other_votes": 310,
+              "total_votes": 18965
+            },
+            "203": {
+              "dem_votes": 19523,
+              "rep_votes": 3541,
+              "other_votes": 285,
+              "total_votes": 23349
+            }
+          }
+        },
+        "PIKE": {
+          "source": {
+            "dem_votes": 9329,
+            "rep_votes": 15192,
+            "other_votes": 1113,
+            "total_votes": 25634
+          },
+          "allocated": {
+            "dem_votes": 9329,
+            "rep_votes": 15192,
+            "other_votes": 1113,
+            "total_votes": 25634
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 25634
+          },
+          "district_allocations": {
+            "139": {
+              "dem_votes": 6109,
+              "rep_votes": 11491,
+              "other_votes": 784,
+              "total_votes": 18384
+            },
+            "189": {
+              "dem_votes": 3220,
+              "rep_votes": 3701,
+              "other_votes": 329,
+              "total_votes": 7250
+            }
+          }
+        },
+        "POTTER": {
+          "source": {
+            "dem_votes": 1387,
+            "rep_votes": 5990,
+            "other_votes": 323,
+            "total_votes": 7700
+          },
+          "allocated": {
+            "dem_votes": 1387,
+            "rep_votes": 5990,
+            "other_votes": 323,
+            "total_votes": 7700
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 7700
+          },
+          "district_allocations": {
+            "67": {
+              "dem_votes": 1387,
+              "rep_votes": 5990,
+              "other_votes": 323,
+              "total_votes": 7700
+            }
+          }
+        },
+        "SCHUYLKILL": {
+          "source": {
+            "dem_votes": 19539,
+            "rep_votes": 37757,
+            "other_votes": 4832,
+            "total_votes": 62128
+          },
+          "allocated": {
+            "dem_votes": 19539,
+            "rep_votes": 37757,
+            "other_votes": 4832,
+            "total_votes": 62128
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 62128
+          },
+          "district_allocations": {
+            "107": {
+              "dem_votes": 2153,
+              "rep_votes": 6721,
+              "other_votes": 661,
+              "total_votes": 9535
+            },
+            "116": {
+              "dem_votes": 2506,
+              "rep_votes": 4305,
+              "other_votes": 620,
+              "total_votes": 7431
+            },
+            "123": {
+              "dem_votes": 10401,
+              "rep_votes": 16211,
+              "other_votes": 2311,
+              "total_votes": 28923
+            },
+            "124": {
+              "dem_votes": 4479,
+              "rep_votes": 10520,
+              "other_votes": 1240,
+              "total_votes": 16239
+            }
+          }
+        },
+        "SNYDER": {
+          "source": {
+            "dem_votes": 4299,
+            "rep_votes": 10867,
+            "other_votes": 1116,
+            "total_votes": 16282
+          },
+          "allocated": {
+            "dem_votes": 4299,
+            "rep_votes": 10867,
+            "other_votes": 1116,
+            "total_votes": 16282
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 16282
+          },
+          "district_allocations": {
+            "85": {
+              "dem_votes": 4299,
+              "rep_votes": 10867,
+              "other_votes": 1116,
+              "total_votes": 16282
+            }
+          }
+        },
+        "SOMERSET": {
+          "source": {
+            "dem_votes": 8340,
+            "rep_votes": 25470,
+            "other_votes": 1923,
+            "total_votes": 35733
+          },
+          "allocated": {
+            "dem_votes": 8340,
+            "rep_votes": 25470,
+            "other_votes": 1923,
+            "total_votes": 35733
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 35733
+          },
+          "district_allocations": {
+            "69": {
+              "dem_votes": 6920,
+              "rep_votes": 22881,
+              "other_votes": 1695,
+              "total_votes": 31496
+            },
+            "71": {
+              "dem_votes": 1420,
+              "rep_votes": 2589,
+              "other_votes": 228,
+              "total_votes": 4237
+            }
+          }
+        },
+        "SULLIVAN": {
+          "source": {
+            "dem_votes": 867,
+            "rep_votes": 2020,
+            "other_votes": 206,
+            "total_votes": 3093
+          },
+          "allocated": {
+            "dem_votes": 867,
+            "rep_votes": 2020,
+            "other_votes": 206,
+            "total_votes": 3093
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 3093
+          },
+          "district_allocations": {
+            "84": {
+              "dem_votes": 867,
+              "rep_votes": 2020,
+              "other_votes": 206,
+              "total_votes": 3093
+            }
+          }
+        },
+        "SUSQUEHANNA": {
+          "source": {
+            "dem_votes": 5535,
+            "rep_votes": 11996,
+            "other_votes": 1716,
+            "total_votes": 19247
+          },
+          "allocated": {
+            "dem_votes": 5535,
+            "rep_votes": 11996,
+            "other_votes": 1716,
+            "total_votes": 19247
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 19247
+          },
+          "district_allocations": {
+            "111": {
+              "dem_votes": 5535,
+              "rep_votes": 11996,
+              "other_votes": 1716,
+              "total_votes": 19247
+            }
+          }
+        },
+        "TIOGA": {
+          "source": {
+            "dem_votes": 3992,
+            "rep_votes": 13418,
+            "other_votes": 764,
+            "total_votes": 18174
+          },
+          "allocated": {
+            "dem_votes": 3992,
+            "rep_votes": 13418,
+            "other_votes": 764,
+            "total_votes": 18174
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 18174
+          },
+          "district_allocations": {
+            "68": {
+              "dem_votes": 3992,
+              "rep_votes": 13418,
+              "other_votes": 764,
+              "total_votes": 18174
+            }
+          }
+        },
+        "UNION": {
+          "source": {
+            "dem_votes": 6092,
+            "rep_votes": 10568,
+            "other_votes": 841,
+            "total_votes": 17501
+          },
+          "allocated": {
+            "dem_votes": 6092,
+            "rep_votes": 10568,
+            "other_votes": 841,
+            "total_votes": 17501
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 17501
+          },
+          "district_allocations": {
+            "76": {
+              "dem_votes": 3366,
+              "rep_votes": 6482,
+              "other_votes": 531,
+              "total_votes": 10379
+            },
+            "83": {
+              "dem_votes": 567,
+              "rep_votes": 1702,
+              "other_votes": 163,
+              "total_votes": 2432
+            },
+            "85": {
+              "dem_votes": 2159,
+              "rep_votes": 2384,
+              "other_votes": 147,
+              "total_votes": 4690
+            }
+          }
+        },
+        "VENANGO": {
+          "source": {
+            "dem_votes": 6989,
+            "rep_votes": 14581,
+            "other_votes": 1638,
+            "total_votes": 23208
+          },
+          "allocated": {
+            "dem_votes": 6989,
+            "rep_votes": 14581,
+            "other_votes": 1638,
+            "total_votes": 23208
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 23208
+          },
+          "district_allocations": {
+            "64": {
+              "dem_votes": 6989,
+              "rep_votes": 14581,
+              "other_votes": 1638,
+              "total_votes": 23208
+            }
+          }
+        },
+        "WARREN": {
+          "source": {
+            "dem_votes": 5124,
+            "rep_votes": 12130,
+            "other_votes": 958,
+            "total_votes": 18212
+          },
+          "allocated": {
+            "dem_votes": 5124,
+            "rep_votes": 12130,
+            "other_votes": 958,
+            "total_votes": 18212
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 18212
+          },
+          "district_allocations": {
+            "65": {
+              "dem_votes": 5124,
+              "rep_votes": 12130,
+              "other_votes": 958,
+              "total_votes": 18212
+            }
+          }
+        },
+        "WASHINGTON": {
+          "source": {
+            "dem_votes": 38133,
+            "rep_votes": 56952,
+            "other_votes": 5824,
+            "total_votes": 100909
+          },
+          "allocated": {
+            "dem_votes": 38133,
+            "rep_votes": 56952,
+            "other_votes": 5824,
+            "total_votes": 100909
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 100909
+          },
+          "district_allocations": {
+            "15": {
+              "dem_votes": 4958,
+              "rep_votes": 7968,
+              "other_votes": 996,
+              "total_votes": 13922
+            },
+            "39": {
+              "dem_votes": 2620,
+              "rep_votes": 3584,
+              "other_votes": 527,
+              "total_votes": 6731
+            },
+            "40": {
+              "dem_votes": 4190,
+              "rep_votes": 9754,
+              "other_votes": 428,
+              "total_votes": 14372
+            },
+            "46": {
+              "dem_votes": 8464,
+              "rep_votes": 12375,
+              "other_votes": 1185,
+              "total_votes": 22024
+            },
+            "48": {
+              "dem_votes": 11447,
+              "rep_votes": 16364,
+              "other_votes": 1715,
+              "total_votes": 29526
+            },
+            "50": {
+              "dem_votes": 6454,
+              "rep_votes": 6907,
+              "other_votes": 973,
+              "total_votes": 14334
+            }
+          }
+        },
+        "WAYNE": {
+          "source": {
+            "dem_votes": 7487,
+            "rep_votes": 14538,
+            "other_votes": 1803,
+            "total_votes": 23828
+          },
+          "allocated": {
+            "dem_votes": 7487,
+            "rep_votes": 14538,
+            "other_votes": 1803,
+            "total_votes": 23828
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 23828
+          },
+          "district_allocations": {
+            "111": {
+              "dem_votes": 3856,
+              "rep_votes": 7475,
+              "other_votes": 891,
+              "total_votes": 12222
+            },
+            "139": {
+              "dem_votes": 3631,
+              "rep_votes": 7063,
+              "other_votes": 912,
+              "total_votes": 11606
+            }
+          }
+        },
+        "WESTMORELAND": {
+          "source": {
+            "dem_votes": 62981,
+            "rep_votes": 107532,
+            "other_votes": 9745,
+            "total_votes": 180258
+          },
+          "allocated": {
+            "dem_votes": 62981,
+            "rep_votes": 107532,
+            "other_votes": 9745,
+            "total_votes": 180258
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 180258
+          },
+          "district_allocations": {
+            "55": {
+              "dem_votes": 12441,
+              "rep_votes": 20245,
+              "other_votes": 1728,
+              "total_votes": 34414
+            },
+            "56": {
+              "dem_votes": 11435,
+              "rep_votes": 20954,
+              "other_votes": 1696,
+              "total_votes": 34085
+            },
+            "57": {
+              "dem_votes": 11956,
+              "rep_votes": 20211,
+              "other_votes": 1792,
+              "total_votes": 33959
+            },
+            "58": {
+              "dem_votes": 11629,
+              "rep_votes": 17881,
+              "other_votes": 1865,
+              "total_votes": 31375
+            },
+            "59": {
+              "dem_votes": 10780,
+              "rep_votes": 21062,
+              "other_votes": 2004,
+              "total_votes": 33846
+            },
+            "60": {
+              "dem_votes": 4740,
+              "rep_votes": 7179,
+              "other_votes": 660,
+              "total_votes": 12579
+            }
+          }
+        },
+        "WYOMING": {
+          "source": {
+            "dem_votes": 4154,
+            "rep_votes": 7844,
+            "other_votes": 1068,
+            "total_votes": 13066
+          },
+          "allocated": {
+            "dem_votes": 4154,
+            "rep_votes": 7844,
+            "other_votes": 1068,
+            "total_votes": 13066
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 13066
+          },
+          "district_allocations": {
+            "110": {
+              "dem_votes": 4154,
+              "rep_votes": 7844,
+              "other_votes": 1068,
+              "total_votes": 13066
+            }
+          }
+        },
+        "YORK": {
+          "source": {
+            "dem_votes": 69394,
+            "rep_votes": 126350,
+            "other_votes": 10271,
+            "total_votes": 206015
+          },
+          "allocated": {
+            "dem_votes": 69394,
+            "rep_votes": 126350,
+            "other_votes": 10271,
+            "total_votes": 206015
+          },
+          "delta": {
+            "dem_votes": 0,
+            "rep_votes": 0,
+            "other_votes": 0,
+            "total_votes": 0
+          },
+          "conserved": true,
+          "allocation_quality_votes": {
+            "exact_current_precinct_vtd": 206015
+          },
+          "district_allocations": {
+            "47": {
+              "dem_votes": 10302,
+              "rep_votes": 17720,
+              "other_votes": 1453,
+              "total_votes": 29475
+            },
+            "92": {
+              "dem_votes": 9001,
+              "rep_votes": 21943,
+              "other_votes": 1620,
+              "total_votes": 32564
+            },
+            "93": {
+              "dem_votes": 10071,
+              "rep_votes": 20562,
+              "other_votes": 1502,
+              "total_votes": 32135
+            },
+            "94": {
+              "dem_votes": 8883,
+              "rep_votes": 19322,
+              "other_votes": 1541,
+              "total_votes": 29746
+            },
+            "95": {
+              "dem_votes": 13436,
+              "rep_votes": 7451,
+              "other_votes": 1123,
+              "total_votes": 22010
+            },
+            "169": {
+              "dem_votes": 8579,
+              "rep_votes": 19531,
+              "other_votes": 1507,
+              "total_votes": 29617
+            },
+            "196": {
+              "dem_votes": 9122,
+              "rep_votes": 19821,
+              "other_votes": 1525,
+              "total_votes": 30468
+            }
+          }
+        }
+      }
+    },
+    "reviewed_precinct_corrections": [
+      {
+        "id": "emmaus-2016-whole-borough-hd134-v1",
+        "review_hash": "c8b28a278bbbc2f25dc999cf78f39aa0ef2791ae8905fce093234aa11697a744",
+        "cause": "reverse_many_to_many_crosswalk_full_vtd_union",
+        "county": "LEHIGH",
+        "precincts": [
+          "EMMAUS D 1",
+          "EMMAUS D 2",
+          "EMMAUS D 3",
+          "EMMAUS D 4",
+          "EMMAUS D 5",
+          "EMMAUS D 6"
+        ],
+        "geography_basis": "Whole Emmaus Borough is in current House 134; all original 2016 Emmaus precinct blocks independently join House 134.",
+        "source": "https://www.pa.gov/agencies/vote/resources/redistricting/pennsylvania-redistricting-house-of-representative"
+      }
+    ]
   },
   "general": {
     "results": {
@@ -1461,15 +4752,15 @@
         "margin_pct": 28.128027905174086
       },
       "131": {
-        "dem_votes": 14126,
-        "rep_votes": 22071,
-        "other_votes": 1120,
-        "total_votes": 37317,
+        "dem_votes": 13273,
+        "rep_votes": 21056,
+        "other_votes": 1028,
+        "total_votes": 35357,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "R",
-        "margin": 7945.0,
-        "margin_pct": 21.290564622022135
+        "margin": 7783.0,
+        "margin_pct": 22.012614192380575
       },
       "132": {
         "dem_votes": 14818,
@@ -1494,15 +4785,15 @@
         "margin_pct": 8.278937042981987
       },
       "134": {
-        "dem_votes": 12238,
-        "rep_votes": 7303,
-        "other_votes": 847,
-        "total_votes": 20388,
+        "dem_votes": 13091,
+        "rep_votes": 8318,
+        "other_votes": 939,
+        "total_votes": 22348,
         "dem_candidate": "Katie McGinty",
         "rep_candidate": "Pat Toomey",
         "winner": "D",
-        "margin": 4935.0,
-        "margin_pct": 24.20541494997057
+        "margin": 4773.0,
+        "margin_pct": 21.357615894039736
       },
       "135": {
         "dem_votes": 16656,

@@ -1,0 +1,17 @@
+source_line,countyfp,precinct,official_municipality_type,party_bucket,candidate,source_votes,matched_rdh_precinct,district_weights,via_vtd_bridge_cd10_votes,original_blocks_cd10_votes,direct_minus_bridge,cause
+112137,133,JACKSON P 1,4,dem_votes,CASEY ROBERT P JR,552,JACKSON 1,"{""10"": 1920.0, ""11"": 1102.0}",360,351,-9,Carter VTD aggregation loses election-precinct block distribution
+112138,133,JACKSON P 2,4,dem_votes,CASEY ROBERT P JR,566,JACKSON 2,"{""10"": 3749.0}",563,566,3,Carter VTD aggregation loses election-precinct block distribution
+112231,133,YORK W 13,2,dem_votes,CASEY ROBERT P JR,316,YORK 13-1,"{""10"": 1463.0}",0,316,316,municipality/precinct identity
+112236,133,YORK W 1 P 1,4,dem_votes,CASEY ROBERT P JR,419,YORK TWP 1-1,"{""11"": 1640.0}",419,0,-419,municipality/precinct identity
+112248,133,YORK W 5 P 1,4,dem_votes,CASEY ROBERT P JR,420,YORK TWP 5-1,"{""11"": 1592.0}",420,0,-420,municipality/precinct identity
+112297,133,JACKSON P 1,4,rep_votes,BARLETTA LOUIS J. ,1046,JACKSON 1,"{""10"": 1920.0, ""11"": 1102.0}",682,665,-17,Carter VTD aggregation loses election-precinct block distribution
+112298,133,JACKSON P 2,4,rep_votes,BARLETTA LOUIS J. ,966,JACKSON 2,"{""10"": 3749.0}",960,966,6,Carter VTD aggregation loses election-precinct block distribution
+112391,133,YORK W 13,2,rep_votes,BARLETTA LOUIS J. ,45,YORK 13-1,"{""10"": 1463.0}",0,45,45,municipality/precinct identity
+112396,133,YORK W 1 P 1,4,rep_votes,BARLETTA LOUIS J. ,558,YORK TWP 1-1,"{""11"": 1640.0}",558,0,-558,municipality/precinct identity
+112408,133,YORK W 5 P 1,4,rep_votes,BARLETTA LOUIS J. ,488,YORK TWP 5-1,"{""11"": 1592.0}",488,0,-488,municipality/precinct identity
+112556,133,YORK W 1 P 1,4,other_votes,GALE NEAL TAYLOR ,4,YORK TWP 1-1,"{""11"": 1640.0}",4,0,-4,municipality/precinct identity
+112568,133,YORK W 5 P 1,4,other_votes,GALE NEAL TAYLOR ,4,YORK TWP 5-1,"{""11"": 1592.0}",4,0,-4,municipality/precinct identity
+112617,133,JACKSON P 1,4,other_votes,KERNS DALE R JR,24,JACKSON 1,"{""10"": 1920.0, ""11"": 1102.0}",16,15,-1,Carter VTD aggregation loses election-precinct block distribution
+112711,133,YORK W 13,2,other_votes,KERNS DALE R JR,8,YORK 13-1,"{""10"": 1463.0}",0,8,8,municipality/precinct identity
+112716,133,YORK W 1 P 1,4,other_votes,KERNS DALE R JR,8,YORK TWP 1-1,"{""11"": 1640.0}",8,0,-8,municipality/precinct identity
+112728,133,YORK W 5 P 1,4,other_votes,KERNS DALE R JR,16,YORK TWP 5-1,"{""11"": 1592.0}",16,0,-16,municipality/precinct identity

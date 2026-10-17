@@ -1,0 +1,83 @@
+{
+  "archive_name": "pa_2018_gen_2020_blocks.zip",
+  "archive_sha256": "f88c1dc9d7f638efdf069ac8a6adc8b3e55df636360ad81171cf2e11f9687316",
+  "block_universe": 336985,
+  "benchmark_county_blocks": 23773,
+  "unmatched_rows": 0,
+  "unmatched_votes": 0,
+  "county_totals": {
+    "census_vap": {
+      "041": {
+        "dem_votes": 45015,
+        "rep_votes": 49847,
+        "other_votes": 1992
+      },
+      "043": {
+        "dem_votes": 59533,
+        "rep_votes": 47152,
+        "other_votes": 2023
+      },
+      "133": {
+        "dem_votes": 39611,
+        "rep_votes": 45311,
+        "other_votes": 1886
+      }
+    },
+    "vap_mod": {
+      "041": {
+        "dem_votes": 45015,
+        "rep_votes": 49847,
+        "other_votes": 1992
+      },
+      "043": {
+        "dem_votes": 59533,
+        "rep_votes": 47152,
+        "other_votes": 2023
+      },
+      "133": {
+        "dem_votes": 39611,
+        "rep_votes": 45311,
+        "other_votes": 1886
+      }
+    }
+  },
+  "district_totals": {
+    "census_vap": {
+      "dem_votes": 144159,
+      "rep_votes": 142310,
+      "other_votes": 5901
+    },
+    "vap_mod": {
+      "dem_votes": 144159,
+      "rep_votes": 142310,
+      "other_votes": 5901
+    }
+  },
+  "source_precinct_split_weights": [
+    {
+      "countyfp": "041",
+      "precinct": "NORTH NEWTON",
+      "census_vap": {
+        "10": 847.0,
+        "13": 1036.0
+      },
+      "vap_mod": {
+        "10": 847.0,
+        "13": 1036.0
+      }
+    },
+    {
+      "countyfp": "133",
+      "precinct": "JACKSON 1",
+      "census_vap": {
+        "10": 1920.0,
+        "11": 1102.0
+      },
+      "vap_mod": {
+        "10": 1920.0,
+        "11": 1102.0
+      }
+    }
+  ],
+  "decision": "Diagnostic only; original block-to-precinct assignments are RDH-modeled, not official ballot-fragment returns."
+}

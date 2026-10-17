@@ -1,0 +1,122 @@
+{
+  "source": "data\\ElectionReturns_2018_General_PrecinctReturns.txt",
+  "source_sha256": "3bee609f52349b979245634147ddab7f018a0115cce46b71da08fb6c415199bb",
+  "source_lf_sha256": "a05eaf5062c9caa6e2c2142b228d6cf5eb45c17386be5efd32cf1b9ad3c7cfc6",
+  "source_county_votes": {
+    "041": {
+      "dem_votes": 47738,
+      "rep_votes": 54525,
+      "other_votes": 2137
+    },
+    "043": {
+      "dem_votes": 59533,
+      "rep_votes": 47152,
+      "other_votes": 2023
+    },
+    "133": {
+      "dem_votes": 69272,
+      "rep_votes": 95814,
+      "other_votes": 3726
+    }
+  },
+  "current_cd10_county_votes": {
+    "041": {
+      "dem_votes": 45015,
+      "rep_votes": 49847,
+      "other_votes": 1992
+    },
+    "043": {
+      "dem_votes": 59533,
+      "rep_votes": 47152,
+      "other_votes": 2023
+    },
+    "133": {
+      "dem_votes": 40140,
+      "rep_votes": 46323,
+      "other_votes": 1911
+    }
+  },
+  "old_2018_cd10_county_votes": {
+    "041": {
+      "dem_votes": 42484,
+      "rep_votes": 44735,
+      "other_votes": 1860
+    },
+    "043": {
+      "dem_votes": 59533,
+      "rep_votes": 47152,
+      "other_votes": 2023
+    },
+    "133": {
+      "dem_votes": 43508,
+      "rep_votes": 49000,
+      "other_votes": 2068
+    }
+  },
+  "unmatched_rows": 0,
+  "unmatched_votes": 0,
+  "precincts": 439,
+  "split_precincts": [
+    {
+      "countyfp": "041",
+      "precinct": "NORTH NEWTON",
+      "district_vap_weights": {
+        "10": 847.0,
+        "13": 1036.0
+      },
+      "targets": [
+        [
+          "041",
+          "000630",
+          1.0,
+          "rdh_precinct_blocks"
+        ]
+      ]
+    },
+    {
+      "countyfp": "133",
+      "precinct": "JACKSON P 1",
+      "district_vap_weights": {
+        "10": 1936.88252812672,
+        "11": 1032.350099272192
+      },
+      "targets": [
+        [
+          "133",
+          "000420",
+          0.936796823296,
+          "rdh_precinct_blocks"
+        ],
+        [
+          "133",
+          "000430",
+          0.063203176704,
+          "rdh_precinct_blocks"
+        ]
+      ]
+    },
+    {
+      "countyfp": "133",
+      "precinct": "JACKSON P 2",
+      "district_vap_weights": {
+        "10": 3819.2445985599697,
+        "11": 22.927714056892
+      },
+      "targets": [
+        [
+          "133",
+          "000420",
+          0.020805548146,
+          "rdh_precinct_blocks"
+        ],
+        [
+          "133",
+          "000430",
+          0.979194451854,
+          "rdh_precinct_blocks"
+        ]
+      ]
+    }
+  ],
+  "decision": "Diagnostic only; matching and precinct vintage require independent review before promotion."
+}

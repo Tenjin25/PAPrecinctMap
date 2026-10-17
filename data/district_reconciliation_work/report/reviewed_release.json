@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "release_scope": "emmaus-2016-whole-borough-hd134-v1",
+  "changed_files": [
+    "state_house_attorney_general_2016.json",
+    "state_house_auditor_2016.json",
+    "state_house_president_2016.json",
+    "state_house_treasurer_2016.json",
+    "state_house_us_senate_2016.json"
+  ],
+  "changed_district_rows": [
+    {
+      "file": "state_house_attorney_general_2016.json",
+      "district": "131"
+    },
+    {
+      "file": "state_house_attorney_general_2016.json",
+      "district": "134"
+    },
+    {
+      "file": "state_house_auditor_2016.json",
+      "district": "131"
+    },
+    {
+      "file": "state_house_auditor_2016.json",
+      "district": "134"
+    },
+    {
+      "file": "state_house_president_2016.json",
+      "district": "131"
+    },
+    {
+      "file": "state_house_president_2016.json",
+      "district": "134"
+    },
+    {
+      "file": "state_house_treasurer_2016.json",
+      "district": "131"
+    },
+    {
+      "file": "state_house_treasurer_2016.json",
+      "district": "134"
+    },
+    {
+      "file": "state_house_us_senate_2016.json",
+      "district": "131"
+    },
+    {
+      "file": "state_house_us_senate_2016.json",
+      "district": "134"
+    }
+  ],
+  "county_party_conservation": "exact_against_all_67_certified_counties",
+  "statewide_party_conservation": "exact",
+  "unmatched_or_unallocated_source_rows": 0,
+  "candidate_names": "preserved_verbatim",
+  "unreviewed_files": "byte_identical",
+  "broad_candidate": "BLOCKED_not_promoted",
+  "promoted": true
+}
