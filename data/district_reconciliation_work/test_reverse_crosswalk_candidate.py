@@ -47,7 +47,7 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
         for relative, expected in fingerprints.items():
             path = ROOT / relative
             content = path.read_bytes()
-            if path.suffix.lower() in {'.csv', '.txt', '.py', '.md'}:
+            if path.suffix.lower() in {'.csv', '.json', '.txt', '.py', '.md'}:
                 content = content.replace(b'\r\n', b'\n')
             self.assertEqual(hashlib.sha256(content).hexdigest(), expected, relative)
 

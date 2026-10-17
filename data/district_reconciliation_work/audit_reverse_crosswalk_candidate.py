@@ -30,7 +30,7 @@ SCOPES = ('congressional', 'state_house', 'state_senate')
 
 def stable_hash(path: Path) -> str:
     content = path.read_bytes()
-    if path.suffix.lower() in {'.csv', '.txt', '.py', '.md'}:
+    if path.suffix.lower() in {'.csv', '.json', '.txt', '.py', '.md'}:
         content = content.replace(b'\r\n', b'\n')
     return hashlib.sha256(content).hexdigest()
 
