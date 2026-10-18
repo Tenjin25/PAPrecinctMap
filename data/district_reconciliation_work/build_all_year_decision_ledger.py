@@ -183,7 +183,9 @@ def main():
         else:
             counts['original_unresolved'] += count
     summary = {
-        **counts,
+        'original_differences': counts['original_differences'],
+        'original_numerical_lineage_explained': counts['original_numerical_lineage_explained'],
+        'original_unresolved': counts['original_unresolved'],
         'historical_checkpoint_at_6b293db': 269,
         'new_exact_county_clustered_stage_rows': 12,
         'exact_official_rdh_stage_rows': sum(
@@ -193,6 +195,18 @@ def main():
         'exact_vest_2020_president_pipeline_rows': sum(
             int(row['district_rows']) for row in original
             if 'vest_2020_publication_pipeline' in row['cause']
+        ),
+        'exact_legacy_judicial_publication_replay_rows': sum(
+            int(row['district_rows']) for row in original
+            if 'legacy_carter_adjusted_judicial_publication_replay' in row['cause']
+        ),
+        'exact_modern_publication_history_rows': sum(
+            int(row['district_rows']) for row in original
+            if 'historical_rdh_2022_publication_endpoint' in row['cause']
+            or 'historical_rdh_2024_publication_endpoint' in row['cause']
+            or 'vap_controlled_allocation' in row['cause']
+            or 'localized_residual_allocation' in row['cause']
+            or 'certified_county_party_control' in row['cause']
         ),
         'approved_emmaus_district_rows': sum(int(row['district_rows']) for row in rows if row['row_universe'] == 'reviewed_emmaus_release'),
         'historical_judicial_files_missing_evidence': len(acceptance['missing_county_evidence_files']),

@@ -1,0 +1,80 @@
+{
+  "audit_script_lf_sha256": "6773a79604d83df4c654cb7db77a6225e0f3ffcc64264f7862b8331c189cce30",
+  "candidate_name_commit": "2afe1f6d4751093be19210136f13be8037c893cf",
+  "historical_commit": "6f5f0fba26a60164cac6fceca0e9f8693d6fb8a3",
+  "historical_inputs": {
+    "build_pa_data_layers.py": {
+      "git_blob": "2493d78803d212c77199987f504a9816e069daf5",
+      "sha256": "dea3208c5d4fae1a1d7c86d7d9ce32a1cd99ace96eab7387779c8f552ce5fcf8"
+    },
+    "data/42_PA_CD118.txt": {
+      "git_blob": "7fc9c3dbcd77e5c4bacdf951ae406ca14a2018fb",
+      "sha256": "0db88e60a8f9d8638075b651d4595cb3c1f5daff1543bca06a81527901ad7221"
+    },
+    "data/42_PA_SLDL22.txt": {
+      "git_blob": "3388fcd902cca545aef6ec09c902ca528e6c1331",
+      "sha256": "eafd26c4bb5f0974bab1e22ad61f8a5b949d1117c0bc35f49d774063416981ad"
+    },
+    "data/42_PA_SLDU22.txt": {
+      "git_blob": "7feb461b57ffe0a0f33312121704551db08eddcf",
+      "sha256": "6be1d7202ac6cd48686a015be64f5a1b41c9bf21d5986296869157179b51f37e"
+    },
+    "data/ElectionReturns_2001_Municipal_PrecinctReturns.txt": {
+      "git_blob": "e4197089d1c6a898122afe6567b811b36ccef561",
+      "sha256": "395ef61e070926f3022ff6d618ac18720499db56b1add4dbe58851dcc7231b21"
+    },
+    "data/ElectionReturns_2003_Municipal_PrecinctReturns.txt": {
+      "git_blob": "06f68c7322e8176ee6e5824b906fccaa3d0abfe0",
+      "sha256": "8e8024373f9f0a55f356639e91f93588b38712577b6809aa5760cc15d7cf2ccc"
+    },
+    "data/ElectionReturns_2007_Municipal_PrecinctReturns.txt": {
+      "git_blob": "2bc9663b9d1ff43e5bd8262319b142cbaf8bd480",
+      "sha256": "7d92e256de13ce5b34debd5d278c361059c78a615ec3fe0ab1ec52049550b994"
+    },
+    "data/ElectionReturns_2015_Municipal_Precinct.txt": {
+      "git_blob": "f446a44bbd063185e4c5321d6a8a93d015cc5bde",
+      "sha256": "1dae1939ebe242da8a6337a51f9aa9b724ea4e94a190c3e40b7a9efb27c229b9"
+    },
+    "data/ElectionReturns_2017_Municipal_PrecinctReturns.txt": {
+      "git_blob": "cc570742ad2eb11d0dc091a3eb0fd6948013d9f2",
+      "sha256": "e40bfe57eebb233a75d5768eb2af1775a95b563653e56eea555b0bdbf8f0cbdc"
+    },
+    "data/ElectionReturns_2019_General_PrecinctReturns.txt": {
+      "git_blob": "b9c643aca7fcf569750eaf78909ab3808ab538c8",
+      "sha256": "f58356a664eeaf83338d9e6f83384e99c2d394bc0a552c51b237b3a394336d53"
+    },
+    "data/ElectionReturns_2021_Municipal_PrecinctReturns.txt": {
+      "git_blob": "57fd8159a9f7164476ddeb2110444e182f3fbf19",
+      "sha256": "5ecfb198cbf2ca929661683fdbbcd43dfff3b0ec593564ccb19b521215cbd0b8"
+    },
+    "data/ElectionReturns_2023_Municipal_PrecinctReturns.txt": {
+      "git_blob": "f7855da73674e27f461bfb831d64c27de196163d",
+      "sha256": "6b9263452c41ba69e3b0f06a038ddeef08e127ea0a0bbf637d30dab0e0dcbb14"
+    },
+    "data/ElectionReturns_2025_Municipal_PrecinctReturns.txt": {
+      "git_blob": "a9239bf009ee62521417ac968247a566af367940",
+      "sha256": "75c8aaad1ed2f3460e1fb0dd2dcaebc1348786fe1fd917fbf6788b0016a4cad3"
+    },
+    "data/crosswalks/pa_block20_to_vtd20.csv": {
+      "git_blob": "e010adf087d92e3434b49719a11e6f7a578fc3c6",
+      "sha256": "04dc7ab53cd5f1a3ca0a93c7d2bd776512cea8d26e2a88ff21d70bf099ee40e7"
+    },
+    "data/crosswalks/pa_historical_precinct_to_vtd20.csv": {
+      "git_blob": "d62193713c80eb911a6cd68de39719a6382b24d6",
+      "sha256": "db394856128c6f81e7da502431af63daae9781bb8e1594583df2b67dd026265f"
+    },
+    "data/crosswalks/pa_modern_precinct_to_vtd20.csv": {
+      "git_blob": "4562615cbceec39bab7f6cc9eaa8cad55b0723f3",
+      "sha256": "3305fbad809c166c5d9385ecceede731f85334cdc920403e01b89e48bb22e3b5"
+    },
+    "data/crosswalks/pa_vtd10_to_vtd20_block_chain.csv": {
+      "git_blob": "90627fe209a90adb416501c11a3dd0cc81bec79a",
+      "sha256": "8a44cd56d508786b5f7b8ea00fc06c6fcbb7962d47702f4c4d18240d9fe21eb5"
+    },
+    "data/crosswalks/pa_vtd20_to_current_precinct.csv": {
+      "git_blob": "ee46b62d6863c26f21dc4eb706ef69aeaaea53e9",
+      "sha256": "a684639858ff053b18faa53755129409520bba3b1ab4da1d1b69c05ebf76edd6"
+    }
+  },
+  "name_stage_git_blob": "a043f7f5a21beaba9b9a7d90546a8fd232d00fa9"
+}

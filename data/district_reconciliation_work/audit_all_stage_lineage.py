@@ -48,7 +48,7 @@ def add_csv_edges(graph, inventory, path, fixed=None):
             continue
         filename = f'{scope}_{contest}_{year}.json'
         graph[(filename, district)][old].append({
-            'to': new, 'stage': path.stem, 'file': path.relative_to(ROOT).as_posix(),
+            'to': new, 'stage': row.get('stage') or path.stem, 'file': path.relative_to(ROOT).as_posix(),
             'row': row_number, 'sha256': path_hash,
         })
 
@@ -99,6 +99,9 @@ def main():
         fixed = parse_dra(path)
         if fixed:
             add_csv_edges(graph, inventory, path, fixed)
+    modern_stage_path = OUT / 'modern_publication_stage_ledger.csv'
+    if modern_stage_path.exists():
+        add_csv_edges(graph, inventory, modern_stage_path)
 
     rdh_endpoints = {}
     rdh_path = OUT / 'rdh_replay_endpoints.csv'
@@ -130,6 +133,36 @@ def main():
                 {'file': vest_2020_path.relative_to(ROOT).as_posix(), 'row': row_number, 'sha256': vest_2020_hash},
             )
 
+    legacy_judicial_endpoints = {}
+    legacy_judicial_path = OUT / 'legacy_judicial_endpoints.csv'
+    if legacy_judicial_path.exists():
+        with legacy_judicial_path.open(newline='', encoding='utf-8-sig') as handle:
+            legacy_judicial_rows = list(csv.DictReader(handle))
+        legacy_judicial_hash = stable_hash(legacy_judicial_path)
+        inventory.append({'file': legacy_judicial_path.relative_to(ROOT).as_posix(), 'rows': len(legacy_judicial_rows), 'lf_sha256': legacy_judicial_hash})
+        for row_number, row in enumerate(legacy_judicial_rows, start=2):
+            if row.get('lineage_eligible') != 'True':
+                continue
+            legacy_judicial_endpoints[(row['file'], row['district'])] = (
+                tuple(int(row[field]) for field in VOTE_FIELDS),
+                {'file': legacy_judicial_path.relative_to(ROOT).as_posix(), 'row': row_number, 'sha256': legacy_judicial_hash},
+            )
+
+    modern_publication_endpoints = {}
+    modern_publication_path = OUT / 'modern_publication_endpoints.csv'
+    if modern_publication_path.exists():
+        with modern_publication_path.open(newline='', encoding='utf-8-sig') as handle:
+            modern_publication_rows = list(csv.DictReader(handle))
+        modern_publication_hash = stable_hash(modern_publication_path)
+        inventory.append({'file': modern_publication_path.relative_to(ROOT).as_posix(), 'rows': len(modern_publication_rows), 'lf_sha256': modern_publication_hash})
+        for row_number, row in enumerate(modern_publication_rows, start=2):
+            if row.get('lineage_eligible') != 'True':
+                continue
+            modern_publication_endpoints[(row['file'], row['district'])] = (
+                tuple(int(row[field]) for field in VOTE_FIELDS), row['stage'],
+                {'file': modern_publication_path.relative_to(ROOT).as_posix(), 'row': row_number, 'sha256': modern_publication_hash},
+            )
+
     changes_path = ROOT / 'data/district_bef_candidate/district_vote_changes.csv'
     prior_causes = {}
     with (WORK / 'report/verified_calibration_causes.csv').open(newline='', encoding='utf-8') as handle:
@@ -153,6 +186,18 @@ def main():
             graph[key][start].append({
                 'to': vest_2020[0], 'stage': 'vest_2020_publication_pipeline',
                 **vest_2020[1],
+            })
+        legacy_judicial = legacy_judicial_endpoints.get(key)
+        if legacy_judicial and legacy_judicial[0] != start:
+            graph[key][start].append({
+                'to': legacy_judicial[0], 'stage': 'legacy_carter_adjusted_judicial_publication_replay',
+                **legacy_judicial[1],
+            })
+        modern_publication = modern_publication_endpoints.get(key)
+        if modern_publication and modern_publication[0] != start:
+            graph[key][start].append({
+                'to': modern_publication[0], 'stage': modern_publication[1],
+                **modern_publication[2],
             })
         path = shortest_path(graph[key], start, target)
         prior = prior_causes.get(key, {})
@@ -210,6 +255,17 @@ def main():
         ),
         'exact_paths_using_vest_2020_publication_pipeline': sum(
             count for path, count in stage_paths.items() if 'vest_2020_publication_pipeline' in path
+        ),
+        'exact_paths_using_legacy_judicial_publication_replay': sum(
+            count for path, count in stage_paths.items() if 'legacy_carter_adjusted_judicial_publication_replay' in path
+        ),
+        'exact_paths_using_modern_publication_history': sum(
+            count for path, count in stage_paths.items()
+            if 'historical_rdh_2022_publication_endpoint' in path
+            or 'historical_rdh_2024_publication_endpoint' in path
+            or 'vap_controlled_allocation' in path
+            or 'localized_residual_allocation' in path
+            or 'certified_county_party_control' in path
         ),
         'path_counts': dict(sorted(stage_paths.items())),
         'classification': 'numerical lineage only; no independent geography or production approval',

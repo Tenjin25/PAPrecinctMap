@@ -16,7 +16,17 @@ finds 12 exact county-clustered paths plus 1,488 exact RDH official-return paths
 raising current exact numerical lineage to 1,769 and reducing the unresolved
 count to 3,640. The reconstructed VEST 2020 President publication pipeline adds
 all 270 congressional, House, and Senate rows, raising exact lineage to 2,039
-and reducing unresolved rows to 3,370. County-local deterministic largest remainder removes the prior
+and reducing unresolved rows to 3,370. The detached Carter-adjusted historical
+judicial builder then reproduces all 3,308 judicial differences exactly; the
+later name-preservation commit accounts for 85 rows with label-only changes.
+The retained 2022/2024 publication-history chain then closes the final four
+2022 U.S. Senate and 58 2024 President rows exactly. It uses the historical RDH,
+VAP-control, localized-residual, county-clustering, and certified county-control
+commits as directed stages; every chain terminates at current publication with
+candidate names preserved. A clean replay from the current archives is
+non-equivalent and is not substituted for this evidence. Exact numerical
+lineage is now all 5,409 original differences, with zero unresolved.
+County-local deterministic largest remainder removes the prior
 independent-rounding defect: all 21 RDH files have zero unmatched/unallocated
 rows and exact county-party conservation. Only six district rows differ from
 the former statewide-rounding endpoint, in paired one-vote transfers. These
@@ -71,8 +81,9 @@ source-row replay reproduces both the pre-certification and controlled candidate
 totals, with zero unmatched rows and exact county-party conservation. See
 `../certification_stages_2018/README.md`. This establishes numerical lineage,
 not independently validated DRA geography or grounds for production changes.
-The remaining 5,140 have no exact stage
-evidence in those calibration ledgers. County components are not fabricated
+The remaining 5,140 have no exact stage evidence in those particular DRA
+calibration ledgers; they are addressed by the additional retained-stage
+replays described above. County components are not fabricated
 for district-level calibration operations. `verified_cause_groups.csv` groups
 the status by year, contest, scope and cause, explicitly marking missing
 county attribution rather than inventing it.

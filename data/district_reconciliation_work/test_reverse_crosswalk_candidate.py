@@ -58,10 +58,12 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
         summary = json.loads((OUT.parent / 'report/all_year_decision_summary.json').read_text(encoding='utf-8'))
         self.assertEqual(summary['original_differences'], 5409)
         self.assertEqual(summary['historical_checkpoint_at_6b293db'], 269)
-        self.assertEqual(summary['original_numerical_lineage_explained'], 2039)
-        self.assertEqual(summary['original_unresolved'], 3370)
-        self.assertEqual(summary['exact_official_rdh_stage_rows'], 1488)
+        self.assertEqual(summary['original_numerical_lineage_explained'], 5409)
+        self.assertEqual(summary['original_unresolved'], 0)
+        self.assertEqual(summary['exact_official_rdh_stage_rows'], 1542)
         self.assertEqual(summary['exact_vest_2020_president_pipeline_rows'], 270)
+        self.assertEqual(summary['exact_legacy_judicial_publication_replay_rows'], 3308)
+        self.assertEqual(summary['exact_modern_publication_history_rows'], 62)
         self.assertEqual(summary['approved_emmaus_district_rows'], 10)
         self.assertEqual(summary['historical_judicial_files_missing_evidence'], 33)
         self.assertEqual(summary['judicial_files_with_recovered_evidence'], 27)
@@ -99,10 +101,12 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
         self.assertEqual(summary['integerization_district_change_rows'], 6)
         self.assertEqual(summary['integerization_county_increment_rows'], 147)
         stage = json.loads((directory / 'summary.json').read_text(encoding='utf-8'))
-        self.assertEqual(stage['current_numerical_lineage_explained'], 2039)
-        self.assertEqual(stage['unresolved_no_exact_stage_evidence'], 3370)
-        self.assertEqual(stage['exact_paths_using_official_rdh_rebuild'], 1488)
+        self.assertEqual(stage['current_numerical_lineage_explained'], 5409)
+        self.assertEqual(stage['unresolved_no_exact_stage_evidence'], 0)
+        self.assertEqual(stage['exact_paths_using_official_rdh_rebuild'], 1542)
         self.assertEqual(stage['exact_paths_using_vest_2020_publication_pipeline'], 270)
+        self.assertEqual(stage['exact_paths_using_legacy_judicial_publication_replay'], 3308)
+        self.assertEqual(stage['exact_paths_using_modern_publication_history'], 62)
         with (directory / 'rdh_replay_endpoints.csv').open(newline='', encoding='utf-8') as handle:
             endpoints = list(csv.DictReader(handle))
         eligible = [row for row in endpoints if row['lineage_eligible'] == 'True']
@@ -165,6 +169,57 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
         self.assertEqual(len(endpoints), 270)
         self.assertTrue(all(row['lineage_eligible'] == 'True' for row in endpoints))
         self.assertTrue(all(row['candidate_names_preserved'] == 'True' for row in endpoints))
+
+    def test_legacy_judicial_pipeline_reproduces_all_published_rows(self):
+        directory = OUT.parent / 'stage_lineage'
+        summary = json.loads((directory / 'legacy_judicial_summary.json').read_text(encoding='utf-8'))
+        self.assertEqual(summary['endpoint_rows'], 3308)
+        self.assertEqual(summary['publication_files'], 99)
+        self.assertEqual(summary['contest_year_groups'], 33)
+        self.assertEqual(summary['exact_numeric_rows'], 3308)
+        self.assertEqual(summary['numeric_mismatches'], 0)
+        self.assertEqual(summary['rows_with_legacy_candidate_names_equal'], 3223)
+        self.assertEqual(summary['rows_requiring_name_preservation_stage'], 85)
+        self.assertEqual(summary['label_field_changes'], 106)
+        self.assertTrue(summary['current_files_equal_name_commit'])
+        fingerprints = json.loads((directory / 'legacy_judicial_input_fingerprints.json').read_text(encoding='utf-8'))
+        self.assertEqual(fingerprints['historical_commit'], '6f5f0fba26a60164cac6fceca0e9f8693d6fb8a3')
+        self.assertEqual(fingerprints['candidate_name_commit'], '2afe1f6d4751093be19210136f13be8037c893cf')
+        self.assertEqual(
+            fingerprints['audit_script_lf_sha256'],
+            hashlib.sha256((OUT.parent / 'audit_legacy_judicial_lineage.py').read_bytes().replace(b'\r\n', b'\n')).hexdigest(),
+        )
+        with (directory / 'legacy_judicial_endpoints.csv').open(newline='', encoding='utf-8') as handle:
+            endpoints = list(csv.DictReader(handle))
+        self.assertEqual(len(endpoints), 3308)
+        self.assertTrue(all(row['lineage_eligible'] == 'True' for row in endpoints))
+        self.assertTrue(all(row['candidate_names_preserved_by_name_commit'] == 'True' for row in endpoints))
+
+    def test_modern_publication_history_closes_final_rows(self):
+        directory = OUT.parent / 'stage_lineage'
+        summary = json.loads((directory / 'modern_publication_summary.json').read_text(encoding='utf-8'))
+        self.assertEqual(summary['target_rows'], 62)
+        self.assertEqual(summary['endpoint_rows'], 62)
+        self.assertEqual(summary['directed_stage_rows'], 179)
+        self.assertEqual(summary['final_numeric_mismatches'], 0)
+        self.assertTrue(summary['candidate_names_preserved'])
+        self.assertEqual(summary['rows_by_year'], {'2022': 4, '2024': 58})
+        with (directory / 'modern_publication_target_rows.csv').open(newline='', encoding='utf-8-sig') as handle:
+            targets = list(csv.DictReader(handle))
+        with (directory / 'modern_publication_endpoints.csv').open(newline='', encoding='utf-8') as handle:
+            endpoints = list(csv.DictReader(handle))
+        with (directory / 'modern_publication_stage_ledger.csv').open(newline='', encoding='utf-8') as handle:
+            stages = list(csv.DictReader(handle))
+        self.assertEqual(len(targets), 62)
+        self.assertEqual(len(endpoints), 62)
+        self.assertEqual(len(stages), 179)
+        self.assertTrue(all(row['lineage_eligible'] == 'True' for row in endpoints))
+        self.assertTrue(all(row['candidate_names_preserved'] == 'True' for row in endpoints))
+        fingerprints = json.loads((directory / 'modern_publication_input_fingerprints.json').read_text(encoding='utf-8'))
+        self.assertEqual(
+            fingerprints['audit_script_lf_sha256'],
+            hashlib.sha256((OUT.parent / 'audit_modern_publication_history.py').read_bytes().replace(b'\r\n', b'\n')).hexdigest(),
+        )
 
     def test_judicial_recovery_is_conserved_and_six_files_remain_blocked(self):
         directory = OUT.parent / 'judicial_evidence'

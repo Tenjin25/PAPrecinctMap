@@ -1,0 +1,59 @@
+{
+  "audit_script_lf_sha256": "99783c2f3f2ac4f13654f7b72d3423204bf2d6b3912e189af8b8546896560b0d",
+  "commits": {
+    "334c7e51869922f27b17544b5b55fc444de77700": {
+      "stage": "historical_rdh_2022_publication_endpoint",
+      "tree": "a3c1e253960632118818f922b7ba8f382c336c77"
+    },
+    "36afe313aa2573f9ebe1ba6b5121c4e586d1cbea": {
+      "stage": "localized_residual_allocation",
+      "tree": "e4b256419fced3b44b4880f624933f4bd2440cce"
+    },
+    "80f94d3d96b8c7d507d8a390177cdbb35089143b": {
+      "stage": "county_clustered_allocation",
+      "tree": "11d3431ed7bc29ba9cea933d3fc750eb27e2cff1"
+    },
+    "94fb75a72b7ca7d633bc855ad08dd7b3186a8ddf": {
+      "stage": "historical_rdh_2024_publication_endpoint",
+      "tree": "84ae965b9f659734afe63b2ad90fb121d349bb9a"
+    },
+    "bd4defcda049e14d06a8fc0ea166f472ce6a706e": {
+      "stage": "vap_controlled_allocation",
+      "tree": "bb3e3ef5b51322de3a9ac9873e3309895b7e6a14"
+    },
+    "bfc2f39ca41db67ab347fe04962a88342df63d9f": {
+      "stage": "certified_county_metadata_stage",
+      "tree": "1ff35638c001cc17a11d3e5c63b79c23191a88ba"
+    }
+  },
+  "historical_file_blobs": {
+    "334c7e51869922f27b17544b5b55fc444de77700:data/district_contests/congressional_us_senate_2022.json": "e0bde0a29a01bc4ff4a1d2557d5e816bad4a0a55",
+    "334c7e51869922f27b17544b5b55fc444de77700:data/district_contests/state_senate_us_senate_2022.json": "c1aadcb9fd99e69bf5032665883aec65600d2ee2",
+    "36afe313aa2573f9ebe1ba6b5121c4e586d1cbea:data/district_contests/congressional_president_2024.json": "89ff6151ebcf7458dc0a3bb93b1f07fce23641ef",
+    "36afe313aa2573f9ebe1ba6b5121c4e586d1cbea:data/district_contests/state_house_president_2024.json": "a0acfe1a9b8ea549edd58de6f65a6af077311e5c",
+    "36afe313aa2573f9ebe1ba6b5121c4e586d1cbea:data/district_contests/state_senate_president_2024.json": "8ff3de54c8ffa32fe8f26db86796ac25fda379df",
+    "80f94d3d96b8c7d507d8a390177cdbb35089143b:data/district_contests/congressional_president_2024.json": "0a9acfd572469ae13a819845e28ff06da240fc3f",
+    "80f94d3d96b8c7d507d8a390177cdbb35089143b:data/district_contests/congressional_us_senate_2022.json": "fe462165134ac5c9f09f3feb4a182379288aeb9b",
+    "80f94d3d96b8c7d507d8a390177cdbb35089143b:data/district_contests/state_house_president_2024.json": "776c5792ee4f37aa7d15cf1b806e4d55b46d11bf",
+    "80f94d3d96b8c7d507d8a390177cdbb35089143b:data/district_contests/state_senate_president_2024.json": "b188d56a5ee20f0bab6257013e13094efb1b5e6b",
+    "80f94d3d96b8c7d507d8a390177cdbb35089143b:data/district_contests/state_senate_us_senate_2022.json": "5005e31a25a063c16dd5cd9dc07391886b40a016",
+    "94fb75a72b7ca7d633bc855ad08dd7b3186a8ddf:data/district_contests/congressional_president_2024.json": "dcb184255ce39c6a7de2713e61f90818bc3dc5f0",
+    "94fb75a72b7ca7d633bc855ad08dd7b3186a8ddf:data/district_contests/state_house_president_2024.json": "440c18046e784396378a7297d48edb0e4f2bd6d8",
+    "94fb75a72b7ca7d633bc855ad08dd7b3186a8ddf:data/district_contests/state_senate_president_2024.json": "bb8d5c12585e8048eb04b0a202b6060e014d1c8a",
+    "bd4defcda049e14d06a8fc0ea166f472ce6a706e:data/district_contests/congressional_president_2024.json": "4713c54349dceac0f48414e99154ec7490827240",
+    "bd4defcda049e14d06a8fc0ea166f472ce6a706e:data/district_contests/state_house_president_2024.json": "0735a74a3d437efd491b6f38a0eab48d33206916",
+    "bd4defcda049e14d06a8fc0ea166f472ce6a706e:data/district_contests/state_senate_president_2024.json": "06ff729e397c2f9fbb7ab583a88c77c1d93c6bcd",
+    "bfc2f39ca41db67ab347fe04962a88342df63d9f:data/district_contests/congressional_president_2024.json": "658667be0143644f4768a0fd0d1510c697c4094f",
+    "bfc2f39ca41db67ab347fe04962a88342df63d9f:data/district_contests/congressional_us_senate_2022.json": "2cbe8f025497a5c3bb2a5af3104ea69c6b30c8f1",
+    "bfc2f39ca41db67ab347fe04962a88342df63d9f:data/district_contests/state_house_president_2024.json": "331960d623161b62609402f7849bcdfe59954385",
+    "bfc2f39ca41db67ab347fe04962a88342df63d9f:data/district_contests/state_senate_president_2024.json": "5441684c68ddb5862872d6bee444d49c406984f1",
+    "bfc2f39ca41db67ab347fe04962a88342df63d9f:data/district_contests/state_senate_us_senate_2022.json": "ad04f14bfc845e050ffe3103a102767bcce4dac9"
+  },
+  "target_rows_lf_sha256": "b6dd1fe53654b12cfa1c8e83c603ee7782368928087ca1751cc44e8c50af6853",
+  "tracked_evidence": {
+    "data/benchmarks/pa_county_2022_us_senate_certified.csv": "e8d1988435430f6a3ffe6f4ea44559a6a0f9d0f73620bd04aa095c951aa58dd7",
+    "data/benchmarks/pa_county_2024_president_certified.csv": "6517b6155c9281555c43c755196be791b17b4c723928bc6d987e618db365955c",
+    "data/rdh_2022_district_vote_audit.json": "a1dfb7cd025e014586a21e4c14b509cc971649151062b51bbee14482f122a185",
+    "data/rdh_2024_district_vote_audit.json": "163e8bc04c4823282a59a44ac1ba63359a3de1cb830ec3d564eb89fbc057cad1"
+  }
+}
