@@ -12,11 +12,13 @@ keeps the original 5,409-row difference universe separate from candidate-only
 mechanism findings, approved Emmaus corrections, judicial evidence gates, and
 permanent benchmarks. It preserves the `6b293db` checkpoint of 269 explained
 rows (258 DRA and 11 DRA plus Westmoreland ordering). The all-ledger replay
-finds 12 exact county-clustered paths plus 892 exact RDH official-return paths,
-raising current exact numerical lineage to 1,173 and reducing the unresolved
-count to 4,236. The RDH batch admits only files with zero unmatched/unallocated
-rows and exact county-party conservation; nine files with 12 county failures
-remain quarantined. These paths are not independent geographic validation or
+finds 12 exact county-clustered paths plus 1,488 exact RDH official-return paths,
+raising current exact numerical lineage to 1,769 and reducing the unresolved
+count to 3,640. County-local deterministic largest remainder removes the prior
+independent-rounding defect: all 21 RDH files have zero unmatched/unallocated
+rows and exact county-party conservation. Only six district rows differ from
+the former statewide-rounding endpoint, in paired one-vote transfers. These
+paths are not independent geographic validation or
 production-change approval.
 
 The first share-preserving reverse-fallback batch covers 2016. It finds 32,989

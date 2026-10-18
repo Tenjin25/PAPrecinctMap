@@ -12,10 +12,12 @@ Philadelphia precinct votes.
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import hashlib
 import io
 import json
+import math
 import re
 import sys
 import zipfile
@@ -260,6 +262,51 @@ def round_district_vote_components(results):
         )
 
 
+def integerize_county_district_allocations(county_allocations, county_source, results):
+    """Round within each county and derive exact statewide district totals.
+
+    County/party controls are the authoritative margins.  Each county's
+    fractional district cells are floored, then its remaining votes go to the
+    largest remainders with district-number tie-breaking.  District totals are
+    recomputed from those integer cells, so county and statewide conservation
+    cannot diverge through two independent rounding operations.
+    """
+    counties = sorted(county_source)
+    districts = sorted(results, key=int)
+    fields = ("dem_votes", "rep_votes", "other_votes")
+    for field in fields:
+        for county in counties:
+            bases = {}
+            remainders = {}
+            for district in districts:
+                raw = float(county_allocations.get(county, {}).get(district, {}).get(field, 0))
+                base = math.floor(raw)
+                bases[district] = base
+                remainders[district] = raw - base
+            quota = int(county_source[county].get(field, 0)) - sum(bases.values())
+            eligible = [district for district in districts if remainders[district] > 1e-12]
+            if quota < 0 or quota > len(eligible):
+                raise RuntimeError(
+                    f"invalid county largest-remainder quota for {county} {field}: "
+                    f"{quota} with {len(eligible)} fractional cells"
+                )
+            awarded = set(sorted(eligible, key=lambda district: (-remainders[district], int(district)))[:quota])
+            for district in districts:
+                county_allocations[county][district][field] = bases[district] + int(district in awarded)
+
+        for district in districts:
+            results[district][field] = sum(
+                int(county_allocations[county][district].get(field, 0)) for county in counties
+            )
+
+    for county in counties:
+        for district in districts:
+            counter = county_allocations[county][district]
+            counter["total_votes"] = sum(int(counter.get(field, 0)) for field in fields)
+    for district in districts:
+        results[district]["total_votes"] = sum(int(results[district].get(field, 0)) for field in fields)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--year", type=int, choices=(2022, 2024), default=2024)
@@ -419,7 +466,15 @@ def main():
 
     files = []
     for (scope, contest), results in sorted(nodes.items()):
-        round_district_vote_components(results)
+        statewide_rounded = copy.deepcopy(results)
+        round_district_vote_components(statewide_rounded)
+        truncated_counties = copy.deepcopy(county_allocations[(scope, contest)])
+        try:
+            integerize_county_district_allocations(
+                county_allocations[(scope, contest)], county_source[contest], results
+            )
+        except RuntimeError as error:
+            raise RuntimeError(f"{scope} {contest}: {error}") from error
         finalized = {}
         for district, node in sorted(results.items(), key=lambda item: int(item[0])):
             layers.finalize_result_node(node)
@@ -458,6 +513,38 @@ def main():
                 },
             }
         county_failures = [county for county, row in county_rows.items() if not row["conserved"]]
+        district_integerization_changes = {}
+        for district, node in finalized.items():
+            before = statewide_rounded[district]
+            delta = {
+                field: int(node[field]) - int(before[field])
+                for field in ("dem_votes", "rep_votes", "other_votes", "total_votes")
+            }
+            if any(delta.values()):
+                district_integerization_changes[district] = {
+                    "before_statewide_rounding": {
+                        field: int(before[field])
+                        for field in ("dem_votes", "rep_votes", "other_votes", "total_votes")
+                    },
+                    "after_county_largest_remainder": {
+                        field: int(node[field])
+                        for field in ("dem_votes", "rep_votes", "other_votes", "total_votes")
+                    },
+                    "delta": delta,
+                }
+        county_integerization_changes = {}
+        for county, districts in sorted(county_allocations[(scope, contest)].items()):
+            changed = {}
+            for district, after in sorted(districts.items(), key=lambda item: int(item[0])):
+                before = truncated_counties[county][district]
+                delta = {
+                    field: int(after.get(field, 0)) - int(before.get(field, 0))
+                    for field in ("dem_votes", "rep_votes", "other_votes", "total_votes")
+                }
+                if any(delta.values()):
+                    changed[district] = delta
+            if changed:
+                county_integerization_changes[county] = changed
         payload = {
             "scope": scope,
             "contest_type": contest,
@@ -473,6 +560,11 @@ def main():
                 "county_control_audit": [
                     row for row in county_control_audit if row["contest"] == contest
                 ],
+                "integerization_audit": {
+                    "method": "county_local_deterministic_largest_remainder",
+                    "district_changes": district_integerization_changes,
+                    "county_district_increments_over_truncation": county_integerization_changes,
+                },
                 "county_conservation_audit": {
                     "all_counties_conserved": not county_failures,
                     "county_count": len(county_rows),

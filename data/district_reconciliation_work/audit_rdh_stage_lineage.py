@@ -44,6 +44,7 @@ def main() -> None:
 
     OUT.mkdir(exist_ok=True)
     endpoints, counties, mail_rows = [], [], []
+    district_integerization, county_integerization = [], []
     fingerprints = {
         'Scripts/build_rdh_2024_district_contests.py': digest(BUILDER),
         'data/rdh_2022_district_vote_audit.json': digest(ROOT / 'data/rdh_2022_district_vote_audit.json'),
@@ -89,6 +90,7 @@ def main() -> None:
                 payload = json.loads(path.read_text(encoding='utf-8'))
                 allocation = payload['meta']['allocation_audit']
                 county_audit = payload['meta']['county_conservation_audit']
+                integerization = payload['meta']['integerization_audit']
                 if any(int(allocation[key]) for key in ('unmatched_rows', 'unmatched_votes', 'unallocated_rows', 'unallocated_votes')):
                     raise RuntimeError(f'Incomplete RDH replay: {path.name}')
                 if not allocation['conserved_for_matched_rows']:
@@ -117,10 +119,30 @@ def main() -> None:
                         'allocation_quality_votes': json.dumps(evidence['allocation_quality_votes'], sort_keys=True, separators=(',', ':')),
                         'conserved': evidence['conserved'],
                     })
+                for district, evidence in sorted(integerization['district_changes'].items(), key=lambda item: int(item[0])):
+                    before = evidence['before_statewide_rounding']
+                    after = evidence['after_county_largest_remainder']
+                    delta = evidence['delta']
+                    district_integerization.append({
+                        'file': path.name, 'year': year, 'contest': payload['contest_type'],
+                        'scope': payload['scope'], 'district': district,
+                        **{f'before_{field}': before[field] for field in FIELDS},
+                        **{f'after_{field}': after[field] for field in FIELDS},
+                        **{f'delta_{field}': delta[field] for field in FIELDS},
+                    })
+                for county, district_changes in sorted(integerization['county_district_increments_over_truncation'].items()):
+                    for district, delta in sorted(district_changes.items(), key=lambda item: int(item[0])):
+                        county_integerization.append({
+                            'file': path.name, 'year': year, 'contest': payload['contest_type'],
+                            'scope': payload['scope'], 'county': county, 'district': district,
+                            **{f'increment_{field}': delta[field] for field in FIELDS},
+                        })
 
     save_csv(OUT / 'rdh_replay_endpoints.csv', endpoints)
     save_csv(OUT / 'rdh_county_conservation.csv', counties)
     save_csv(OUT / 'rdh_mail_rows.csv', mail_rows)
+    save_csv(OUT / 'rdh_integerization_district_changes.csv', district_integerization)
+    save_csv(OUT / 'rdh_integerization_county_increments.csv', county_integerization)
     (OUT / 'rdh_input_fingerprints.json').write_text(json.dumps({
         'tracked_inputs': fingerprints,
         'supplied_archives': source_fingerprints,
@@ -130,6 +152,8 @@ def main() -> None:
         'endpoint_rows': len(endpoints),
         'county_evidence_rows': len(counties),
         'localized_mail_rows': len(mail_rows),
+        'integerization_district_change_rows': len(district_integerization),
+        'integerization_county_increment_rows': len(county_integerization),
         'zero_unmatched_unallocated_files': len({row['file'] for row in endpoints}),
         'county_conserved_files': len({row['file'] for row in endpoints if row['lineage_eligible']}),
         'county_blocked_files': sorted({row['file'] for row in endpoints if not row['lineage_eligible']}),

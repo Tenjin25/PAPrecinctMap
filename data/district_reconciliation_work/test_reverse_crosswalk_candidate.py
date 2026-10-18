@@ -1,13 +1,16 @@
 import csv
+import copy
 import hashlib
 import json
 import sys
 import unittest
+from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT), str(ROOT / 'Scripts')]
 import build_pa_data_layers as layers
+import build_rdh_2024_district_contests as rdh
 
 OUT = Path(__file__).resolve().parent / 'reverse_crosswalk_candidate'
 
@@ -55,9 +58,9 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
         summary = json.loads((OUT.parent / 'report/all_year_decision_summary.json').read_text(encoding='utf-8'))
         self.assertEqual(summary['original_differences'], 5409)
         self.assertEqual(summary['historical_checkpoint_at_6b293db'], 269)
-        self.assertEqual(summary['original_numerical_lineage_explained'], 1173)
-        self.assertEqual(summary['original_unresolved'], 4236)
-        self.assertEqual(summary['exact_official_rdh_stage_rows'], 892)
+        self.assertEqual(summary['original_numerical_lineage_explained'], 1769)
+        self.assertEqual(summary['original_unresolved'], 3640)
+        self.assertEqual(summary['exact_official_rdh_stage_rows'], 1488)
         self.assertEqual(summary['approved_emmaus_district_rows'], 10)
         self.assertEqual(summary['historical_judicial_files_missing_evidence'], 33)
         self.assertEqual(summary['judicial_files_with_recovered_evidence'], 27)
@@ -88,20 +91,52 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
             '47902c658648c242c64322ea3f446a1e9bd1038bd371c8642ea4df71ce7447d7',
         )
         self.assertEqual(summary['endpoint_rows'], 1890)
-        self.assertEqual(summary['eligible_endpoint_rows'], 1134)
-        self.assertEqual(summary['county_conserved_files'], 12)
-        self.assertEqual(len(summary['county_blocked_files']), 9)
-        self.assertEqual(summary['county_conservation_failures'], 12)
+        self.assertEqual(summary['eligible_endpoint_rows'], 1890)
+        self.assertEqual(summary['county_conserved_files'], 21)
+        self.assertEqual(summary['county_blocked_files'], [])
+        self.assertEqual(summary['county_conservation_failures'], 0)
+        self.assertEqual(summary['integerization_district_change_rows'], 6)
+        self.assertEqual(summary['integerization_county_increment_rows'], 147)
         stage = json.loads((directory / 'summary.json').read_text(encoding='utf-8'))
-        self.assertEqual(stage['current_numerical_lineage_explained'], 1173)
-        self.assertEqual(stage['unresolved_no_exact_stage_evidence'], 4236)
-        self.assertEqual(stage['exact_paths_using_official_rdh_rebuild'], 892)
+        self.assertEqual(stage['current_numerical_lineage_explained'], 1769)
+        self.assertEqual(stage['unresolved_no_exact_stage_evidence'], 3640)
+        self.assertEqual(stage['exact_paths_using_official_rdh_rebuild'], 1488)
         with (directory / 'rdh_replay_endpoints.csv').open(newline='', encoding='utf-8') as handle:
             endpoints = list(csv.DictReader(handle))
         eligible = [row for row in endpoints if row['lineage_eligible'] == 'True']
-        self.assertEqual(len(eligible), 1134)
+        self.assertEqual(len(eligible), 1890)
         self.assertTrue(all(row['zero_unmatched_unallocated'] == 'True' for row in eligible))
         self.assertTrue(all(row['county_conservation_exact'] == 'True' for row in eligible))
+        with (directory / 'rdh_integerization_district_changes.csv').open(newline='', encoding='utf-8') as handle:
+            changes = list(csv.DictReader(handle))
+        deltas = defaultdict(Counter)
+        for row in changes:
+            for field in ('dem_votes', 'rep_votes', 'other_votes', 'total_votes'):
+                deltas[row['file']][field] += int(row[f'delta_{field}'])
+        self.assertTrue(all(not any(file_delta.values()) for file_delta in deltas.values()))
+
+    def test_county_local_integerization_is_deterministic_and_name_safe(self):
+        allocations = defaultdict(lambda: defaultdict(Counter))
+        allocations['A']['1'].update(dem_votes=4.4, total_votes=4.4)
+        allocations['A']['2'].update(dem_votes=5.6, total_votes=5.6)
+        allocations['B']['1'].update(dem_votes=2.5, total_votes=2.5)
+        allocations['B']['2'].update(dem_votes=2.5, total_votes=2.5)
+        sources = {'A': Counter(dem_votes=10, total_votes=10), 'B': Counter(dem_votes=5, total_votes=5)}
+        results = {
+            '1': {'dem_votes': 6.9, 'rep_votes': 0, 'other_votes': 0, 'total_votes': 6.9, 'dem_candidate': 'Candidate A'},
+            '2': {'dem_votes': 8.1, 'rep_votes': 0, 'other_votes': 0, 'total_votes': 8.1, 'dem_candidate': 'Candidate A'},
+        }
+        first_allocations, first_results = copy.deepcopy(allocations), copy.deepcopy(results)
+        second_allocations, second_results = copy.deepcopy(allocations), copy.deepcopy(results)
+        rdh.integerize_county_district_allocations(first_allocations, sources, first_results)
+        rdh.integerize_county_district_allocations(second_allocations, sources, second_results)
+        self.assertEqual(first_allocations, second_allocations)
+        self.assertEqual(first_results, second_results)
+        self.assertEqual(first_results['1']['dem_votes'], 7)
+        self.assertEqual(first_results['2']['dem_votes'], 8)
+        self.assertEqual(first_results['1']['dem_candidate'], 'Candidate A')
+        self.assertEqual(sum(first_allocations['A'][district]['dem_votes'] for district in ('1', '2')), 10)
+        self.assertEqual(sum(first_allocations['B'][district]['dem_votes'] for district in ('1', '2')), 5)
 
     def test_judicial_recovery_is_conserved_and_six_files_remain_blocked(self):
         directory = OUT.parent / 'judicial_evidence'
