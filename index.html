@@ -15984,8 +15984,8 @@ document.addEventListener('DOMContentLoaded', function() {
           [`${contestType}_rep`]: v.rep,
           [`${contestType}_other`]: v.other,
           [`${contestType}_total`]: v.dem + v.rep + v.other,
-          [`${contestType}_dem_candidate`]: normalizeCandidateDisplayName(v.demCandidate, ''),
-          [`${contestType}_rep_candidate`]: normalizeCandidateDisplayName(v.repCandidate, '')
+          [`${contestType}_dem_candidate`]: displayCandidateForContest(v.demCandidate, contestType),
+          [`${contestType}_rep_candidate`]: displayCandidateForContest(v.repCandidate, contestType)
         }));
         precinctContestSliceCache.set(key, rows);
         return rows;
@@ -16149,8 +16149,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	        president_rep: v.rep,
 	        president_other: v.other,
 	        president_total: v.dem + v.rep + v.other,
-	        president_dem_candidate: normalizeCandidateDisplayName(v.demCand, ''),
-	        president_rep_candidate: normalizeCandidateDisplayName(v.repCand, '')
+	        president_dem_candidate: displayCandidateForContest(v.demCand, 'president'),
+	        president_rep_candidate: displayCandidateForContest(v.repCand, 'president')
 	      }));
 	    }
 
@@ -19288,8 +19288,8 @@ document.addEventListener('DOMContentLoaded', function() {
               [`${contestType}_rep`]: Number(r.rep_votes) || 0,
               [`${contestType}_other`]: Number(r.other_votes) || 0,
               [`${contestType}_total`]: Number(r.total_votes) || 0,
-              [`${contestType}_dem_candidate`]: normalizeCandidateDisplayName(r.dem_candidate, ''),
-              [`${contestType}_rep_candidate`]: normalizeCandidateDisplayName(r.rep_candidate, ''),
+              [`${contestType}_dem_candidate`]: displayCandidateForContest(r.dem_candidate, contestType),
+              [`${contestType}_rep_candidate`]: displayCandidateForContest(r.rep_candidate, contestType),
               [`${contestType}_margin`]: Number(r.margin) || 0,
               [`${contestType}_margin_pct`]: Number(r.margin_pct) || 0,
               [`${contestType}_winner`]: r.winner || '',
@@ -19589,8 +19589,8 @@ document.addEventListener('DOMContentLoaded', function() {
               recordsMap[key][`${mappedOfficeType}_rep`] = countyData.rep_votes || 0;
               recordsMap[key][`${mappedOfficeType}_other`] = countyData.other_votes || 0;
               recordsMap[key][`${mappedOfficeType}_total`] = countyData.total_votes || 0;
-              recordsMap[key][`${mappedOfficeType}_dem_candidate`] = normalizeCandidateDisplayName(countyData.dem_candidate, '');
-              recordsMap[key][`${mappedOfficeType}_rep_candidate`] = normalizeCandidateDisplayName(countyData.rep_candidate, '');
+              recordsMap[key][`${mappedOfficeType}_dem_candidate`] = displayCandidateForContest(countyData.dem_candidate, mappedOfficeType);
+              recordsMap[key][`${mappedOfficeType}_rep_candidate`] = displayCandidateForContest(countyData.rep_candidate, mappedOfficeType);
               recordsMap[key][`${mappedOfficeType}_margin`] = countyData.margin || 0;
               recordsMap[key][`${mappedOfficeType}_margin_pct`] = countyData.margin_pct || 0;
               recordsMap[key][`${mappedOfficeType}_winner`] = countyData.winner || '';
@@ -20929,6 +20929,7 @@ document.addEventListener('DOMContentLoaded', function() {
         norm === 'joseph robinette biden jr' ||
         norm === 'joseph r biden jr' ||
         norm === 'joseph biden jr' ||
+        norm === 'joe biden jr' ||
         norm === 'joe biden'
       ) {
         return 'Joe Biden';
@@ -20985,6 +20986,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (norm === 'jack wagner' || norm === 'jack e wagner') {
         return 'Jack E. Wagner';
       }
+      if (norm === 'robert mccord' || norm === 'bob mccord') {
+        return 'Bob McCord';
+      }
       if (
         norm === 'wagner bartos' ||
         norm === 'scott wagner jeff bartos' ||
@@ -21014,7 +21018,17 @@ document.addEventListener('DOMContentLoaded', function() {
         return 'Doug Mastriano';
       }
       if (norm === 'david sunday') return 'Dave Sunday';
-      if (norm === 'timothy defoor' || norm === 'timothy lionel defoor') return 'Tim DeFoor';
+      if (norm === 'heather s heidelbaugh' || norm === 'heather heidelbaugh') return 'Heather Heidelbaugh';
+      if (norm === 'nilofer nina ahmad' || norm === 'nina ahmad') return 'Nina Ahmad';
+      if (norm === 'timothy defoor' || norm === 'timothy l defoor' || norm === 'timothy lionel defoor' || norm === 'tim defoor') return 'Tim DeFoor';
+      if (norm === 'joseph m torsella' || norm === 'joseph torsella' || norm === 'joe torsella') return 'Joe Torsella';
+      if (norm === 'john k fetterman' || norm === 'john fetterman') return 'John Fetterman';
+      if (norm === 'mehmet c oz' || norm === 'mehmet oz') return 'Mehmet Oz';
+      if (norm === 'erin r mcclelland' || norm === 'erin mcclelland') return 'Erin McClelland';
+      if (
+        norm === 'stacy l garrity' || norm === 'stacy garrity' ||
+        norm === 'stacey l garrity' || norm === 'stacey garrity'
+      ) return 'Stacy Garrity';
       if (norm === 'eugene a depasquale' || norm === 'eugene a. depasquale') return 'Eugene DePasquale';
       return raw;
     }
@@ -21242,13 +21256,26 @@ document.addEventListener('DOMContentLoaded', function() {
     function fullCandidateLabel(name, fallback = '') {
       const raw = (name || '').toString().replace(/\uFFFD/g, '-').trim();
       if (!raw) return fallback;
+      const retention = raw.match(/^(yes|no)\s*[—–-]\s*(.+)$/i);
+      if (retention) {
+        return `${retention[1].toLowerCase() === 'yes' ? 'Yes' : 'No'} — ${fullCandidateLabel(retention[2], '')}`;
+      }
       // Court races can have multiple candidates, and retention records add a
       // Yes/No prefix. Normalize every displayed person independently rather
       // than treating the whole slash-separated label as one candidate.
-      const ticketLead = raw.split(/\s*\/\s*/)
-        .map(part => normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(stripRunningMateName(part))))
+      const normalizedParts = raw.split(/\s*\/\s*/)
+        .map(part => normalizeKnownCandidateDisplay(normalizeCandidateNameOrder(part)))
+        .map(part => part.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',\-]/g, ' ').replace(/\s+/g, ' ').trim())
         .filter(Boolean)
-        .join(' / ');
+        .map(toTitleCaseName);
+      const seen = new Set();
+      const uniqueParts = normalizedParts.filter(part => {
+        const key = part.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+      const ticketLead = uniqueParts.join(' / ');
       const cleaned = ticketLead.replace(/\([^)]*\)/g, ' ').replace(/[^A-Za-z .',/\-]/g, ' ').replace(/\s*\/\s*/g, ' / ').replace(/\s+/g, ' ').trim();
       if (!cleaned) return fallback;
       return toTitleCaseName(cleaned);
@@ -21287,7 +21314,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const parts = value.split(/(\s+|-)/);
         return parts.map(part => {
           if (part === ' ' || part === '-' || /^\s+$/.test(part)) return part;
-          if (/^[A-Za-z'.]+$/.test(part) && /[A-Z]{2}/.test(part)) return titleToken(part);
+          if (/^[A-Z'.]+$/.test(part)) return titleToken(part);
           return part;
         }).join('');
       }
@@ -21706,8 +21733,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayCandidateForContest(name, contestType) {
       const raw = (name || '').toString().trim();
-      return /^(supreme|superior|commonwealth)_court$/.test(String(contestType || '').trim().toLowerCase())
-        ? raw : normalizeCandidateDisplayName(stripRunningMateName(raw), '');
+      const isCourt = /^(supreme|superior|commonwealth)_court(?:$|_retention(?:_|$))/.test(String(contestType || '').trim().toLowerCase());
+      const normalized = normalizeCandidateDisplayName(isCourt ? raw : stripRunningMateName(raw), '');
+      if (!isCourt || !normalized.includes('/')) return normalized;
+      // Ballot order varies by county and source file. A stable order keeps the
+      // same multi-seat court slate identical in every map layer.
+      return normalized.split(/\s*\/\s*/)
+        .filter(Boolean)
+        .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }))
+        .join(' / ');
     }
 
     function stripRunningMateName(name) {
@@ -27125,8 +27159,8 @@ document.addEventListener('DOMContentLoaded', function() {
         wireTooltipButtons();
         return;
       }
-      const demCandidate = normalizeCandidateDisplayName(row[`${contestType}_dem_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Democrat'), 'Democrat');
-      const repCandidate = normalizeCandidateDisplayName(row[`${contestType}_rep_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Republican'), 'Republican');
+      const demCandidate = displayCandidateForContest(row[`${contestType}_dem_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Democrat'), contestType) || 'Democrat';
+      const repCandidate = displayCandidateForContest(row[`${contestType}_rep_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Republican'), contestType) || 'Republican';
       setVoteCounterHoverState(
         `Hover: ${countyDisplay} County`,
         `${formatContestLabel(contestType, year)}`,
@@ -27510,8 +27544,8 @@ document.addEventListener('DOMContentLoaded', function() {
         : (demVotes + repVotes + otherVotes);
       const contestOffice = formatContestName(contestType, year);
       const subtitle = `${formatContestLabel(contestType, year)}`;
-      const demCandidate = normalizeCandidateDisplayName((row[`${contestType}_dem_candidate`] || getCandidateName(year, contestOffice, 'Democrat') || 'Democratic').toString().trim(), 'Democratic');
-      const repCandidate = normalizeCandidateDisplayName((row[`${contestType}_rep_candidate`] || getCandidateName(year, contestOffice, 'Republican') || 'Republican').toString().trim(), 'Republican');
+      const demCandidate = displayCandidateForContest((row[`${contestType}_dem_candidate`] || getCandidateName(year, contestOffice, 'Democrat') || 'Democratic').toString().trim(), contestType) || 'Democratic';
+      const repCandidate = displayCandidateForContest((row[`${contestType}_rep_candidate`] || getCandidateName(year, contestOffice, 'Republican') || 'Republican').toString().trim(), contestType) || 'Republican';
       const signedMarginPct = Number(row[`${contestType}_margin_pct`]);
       const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
       let prevSignedForFlip = null;
@@ -27859,8 +27893,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      let demCandidate = normalizeCandidateDisplayName((row.dem_candidate || '').toString().trim(), '');
-      let repCandidate = normalizeCandidateDisplayName((row.rep_candidate || '').toString().trim(), '');
+      let demCandidate = displayCandidateForContest((row.dem_candidate || '').toString().trim(), contestType);
+      let repCandidate = displayCandidateForContest((row.rep_candidate || '').toString().trim(), contestType);
       if ((!(demCandidate && repCandidate)) && contestType !== 'us_house') {
         try {
           const cand = await getContestCandidates(contestType, year);
@@ -33609,8 +33643,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	          [`${contestType}_rep`]: Number(r.rep_votes) || 0,
 	          [`${contestType}_other`]: Number(r.other_votes) || 0,
 	          [`${contestType}_total`]: Number(r.total_votes) || 0,
-	          [`${contestType}_dem_candidate`]: normalizeCandidateDisplayName(r.dem_candidate, ''),
-	          [`${contestType}_rep_candidate`]: normalizeCandidateDisplayName(r.rep_candidate, ''),
+	          [`${contestType}_dem_candidate`]: displayCandidateForContest(r.dem_candidate, contestType),
+	          [`${contestType}_rep_candidate`]: displayCandidateForContest(r.rep_candidate, contestType),
 	          [`${contestType}_margin`]: Number(r.margin) || 0,
 	          [`${contestType}_margin_pct`]: Number(r.margin_pct) || 0,
 	          [`${contestType}_winner`]: r.winner || '',
@@ -34479,8 +34513,8 @@ document.addEventListener('DOMContentLoaded', function() {
           const totalVotes = Number(adjusted.total || 0);
           // Keep county-layer labels aligned with the canonical candidate labels
           // used by precinct, statewide, hover, and trend views.
-          const demCand = normalizeCandidateDisplayName(row[`${contestType}_dem_candidate`] || '', '');
-          const repCand = normalizeCandidateDisplayName(row[`${contestType}_rep_candidate`] || '', '');
+          const demCand = displayCandidateForContest(row[`${contestType}_dem_candidate`] || '', contestType);
+          const repCand = displayCandidateForContest(row[`${contestType}_rep_candidate`] || '', contestType);
 
           if (needsPrecinctDetail && !skipPrecinctRowBuild) {
             const norms = precinctNormVariants(rowName);
