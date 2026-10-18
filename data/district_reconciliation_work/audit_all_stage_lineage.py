@@ -115,6 +115,21 @@ def main():
                 {'file': rdh_path.relative_to(ROOT).as_posix(), 'row': row_number, 'sha256': rdh_hash},
             )
 
+    vest_2020_endpoints = {}
+    vest_2020_path = OUT / 'vest_2020_president_endpoints.csv'
+    if vest_2020_path.exists():
+        with vest_2020_path.open(newline='', encoding='utf-8-sig') as handle:
+            vest_2020_rows = list(csv.DictReader(handle))
+        vest_2020_hash = stable_hash(vest_2020_path)
+        inventory.append({'file': vest_2020_path.relative_to(ROOT).as_posix(), 'rows': len(vest_2020_rows), 'lf_sha256': vest_2020_hash})
+        for row_number, row in enumerate(vest_2020_rows, start=2):
+            if row.get('lineage_eligible') != 'True':
+                continue
+            vest_2020_endpoints[(row['file'], row['district'])] = (
+                tuple(int(row[field]) for field in VOTE_FIELDS),
+                {'file': vest_2020_path.relative_to(ROOT).as_posix(), 'row': row_number, 'sha256': vest_2020_hash},
+            )
+
     changes_path = ROOT / 'data/district_bef_candidate/district_vote_changes.csv'
     prior_causes = {}
     with (WORK / 'report/verified_calibration_causes.csv').open(newline='', encoding='utf-8') as handle:
@@ -132,6 +147,12 @@ def main():
             graph[key][start].append({
                 'to': rdh[0], 'stage': 'official_rdh_return_rebuild',
                 **rdh[1],
+            })
+        vest_2020 = vest_2020_endpoints.get(key)
+        if vest_2020 and vest_2020[0] != start:
+            graph[key][start].append({
+                'to': vest_2020[0], 'stage': 'vest_2020_publication_pipeline',
+                **vest_2020[1],
             })
         path = shortest_path(graph[key], start, target)
         prior = prior_causes.get(key, {})
@@ -186,6 +207,9 @@ def main():
         'new_exact_county_clustered_paths': stage_paths['county_clustered_district_changes'],
         'exact_paths_using_official_rdh_rebuild': sum(
             count for path, count in stage_paths.items() if 'official_rdh_return_rebuild' in path
+        ),
+        'exact_paths_using_vest_2020_publication_pipeline': sum(
+            count for path, count in stage_paths.items() if 'vest_2020_publication_pipeline' in path
         ),
         'path_counts': dict(sorted(stage_paths.items())),
         'classification': 'numerical lineage only; no independent geography or production approval',

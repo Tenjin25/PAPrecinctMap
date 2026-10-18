@@ -1,0 +1,14 @@
+{
+  "supplied_archive": {
+    "filename": "pa_2020.zip",
+    "sha256": "f8c8bff158f06a8784d338b3a4642f2cc5463a398ae64d1a9c53ff89892c9eec"
+  },
+  "tracked_inputs": {
+    "Scripts/regenerate_pa_district_jsons_from_crosswalks.py": "2a4fd1379ed5bc53b2e0796aad2b9ea1338c7982abe0d6c25ee06f7f0cacbc8b",
+    "data/benchmarks/pa_congressional_2020_president.csv": "a0bd9c7905ca2e359f5b4e19157f8c373eaf758549b34269fe9277d14db6cd35",
+    "data/district-statistics state house 2020 Pres.csv": "08c5da851ea616a1266b5553905fb32e433b0fbdecdea35c48d5aefa8bba520a",
+    "data/district-statistics state senate 2020 Pres.csv": "8aaf40e4681dbeaf26d123b6dd0345222cd3e1620739eac974f10877b7c62c8f",
+    "data/district_reconciliation_work/audit_vest_2020_president_lineage.py": "8d6dd7d702fd490d985286f17999200d82ca9400cfae9fe3702885a232839436",
+    "data/vest_2020_district_vote_audit.json": "fd26e27c420acc627ec8e2f5216c550e0423fdb8a9efa72df93247610e103a57"
+  }
+}

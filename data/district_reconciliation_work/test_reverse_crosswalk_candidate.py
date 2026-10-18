@@ -58,9 +58,10 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
         summary = json.loads((OUT.parent / 'report/all_year_decision_summary.json').read_text(encoding='utf-8'))
         self.assertEqual(summary['original_differences'], 5409)
         self.assertEqual(summary['historical_checkpoint_at_6b293db'], 269)
-        self.assertEqual(summary['original_numerical_lineage_explained'], 1769)
-        self.assertEqual(summary['original_unresolved'], 3640)
+        self.assertEqual(summary['original_numerical_lineage_explained'], 2039)
+        self.assertEqual(summary['original_unresolved'], 3370)
         self.assertEqual(summary['exact_official_rdh_stage_rows'], 1488)
+        self.assertEqual(summary['exact_vest_2020_president_pipeline_rows'], 270)
         self.assertEqual(summary['approved_emmaus_district_rows'], 10)
         self.assertEqual(summary['historical_judicial_files_missing_evidence'], 33)
         self.assertEqual(summary['judicial_files_with_recovered_evidence'], 27)
@@ -98,9 +99,10 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
         self.assertEqual(summary['integerization_district_change_rows'], 6)
         self.assertEqual(summary['integerization_county_increment_rows'], 147)
         stage = json.loads((directory / 'summary.json').read_text(encoding='utf-8'))
-        self.assertEqual(stage['current_numerical_lineage_explained'], 1769)
-        self.assertEqual(stage['unresolved_no_exact_stage_evidence'], 3640)
+        self.assertEqual(stage['current_numerical_lineage_explained'], 2039)
+        self.assertEqual(stage['unresolved_no_exact_stage_evidence'], 3370)
         self.assertEqual(stage['exact_paths_using_official_rdh_rebuild'], 1488)
+        self.assertEqual(stage['exact_paths_using_vest_2020_publication_pipeline'], 270)
         with (directory / 'rdh_replay_endpoints.csv').open(newline='', encoding='utf-8') as handle:
             endpoints = list(csv.DictReader(handle))
         eligible = [row for row in endpoints if row['lineage_eligible'] == 'True']
@@ -137,6 +139,32 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
         self.assertEqual(first_results['1']['dem_candidate'], 'Candidate A')
         self.assertEqual(sum(first_allocations['A'][district]['dem_votes'] for district in ('1', '2')), 10)
         self.assertEqual(sum(first_allocations['B'][district]['dem_votes'] for district in ('1', '2')), 5)
+
+    def test_vest_2020_pipeline_reproduces_all_published_rows(self):
+        directory = OUT.parent / 'stage_lineage'
+        summary = json.loads((directory / 'vest_2020_president_summary.json').read_text(encoding='utf-8'))
+        self.assertEqual(summary['endpoint_rows'], 270)
+        self.assertEqual(summary['stage_rows'], 810)
+        self.assertEqual(summary['source_counties'], 67)
+        self.assertTrue(summary['zero_unmatched_source_vtds'])
+        self.assertTrue(summary['zero_district_membership_gap_votes'])
+        self.assertTrue(summary['all_published_votes_reproduced'])
+        self.assertTrue(summary['candidate_names_preserved'])
+        self.assertEqual(summary['source_statewide_party_totals']['total_votes'], 6918349)
+        self.assertEqual(summary['certified_statewide_party_controls']['total_votes'], 6915283)
+        fingerprints = json.loads((directory / 'vest_2020_president_input_fingerprints.json').read_text(encoding='utf-8'))
+        self.assertEqual(
+            fingerprints['supplied_archive']['sha256'],
+            'f8c8bff158f06a8784d338b3a4642f2cc5463a398ae64d1a9c53ff89892c9eec',
+        )
+        for relative_path, expected in fingerprints['tracked_inputs'].items():
+            content = (ROOT / relative_path).read_bytes().replace(b'\r\n', b'\n')
+            self.assertEqual(hashlib.sha256(content).hexdigest(), expected)
+        with (directory / 'vest_2020_president_endpoints.csv').open(newline='', encoding='utf-8') as handle:
+            endpoints = list(csv.DictReader(handle))
+        self.assertEqual(len(endpoints), 270)
+        self.assertTrue(all(row['lineage_eligible'] == 'True' for row in endpoints))
+        self.assertTrue(all(row['candidate_names_preserved'] == 'True' for row in endpoints))
 
     def test_judicial_recovery_is_conserved_and_six_files_remain_blocked(self):
         directory = OUT.parent / 'judicial_evidence'

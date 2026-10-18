@@ -190,6 +190,10 @@ def main():
             int(row['district_rows']) for row in original
             if 'official_rdh_return_rebuild' in row['cause']
         ),
+        'exact_vest_2020_president_pipeline_rows': sum(
+            int(row['district_rows']) for row in original
+            if 'vest_2020_publication_pipeline' in row['cause']
+        ),
         'approved_emmaus_district_rows': sum(int(row['district_rows']) for row in rows if row['row_universe'] == 'reviewed_emmaus_release'),
         'historical_judicial_files_missing_evidence': len(acceptance['missing_county_evidence_files']),
         'judicial_files_with_recovered_evidence': sum(row.get('status') == 'recovered' for row in recovery.values()),

@@ -14,7 +14,9 @@ permanent benchmarks. It preserves the `6b293db` checkpoint of 269 explained
 rows (258 DRA and 11 DRA plus Westmoreland ordering). The all-ledger replay
 finds 12 exact county-clustered paths plus 1,488 exact RDH official-return paths,
 raising current exact numerical lineage to 1,769 and reducing the unresolved
-count to 3,640. County-local deterministic largest remainder removes the prior
+count to 3,640. The reconstructed VEST 2020 President publication pipeline adds
+all 270 congressional, House, and Senate rows, raising exact lineage to 2,039
+and reducing unresolved rows to 3,370. County-local deterministic largest remainder removes the prior
 independent-rounding defect: all 21 RDH files have zero unmatched/unallocated
 rows and exact county-party conservation. Only six district rows differ from
 the former statewide-rounding endpoint, in paired one-vote transfers. These
