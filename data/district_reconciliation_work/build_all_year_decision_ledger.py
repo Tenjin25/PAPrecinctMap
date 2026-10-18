@@ -186,6 +186,10 @@ def main():
         **counts,
         'historical_checkpoint_at_6b293db': 269,
         'new_exact_county_clustered_stage_rows': 12,
+        'exact_official_rdh_stage_rows': sum(
+            int(row['district_rows']) for row in original
+            if 'official_rdh_return_rebuild' in row['cause']
+        ),
         'approved_emmaus_district_rows': sum(int(row['district_rows']) for row in rows if row['row_universe'] == 'reviewed_emmaus_release'),
         'historical_judicial_files_missing_evidence': len(acceptance['missing_county_evidence_files']),
         'judicial_files_with_recovered_evidence': sum(row.get('status') == 'recovered' for row in recovery.values()),
@@ -194,7 +198,7 @@ def main():
         'permanent_acceptance_benchmarks': 2,
         'production_changes_proposed_by_this_ledger': [],
     }
-    if summary['original_differences'] != 5409 or summary['original_numerical_lineage_explained'] != 281:
+    if summary['original_differences'] != 5409 or summary['historical_checkpoint_at_6b293db'] != 269:
         raise RuntimeError(f'Historical checkpoint mismatch: {summary}')
     (WORK / 'report/all_year_decision_summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(summary, indent=2))

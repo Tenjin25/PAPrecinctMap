@@ -100,6 +100,21 @@ def main():
         if fixed:
             add_csv_edges(graph, inventory, path, fixed)
 
+    rdh_endpoints = {}
+    rdh_path = OUT / 'rdh_replay_endpoints.csv'
+    if rdh_path.exists():
+        with rdh_path.open(newline='', encoding='utf-8-sig') as handle:
+            rdh_rows = list(csv.DictReader(handle))
+        rdh_hash = stable_hash(rdh_path)
+        inventory.append({'file': rdh_path.relative_to(ROOT).as_posix(), 'rows': len(rdh_rows), 'lf_sha256': rdh_hash})
+        for row_number, row in enumerate(rdh_rows, start=2):
+            if row.get('lineage_eligible') != 'True':
+                continue
+            rdh_endpoints[(row['file'], row['district'])] = (
+                tuple(int(row[field]) for field in VOTE_FIELDS),
+                {'file': rdh_path.relative_to(ROOT).as_posix(), 'row': row_number, 'sha256': rdh_hash},
+            )
+
     changes_path = ROOT / 'data/district_bef_candidate/district_vote_changes.csv'
     prior_causes = {}
     with (WORK / 'report/verified_calibration_causes.csv').open(newline='', encoding='utf-8') as handle:
@@ -112,6 +127,12 @@ def main():
         key = (change['file'], change['district'])
         start = tuple(int(change[f'candidate_{field}']) for field in VOTE_FIELDS)
         target = tuple(int(change[f'published_{field}']) for field in VOTE_FIELDS)
+        rdh = rdh_endpoints.get(key)
+        if rdh and rdh[0] != start:
+            graph[key][start].append({
+                'to': rdh[0], 'stage': 'official_rdh_return_rebuild',
+                **rdh[1],
+            })
         path = shortest_path(graph[key], start, target)
         prior = prior_causes.get(key, {})
         certification_replay = prior.get('status') == 'fully_explained_calibration_and_certification_order'
@@ -163,6 +184,9 @@ def main():
         'unresolved_no_exact_stage_evidence': len(rows) - explained,
         'historical_checkpoint_at_6b293db': {'dra': 258, 'westmoreland_ordering': 11, 'total': 269},
         'new_exact_county_clustered_paths': stage_paths['county_clustered_district_changes'],
+        'exact_paths_using_official_rdh_rebuild': sum(
+            count for path, count in stage_paths.items() if 'official_rdh_return_rebuild' in path
+        ),
         'path_counts': dict(sorted(stage_paths.items())),
         'classification': 'numerical lineage only; no independent geography or production approval',
     }

@@ -1,0 +1,21 @@
+{
+  "supplied_archives": {
+    "2022": {
+      "rows": 9189,
+      "sha256": "6985775de9a8910d549a115186c412e0171c09bc79d9de128b055e962429d8a6",
+      "supplied_filename": "pa_2022_gen_prec_csv.zip",
+      "unique_ids": 9189
+    },
+    "2024": {
+      "rows": 9190,
+      "sha256": "47902c658648c242c64322ea3f446a1e9bd1038bd371c8642ea4df71ce7447d7",
+      "supplied_filename": "pa_2024_gen_prec_csv.zip",
+      "unique_ids": 9190
+    }
+  },
+  "tracked_inputs": {
+    "Scripts/build_rdh_2024_district_contests.py": "68c0d1ecbe8eae5c74d420c333b08ed861a23598cc5307f6f0f113cb5f7fc2a9",
+    "data/rdh_2022_district_vote_audit.json": "a1dfb7cd025e014586a21e4c14b509cc971649151062b51bbee14482f122a185",
+    "data/rdh_2024_district_vote_audit.json": "163e8bc04c4823282a59a44ac1ba63359a3de1cb830ec3d564eb89fbc057cad1"
+  }
+}

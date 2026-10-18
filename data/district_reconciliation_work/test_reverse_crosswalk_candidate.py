@@ -55,8 +55,9 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
         summary = json.loads((OUT.parent / 'report/all_year_decision_summary.json').read_text(encoding='utf-8'))
         self.assertEqual(summary['original_differences'], 5409)
         self.assertEqual(summary['historical_checkpoint_at_6b293db'], 269)
-        self.assertEqual(summary['original_numerical_lineage_explained'], 281)
-        self.assertEqual(summary['original_unresolved'], 5128)
+        self.assertEqual(summary['original_numerical_lineage_explained'], 1173)
+        self.assertEqual(summary['original_unresolved'], 4236)
+        self.assertEqual(summary['exact_official_rdh_stage_rows'], 892)
         self.assertEqual(summary['approved_emmaus_district_rows'], 10)
         self.assertEqual(summary['historical_judicial_files_missing_evidence'], 33)
         self.assertEqual(summary['judicial_files_with_recovered_evidence'], 27)
@@ -70,6 +71,37 @@ class ReverseCrosswalkCandidateTests(unittest.TestCase):
             if row['production_correction_approved'] == 'True':
                 self.assertEqual(row['geography_independently_validated'], 'True')
                 self.assertEqual(row['official_returns_independently_validated'], 'True')
+
+    def test_rdh_stage_replay_is_fail_closed_on_county_conservation(self):
+        directory = OUT.parent / 'stage_lineage'
+        summary = json.loads((directory / 'rdh_summary.json').read_text(encoding='utf-8'))
+        fingerprints = json.loads((directory / 'rdh_input_fingerprints.json').read_text(encoding='utf-8'))
+        for relative_path, expected in fingerprints['tracked_inputs'].items():
+            content = (ROOT / relative_path).read_bytes().replace(b'\r\n', b'\n')
+            self.assertEqual(hashlib.sha256(content).hexdigest(), expected)
+        self.assertEqual(
+            fingerprints['supplied_archives']['2022']['sha256'],
+            '6985775de9a8910d549a115186c412e0171c09bc79d9de128b055e962429d8a6',
+        )
+        self.assertEqual(
+            fingerprints['supplied_archives']['2024']['sha256'],
+            '47902c658648c242c64322ea3f446a1e9bd1038bd371c8642ea4df71ce7447d7',
+        )
+        self.assertEqual(summary['endpoint_rows'], 1890)
+        self.assertEqual(summary['eligible_endpoint_rows'], 1134)
+        self.assertEqual(summary['county_conserved_files'], 12)
+        self.assertEqual(len(summary['county_blocked_files']), 9)
+        self.assertEqual(summary['county_conservation_failures'], 12)
+        stage = json.loads((directory / 'summary.json').read_text(encoding='utf-8'))
+        self.assertEqual(stage['current_numerical_lineage_explained'], 1173)
+        self.assertEqual(stage['unresolved_no_exact_stage_evidence'], 4236)
+        self.assertEqual(stage['exact_paths_using_official_rdh_rebuild'], 892)
+        with (directory / 'rdh_replay_endpoints.csv').open(newline='', encoding='utf-8') as handle:
+            endpoints = list(csv.DictReader(handle))
+        eligible = [row for row in endpoints if row['lineage_eligible'] == 'True']
+        self.assertEqual(len(eligible), 1134)
+        self.assertTrue(all(row['zero_unmatched_unallocated'] == 'True' for row in eligible))
+        self.assertTrue(all(row['county_conservation_exact'] == 'True' for row in eligible))
 
     def test_judicial_recovery_is_conserved_and_six_files_remain_blocked(self):
         directory = OUT.parent / 'judicial_evidence'

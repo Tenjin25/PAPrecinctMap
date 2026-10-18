@@ -1,0 +1,26 @@
+{
+  "years": [
+    2022,
+    2024
+  ],
+  "endpoint_rows": 1890,
+  "county_evidence_rows": 1407,
+  "localized_mail_rows": 52,
+  "zero_unmatched_unallocated_files": 21,
+  "county_conserved_files": 12,
+  "county_blocked_files": [
+    "state_house_president_2024.json",
+    "state_house_us_senate_2024.json",
+    "state_senate_attorney_general_2024.json",
+    "state_senate_auditor_2024.json",
+    "state_senate_governor_2022.json",
+    "state_senate_president_2024.json",
+    "state_senate_treasurer_2024.json",
+    "state_senate_us_senate_2022.json",
+    "state_senate_us_senate_2024.json"
+  ],
+  "eligible_endpoint_rows": 1134,
+  "county_conservation_failures": 12,
+  "classification": "official-return rebuild endpoints; exact equality establishes numerical lineage only",
+  "production_changes": []
+}
