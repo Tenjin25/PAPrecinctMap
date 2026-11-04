@@ -10551,8 +10551,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-10-16-emmaus-precinct-v13';
-    const APP_BUILD_ID = '2026-10-15-aggregation-repro-v12';
+    const DATA_CACHE_BUSTER = '2026-11-04-unofficial-governor-results';
+    const APP_BUILD_ID = '2026-11-04-unofficial-governor-results';
 
     function ensurePageCacheBuster() {
       return false;
@@ -19805,7 +19805,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const modeledOptionLabel = String(modeledDef?.optionLabel || '').trim();
       if (modeledOptionLabel) return modeledOptionLabel;
       const officeName = formatContestName(contestType, year);
-      return Number.isFinite(Number(year)) ? `${officeName} ${year}` : officeName;
+      const manifestEntry = (Array.isArray(contestManifest) ? contestManifest : []).find(entry =>
+        entry && String(entry.contest_type || '') === String(contestType || '') && Number(entry.year) === Number(year) && !entry.scope
+      );
+      const statusSuffix = String(manifestEntry?.status || '').toLowerCase() === 'unofficial' ? ' (Unofficial)' : '';
+      return Number.isFinite(Number(year)) ? `${officeName} ${year}${statusSuffix}` : officeName;
     }
 
     function populateContestSelectFromElectionJSON(electionData) {
@@ -20121,13 +20125,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const modeledDef = getModeledContestDefinition(item.contestType, item.year);
             const modeledOptionLabel = String(modeledDef?.optionLabel || '').trim();
             const modeledSuffix = modeledDef && !modeledOptionLabel ? ' [Modeled]' : '';
+            const manifestEntry = (Array.isArray(manifestEntries) ? manifestEntries : []).find(entry =>
+              entry && String(entry.contest_type || '') === String(item.contestType || '') && Number(entry.year) === Number(item.year) && !entry.scope
+            );
+            const statusSuffix = String(manifestEntry?.status || '').toLowerCase() === 'unofficial' ? ' [Unofficial]' : '';
             if (modeledOptionLabel) {
               opt.textContent = modeledOptionLabel;
             } else
 	          if (isJudicial || modeledDef) {
-              opt.textContent = `${formatContestName(item.contestType, item.year)} (${item.year})${modeledSuffix}`;
+              opt.textContent = `${formatContestName(item.contestType, item.year)} (${item.year})${modeledSuffix}${statusSuffix}`;
 	          } else {
-              opt.textContent = `${label} (${item.year})${modeledSuffix}`;
+              opt.textContent = `${label} (${item.year})${modeledSuffix}${statusSuffix}`;
 	          }
 	          if (q) {
 	            const hay = `${label} ${item.year} ${item.contestType} ${formatContestName(item.contestType, item.year)}`.toUpperCase();
