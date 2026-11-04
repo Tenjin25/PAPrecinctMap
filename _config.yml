@@ -1,0 +1,12 @@
+# Keep GitHub Pages focused on browser-ready atlas files.
+# These directories are retained in the repository for reproducible ETL,
+# audits, and geographic crosswalk generation; the browser does not load them.
+# Do not exclude data/contests, data/district_contests, map geometry,
+# manifests, or the aggregated election JSON consumed by index.html.
+exclude:
+  - Scripts/
+  - data/historical_sources/
+  - data/crosswalks/
+  - data/district_reconciliation_work/
+  - data/district_bef_audit/
+  - README.md
