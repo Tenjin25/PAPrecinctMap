@@ -491,6 +491,16 @@
       "year": 2025,
       "file": "supreme_court_retention_kevin_m_dougherty_2025.json",
       "rows": 67
+    },
+    {
+      "contest_type": "governor",
+      "year": 2026,
+      "file": "governor_2026.json",
+      "rows": 67,
+      "status": "unofficial",
+      "source": "Pennsylvania Department of State election returns",
+      "source_url": "https://www.electionreturns.pa.gov/api/ElectionReturn/GetCountyBreak?officeId=3&districtId=1&methodName=GetCountyBreak&electionid=117&electiontype=G&isactive=1",
+      "retrieved_at": "2026-11-04T18:35:12+00:00"
     }
   ]
 }
