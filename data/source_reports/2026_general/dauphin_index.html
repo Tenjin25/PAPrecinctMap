@@ -1,0 +1,814 @@
+<link href="/css/master.css" rel="stylesheet" />
+<script src="/js/Chart.js"></script>
+
+<input data-val="true" data-val-required="The Key field is required." id="Key" name="Key" type="hidden" value="42" />
+<input id="RaceName" name="RaceName" type="hidden" value="" />
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+    <script type="text/javascript">
+        function refreshAt(hours, minutes, seconds) {
+            var now = new Date();
+            var then = new Date();
+
+            if (now.getHours() > hours ||
+                (now.getHours() == hours && now.getMinutes() > minutes) ||
+                now.getHours() == hours && now.getMinutes() == minutes && now.getSeconds() >= seconds) {
+                then.setDate(now.getDate() + 1);
+            }
+            then.setHours(hours);
+            then.setMinutes(minutes);
+            then.setSeconds(seconds);
+
+            var timeout = (then.getTime() - now.getTime());
+            setTimeout(function () { window.location.reload(true); }, timeout);
+        }
+
+        refreshAt(20, 0, 0);
+    </script>
+
+    <!--anti-flicker snippet
+    <style>
+        .async-hide {
+            opacity: 0 !important;
+
+
+        }
+    </style>
+    <script>
+        (function (a, s, y, n, c, h, i, d, e) {
+            s.className += ' ' + y; h.start = 1 * new Date;
+            h.end = i = function () { s.className = s.className.replace(RegExp(' ?' + y), '') };
+            (a[n] = a[n] || []).hide = h; setTimeout(function () { i(); h.end = null }, c); h.timeout = c;
+        })(window, document.documentElement, 'async-hide', 'dataLayer', 1000,
+            { 'CONTAINER_ID': true });
+    </script>-->
+
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="refresh" content="60">
+    <meta https-equiv="refresh" content="60">
+
+
+    <title>Election Results</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!--####################################################
+    C S S - bootstrap, custom styles
+    ####################################################-->
+    <!-- Custom styles for this template -->
+
+
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap core CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+    <div>
+
+        <section>
+            <center><img alt="County_Logo_&_Sunset_Bridge" src="/Images/Banner&logo.jpg"></center>
+        </section>
+
+    </div>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg- sticky-top rounded">
+        <!-- One of the primary actions on mobile is to call a business - This displays a phone button on mobile only -->
+
+        <div class="navbar-toggler-right">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <strong>
+            <a class="navbar-brand" href="#">
+                <!-- <img src="img/bootstrapcreative-icon.svg" width="25" height="25" class="d-inline-block align-top" alt="Dauphin County">-->
+                <span>Dauphin County Elections</span>
+            </a>
+        </strong>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <nav class="nav d-flex flex-column flex-md-row w-100 justify-content-end">
+
+
+                <a class="flex-fill text-center text-light nav-link" href="/">Election Results Home</a>
+                <a class="flex-fill text-center text-light nav-link" href="https://www.dos.pa.gov/VotingElections/OtherServicesEvents/VotingElectionStatistics/Pages/VotingElectionStatistics.aspx">Voter Registration Statistics</a>
+                <a class="flex-fill text-center text-light nav-link" href="/Canvassing_Process.html">Canvassing Process</a>
+                <a class="flex-fill text-center text-light nav-link" href="https://www.dauphincounty.gov/government/support-services/registration-elections">Information For Voters</a>
+
+            </nav>
+
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <!-- Corresponds to <main> tag in HTML5 -->
+
+        <div class="row" style="padding-top:10px">
+            <div class="col-sm-12 pt-1">
+                <!-- Center column, like HTML5 article -->
+
+                <div style="float:right">Last update: 11/16/2026 11:12:20 AM</div>
+                <br />
+                <center>
+                    <div class="col-sm-6">
+                        <h1 class="text-lg-center">2026 General Election Results</h1>
+                    </div>
+                </center>
+
+                <br>
+                <center><p class="cen" id="merrP">OFFICIAL RESULTS<br /> </p></center>
+
+                <hr>
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-lg-2.5 pt-1">
+
+                <div class="sidenav">
+                    <center><h4 style="color:gold">Elections</h4></center>
+
+
+                            <button class="dropdown-btn">
+                                2026
+                                <i class="fa fa-caret-down" id="2026"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                        <a id="font" href="/?key=42">2026 General Election Results</a>
+                                        <a id="font" href="/?key=41">2026 Primary Election Results</a>
+                            </div>
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                            <button class="dropdown-btn">
+                                2025
+                                <i class="fa fa-caret-down" id="2025"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                        <a id="font" href="/?key=40">2025 Municipal General Election Results</a>
+                                        <a id="font" href="/?key=39">2025 Municipal Primary Election Results</a>
+                            </div>
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                            <button class="dropdown-btn">
+                                2024
+                                <i class="fa fa-caret-down" id="2024"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                        <a id="font" href="/?key=38">2024 Presidential General Election Results</a>
+                                        <a id="font" href="/?key=37">2024 Presidential Primary Election Results</a>
+                            </div>
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                            <button class="dropdown-btn">
+                                2023
+                                <i class="fa fa-caret-down" id="2023"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                        <a id="font" href="/?key=36">2023 Municipal General Election Results</a>
+                                        <a id="font" href="/?key=35">2023 Municipal Primary Election Results</a>
+                            </div>
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                            <button class="dropdown-btn">
+                                2022
+                                <i class="fa fa-caret-down" id="2022"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                        <a id="font" href="/?key=34">2022 General Election Results</a>
+                                        <a id="font" href="/?key=33&amp;category=US%20SENATOR&amp;race=US%20SENATOR">2022 General Primary Recount Results</a>
+                                        <a id="font" href="/?key=32"> 2022 General Primary Election Results</a>
+                            </div>
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                            <button class="dropdown-btn">
+                                2021
+                                <i class="fa fa-caret-down" id="2021"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                        <a id="font" href="/?key=31&amp;category=STATE%20JUDGES&amp;race=STATE%20JUDGES">2021 Municipal Recount Election Results</a>
+                                        <a id="font" href="/?key=30">2021 Municipal Election Results</a>
+                                        <a id="font" href="/?key=29">2021 Municipal Primary Election Results</a>
+                            </div>
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                            <button class="dropdown-btn">
+                                2020
+                                <i class="fa fa-caret-down" id="2020"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                        <a id="font" href="/Graph?key=28">2020 General Election Results</a>
+                            </div>
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+                        <!-- else -->
+                        <!-- { -->
+                        <!-- <button class="dropdown-btn"> -->
+                        <!-- 2015-2007 -->
+                        <!-- <i class="fa fa-caret-down"></i> -->
+                        <!-- </button> -->
+                        <!-- break; -->
+                        <!-- } -->
+
+                    <div><a href="https://www.dauphinc.org/electionarchive/">Historical Archives</a></div>
+
+                </div>
+
+                <div style="overflow-x:auto;" class="col-lg-12 pt-1">
+                    <!-- Table column, like HTML5 article -->
+
+                    <div id="myBtnContainer">
+                        <table id="t01" style="width:auto">
+
+                            <th><center>Race Filter</center></th>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>
+
+                                        <ul class="ul_table filt">
+                                                <li>
+
+
+                                                    <button class="collapsible">GOVERNOR AND LT GOVERNOR</button>
+                                                    <div class="content">
+                                                        <hr />
+                                                        <ul id="filterD" class="swapButton DropFilt">
+                                                                <li style="margin-right:20%;"><a href="/?key=42&amp;race=GOVERNOR%20AND%20LT%20GOVERNOR">GOVERNOR AND LT GOVERNOR</a></li>
+
+
+                                                        </ul>
+
+                                                    </div>
+
+                                                </li>
+                                                <li>
+
+
+                                                    <button class="collapsible">REPRESENTATIVE IN CONGRESS</button>
+                                                    <div class="content">
+                                                        <hr />
+                                                        <ul id="filterD" class="swapButton DropFilt">
+                                                                <li style="margin-right:20%;"><a href="/?key=42&amp;race=REPRESENTATIVE%20IN%20CONGRESS">REPRESENTATIVE IN CONGRESS</a></li>
+
+
+                                                        </ul>
+
+                                                    </div>
+
+                                                </li>
+                                                <li>
+
+
+                                                    <button class="collapsible">STATE SEN 34</button>
+                                                    <div class="content">
+                                                        <hr />
+                                                        <ul id="filterD" class="swapButton DropFilt">
+                                                                <li style="margin-right:20%;"><a href="/?key=42&amp;race=STATE%20SEN%2034">STATE SEN 34</a></li>
+
+
+                                                        </ul>
+
+                                                    </div>
+
+                                                </li>
+                                                <li>
+
+
+                                                    <button class="collapsible">STATE REPRESENTATIVE</button>
+                                                    <div class="content">
+                                                        <hr />
+                                                        <ul id="filterD" class="swapButton DropFilt">
+                                                                <li style="margin-right:20%;"><a href="/?key=42&amp;race=HD%20103">HD 103</a></li>
+                                                                <li style="margin-right:20%;"><a href="/?key=42&amp;race=HD%20104">HD 104</a></li>
+                                                                <li style="margin-right:20%;"><a href="/?key=42&amp;race=HD%20105">HD 105</a></li>
+                                                                <li style="margin-right:20%;"><a href="/?key=42&amp;race=HD%20106">HD 106</a></li>
+                                                                <li style="margin-right:20%;"><a href="/?key=42&amp;race=HD%20125">HD 125</a></li>
+
+
+                                                        </ul>
+
+                                                    </div>
+
+                                                </li>
+
+
+
+
+                                        </ul>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-lg-9 pt-1" style="border:5px solid darkred;height:auto;width:auto;">
+
+                    <div class="row col-lg-12 swap">
+
+                        <div class="col-lg-6 padding" style="height:auto;width:auto;">
+                            <h2 class="mailer">Polling Places Reporting</h2>
+                            <br />
+                            <canvas alt="In-Person_llotrllot_Precinct_ee_Chart" id="preceintcsPieChart"></canvas>
+                            <br />
+                            <span class="center font-weight-bolder">158 <span>Total Precincts</span></span>
+                            <br />
+                            <a href="/Machine?key=42"><span style="color:blue"><u>In-Person Ballot Precinct List</u></span></a>
+                            <br />
+                            <br />
+                        </div>
+
+                        <div id="vlgr"> </div>
+
+                        <div id="voter" class="col-lg-6 padding" style="height:auto;width:auto;">
+                            <h2 class="mailer">Mail-In Ballots</h2>
+                            <div>
+                                <br />
+                                <span class="bold-font hours">
+                                    <div class="count" style="text-align:center; margin-bottom:20px;">Counted:*</div>
+                                    <center>
+                                        <span class="percent">
+100%
+                                        </span>
+                                    </center>
+                                </span>
+                            </div>
+                            <br />
+                            <div class="center font-weight-bolder hours">25391 <span> Ballots Received as of Last Update</span></div>
+                            <p id="showDisclaimer" class="hours">
+                                *Number provided is to
+                                demonstrate progress. <br />Does not include ballots requested but not returned,<br /> as well as military and civilian overseas.
+                            </p>
+                            <br />
+                                <div style="color:red">
+
+    </div>
+
+                            <!-- <a href="/MailIn?key=42"><span class="hours" style="color:blue"><u>Mail-In Ballot Precinct List</u></span></a>-->
+                            <!--BIGGER version until 8 pm-->
+                            <div id="shrink" class="shrinkmail">
+                                <center>
+                                     <span class="percent closed">
+
+100%
+                                       </span>
+                                </center>
+                                <br />
+                                <!--<a href="/MailIn?key=42"><span class="closed" style="color:blue"><u>Mail-In Ballot Precinct List</u></span></a>-->
+                                <p id="disclaimer" class="closed">*Number of mail-in ballots will be posted on election day.</p>
+                            </div>
+                            <!--BIGGER version until 8 pm-->
+                        </div>
+
+                        <div class="col-lg-12">
+                            <hr />
+                            <p id="directions"><b>To see race results, please use the drop-down filter to the left.</b></p>
+                            <p id="noArrow" style="font-size:550%;margin-top:-6.5%;">&#129044;</p>
+                        </div>
+                    </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+    <!--
+    ####################################################
+    JAVASCRIPT-jquery, bootstrap, plugins
+    Placed at the end of the document so the pages load faster
+    #################################################### -->
+    <!-- jQuery - Grab from a CDN and if not available grab a local copy -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>
+        window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')
+    </script>
+
+
+    <!-- Bootstrap core JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--JS File-->
+    <script src="/js/master.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2KTS822KE4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-2KTS822KE4');
+    </script>
+
+</body>
+</html>
+<footer>
+
+    <div>
+
+        <section>
+            <center><img alt="Footer_Banner_IMG" src="/Images/Footer.gif"></center>
+        </section>
+
+    </div>
+
+</footer>
+
+
+<script>
+    //code to reload the page when using back button
+    window.addEventListener("pageshow", function (event) {
+        var historyTraversal = event.persisted ||
+            (typeof window.performance != "undefined" &&
+                window.performance.navigation.type === 2);
+        if (historyTraversal) {
+            // Handle page restore.
+            window.location.reload();
+        }
+    });
+    $(document).ready(function () {
+
+        var totalMailInBallots = 25391
+        var mailInBallotsCasted = 25370
+
+        var preceincts = 158
+        var reportedPrceincts = 158
+
+        //Show/Hide Percent
+
+            var key = 42
+
+        var start = new Date();
+        start.setYear(2026);
+        start.setMonth(10); /*Month is zero based*/
+        start.setDate(3);
+        start.setHours(20, 00);
+        start.setMinutes(0);
+        start.setSeconds(0);
+        var time = new Date();
+
+            if (key == "42") {
+
+                if (time >= start) {
+                    $('.closed').css("display", "none");
+                    $('.hours').show();
+
+
+                }
+                else {
+                    $('.hours').css("display", "none");
+                    $('.closed').show();
+                }
+
+            }
+            else {
+
+                $('.closed').css("display", "none");
+                $('.hours').show();
+
+        }
+
+        //Show/Hide Percent
+
+            $('#Dem').click(function () {
+
+                $("table[id^=tblRace]:contains('DEM$^')").show();
+                $("table[id^=tblRace]:contains('REP$^')").hide();
+
+            });
+
+        $('#Rep').click(function () {
+
+            $("table[id^=tblRace]:contains('REP$^')").show();
+            $("table[id^=tblRace]:contains('DEM$^')").hide();
+        });
+
+        $(".dropdown-toggle").hover(function () {
+
+            $(this).css("cursor", "pointer");
+
+        });
+
+
+            $('.progress-bar').each(function (a, b) {
+                var barfillValue = $(this).attr('aria-valuenow');
+                $(this).css("width", barfillValue +'%');
+            });
+
+        $('.progress-bar bg-gray').each(function (a, b) {
+            $(this).css("background-color", "gray");
+        });
+
+        //Voter Turn out chart
+        voterTurnoutChart = $('#voterTurnOutPieChart')
+        if (totalMailInBallots == mailInBallotsCasted) {
+
+            var myPieChart = new Chart(voterTurnoutChart, {
+                type: 'pie',
+                data: {
+                    labels: [mailInBallotsCasted + " Mail-In Ballots Counted "],
+                    datasets: [{
+                        labels: ["", ""],
+                        borderColor: ["#5a5553", "#5a5553"],
+                        borderWidth: [".5", ".5"],
+                        backgroundColor: ["#5a5553", "#fff9ff"],
+                        data: [mailInBallotsCasted]
+                    }]
+                },
+                options: {
+                    title: {
+                        display: false,
+                        text: "",
+                    },
+                    legend: {
+                        display: true,
+                        labels: {fontColor:"black", fontStyle:"bold"},
+                    },
+                    tooltips: {
+                        enabled: true,
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                var labelText = data.labels[tooltipItem.index];
+                                return labelText;
+                            }
+                        }
+                    }
+                }
+            });
+
+
+        }
+        else {
+            var myPieChart = new Chart(voterTurnoutChart, {
+                type: 'pie',
+                data: {
+                   labels: [mailInBallotsCasted + " Mail-In Ballots Counted ","To Be Counted"],
+                    datasets: [{
+                        labels: ["", ""],
+                        borderColor: ["#5a5553", "#5a5553"],
+                        borderWidth: [".5", ".5"],
+                        backgroundColor: ["#5a5553","#fff9ff"],
+                        data: [mailInBallotsCasted, totalMailInBallots-mailInBallotsCasted]
+                    }]
+                },
+                options: {
+                    title: {
+                        display: false,
+                        text: "",
+                    },
+                    legend: {
+                        display: true,
+                        labels: {fontColor:"black", fontStyle:"bold"},
+                    },
+                    tooltips: {
+                        enabled: true,
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                var labelText = data.labels[tooltipItem.index];
+                                return labelText;
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        //Preceincts chart
+        preceinctsChart = $('#preceintcsPieChart')
+
+        if (reportedPrceincts === preceincts) {
+            var myPieChart = new Chart(preceinctsChart, {
+                type: 'pie',
+                data: {
+                    labels: ["Number of Precincts Reporting:" + preceincts+""],
+                    datasets: [{
+                        labels: [],
+                        borderColor: ["#5a5553", "#5a5553"],
+                        borderWidth: [".5", ".5"],
+                        backgroundColor: ["#5a5553"],
+                        data: [preceincts]
+                    }]
+                },
+                options: {
+                    title: {
+                        display: false,
+                        text: ""
+                    },
+                    legend: {
+                        display: true,
+                        labels: {fontColor:"black", fontStyle:"bold"},
+                    },
+                    tooltips: {
+                        enabled: true,
+                        callbacks: {
+                            label: function (tooltipItem, data) {
+                                var labelText = data.labels[tooltipItem.index];
+                                return labelText;
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        else {
+            var myPieChart = new Chart(preceinctsChart, {
+                type: 'pie',
+                data: {
+                    labels: [ reportedPrceincts + " " + "Precincts Reporting ",   " To Be Reported"],
+                    datasets: [{
+                        labels: ["",""],
+                        borderColor: ["#5a5553", "#5a5553"],
+                        borderWidth: [".5", ".5"],
+                        backgroundColor: ["#5a5553", "#fff9ff"],
+                        data: [reportedPrceincts, preceincts-reportedPrceincts]
+                    }]
+                },
+                options: {
+                    title: {
+                        display: false,
+                        text: ""
+                    } ,
+                legend: {
+                        display: true,
+                        labels: {fontColor:"black", fontStyle:"bold"},
+                    },
+                tooltips: {
+                    enabled: true,
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            var labelText = data.labels[tooltipItem.index];
+                            return labelText;
+                        }
+                    }
+                  }
+                }
+            });
+        }
+
+
+    });
+
+</script>

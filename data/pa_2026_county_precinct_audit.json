@@ -4,6 +4,7 @@
   "sources": {
     "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
     "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
+    "DAUPHIN": "https://elections.dauphincounty.gov/PreceinctByBallot?key=42&race=GOVERNOR+AND+LT+GOVERNOR",
     "FRANKLIN": "https://lfweb.franklincountypa.gov/Election%20Results/PrecinctDetail.pdf",
     "INDIANA": "https://www.indianacountypa.gov/wp-content/uploads/2026-GENERAL-PRECINCT-SUMMARY.pdf",
     "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
@@ -16,7 +17,9 @@
     "PHILADELPHIA": "https://vote.phila.gov/media/26_General_Totals.xlsx",
     "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
     "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf",
-    "SOMERSET": "https://www.co.somerset.pa.us/files/voter_files/ElectionResultsUpload/Precient%20by%20Precient%20Report.pdf"
+    "SOMERSET": "https://www.co.somerset.pa.us/files/voter_files/ElectionResultsUpload/Precient%20by%20Precient%20Report.pdf",
+    "SNYDER": "https://www.snydercounty.org/wp-content/uploads/2026/11/Official-Precinct-Summary.pdf",
+    "WASHINGTON": "https://cms.washingtoncopa.gov/uploads/2026_Election_Precinct_Summary_Official_d9293c21ae.pdf"
   },
   "counties": {
     "BERKS": {
@@ -640,6 +643,171 @@
         "DEM": 165916,
         "REP": 76120,
         "LIB": 2552
+      },
+      "source_status": "county_marked_official"
+    },
+    "DAUPHIN": {
+      "precincts": 158,
+      "matched_precincts": 128,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "City--12th Ward",
+          "normalized": "HARRISBURG WD 12",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Halifax Borough",
+          "normalized": "HALIFAX",
+          "candidate_geometry": [
+            "DAUPHIN - 043190",
+            "DAUPHIN - 043200"
+          ]
+        },
+        {
+          "source_precinct": "Highspire Borough",
+          "normalized": "HIGHSPIRE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Middletown--2nd Ward",
+          "normalized": "MIDDLETOWN WD 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Millersburg Borough",
+          "normalized": "MILLERSBURG",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Steelton--2nd Ward",
+          "normalized": "STEELTON WD 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Steelton--3rd Ward",
+          "normalized": "STEELTON WD 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamstown--1st Ward",
+          "normalized": "WILLIAMSTOWN WD 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamstown--2nd Ward",
+          "normalized": "WILLIAMSTOWN WD 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Conewago Twp--1st Precinct",
+          "normalized": "CONEWAGO 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Conewago Twp--2nd Precinct",
+          "normalized": "CONEWAGO 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Derry Township--15th Precinct",
+          "normalized": "DERRY 15",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Halifax Twp--1st Precinct",
+          "normalized": "HALIFAX 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Halifax Twp--2nd Precinct",
+          "normalized": "HALIFAX 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Londonderry Twp--3rd Precinct",
+          "normalized": "LONDONDERRY 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Lower Paxton Twp--21st Precinct",
+          "normalized": "LOWER PAXTON 21",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Lower Paxton Twp--22nd Precinct",
+          "normalized": "LOWER PAXTON 22",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Lower Paxton Twp--23rd Precinct",
+          "normalized": "LOWER PAXTON 23",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Lower Paxton Twp--24th Precinct",
+          "normalized": "LOWER PAXTON 24",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Lower Paxton Twp--25th Precinct",
+          "normalized": "LOWER PAXTON 25",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Lower Paxton Twp--26th Precinct",
+          "normalized": "LOWER PAXTON 26",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Lower Paxton Twp--27th Precinct",
+          "normalized": "LOWER PAXTON 27",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Susquehanna Twp--7th Ward",
+          "normalized": "SUSQUEHANNA WD 7",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Swatara Township--10th Precinct",
+          "normalized": "SWATARA 10",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Upper Paxton Twp--1st Precinct",
+          "normalized": "UPPER PAXTON 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Upper Paxton Twp--2nd Precinct",
+          "normalized": "UPPER PAXTON 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "West Hanover Twp--5th Precinct",
+          "normalized": "WEST HANOVER 5",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "West Hanover Twp--6th Precinct",
+          "normalized": "WEST HANOVER 6",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "West Hanover Twp--7th Precinct",
+          "normalized": "WEST HANOVER 7",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williams Twp",
+          "normalized": "WILLIAMS",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 72944,
+        "REP": 40297,
+        "LIB": 2050
       },
       "source_status": "county_marked_official"
     },
@@ -2136,6 +2304,240 @@
         "LIB": 505
       },
       "source_status": "county_marked_official"
+    },
+    "SNYDER": {
+      "precincts": 25,
+      "matched_precincts": 23,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "PENN TOWNSHIP #1",
+          "normalized": "PENN 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "PENN TOWNSHIP #2",
+          "normalized": "PENN 2",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 4865,
+        "REP": 8526,
+        "LIB": 178
+      },
+      "source_status": "county_marked_official"
+    },
+    "WASHINGTON": {
+      "precincts": 156,
+      "matched_precincts": 116,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "BENTLEYVILLE",
+          "normalized": "BENTLEYVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CANONSBURG 1W 3",
+          "normalized": "CANONSBURG 1W 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CANONSBURG 1W 4",
+          "normalized": "CANONSBURG 1W 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CANONSBURG 2W 1",
+          "normalized": "CANONSBURG 2W 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CANONSBURG 2W 2",
+          "normalized": "CANONSBURG 2W 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CANONSBURG 3W 1",
+          "normalized": "CANONSBURG 3W 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CANONSBURG 3W 3",
+          "normalized": "CANONSBURG 3W 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CECIL 7",
+          "normalized": "CECIL 7",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CECIL 8",
+          "normalized": "CECIL 8",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CROSS CREEK",
+          "normalized": "CROSS CREEK",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "EAST BETHLEHEM 1W",
+          "normalized": "EAST BETHLEHEM 1W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "EAST BETHLEHEM 2W",
+          "normalized": "EAST BETHLEHEM 2W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "EAST BETHLEHEM 3W",
+          "normalized": "EAST BETHLEHEM 3W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "EAST BETHLEHEM 4W",
+          "normalized": "EAST BETHLEHEM 4W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "EAST FINLEY",
+          "normalized": "EAST FINLEY",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "EAST WASHINGTON",
+          "normalized": "EAST WASHINGTON",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "INDEPENDENCE",
+          "normalized": "INDEPENDENCE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "MONONGAHELA 1W",
+          "normalized": "MONONGAHELA 1W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "MONONGAHELA 2W",
+          "normalized": "MONONGAHELA 2W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "MONONGAHELA 3W",
+          "normalized": "MONONGAHELA 3W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "MCDONALD",
+          "normalized": "MCDONALD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "NORTH BETHLEHEM",
+          "normalized": "NORTH BETHLEHEM",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "NORTH CHARLEROI",
+          "normalized": "NORTH CHARLEROI",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "NORTH STRABANE 7",
+          "normalized": "NORTH STRABANE 7",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "NORTH STRABANE 8",
+          "normalized": "NORTH STRABANE 8",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "NORTH STRABANE 9",
+          "normalized": "NORTH STRABANE 9",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "NOTTINGHAM 1",
+          "normalized": "NOTTINGHAM 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "NOTTINGHAM 2",
+          "normalized": "NOTTINGHAM 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "ROBINSON",
+          "normalized": "ROBINSON",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "SOUTH STRABANE 6",
+          "normalized": "SOUTH STRABANE 6",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WEST FINLEY",
+          "normalized": "WEST FINLEY",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WASHINGTON 2W",
+          "normalized": "WASHINGTON 2W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WASHINGTON 3W",
+          "normalized": "WASHINGTON 3W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WASHINGTON 4W",
+          "normalized": "WASHINGTON 4W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WASHINGTON 5W 1",
+          "normalized": "WASHINGTON 5W 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WASHINGTON 5W 2",
+          "normalized": "WASHINGTON 5W 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WASHINGTON 6W",
+          "normalized": "WASHINGTON 6W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WASHINGTON 7W 1",
+          "normalized": "WASHINGTON 7W 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WASHINGTON 7W 2",
+          "normalized": "WASHINGTON 7W 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WASHINGTON 8W",
+          "normalized": "WASHINGTON 8W",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 41560,
+        "REP": 39463,
+        "LIB": 1186
+      },
+      "source_status": "county_marked_official"
     }
   },
   "counties_without_verified_precinct_report": [
@@ -2158,7 +2560,6 @@
     "COLUMBIA",
     "CRAWFORD",
     "CUMBERLAND",
-    "DAUPHIN",
     "DELAWARE",
     "ELK",
     "ERIE",
@@ -2180,13 +2581,11 @@
     "PERRY",
     "PIKE",
     "SCHUYLKILL",
-    "SNYDER",
     "SULLIVAN",
     "TIOGA",
     "UNION",
     "VENANGO",
     "WARREN",
-    "WASHINGTON",
     "WAYNE",
     "WESTMORELAND",
     "WYOMING",

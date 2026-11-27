@@ -3,6 +3,7 @@
   "sources": {
     "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
     "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
+    "DAUPHIN": "https://elections.dauphincounty.gov/PreceinctByBallot?key=42&race=GOVERNOR+AND+LT+GOVERNOR",
     "FRANKLIN": "https://lfweb.franklincountypa.gov/Election%20Results/PrecinctDetail.pdf",
     "INDIANA": "https://www.indianacountypa.gov/wp-content/uploads/2026-GENERAL-PRECINCT-SUMMARY.pdf",
     "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
@@ -15,7 +16,9 @@
     "PHILADELPHIA": "https://vote.phila.gov/media/26_General_Totals.xlsx",
     "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
     "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf",
-    "SOMERSET": "https://www.co.somerset.pa.us/files/voter_files/ElectionResultsUpload/Precient%20by%20Precient%20Report.pdf"
+    "SOMERSET": "https://www.co.somerset.pa.us/files/voter_files/ElectionResultsUpload/Precient%20by%20Precient%20Report.pdf",
+    "SNYDER": "https://www.snydercounty.org/wp-content/uploads/2026/11/Official-Precinct-Summary.pdf",
+    "WASHINGTON": "https://cms.washingtoncopa.gov/uploads/2026_Election_Precinct_Summary_Official_d9293c21ae.pdf"
   },
   "counties": {
     "BERKS": {
@@ -151,6 +154,47 @@
           "DEM": 13907,
           "REP": 13187,
           "WRI": 27
+        }
+      },
+      "source_status": "county_marked_official"
+    },
+    "DAUPHIN": {
+      "precincts_with_district_races": 158,
+      "matched_precincts": 128,
+      "rows": 965,
+      "contests": {
+        "U.S. House 10": {
+          "DEM": 69395,
+          "REP": 45686,
+          "WRI": 484
+        },
+        "State House 103": {
+          "DEM": 7620,
+          "REP": 910,
+          "WRI": 39
+        },
+        "State House 104": {
+          "DEM": 15060,
+          "WRI": 917
+        },
+        "State Senate 34": {
+          "DEM": 2762,
+          "REP": 7767,
+          "WRI": 16
+        },
+        "State House 125": {
+          "DEM": 11659,
+          "REP": 19098,
+          "WRI": 47
+        },
+        "State House 106": {
+          "DEM": 12449,
+          "REP": 16817,
+          "WRI": 86
+        },
+        "State House 105": {
+          "DEM": 21858,
+          "WRI": 1272
         }
       },
       "source_status": "county_marked_official"
@@ -653,6 +697,71 @@
         "State House 71": {
           "REP": 2503,
           "WRI": 173
+        }
+      },
+      "source_status": "county_marked_official"
+    },
+    "SNYDER": {
+      "precincts_with_district_races": 25,
+      "matched_precincts": 23,
+      "rows": 125,
+      "contests": {
+        "U.S. House 15": {
+          "DEM": 4223,
+          "REP": 9295,
+          "WRI": 30
+        },
+        "State House 85": {
+          "REP": 10875,
+          "WRI": 760
+        }
+      },
+      "source_status": "county_marked_official"
+    },
+    "WASHINGTON": {
+      "precincts_with_district_races": 156,
+      "matched_precincts": 116,
+      "rows": 1404,
+      "contests": {
+        "U.S. House 14": {
+          "DEM": 38498,
+          "REP": 42885,
+          "WRI": 74
+        },
+        "State Senate 46": {
+          "REP": 42344,
+          "IND": 34928,
+          "WRI": 462
+        },
+        "State House 50": {
+          "DEM": 4367,
+          "REP": 5240,
+          "WRI": 31
+        },
+        "State House 48": {
+          "DEM": 10836,
+          "REP": 14169,
+          "WRI": 32
+        },
+        "State House 15": {
+          "DEM": 3875,
+          "REP": 6480,
+          "WRI": 7
+        },
+        "State House 46": {
+          "DEM": 9169,
+          "REP": 11139,
+          "WRI": 14
+        },
+        "State House 39": {
+          "DEM": 2401,
+          "REP": 2932,
+          "WRI": 7
+        },
+        "State House 40": {
+          "DEM": 4717,
+          "REP": 6733,
+          "WRI": 17
         }
       },
       "source_status": "county_marked_official"

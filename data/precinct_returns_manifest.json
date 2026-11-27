@@ -358,6 +358,7 @@
       "sources": {
         "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
         "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
+        "DAUPHIN": "https://elections.dauphincounty.gov/PreceinctByBallot?key=42&race=GOVERNOR+AND+LT+GOVERNOR",
         "FRANKLIN": "https://lfweb.franklincountypa.gov/Election%20Results/PrecinctDetail.pdf",
         "INDIANA": "https://www.indianacountypa.gov/wp-content/uploads/2026-GENERAL-PRECINCT-SUMMARY.pdf",
         "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
@@ -370,16 +371,18 @@
         "PHILADELPHIA": "https://vote.phila.gov/media/26_General_Totals.xlsx",
         "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
         "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf",
-        "SOMERSET": "https://www.co.somerset.pa.us/files/voter_files/ElectionResultsUpload/Precient%20by%20Precient%20Report.pdf"
+        "SOMERSET": "https://www.co.somerset.pa.us/files/voter_files/ElectionResultsUpload/Precient%20by%20Precient%20Report.pdf",
+        "SNYDER": "https://www.snydercounty.org/wp-content/uploads/2026/11/Official-Precinct-Summary.pdf",
+        "WASHINGTON": "https://cms.washingtoncopa.gov/uploads/2026_Election_Precinct_Summary_Official_d9293c21ae.pdf"
       },
       "output": "data/Openelections/2026/20261103__pa__general__precinct_county_official.csv",
-      "rows": 8871,
-      "counties": 15,
-      "precincts": 2957,
-      "matched_precincts": 2575,
+      "rows": 9888,
+      "counties": 18,
+      "precincts": 3296,
+      "matched_precincts": 2842,
       "audit": "data/pa_2026_county_precinct_audit.json",
       "district_race_output": "data/Openelections/2026/20261103__pa__general__district_races_county_official.csv",
-      "district_race_rows": 17718,
+      "district_race_rows": 20212,
       "district_race_audit": "data/pa_2026_district_races_audit.json"
     }
   ]

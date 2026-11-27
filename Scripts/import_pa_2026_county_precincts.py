@@ -17,6 +17,8 @@ from pathlib import Path
 
 import pdfplumber
 from pa_2026_philadelphia import load_philadelphia
+from pa_2026_dauphin import read_dauphin
+from pa_2026_washington import read_washington
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,6 +29,7 @@ MANIFEST = ROOT / "data" / "precinct_returns_manifest.json"
 SOURCES = {
     "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
     "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
+    "DAUPHIN": "https://elections.dauphincounty.gov/PreceinctByBallot?key=42&race=GOVERNOR+AND+LT+GOVERNOR",
     "FRANKLIN": "https://lfweb.franklincountypa.gov/Election%20Results/PrecinctDetail.pdf",
     "INDIANA": "https://www.indianacountypa.gov/wp-content/uploads/2026-GENERAL-PRECINCT-SUMMARY.pdf",
     "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
@@ -40,6 +43,8 @@ SOURCES = {
     "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
     "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf",
     "SOMERSET": "https://www.co.somerset.pa.us/files/voter_files/ElectionResultsUpload/Precient%20by%20Precient%20Report.pdf",
+    "SNYDER": "https://www.snydercounty.org/wp-content/uploads/2026/11/Official-Precinct-Summary.pdf",
+    "WASHINGTON": "https://cms.washingtoncopa.gov/uploads/2026_Election_Precinct_Summary_Official_d9293c21ae.pdf",
 }
 FIELDNAMES = ["county", "precinct", "office", "district", "party", "candidate", "votes", "election_day", "mail", "provisional"]
 CANDIDATE = re.compile(r"^(DEM|REP|LIB) (.+?) ([\d,]+)(?: \d+(?:\.\d+)?%)? ([\d,]+) ([\d,]+) ([\d,]+)$")
@@ -67,6 +72,13 @@ CARDINALS = {"ONE": "1", "TWO": "2", "THREE": "3", "FOUR": "4", "FIVE": "5", "SI
 
 def source_norm(county: str, name: str) -> str:
     value = name.upper()
+    if county == "DAUPHIN":
+        value = re.sub(r"^CITY--", "HARRISBURG--", value)
+        value = re.sub(r"--(\d+)(?:ST|ND|RD|TH) WARD, (\d+)(?:ST|ND|RD|TH) PRECINCT", r" WD \1 DIST \2", value)
+        value = re.sub(r"--(\d+)(?:ST|ND|RD|TH) WARD", r" WD \1", value)
+        value = re.sub(r"\b(PENBROOK|ROYALTON) BOROUGH WD (\d+)\b", r"\1 DIST \2", value)
+    if county == "SNYDER":
+        value = value.replace("MCCLURE", "MC CLURE")
     if county == "PHILADELPHIA" and re.fullmatch(r"\d{2}-\d{2}", name):
         value = f"PHILADELPHIA WD {name[:2]} PCT {name[3:]}"
     if county == "NORTHAMPTON":
@@ -276,13 +288,75 @@ def extract_philadelphia() -> dict[str, list[dict]]:
     return precincts
 
 
+def extract_dauphin() -> dict[str, list[dict]]:
+    raw = read_dauphin(PDF_DIR / "dauphin_governor_and_lt_governor.html")
+    candidates = (("JOSH SHAPIRO", "DEM", "Josh Shapiro"),
+                  ("STACY GARRITY", "REP", "Stacy Garrity"),
+                  ("KEN KRAWCHUK", "LIB", "Ken Krawchuk"))
+    expected = {name for name, _, _ in candidates} | {"WRITE-IN1"}
+    if len(raw) != 158 or any(set(values) != expected for values in raw.values()):
+        raise ValueError("Unexpected Dauphin governor precincts or candidates")
+    return {precinct: [dict(party=party, candidate=candidate, votes=values[name][0],
+                            election_day=values[name][1], mail=values[name][2], provisional=values[name][3])
+                       for name, party, candidate in candidates]
+            for precinct, values in raw.items()}
+
+
+def extract_snyder() -> dict[str, list[dict]]:
+    precincts = {}
+    with pdfplumber.open(PDF_DIR / "snyder.pdf") as pdf:
+        if len(pdf.pages) != 25:
+            raise ValueError("Unexpected Snyder page count")
+        for page in pdf.pages:
+            lines = (page.extract_text() or "").splitlines()
+            if "OFFICIAL RESULTS" not in lines[0] or lines[2] != "November 3, 2026 SNYDER COUNTY":
+                raise ValueError(f"Unexpected Snyder header: page {page.page_number}")
+            precinct = lines[3].strip()
+            start = lines.index("GOVERNOR / LT. GOVERNOR")
+            rows = []
+            for line in lines[start + 1:]:
+                if line.startswith("Write-In Totals"):
+                    break
+                match = CANDIDATE.match(line)
+                if match:
+                    party, candidate, *numbers = match.groups()
+                    canonical = {"DEM": "Josh Shapiro", "REP": "Stacy Garrity", "LIB": "Ken Krawchuk"}[party]
+                    if canonical.split()[1].upper() not in candidate.upper():
+                        raise ValueError(f"Unexpected Snyder governor candidate: {line}")
+                    values = [int(value.replace(",", "")) for value in numbers]
+                    if values[0] != sum(values[1:]):
+                        raise ValueError(f"Snyder vote split mismatch: {precinct} {line}")
+                    rows.append(dict(party=party, candidate=canonical, votes=values[0],
+                                     election_day=values[1], mail=values[2], provisional=values[3]))
+            if {row["party"] for row in rows} != {"DEM", "REP", "LIB"} or precinct in precincts:
+                raise ValueError(f"Unexpected Snyder governor rows: {precinct}")
+            precincts[precinct] = rows
+    return precincts
+
+
+def extract_washington() -> dict[str, list[dict]]:
+    source = read_washington()
+    result = {}
+    for precinct, contests in source.items():
+        candidates = contests.get(("Governor", ""), [])
+        if not candidates:
+            continue
+        if {row["party"] for row in candidates} != {"DEM", "REP", "LIB", "WRI"}:
+            raise ValueError(f"Unexpected Washington governor candidates: {precinct}")
+        expected = {"DEM": "JOSH SHAPIRO", "REP": "STACY GARRITY", "LIB": "KEN KRAWCHUK"}
+        if any(row["candidate"].upper() != expected[row["party"]] for row in candidates if row["party"] != "WRI"):
+            raise ValueError(f"Unexpected Washington governor name: {precinct}")
+        result[precinct] = [row for row in candidates if row["party"] != "WRI"]
+    return result
+
+
 def main() -> None:
     index = geometry_index()
     rows = []
     audit = {"status": "county_published_partial", "election": "2026-11-03 general", "sources": SOURCES, "counties": {}}
     for county in SOURCES:
         pdf_path = PDF_DIR / f"{county.lower()}.pdf"
-        precincts = (extract_philadelphia() if county == "PHILADELPHIA" else extract_monroe() if county == "MONROE" else extract_lycoming(pdf_path) if county == "LYCOMING" else extract_susquehanna(pdf_path) if county == "SUSQUEHANNA" else extract_electionware(pdf_path, county))
+        precincts = (extract_philadelphia() if county == "PHILADELPHIA" else extract_dauphin() if county == "DAUPHIN" else extract_snyder() if county == "SNYDER" else extract_washington() if county == "WASHINGTON" else extract_monroe() if county == "MONROE" else extract_lycoming(pdf_path) if county == "LYCOMING" else extract_susquehanna(pdf_path) if county == "SUSQUEHANNA" else extract_electionware(pdf_path, county))
         unmatched = []
         matched = 0
         county_votes = defaultdict(int)

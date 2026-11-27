@@ -16,6 +16,8 @@ from pathlib import Path
 
 import pdfplumber
 from pa_2026_philadelphia import load_philadelphia
+from pa_2026_dauphin import read_dauphin
+from pa_2026_washington import read_washington
 
 from import_pa_2026_county_precincts import (
     CANDIDATE, FIELDNAMES, PDF_DIR, ROOT, SOURCES, detailed_norm,
@@ -214,13 +216,86 @@ def philadelphia() -> dict[str, list[dict]]:
     return result
 
 
+def dauphin() -> dict[str, list[dict]]:
+    contests = (
+        ("representative_in_congress", "U.S. House", "10", {"JANELLE STELSON": "DEM", "SCOTT PERRY": "REP"}),
+        ("state_sen_34", "State Senate", "34", {"NATHAN WOOD": "DEM", "GREG ROTHMAN": "REP"}),
+        ("hd_103", "State House", "103", {"NATE DAVIDSON": "DEM", "CINDI WARD": "REP"}),
+        ("hd_104", "State House", "104", {"DAVE MADSEN": "DEM"}),
+        ("hd_105", "State House", "105", {"JUSTIN FLEMING": "DEM"}),
+        ("hd_106", "State House", "106", {"ANJU SINGH": "DEM", "TOM MEHAFFIE": "REP"}),
+        ("hd_125", "State House", "125", {"KATHRYN WATERS": "DEM", "JOE KERWIN": "REP"}),
+    )
+    result = defaultdict(list)
+    for filename, office, district, parties in contests:
+        raw = read_dauphin(PDF_DIR / f"dauphin_{filename}.html")
+        if any(set(values) != set(parties) | {"WRITE-IN1"} for values in raw.values()):
+            raise ValueError(f"Unexpected Dauphin candidates: {filename}")
+        for precinct, candidates in raw.items():
+            for candidate, party in (*parties.items(), ("WRITE-IN1", "WRI")):
+                result[precinct].append(record(office, district, party,
+                    "Write-in" if party == "WRI" else candidate.title(), list(candidates[candidate])))
+    if len(result) != 158:
+        raise ValueError(f"Expected 158 Dauphin district precincts, found {len(result)}")
+    return result
+
+
+def snyder() -> dict[str, list[dict]]:
+    result = defaultdict(list)
+    headings = {"REP. IN CONGRESS 15TH DISTRICT": ("U.S. House", "15"),
+                "REP. IN GEN. ASSEMBLY 85TH DISTRICT": ("State House", "85")}
+    with pdfplumber.open(PDF_DIR / "snyder.pdf") as pdf:
+        if len(pdf.pages) != 25:
+            raise ValueError("Unexpected Snyder page count")
+        for page in pdf.pages:
+            lines = (page.extract_text() or "").splitlines()
+            if "OFFICIAL RESULTS" not in lines[0] or lines[2] != "November 3, 2026 SNYDER COUNTY":
+                raise ValueError(f"Unexpected Snyder header: page {page.page_number}")
+            precinct = lines[3].strip()
+            current = None
+            for line in lines[4:]:
+                if line in headings:
+                    current = headings[line]
+                elif line.startswith("GOVERNOR / LT. GOVERNOR"):
+                    current = None
+                elif current:
+                    match = CANDIDATE.match(line)
+                    if match:
+                        party, candidate, *numbers = match.groups()
+                        result[precinct].append(record(*current, party, candidate.title(),
+                            [int(value.replace(",", "")) for value in numbers]))
+                    write_in = re.match(r"^Write-In Totals ([\d,]+) ([\d,]+) ([\d,]+) ([\d,]+)$", line)
+                    if write_in:
+                        result[precinct].append(record(*current, "WRI", "Write-in",
+                            [int(value.replace(",", "")) for value in write_in.groups()]))
+                        current = None
+    if len(result) != 25 or any(len(rows) != 5 for rows in result.values()):
+        raise ValueError("Unexpected Snyder district rows")
+    return result
+
+
+def washington() -> dict[str, list[dict]]:
+    source = read_washington()
+    result = {}
+    for precinct, contests in source.items():
+        rows = []
+        for (office, district), candidates in contests.items():
+            if office == "Governor":
+                continue
+            for candidate in candidates:
+                rows.append(dict(office=office, district=district, **candidate))
+        if rows:
+            result[precinct] = rows
+    return result
+
+
 def main() -> None:
     index = geometry_index()
     rows = []
     audit = {"status": "county_published_partial", "sources": SOURCES, "counties": {}}
     for county in SOURCES:
         path = PDF_DIR / f"{county.lower()}.pdf"
-        precincts = philadelphia() if county == "PHILADELPHIA" else monroe() if county == "MONROE" else lycoming(path) if county == "LYCOMING" else susquehanna(path) if county == "SUSQUEHANNA" else electionware(path, county)
+        precincts = philadelphia() if county == "PHILADELPHIA" else dauphin() if county == "DAUPHIN" else snyder() if county == "SNYDER" else washington() if county == "WASHINGTON" else monroe() if county == "MONROE" else lycoming(path) if county == "LYCOMING" else susquehanna(path) if county == "SUSQUEHANNA" else electionware(path, county)
         target_by_name = {}
         for name in precincts:
             precise = index[county].get(detailed_norm(name), [])
