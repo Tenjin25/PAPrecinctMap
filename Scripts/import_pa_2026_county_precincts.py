@@ -16,6 +16,7 @@ from collections import defaultdict
 from pathlib import Path
 
 import pdfplumber
+from pa_2026_philadelphia import load_philadelphia
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,8 +36,10 @@ SOURCES = {
     "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
     "MONROE": "https://agencies2.monroecountypa.gov/ElectionResults/Contest?ct=GOVERNOR+AND+LIEUTENANT+GOVERNOR&id=10",
     "NORTHAMPTON": "https://www.norcopa.gov/corecode/uploads/document6/uploaded_pdfs/corecode/GE26%20Precinct%20Level%20Summary%20Results_2938.pdf",
+    "PHILADELPHIA": "https://vote.phila.gov/media/26_General_Totals.xlsx",
     "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
     "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf",
+    "SOMERSET": "https://www.co.somerset.pa.us/files/voter_files/ElectionResultsUpload/Precient%20by%20Precient%20Report.pdf",
 }
 FIELDNAMES = ["county", "precinct", "office", "district", "party", "candidate", "votes", "election_day", "mail", "provisional"]
 CANDIDATE = re.compile(r"^(DEM|REP|LIB) (.+?) ([\d,]+)(?: \d+(?:\.\d+)?%)? ([\d,]+) ([\d,]+) ([\d,]+)$")
@@ -64,6 +67,8 @@ CARDINALS = {"ONE": "1", "TWO": "2", "THREE": "3", "FOUR": "4", "FIVE": "5", "SI
 
 def source_norm(county: str, name: str) -> str:
     value = name.upper()
+    if county == "PHILADELPHIA" and re.fullmatch(r"\d{2}-\d{2}", name):
+        value = f"PHILADELPHIA WD {name[:2]} PCT {name[3:]}"
     if county == "NORTHAMPTON":
         value = re.sub(r"^\d{6}-\d+\s+", "", value)
         value = re.sub(r"\b(\d+)(?:ST|ND|RD|TH) WARD\b", r"WD \1", value)
@@ -255,13 +260,29 @@ def extract_monroe() -> dict[str, list[dict]]:
     return precincts
 
 
+def extract_philadelphia() -> dict[str, list[dict]]:
+    headers, source_rows = load_philadelphia()
+    if not all(name in str(headers[col]).upper() for col, name in ((9, "SHAPIRO"), (10, "GARRITY"), (11, "KRAWCHUK"))):
+        raise ValueError("Unexpected Philadelphia governor columns")
+    precincts = {}
+    for name, row, methods in source_rows:
+        if not re.fullmatch(r"\d{2}-\d{2}", name):
+            continue  # District-only mail votes have no ward/division assignment.
+        precincts[name] = []
+        for col, party, candidate in ((9, "DEM", "Josh Shapiro"), (10, "REP", "Stacy Garrity"), (11, "LIB", "Ken Krawchuk")):
+            precincts[name].append(dict(party=party, candidate=candidate, votes=int(row[col] or 0),
+                election_day=int(methods[0][col + 1] or 0), mail=int(methods[1][col + 1] or 0),
+                provisional=int(methods[2][col + 1] or 0)))
+    return precincts
+
+
 def main() -> None:
     index = geometry_index()
     rows = []
-    audit = {"status": "official_partial", "election": "2026-11-03 general", "sources": SOURCES, "counties": {}}
+    audit = {"status": "county_published_partial", "election": "2026-11-03 general", "sources": SOURCES, "counties": {}}
     for county in SOURCES:
         pdf_path = PDF_DIR / f"{county.lower()}.pdf"
-        precincts = (extract_monroe() if county == "MONROE" else extract_lycoming(pdf_path) if county == "LYCOMING" else extract_susquehanna(pdf_path) if county == "SUSQUEHANNA" else extract_electionware(pdf_path, county))
+        precincts = (extract_philadelphia() if county == "PHILADELPHIA" else extract_monroe() if county == "MONROE" else extract_lycoming(pdf_path) if county == "LYCOMING" else extract_susquehanna(pdf_path) if county == "SUSQUEHANNA" else extract_electionware(pdf_path, county))
         unmatched = []
         matched = 0
         county_votes = defaultdict(int)
@@ -285,7 +306,8 @@ def main() -> None:
             for candidate in candidates:
                 county_votes[candidate["party"]] += candidate["votes"]
                 rows.append({"county": county, "precinct": output_name, "office": "Governor", "district": "", **candidate})
-        audit["counties"][county] = {"precincts": len(precincts), "matched_precincts": matched, "unmatched_precincts": unmatched, "votes_by_party": dict(county_votes)}
+        audit["counties"][county] = {"precincts": len(precincts), "matched_precincts": matched, "unmatched_precincts": unmatched, "votes_by_party": dict(county_votes),
+            "source_status": "county_archive_without_explicit_certification_label" if county == "PHILADELPHIA" else "county_marked_official"}
     county_rows = {row["county"]: row for row in json.loads((ROOT / "data" / "contests" / "governor_2026.json").read_text(encoding="utf-8"))["rows"]}
     audit["counties_without_verified_precinct_report"] = sorted(set(county_rows) - set(SOURCES))
     for county, info in audit["counties"].items():
@@ -301,7 +323,7 @@ def main() -> None:
     AUDIT.write_text(json.dumps(audit, indent=2) + "\n", encoding="utf-8")
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     manifest["years"] = [entry for entry in manifest["years"] if entry["year"] != 2026]
-    manifest["years"].append({"year": 2026, "status": "official_partial", "source_type": "county_precinct_pdf", "sources": SOURCES, "output": OUT.relative_to(ROOT).as_posix(), "rows": len(rows), "counties": len(SOURCES), "precincts": sum(x["precincts"] for x in audit["counties"].values()), "matched_precincts": sum(x["matched_precincts"] for x in audit["counties"].values()), "audit": AUDIT.relative_to(ROOT).as_posix()})
+    manifest["years"].append({"year": 2026, "status": "county_published_partial", "source_type": "county_precinct_reports_and_workbook", "sources": SOURCES, "output": OUT.relative_to(ROOT).as_posix(), "rows": len(rows), "counties": len(SOURCES), "precincts": sum(x["precincts"] for x in audit["counties"].values()), "matched_precincts": sum(x["matched_precincts"] for x in audit["counties"].values()), "audit": AUDIT.relative_to(ROOT).as_posix()})
     MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({county: {key: value for key, value in info.items() if key != "unmatched_precincts"} | {"unmatched_count": len(info["unmatched_precincts"])} for county, info in audit["counties"].items()}, indent=2))
 

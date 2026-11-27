@@ -1,5 +1,5 @@
 {
-  "status": "official_partial",
+  "status": "county_published_partial",
   "election": "2026-11-03 general",
   "sources": {
     "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
@@ -13,8 +13,10 @@
     "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
     "MONROE": "https://agencies2.monroecountypa.gov/ElectionResults/Contest?ct=GOVERNOR+AND+LIEUTENANT+GOVERNOR&id=10",
     "NORTHAMPTON": "https://www.norcopa.gov/corecode/uploads/document6/uploaded_pdfs/corecode/GE26%20Precinct%20Level%20Summary%20Results_2938.pdf",
+    "PHILADELPHIA": "https://vote.phila.gov/media/26_General_Totals.xlsx",
     "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
-    "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf"
+    "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf",
+    "SOMERSET": "https://www.co.somerset.pa.us/files/voter_files/ElectionResultsUpload/Precient%20by%20Precient%20Report.pdf"
   },
   "counties": {
     "BERKS": {
@@ -331,7 +333,8 @@
         "DEM": 79901,
         "REP": 61741,
         "LIB": 2120
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "CHESTER": {
       "precincts": 230,
@@ -637,7 +640,8 @@
         "DEM": 165916,
         "REP": 76120,
         "LIB": 2552
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "FRANKLIN": {
       "precincts": 73,
@@ -738,7 +742,8 @@
         "DEM": 21740,
         "REP": 34818,
         "LIB": 910
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "INDIANA": {
       "precincts": 69,
@@ -774,7 +779,8 @@
         "DEM": 11838,
         "REP": 15602,
         "LIB": 486
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "LAWRENCE": {
       "precincts": 74,
@@ -820,7 +826,8 @@
         "DEM": 14268,
         "REP": 16547,
         "LIB": 495
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "LEBANON": {
       "precincts": 60,
@@ -901,7 +908,8 @@
         "DEM": 23319,
         "REP": 27102,
         "LIB": 819
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "LYCOMING": {
       "precincts": 80,
@@ -1076,7 +1084,8 @@
         "DEM": 15386,
         "REP": 24484,
         "LIB": 584
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "MERCER": {
       "precincts": 90,
@@ -1115,7 +1124,8 @@
         "DEM": 17432,
         "REP": 20779,
         "LIB": 609
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "MIFFLIN": {
       "precincts": 26,
@@ -1171,7 +1181,8 @@
         "DEM": 4649,
         "REP": 9405,
         "LIB": 279
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "MONROE": {
       "precincts": 55,
@@ -1232,7 +1243,8 @@
         "DEM": 37246,
         "REP": 22869,
         "LIB": 1004
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "NORTHAMPTON": {
       "precincts": 155,
@@ -1721,7 +1733,155 @@
         "DEM": 79128,
         "REP": 47483,
         "LIB": 1818
-      }
+      },
+      "source_status": "county_marked_official"
+    },
+    "PHILADELPHIA": {
+      "precincts": 1703,
+      "matched_precincts": 1676,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "02-28",
+          "normalized": "PHILADELPHIA WD 2 28",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "02-29",
+          "normalized": "PHILADELPHIA WD 2 29",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-24",
+          "normalized": "PHILADELPHIA WD 5 24",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-25",
+          "normalized": "PHILADELPHIA WD 5 25",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-26",
+          "normalized": "PHILADELPHIA WD 5 26",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-27",
+          "normalized": "PHILADELPHIA WD 5 27",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-28",
+          "normalized": "PHILADELPHIA WD 5 28",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-29",
+          "normalized": "PHILADELPHIA WD 5 29",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-30",
+          "normalized": "PHILADELPHIA WD 5 30",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-31",
+          "normalized": "PHILADELPHIA WD 5 31",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-32",
+          "normalized": "PHILADELPHIA WD 5 32",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-33",
+          "normalized": "PHILADELPHIA WD 5 33",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-34",
+          "normalized": "PHILADELPHIA WD 5 34",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-35",
+          "normalized": "PHILADELPHIA WD 5 35",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-36",
+          "normalized": "PHILADELPHIA WD 5 36",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "05-37",
+          "normalized": "PHILADELPHIA WD 5 37",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "08-31",
+          "normalized": "PHILADELPHIA WD 8 31",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "08-32",
+          "normalized": "PHILADELPHIA WD 8 32",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "08-33",
+          "normalized": "PHILADELPHIA WD 8 33",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "08-34",
+          "normalized": "PHILADELPHIA WD 8 34",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "08-35",
+          "normalized": "PHILADELPHIA WD 8 35",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "18-18",
+          "normalized": "PHILADELPHIA WD 18 18",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "18-19",
+          "normalized": "PHILADELPHIA WD 18 19",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "20-11",
+          "normalized": "PHILADELPHIA WD 20 11",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "24-18",
+          "normalized": "PHILADELPHIA WD 24 18",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "24-19",
+          "normalized": "PHILADELPHIA WD 24 19",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "49-03",
+          "normalized": "PHILADELPHIA WD 49 3",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 443103,
+        "REP": 50219,
+        "LIB": 3987
+      },
+      "source_status": "county_archive_without_explicit_certification_label"
     },
     "POTTER": {
       "precincts": 32,
@@ -1758,7 +1918,8 @@
         "DEM": 1594,
         "REP": 4510,
         "LIB": 123
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "SUSQUEHANNA": {
       "precincts": 41,
@@ -1828,7 +1989,153 @@
         "DEM": 5661,
         "REP": 9386,
         "LIB": 247
-      }
+      },
+      "source_status": "county_marked_official"
+    },
+    "SOMERSET": {
+      "precincts": 67,
+      "matched_precincts": 41,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "Addison Borough",
+          "normalized": "ADDISON",
+          "candidate_geometry": [
+            "SOMERSET - 111020",
+            "SOMERSET - 111010"
+          ]
+        },
+        {
+          "source_precinct": "Brothersvalley Township",
+          "normalized": "BROTHERSVALLEY",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Conemaugh Township No. 1",
+          "normalized": "CONEMAUGH NO 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Conemaugh Township No. 2",
+          "normalized": "CONEMAUGH NO 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Conemaugh Township No. 3",
+          "normalized": "CONEMAUGH NO 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Conemaugh Township No. 4",
+          "normalized": "CONEMAUGH NO 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Conemaugh Township No. 5",
+          "normalized": "CONEMAUGH NO 5",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Jenner Township No. 1",
+          "normalized": "JENNER NO 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Jenner Township No. 2",
+          "normalized": "JENNER NO 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Jenner Township No. 3",
+          "normalized": "JENNER NO 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Paint Township No. 1",
+          "normalized": "PAINT NO 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Paint Township No. 2",
+          "normalized": "PAINT NO 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Paint Township No. 3",
+          "normalized": "PAINT NO 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Shade Township No. 1",
+          "normalized": "SHADE NO 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Shade Township No. 2",
+          "normalized": "SHADE NO 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Shade Township No. 3",
+          "normalized": "SHADE NO 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Somerset Borough Northwest",
+          "normalized": "SOMERSET NORTHWEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Somerset Borough Southwest",
+          "normalized": "SOMERSET SOUTHWEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Somerset Township No. 1",
+          "normalized": "SOMERSET NO 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Somerset Township No. 2",
+          "normalized": "SOMERSET NO 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Somerset Township No. 3",
+          "normalized": "SOMERSET NO 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Somerset Township No. 4",
+          "normalized": "SOMERSET NO 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Windber Borough No. 1",
+          "normalized": "WINDBER NO 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Windber Borough No. 2",
+          "normalized": "WINDBER NO 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Windber Borough No. 3",
+          "normalized": "WINDBER NO 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Windber Borough No. 4",
+          "normalized": "WINDBER NO 4",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 8608,
+        "REP": 17777,
+        "LIB": 505
+      },
+      "source_status": "county_marked_official"
     }
   },
   "counties_without_verified_precinct_report": [
@@ -1871,11 +2178,9 @@
     "MONTOUR",
     "NORTHUMBERLAND",
     "PERRY",
-    "PHILADELPHIA",
     "PIKE",
     "SCHUYLKILL",
     "SNYDER",
-    "SOMERSET",
     "SULLIVAN",
     "TIOGA",
     "UNION",

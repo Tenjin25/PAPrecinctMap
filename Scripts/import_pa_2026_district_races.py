@@ -15,6 +15,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 import pdfplumber
+from pa_2026_philadelphia import load_philadelphia
 
 from import_pa_2026_county_precincts import (
     CANDIDATE, FIELDNAMES, PDF_DIR, ROOT, SOURCES, detailed_norm,
@@ -183,13 +184,43 @@ def monroe() -> dict[str, list[dict]]:
     return result
 
 
+def philadelphia() -> dict[str, list[dict]]:
+    headers, source_rows = load_philadelphia()
+    columns = []
+    for col in range(13, 85):
+        header = " ".join(str(headers[col]).split()).upper()
+        contest = office_heading(header, "PHILADELPHIA")
+        candidate_match = re.search(r"\bDISTRICT\s+(.+)$", header)
+        if not contest or not candidate_match:
+            raise ValueError(f"Unknown Philadelphia office column: {col}: {header}")
+        candidate = candidate_match[1]
+        if candidate == "WRITE-IN":
+            party, candidate = "WRI", "Write-in"
+        else:
+            party_match = re.search(r"\s(DEM|REP|LIB|TIP)$", candidate)
+            if not party_match:
+                raise ValueError(f"Unknown Philadelphia candidate party: {header}")
+            party = party_match[1]
+            candidate = candidate[:party_match.start()].title()
+        columns.append((col, contest, party, candidate))
+    result = defaultdict(list)
+    for precinct, row, methods in source_rows:
+        for col, contest, party, candidate in columns:
+            votes = int(row[col] or 0)
+            if not votes:
+                continue
+            values = [votes] + [int(method[col + 1] or 0) if method else 0 for method in methods]
+            result[precinct].append(record(*contest, party, candidate, values))
+    return result
+
+
 def main() -> None:
     index = geometry_index()
     rows = []
-    audit = {"status": "official_partial", "sources": SOURCES, "counties": {}}
+    audit = {"status": "county_published_partial", "sources": SOURCES, "counties": {}}
     for county in SOURCES:
         path = PDF_DIR / f"{county.lower()}.pdf"
-        precincts = monroe() if county == "MONROE" else lycoming(path) if county == "LYCOMING" else susquehanna(path) if county == "SUSQUEHANNA" else electionware(path, county)
+        precincts = philadelphia() if county == "PHILADELPHIA" else monroe() if county == "MONROE" else lycoming(path) if county == "LYCOMING" else susquehanna(path) if county == "SUSQUEHANNA" else electionware(path, county)
         target_by_name = {}
         for name in precincts:
             precise = index[county].get(detailed_norm(name), [])
@@ -206,7 +237,8 @@ def main() -> None:
                 contests[f"{item['office']} {item['district']}"][item["party"]] += item["votes"]
                 rows.append({"county": county, "precinct": output_name, **item})
         audit["counties"][county] = {"precincts_with_district_races": len(precincts), "matched_precincts": matches,
-                                     "rows": sum(map(len, precincts.values())), "contests": contests}
+                                     "rows": sum(map(len, precincts.values())), "contests": contests,
+                                     "source_status": "county_archive_without_explicit_certification_label" if county == "PHILADELPHIA" else "county_marked_official"}
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with OUT.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=FIELDNAMES)

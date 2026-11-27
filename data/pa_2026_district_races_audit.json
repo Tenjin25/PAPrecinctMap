@@ -1,5 +1,5 @@
 {
-  "status": "official_partial",
+  "status": "county_published_partial",
   "sources": {
     "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
     "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
@@ -12,8 +12,10 @@
     "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
     "MONROE": "https://agencies2.monroecountypa.gov/ElectionResults/Contest?ct=GOVERNOR+AND+LIEUTENANT+GOVERNOR&id=10",
     "NORTHAMPTON": "https://www.norcopa.gov/corecode/uploads/document6/uploaded_pdfs/corecode/GE26%20Precinct%20Level%20Summary%20Results_2938.pdf",
+    "PHILADELPHIA": "https://vote.phila.gov/media/26_General_Totals.xlsx",
     "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
-    "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf"
+    "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf",
+    "SOMERSET": "https://www.co.somerset.pa.us/files/voter_files/ElectionResultsUpload/Precient%20by%20Precient%20Report.pdf"
   },
   "counties": {
     "BERKS": {
@@ -89,7 +91,8 @@
           "REP": 3826,
           "WRI": 9
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "CHESTER": {
       "precincts_with_district_races": 230,
@@ -149,7 +152,8 @@
           "REP": 13187,
           "WRI": 27
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "FRANKLIN": {
       "precincts_with_district_races": 73,
@@ -175,7 +179,8 @@
           "REP": 6472,
           "WRI": 11
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "INDIANA": {
       "precincts_with_district_races": 69,
@@ -202,7 +207,8 @@
           "REP": 4355,
           "WRI": 12
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "LAWRENCE": {
       "precincts_with_district_races": 74,
@@ -229,7 +235,8 @@
           "DEM": 3584,
           "WRI": 41
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "LEBANON": {
       "precincts_with_district_races": 60,
@@ -260,7 +267,8 @@
           "REP": 3132,
           "WRI": 11
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "LYCOMING": {
       "precincts_with_district_races": 80,
@@ -285,7 +293,8 @@
           "REP": 14876,
           "WRI": 34
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "MERCER": {
       "precincts_with_district_races": 90,
@@ -311,7 +320,8 @@
           "REP": 13141,
           "WRI": 602
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "MIFFLIN": {
       "precincts_with_district_races": 26,
@@ -337,7 +347,8 @@
           "REP": 3604,
           "WRI": 133
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "MONROE": {
       "precincts_with_district_races": 55,
@@ -374,7 +385,8 @@
           "REP": 4685,
           "WRI": 38
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "NORTHAMPTON": {
       "precincts_with_district_races": 155,
@@ -426,7 +438,152 @@
           "REP": 1825,
           "WRI": 5
         }
-      }
+      },
+      "source_status": "county_marked_official"
+    },
+    "PHILADELPHIA": {
+      "precincts_with_district_races": 1706,
+      "matched_precincts": 1676,
+      "rows": 8415,
+      "contests": {
+        "U.S. House 3": {
+          "DEM": 258437,
+          "TIP": 17628,
+          "WRI": 882
+        },
+        "State House 184": {
+          "DEM": 17304,
+          "WRI": 245
+        },
+        "State House 175": {
+          "DEM": 26756,
+          "WRI": 315
+        },
+        "State House 182": {
+          "DEM": 28097,
+          "WRI": 322
+        },
+        "State Senate 8": {
+          "DEM": 56839,
+          "WRI": 487
+        },
+        "State House 191": {
+          "DEM": 11035,
+          "WRI": 54
+        },
+        "U.S. House 5": {
+          "DEM": 15980,
+          "REP": 3660,
+          "WRI": 42
+        },
+        "State House 10": {
+          "DEM": 17442,
+          "WRI": 217
+        },
+        "State House 192": {
+          "DEM": 20261,
+          "REP": 847,
+          "WRI": 38
+        },
+        "U.S. House 2": {
+          "DEM": 150784,
+          "REP": 35663,
+          "WRI": 456
+        },
+        "State House 190": {
+          "DEM": 17794,
+          "WRI": 75
+        },
+        "State Senate 2": {
+          "DEM": 39355,
+          "WRI": 361
+        },
+        "State House 197": {
+          "DEM": 12041,
+          "WRI": 74
+        },
+        "State House 180": {
+          "DEM": 7920,
+          "WRI": 56
+        },
+        "State House 195": {
+          "DEM": 21114,
+          "WRI": 145
+        },
+        "State House 181": {
+          "DEM": 18451,
+          "WRI": 188
+        },
+        "State Senate 4": {
+          "DEM": 55473,
+          "REP": 1929,
+          "WRI": 52
+        },
+        "State House 200": {
+          "DEM": 30712,
+          "WRI": 95
+        },
+        "State House 194": {
+          "DEM": 25933,
+          "WRI": 328
+        },
+        "State House 198": {
+          "DEM": 17828,
+          "WRI": 94
+        },
+        "State House 201": {
+          "DEM": 20892,
+          "WRI": 94
+        },
+        "State House 179": {
+          "DEM": 10176,
+          "WRI": 74
+        },
+        "State House 177": {
+          "DEM": 12652,
+          "REP": 4453,
+          "WRI": 40
+        },
+        "State House 185": {
+          "DEM": 13624,
+          "WRI": 153
+        },
+        "State House 188": {
+          "DEM": 20947,
+          "WRI": 180
+        },
+        "State House 186": {
+          "DEM": 22320,
+          "WRI": 203
+        },
+        "State House 203": {
+          "DEM": 13662,
+          "WRI": 84
+        },
+        "State House 202": {
+          "DEM": 7819,
+          "WRI": 68
+        },
+        "State House 173": {
+          "DEM": 9444,
+          "REP": 4739,
+          "WRI": 18
+        },
+        "State House 172": {
+          "DEM": 12349,
+          "WRI": 211
+        },
+        "State House 174": {
+          "DEM": 11624,
+          "WRI": 168
+        },
+        "State House 170": {
+          "DEM": 7666,
+          "REP": 10263,
+          "WRI": 20
+        }
+      },
+      "source_status": "county_archive_without_explicit_certification_label"
     },
     "POTTER": {
       "precincts_with_district_races": 32,
@@ -443,7 +600,8 @@
           "REP": 5051,
           "WRI": 10
         }
-      }
+      },
+      "source_status": "county_marked_official"
     },
     "SUSQUEHANNA": {
       "precincts_with_district_races": 41,
@@ -465,7 +623,39 @@
           "REP": 10680,
           "WRI": 6
         }
-      }
+      },
+      "source_status": "county_marked_official"
+    },
+    "SOMERSET": {
+      "precincts_with_district_races": 67,
+      "matched_precincts": 41,
+      "rows": 536,
+      "contests": {
+        "U.S. House 14": {
+          "DEM": 7286,
+          "REP": 18918,
+          "WRI": 24
+        },
+        "State Senate 32": {
+          "DEM": 6581,
+          "REP": 20322,
+          "WRI": 31
+        },
+        "State House 69": {
+          "REP": 20557,
+          "WRI": 911
+        },
+        "U.S. House 13": {
+          "DEM": 209,
+          "REP": 477,
+          "WRI": 1
+        },
+        "State House 71": {
+          "REP": 2503,
+          "WRI": 173
+        }
+      },
+      "source_status": "county_marked_official"
     }
   }
 }
