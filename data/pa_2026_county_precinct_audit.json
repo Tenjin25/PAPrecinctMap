@@ -4,10 +4,13 @@
   "sources": {
     "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
     "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
+    "FRANKLIN": "https://lfweb.franklincountypa.gov/Election%20Results/PrecinctDetail.pdf",
     "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
     "LEBANON": "https://www.lebanoncountypa.gov/getmedia/2814004b-ba3a-4a28-b8de-b08595f5059e/2026-General-FINAL-PRECINCT-SUMMARY-WITH-WRITE-INS_2.pdf",
     "LYCOMING": "https://lycomingcountypa.gov/Documents/Government/Departments/Voter%20Services/PreviousResults/2026GEPrecinct.pdf?t=202611121357080",
+    "MERCER": "https://www.mercercountypa.gov/election/Election.Results/2026/GENERAL/Precinct.pdf",
     "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
+    "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
     "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf"
   },
   "counties": {
@@ -633,6 +636,107 @@
         "LIB": 2552
       }
     },
+    "FRANKLIN": {
+      "precincts": 73,
+      "matched_precincts": 55,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "CHAMBERSBURG WD 1 DIST 1",
+          "normalized": "CHAMBERSBURG WD 1 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CHAMBERSBURG WD 1 DIST 2",
+          "normalized": "CHAMBERSBURG WD 1 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CHAMBERSBURG WD 2 DIST 1",
+          "normalized": "CHAMBERSBURG WD 2 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CHAMBERSBURG WD 2 DIST 2",
+          "normalized": "CHAMBERSBURG WD 2 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CHAMBERSBURG WD 3 DIST 1",
+          "normalized": "CHAMBERSBURG WD 3 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CHAMBERSBURG WD 4 DIST 1",
+          "normalized": "CHAMBERSBURG WD 4 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CHAMBERSBURG WD 4 DIST 2",
+          "normalized": "CHAMBERSBURG WD 4 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CHAMBERSBURG WD 5 DIST 1",
+          "normalized": "CHAMBERSBURG WD 5 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CHAMBERSBURG WD 5 DIST 2",
+          "normalized": "CHAMBERSBURG WD 5 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "SOUTHAMPTON EAST",
+          "normalized": "SOUTHAMPTON EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WAYNESBORO WD 1 DIST 1",
+          "normalized": "WAYNESBORO WD 1 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WAYNESBORO WD 1 DIST 2",
+          "normalized": "WAYNESBORO WD 1 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WAYNESBORO WD 2 DIST 1",
+          "normalized": "WAYNESBORO WD 2 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WAYNESBORO WD 2 DIST 2",
+          "normalized": "WAYNESBORO WD 2 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WAYNESBORO WD 3 DIST 1",
+          "normalized": "WAYNESBORO WD 3 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WAYNESBORO WD 3 DIST 2",
+          "normalized": "WAYNESBORO WD 3 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WAYNESBORO WD 3 DIST 3",
+          "normalized": "WAYNESBORO WD 3 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WEST END SHIPPENSBURG",
+          "normalized": "WEST END SHIPPENSBURG",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 21740,
+        "REP": 34818,
+        "LIB": 910
+      }
+    },
     "LAWRENCE": {
       "precincts": 74,
       "matched_precincts": 67,
@@ -935,6 +1039,45 @@
         "LIB": 584
       }
     },
+    "MERCER": {
+      "precincts": 90,
+      "matched_precincts": 85,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "Jefferson Township",
+          "normalized": "JEFFERSON",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Mill Creek Township",
+          "normalized": "MILL CREEK",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Pine Township 3",
+          "normalized": "PINE 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Sandy Lake Borough",
+          "normalized": "SANDY LAKE",
+          "candidate_geometry": [
+            "MERCER - 085700",
+            "MERCER - 085710"
+          ]
+        },
+        {
+          "source_precinct": "Springfield Township",
+          "normalized": "SPRINGFIELD",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 17432,
+        "REP": 20779,
+        "LIB": 609
+      }
+    },
     "MIFFLIN": {
       "precincts": 26,
       "matched_precincts": 17,
@@ -989,6 +1132,43 @@
         "DEM": 4649,
         "REP": 9405,
         "LIB": 279
+      }
+    },
+    "POTTER": {
+      "precincts": 32,
+      "matched_precincts": 28,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "EULALIA TOWNSHIP",
+          "normalized": "EULALIA",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "OSWAYO BOROUGH",
+          "normalized": "OSWAYO",
+          "candidate_geometry": [
+            "POTTER - 105180",
+            "POTTER - 105190"
+          ]
+        },
+        {
+          "source_precinct": "SHARON TOWNSHIP",
+          "normalized": "SHARON",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "ULYSSES BOROUGH",
+          "normalized": "ULYSSES",
+          "candidate_geometry": [
+            "POTTER - 105310",
+            "POTTER - 105320"
+          ]
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 1594,
+        "REP": 4510,
+        "LIB": 123
       }
     },
     "SUSQUEHANNA": {
@@ -1088,7 +1268,6 @@
     "ERIE",
     "FAYETTE",
     "FOREST",
-    "FRANKLIN",
     "FULTON",
     "GREENE",
     "HUNTINGDON",
@@ -1100,7 +1279,6 @@
     "LEHIGH",
     "LUZERNE",
     "MCKEAN",
-    "MERCER",
     "MONROE",
     "MONTGOMERY",
     "MONTOUR",
@@ -1109,7 +1287,6 @@
     "PERRY",
     "PHILADELPHIA",
     "PIKE",
-    "POTTER",
     "SCHUYLKILL",
     "SNYDER",
     "SOMERSET",

@@ -34,8 +34,9 @@ LYCOMING_PARTIES = {
 def office_heading(line: str, county: str = "") -> tuple[str, str] | None:
     upper = line.upper()
     if "REPRESENTATIVE IN CONGRESS" in upper:
-        match = re.search(r"(\d+)(?:ST|ND|RD|TH)?(?: CONGRESSIONAL)? DISTRICT", upper)
-        return ("U.S. House", match[1] if match else "16") if match or county == "LAWRENCE" else None
+        match = re.search(r"(?:DISTRICT\s+)?(\d+)(?:ST|ND|RD|TH)?(?: CONGRESSIONAL)?(?: DISTRICT)?", upper)
+        fallback = {"LAWRENCE": "16", "FRANKLIN": "13"}.get(county)
+        return ("U.S. House", match[1] if match else fallback) if match or fallback else None
     if "SENATOR IN THE GENERAL ASSEMBLY" in upper:
         match = re.search(r"(?:DISTRICT\s+)?(\d+)(?:ST|ND|RD|TH)?(?: SENATORIAL)?(?: DISTRICT)?", upper)
         return ("State Senate", match[1]) if match else None

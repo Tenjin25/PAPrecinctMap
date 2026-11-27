@@ -3,10 +3,13 @@
   "sources": {
     "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
     "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
+    "FRANKLIN": "https://lfweb.franklincountypa.gov/Election%20Results/PrecinctDetail.pdf",
     "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
     "LEBANON": "https://www.lebanoncountypa.gov/getmedia/2814004b-ba3a-4a28-b8de-b08595f5059e/2026-General-FINAL-PRECINCT-SUMMARY-WITH-WRITE-INS_2.pdf",
     "LYCOMING": "https://lycomingcountypa.gov/Documents/Government/Departments/Voter%20Services/PreviousResults/2026GEPrecinct.pdf?t=202611121357080",
+    "MERCER": "https://www.mercercountypa.gov/election/Election.Results/2026/GENERAL/Precinct.pdf",
     "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
+    "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
     "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf"
   },
   "counties": {
@@ -145,6 +148,32 @@
         }
       }
     },
+    "FRANKLIN": {
+      "precincts_with_district_races": 73,
+      "matched_precincts": 55,
+      "rows": 406,
+      "contests": {
+        "U.S. House 13": {
+          "DEM": 19143,
+          "REP": 38309,
+          "WRI": 72
+        },
+        "State House 90": {
+          "REP": 19463,
+          "WRI": 1559
+        },
+        "State House 89": {
+          "DEM": 8881,
+          "REP": 15619,
+          "WRI": 28
+        },
+        "State House 81": {
+          "DEM": 2156,
+          "REP": 6472,
+          "WRI": 11
+        }
+      }
+    },
     "LAWRENCE": {
       "precincts_with_district_races": 74,
       "matched_precincts": 67,
@@ -228,6 +257,32 @@
         }
       }
     },
+    "MERCER": {
+      "precincts_with_district_races": 90,
+      "matched_precincts": 85,
+      "rows": 771,
+      "contests": {
+        "U.S. House 16": {
+          "DEM": 16748,
+          "REP": 22193,
+          "WRI": 47
+        },
+        "State Senate 50": {
+          "DEM": 14188,
+          "REP": 24741,
+          "WRI": 58
+        },
+        "State House 7": {
+          "DEM": 9661,
+          "REP": 12770,
+          "WRI": 65
+        },
+        "State House 17": {
+          "REP": 13141,
+          "WRI": 602
+        }
+      }
+    },
     "MIFFLIN": {
       "precincts_with_district_races": 26,
       "matched_precincts": 17,
@@ -251,6 +306,23 @@
         "State House 85": {
           "REP": 3604,
           "WRI": 133
+        }
+      }
+    },
+    "POTTER": {
+      "precincts_with_district_races": 32,
+      "matched_precincts": 28,
+      "rows": 192,
+      "contests": {
+        "U.S. House 15": {
+          "DEM": 1357,
+          "REP": 4853,
+          "WRI": 7
+        },
+        "State House 67": {
+          "DEM": 1155,
+          "REP": 5051,
+          "WRI": 10
         }
       }
     },

@@ -10552,7 +10552,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
     const DATA_CACHE_BUSTER = '2026-11-06-unofficial-governor-refresh-v2';
-    const APP_BUILD_ID = '2026-11-26-official-county-precincts-v1';
+    const APP_BUILD_ID = '2026-11-26-official-county-precincts-v2';
 
     function ensurePageCacheBuster() {
       return false;
@@ -13221,7 +13221,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const pct = centroidNorms.size ? (matched / centroidNorms.size) * 100 : 0;
         resultLabel = ` | Results ${matched.toLocaleString()}/${centroidNorms.size.toLocaleString()} (${pct.toFixed(1)}%)`;
         if (Number(lastContestSliceMeta?.year) === 2026 && lastContestSliceMeta?.contestType === 'governor') {
-          resultLabel += ' | Official precinct reports: 7 counties';
+          const reportedCounties = new Set((lastContestSliceMeta?.rows || [])
+            .filter((row) => row.__county_precinct_pdf)
+            .map((row) => String(row.county || '').split(' - ')[0]));
+          resultLabel += ` | Official precinct reports: ${reportedCounties.size} counties`;
         }
       }
 
