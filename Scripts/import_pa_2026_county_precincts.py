@@ -9,6 +9,7 @@ Unmatched names remain in the CSV and are listed in the audit output.
 from __future__ import annotations
 
 import csv
+import html
 import json
 import re
 from collections import defaultdict
@@ -26,11 +27,14 @@ SOURCES = {
     "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
     "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
     "FRANKLIN": "https://lfweb.franklincountypa.gov/Election%20Results/PrecinctDetail.pdf",
+    "INDIANA": "https://www.indianacountypa.gov/wp-content/uploads/2026-GENERAL-PRECINCT-SUMMARY.pdf",
     "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
     "LEBANON": "https://www.lebanoncountypa.gov/getmedia/2814004b-ba3a-4a28-b8de-b08595f5059e/2026-General-FINAL-PRECINCT-SUMMARY-WITH-WRITE-INS_2.pdf",
     "LYCOMING": "https://lycomingcountypa.gov/Documents/Government/Departments/Voter%20Services/PreviousResults/2026GEPrecinct.pdf?t=202611121357080",
     "MERCER": "https://www.mercercountypa.gov/election/Election.Results/2026/GENERAL/Precinct.pdf",
     "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
+    "MONROE": "https://agencies2.monroecountypa.gov/ElectionResults/Contest?ct=GOVERNOR+AND+LIEUTENANT+GOVERNOR&id=10",
+    "NORTHAMPTON": "https://www.norcopa.gov/corecode/uploads/document6/uploaded_pdfs/corecode/GE26%20Precinct%20Level%20Summary%20Results_2938.pdf",
     "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
     "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf",
 }
@@ -55,10 +59,30 @@ def norm(value: str) -> str:
 
 
 ORDINALS = {"FIRST": "1", "SECOND": "2", "THIRD": "3", "FOURTH": "4", "FIFTH": "5", "SIXTH": "6", "SEVENTH": "7", "EIGHTH": "8", "NINTH": "9", "TENTH": "10"}
+CARDINALS = {"ONE": "1", "TWO": "2", "THREE": "3", "FOUR": "4", "FIVE": "5", "SIX": "6", "SEVEN": "7", "EIGHT": "8", "NINE": "9", "TEN": "10"}
 
 
 def source_norm(county: str, name: str) -> str:
     value = name.upper()
+    if county == "NORTHAMPTON":
+        value = re.sub(r"^\d{6}-\d+\s+", "", value)
+        value = re.sub(r"\b(\d+)(?:ST|ND|RD|TH) WARD\b", r"WD \1", value)
+        value = re.sub(r"\b(BETHLEHEM|EASTON) (\d+)-(\d+)\b", r"\1 WD \2 DIST \3", value)
+        value = re.sub(r"\bBETHLEHEM (\d+)-(NORTH|SOUTH)\b", r"BETHLEHEM WD \1 ED \2", value)
+        value = re.sub(r"\bBETHLEHEM (\d+) (EAST|WEST)\b", r"BETHLEHEM WD \1 ED \2", value)
+        value = re.sub(r"\b(BETHLEHEM|EASTON) (\d+)\b", r"\1 WD \2", value)
+        value = re.sub(r"\bTWSP (\d+)-(\d+)\b", r"TWSP WD \1 DIST \2", value)
+        value = re.sub(r"\bTWSP #(\d+)\b", r"TWSP DIST \1", value)
+    if county == "MONROE":
+        for word, number in {**CARDINALS, **ORDINALS}.items():
+            value = re.sub(rf"\b{word}\b", number, value)
+        value = re.sub(r"\b(\d+) WARD\b", r"WARD \1", value)
+        value = value.replace("MOUNT POCONO", "MT POCONO")
+        value = re.sub(r"\bNORTHERN\b", "NORTH", value)
+        value = re.sub(r"\bSOUTHERN\b", "SOUTH", value)
+        value = re.sub(r"\bEASTERN\b", "EAST", value)
+        value = re.sub(r"\bWESTERN\b", "WEST", value)
+        value = value.replace("EAST STROUDSBURG WARD", "EAST STROUDSBURG DIST")
     if county == "CHESTER":
         value = re.sub(r"^\d{3}\s+", "", value)
     if county == "LEBANON":
@@ -121,6 +145,8 @@ def extract_electionware(pdf_path: Path, county: str) -> dict[str, list[dict]]:
                     if canonical.split()[1].upper() not in candidate.upper():
                         raise ValueError(f"Unexpected governor candidate: {county} {precinct} {line}")
                     rows.append(dict(party=party, candidate=canonical, votes=nums[0], election_day=nums[1], mail=nums[2], provisional=nums[3]))
+            if not rows:
+                continue  # Some county reports repeat a contest heading on a continuation page.
             if {r["party"] for r in rows} != {"DEM", "REP", "LIB"}:
                 raise ValueError(f"Missing governor candidates: {county} {precinct} page {page.page_number}")
             if precinct in precincts:
@@ -200,13 +226,42 @@ def extract_susquehanna(pdf_path: Path) -> dict[str, list[dict]]:
     return precincts
 
 
+def monroe_table(path: Path) -> tuple[list[str], list[list[str]]]:
+    source = path.read_text(encoding="utf-8")
+    match = re.search(r'<table class="table table-bordered">(.*?)</table>', source, re.S)
+    if not match:
+        raise ValueError(f"Monroe precinct table missing: {path.name}")
+    table_rows = []
+    for raw_row in re.findall(r"<tr[^>]*>(.*?)</tr>", match[1], re.S):
+        cells = [html.unescape(re.sub(r"<[^>]+>", "", cell)).strip() for cell in re.findall(r"<(?:th|td)[^>]*>(.*?)</(?:th|td)>", raw_row, re.S)]
+        if cells:
+            table_rows.append(cells)
+    return table_rows[0], table_rows[1:]
+
+
+def extract_monroe() -> dict[str, list[dict]]:
+    index_html = (PDF_DIR / "monroe_index.html").read_text(encoding="utf-8")
+    if "Results are OFFICIAL" not in index_html:
+        raise ValueError("Monroe election page is not marked official")
+    header, table = monroe_table(PDF_DIR / "monroe_governor.html")
+    if [norm(name) for name in header[1:4]] != ["JOSH SHAPIRO", "STACY GARRITY", "KEN KRAWCHUK"]:
+        raise ValueError(f"Unexpected Monroe governor columns: {header}")
+    precincts = {}
+    for precinct, dem, rep, lib, *_ in table:
+        precincts[precinct] = [dict(party=party, candidate=candidate, votes=int(votes.replace(",", "")), election_day="", mail="", provisional="") for party, candidate, votes in (
+            ("DEM", "Josh Shapiro", dem), ("REP", "Stacy Garrity", rep), ("LIB", "Ken Krawchuk", lib))]
+    if len(precincts) != 55:
+        raise ValueError(f"Expected 55 Monroe precincts, found {len(precincts)}")
+    return precincts
+
+
 def main() -> None:
     index = geometry_index()
     rows = []
     audit = {"status": "official_partial", "election": "2026-11-03 general", "sources": SOURCES, "counties": {}}
     for county in SOURCES:
         pdf_path = PDF_DIR / f"{county.lower()}.pdf"
-        precincts = (extract_lycoming(pdf_path) if county == "LYCOMING" else extract_susquehanna(pdf_path) if county == "SUSQUEHANNA" else extract_electionware(pdf_path, county))
+        precincts = (extract_monroe() if county == "MONROE" else extract_lycoming(pdf_path) if county == "LYCOMING" else extract_susquehanna(pdf_path) if county == "SUSQUEHANNA" else extract_electionware(pdf_path, county))
         unmatched = []
         matched = 0
         county_votes = defaultdict(int)

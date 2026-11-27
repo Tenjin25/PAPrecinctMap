@@ -18,7 +18,7 @@ import pdfplumber
 
 from import_pa_2026_county_precincts import (
     CANDIDATE, FIELDNAMES, PDF_DIR, ROOT, SOURCES, detailed_norm,
-    geometry_index, source_norm,
+    geometry_index, monroe_table, source_norm,
 )
 
 
@@ -155,13 +155,41 @@ def susquehanna(path: Path) -> dict[str, list[dict]]:
     return result
 
 
+def monroe() -> dict[str, list[dict]]:
+    result = defaultdict(list)
+    if "Results are OFFICIAL" not in (PDF_DIR / "monroe_index.html").read_text(encoding="utf-8"):
+        raise ValueError("Monroe election page is not marked official")
+    for path in sorted(PDF_DIR.glob("monroe_*.html")):
+        if path.name in {"monroe_index.html", "monroe_governor.html"}:
+            continue
+        heading = path.stem.removeprefix("monroe_").replace("_", " ")
+        contest = office_heading(heading, "MONROE")
+        if not contest:
+            raise ValueError(f"Unknown Monroe district contest: {path.name}")
+        source = path.read_text(encoding="utf-8")
+        parties = {name.strip().upper(): {"DEMOCRATIC": "DEM", "REPUBLICAN": "REP", "LIBERTARIAN": "LIB"}[party.upper()]
+                   for name, party in re.findall(r"<b>\s*([^<]+)</b>\s*<i[^>]*>\(([^)]+)\)</i>", source)}
+        header, table = monroe_table(path)
+        candidates = [name.strip().upper() for name in header[1:]]
+        for precinct, *values in table:
+            if len(values) != len(candidates):
+                raise ValueError(f"Monroe table column mismatch: {path.name} {precinct}")
+            for candidate, value in zip(candidates, values):
+                party = "WRI" if candidate == "WRITE-IN" else parties.get(candidate)
+                if not party:
+                    raise ValueError(f"Monroe candidate party missing: {path.name} {candidate}")
+                result[precinct].append(dict(office=contest[0], district=contest[1], party=party,
+                    candidate=candidate.title(), votes=int(value.replace(",", "")), election_day="", mail="", provisional=""))
+    return result
+
+
 def main() -> None:
     index = geometry_index()
     rows = []
     audit = {"status": "official_partial", "sources": SOURCES, "counties": {}}
     for county in SOURCES:
         path = PDF_DIR / f"{county.lower()}.pdf"
-        precincts = lycoming(path) if county == "LYCOMING" else susquehanna(path) if county == "SUSQUEHANNA" else electionware(path, county)
+        precincts = monroe() if county == "MONROE" else lycoming(path) if county == "LYCOMING" else susquehanna(path) if county == "SUSQUEHANNA" else electionware(path, county)
         target_by_name = {}
         for name in precincts:
             precise = index[county].get(detailed_norm(name), [])

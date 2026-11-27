@@ -4,11 +4,14 @@
     "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
     "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
     "FRANKLIN": "https://lfweb.franklincountypa.gov/Election%20Results/PrecinctDetail.pdf",
+    "INDIANA": "https://www.indianacountypa.gov/wp-content/uploads/2026-GENERAL-PRECINCT-SUMMARY.pdf",
     "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
     "LEBANON": "https://www.lebanoncountypa.gov/getmedia/2814004b-ba3a-4a28-b8de-b08595f5059e/2026-General-FINAL-PRECINCT-SUMMARY-WITH-WRITE-INS_2.pdf",
     "LYCOMING": "https://lycomingcountypa.gov/Documents/Government/Departments/Voter%20Services/PreviousResults/2026GEPrecinct.pdf?t=202611121357080",
     "MERCER": "https://www.mercercountypa.gov/election/Election.Results/2026/GENERAL/Precinct.pdf",
     "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
+    "MONROE": "https://agencies2.monroecountypa.gov/ElectionResults/Contest?ct=GOVERNOR+AND+LIEUTENANT+GOVERNOR&id=10",
+    "NORTHAMPTON": "https://www.norcopa.gov/corecode/uploads/document6/uploaded_pdfs/corecode/GE26%20Precinct%20Level%20Summary%20Results_2938.pdf",
     "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
     "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf"
   },
@@ -174,6 +177,33 @@
         }
       }
     },
+    "INDIANA": {
+      "precincts_with_district_races": 69,
+      "matched_precincts": 64,
+      "rows": 417,
+      "contests": {
+        "U.S. House 14": {
+          "DEM": 10023,
+          "REP": 15287,
+          "WRI": 30
+        },
+        "State House 62": {
+          "DEM": 8294,
+          "REP": 14051,
+          "WRI": 27
+        },
+        "U.S. House 15": {
+          "DEM": 547,
+          "REP": 2051,
+          "WRI": 6
+        },
+        "State House 66": {
+          "DEM": 1239,
+          "REP": 4355,
+          "WRI": 12
+        }
+      }
+    },
     "LAWRENCE": {
       "precincts_with_district_races": 74,
       "matched_precincts": 67,
@@ -306,6 +336,95 @@
         "State House 85": {
           "REP": 3604,
           "WRI": 133
+        }
+      }
+    },
+    "MONROE": {
+      "precincts_with_district_races": 55,
+      "matched_precincts": 45,
+      "rows": 495,
+      "contests": {
+        "U.S. House 7": {
+          "DEM": 2052,
+          "REP": 3162,
+          "WRI": 16
+        },
+        "State House 176": {
+          "DEM": 10765,
+          "REP": 13656,
+          "WRI": 43
+        },
+        "State Senate 40": {
+          "DEM": 32461,
+          "REP": 28108,
+          "WRI": 110
+        },
+        "U.S. House 8": {
+          "DEM": 33583,
+          "REP": 22192,
+          "WRI": 119
+        },
+        "State House 115": {
+          "DEM": 13670,
+          "REP": 8018,
+          "WRI": 44
+        },
+        "State House 189": {
+          "DEM": 10300,
+          "REP": 4685,
+          "WRI": 38
+        }
+      }
+    },
+    "NORTHAMPTON": {
+      "precincts_with_district_races": 155,
+      "matched_precincts": 60,
+      "rows": 1395,
+      "contests": {
+        "U.S. House 7": {
+          "DEM": 73461,
+          "REP": 55121,
+          "WRI": 314
+        },
+        "State Senate 14": {
+          "DEM": 16432,
+          "REP": 15119,
+          "WRI": 41
+        },
+        "State House 183": {
+          "DEM": 8342,
+          "REP": 10618,
+          "WRI": 23
+        },
+        "State Senate 18": {
+          "DEM": 62393,
+          "REP": 34654,
+          "WRI": 186
+        },
+        "State House 138": {
+          "DEM": 12571,
+          "REP": 16318,
+          "WRI": 31
+        },
+        "State House 135": {
+          "DEM": 17772,
+          "REP": 6379,
+          "WRI": 27
+        },
+        "State House 137": {
+          "DEM": 16842,
+          "REP": 13921,
+          "WRI": 43
+        },
+        "State House 136": {
+          "DEM": 15505,
+          "REP": 6374,
+          "WRI": 31
+        },
+        "State House 131": {
+          "DEM": 2289,
+          "REP": 1825,
+          "WRI": 5
         }
       }
     },

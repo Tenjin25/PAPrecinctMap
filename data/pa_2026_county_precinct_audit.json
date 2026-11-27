@@ -5,11 +5,14 @@
     "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
     "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
     "FRANKLIN": "https://lfweb.franklincountypa.gov/Election%20Results/PrecinctDetail.pdf",
+    "INDIANA": "https://www.indianacountypa.gov/wp-content/uploads/2026-GENERAL-PRECINCT-SUMMARY.pdf",
     "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
     "LEBANON": "https://www.lebanoncountypa.gov/getmedia/2814004b-ba3a-4a28-b8de-b08595f5059e/2026-General-FINAL-PRECINCT-SUMMARY-WITH-WRITE-INS_2.pdf",
     "LYCOMING": "https://lycomingcountypa.gov/Documents/Government/Departments/Voter%20Services/PreviousResults/2026GEPrecinct.pdf?t=202611121357080",
     "MERCER": "https://www.mercercountypa.gov/election/Election.Results/2026/GENERAL/Precinct.pdf",
     "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
+    "MONROE": "https://agencies2.monroecountypa.gov/ElectionResults/Contest?ct=GOVERNOR+AND+LIEUTENANT+GOVERNOR&id=10",
+    "NORTHAMPTON": "https://www.norcopa.gov/corecode/uploads/document6/uploaded_pdfs/corecode/GE26%20Precinct%20Level%20Summary%20Results_2938.pdf",
     "POTTER": "https://pottercountypa.gov/Documents/Departments/Voter%20Registration%20and%20Elections/2026/Results/Potter_OfficialResults_Precinct.pdf?t=202611171456210",
     "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf"
   },
@@ -737,6 +740,42 @@
         "LIB": 910
       }
     },
+    "INDIANA": {
+      "precincts": 69,
+      "matched_precincts": 64,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "BANKS",
+          "normalized": "BANKS",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "CLYMER",
+          "normalized": "CLYMER",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "SOUTH MAHONING",
+          "normalized": "SOUTH MAHONING",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WHITE #3/3",
+          "normalized": "WHITE 3 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "WHITE #4/5",
+          "normalized": "WHITE 4 5",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 11838,
+        "REP": 15602,
+        "LIB": 486
+      }
+    },
     "LAWRENCE": {
       "precincts": 74,
       "matched_precincts": 67,
@@ -1134,6 +1173,556 @@
         "LIB": 279
       }
     },
+    "MONROE": {
+      "precincts": 55,
+      "matched_precincts": 45,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "Jackson North",
+          "normalized": "JACKSON NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Jackson South",
+          "normalized": "JACKSON SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Middle Smithfield One",
+          "normalized": "MIDDLE SMITHFIELD 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Middle Smithfield Two",
+          "normalized": "MIDDLE SMITHFIELD 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Middle Smithfield Three",
+          "normalized": "MIDDLE SMITHFIELD 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Middle Smithfield Four",
+          "normalized": "MIDDLE SMITHFIELD 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Ross One",
+          "normalized": "ROSS 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Ross Two",
+          "normalized": "ROSS 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Tunkhannock East",
+          "normalized": "TUNKHANNOCK EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Tunkhannock West",
+          "normalized": "TUNKHANNOCK WEST",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 37246,
+        "REP": 22869,
+        "LIB": 1004
+      }
+    },
+    "NORTHAMPTON": {
+      "precincts": 155,
+      "matched_precincts": 60,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "010001-1 ALLEN TWSP NORTH",
+          "normalized": "ALLEN TWSP NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "010002-1 ALLEN TWSP SOUTH",
+          "normalized": "ALLEN TWSP SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "020100-1 BANGOR BORO NORTH",
+          "normalized": "BANGOR NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "020200-1 BANGOR BORO SOUTH",
+          "normalized": "BANGOR SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "040200-1 BETHLEHEM 2ND WARD",
+          "normalized": "BETHLEHEM WD 2",
+          "candidate_geometry": [
+            "NORTHAMPTON - 095340",
+            "NORTHAMPTON - 095090"
+          ]
+        },
+        {
+          "source_precinct": "040901-1 BETHLEHEM 9 WEST",
+          "normalized": "BETHLEHEM WD 9 WEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "040902-1 BETHLEHEM 9 EAST",
+          "normalized": "BETHLEHEM WD 9 EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050101-1 BETHLEHEM TWSP 1-1",
+          "normalized": "BETHLEHEM TWSP WD 1 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050102-1 BETHLEHEM TWSP 1-2",
+          "normalized": "BETHLEHEM TWSP WD 1 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050103-1 BETHLEHEM TWSP 1-3",
+          "normalized": "BETHLEHEM TWSP WD 1 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050104-1 BETHLEHEM TWSP 1-4",
+          "normalized": "BETHLEHEM TWSP WD 1 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050201-1 BETHLEHEM TWSP 2-1",
+          "normalized": "BETHLEHEM TWSP WD 2 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050202-1 BETHLEHEM TWSP 2-2",
+          "normalized": "BETHLEHEM TWSP WD 2 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050203-1 BETHLEHEM TWSP 2-3",
+          "normalized": "BETHLEHEM TWSP WD 2 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050204-1 BETHLEHEM TWSP 2-4",
+          "normalized": "BETHLEHEM TWSP WD 2 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050301-1 BETHLEHEM TWSP 3-1",
+          "normalized": "BETHLEHEM TWSP WD 3 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050302-1 BETHLEHEM TWSP 3-2",
+          "normalized": "BETHLEHEM TWSP WD 3 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050303-1 BETHLEHEM TWSP 3-3",
+          "normalized": "BETHLEHEM TWSP WD 3 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050304-1 BETHLEHEM TWSP 3-4",
+          "normalized": "BETHLEHEM TWSP WD 3 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050305-1 BETHLEHEM TWSP 3-5",
+          "normalized": "BETHLEHEM TWSP WD 3 5",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050401-1 BETHLEHEM TWSP 4-1",
+          "normalized": "BETHLEHEM TWSP WD 4 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050402-1 BETHLEHEM TWSP 4-2",
+          "normalized": "BETHLEHEM TWSP WD 4 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050403-1 BETHLEHEM TWSP 4-3",
+          "normalized": "BETHLEHEM TWSP WD 4 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "050404-1 BETHLEHEM TWSP 4-4",
+          "normalized": "BETHLEHEM TWSP WD 4 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "060001-1 BUSHKILL TWSP BUSHKILL CENTER",
+          "normalized": "BUSHKILL TWSP BUSHKILL CENTER",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "060002-1 BUSHKILL TWSP CHERRY HILL",
+          "normalized": "BUSHKILL TWSP CHERRY HILL",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "060003-1 BUSHKILL TWSP CLEARFIELD",
+          "normalized": "BUSHKILL TWSP CLEARFIELD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "080001-1 EAST ALLEN TWSP EAST",
+          "normalized": "EAST ALLEN TWSP EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "080002-1 EAST ALLEN TWSP WEST",
+          "normalized": "EAST ALLEN TWSP WEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "100801-1 EASTON 8TH WARD",
+          "normalized": "EASTON WD 8",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "101001-1 EASTON 10TH WARD",
+          "normalized": "EASTON WD 10",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "110101-1 FORKS TWSP EAST",
+          "normalized": "FORKS TWSP EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "110102-1 FORKS TWSP NORTH",
+          "normalized": "FORKS TWSP NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "110103-1 FORKS TWSP NORTHWEST",
+          "normalized": "FORKS TWSP NORTHWEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "110104-1 FORKS TWSP SOUTH",
+          "normalized": "FORKS TWSP SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "110105-1 FORKS TWSP SOUTHEAST",
+          "normalized": "FORKS TWSP SOUTHEAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "110106-1 FORKS TWSP SOUTHWEST",
+          "normalized": "FORKS TWSP SOUTHWEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "110107-1 FORKS TWSP WEST",
+          "normalized": "FORKS TWSP WEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "140001-1 HANOVER TWSP #1",
+          "normalized": "HANOVER TWSP 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "140002-1 HANOVER TWSP #2",
+          "normalized": "HANOVER TWSP 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "140003-1 HANOVER TWSP #3",
+          "normalized": "HANOVER TWSP 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "140004-1 HANOVER TWSP #4",
+          "normalized": "HANOVER TWSP 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "140005-1 HANOVER TWSP #5",
+          "normalized": "HANOVER TWSP 5",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "140006-1 HANOVER TWSP #6",
+          "normalized": "HANOVER TWSP 6",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "160001-1 LEHIGH TWSP CENTRAL",
+          "normalized": "LEHIGH TWSP CENTRAL",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "160002-1 LEHIGH TWSP DANIELSVILLE",
+          "normalized": "LEHIGH TWSP DANIELSVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "160003-1 LEHIGH TWSP PENNSVILLE",
+          "normalized": "LEHIGH TWSP PENNSVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "160004-1 LEHIGH TWSP TREICHLERS",
+          "normalized": "LEHIGH TWSP TREICHLERS",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "160005-1 LEHIGH TWSP NORTHWESTERN",
+          "normalized": "LEHIGH TWSP NORTHWESTERN",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "170001-1 LOWER MT. BETHEL TWSP LOWER",
+          "normalized": "LOWER MT BETHEL TWSP LOWER",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "170002-1 LOWER MT. BETHEL TWSP UPPER",
+          "normalized": "LOWER MT BETHEL TWSP UPPER",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "180001-1 LOWER NAZARETH TWSP EAST",
+          "normalized": "LOWER NAZARETH TWSP EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "180002-1 LOWER NAZARETH TWSP NORTH",
+          "normalized": "LOWER NAZARETH TWSP NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "180003-1 LOWER NAZARETH TWSP SOUTH",
+          "normalized": "LOWER NAZARETH TWSP SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "180004-1 LOWER NAZARETH TWSP WEST",
+          "normalized": "LOWER NAZARETH TWSP WEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "190001-1 LOWER SAUCON TWSP 1",
+          "normalized": "LOWER SAUCON TWSP 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "190002-1 LOWER SAUCON TWSP 2",
+          "normalized": "LOWER SAUCON TWSP 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "190003-1 LOWER SAUCON TWSP 3",
+          "normalized": "LOWER SAUCON TWSP 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "190004-1 LOWER SAUCON TWSP 4",
+          "normalized": "LOWER SAUCON TWSP 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "190006-1 LOWER SAUCON TWSP 6",
+          "normalized": "LOWER SAUCON TWSP 6",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "190007-1 LOWER SAUCON TWSP 7",
+          "normalized": "LOWER SAUCON TWSP 7",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "200001-1 MOORE TWSP BEERSVILLE",
+          "normalized": "MOORE TWSP BEERSVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "200002-1 MOORE TWSP EASTERN",
+          "normalized": "MOORE TWSP EASTERN",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "200003-1 MOORE TWSP KLECKNERSVILLE",
+          "normalized": "MOORE TWSP KLECKNERSVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "200004-1 MOORE TWSP POINT PHILLIPS",
+          "normalized": "MOORE TWSP POINT PHILLIPS",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "230100-1 NORTH CATASAUQUA BORO 1",
+          "normalized": "NORTH CATASAUQUA 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "230200-1 NORTH CATASAUQUA BORO 2",
+          "normalized": "NORTH CATASAUQUA 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "240001-1 PALMER TWSP CENTRAL",
+          "normalized": "PALMER TWSP CENTRAL",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "240002-1 PALMER TWSP EAST",
+          "normalized": "PALMER TWSP EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "240003-1 PALMER TWSP NORTH",
+          "normalized": "PALMER TWSP NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "240004-1 PALMER TWSP NORTHEAST",
+          "normalized": "PALMER TWSP NORTHEAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "240005-1 PALMER TWSP NORTHWEST",
+          "normalized": "PALMER TWSP NORTHWEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "240006-1 PALMER TWSP SOUTH",
+          "normalized": "PALMER TWSP SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "240007-1 PALMER TWSP SOUTHEAST",
+          "normalized": "PALMER TWSP SOUTHEAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "240008-1 PALMER TWSP SOUTHWEST",
+          "normalized": "PALMER TWSP SOUTHWEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "240009-1 PALMER TWSP WEST",
+          "normalized": "PALMER TWSP WEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "260001-1 PLAINFIELD TWSP BELFAST",
+          "normalized": "PLAINFIELD TWSP BELFAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "260002-1 PLAINFIELD TWSP DELABOLE",
+          "normalized": "PLAINFIELD TWSP DELABOLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "260003-1 PLAINFIELD TWSP KESSLERSVILLE",
+          "normalized": "PLAINFIELD TWSP KESSLERSVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "260004-1 PLAINFIELD TWSP PLAINFIELD CHURCH",
+          "normalized": "PLAINFIELD TWSP PLAINFIELD CHURCH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "310001-1 UPPER MT. BETHEL TWSP CENTERVILLE",
+          "normalized": "UPPER MT BETHEL TWSP CENTERVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "310002-1 UPPER MT. BETHEL TWSP JOHNSONVILLE",
+          "normalized": "UPPER MT BETHEL TWSP JOHNSONVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "310003-1 UPPER MT. BETHEL TWSP NORTH BANGOR",
+          "normalized": "UPPER MT BETHEL TWSP NORTH BANGOR",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "310004-1 UPPER MT. BETHEL TWSP SLATEFORD",
+          "normalized": "UPPER MT BETHEL TWSP SLATEFORD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "310005-1 UPPER MT. BETHEL TWSP WILLIAMSBURG",
+          "normalized": "UPPER MT BETHEL TWSP WILLIAMSBURG",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "320001-1 UPPER NAZARETH EAST 1",
+          "normalized": "UPPER NAZARETH EAST 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "320002-1 UPPER NAZARETH EAST 2",
+          "normalized": "UPPER NAZARETH EAST 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "320003-1 UPPER NAZARETH WEST 1",
+          "normalized": "UPPER NAZARETH WEST 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "320004-1 UPPER NAZARETH WEST 2",
+          "normalized": "UPPER NAZARETH WEST 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "340001-1 WASHINGTON TWSP LOWER",
+          "normalized": "WASHINGTON TWSP LOWER",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "340002-1 WASHINGTON TWSP UPPER",
+          "normalized": "WASHINGTON TWSP UPPER",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "360001-1 WILLIAMS TWSP EAST",
+          "normalized": "WILLIAMS TWSP EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "360002-1 WILLIAMS TWSP MIDDLE",
+          "normalized": "WILLIAMS TWSP MIDDLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "360003-1 WILLIAMS TWSP UPPER",
+          "normalized": "WILLIAMS TWSP UPPER",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "360004-1 WILLIAMS TWSP WEST",
+          "normalized": "WILLIAMS TWSP WEST",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 79128,
+        "REP": 47483,
+        "LIB": 1818
+      }
+    },
     "POTTER": {
       "precincts": 32,
       "matched_precincts": 28,
@@ -1271,7 +1860,6 @@
     "FULTON",
     "GREENE",
     "HUNTINGDON",
-    "INDIANA",
     "JEFFERSON",
     "JUNIATA",
     "LACKAWANNA",
@@ -1279,10 +1867,8 @@
     "LEHIGH",
     "LUZERNE",
     "MCKEAN",
-    "MONROE",
     "MONTGOMERY",
     "MONTOUR",
-    "NORTHAMPTON",
     "NORTHUMBERLAND",
     "PERRY",
     "PHILADELPHIA",

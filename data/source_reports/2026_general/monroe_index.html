@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Official Monroe County, Pennsylvania Election Results Website" />
+    <title>Monroe County Election Results</title>
+    <link rel="stylesheet" href="/ElectionResults/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/ElectionResults/css/site.css?v=7WBg6VgCDdMa_fEhvnm5syZ5Qij_Ym67W37WRZUyGIw" />
+    <link rel="stylesheet" href="/ElectionResults/ElectionResults.styles.css?v=uSNSncvo7RKPKNZTp69zsBrU69byRSwj5BRS_SCHoJQ" />
+</head>
+<body>
+    <header b-t283r340da>
+        <div b-t283r340da class="container-fluid px-0">
+            <div b-t283r340da class="row g-0 position-relative overflow-hidden">
+                <img b-t283r340da src="/ElectionResults/Images/MonroeCountyTextlessBanner.png?format=webp" alt="Monroe County Banner Image" class="banner-img"/>
+                <div b-t283r340da class="col-4 col-sm-2">
+                    <a b-t283r340da class="nav-link py-0 ms-1" href="https://monroecountypa.gov">
+                        <picture b-t283r340da><source b-t283r340da srcset="/ElectionResults/Images/MonroeCountySeal.png?width=240&format=webp" type="image/webp" /><img src="./Images/MonroeCountySeal.png?width=240&amp;v=OIfH4QeaEYak92LMDmH6lmERMoyJBj-TsP8XqstEBxE" style="height:120px; width:auto" alt="County Seal, link to County Website" /></picture>
+                    </a>
+                </div>
+                <div b-t283r340da class="col-6 col-sm-8 text-white text-center py-0 fw-bold">
+                    <span b-t283r340da style="font-family: 'Times New Roman'; font-size: 5rem;">MONROE COUNTY</span>
+                    <span b-t283r340da style="display: block; margin-top: -24px">PENNSYLVANIA</span>
+                </div>
+                <div b-t283r340da class="col-2"></div>
+            </div>
+        </div>
+        <nav b-t283r340da class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div b-t283r340da class="container">
+                <a class="navbar-brand" href="/ElectionResults">Monroe County PA Election Results</a>
+                <button b-t283r340da class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span b-t283r340da class="navbar-toggler-icon"></span>
+                </button>
+                <div b-t283r340da class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul b-t283r340da class="navbar-nav flex-grow-1 align-items-center">
+                        <li b-t283r340da class="nav-item">
+                            <a class="nav-link text-dark" href="/ElectionResults">Election</a>
+                        </li>
+                        <li b-t283r340da class="nav-item">
+                            <a class="nav-link text-dark" href="/ElectionResults/Primary">Primary</a>
+                        </li>
+                        <li b-t283r340da class="nav-item">
+                            <a class="nav-link text-dark" href="/ElectionResults/NavTips">Tips</a>
+                        </li>
+                        <li b-t283r340da class="nav-item">
+                            <a b-t283r340da class="nav-link text-dark" href="https://agencies2.monroecountypa.gov/elections">Archive</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div b-t283r340da class="container">
+        <main b-t283r340da role="main" class="pb-3">
+
+<style>
+    .collapse-toggle {
+        background: none;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
+        will-change: transform;
+    }
+
+        .collapse-toggle[aria-expanded="true"] {
+            transform: rotate(90deg);
+        }
+</style>
+<div class="row mb-5">
+    <div class="col-3">
+        <h3 class="text-start">11/3/2026</h3>
+    </div>
+    <h2 class="text-center col-6">2026 General Election</h2>
+    <div class="col-3">
+        <h3 class="text-end" style="color: green;">Results are OFFICIAL</h3>
+    </div>
+</div>
+<div class="row mb-5">
+    <h4 class="text-start col-4">Total Ballots Tabulated: 61592</h4>
+    <h4 class="text-center col-4">Eligible Registered Voters: 118818</h4>
+    <h4 class="text-end col-4">Overall Turnout: 51.84%</h4>
+</div>
+<div class="row">
+    <div class="dropdown col-5">
+        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown">Select Election</button>
+        <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/ElectionResults?id=10">2026 General Election</a></li>
+                <li><a class="dropdown-item" href="/ElectionResults/Primary?id=9">2026 General Primary</a></li>
+                <li><a class="dropdown-item" href="/ElectionResults?id=8">2025 Municipal Election</a></li>
+                <li><a class="dropdown-item" href="/ElectionResults/Primary?id=7">2025 Municipal Primary</a></li>
+                <li><a class="dropdown-item" href="/ElectionResults?id=6">2024 General Election</a></li>
+                <li><a class="dropdown-item" href="/ElectionResults/Primary?id=5">2024 General Primary</a></li>
+                <li><a class="dropdown-item" href="/ElectionResults?id=4">2023 Municipal Election</a></li>
+                <li><a class="dropdown-item" href="/ElectionResults/Primary?id=3">2023 Municipal Primary</a></li>
+                <li><a class="dropdown-item" href="/ElectionResults?id=2">2022 General Election</a></li>
+                <li><a class="dropdown-item" href="/ElectionResults/Primary?id=1">2022 General Primary</a></li>
+        </ul>
+    </div>
+    <div class="text-center mb-2 col-2">
+        <button type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalExcel">Download in Excel</button>
+    </div>
+    <div class="col-5 text-end">
+        <button class="btn btn-outline-dark p-1 me-4" data-bs-toggle="collapse" data-bs-target=".collapse:not(.show)" type="button">Show All</button>
+        <button class="btn btn-outline-dark p-1" data-bs-toggle="collapse" data-bs-target=".collapse.show" type="button">Collapse All</button>
+    </div>
+</div>
+
+<div class="modal fade" id="modalExcel" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <div style="padding-inline: 10%; margin-bottom: 10px" class="text-center">
+                <span><b>This will download all the contests and current vote counts for this election in an Excel spreadsheet</b></span>
+            </div>
+            <div style="padding-inline: 10%; margin-bottom: 10px" class="text-center">
+                <form method="post" action="/ElectionResults?handler=Excel">
+                    <input type="hidden" name="id" value="10" />
+                    <button type="submit" class="btn btn-success">Download in Excel</button>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8P5xFvt4jWJOh5Pw0Rmj1FrknPcOOIkkHikLEaXuCXPLGekptL3CXw_6oXYtzR5hRpFF9nVe-PxlCuLfFyRnQJEG0IFau8Yk9B3xDQzaSdxjsWV-jTR6EZpbIpT518DV5sqDpedrOzUJ5FCuT43yj8w" /></form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+        <table class="table">
+            <colgroup>
+                <col style="width: 50%">
+                <col style="width: 30%">
+                <col style="width: 20%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3" style="font-size: x-large; ">
+                        <a class="text-black me-4" href="/ElectionResults/Contest?ct=GOVERNOR&#x2B;AND&#x2B;LIEUTENANT&#x2B;GOVERNOR&id=10"> GOVERNOR AND LIEUTENANT GOVERNOR</a>
+                        <button class="collapse-toggle btn btn-sm p-1" style="min-height: 24px; min-width: 24px" data-bs-toggle="collapse" data-bs-target="#contest0" type="button" aria-expanded="true" aria-controls="contest0">▶</button>
+                    </th>                </tr>            </thead>
+            <tbody class="collapse show" id="contest0">
+                <tr>
+                    <td colspan="3" style="font-size: medium">
+                        Vote for not more than 1 Candidate
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size: large">
+                        Precincts Returned 55/55
+                    </td>
+                </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-0-0"><b> JOSH SHAPIRO</b></button/>
+<i class="color-blue">(DEMOCRATIC)</i>                        </td>
+                        <td>37246</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60.85">
+                                <div class="progress-bar bg-warning" style="width:60.854505350870026958581815211%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">60.85%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-0-1"><b> STACY GARRITY</b></button/>
+<i class="color-red">(REPUBLICAN)</i>                        </td>
+                        <td>22869</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="37.36">
+                                <div class="progress-bar bg-warning" style="width:37.364594395882689322767747733%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">37.36%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-0-2"><b> KEN KRAWCHUK</b></button/>
+<i class="default">(LIBERTARIAN)</i>                        </td>
+                        <td>1004</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="1.64">
+                                <div class="progress-bar bg-warning" style="width:1.640388857119516379380769545%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">1.64%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-0-3"><b>Write-in</b></button/>
+                        </td>
+                        <td>86</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.14">
+                                <div class="progress-bar bg-warning" style="width:0.1405113961277673392696675108%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">0.14%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <tr class="fw-bold"><td>Total</td><td>61205</td><td></td></tr>
+
+            </tbody>
+        </table>
+        <br />
+        <table class="table">
+            <colgroup>
+                <col style="width: 50%">
+                <col style="width: 30%">
+                <col style="width: 20%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3" style="font-size: x-large; ">
+                        <a class="text-black me-4" href="/ElectionResults/Contest?ct=REPRESENTATIVE&#x2B;IN&#x2B;CONGRESS&#x2B;7TH&#x2B;DISTRICT&id=10"> REPRESENTATIVE IN CONGRESS 7TH DISTRICT</a>
+                        <button class="collapse-toggle btn btn-sm p-1" style="min-height: 24px; min-width: 24px" data-bs-toggle="collapse" data-bs-target="#contest1" type="button" aria-expanded="true" aria-controls="contest1">▶</button>
+                    </th>                </tr>            </thead>
+            <tbody class="collapse show" id="contest1">
+                <tr>
+                    <td colspan="3" style="font-size: medium">
+                        Vote for not more than 1 Candidate
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size: large">
+                        Precincts Returned 3/3
+                    </td>
+                </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-1-0"><b> BOB BROOKS</b></button/>
+<i class="color-blue">(DEMOCRATIC)</i>                        </td>
+                        <td>2052</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="39.24">
+                                <div class="progress-bar bg-warning" style="width:39.235181644359464627151051625%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">39.24%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-1-1"><b> RYAN MACKENZIE</b></button/>
+<i class="color-red">(REPUBLICAN)</i>                        </td>
+                        <td>3162</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60.46">
+                                <div class="progress-bar bg-warning" style="width:60.458891013384321223709369025%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">60.46%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-1-2"><b>Write-in</b></button/>
+                        </td>
+                        <td>16</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.31">
+                                <div class="progress-bar bg-warning" style="width:0.3059273422562141491395793499%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">0.31%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <tr class="fw-bold"><td>Total</td><td>5230</td><td></td></tr>
+
+            </tbody>
+        </table>
+        <br />
+        <table class="table">
+            <colgroup>
+                <col style="width: 50%">
+                <col style="width: 30%">
+                <col style="width: 20%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3" style="font-size: x-large; ">
+                        <a class="text-black me-4" href="/ElectionResults/Contest?ct=REPRESENTATIVE&#x2B;IN&#x2B;CONGRESS&#x2B;8TH&#x2B;DISTRICT&id=10"> REPRESENTATIVE IN CONGRESS 8TH DISTRICT</a>
+                        <button class="collapse-toggle btn btn-sm p-1" style="min-height: 24px; min-width: 24px" data-bs-toggle="collapse" data-bs-target="#contest2" type="button" aria-expanded="true" aria-controls="contest2">▶</button>
+                    </th>                </tr>            </thead>
+            <tbody class="collapse show" id="contest2">
+                <tr>
+                    <td colspan="3" style="font-size: medium">
+                        Vote for not more than 1 Candidate
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size: large">
+                        Precincts Returned 52/52
+                    </td>
+                </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-2-0"><b> PAIGE COGNETTI</b></button/>
+<i class="color-blue">(DEMOCRATIC)</i>                        </td>
+                        <td>33583</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60.08">
+                                <div class="progress-bar bg-warning" style="width:60.083372097183955344044083444%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">60.08%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-2-1"><b> ROB BRESNAHAN JR</b></button/>
+<i class="color-red">(REPUBLICAN)</i>                        </td>
+                        <td>22192</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="39.70">
+                                <div class="progress-bar bg-warning" style="width:39.70372490786130890614377214%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">39.70%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-2-2"><b>Write-in</b></button/>
+                        </td>
+                        <td>119</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.21">
+                                <div class="progress-bar bg-warning" style="width:0.2129029949547357498121444162%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">0.21%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <tr class="fw-bold"><td>Total</td><td>55894</td><td></td></tr>
+
+            </tbody>
+        </table>
+        <br />
+        <table class="table">
+            <colgroup>
+                <col style="width: 50%">
+                <col style="width: 30%">
+                <col style="width: 20%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3" style="font-size: x-large; ">
+                        <a class="text-black me-4" href="/ElectionResults/Contest?ct=SENATOR&#x2B;IN&#x2B;THE&#x2B;GENERAL&#x2B;ASSEMBLY&#x2B;40TH&#x2B;DISTRICT&id=10"> SENATOR IN THE GENERAL ASSEMBLY 40TH DISTRICT</a>
+                        <button class="collapse-toggle btn btn-sm p-1" style="min-height: 24px; min-width: 24px" data-bs-toggle="collapse" data-bs-target="#contest3" type="button" aria-expanded="true" aria-controls="contest3">▶</button>
+                    </th>                </tr>            </thead>
+            <tbody class="collapse show" id="contest3">
+                <tr>
+                    <td colspan="3" style="font-size: medium">
+                        Vote for not more than 1 Candidate
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size: large">
+                        Precincts Returned 55/55
+                    </td>
+                </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-3-0"><b> BRIAN WRIGHTSON</b></button/>
+<i class="color-blue">(DEMOCRATIC)</i>                        </td>
+                        <td>32461</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="53.50">
+                                <div class="progress-bar bg-warning" style="width:53.49626724237380312793552959%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">53.50%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-3-1"><b> ROSEMARY BROWN</b></button/>
+<i class="color-red">(REPUBLICAN)</i>                        </td>
+                        <td>28108</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="46.32">
+                                <div class="progress-bar bg-warning" style="width:46.322450930305377478204980306%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">46.32%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-3-2"><b>Write-in</b></button/>
+                        </td>
+                        <td>110</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.18">
+                                <div class="progress-bar bg-warning" style="width:0.1812818273208193938594901037%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">0.18%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <tr class="fw-bold"><td>Total</td><td>60679</td><td></td></tr>
+
+            </tbody>
+        </table>
+        <br />
+        <table class="table">
+            <colgroup>
+                <col style="width: 50%">
+                <col style="width: 30%">
+                <col style="width: 20%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3" style="font-size: x-large; ">
+                        <a class="text-black me-4" href="/ElectionResults/Contest?ct=REPRESENTATIVE&#x2B;IN&#x2B;THE&#x2B;GENERAL&#x2B;ASSEMBLY&#x2B;115TH&#x2B;DISTRICT&id=10"> REPRESENTATIVE IN THE GENERAL ASSEMBLY 115TH DISTRICT</a>
+                        <button class="collapse-toggle btn btn-sm p-1" style="min-height: 24px; min-width: 24px" data-bs-toggle="collapse" data-bs-target="#contest4" type="button" aria-expanded="true" aria-controls="contest4">▶</button>
+                    </th>                </tr>            </thead>
+            <tbody class="collapse show" id="contest4">
+                <tr>
+                    <td colspan="3" style="font-size: medium">
+                        Vote for not more than 1 Candidate
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size: large">
+                        Precincts Returned 18/18
+                    </td>
+                </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-4-0"><b> MAUREEN MADDEN</b></button/>
+<i class="color-blue">(DEMOCRATIC)</i>                        </td>
+                        <td>13670</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="62.90">
+                                <div class="progress-bar bg-warning" style="width:62.90263206331676789987115774%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">62.90%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-4-1"><b> RICH SZABO</b></button/>
+<i class="color-red">(REPUBLICAN)</i>                        </td>
+                        <td>8018</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="36.89">
+                                <div class="progress-bar bg-warning" style="width:36.894901527701085956193631511%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">36.89%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-4-2"><b>Write-in</b></button/>
+                        </td>
+                        <td>44</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.20">
+                                <div class="progress-bar bg-warning" style="width:0.2024664089821461439352107491%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">0.20%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <tr class="fw-bold"><td>Total</td><td>21732</td><td></td></tr>
+
+            </tbody>
+        </table>
+        <br />
+        <table class="table">
+            <colgroup>
+                <col style="width: 50%">
+                <col style="width: 30%">
+                <col style="width: 20%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3" style="font-size: x-large; ">
+                        <a class="text-black me-4" href="/ElectionResults/Contest?ct=REPRESENTATIVE&#x2B;IN&#x2B;THE&#x2B;GENERAL&#x2B;ASSEMBLY&#x2B;176TH&#x2B;DISTRICT&id=10"> REPRESENTATIVE IN THE GENERAL ASSEMBLY 176TH DISTRICT</a>
+                        <button class="collapse-toggle btn btn-sm p-1" style="min-height: 24px; min-width: 24px" data-bs-toggle="collapse" data-bs-target="#contest5" type="button" aria-expanded="true" aria-controls="contest5">▶</button>
+                    </th>                </tr>            </thead>
+            <tbody class="collapse show" id="contest5">
+                <tr>
+                    <td colspan="3" style="font-size: medium">
+                        Vote for not more than 1 Candidate
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size: large">
+                        Precincts Returned 16/16
+                    </td>
+                </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-5-0"><b> THOMAS KUCER</b></button/>
+<i class="color-blue">(DEMOCRATIC)</i>                        </td>
+                        <td>10765</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="44.00">
+                                <div class="progress-bar bg-warning" style="width:44.003433616742969260954872466%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">44.00%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-5-1"><b> JACK RADER</b></button/>
+<i class="color-red">(REPUBLICAN)</i>                        </td>
+                        <td>13656</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="55.82">
+                                <div class="progress-bar bg-warning" style="width:55.820797907128842380640941792%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">55.82%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-5-2"><b>Write-in</b></button/>
+                        </td>
+                        <td>43</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.18">
+                                <div class="progress-bar bg-warning" style="width:0.1757684761281883584041857423%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">0.18%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <tr class="fw-bold"><td>Total</td><td>24464</td><td></td></tr>
+
+            </tbody>
+        </table>
+        <br />
+        <table class="table">
+            <colgroup>
+                <col style="width: 50%">
+                <col style="width: 30%">
+                <col style="width: 20%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="3" style="font-size: x-large; ">
+                        <a class="text-black me-4" href="/ElectionResults/Contest?ct=REPRESENTATIVE&#x2B;IN&#x2B;THE&#x2B;GENERAL&#x2B;ASSEMBLY&#x2B;189TH&#x2B;DISTRICT&id=10"> REPRESENTATIVE IN THE GENERAL ASSEMBLY 189TH DISTRICT</a>
+                        <button class="collapse-toggle btn btn-sm p-1" style="min-height: 24px; min-width: 24px" data-bs-toggle="collapse" data-bs-target="#contest6" type="button" aria-expanded="true" aria-controls="contest6">▶</button>
+                    </th>                </tr>            </thead>
+            <tbody class="collapse show" id="contest6">
+                <tr>
+                    <td colspan="3" style="font-size: medium">
+                        Vote for not more than 1 Candidate
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size: large">
+                        Precincts Returned 21/21
+                    </td>
+                </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-6-0"><b> TARAH PROBST</b></button/>
+<i class="color-blue">(DEMOCRATIC)</i>                        </td>
+                        <td>10300</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68.56">
+                                <div class="progress-bar bg-warning" style="width:68.561538973573853424748718631%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">68.56%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-6-1"><b> DANICA HARTENFELS</b></button/>
+<i class="color-red">(REPUBLICAN)</i>                        </td>
+                        <td>4685</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="31.19">
+                                <div class="progress-bar bg-warning" style="width:31.185515542834320708247354057%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">31.19%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="font-size: larger">
+                        <td>
+                            <button type="button" style="all: unset; cursor: pointer; outline: revert" class="text-black" data-bs-toggle="modal" data-bs-target="#modal-6-2"><b>Write-in</b></button/>
+                        </td>
+                        <td>38</td>
+                        <td>
+                            <div class="progress" style="height: 20px; position: relative" role="progressbar" aria-label="ElectionResults.Models.CandidateResult" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0.25">
+                                <div class="progress-bar bg-warning" style="width:0.2529454835918258670039273115%">
+                                    <span style="font-size:medium; font-weight:bold; position: absolute; left: 50%;  transform: translateX(-50%); color: #000;">0.25%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <tr class="fw-bold"><td>Total</td><td>15023</td><td></td></tr>
+
+            </tbody>
+        </table>
+        <br />
+</div>
+            <div class="modal fade" id="modal-0-0" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> JOSH SHAPIRO</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>23063</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>13875</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>308</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-0-1" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> STACY GARRITY</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>18832</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>3928</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>109</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-0-2" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> KEN KRAWCHUK</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>786</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>210</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-0-3" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Write-in</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>63</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>22</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-1-0" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> BOB BROOKS</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>1215</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>820</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>17</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-1-1" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> RYAN MACKENZIE</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>2722</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>433</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>7</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-1-2" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Write-in</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>10</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>6</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-2-0" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> PAIGE COGNETTI</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>20662</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>12627</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>294</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-2-1" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> ROB BRESNAHAN JR</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>17905</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>4180</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>107</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-2-2" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Write-in</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>84</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>34</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-3-0" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> BRIAN WRIGHTSON</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>20100</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>12079</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>282</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-3-1" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> ROSEMARY BROWN</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>22176</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>5796</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>136</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-3-2" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Write-in</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>87</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>22</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-4-0" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> MAUREEN MADDEN</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>8529</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>5026</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>115</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-4-1" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> RICH SZABO</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>6490</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>1483</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>45</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-4-2" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Write-in</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>33</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>11</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-5-0" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> THOMAS KUCER</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>6142</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>4524</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>99</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-5-1" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> JACK RADER</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>10866</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>2744</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>46</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-5-2" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Write-in</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>37</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>6</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-6-0" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> TARAH PROBST</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>6819</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>3405</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>76</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-6-1" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title"> DANICA HARTENFELS</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>3793</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>872</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>20</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-6-2" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Write-in</h5>
+                        </div>
+                        <div class="modal-body text-start">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Election Day</label>
+                                    <span>26</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Mail-In/Absentee</label>
+                                    <span>10</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label style="width: 35%">Provisional</label>
+                                    <span>2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+<br />
+        <div class="text-center">
+            <a href="/ElectionResults/pdf/Act88-2026 General Election.pdf"><h3>Act 88 Reporting</h3></a>
+        </div>
+        <br />
+        <iframe src="/ElectionResults/pdf/Act88-2026 General Election.pdf" style="width:100%; height:650px" title="Act88 2026 General Election PDF"></iframe>
+
+        </main>
+    </div>
+
+    <footer b-t283r340da class="border-top footer text-muted">
+        <div b-t283r340da class="container">
+            <div b-t283r340da class="row align-items-center">
+                <div b-t283r340da class="col-8">
+                    <p b-t283r340da class="mb-0">&copy; 2026 - Monroe County, PA v1.1.0</p>
+                </div>
+                <div b-t283r340da class="col-4 text-end">
+                    <a b-t283r340da class="nav-link p-0" href="https://monroecountypa.gov"><picture b-t283r340da><source b-t283r340da srcset="/ElectionResults/Images/MonroeCountySeal.png?width=240&format=webp" type="image/webp"/><img src="./Images/MonroeCountySeal.png?width=240&amp;v=OIfH4QeaEYak92LMDmH6lmERMoyJBj-TsP8XqstEBxE" style="height:55px; width:auto" alt="County Seal, link to County Website" /></picture></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/ElectionResults/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/ElectionResults/js/site.js?v=cT9HwXoersqGwF6ze1vK6vk0IIKwVSIGvivLa82IneU"></script>
+
+
+</body>
+</html>
