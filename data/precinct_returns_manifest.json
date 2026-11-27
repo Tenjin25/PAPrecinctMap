@@ -350,6 +350,29 @@
       "matched_rows": 137526,
       "unmatched_rows": 60,
       "joined_rows": 163211
+    },
+    {
+      "year": 2026,
+      "status": "official_partial",
+      "source_type": "county_precinct_pdf",
+      "sources": {
+        "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
+        "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
+        "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
+        "LEBANON": "https://www.lebanoncountypa.gov/getmedia/2814004b-ba3a-4a28-b8de-b08595f5059e/2026-General-FINAL-PRECINCT-SUMMARY-WITH-WRITE-INS_2.pdf",
+        "LYCOMING": "https://lycomingcountypa.gov/Documents/Government/Departments/Voter%20Services/PreviousResults/2026GEPrecinct.pdf?t=202611121357080",
+        "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
+        "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf"
+      },
+      "output": "data/Openelections/2026/20261103__pa__general__precinct_county_official.csv",
+      "rows": 2139,
+      "counties": 7,
+      "precincts": 713,
+      "matched_precincts": 521,
+      "audit": "data/pa_2026_county_precinct_audit.json",
+      "district_race_output": "data/Openelections/2026/20261103__pa__general__district_races_county_official.csv",
+      "district_race_rows": 5091,
+      "district_race_audit": "data/pa_2026_district_races_audit.json"
     }
   ]
 }

@@ -10552,7 +10552,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
     const DATA_CACHE_BUSTER = '2026-11-06-unofficial-governor-refresh-v2';
-    const APP_BUILD_ID = '2026-11-06-unofficial-governor-refresh-v2';
+    const APP_BUILD_ID = '2026-11-26-official-county-precincts-v1';
 
     function ensurePageCacheBuster() {
       return false;
@@ -13220,6 +13220,9 @@ document.addEventListener('DOMContentLoaded', function() {
         centroidNorms.forEach((norm) => { if (currentPrecinctResults.has(norm)) matched += 1; });
         const pct = centroidNorms.size ? (matched / centroidNorms.size) * 100 : 0;
         resultLabel = ` | Results ${matched.toLocaleString()}/${centroidNorms.size.toLocaleString()} (${pct.toFixed(1)}%)`;
+        if (Number(lastContestSliceMeta?.year) === 2026 && lastContestSliceMeta?.contestType === 'governor') {
+          resultLabel += ' | Official precinct reports: 7 counties';
+        }
       }
 
       const geometryLabel = `${polygonLayerLoaded ? polygonCount.toLocaleString() : '--'} polygons, ${centroidNorms.size.toLocaleString()} centroids`;
@@ -15841,7 +15844,8 @@ document.addEventListener('DOMContentLoaded', function() {
       2018: withBase('./data/Openelections/2018/20181106__pa__general__precinct.csv'),
       2020: withBase('./data/Openelections/2020/20201103__pa__general__precinct.csv'),
       2022: withBase('./data/Openelections/2022/20221108__pa__general__precinct.csv'),
-      2024: withBase('./data/Openelections/2024/20241105__pa__general__precinct_official.csv')
+      2024: withBase('./data/Openelections/2024/20241105__pa__general__precinct_official.csv'),
+      2026: withBase('./data/Openelections/2026/20261103__pa__general__precinct_county_official.csv')
     };
     const precinctContestSliceCache = new Map();
     const precinctContestSliceInflight = new Map();
@@ -15943,6 +15947,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // uses numeric VTD IDs; precinctNormVariants() performs the bridge.
           const label = precinctRaw.toUpperCase().replace(/[_\s]+/g, ' ').trim();
           if (!label || /ABSENTEE|PROVISIONAL|ONE STOP|CURBSIDE/.test(label)) return;
+          if (Number(year) === 2026 && / - UNMATCHED /.test(label)) return;
           const party = String(raw.party || '').trim().toUpperCase();
           const votes = Number(raw.votes) || 0;
           // The build pipeline may already have applied the crosswalk and emit
@@ -19210,7 +19215,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (preferPrecinct && GENERAL_PRECINCT_CSV_BY_YEAR[Number(year)]) {
           try {
             const precinctRows = await loadGeneralPrecinctContestSlice(contestType, year);
-            if (precinctRows && precinctRows.length) return precinctRows;
+            if (precinctRows && precinctRows.length) {
+              if (Number(year) === 2026 && contestType === 'governor') {
+                const countyRows = await loadContestSlice(contestType, year, { preferPrecinct: false });
+                return precinctRows.map(row => ({ ...row, __county_precinct_pdf: true }))
+                  .concat(countyRows.map(row => ({ ...row, __county_total_only: true })));
+              }
+              return precinctRows;
+            }
           } catch (err) {
             console.warn(`Precinct contest load failed for ${contestType} ${year}; using county aggregates.`, err?.message || err);
           }
@@ -34524,7 +34536,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const demCand = displayCandidateForContest(row[`${contestType}_dem_candidate`] || '', contestType);
           const repCand = displayCandidateForContest(row[`${contestType}_rep_candidate`] || '', contestType);
 
-          if (needsPrecinctDetail && !skipPrecinctRowBuild) {
+          if (needsPrecinctDetail && !skipPrecinctRowBuild && !row.__county_total_only) {
             const norms = precinctNormVariants(rowName);
             const adjustedSigned = signedMarginPctFromVotes(demVotes, repVotes, totalVotes);
             const adjustedWinner = adjustedSigned > 0 ? 'REPUBLICAN' : (adjustedSigned < 0 ? 'DEMOCRAT' : 'TIE');
@@ -34544,7 +34556,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
           }
 
-          if (!cachedAggBundle) {
+          if (!cachedAggBundle && !row.__county_precinct_pdf) {
             statewidedemVotes += demVotes;
             statewidrepVotes += repVotes;
             statewidotherVotes += otherVotes;

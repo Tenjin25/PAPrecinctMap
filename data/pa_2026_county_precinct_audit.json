@@ -1,0 +1,1127 @@
+{
+  "status": "official_partial",
+  "election": "2026-11-03 general",
+  "sources": {
+    "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
+    "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
+    "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
+    "LEBANON": "https://www.lebanoncountypa.gov/getmedia/2814004b-ba3a-4a28-b8de-b08595f5059e/2026-General-FINAL-PRECINCT-SUMMARY-WITH-WRITE-INS_2.pdf",
+    "LYCOMING": "https://lycomingcountypa.gov/Documents/Government/Departments/Voter%20Services/PreviousResults/2026GEPrecinct.pdf?t=202611121357080",
+    "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
+    "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf"
+  },
+  "counties": {
+    "BERKS": {
+      "precincts": 202,
+      "matched_precincts": 141,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "Reading 5-1",
+          "normalized": "READING WD 5 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Reading 7-1",
+          "normalized": "READING WD 7 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Reading 8-1",
+          "normalized": "READING WD 8 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Alsace Twp 2",
+          "normalized": "ALSACE 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Amity Twp 3",
+          "normalized": "AMITY 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Amity Twp 4",
+          "normalized": "AMITY 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Amity Twp 5",
+          "normalized": "AMITY 5",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Amity Twp 6",
+          "normalized": "AMITY 6",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Bally Boro",
+          "normalized": "BALLY",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Bechtelsville Boro",
+          "normalized": "BECHTELSVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Upper Bern Twp",
+          "normalized": "UPPER BERN",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Bernville Boro",
+          "normalized": "BERNVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Caernarvon Twp 2",
+          "normalized": "CAERNARVON 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Centre Twp 2",
+          "normalized": "CENTRE 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Centerport Boro",
+          "normalized": "CENTERPORT",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Cumru Twp 7",
+          "normalized": "CUMRU 7",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "District Twp",
+          "normalized": "DISTRICT",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Exeter Twp 8",
+          "normalized": "EXETER 8",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Exeter Twp 9",
+          "normalized": "EXETER 9",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Exeter Twp 10",
+          "normalized": "EXETER 10",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Exeter Twp 11",
+          "normalized": "EXETER 11",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Fleetwood Boro 2",
+          "normalized": "FLEETWOOD 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Heidelberg Twp",
+          "normalized": "HEIDELBERG",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Lower Heidelberg Twp 3",
+          "normalized": "LOWER HEIDELBERG 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "North Heidelberg Twp",
+          "normalized": "NORTH HEIDELBERG",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "South Heidelberg Twp 3",
+          "normalized": "SOUTH HEIDELBERG 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Jefferson Twp",
+          "normalized": "JEFFERSON",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Lenhartsville Boro",
+          "normalized": "LENHARTSVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Lyons Boro",
+          "normalized": "LYONS",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Maidencreek Twp 1",
+          "normalized": "MAIDENCREEK 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Maidencreek Twp 2",
+          "normalized": "MAIDENCREEK 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Maidencreek Twp 3",
+          "normalized": "MAIDENCREEK 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Maidencreek Twp 4",
+          "normalized": "MAIDENCREEK 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Marion Twp",
+          "normalized": "MARION",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Mt Penn Boro",
+          "normalized": "MT PENN",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Mohnton Boro",
+          "normalized": "MOHNTON",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Muhlenberg Twp 9",
+          "normalized": "MUHLENBERG 9",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Muhlenberg Twp 10",
+          "normalized": "MUHLENBERG 10",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Ontelaunee Twp",
+          "normalized": "ONTELAUNEE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Pike Twp",
+          "normalized": "PIKE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Richmond Twp",
+          "normalized": "RICHMOND",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Robeson Twp 4",
+          "normalized": "ROBESON 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Robesonia Boro",
+          "normalized": "ROBESONIA",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Rockland Twp 2",
+          "normalized": "ROCKLAND 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Ruscombmanor Twp 2",
+          "normalized": "RUSCOMBMANOR 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Shoemakersville Boro",
+          "normalized": "SHOEMAKERSVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Sinking Spring Boro 2",
+          "normalized": "SINKING SPRING 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Spring Twp 9",
+          "normalized": "SPRING 9",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Spring Twp 10",
+          "normalized": "SPRING 10",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Spring Twp 11",
+          "normalized": "SPRING 11",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Spring Twp 12",
+          "normalized": "SPRING 12",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Spring Twp 13",
+          "normalized": "SPRING 13",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Upper Tulpehocken Twp",
+          "normalized": "UPPER TULPEHOCKEN",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Washington Twp 2",
+          "normalized": "WASHINGTON 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Wernersville Boro",
+          "normalized": "WERNERSVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Leesport Boro",
+          "normalized": "LEESPORT",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "West Reading Boro 1",
+          "normalized": "WEST READING WD 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "West Reading Boro 3",
+          "normalized": "WEST READING WD 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Windsor Twp",
+          "normalized": "WINDSOR",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Womelsdorf Boro",
+          "normalized": "WOMELSDORF",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Wyomissing Boro 5",
+          "normalized": "WYOMISSING 5",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 79901,
+        "REP": 61741,
+        "LIB": 2120
+      }
+    },
+    "CHESTER": {
+      "precincts": 230,
+      "matched_precincts": 171,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "033 W Bradford 5",
+          "normalized": "WEST BRADFORD 5",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "040 W Brandywine E-1",
+          "normalized": "WEST BRANDYWINE EAST 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "041 W Brandywine E-2",
+          "normalized": "WEST BRANDYWINE EAST 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "055 East Caln 1",
+          "normalized": "EAST CALN 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "056 East Caln 2",
+          "normalized": "EAST CALN 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "070 Coatesville 1",
+          "normalized": "COATESVILLE 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "080 Coatesville 2",
+          "normalized": "COATESVILLE 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "090 Coatesville 3",
+          "normalized": "COATESVILLE 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "100 Coatesville 4-1",
+          "normalized": "COATESVILLE 4 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "110 Coatesville 4-2",
+          "normalized": "COATESVILLE 4 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "120 Coatesville 5",
+          "normalized": "COATESVILLE 5",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "150 N Coventry M",
+          "normalized": "NORTH COVENTRY M",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "155 N Coventry W-1",
+          "normalized": "NORTH COVENTRY WEST 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "175 E Downingtown E",
+          "normalized": "EAST DOWNINGTOWN EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "180 E Downingtown W",
+          "normalized": "EAST DOWNINGTOWN WEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "185 W Downingtown N",
+          "normalized": "WEST DOWNINGTOWN NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "190 W Downingtown S",
+          "normalized": "WEST DOWNINGTOWN SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "251 E Goshen 9",
+          "normalized": "EAST GOSHEN 9",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "265 W Goshen M-1",
+          "normalized": "WEST GOSHEN M 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "270 W Goshen M-2",
+          "normalized": "WEST GOSHEN M 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "329 Kennett Township 4",
+          "normalized": "KENNETT 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "340 London Grove Ch",
+          "normalized": "LONDON GROVE CH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "356 E Marlborough S",
+          "normalized": "EAST MARLBOROUGH SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "390 New Garden S-1",
+          "normalized": "NEW GARDEN SOUTH 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "391 New Garden S-2",
+          "normalized": "NEW GARDEN SOUTH 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "405 E Nottingham E",
+          "normalized": "EAST NOTTINGHAM EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "406 E Nottingham W",
+          "normalized": "EAST NOTTINGHAM WEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "453 Pennsbury N-1",
+          "normalized": "PENNSBURY NORTH 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "456 Pennsbury S-1",
+          "normalized": "PENNSBURY SOUTH 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "461 Phoenixville N-1",
+          "normalized": "PHOENIXVILLE NORTH 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "462 Phoenixville N-2",
+          "normalized": "PHOENIXVILLE NORTH 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "463 Phoenixville N-3",
+          "normalized": "PHOENIXVILLE NORTH 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "467 Phoenixville M-1",
+          "normalized": "PHOENIXVILLE M 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "468 Phoenixville M-2",
+          "normalized": "PHOENIXVILLE M 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "469 Phoenixville M-3",
+          "normalized": "PHOENIXVILLE M 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "472 Phoenixville E-1",
+          "normalized": "PHOENIXVILLE EAST 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "473 Phoenixville E-2",
+          "normalized": "PHOENIXVILLE EAST 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "474 Phoenixville E-3",
+          "normalized": "PHOENIXVILLE EAST 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "477 Phoenixville W-1",
+          "normalized": "PHOENIXVILLE WEST 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "478 Phoenixville W-2",
+          "normalized": "PHOENIXVILLE WEST 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "479 Phoenixville W-3",
+          "normalized": "PHOENIXVILLE WEST 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "560 Spring City 1",
+          "normalized": "SPRING CITY 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "565 Spring City 2",
+          "normalized": "SPRING CITY 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "570 Spring City 3",
+          "normalized": "SPRING CITY 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "575 Spring City 4",
+          "normalized": "SPRING CITY 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "580 Thornbury 1",
+          "normalized": "THORNBURY 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "581 Thornbury 2",
+          "normalized": "THORNBURY 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "614 Tredyffrin M-1",
+          "normalized": "TREDYFFRIN M 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "615 Tredyffrin M-2",
+          "normalized": "TREDYFFRIN M 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "616 Tredyffrin M-3",
+          "normalized": "TREDYFFRIN M 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "617 Tredyffrin M-4",
+          "normalized": "TREDYFFRIN M 4",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "618 Tredyffrin M-5",
+          "normalized": "TREDYFFRIN M 5",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "619 Tredyffrin M-6",
+          "normalized": "TREDYFFRIN M 6",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "620 Tredyffrin M-7",
+          "normalized": "TREDYFFRIN M 7",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "667 Upper Uwchlan 3",
+          "normalized": "UPPER UWCHLAN 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "670 Valley N-1",
+          "normalized": "VALLEY NORTH 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "671 Valley N-2",
+          "normalized": "VALLEY NORTH 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "672 Valley N-3",
+          "normalized": "VALLEY NORTH 3",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "820 West Chester 2-E",
+          "normalized": "WEST CHESTER 2 EAST",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 165916,
+        "REP": 76120,
+        "LIB": 2552
+      }
+    },
+    "LAWRENCE": {
+      "precincts": 74,
+      "matched_precincts": 67,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "New Castle 1-1",
+          "normalized": "NEW CASTLE WD 1 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "New Beaver Boro",
+          "normalized": "NEW BEAVER",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "S.N.P.J. Boro",
+          "normalized": "SOUTH NORTH P J",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Neshannock Twp 8",
+          "normalized": "NESHANNOCK 8",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Scott Twp 1",
+          "normalized": "SCOTT 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Scott Twp 2",
+          "normalized": "SCOTT 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Shenango Twp 6",
+          "normalized": "SHENANGO 6",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 14268,
+        "REP": 16547,
+        "LIB": 495
+      }
+    },
+    "LEBANON": {
+      "precincts": 60,
+      "matched_precincts": 46,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "12N CORNWALL NORTH",
+          "normalized": "CORNWALL NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "12S CORNWALL SOUTH",
+          "normalized": "CORNWALL SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "19F BETHEL FREDERICKSBURG",
+          "normalized": "BETHEL FREDERICKSBURG",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "19M BETHEL MOUNT ZION",
+          "normalized": "BETHEL MOUNT ZION",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "22K HEIDELBERG KLEINFELTERSVILLE",
+          "normalized": "HEIDELBERG KLEINFELTERSVILLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "22S HEIDELBERG SCHAEFFERSTOWN",
+          "normalized": "HEIDELBERG SCHAEFFERSTOWN",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "23N JACKSON NORTH",
+          "normalized": "JACKSON NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "26W NORTH CORNWALL WEST",
+          "normalized": "NORTH CORNWALL WEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "31M SOUTH LONDONDERRY MIDDLE",
+          "normalized": "SOUTH LONDONDERRY MIDDLE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "31N SOUTH LONDONDERRY NORTH",
+          "normalized": "SOUTH LONDONDERRY NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "31S SOUTH LONDONDERRY SOUTH",
+          "normalized": "SOUTH LONDONDERRY SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "32N SWATARA NORTH",
+          "normalized": "SWATARA NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "32S SWATARA SOUTH",
+          "normalized": "SWATARA SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "33G UNION GREEN POINT",
+          "normalized": "UNION GREEN POINT",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 23319,
+        "REP": 27102,
+        "LIB": 819
+      }
+    },
+    "LYCOMING": {
+      "precincts": 80,
+      "matched_precincts": 48,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "Clinton Township",
+          "normalized": "CLINTON",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Hughesville Borough 1st Ward",
+          "normalized": "HUGHESVILLE 1 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Hughesville Borough 2nd Ward",
+          "normalized": "HUGHESVILLE 2 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Jersey Shore Borough 1st Ward",
+          "normalized": "JERSEY SHORE 1 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Jersey Shore Borough 2nd Ward",
+          "normalized": "JERSEY SHORE 2 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Jersey Shore Borough 3rd Ward",
+          "normalized": "JERSEY SHORE 3 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Jersey Shore Borough 4th Ward",
+          "normalized": "JERSEY SHORE 4 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "McHenry Township",
+          "normalized": "MCHENRY",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "McIntyre Township",
+          "normalized": "MCINTYRE",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "McNett Township",
+          "normalized": "MCNETT",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Montoursville Borough 1st Ward",
+          "normalized": "MONTOURSVILLE 1 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Montoursville Borough 2nd Ward",
+          "normalized": "MONTOURSVILLE 2 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Montoursville Borough 3rd Ward",
+          "normalized": "MONTOURSVILLE 3 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Muncy Borough",
+          "normalized": "MUNCY",
+          "candidate_geometry": [
+            "LYCOMING - 081450"
+          ]
+        },
+        {
+          "source_precinct": "Muncy Township",
+          "normalized": "MUNCY",
+          "candidate_geometry": [
+            "LYCOMING - 081450"
+          ]
+        },
+        {
+          "source_precinct": "South Williamsport Borough 1st Ward",
+          "normalized": "SOUTH WILLIAMSPORT 1 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "South Williamsport Borough 2nd Ward 1st Precinct",
+          "normalized": "SOUTH WILLIAMSPORT 2 WD 1",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "South Williamsport Borough 2nd Ward 2nd Precinct",
+          "normalized": "SOUTH WILLIAMSPORT 2 WD 2",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "South Williamsport Borough 3rd Ward",
+          "normalized": "SOUTH WILLIAMSPORT 3 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 1st Ward",
+          "normalized": "WILLIAMSPORT 1 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 2nd Ward",
+          "normalized": "WILLIAMSPORT 2 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 3rd Ward",
+          "normalized": "WILLIAMSPORT 3 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 4th Ward",
+          "normalized": "WILLIAMSPORT 4 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 5th Ward",
+          "normalized": "WILLIAMSPORT 5 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 6th Ward",
+          "normalized": "WILLIAMSPORT 6 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 7th Ward",
+          "normalized": "WILLIAMSPORT 7 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 8th Ward",
+          "normalized": "WILLIAMSPORT 8 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 9th Ward",
+          "normalized": "WILLIAMSPORT 9 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 10th Ward",
+          "normalized": "WILLIAMSPORT 10 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 11th Ward",
+          "normalized": "WILLIAMSPORT 11 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 12th Ward",
+          "normalized": "WILLIAMSPORT 12 WD",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "Williamsport 13th Ward",
+          "normalized": "WILLIAMSPORT 13 WD",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 15386,
+        "REP": 24484,
+        "LIB": 584
+      }
+    },
+    "MIFFLIN": {
+      "precincts": 26,
+      "matched_precincts": 17,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "ARMAGH-EAST",
+          "normalized": "ARMAGH EAST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "ARMAGH-WEST",
+          "normalized": "ARMAGH WEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "BROWN-REEDSVILLE/BIG VALLEY",
+          "normalized": "BROWN REEDSVILLE BIG VALLEY",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "BROWN-CHURCH HILL",
+          "normalized": "BROWN CHURCH HILL",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "LEWISTOWN-WEST",
+          "normalized": "LEWISTOWN WEST",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "LEWISTOWN-CENTRAL",
+          "normalized": "LEWISTOWN CENTRAL",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "LEWISTOWN-NORTH",
+          "normalized": "LEWISTOWN NORTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "LEWISTOWN-SOUTH",
+          "normalized": "LEWISTOWN SOUTH",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "MCVEYTOWN BOROUGH",
+          "normalized": "MCVEYTOWN",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 4649,
+        "REP": 9405,
+        "LIB": 279
+      }
+    },
+    "SUSQUEHANNA": {
+      "precincts": 41,
+      "matched_precincts": 31,
+      "unmatched_precincts": [
+        {
+          "source_precinct": "FOREST CITY BORO",
+          "normalized": "FOREST CITY",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "BEND BORO",
+          "normalized": "BEND",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "LITTLE MDWS BORO",
+          "normalized": "LITTLE MDWS",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "MONTROSE BORO-1W",
+          "normalized": "MONTROSE 1W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "MONTROSE BORO-2W",
+          "normalized": "MONTROSE 2W",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "NEW MILFORD BORO",
+          "normalized": "NEW MILFORD",
+          "candidate_geometry": [
+            "SUSQUEHANNA - 115320",
+            "SUSQUEHANNA - 115330"
+          ]
+        },
+        {
+          "source_precinct": "OAKLAND BORO",
+          "normalized": "OAKLAND",
+          "candidate_geometry": [
+            "SUSQUEHANNA - 115340",
+            "SUSQUEHANNA - 115350"
+          ]
+        },
+        {
+          "source_precinct": "SUSQUEHANNA BORO",
+          "normalized": "SUSQUEHANNA",
+          "candidate_geometry": []
+        },
+        {
+          "source_precinct": "THOMPSON BORO",
+          "normalized": "THOMPSON",
+          "candidate_geometry": [
+            "SUSQUEHANNA - 115420",
+            "SUSQUEHANNA - 115410"
+          ]
+        },
+        {
+          "source_precinct": "UNION DALE BORO",
+          "normalized": "UNION DALE",
+          "candidate_geometry": []
+        }
+      ],
+      "votes_by_party": {
+        "DEM": 5661,
+        "REP": 9386,
+        "LIB": 247
+      }
+    }
+  },
+  "counties_without_verified_precinct_report": [
+    "ADAMS",
+    "ALLEGHENY",
+    "ARMSTRONG",
+    "BEAVER",
+    "BEDFORD",
+    "BLAIR",
+    "BRADFORD",
+    "BUCKS",
+    "BUTLER",
+    "CAMBRIA",
+    "CAMERON",
+    "CARBON",
+    "CENTRE",
+    "CLARION",
+    "CLEARFIELD",
+    "CLINTON",
+    "COLUMBIA",
+    "CRAWFORD",
+    "CUMBERLAND",
+    "DAUPHIN",
+    "DELAWARE",
+    "ELK",
+    "ERIE",
+    "FAYETTE",
+    "FOREST",
+    "FRANKLIN",
+    "FULTON",
+    "GREENE",
+    "HUNTINGDON",
+    "INDIANA",
+    "JEFFERSON",
+    "JUNIATA",
+    "LACKAWANNA",
+    "LANCASTER",
+    "LEHIGH",
+    "LUZERNE",
+    "MCKEAN",
+    "MERCER",
+    "MONROE",
+    "MONTGOMERY",
+    "MONTOUR",
+    "NORTHAMPTON",
+    "NORTHUMBERLAND",
+    "PERRY",
+    "PHILADELPHIA",
+    "PIKE",
+    "POTTER",
+    "SCHUYLKILL",
+    "SNYDER",
+    "SOMERSET",
+    "SULLIVAN",
+    "TIOGA",
+    "UNION",
+    "VENANGO",
+    "WARREN",
+    "WASHINGTON",
+    "WAYNE",
+    "WESTMORELAND",
+    "WYOMING",
+    "YORK"
+  ]
+}

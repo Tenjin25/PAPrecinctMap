@@ -1,0 +1,280 @@
+{
+  "status": "official_partial",
+  "sources": {
+    "BERKS": "https://www.berkspa.gov/getmedia/f2dde727-efd0-4e9e-b86f-ce73da4d7e05/GE2026-Precinct-Report.pdf",
+    "CHESTER": "https://www.chesco.org/DocumentCenter/View/86455/CHESTER_2026-GENERAL_OFFICIAL-PRECINCT-RESULTS?bidId=",
+    "LAWRENCE": "https://www.lawrencecountypa.gov/getmedia/99327a61-5f14-4ab3-a690-cbc1884ef242/2026-General-Election-Official-Precinct-Report.pdf",
+    "LEBANON": "https://www.lebanoncountypa.gov/getmedia/2814004b-ba3a-4a28-b8de-b08595f5059e/2026-General-FINAL-PRECINCT-SUMMARY-WITH-WRITE-INS_2.pdf",
+    "LYCOMING": "https://lycomingcountypa.gov/Documents/Government/Departments/Voter%20Services/PreviousResults/2026GEPrecinct.pdf?t=202611121357080",
+    "MIFFLIN": "https://mifflincountypa.gov/getmedia/2469c096-4771-4df5-83ec-1472c5d6aefa/2026-November-General-Election-Official-Precinct-Results",
+    "SUSQUEHANNA": "https://susqco.com/getmedia/d90196d5-9afb-4774-a131-fad9b0bd961b/2026-General-Official-Precinct-Report.pdf"
+  },
+  "counties": {
+    "BERKS": {
+      "precincts_with_district_races": 202,
+      "matched_precincts": 141,
+      "rows": 1381,
+      "contests": {
+        "U.S. House 6": {
+          "DEM": 41016,
+          "REP": 25653,
+          "WRI": 97
+        },
+        "State House 127": {
+          "DEM": 8434,
+          "WRI": 293
+        },
+        "State House 129": {
+          "DEM": 13963,
+          "WRI": 563
+        },
+        "State House 126": {
+          "DEM": 11796,
+          "REP": 5638,
+          "WRI": 26
+        },
+        "U.S. House 9": {
+          "DEM": 8555,
+          "REP": 13392,
+          "WRI": 24
+        },
+        "State Senate 48": {
+          "DEM": 13516,
+          "REP": 20345,
+          "WRI": 45
+        },
+        "State House 124": {
+          "DEM": 4291,
+          "REP": 6317,
+          "WRI": 4
+        },
+        "U.S. House 4": {
+          "DEM": 26940,
+          "REP": 27124,
+          "WRI": 60
+        },
+        "State House 130": {
+          "DEM": 11312,
+          "REP": 15472,
+          "WRI": 34
+        },
+        "State Senate 24": {
+          "DEM": 9887,
+          "REP": 12261,
+          "WRI": 16
+        },
+        "State House 128": {
+          "DEM": 12274,
+          "REP": 14214,
+          "WRI": 34
+        },
+        "State House 5": {
+          "DEM": 9978,
+          "REP": 15534,
+          "WRI": 30
+        },
+        "State Senate 44": {
+          "DEM": 1704,
+          "REP": 1694,
+          "WRI": 3
+        },
+        "State House 99": {
+          "DEM": 2926,
+          "REP": 3826,
+          "WRI": 9
+        }
+      }
+    },
+    "CHESTER": {
+      "precincts_with_district_races": 230,
+      "matched_precincts": 171,
+      "rows": 1581,
+      "contests": {
+        "U.S. House 6": {
+          "DEM": 160228,
+          "REP": 85190,
+          "WRI": 296
+        },
+        "State Senate 44": {
+          "DEM": 59941,
+          "REP": 33371,
+          "WRI": 90
+        },
+        "State House 74": {
+          "DEM": 14837,
+          "REP": 8212,
+          "WRI": 31
+        },
+        "State House 158": {
+          "DEM": 21089,
+          "WRI": 4415
+        },
+        "State House 160": {
+          "DEM": 7120,
+          "REP": 4776,
+          "WRI": 14
+        },
+        "State House 156": {
+          "DEM": 19813,
+          "REP": 9413,
+          "WRI": 28
+        },
+        "State House 155": {
+          "DEM": 22839,
+          "WRI": 3944
+        },
+        "State House 167": {
+          "DEM": 20564,
+          "REP": 9891,
+          "WRI": 25
+        },
+        "State House 26": {
+          "DEM": 19584,
+          "REP": 10443,
+          "WRI": 45
+        },
+        "State House 157": {
+          "DEM": 21840,
+          "REP": 10078,
+          "WRI": 30
+        },
+        "State House 13": {
+          "DEM": 13907,
+          "REP": 13187,
+          "WRI": 27
+        }
+      }
+    },
+    "LAWRENCE": {
+      "precincts_with_district_races": 74,
+      "matched_precincts": 67,
+      "rows": 618,
+      "contests": {
+        "U.S. House 16": {
+          "DEM": 12891,
+          "REP": 18426,
+          "WRI": 35
+        },
+        "State Senate 50": {
+          "DEM": 9957,
+          "REP": 15274,
+          "WRI": 27
+        },
+        "State House 9": {
+          "DEM": 8585,
+          "REP": 13750,
+          "WRI": 37
+        },
+        "State House 8": {
+          "REP": 5305,
+          "DEM": 3584,
+          "WRI": 41
+        }
+      }
+    },
+    "LEBANON": {
+      "precincts_with_district_races": 60,
+      "matched_precincts": 46,
+      "rows": 512,
+      "contests": {
+        "U.S. House 9": {
+          "DEM": 21393,
+          "REP": 29844,
+          "WRI": 77
+        },
+        "State Senate 48": {
+          "DEM": 19822,
+          "REP": 31089,
+          "WRI": 241
+        },
+        "State House 101": {
+          "REP": 14320,
+          "WRI": 1267
+        },
+        "State House 102": {
+          "REP": 15819,
+          "DEM": 8506,
+          "WRI": 93
+        },
+        "State House 98": {
+          "DEM": 2471,
+          "REP": 3132,
+          "WRI": 11
+        }
+      }
+    },
+    "LYCOMING": {
+      "precincts_with_district_races": 80,
+      "matched_precincts": 48,
+      "rows": 403,
+      "contests": {
+        "U.S. House 15": {
+          "DEM": 4292,
+          "REP": 11584,
+          "WRI": 14
+        },
+        "State House 84": {
+          "REP": 19864,
+          "WRI": 752
+        },
+        "State House 83": {
+          "REP": 13031,
+          "WRI": 1019
+        },
+        "U.S. House 9": {
+          "DEM": 9701,
+          "REP": 14876,
+          "WRI": 34
+        }
+      }
+    },
+    "MIFFLIN": {
+      "precincts_with_district_races": 26,
+      "matched_precincts": 17,
+      "rows": 227,
+      "contests": {
+        "U.S. House 13": {
+          "DEM": 3845,
+          "REP": 10550,
+          "WRI": 18
+        },
+        "State Senate 30": {
+          "DEM": 3653,
+          "REP": 10738,
+          "WRI": 9
+        },
+        "State House 171": {
+          "DEM": 2487,
+          "REP": 7506,
+          "WRI": 12
+        },
+        "State House 85": {
+          "REP": 3604,
+          "WRI": 133
+        }
+      }
+    },
+    "SUSQUEHANNA": {
+      "precincts_with_district_races": 41,
+      "matched_precincts": 31,
+      "rows": 369,
+      "contests": {
+        "U.S. House 9": {
+          "DEM": 5127,
+          "REP": 10108,
+          "WRI": 7
+        },
+        "State Senate 20": {
+          "DEM": 4697,
+          "REP": 10514,
+          "WRI": 6
+        },
+        "State House 111": {
+          "DEM": 4574,
+          "REP": 10680,
+          "WRI": 6
+        }
+      }
+    }
+  }
+}
